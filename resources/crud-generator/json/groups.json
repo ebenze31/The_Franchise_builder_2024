@@ -1,0 +1,41 @@
+{
+    "fields": [
+        {
+            "name": "name_group",
+            "type": "string"
+        },
+        {
+            "name": "member",
+            "type": "string"
+        },
+        {
+            "name": "host",
+            "type": "string"
+        },
+        {
+            "name": "logo",
+            "type": "file"
+        },
+        {
+            "name": "group_line_id",
+            "type": "string"
+        },
+        {
+            "name": "key_invite",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "rank_last_week",
+            "type": "string"
+        },
+        {
+            "name": "request_join",
+            "type": "string"
+        }
+
+    ]
+}

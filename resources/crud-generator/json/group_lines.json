@@ -1,0 +1,17 @@
+{
+    "fields": [
+        {
+            "name": "groupId",
+            "type": "string"
+        },
+        {
+            "name": "groupName",
+            "type": "string"
+        },
+        {
+            "name": "pictureUrl",
+            "type": "string"
+        }
+
+    ]
+}

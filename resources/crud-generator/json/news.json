@@ -1,0 +1,29 @@
+{
+    "fields": [
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "detail",
+            "type": "string"
+        },
+        {
+            "name": "photo_content",
+            "type": "file"
+        },
+        {
+            "name": "photo_cover",
+            "type": "file"
+        },
+        {
+            "name": "link",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        }
+
+    ]
+}

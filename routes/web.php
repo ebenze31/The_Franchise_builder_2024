@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home_page');
 });
+
+Route::resource('groups', 'GroupsController');
+Route::resource('news', 'NewsController');
+Route::resource('group_lines', 'Group_linesController');
+Route::resource('pc_points', 'Pc_pointsController');

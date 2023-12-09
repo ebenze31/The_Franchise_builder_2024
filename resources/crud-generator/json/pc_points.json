@@ -1,0 +1,25 @@
+{
+    "fields": [
+        {
+            "name": "week",
+            "type": "string"
+        },
+        {
+            "name": "pc_point",
+            "type": "integer"
+        },
+        {
+            "name": "new_code",
+            "type": "integer"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        },
+        {
+            "name": "group_id",
+            "type": "integer"
+        }
+
+    ]
+}
