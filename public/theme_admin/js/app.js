@@ -19,6 +19,7 @@ $(function () {
 	$(".toggle-icon").click(function () {
 		if ($(".wrapper").hasClass("toggled")) {
 			$("#img_logo_sidebar").addClass("d-none");
+			$("#icon_hide_sidebar").removeClass("d-none");
 			// unpin sidebar when hovered
 			$(".wrapper").removeClass("toggled");
 			$(".sidebar-wrapper").unbind("hover");
@@ -27,10 +28,12 @@ $(function () {
 			$(".sidebar-wrapper").hover(function () {
 				$(".wrapper").addClass("sidebar-hovered");
 				$("#img_logo_sidebar").addClass("d-none");
+				$("#icon_hide_sidebar").removeClass("d-none");
 			}, function () {
 				$(".wrapper").removeClass("sidebar-hovered");
 				if ($(".wrapper").hasClass("toggled")) {
 					$("#img_logo_sidebar").removeClass("d-none");
+					$("#icon_hide_sidebar").addClass("d-none");
 				}
 			})
 		}

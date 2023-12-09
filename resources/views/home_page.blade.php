@@ -2,8 +2,18 @@
 
 @section('content')
 
+	<center>
+		<h1 class="text-white">สวัสดีครับ</h1>
+	</center>
 
-<!-- <h1 class="text-danger">สวัสดีครับ</h1> -->
+	<a class="dropdown-item btn" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+        <i class='bx bx-log-out-circle'></i>
+        <span>Logout</span>
+    </a>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
 
 
 @endsection

@@ -13,15 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home_page');
+
+Auth::routes();
+
+// LOGIN
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('pc_points', 'Pc_pointsController');
+    Route::resource('groups', 'GroupsController');
+
 });
 
-Route::get('/dashboard', function () {
-    return view('admin/dashboard');
-});
+// ROLE = admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
 
-Route::resource('groups', 'GroupsController');
-Route::resource('news', 'NewsController');
-Route::resource('group_lines', 'Group_linesController');
-Route::resource('pc_points', 'Pc_pointsController');
+    Route::get('/dashboard', 'HomeController@dashboard');
+    Route::get('/add_account', 'ProfileController@add_account');
+    Route::resource('group_lines', 'Group_linesController');
+    Route::resource('news', 'NewsController');
+
+});

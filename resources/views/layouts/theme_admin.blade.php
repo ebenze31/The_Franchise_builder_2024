@@ -53,6 +53,10 @@
     *:not(i) {
 		font-family: 'Prompt', sans-serif !important;
 	}
+
+    .bg-menu-bar{
+        background: linear-gradient(to right, #011644 , #0455AC , #0467CE , #94daff)!important;
+    }
 </style>
 
 <body>
@@ -61,7 +65,7 @@
 
         <div class="sidebar-wrapper" data-simplebar="true">
             <div class="has-arrow">
-                <div class="sidebar-header">
+                <div class="sidebar-header toggle-icon">
                     <img id="img_logo_sidebar" src="{{ url('/img/logo/ALV.DE-78cd6600.svg') }}" class="d-none" style="width:50px;">
                     <!-- <h6 style="font-size: 20px;" class="logo-text">The Franchise builder 2024</h6> -->
 
@@ -70,52 +74,67 @@
                         <p class="mt-1" style="margin-left: 5px;color: #fff;font-size: 12px;">The Franchise builder 2024</p>
                     </div>
 
-                    <div class="toggle-icon ms-auto">
-                        <i class='bx bx-first-page'></i>
+                    <div class="ms-auto">
+                        <i id="icon_hide_sidebar" class="fa-solid fa-angle-left text-white"></i>
                     </div>
                 </div>
             </div>
             <ul class="metismenu" id="menu">
+
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
-                            <i class="fa-solid fa-bars"></i>
+                            <i class="fa-duotone fa-users"></i>
                         </div>
                         <div class="menu-title">
-                            เมนู
+                            สมาชิก
                         </div>
                     </a>
                     
                     <ul>
                         <li>
-                            <a href="javascript:;">
-                                <i class="fa-sharp fa-solid fa-caret-down"></i> 1
+                            <a href="{{ url('/add_account') }}">
+                                <i class="fa-solid fa-user-plus"></i> เพิ่มสมาชิก
                             </a>
-                            <ul class="mm-collapse">
-								<li>
-                                    <a href="javascript:;">
-                                        <i class="fa-solid fa-caret-right"></i> 1.1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <i class="fa-solid fa-caret-right"></i> 1.2
-                                    </a>
-                                </li>
-							</ul>
                         </li>
                         <li>
-                            <a href="{{ url('/') }}">
-                                <i class="fa-solid fa-caret-right"></i> 2
+                            <a href="{{ url('/account_all') }}">
+                                <i class="fa-solid fa-address-card"></i> รายชื่อสมาชิก
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/account_all') }}">
+                                <i class="fa-solid fa-user-check"></i> ลงทะเบียนเรียบร้อย
                             </a>
                         </li>
                     </ul>
                 </li>
+
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="fa-sharp fa-solid fa-hundred-points"></i>
+                        </div>
+                        <div class="menu-title">
+                            คะแนน
+                        </div>
+                    </a>
+                    
+                    <ul>
+                        <li>
+                            <a href="{{ url('/') }}">
+                                <i class="fa-solid fa-grid-2-plus"></i> เพิ่มคะแนน
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
 
         <header>
-            <div class="topbar d-flex align-items-center" style="background-color:#3495c9!important;">
+            <div class="topbar d-flex align-items-center bg-menu-bar">
                 <nav class="navbar navbar-expand">
                     <div class="mobile-toggle-menu">
                         <i class='bx bx-menu'></i>
@@ -151,9 +170,19 @@
 
                     <div class="user-box dropdown">
                         <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="" class="user-img" alt="user avatar">
+                            @if( !empty(Auth::user()->photo) )
+                                <img src="" class="user-img">
+                            @else
+                                <img src="{{ url('/img/icon/profile.png') }}" class="user-img">
+                            @endif
                             <div class="user-info ps-3">
-                                <p class="user-name mb-0" style="color: #ffffff!important;">name</p>
+                                <p class="user-name mb-0" style="color: #ffffff!important;">
+                                    @if( !empty(Auth::user()->name) )
+                                        {{ Auth::user()->name }}
+                                    @else
+                                        Name User
+                                    @endif
+                                </p>
                             </div>
                             <div style="margin-left:10px ;">
                             <i class="fa-solid fa-bars text-white"></i>
@@ -161,25 +190,15 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item btn" href="">
-                                    <i class="bx bx-user"></i><span>Profile</span>
-                                </a>
-                            </li>
-                                <div class="dropdown-divider mb-0"></div>
-                            </li>
-                            <li>
-                                <a class="dropdown-item btn">
+
+                                <a class="dropdown-item btn" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     <i class='bx bx-log-out-circle'></i>
                                     <span>Logout</span>
                                 </a>
 
-                                <a id="btn_go_to_logout" href="{ route('logout') }" class="dropdown-item d-none">
-                                    Logout
-                                </a>
-
-                            <form id="logout-form" action="{ route('logout') }" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </li>
                         </ul>
                     </div>
