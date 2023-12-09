@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ url('/img/logo/text_login.png') }}" rel="icon">
-  <link href="{{ url('/img/logo/text_login.png') }}" rel="apple-touch-icon">
+  <link href="{{ url('/img/logo/Favicons.png') }}" rel="icon">
+  <link href="{{ url('/img/logo/Favicons.png') }}" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -99,11 +99,11 @@
     <div id="header">
         <div class="row text-center align-content-center align-items-center">
             <div class="col d-block d-md-none">
-                <img src="{{ url('/img/logo/text_login.png') }}" style="width: 60%" id="header-text-login">
+                <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 60%" id="header-text-login">
             </div>
 
             <div class="col d-none d-lg-block">
-                <img src="{{ url('/img/logo/text_login.png') }}" style="width: 20%" id="header-text-login">
+                <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 20%" id="header-text-login">
             </div>
         </div>
     </div>

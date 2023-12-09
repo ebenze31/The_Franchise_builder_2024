@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('home_page');
 });
 
+Route::get('/dashboard', function () {
+    return view('admin/dashboard');
+});
+
 Route::resource('groups', 'GroupsController');
 Route::resource('news', 'NewsController');
 Route::resource('group_lines', 'Group_linesController');
