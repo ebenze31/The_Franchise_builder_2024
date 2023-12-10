@@ -13,21 +13,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// member = สมาชิกทั้งหมด
+// challenger = ผู้เข่าร่วมกิจกรรม
+// admin-H-LAB = admin H-LAB
+// admin-Allianz = admin Allianz
+// staff-reg = เจ้าหน้าที่ลงทะเบียน
+// staff-shirt = เจ้าหน้าที่เช็คการรับเสื้อ
 
 Auth::routes();
 
-// LOGIN
-Route::middleware(['auth'])->group(function () {
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/', 'HomeController@index')->name('home');
+// REGISTER TFB 2024
+Route::middleware(['auth', 'role:member'])->group(function () {
+    Route::get('/register_tfb2024', 'HomeController@register_tfb2024');
+});
+
+// member
+Route::middleware(['auth', 'role:challenger'])->group(function () {
+
     Route::resource('pc_points', 'Pc_pointsController');
     Route::resource('groups', 'GroupsController');
 
 });
 
-// ROLE = admin
-Route::middleware(['auth', 'role:admin'])->group(function () {
+// admin
+Route::middleware(['auth', 'role:admin-H-LAB, admin-Allianz'])->group(function () {
 
     Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/add_account', 'ProfileController@add_account');

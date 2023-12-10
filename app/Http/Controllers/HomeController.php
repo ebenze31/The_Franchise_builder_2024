@@ -24,16 +24,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role == "admin"){
+        if(Auth::user()->role == "admin-H-LAB" || Auth::user()->role == "admin-Allianz"){
             return redirect("dashboard");
-        }else{
+        }
+
+        else if(Auth::user()->role == "challenger"){
             return view('home_page');
         }
-        // return view('home_page');
+
+        else if(Auth::user()->role == "member"){
+            return redirect("register_tfb2024");
+        }
+
     }
 
     public function dashboard()
     {
         return view('admin.dashboard');
+    }
+
+    public function register_tfb2024(){
+        return view('register_tfb2024');
     }
 }
