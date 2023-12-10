@@ -5,15 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Register_car;
-use App\Models\Organization;
 use Illuminate\Support\Facades\DB;
-use Intervention\Image\ImageManagerStatic as Image;
-use App\Models\Sos_map;
-use App\Models\Guest;
-use App\Models\Cancel_Profile;
-use App\Models\Name_University;
-use App\Http\Controllers\API\LineApiController;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -111,8 +104,49 @@ class ProfileController extends Controller
     }
 
     function add_account(){
-
         return view('admin.add_account');
+    }
+
+    function create_user(Request $request)
+    {
+        $requestData = $request->all();
+
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
+
+        foreach ($requestData as $item) {
+            foreach ($item as $key => $value) {
+                // echo "Key: $key, Value: $value<br>";
+                if($key == "password"){
+                    $requestData['password'] = Hash::make($value);
+                }else{
+                    $requestData[$key] = $value;
+                }
+            }
+            // echo "==========<br>";
+            $requestData['role'] = "member" ;
+            User::create($requestData);
+        }
+
+        return "success" ;
+
+    }
+
+    function account_all(){
+        return view('admin.account_all');
+    }
+
+    function get_data_account($type_get_data){
+
+        if($type_get_data == "all"){
+            $data = User::where('role' , "member")
+                ->orWhere('role' , "challenger")
+                ->get();
+        }
+
+        return $data;
 
     }
 

@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Favicons -->
-    <link href="{{ url('/img/logo/Favicons.png') }}" rel="icon">
-    <link href="{{ url('/img/logo/Favicons.png') }}" rel="apple-touch-icon">
+    <link href="{{ url('/img/logo/ALV.DE-78cd6600.png') }}" rel="icon">
+    <link href="{{ url('/img/logo/ALV.DE-78cd6600.png') }}" rel="apple-touch-icon">
 
 	<!--plugins-->
 	<link rel="stylesheet" href="{{ asset('/theme_admin/plugins/notifications/css/lobibox.min.css') }}" />

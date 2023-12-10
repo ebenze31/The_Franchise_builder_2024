@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -46,6 +47,23 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function username()
+    {
+        return 'account'; // กำหนดให้ใช้ 'account' แทน 'email'
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('account', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return redirect("home");
+        }
+
+        return redirect('login')->with('error', 'Login failed, please check your credentials.');
     }
 
 }

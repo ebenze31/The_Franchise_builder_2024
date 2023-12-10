@@ -303,19 +303,37 @@
                 let jsonData = XLSX.utils.sheet_to_json(sheet);
 
                 // ตรวจสอบข้อมูลในคอนโซล
-                console.log(jsonData);
+                // console.log(jsonData);
 
-                // เคลียร์ input
-                clearFileInput('excel');
+                fetch("{{ url('/') }}/api/create_user/excel", {
+                    method: 'post',
+                    body: JSON.stringify(jsonData),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function (response){
+                    return response.text();
+                }).then(function(data){
+                    // console.log(data);
 
-                document.querySelector('#div_loader_Excel').classList.add('d-none');
-                document.querySelector('#div_success_Excel').classList.remove('d-none');
+                    if(data == "success"){
+                        // เคลียร์ input
+                        clearFileInput('excel');
+
+                        document.querySelector('#div_loader_Excel').classList.add('d-none');
+                        document.querySelector('#div_success_Excel').classList.remove('d-none');
+                    }
+
+                }).catch(function(error){
+                    // console.error(error);
+                });
 
             };
 
             reader.readAsBinaryString(file);
 
         } else {
+            document.querySelector('#div_loader_Excel').classList.add('d-none');
             alert('กรุณาเลือกไฟล์ Excel');
         }
     }
@@ -349,6 +367,7 @@
 
             reader.readAsText(file);
         } else {
+            document.querySelector('#div_loader_CSV').classList.add('d-none');
             alert('กรุณาเลือกไฟล์ CSV');
         }
     }

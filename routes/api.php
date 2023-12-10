@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/create_user/excel', 'ProfileController@create_user');
+Route::get('/get_data_account/{type_get_data}', 'ProfileController@get_data_account');

@@ -43,6 +43,7 @@ Route::middleware(['auth', 'role:admin-H-LAB, admin-Allianz'])->group(function (
 
     Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/add_account', 'ProfileController@add_account');
+    Route::get('/account_all', 'ProfileController@account_all');
     Route::resource('group_lines', 'Group_linesController');
     Route::resource('news', 'NewsController');
 
