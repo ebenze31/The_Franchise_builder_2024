@@ -177,7 +177,7 @@
     });
 
     function get_data_account(type_get_data){
-        console.log(type_get_data);
+        // console.log(type_get_data);
 
         fetch("{{ url('/') }}/api/get_data_account/" + type_get_data)
             .then(response => response.json())
@@ -203,7 +203,7 @@
                         let class_role = '';
                         let html_status = '';
 
-                        if(result[i].role == "member"){
+                        if(result[i].role == "Member"){
                             class_role = 'secondary';
                         }else{
                             class_role = 'primary';
@@ -216,11 +216,19 @@
 
                         }
 
+                        // photo 
+                        let html_img = ''
+                        if(result[i].photo){
+                            html_img = `<img src="{{ url('storage')}}/`+result[i].photo+`" class="p-1" alt="">`;
+                        }else{
+                            html_img = `<img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt="">`;
+                        }
+
                         let html = `
                             <tr>
                                 <td>
                                     <div class="product-img bg-transparent border">
-                                        <img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt="">
+                                        `+html_img+`
                                     </div>
                                 </td>
                                 <td>`+result[i].account+`</td>

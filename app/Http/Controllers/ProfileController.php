@@ -110,24 +110,19 @@ class ProfileController extends Controller
     function create_user(Request $request)
     {
         $requestData = $request->all();
-
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
-        // exit();
-
+        $data_arr = [];
+        
         foreach ($requestData as $item) {
             foreach ($item as $key => $value) {
-                // echo "Key: $key, Value: $value<br>";
+
                 if($key == "password"){
-                    $requestData['password'] = Hash::make($value);
+                    $data_arr['password'] = Hash::make($value);
                 }else{
-                    $requestData[$key] = $value;
+                    $data_arr[$key] = $value;
                 }
             }
-            // echo "==========<br>";
-            $requestData['role'] = "member" ;
-            User::create($requestData);
+
+            User::create($data_arr);
         }
 
         return "success" ;
@@ -141,8 +136,8 @@ class ProfileController extends Controller
     function get_data_account($type_get_data){
 
         if($type_get_data == "all"){
-            $data = User::where('role' , "member")
-                ->orWhere('role' , "challenger")
+            $data = User::where('role' , "Member")
+                ->orWhere('role' , "Challenger")
                 ->get();
         }
 

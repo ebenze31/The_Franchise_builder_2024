@@ -81,6 +81,25 @@
             </div>
             <ul class="metismenu" id="menu">
 
+                @if(Auth::user()->role == "Admin-HLAB" || Auth::user()->role == "Admin-Allianz")
+                <li>
+                    <a href="javascript:;" class="">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-chart-user"></i>
+                        </div>
+                        <div class="menu-title">
+                            Dashboard
+                        </div>
+                    </a>
+                    <ul class="d-none">
+                        <li>
+                            <a href="{{ url('/dashboard') }}">
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
@@ -92,25 +111,50 @@
                     </a>
                     
                     <ul>
+                        @if(Auth::user()->role == "Admin-HLAB" || Auth::user()->role == "Admin-Allianz")
                         <li>
                             <a href="{{ url('/add_account') }}">
-                                <i class="fa-solid fa-user-plus"></i> เพิ่มสมาชิก
+                                <i class="fa-solid fa-plus"></i> เพิ่มสมาชิก
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/account_admin') }}">
+                                <i class="fa-duotone fa-user-nurse"></i> แอดมินและเจ้าหน้าที่
                             </a>
                         </li>
                         <li>
                             <a href="{{ url('/account_all') }}">
-                                <i class="fa-solid fa-address-card"></i> รายชื่อสมาชิก
+                                <i class="fa-solid fa-address-card"></i> รายชื่อสมาชิกทั้งหมด
                             </a>
                         </li>
+                        @endif
                         <li>
-                            <a href="{{ url('/account_all') }}">
-                                <i class="fa-solid fa-user-check"></i> ลงทะเบียนเรียบร้อย
+                            <a href="{{ url('/account_reg_success') }}">
+                                <i class="fa-solid fa-user-check"></i> ผู้ร่วมกิจกรรม
                             </a>
                         </li>
                     </ul>
                 </li>
 
-
+                @if(Auth::user()->role == "Admin-HLAB" || Auth::user()->role == "Admin-Allianz")
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-house-flag"></i>
+                        </div>
+                        <div class="menu-title">
+                            บ้าน
+                        </div>
+                    </a>
+                    
+                    <ul>
+                        <li>
+                            <a href="{{ url('/add_group') }}">
+                                <i class="fa-solid fa-plus"></i> เพิ่มจำนวนบ้าน
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
@@ -123,12 +167,31 @@
                     
                     <ul>
                         <li>
-                            <a href="{{ url('/') }}">
+                            <a href="{{ url('/add_score') }}">
                                 <i class="fa-solid fa-grid-2-plus"></i> เพิ่มคะแนน
                             </a>
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-newspaper"></i>
+                        </div>
+                        <div class="menu-title">
+                            News
+                        </div>
+                    </a>
+                    
+                    <ul>
+                        <li>
+                            <a href="{{ url('/add_news') }}">
+                                <i class="fa-solid fa-plus"></i> เพิ่มข่าวใหม่
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
 
             </ul>
         </div>
@@ -171,7 +234,7 @@
                     <div class="user-box dropdown">
                         <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             @if( !empty(Auth::user()->photo) )
-                                <img src="" class="user-img">
+                                <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" class="user-img">
                             @else
                                 <img src="{{ url('/img/icon/profile.png') }}" class="user-img">
                             @endif

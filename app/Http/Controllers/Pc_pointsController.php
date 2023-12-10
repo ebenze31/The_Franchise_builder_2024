@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\User;
 
 use App\Models\Pc_point;
 use Illuminate\Http\Request;
@@ -120,5 +121,44 @@ class Pc_pointsController extends Controller
         Pc_point::destroy($id);
 
         return redirect('pc_points')->with('flash_message', 'Pc_point deleted!');
+    }
+
+    function add_score(){
+        return view('pc_points.add_score');
+    }
+
+    function create_score(Request $request){
+
+        $requestData = $request->all();
+        $data_arr = [];
+
+        foreach ($requestData as $item) {
+            foreach ($item as $key => $value) {
+
+                if($key == "account"){
+                    $data_user = User::where('account' , $value)->first();
+                    if(empty($data_user)){
+                        $data_arr['user_id'] = 0 ;
+                    }else{
+                        $data_arr['user_id'] = $data_user->id;
+                    }
+                }else{
+                    $data_arr[$key] = $value;
+                }
+            }
+
+            Pc_point::create($data_arr);
+
+            // DB::table('users')
+            //     ->where([ 
+            //             ['id', $data_arr['user_id']],
+            //         ])
+            //     ->update([
+            //             'count_sos' => $update_count_sos,
+            //         ]);
+        }
+
+        return "success" ;
+    
     }
 }

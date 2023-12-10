@@ -133,4 +133,37 @@ class GroupsController extends Controller
 
         return redirect('groups')->with('flash_message', 'Group deleted!');
     }
+
+    function add_group(){
+
+        $data_old = Group::get();
+        $count_group = count($data_old);
+
+        return view('groups.add_group' , compact('count_group'));
+    }
+
+    function create_group($amount){
+
+        $data_old = Group::get();
+        $count_group = count($data_old);
+
+        $amount_loop = $amount + $count_group ;
+
+        for ($i=($count_group+1); $i < ($amount_loop+1); $i++) { 
+            // code...
+            if ($i <= 9) {
+                $name_group = '00'.$i ;
+            }else if($i > 9 && $i < 100){
+                $name_group = '0'.$i ;
+            }else{
+                $name_group = $i ;
+            }
+
+            $requestData['name_group'] = $name_group ;
+            Group::create($requestData);
+        }
+
+        return count($data_old) + $amount ;
+
+    }
 }

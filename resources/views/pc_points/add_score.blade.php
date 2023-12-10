@@ -144,7 +144,7 @@
 <div class="card">
     <div class="card-body">
 
-        <h4 class="mb-0 text-uppercase">เพิ่มข้อมูลสมาชิก</h4>
+        <h4 class="mb-0 text-uppercase">เพิ่มคะแนน PC</h4>
         <hr class="mt-3 mb-3">
 
         <ul class="nav nav-tabs nav-primary" role="tablist">
@@ -158,25 +158,15 @@
                     </div>
                 </a>
             </li>
-            <li class="nav-item d-none" role="presentation">
-                <a class="nav-link" data-bs-toggle="tab" href="#primaryCSV" role="tab" aria-selected="false">
-                    <div class="d-flex align-items-center">
-                        <div class="tab-icon">
-                            <i class="fa-solid fa-file-csv font-18 me-1"></i>
-                        </div>
-                        <div class="tab-title">CSV</div>
-                    </div>
-                </a>
-            </li>
         </ul>
         <div class="tab-content py-3">
             <div class="tab-pane fade show active" id="primaryExcel" role="tabpanel">
 
-                <div class="card border-top border-0 border-4 border-success">
+                <div class="card border-top border-0 border-4 border-info">
                     <div class="card-body p-5">
                         <div class="card-title text-center">
-                            <i class="fa-solid fa-file-excel text-success font-50"></i>
-                            <h5 class="mb-5 mt-2 text-success">เพิ่มข้อมูลสมาชิก</h5>
+                            <i class="fa-solid fa-file-excel text-info font-50"></i>
+                            <h5 class="mb-5 mt-2 text-info">เพิ่มคะแนน PC</h5>
                         </div>
                         <hr>
                         <div class="col-12">
@@ -222,58 +212,6 @@
                 </div>
 
             </div>
-            <div class="tab-pane fade" id="primaryCSV" role="tabpanel">
-
-                <div class="card border-top border-0 border-4 border-dark">
-                    <div class="card-body p-5">
-                        <div class="card-title text-center">
-                            <i class="fa-solid fa-file-csv text-dark font-50"></i>
-                            <h5 class="mb-5 mt-2 text-dark">เพิ่มไฟล์ CSV ของคุณ</h5>
-                        </div>
-                        <hr>
-                        <div class="col-12">
-                            <label for="inputLastEnterUsername" class="form-label">CSV file</label>
-                            <div class="input-group input-group-lg">
-                                <span class="input-group-text bg-transparent">
-                                    <i class="fa-solid fa-file-csv"></i>
-                                </span>
-                                <input class="form-control border-start-0" type="file" id="csvInput" accept=".csv" onclick="clear_div_succell();">
-                            </div>
-                        </div>
-                        <div class="col-12 mt-4 mb-2">
-                            <button class="btn btn-primary px-5" onclick="readCSV()">
-                                Read CSV
-                            </button>
-                        </div>
-
-                        <hr>
-
-                        <div id="div_loader_CSV" class="col-12 mt-5 d-none">
-                            <section class="loader">
-                                <div class="slider" style="--i:0"></div>
-                                <div class="slider" style="--i:1"></div>
-                                <div class="slider" style="--i:2"></div>
-                                <div class="slider" style="--i:3"></div>
-                                <div class="slider" style="--i:4"></div>
-                                <span class="text-success" style="margin-top: 25px;">กำลังประมวลผล..</span>
-                            </section>
-                        </div>
-                        <div  class="loading-container" class="col-12 mt-5">
-                            <div id="div_success_CSV" class="contrainerCheckmark d-none">
-                                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-                                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-                                </svg>
-                                <center>
-                                    <h5 class="mt-3">เสร็จสิ้น</h5>
-                                </center>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 </div>
@@ -305,7 +243,7 @@
                 // ตรวจสอบข้อมูลในคอนโซล
                 // console.log(jsonData);
 
-                fetch("{{ url('/') }}/api/create_user/excel", {
+                fetch("{{ url('/') }}/api/create_score/excel", {
                     method: 'post',
                     body: JSON.stringify(jsonData),
                     headers: {
@@ -338,77 +276,6 @@
         }
     }
 
-    // CSV
-    function readCSV() {
-
-        document.querySelector('#div_loader_CSV').classList.remove('d-none');
-
-        let input = document.getElementById('csvInput');
-        let file = input.files[0];
-
-        if (file) {
-            let reader = new FileReader();
-
-            reader.onload = function(e) {
-                let csvData = e.target.result;
-                
-                // แปลงข้อมูล CSV เป็น JSON
-                let jsonData = csvToJSON(csvData);
-
-                // ตรวจสอบข้อมูลในคอนโซล
-                // console.log(jsonData);
-
-                fetch("{{ url('/') }}/api/create_user/excel", {
-                    method: 'post',
-                    body: JSON.stringify(jsonData),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function (response){
-                    return response.text();
-                }).then(function(data){
-                    // console.log(data);
-
-                    if(data == "success"){
-                        // เคลียร์ input
-                        clearFileInput('csv');
-
-                        document.querySelector('#div_loader_CSV').classList.add('d-none');
-                        document.querySelector('#div_success_CSV').classList.remove('d-none');
-                    }
-
-                }).catch(function(error){
-                    // console.error(error);
-                });
-
-            };
-
-            reader.readAsText(file);
-        } else {
-            document.querySelector('#div_loader_CSV').classList.add('d-none');
-            alert('กรุณาเลือกไฟล์ CSV');
-        }
-    }
-
-    function csvToJSON(csvData) {
-        let lines = csvData.split("\n");
-        let result = [];
-
-        let headers = lines[0].split(",");
-        for (let i = 1; i < lines.length; i++) {
-            let obj = {};
-            let currentline = lines[i].split(",");
-
-            for (let j = 0; j < headers.length; j++) {
-                obj[headers[j]] = currentline[j];
-            }
-
-            result.push(obj);
-        }
-
-        return result;
-    }
-
     // เคลียไฟล์ออกจาก input หลัง reader เรียบร้อย
     function clearFileInput(type){
         let input = document.getElementById(type+'Input');
@@ -420,7 +287,6 @@
 
     function clear_div_succell(){
         document.querySelector('#div_success_Excel').classList.add('d-none');
-        document.querySelector('#div_success_CSV').classList.add('d-none');
     }
 
 </script>

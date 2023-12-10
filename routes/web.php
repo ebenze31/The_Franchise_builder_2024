@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// member = สมาชิกทั้งหมด
-// challenger = ผู้เข่าร่วมกิจกรรม
-// admin-H-LAB = admin H-LAB
-// admin-Allianz = admin Allianz
-// staff-reg = เจ้าหน้าที่ลงทะเบียน
-// staff-shirt = เจ้าหน้าที่เช็คการรับเสื้อ
+// Member = สมาชิกทั้งหมด
+// Challenger = ผู้เข่าร่วมกิจกรรม
+// Admin-HLAB = admin H-LAB
+// Admin-Allianz = admin Allianz
+// Staff-reg = เจ้าหน้าที่ลงทะเบียน
+// Staff-shirt = เจ้าหน้าที่เช็คการรับเสื้อ
 
 Auth::routes();
 
@@ -26,12 +26,12 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // REGISTER TFB 2024
-Route::middleware(['auth', 'role:member'])->group(function () {
+Route::middleware(['auth', 'role:Member'])->group(function () {
     Route::get('/register_tfb2024', 'HomeController@register_tfb2024');
 });
 
-// member
-Route::middleware(['auth', 'role:challenger'])->group(function () {
+// Member
+Route::middleware(['auth', 'role:Challenger ,Admin-HLAB, Admin-Allianz'])->group(function () {
 
     Route::resource('pc_points', 'Pc_pointsController');
     Route::resource('groups', 'GroupsController');
@@ -39,11 +39,13 @@ Route::middleware(['auth', 'role:challenger'])->group(function () {
 });
 
 // admin
-Route::middleware(['auth', 'role:admin-H-LAB, admin-Allianz'])->group(function () {
+Route::middleware(['auth', 'role:Admin-HLAB, Admin-Allianz'])->group(function () {
 
     Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/add_account', 'ProfileController@add_account');
     Route::get('/account_all', 'ProfileController@account_all');
+    Route::get('/add_score', 'Pc_pointsController@add_score');
+    Route::get('/add_group', 'GroupsController@add_group');
     Route::resource('group_lines', 'Group_linesController');
     Route::resource('news', 'NewsController');
 
