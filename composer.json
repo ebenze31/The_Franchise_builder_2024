@@ -15,7 +15,8 @@
         "intervention/image": "^2.7",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "2.4"
+        "laravel/ui": "2.4",
+        "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
         "appzcoder/crud-generator": "^3.3",

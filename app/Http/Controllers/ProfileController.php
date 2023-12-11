@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
+use QrCode;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -93,44 +95,25 @@ class ProfileController extends Controller
         if ($request->hasFile('photo')) {
             $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
 
-            // ตำแหน่ง x และ y ที่ได้จากการเลื่อนหรือแตะ
-            $newX = $requestData['currentX'];
-            $newY = $requestData['currentY'];
-
             // ตำแหน่งและขนาดของภาพที่คุณต้องการ crop
-            $cropX = (int)$newX; // ตำแหน่ง x ที่จะ crop
-            $cropY = (int)$newY; // ตำแหน่ง y ที่จะ crop
-            $cropWidth = 500; // ขนาดความกว้างที่จะ crop
-            $cropHeight = 500; // ขนาดความสูงที่จะ crop
+            $cropX = (int)$requestData['currentX']; // ตำแหน่ง x ที่จะ crop
+            $cropY = (int)$requestData['currentY']; // ตำแหน่ง y ที่จะ crop
+            $cropWidth = (int)$requestData['currentWidth']; // ขนาดความกว้างที่จะ crop
+            $cropHeight = (int)$requestData['currentHeight']; // ขนาดความสูงที่จะ crop
 
-            // crop ภาพ
+            // เรียกรูปภาพ
             $imagePath = storage_path("app/public")."/".$requestData['photo'];
             $image = Image::make($imagePath);
 
-            // $old_w = $image->width();
-            // $old_h = $image->height();
-
-            $cropX = ($cropX / $image->width()) * 100;
-            $cropY = ($cropY / $image->height()) * 100;
-
-            // if( $old_w > $old_h ){
-            //     $image->resize(250, null, function ($constraint) {
-            //         $constraint->aspectRatio();
-            //     });
-            // }else{
-            //     $image->resize(null, 250, function ($constraint) {
-            //         $constraint->aspectRatio();
-            //     });
-            // }
-
             // Crop ภาพ
-            $image->crop($cropWidth, $cropHeight, (int)$cropX, (int)$cropY);
+            $image->crop($cropWidth, $cropHeight, $cropX, $cropY);
 
             // Save ภาพหลังจาก crop
-            // $image->save($imagePath);
-            $image->save(storage_path("app/public")."/uploads/111.png");
+            $image->save($imagePath);
 
         }
+
+        $requestData['status'] = "รอยืนยันการชำระเงิน" ;
 
         echo "<pre>";
         print_r($requestData);
@@ -140,7 +123,7 @@ class ProfileController extends Controller
         $data = User::findOrFail($id);
         $data->update($requestData);
 
-        // return redirect('profile')->with('flash_message', 'profile updated!');
+        return redirect("register_tfb2024");
     }
 
     /**
