@@ -25,6 +25,11 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
+// LOGIN
+Route::middleware(['auth',])->group(function () {
+    Route::resource('profile', 'ProfileController');
+});
+
 // REGISTER TFB 2024
 Route::middleware(['auth', 'role:Member'])->group(function () {
     Route::get('/register_tfb2024', 'HomeController@register_tfb2024');
