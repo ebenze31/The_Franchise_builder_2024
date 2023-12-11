@@ -113,12 +113,26 @@ class ProfileController extends Controller
 
         }
 
-        $requestData['status'] = "รอยืนยันการชำระเงิน" ;
+        $url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/add_new_officers&chs=500x500&choe=UTF-8" ;
 
-        echo "<pre>";
-        print_r($requestData);
-        echo "<pre>";
-        exit();
+        $img = storage_path("app/public")."/qr_profile" . "/" . $requestData['user_id'] . '.png';
+
+        // Save image
+        file_put_contents($img, file_get_contents($url));
+
+        $qr_code = Image::make( $img );
+        //logo viicheck
+        $logo_icon = Image::make(public_path('img/logo/ALV.DE-78cd6600.png'));
+        $logo_icon->resize(80,80);
+        $qr_code->insert($logo_icon,'center')->save();
+
+        $requestData['status'] = "รอยืนยันการชำระเงิน" ;
+        $requestData['qr_profile'] = "qr_profile" . "/" . $requestData['user_id'] . '.png';
+
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
 
         $data = User::findOrFail($id);
         $data->update($requestData);

@@ -44,6 +44,12 @@ class HomeController extends Controller
     }
 
     public function register_tfb2024(){
-        return view('register_tfb2024');
+
+        if(Auth::user()->status == "รอยืนยันการชำระเงิน"){
+            return view('waiting_payment_confirm');
+        }else{
+            return view('register_tfb2024');
+        }
     }
+
 }

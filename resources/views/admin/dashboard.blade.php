@@ -1,7 +1,7 @@
 @extends('layouts.theme_admin')
 
 @section('content')
-    <div class="container">
+    <!-- <div class="container">
         <div class="row">
             <div class="col-12 col-xl-4 d-flex">
                 <div class="card radius-10 w-100">
@@ -374,5 +374,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 @endsection
