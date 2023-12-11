@@ -148,19 +148,31 @@
         <hr class="mt-3 mb-3">
 
         <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <label for="amount_add" class="form-label">
                     ระบุจำนวนที่ต้องการเพิ่ม
                     <span class="text-danger">(เดิมมีอยู่ <span id="count_group">{{ $count_group }}</span> หลัง)</span>
                 </label>
-                <input type="number" min="0" class="form-control" id="amount_add" oninput="document.querySelector('#div_success_spin').classList.add('d-none');">
+                <input type="number" min="0" class="form-control" id="amount_add" oninput="document.querySelector('#div_success_spin').classList.add('d-none');" style="width: 100%;">
             </div>
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <button class="btn btn-success px-5" onclick="add_group()" style="margin-top: 30px;">
                     ยืนยัน
                 </button>
             </div>
             <div class="col-12 mt-3">
+
+                <hr>
+                <div id="div_loader_add_group" class="col-12 mt-5 d-none">
+                    <section class="loader">
+                        <div class="slider" style="--i:0"></div>
+                        <div class="slider" style="--i:1"></div>
+                        <div class="slider" style="--i:2"></div>
+                        <div class="slider" style="--i:3"></div>
+                        <div class="slider" style="--i:4"></div>
+                        <span class="text-success" style="margin-top: 25px;">กำลังประมวลผล..</span>
+                    </section>
+                </div>
                 <div  class="loading-container" class="col-12 mt-5">
                     <div id="div_success_spin" class="contrainerCheckmark d-none">
                         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -183,6 +195,7 @@
 
     function add_group(){
 
+        document.querySelector('#div_loader_add_group').classList.remove('d-none');
         let amount_add = document.querySelector('#amount_add').value ;
 
         fetch("{{ url('/') }}/api/create_group" + "/" + amount_add )
@@ -191,6 +204,7 @@
                 // console.log(result);
                 if (result) {
                     document.querySelector('#count_group').innerHTML = result ;
+                    document.querySelector('#div_loader_add_group').classList.add('d-none');
                     document.querySelector('#div_success_spin').classList.remove('d-none');
                 }
 

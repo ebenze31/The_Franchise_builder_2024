@@ -83,7 +83,7 @@
 
                 @if(Auth::user()->role == "Admin-HLAB" || Auth::user()->role == "Admin-Allianz")
                 <li>
-                    <a href="javascript:;" class="">
+                    <a href="{{ url('/dashboard') }}" class="">
                         <div class="parent-icon">
                             <i class="fa-solid fa-chart-user"></i>
                         </div>
@@ -91,12 +91,6 @@
                             Dashboard
                         </div>
                     </a>
-                    <ul class="d-none">
-                        <li>
-                            <a href="{{ url('/dashboard') }}">
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 @endif
 

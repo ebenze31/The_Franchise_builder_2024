@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Group;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class GroupsController extends Controller
 {
@@ -151,6 +152,8 @@ class GroupsController extends Controller
 
         for ($i=($count_group+1); $i < ($amount_loop+1); $i++) { 
             // code...
+            $key_invite = '';
+
             if ($i <= 9) {
                 $name_group = '00'.$i ;
             }else if($i > 9 && $i < 100){
@@ -159,7 +162,37 @@ class GroupsController extends Controller
                 $name_group = $i ;
             }
 
+            $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+            // สลับตำแหน่งของตัวอักษรและตัวเลข
+            $shuffled = str_shuffle($characters);
+
+            // เลือกจำนวนตัวอักษรและตัวเลขที่คุณต้องการ
+            $length = 6; // กำหนดความยาวตามที่ต้องการ
+            $key_invite = substr($shuffled, 0, $length);
+
+            $key_invite = $name_group . "-" . $key_invite;
+
+            $requestData['key_invite'] = $key_invite ;
             $requestData['name_group'] = $name_group ;
+
+            // สร้างรูปกลุ่ม
+            $image = Image::make(public_path('img/bg_group/theme/bg_group.png'));
+
+            // แทรกตัวอักษรลงในภาพ
+            $image->text($name_group, 125, 125, function($font) {
+                $font->file(public_path('theme_admin/fonts/Prompt/Prompt-Black.ttf'));
+                $font->size(100);
+                $font->color('#ffffff');
+                $font->align('center');
+                $font->valign('middle');
+            });
+
+            // บันทึกภาพใหม่
+            $image->save(public_path('img/bg_group/logo_group/bg_group_'.$name_group.'.png'));
+
+            $requestData['logo'] = 'img/bg_group/logo_group/bg_group_'.$name_group.'.png' ;
+
             Group::create($requestData);
         }
 

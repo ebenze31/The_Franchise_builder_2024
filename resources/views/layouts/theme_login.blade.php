@@ -5,36 +5,46 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Home - The Franchise builder 2024</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
   <!-- Favicons -->
   <link href="{{ url('/img/logo/Favicons.png') }}" rel="icon">
   <link href="{{ url('/img/logo/Favicons.png') }}" rel="apple-touch-icon">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <!--plugins-->
+  <link rel="stylesheet" href="{{ asset('/theme_admin/plugins/notifications/css/lobibox.min.css') }}" />
 
-  <!-- Vendor CSS Files -->
-  <link href="{{ asset('theme_user/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('theme_user/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('theme_user/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('theme_user/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('theme_user/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('/theme_admin/plugins/simplebar/css/simplebar.css') }}">
+  <link href="{{ asset('/theme_admin/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
+  <link href="{{ asset('/theme_admin/plugins/highcharts/css/highcharts.css') }}" rel="stylesheet" />
+  <link href="{{ asset('/theme_admin/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
+  <link href="{{ asset('/theme_admin/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
+  <!-- loader-->
+  <link href="{{ asset('/theme_admin/css/pace.min.css') }}" rel="stylesheet" />
+  <script src="{{ asset('/theme_admin/js/pace.min.js') }}"></script>
+  <!-- Bootstrap CSS -->
+  <link href="{{ asset('/theme_admin/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="{{ asset('/theme_admin/css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('/theme_admin/css/icons.css') }}" rel="stylesheet">
+  <!-- Theme Style CSS -->
+  <link rel="stylesheet" href="{{ asset('/theme_admin/css/dark-theme.css') }}" />
+  <link rel="stylesheet" href="{{ asset('/theme_admin/css/semi-dark.css') }}" />
+  <link rel="stylesheet" href="{{ asset('/theme_admin/css/header-colors.css') }}" />
+    <!-- fontawesome icon -->
+  <link href="https://kit-pro.fontawesome.com/releases/v6.2.1/css/pro.min.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
-  <link href="{{ asset('theme_user/css/main.css') }}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Append
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/append-bootstrap-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Laila:wght@700&family=Mitr&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700;800&family=Prompt:wght@500&display=swap" rel="stylesheet">
+
+  <title>Admin - The Franchise builder 2024</title>
 
   <style>
       body {
@@ -51,16 +61,6 @@
           color: #ffffff; /* สีตัวอักษรที่ต่างออกมาบนรูปภาพ */
       }
 
-      #navbar-botttom {
-          position: fixed;
-          bottom: 0;
-          text-align: center;
-          left: 0;
-          right: 0;
-          background: #002440;
-          z-index: 99999;
-      }
-
       #header{
           position: fixed;
           top: 0;
@@ -68,25 +68,6 @@
           left: 0;
           right: 0;
           z-index: 99999;
-      }
-
-      .mheebar {
-          padding-top: 10px;
-      }
-      .col-navbar {
-          padding-right: 0px;
-          padding-left: 0px;
-      }
-
-      .text-truncate {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          margin-top: 5px;
-      }
-
-      p {
-          margin-bottom: 0px;
       }
 
   </style>
@@ -107,26 +88,31 @@
             </div>
         </div>
     </div>
-  </div>
 
-  <div class="container">
     @yield('content')
+    
   <div>
 
 <!-- Scroll Top Button -->
 <a href="#" id="scroll-top" class="d-none scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-<!-- Vendor JS Files -->
-<script src="{{ asset('theme_user/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('theme_user/vendor/glightbox/js/glightbox.min.js') }}"></script>
-<script src="{{ asset('theme_user/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-<script src="{{ asset('theme_user/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-<script src="{{ asset('theme_user/vendor/swiper/swiper-bundle.min.js') }}"></script>
-<script src="{{ asset('theme_user/vendor/aos/aos.js') }}"></script>
-<script src="{{ asset('theme_user/vendor/php-email-form/validate.js') }}"></script>
+<!-- Bootstrap JS -->
+<script src="{{asset('theme_admin/js/bootstrap.bundle.min.js')}}"></script>
+<!--plugins-->
+<!-- <script src="{{asset('theme_admin/js/jquery.min.js')}}"></script> -->
+<script src="{{asset('theme_admin/plugins/simplebar/js/simplebar.min.js')}}"></script>
+<script src="{{asset('theme_admin/plugins/metismenu/js/metisMenu.min.js')}}"></script>
+<script src="{{asset('theme_admin/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
+<!--app JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="{{asset('theme_admin/js/app.js')}}"></script>
+<!--notification js -->
+<script src="{{ asset('/theme_admin/plugins/notifications/js/lobibox.min.js') }}"></script>
+<script src="{{ asset('/theme_admin/plugins/notifications/js/notifications.min.js') }}"></script>
+<script src="{{ asset('/theme_admin/plugins/notifications/js/notification-custom-script.js') }}"></script>
 
-<!-- Template Main JS File -->
-<script src="{{ asset('theme_user/js/main.js') }}"></script>
+<link href="{{ asset('/theme_admin/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
 
 </body>
 
