@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use App\User;
 
 use App\Models\Pc_point;
 use Illuminate\Http\Request;
+use App\Models\Group;
 
 class Pc_pointsController extends Controller
 {
@@ -131,8 +133,10 @@ class Pc_pointsController extends Controller
 
         $requestData = $request->all();
         $data_arr = [];
+        $group_pc = [] ;
 
         foreach ($requestData as $item) {
+
             foreach ($item as $key => $value) {
 
                 if($key == "account"){
@@ -145,20 +149,91 @@ class Pc_pointsController extends Controller
                 }else{
                     $data_arr[$key] = $value;
                 }
-            }
 
+            }
+            // เพิ่มคะแนนเข้า DB
             Pc_point::create($data_arr);
 
-            // DB::table('users')
-            //     ->where([ 
-            //             ['id', $data_arr['user_id']],
-            //         ])
-            //     ->update([
-            //             'count_sos' => $update_count_sos,
-            //         ]);
+            // รวมคะแนนสำหรับกลุ่ม
+            if( empty($group_pc[$data_arr['group_id']]) ){
+
+                $newArray = array(
+                    'group_id' => $data_arr['group_id'],
+                    'week' => $data_arr['week'],
+                    'pc_point' => $data_arr['pc_point']
+                );
+
+                $group_pc[$data_arr['group_id']] = $newArray;
+
+            }else{
+                $group_pc[$data_arr['group_id']]['pc_point'] = $group_pc[$data_arr['group_id']]['pc_point'] + $data_arr['pc_point'] ;
+            }
+
+        }
+
+        // จัดลำดับคะแนนกลุ่ม
+        usort($group_pc, function($a, $b) {
+            return $b['pc_point'] - $a['pc_point'];
+        });
+
+        for ($i=0; $i < count($group_pc); $i++) { 
+
+            $data_groups = Group::where('id' , $group_pc[$i]['group_id'])->first();
+            $rank_record_update = [] ;
+
+            if( empty($data_groups->rank_record) ){ // ไม่มีข้อมูล week ก่อน
+
+                $new_rank_record = [] ;
+
+                $new_rank_record[$group_pc[$i]['week']] = [
+                    'week' => $group_pc[$i]['week'],
+                    'pc_point' => $group_pc[$i]['pc_point'],
+                    'rank' => ($i + 1),
+                ];
+
+                $rank_record_update = json_encode($new_rank_record);
+
+            }else{ // มีข้อมูล week ก่อน
+
+                $old_arr = json_decode($data_groups->rank_record, true);
+
+                $old_arr[$group_pc[$i]['week']] = [
+                    'week' => $group_pc[$i]['week'],
+                    'pc_point' => $group_pc[$i]['pc_point'],
+                    'rank' => ($i + 1),
+                ];
+
+                // แปลง array ใหม่เป็น JSON
+                $rank_record_update = json_encode($old_arr);
+
+            }
+
+            // แก้ไข rank_of_week , rank_last_week
+            $update_rank_of_week = '';
+            $update_rank_last_week = '';
+
+            if( !empty($data_groups->rank_of_week) ){
+                $update_rank_last_week = $data_groups->rank_of_week;
+                $update_rank_of_week = ($i + 1);
+            }else{
+                $update_rank_last_week = ($i + 1);
+                $update_rank_of_week = ($i + 1);
+            }
+
+            DB::table('groups')
+                ->where([ 
+                        ['id', $group_pc[$i]['group_id']],
+                    ])
+                ->update([
+                        'rank_record' => $rank_record_update,
+                        'rank_of_week' => $update_rank_of_week,
+                        'rank_last_week' => $update_rank_last_week,
+                    ]);
+
         }
 
         return "success" ;
     
     }
 }
+

@@ -16,10 +16,12 @@ class CreatePcPointsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('week')->nullable();
-            $table->integer('pc_point')->nullable();
-            $table->integer('new_code')->nullable();
             $table->integer('user_id')->nullable();
             $table->integer('group_id')->nullable();
+            $table->integer('pc_point')->nullable();
+            $table->integer('new_code')->nullable();
+            $table->string('rank_of_week')->nullable();
+            $table->string('rank_last_week')->nullable();
             });
     }
 
