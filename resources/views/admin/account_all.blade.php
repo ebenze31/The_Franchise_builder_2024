@@ -139,25 +139,39 @@
         border-radius: 20px;
     }
 
+    .large-image {
+        display: none;
+        position: absolute;
+        z-index: 1000;
+        /* ปรับแต่งค่าต่างๆ ตามต้องการ */
+    }
+
+
+}
+
+
 </style>
 
 <div class="card">
     <div class="card-body">
 
-        <h4 class="mb-0 text-uppercase">รายชื่อสมาชิกทั้งหมด</h4>
+        <h4 class="mb-0 text-uppercase">
+            รายชื่อสมาชิกทั้งหมด
+            <span style="font-size: 15px;color: gray;">
+                ทั้งหมด (<span id="count_account_all" style="font-size: 15px;color: gray;"></span>) คน
+            </span>
+        </h4>
         <hr class="mt-3 mb-3">
 
         <div class="table-responsive">
             <table class="table mb-0 align-middle">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>Account</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Role</th>
-                        <th>Status</th>
+                        <th class="text-center">Photo</th>
+                        <th>Information</th>
+                        <th class="text-center">Role</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Pay slip</th>
                     </tr>
                 </thead>
                 <tbody id="content_tbody">
@@ -184,6 +198,7 @@
             .then(result => {
                 // console.log(result);
 
+                document.querySelector('#count_account_all').innerHTML = result.length ;
                 if(result){
 
                     let content_tbody = document.querySelector('#content_tbody');
@@ -193,27 +208,22 @@
 
                         // status
                         let class_status = '';
-                        if(result[i].status == "ชำระเงินแล้ว"){
+                        let html_status = '';
+                        if(result[i].status == "เข้าร่วมแล้ว"){
                             class_status = 'success';
+                            html_status = 'เข้าร่วมแล้ว';
                         }else{
                             class_status = 'danger';
+                            html_status = 'ยังไม่เข้าร่วม';
                         }
 
                         // check role
                         let class_role = '';
-                        let html_status = '';
 
                         if(result[i].role == "Member"){
                             class_role = 'secondary';
                         }else{
                             class_role = 'primary';
-
-                            html_status = `
-                                <a href="javaScript:;" class="btn btn-sm btn-`+class_status+` radius-30">
-                                    `+result[i].status+`
-                                </a>
-                            `;
-
                         }
 
                         // photo 
@@ -224,29 +234,109 @@
                             html_img = `<img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt="">`;
                         }
 
+                        // Pay_slip 
+                        let html_Pay_slip = ''
+                        if(result[i].pay_slip){
+                            html_Pay_slip = `
+                                <div class="product-img bg-transparent border" id="small_Pay_slip_`+result[i].account+`">
+                                    <img src="{{ url('storage')}}/`+result[i].pay_slip+`" class="p-1" alt="">
+                                </div>
+                                <div class="large-image" id="large_Pay_slip_`+result[i].account+`">
+                                    <!-- เพิ่มภาพที่ใหญ่ขึ้นมาที่นี่ -->
+                                    <img src="{{ url('storage')}}/`+result[i].pay_slip+`" alt="Large Image">
+                                </div>
+                            `;
+                        }else{
+                            html_Pay_slip = ``;
+                        }
+
                         let html = `
                             <tr>
                                 <td>
-                                    <div class="product-img bg-transparent border">
-                                        `+html_img+`
-                                    </div>
+                                    <center>
+                                        <div id="product_img_account_111" class="product-img bg-transparent border">
+                                            `+html_img+`
+                                        </div>
+                                    </center>
                                 </td>
-                                <td>`+result[i].account+`</td>
-                                <td>`+result[i].name+`</td>
-                                <td>`+result[i].email+`</td>
-                                <td>`+result[i].phone+`</td>
                                 <td>
-                                    <a href="javaScript:;" class="btn btn-sm btn-`+class_role+` radius-30">
+                                    <b>Account</b> : `+result[i].account+`
+                                    <br>
+                                    <b>Name</b> : `+result[i].name+`
+                                    <br>
+                                    <b>Email</b> : `+result[i].email+`
+                                    <br>
+                                    <b>Phone</b> : `+result[i].phone+`
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-sm btn-`+class_role+` radius-30">
                                         `+result[i].role+`
                                     </a>
                                 </td>
+                                <td class="text-center">
+                                    <a class="btn btn-sm btn-`+class_status+` radius-30">
+                                        `+html_status+`
+                                    </a>
+                                </td>
                                 <td>
-                                    `+html_status+`
+                                    <center>
+                                        `+html_Pay_slip+`
+                                    </center>
                                 </td>
                             </tr>
                         `;
 
                         content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+                        let smallImage = $('#small_Pay_slip_' + result[i].account);
+                        let largeImage = $('#large_Pay_slip_' + result[i].account);
+
+                        smallImage.hover(
+                            function() {
+                                // เมื่อนำเมาส์เข้าไป
+                                largeImage.fadeIn();
+                            },
+                            function() {
+                                // เมื่อนำเมาส์ออก
+                                largeImage.fadeOut();
+                            }
+                        );
+
+                        smallImage.hover(
+                            function() {
+                                // เมื่อนำเมาส์เข้าไป
+                                largeImage.fadeIn();
+                            },
+                            function() {
+                                // เมื่อนำเมาส์ออก
+                                largeImage.fadeOut();
+                            }
+                        );
+
+                        smallImage.mousemove(function(e) {
+                            // ติดตามตำแหน่งของเมาส์และปรับตำแหน่งของ largeImage
+                            let posX = e.pageX - smallImage.offset().left;
+                            let posY = e.pageY - smallImage.offset().top;
+
+                            // ปรับตำแหน่งของ largeImage ให้อยู่กลางหน้าจอ
+                            let offsetX = largeImage.width() / 2;
+                            let offsetY = largeImage.height() / 2;
+
+                            // ตรวจสอบไม่ให้ largeImage ข้ามขอบของหน้าจอทางขวาและล่าง
+                            let maxX = $(window).width() - largeImage.width();
+                            let maxY = $(window).height() - largeImage.height();
+
+                            let imageLeft = posX - offsetX;
+                            let imageTop = posY - offsetY;
+
+                            imageLeft = Math.min(maxX, Math.max(0, imageLeft));
+                            imageTop = Math.min(maxY, Math.max(0, imageTop));
+
+                            largeImage.css({
+                                top: imageTop,
+                                left: imageLeft
+                            });
+                        });
 
                     }
 
@@ -257,5 +347,7 @@
 
 </script>
 
+<!-- เพิ่ม jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 @endsection

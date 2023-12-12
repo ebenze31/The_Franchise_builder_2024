@@ -59,7 +59,36 @@
     }
 </style>
 
+@php
+    // PASSWORD FOR LOG MENU
+    $pass_lock = "1234";
+@endphp
+
 <body>
+
+    <!-- Button trigger modal -->
+    <button type="button" id="btn_modal_pass_lock" class="d-none" data-toggle="modal" data-target="#modal_pass_lock"></button>
+    <!-- Modal -->
+    <div class="modal fade" id="modal_pass_lock" tabindex="-1" aria-labelledby="Labelmodal_pass_lock" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="Labelmodal_pass_lock">กรุณาใส่รหัสผ่าน</h5>
+            <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img src="{{ url('/img/icon/locked.png') }}" class="d-none" style="width:50px;">
+            <input type="password" id="input_pass_lock_menu" class="form-control">
+            <a id="link_go_to" class="d-none"></a>
+          </div>
+          <div class="modal-footer">
+            <button id="cf_pass_lock" type="button" class="btn btn-primary">ยืนยัน</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="wrapper">
 
@@ -81,7 +110,6 @@
             </div>
             <ul class="metismenu" id="menu">
 
-                @if(Auth::user()->role == "Admin-HLAB" || Auth::user()->role == "Admin-Allianz")
                 <li>
                     <a href="{{ url('/dashboard') }}" class="">
                         <div class="parent-icon">
@@ -92,7 +120,6 @@
                         </div>
                     </a>
                 </li>
-                @endif
 
                 <li>
                     <a href="javascript:;" class="has-arrow">
@@ -105,9 +132,8 @@
                     </a>
                     
                     <ul>
-                        @if(Auth::user()->role == "Admin-HLAB" || Auth::user()->role == "Admin-Allianz")
                         <li>
-                            <a href="{{ url('/add_account') }}">
+                            <a class="btn" onclick="pass_lock_menu('{{ url("/add_account") }}');">
                                 <i class="fa-solid fa-plus"></i> เพิ่มสมาชิก
                             </a>
                         </li>
@@ -121,7 +147,6 @@
                                 <i class="fa-solid fa-address-card"></i> รายชื่อสมาชิกทั้งหมด
                             </a>
                         </li>
-                        @endif
                         <li>
                             <a href="{{ url('/account_reg_success') }}">
                                 <i class="fa-solid fa-user-check"></i> ผู้ร่วมกิจกรรม
@@ -130,7 +155,6 @@
                     </ul>
                 </li>
 
-                @if(Auth::user()->role == "Admin-HLAB" || Auth::user()->role == "Admin-Allianz")
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon">
@@ -185,7 +209,6 @@
                         </li>
                     </ul>
                 </li>
-                @endif
 
             </ul>
         </div>
@@ -274,6 +297,7 @@
     <script src="{{asset('theme_admin/js/bootstrap.bundle.min.js')}}"></script>
     <!--plugins-->
     <!-- <script src="{{asset('theme_admin/js/jquery.min.js')}}"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{asset('theme_admin/plugins/simplebar/js/simplebar.min.js')}}"></script>
     <script src="{{asset('theme_admin/plugins/metismenu/js/metisMenu.min.js')}}"></script>
     <script src="{{asset('theme_admin/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
@@ -287,6 +311,28 @@
 	<script src="{{ asset('/theme_admin/plugins/notifications/js/notification-custom-script.js') }}"></script>
     
     <link href="{{ asset('/theme_admin/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
+
+    <script>
+        
+        function pass_lock_menu(link){
+            document.querySelector('#btn_modal_pass_lock').click();
+            // input_pass_lock_menu
+            // cf_pass_lock
+
+            document.getElementById("cf_pass_lock").addEventListener("click", function() {
+                let input = document.querySelector('#input_pass_lock_menu').value;
+
+                if(input == "{{ $pass_lock }}"){
+                    document.querySelector('#link_go_to').setAttribute("href", link);
+                    document.querySelector('#link_go_to').click();
+                }else{
+                    alert("รหัสไม่ถูกต้อง!");
+                }
+            });
+
+        }
+
+    </script>
 
 </body>
 

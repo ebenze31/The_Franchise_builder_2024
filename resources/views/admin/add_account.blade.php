@@ -139,6 +139,12 @@
         border-radius: 20px;
     }
 
+    #qrcode {
+  width:160px;
+  height:160px;
+  margin-top:15px;
+}
+
 </style>
 
 <div class="card">
@@ -278,7 +284,6 @@
     </div>
 </div>
 
-
 <script>
     // EXCEL
     function readExcel() {
@@ -304,7 +309,23 @@
 
                 // ตรวจสอบข้อมูลในคอนโซล
                 // console.log(jsonData);
-
+                
+                // create_qr_code
+                fetch("{{ url('/') }}/api/create_qr_code", {
+                    method: 'post',
+                    body: JSON.stringify(jsonData),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function (response){
+                    return response.text();
+                }).then(function(data){
+                    console.log(data);
+                }).catch(function(error){
+                    // console.error(error);
+                });
+                    
+                // create_user
                 fetch("{{ url('/') }}/api/create_user/excel", {
                     method: 'post',
                     body: JSON.stringify(jsonData),

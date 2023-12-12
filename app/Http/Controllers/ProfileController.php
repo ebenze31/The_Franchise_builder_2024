@@ -92,6 +92,10 @@ class ProfileController extends Controller
     {
         $requestData = $request->all();
 
+        if ($request->hasFile('pay_slip')) {
+            $requestData['pay_slip'] = $request->file('pay_slip')->store('uploads', 'public');
+        }
+
         if ($request->hasFile('photo')) {
             $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
 
@@ -113,26 +117,7 @@ class ProfileController extends Controller
 
         }
 
-        $url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/add_new_officers&chs=500x500&choe=UTF-8" ;
-
-        $img = storage_path("app/public")."/qr_profile" . "/" . $requestData['user_id'] . '.png';
-
-        // Save image
-        file_put_contents($img, file_get_contents($url));
-
-        $qr_code = Image::make( $img );
-        //logo viicheck
-        $logo_icon = Image::make(public_path('img/logo/ALV.DE-78cd6600.png'));
-        $logo_icon->resize(80,80);
-        $qr_code->insert($logo_icon,'center')->save();
-
-        $requestData['status'] = "รอยืนยันการชำระเงิน" ;
-        $requestData['qr_profile'] = "qr_profile" . "/" . $requestData['user_id'] . '.png';
-
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
-        // exit();
+        $requestData['status'] = "รอยืนยัน" ;
 
         $data = User::findOrFail($id);
         $data->update($requestData);
@@ -170,11 +155,70 @@ class ProfileController extends Controller
                 }
             }
 
-            User::create($data_arr);
+            $data_arr['qr_profile'] = $data_arr['account'] . '.png';
+
+            $check_user = User::where('account',$data_arr['account'])->first();
+
+            if( !empty($check_user->account) ){
+
+                if(!empty($check_user->status)){
+                    $role = $check_user->role ;
+                }else{
+                    $role = $data_arr['role'] ;
+                }
+
+                DB::table('users')
+                    ->where([ 
+                            ['account', $data_arr['account']],
+                        ])
+                    ->update([
+                            'password' => $data_arr['password'],
+                            'name' => $data_arr['name'],
+                            'phone' => $data_arr['phone'],
+                            'email' => $data_arr['email'],
+                            'role' => $role,
+                        ]);
+            }else{
+                User::create($data_arr);
+            }
         }
 
         return "success" ;
 
+    }
+
+    function create_qr_code(Request $request)
+    {
+        $requestData = $request->all();
+        
+        foreach ($requestData as $item) {
+            foreach ($item as $key => $value) {
+                $data_arr[$key] = $value;
+            }
+
+            $check_user = User::where('account',$data_arr['account'])->first();
+
+            if( !empty($check_user->account) ){
+                $return = "ไม่สร้าง";
+            }else{
+                // QR-CODE
+                $url = "https://chart.googleapis.com/chart?cht=qr&chl=account=".$data_arr['account']."&chs=500x500&choe=UTF-8" ;
+
+                $img = public_path("img/qr_profile" . "/" . $data_arr['account'] . '.png');
+                // Save image
+                file_put_contents($img, file_get_contents($url));
+
+                $qr_code = Image::make( $img );
+                //logo viicheck
+                $logo_icon = Image::make(public_path('img/logo/ALV.DE-78cd6600.png'));
+                $logo_icon->resize(80,80);
+                $qr_code->insert($logo_icon,'center')->save();
+
+                $return = "สร้าง";
+            }
+        }
+
+        return $return ;
     }
 
     function account_all(){
