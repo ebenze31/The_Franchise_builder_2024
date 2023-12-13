@@ -55,3 +55,5 @@ Route::middleware(['auth', 'role:Admin-HLAB, Admin-Allianz'])->group(function ()
     Route::resource('news', 'NewsController');
 
 });
+
+Route::resource('mylog', 'MylogController');
