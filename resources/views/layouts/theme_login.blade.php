@@ -53,7 +53,7 @@
                     <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 60%" id="header-text-login">
                 </div>
 
-                <div class="col d-none d-lg-block">
+                <div class="col d-none d-lg-block d-xl-block d-md-block">
                     <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 20%" id="header-text-login">
                 </div>
             </div>
@@ -86,6 +86,7 @@
 <script src="{{ asset('/theme_admin/plugins/notifications/js/lobibox.min.js') }}"></script>
 <script src="{{ asset('/theme_admin/plugins/notifications/js/notifications.min.js') }}"></script>
 <script src="{{ asset('/theme_admin/plugins/notifications/js/notification-custom-script.js') }}"></script>
-
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 </body>
 </html>
