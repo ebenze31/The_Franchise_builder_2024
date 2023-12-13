@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// LINE API
+Route::post('/lineapi', 'API\LineApiController@store');
+
 Route::post('/create_user/excel', 'ProfileController@create_user');
 Route::post('/create_qr_code', 'ProfileController@create_qr_code');
 Route::post('/create_score/excel', 'Pc_pointsController@create_score');

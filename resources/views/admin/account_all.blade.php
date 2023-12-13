@@ -139,11 +139,23 @@
         border-radius: 20px;
     }
 
-    .large-image {
-        display: none;
-        position: absolute;
-        z-index: 1000;
-        /* ปรับแต่งค่าต่างๆ ตามต้องการ */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+    }
+    .overlay img {
+      min-width: 50vh;
+      min-height: auto;
+
+      max-width: 50vh;
+      max-height: 90vh;
+
+      object-fit: contain;
+
     }
 
 
@@ -241,9 +253,9 @@
                                 <div class="product-img bg-transparent border" id="small_Pay_slip_`+result[i].account+`">
                                     <img src="{{ url('storage')}}/`+result[i].pay_slip+`" class="p-1" alt="">
                                 </div>
-                                <div class="large-image" id="large_Pay_slip_`+result[i].account+`">
+                                <div class="overlay" id="overlayPay_slip_`+result[i].account+`">
                                     <!-- เพิ่มภาพที่ใหญ่ขึ้นมาที่นี่ -->
-                                    <img src="{{ url('storage')}}/`+result[i].pay_slip+`" alt="Large Image">
+                                    <img id="large_Pay_slip_`+result[i].account+`" src="{{ url('storage')}}/`+result[i].pay_slip+`" alt="Large Image">
                                 </div>
                             `;
                         }else{
@@ -288,55 +300,69 @@
 
                         content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
-                        let smallImage = $('#small_Pay_slip_' + result[i].account);
-                        let largeImage = $('#large_Pay_slip_' + result[i].account);
+                        if(result[i].pay_slip){
+                            const thumbnail = document.getElementById('small_Pay_slip_' + result[i].account);
+                            const overlay = document.getElementById('overlayPay_slip_' + result[i].account);
+                            const overlayImage = document.getElementById('large_Pay_slip_' + result[i].account);
 
-                        smallImage.hover(
-                            function() {
-                                // เมื่อนำเมาส์เข้าไป
-                                largeImage.fadeIn();
-                            },
-                            function() {
-                                // เมื่อนำเมาส์ออก
-                                largeImage.fadeOut();
-                            }
-                        );
-
-                        smallImage.hover(
-                            function() {
-                                // เมื่อนำเมาส์เข้าไป
-                                largeImage.fadeIn();
-                            },
-                            function() {
-                                // เมื่อนำเมาส์ออก
-                                largeImage.fadeOut();
-                            }
-                        );
-
-                        smallImage.mousemove(function(e) {
-                            // ติดตามตำแหน่งของเมาส์และปรับตำแหน่งของ largeImage
-                            let posX = e.pageX - smallImage.offset().left;
-                            let posY = e.pageY - smallImage.offset().top;
-
-                            // ปรับตำแหน่งของ largeImage ให้อยู่กลางหน้าจอ
-                            let offsetX = largeImage.width() / 2;
-                            let offsetY = largeImage.height() / 2;
-
-                            // ตรวจสอบไม่ให้ largeImage ข้ามขอบของหน้าจอทางขวาและล่าง
-                            let maxX = $(window).width() - largeImage.width();
-                            let maxY = $(window).height() - largeImage.height();
-
-                            let imageLeft = posX - offsetX;
-                            let imageTop = posY - offsetY;
-
-                            imageLeft = Math.min(maxX, Math.max(0, imageLeft));
-                            imageTop = Math.min(maxY, Math.max(0, imageTop));
-
-                            largeImage.css({
-                                top: imageTop,
-                                left: imageLeft
+                            thumbnail.addEventListener('mouseenter', function() {
+                                overlay.style.display = 'block';
+                                overlayImage.src = "{{ url('storage')}}/" + result[i].pay_slip ;
                             });
-                        });
+
+                            thumbnail.addEventListener('mouseleave', function() {
+                                overlay.style.display = 'none';
+                            });
+
+                            thumbnail.addEventListener('click', function() {
+                                overlay.style.display = 'block';
+                                overlayImage.src = "{{ url('storage')}}/" + result[i].pay_slip ;
+                            });
+                        }
+
+
+                        // let smallImage = $('#small_Pay_slip_' + result[i].account);
+                        // let largeImage = $('#large_Pay_slip_' + result[i].account);
+
+                        // smallImage.hover(
+                        //     function() {
+                        //         // เมื่อนำเมาส์เข้าไป
+                        //         largeImage.fadeIn();
+                        //     },
+                        //     function() {
+                        //         // เมื่อนำเมาส์ออก
+                        //         largeImage.fadeOut();
+                        //     }
+                        // );
+
+                        // smallImage.hover(
+                        //     function() {
+                        //         // เมื่อนำเมาส์เข้าไป
+                        //         largeImage.fadeIn();
+                        //     },
+                        //     function() {
+                        //         // เมื่อนำเมาส์ออก
+                        //         largeImage.fadeOut();
+                        //     }
+                        // );
+
+                        // smallImage.mousemove(function(e) {
+                        //     // ติดตามตำแหน่งของเมาส์และปรับตำแหน่งของ largeImage
+                        //     let posX = e.pageX - smallImage.offset().left;
+                        //     let posY = e.pageY - smallImage.offset().top;
+
+                        //     // ปรับตำแหน่งของ largeImage ให้อยู่กึ่งกลางหน้าจอ
+                        //     let offsetX = window.innerWidth / 2; // ครึ่งของความกว้างของหน้าจอ
+                        //     let offsetY = window.innerHeight / 2; // ครึ่งของความสูงของหน้าจอ
+
+                        //     largeImage.css({
+                        //         top: posY + 200,
+                        //         left: posX + 100,
+                        //         width: 200
+
+                        //     });
+                        // });
+
 
                     }
 
