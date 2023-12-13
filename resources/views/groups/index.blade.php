@@ -35,7 +35,11 @@
                                 <tbody>
                                 @foreach($groups as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $loop->iteration }}
+                                            @if( !empty($item->group_line->groupName) )
+                                                {{ $item->group_line->groupName }}
+                                            @endif
+                                        </td>
                                         <td>{{ $item->name_group }}</td><td>{{ $item->member }}</td><td>{{ $item->host }}</td><td>{{ $item->logo }}</td><td>{{ $item->group_line_id }}</td><td>{{ $item->key_invite }}</td><td>{{ $item->status }}</td><td>{{ $item->rank_last_week }}</td><td>{{ $item->request_join }}</td>
                                         <td>
                                             <a href="{{ url('/groups/' . $item->id) }}" title="View Group"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>

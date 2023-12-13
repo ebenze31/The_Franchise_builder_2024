@@ -224,6 +224,9 @@
                         if(result[i].status == "เข้าร่วมแล้ว"){
                             class_status = 'success';
                             html_status = 'เข้าร่วมแล้ว';
+                        }else if(result[i].status == "รอยืนยัน"){
+                            class_status = 'warning';
+                            html_status = 'รอยืนยัน';
                         }else{
                             class_status = 'danger';
                             html_status = 'ยังไม่เข้าร่วม';

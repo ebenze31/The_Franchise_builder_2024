@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mylog;
 use App\Models\Group_line;
+use App\Models\Group;
 
 class LineApiController extends Controller
 {
@@ -27,6 +28,10 @@ class LineApiController extends Controller
         switch($event["type"]){
             case "message" : 
                 // $this->messageHandler($event);
+                // SAVE LINK LINE GROUP
+                if($event["source"]['type'] == 'group'){
+                    $this->save_link_line_group($event);
+                }
                 break;
             case "postback" : 
                 // $this->postbackHandler($event);
@@ -102,6 +107,61 @@ class LineApiController extends Controller
         $name_user_form_line = $data_response["displayName"];
         // จบ หาชื่อ user จากไลน์
         
+    }
+
+    function save_link_line_group($event){
+
+        $data_group_line = Group_line::where('groupId' , $event['source']['groupId'])->first();
+
+        if( !empty($data_group_line->group->link_line_group) ){
+            $text_reply = "กลุ่มนี้มีลิงก์ไลน์กลุ่มแล้ว" ;
+        }else{
+            DB::table('group_lines')
+                ->where([ 
+                        ['groupId', $event['source']['groupId']],
+                    ])
+                ->update([
+                        'link_line_group' => $event['message']['text'],
+                    ]);
+
+            $text_reply = "บันทึกลิงก์ไลน์กลุ่มเรียบร้อยแล้ว" ;
+        }
+
+        $template_path = storage_path('../public/json/message_text.json');   
+        $string_json = file_get_contents($template_path);
+        $string_json = str_replace("ตัวอย่าง","SAVE Link Line Group",$string_json);
+        $string_json = str_replace("message_text", $text_reply,$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "replyToken" => $event["replyToken"],
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '. env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url = "https://api.line.me/v2/bot/message/reply";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "SAVE Link Line Group >> " . $data_group_line->groupName,
+            "content" => $text_reply,
+        ];
+
+        MyLog::create($data);
+
     }
 
 }
