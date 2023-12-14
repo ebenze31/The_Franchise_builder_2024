@@ -210,6 +210,17 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="{{ url('/admin/scanner') }}" class="">
+                        <div class="parent-icon">
+                            <i class="fa-sharp fa-regular fa-qrcode"></i>
+                        </div>
+                        <div class="menu-title">
+                            QR Code scanner
+                        </div>
+                    </a>
+                </li>
+
             </ul>
         </div>
 

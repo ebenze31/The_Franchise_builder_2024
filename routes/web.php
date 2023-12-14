@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 // Challenger = ผู้เข่าร่วมกิจกรรม
 // Admin-HLAB = admin H-LAB
 // Admin-Allianz = admin Allianz
-// Staff-reg = เจ้าหน้าที่ลงทะเบียน
-// Staff-shirt = เจ้าหน้าที่เช็คการรับเสื้อ
+// Staff-activities-1 = เจ้าหน้าที่ลงทะเบียน
+// Staff-activities-2 = เจ้าหน้าที่เช็คการรับเสื้อ
 
 Auth::routes();
 
@@ -44,8 +44,8 @@ Route::middleware(['auth', 'role:Challenger ,Admin-HLAB, Admin-Allianz'])->group
     Route::get('/group_my_team', 'GroupsController@my_team');
 });
 
-// admin
-Route::middleware(['auth', 'role:Admin-HLAB, Admin-Allianz'])->group(function () {
+// admin & Staff
+Route::middleware(['auth', 'role:Admin-HLAB, Admin-Allianz, Staff-activities-1, Staff-activities-2'])->group(function () {
 
     Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/add_account', 'ProfileController@add_account');
@@ -55,6 +55,8 @@ Route::middleware(['auth', 'role:Admin-HLAB, Admin-Allianz'])->group(function ()
     Route::resource('group_lines', 'Group_linesController');
     Route::resource('news', 'NewsController');
 
+    Route::resource('mylog', 'MylogController');
+
+    Route::get('/admin/scanner', 'HomeController@admin_scanner');
 });
 
-Route::resource('mylog', 'MylogController');

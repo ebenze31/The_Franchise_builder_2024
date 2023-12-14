@@ -52,4 +52,8 @@ class HomeController extends Controller
         }
     }
 
+    public function admin_scanner(){
+        return view('admin.scanner');
+    }
+
 }
