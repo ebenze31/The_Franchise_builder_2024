@@ -231,6 +231,14 @@ class ProfileController extends Controller
             $data = User::where('role' , "Member")
                 ->orWhere('role' , "Challenger")
                 ->get();
+        }else{
+            $data = User::where('account', 'LIKE', "%$type_get_data%")
+                ->orWhere('name', 'LIKE', "%$type_get_data%")
+                ->orWhere('phone', 'LIKE', "%$type_get_data%")
+                ->orWhere('email', 'LIKE', "%$type_get_data%")
+                ->orWhere('role', 'LIKE', "%$type_get_data%")
+                ->orWhere('status', 'LIKE', "%$type_get_data%")
+                ->get();
         }
 
         return $data;

@@ -200,18 +200,23 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="Label_Modal_cf_slip">โปรดตรวจสอบ</h5>
+                <h5 class="modal-title" id="Label_Modal_cf_slip">โปรดตรวจสอบข้อมูลอีกครั้ง</h5>
                 <button id="btn_close_Modal_cf_slip" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div id="content_Modal_cf_slip">
+                <div class="row">
+                    <div id="content_Modal_cf_slip" class="col-12 text-center">
+                        <!-- DATA -->
+                    </div>
+                    <div class="col-12 text-center mt-4 mb-0">
+                        <p>เจ้าหน้าที่ผู้ยืนยัน : {{ Auth::user()->name }}</p>
+                    </div>
                 </div>
-                    ยืนยัน ?
             </div>
             <div class="modal-footer">
-                <button id="btn_change_status" type="button" class="btn btn-primary">ยืนยัน</button>
+                <button id="btn_change_status" style="width: 40%;" type="button" class="btn btn-success">ยืนยัน</button>
             </div>
         </div>
     </div>
@@ -266,8 +271,21 @@
         get_data_account('all');
     });
 
+    var delaySearch_data ;
     function Search_data(){
-        
+
+        clearTimeout(delaySearch_data);
+
+        let Search_input = document.querySelector('#Search_input').value ;
+
+        delaySearch_data = setTimeout(() => {
+            // console.log(Search_input);
+            if(Search_input){
+                get_data_account(Search_input);
+            }else{
+                get_data_account('all');
+            }
+        }, 1000);
     }
 
     function get_data_account(type_get_data){
@@ -278,145 +296,153 @@
             .then(result => {
                 // console.log(result);
 
-                document.querySelector('#count_account_all').innerHTML = result.length ;
-                if(result){
+                setTimeout(() => {
+                    document.querySelector('#count_account_all').innerHTML = result.length ;
+                    if(result){
 
-                    let content_tbody = document.querySelector('#content_tbody');
-                        content_tbody.innerHTML = '';
+                        let content_tbody = document.querySelector('#content_tbody');
+                            content_tbody.innerHTML = '';
 
-                    for (let i = 0; i < result.length; i++) {
+                        for (let i = 0; i < result.length; i++) {
 
-                        // status
-                        let class_status = '';
-                        let html_status = '';
-                        if(result[i].status == "เข้าร่วมแล้ว"){
-                            class_status = 'success';
-                            html_status = 'เข้าร่วมแล้ว';
-                        }else if(result[i].status == "รอยืนยัน"){
-                            class_status = 'warning';
-                            html_status = 'รอยืนยัน';
-                        }else{
-                            class_status = 'danger';
-                            html_status = 'ยังไม่เข้าร่วม';
-                        }
-
-                        // check role
-                        let class_role = '';
-
-                        if(result[i].role == "Member"){
-                            class_role = 'secondary';
-                        }else{
-                            class_role = 'primary';
-                        }
-
-                        // photo 
-                        let html_img = ''
-                        if(result[i].photo){
-                            html_img = `<img src="{{ url('storage')}}/`+result[i].photo+`" class="p-1" alt="">`;
-                        }else{
-                            html_img = `<img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt="">`;
-                        }
-
-                        // Pay_slip 
-                        let html_Pay_slip = ''
-                        if(result[i].pay_slip){
-                            html_Pay_slip = `
-                                <div class="product-img bg-transparent border" id="small_Pay_slip_`+result[i].account+`">
-                                    <img src="{{ url('storage')}}/`+result[i].pay_slip+`" class="p-1" alt="" style="object-fit: cover;">
-                                </div>
-                                <div class="overlay" id="overlayPay_slip_`+result[i].account+`">
-                                    <!-- เพิ่มภาพที่ใหญ่ขึ้นมาที่นี่ -->
-                                    <img id="large_Pay_slip_`+result[i].account+`" src="{{ url('storage')}}/`+result[i].pay_slip+`" alt="Large Image">
-                                </div>
-                            `;
-
-                            if(result[i].status != "เข้าร่วมแล้ว"){
-                                btn_cf_Pay_slip = `
-                                    <button type="button" class="btn btn-success" onclick="func_cf_pay_slip(`+result[i].account+`);">ยืนยัน</button>
-                                `;
+                            // status
+                            let class_status = '';
+                            let html_status = '';
+                            if(result[i].status == "เข้าร่วมแล้ว"){
+                                class_status = 'success';
+                                html_status = 'เข้าร่วมแล้ว';
+                            }else if(result[i].status == "รอยืนยัน"){
+                                class_status = 'warning';
+                                html_status = 'รอยืนยัน';
                             }else{
+                                class_status = 'danger';
+                                html_status = 'ยังไม่เข้าร่วม';
+                            }
+
+                            // check role
+                            let class_role = '';
+
+                            if(result[i].role == "Member"){
+                                class_role = 'secondary';
+                            }else{
+                                class_role = 'primary';
+                            }
+
+                            // photo 
+                            let html_img = ''
+                            if(result[i].photo){
+                                html_img = `<img src="{{ url('storage')}}/`+result[i].photo+`" class="p-1" alt="">`;
+                            }else{
+                                html_img = `<img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt="">`;
+                            }
+
+                            // Pay_slip 
+                            let html_Pay_slip = ''
+                            if(result[i].pay_slip){
+                                html_Pay_slip = `
+                                    <div class="product-img bg-transparent border" id="small_Pay_slip_`+result[i].account+`">
+                                        <img src="{{ url('storage')}}/`+result[i].pay_slip+`" class="p-1" alt="" style="object-fit: cover;">
+                                    </div>
+                                    <div class="overlay" id="overlayPay_slip_`+result[i].account+`">
+                                        <!-- เพิ่มภาพที่ใหญ่ขึ้นมาที่นี่ -->
+                                        <img id="large_Pay_slip_`+result[i].account+`" src="{{ url('storage')}}/`+result[i].pay_slip+`" alt="Large Image">
+                                    </div>
+                                `;
+
+                                if(result[i].status != "เข้าร่วมแล้ว"){
+                                    btn_cf_Pay_slip = `
+                                        <button type="button" class="btn btn-success" onclick="func_cf_pay_slip(`+result[i].account+`,'`+result[i].name+`','`+result[i].pay_slip+`');">ยืนยัน</button>
+                                    `;
+                                }else{
+                                    btn_cf_Pay_slip = ``;
+                                }
+
+                            }else{
+                                html_Pay_slip = ``;
                                 btn_cf_Pay_slip = ``;
                             }
 
-                        }else{
-                            html_Pay_slip = ``;
-                            btn_cf_Pay_slip = ``;
-                        }
+                            let html = `
+                                <tr>
+                                    <td>
+                                        <center>
+                                            <div id="product_img_account_111" class="product-img bg-transparent border">
+                                                `+html_img+`
+                                            </div>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <b>Account</b> : `+result[i].account+`
+                                        <br>
+                                        <b>Name</b> : `+result[i].name+`
+                                        <br>
+                                        <b>Email</b> : `+result[i].email+`
+                                        <br>
+                                        <b>Phone</b> : `+result[i].phone+`
+                                    </td>
+                                    <td id="td_role_`+result[i].account+`" class="text-center">
+                                        <a class="btn btn-sm btn-`+class_role+` radius-30">
+                                            `+result[i].role+`
+                                        </a>
+                                    </td>
+                                    <td id="td_status_`+result[i].account+`" class="text-center">
+                                        <a class="btn btn-sm btn-`+class_status+` radius-30">
+                                            `+html_status+`
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            `+html_Pay_slip+`
+                                        </center>
+                                    </td>
+                                    <td id="td_btn_cf_Pay_slip_`+result[i].account+`">
+                                        <center>
+                                            `+btn_cf_Pay_slip+`
+                                        </center>
+                                    </td>
+                                </tr>
+                            `;
 
-                        let html = `
-                            <tr>
-                                <td>
-                                    <center>
-                                        <div id="product_img_account_111" class="product-img bg-transparent border">
-                                            `+html_img+`
-                                        </div>
-                                    </center>
-                                </td>
-                                <td>
-                                    <b>Account</b> : `+result[i].account+`
-                                    <br>
-                                    <b>Name</b> : `+result[i].name+`
-                                    <br>
-                                    <b>Email</b> : `+result[i].email+`
-                                    <br>
-                                    <b>Phone</b> : `+result[i].phone+`
-                                </td>
-                                <td id="td_role_`+result[i].account+`" class="text-center">
-                                    <a class="btn btn-sm btn-`+class_role+` radius-30">
-                                        `+result[i].role+`
-                                    </a>
-                                </td>
-                                <td id="td_status_`+result[i].account+`" class="text-center">
-                                    <a class="btn btn-sm btn-`+class_status+` radius-30">
-                                        `+html_status+`
-                                    </a>
-                                </td>
-                                <td>
-                                    <center>
-                                        `+html_Pay_slip+`
-                                    </center>
-                                </td>
-                                <td id="td_btn_cf_Pay_slip_`+result[i].account+`">
-                                    <center>
-                                        `+btn_cf_Pay_slip+`
-                                    </center>
-                                </td>
-                            </tr>
-                        `;
+                            content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
-                        content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                            if(result[i].pay_slip){
+                                const thumbnail = document.getElementById('small_Pay_slip_' + result[i].account);
+                                const overlay = document.getElementById('overlayPay_slip_' + result[i].account);
+                                const overlayImage = document.getElementById('large_Pay_slip_' + result[i].account);
 
-                        if(result[i].pay_slip){
-                            const thumbnail = document.getElementById('small_Pay_slip_' + result[i].account);
-                            const overlay = document.getElementById('overlayPay_slip_' + result[i].account);
-                            const overlayImage = document.getElementById('large_Pay_slip_' + result[i].account);
+                                thumbnail.addEventListener('mouseenter', function() {
+                                    overlay.style.display = 'block';
+                                    overlayImage.src = "{{ url('storage')}}/" + result[i].pay_slip ;
+                                });
 
-                            thumbnail.addEventListener('mouseenter', function() {
-                                overlay.style.display = 'block';
-                                overlayImage.src = "{{ url('storage')}}/" + result[i].pay_slip ;
-                            });
+                                thumbnail.addEventListener('mouseleave', function() {
+                                    overlay.style.display = 'none';
+                                });
 
-                            thumbnail.addEventListener('mouseleave', function() {
-                                overlay.style.display = 'none';
-                            });
+                                thumbnail.addEventListener('click', function() {
+                                    overlay.style.display = 'block';
+                                    overlayImage.src = "{{ url('storage')}}/" + result[i].pay_slip ;
+                                });
+                            }
 
-                            thumbnail.addEventListener('click', function() {
-                                overlay.style.display = 'block';
-                                overlayImage.src = "{{ url('storage')}}/" + result[i].pay_slip ;
-                            });
                         }
 
                     }
 
-                }
+                }, 500);
 
             });
     }
 
-    function func_cf_pay_slip(account){
+    function func_cf_pay_slip(account, name , pay_slip){
         // console.log(account);
+        let html = `
+            <img src="{{ url('storage')}}/`+pay_slip+`" class="p-1" style="width: 60%;">
+            <h5 class="mt-3"><b>Account</b> : `+account+`</h5>
+            <h5><b>Name</b> : `+name+`</h5>
+        `;
 
-        document.querySelector('#content_Modal_cf_slip').innerHTML = account ;
+        document.querySelector('#content_Modal_cf_slip').innerHTML = html ;
         document.querySelector('#btn_Modal_cf_slip').click();
 
         let btn_change_status = document.querySelector('#btn_change_status');
