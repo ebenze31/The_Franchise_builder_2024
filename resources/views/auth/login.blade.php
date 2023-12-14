@@ -206,16 +206,11 @@
 function checkCookie() {
 
   var isChecked = getCookie("Terms & condition");
-  if (isChecked !== "") {
-    // ถ้ามี cookie แล้วให้ตรวจสอบ checkbox
-    document.getElementById("myCheckbox").checked = true;
-
-  } else {
-    // ถ้าไม่มี cookie ให้แสดงเตือน
-    // alert("โปรดติ๊กเลือกเพื่อบันทึกการเปลี่ยนแปลง");
-    $('#ModalTerms').modal('show');
-
-  }
+  if (isChecked === "") {
+        // ถ้ามี cookie แล้วให้ตรวจสอบ checkbox
+        
+        $('#ModalTerms').modal('show');
+    } 
 }
 
 // สร้าง cookie เมื่อ checkbox ถูกติ๊ก

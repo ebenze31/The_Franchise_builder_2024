@@ -86,7 +86,7 @@
 <script src="{{ asset('/theme_admin/plugins/notifications/js/lobibox.min.js') }}"></script>
 <script src="{{ asset('/theme_admin/plugins/notifications/js/notifications.min.js') }}"></script>
 <script src="{{ asset('/theme_admin/plugins/notifications/js/notification-custom-script.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
 </body>
 </html>
