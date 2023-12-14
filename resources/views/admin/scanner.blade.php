@@ -72,6 +72,7 @@
 
             if (code) {
                 // console.log(code.data);
+                alert(code.data);
 
                 if(code.data.split('=')[1]){
                 	let text_account = code.data.split('=')[1];
