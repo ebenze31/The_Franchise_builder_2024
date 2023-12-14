@@ -138,18 +138,18 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('/account_admin') }}">
-                                <i class="fa-duotone fa-user-nurse"></i> แอดมินและเจ้าหน้าที่
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/account_all') }}">
+                            <a class="btn" href="{{ url('/account_all') }}">
                                 <i class="fa-solid fa-address-card"></i> รายชื่อสมาชิกทั้งหมด
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('/account_reg_success') }}">
+                            <a class="btn" href="{{ url('/account_reg_success') }}">
                                 <i class="fa-solid fa-user-check"></i> ผู้ร่วมกิจกรรม
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="{{ url('/account_admin') }}">
+                                <i class="fa-duotone fa-user-nurse"></i> แอดมินและเจ้าหน้าที่
                             </a>
                         </li>
                     </ul>

@@ -21,8 +21,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // LINE API
 Route::post('/lineapi', 'API\LineApiController@store');
 
+// PROFILE
 Route::post('/create_user/excel', 'ProfileController@create_user');
 Route::post('/create_qr_code', 'ProfileController@create_qr_code');
-Route::post('/create_score/excel', 'Pc_pointsController@create_score');
+Route::get('/change_status/{account}/{Staff_id}', 'ProfileController@change_status');
 Route::get('/get_data_account/{type_get_data}', 'ProfileController@get_data_account');
+
+// PC POINT
+Route::post('/create_score/excel', 'Pc_pointsController@create_score');
+
+// GROUP
 Route::get('/create_group/{amount}', 'GroupsController@create_group');

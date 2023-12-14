@@ -129,7 +129,6 @@ class LineApiController extends Controller
 
         $template_path = storage_path('../public/json/message_text.json');   
         $string_json = file_get_contents($template_path);
-        $string_json = str_replace("ตัวอย่าง","SAVE Link Line Group",$string_json);
         $string_json = str_replace("message_text", $text_reply,$string_json);
 
         $messages = [ json_decode($string_json, true) ];
@@ -161,7 +160,7 @@ class LineApiController extends Controller
         ];
 
         MyLog::create($data);
-
+        return $result;
     }
 
 }

@@ -140,39 +140,102 @@
     }
 
     .overlay {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
     }
     .overlay img {
-      min-width: 50vh;
-      min-height: auto;
+        min-width: 50vh;
+        min-height: auto;
+    
+        max-width: 50vh;
+        max-height: 90vh;
 
-      max-width: 50vh;
-      max-height: 90vh;
-
-      object-fit: contain;
+        object-fit: contain;
 
     }
 
+    /*Search*/
+    .InputContainer {
+        width: 305px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to bottom,#0021E8,#0BD5D3);
+        border-radius: 30px;
+        overflow: hidden;
+        cursor: pointer;
+        ox-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+    }
 
+    .Search_input {
+        width: 300px;
+        height: 40px;
+        border: none;
+        outline: none;
+        caret-color: rgb(255, 81, 0);
+        background-color: rgb(255, 255, 255);
+        border-radius: 30px;
+        padding-left: 20px;
+        letter-spacing: 0.8px;
+        color: rgb(19, 19, 19);
+        font-size: 13.4px;
+    }   
+    
 }
 
-
 </style>
+
+<!-- Button trigger modal -->
+<button id="btn_Modal_cf_slip" type="button" class="d-none" data-toggle="modal" data-target="#Modal_cf_slip">
+    <!--  -->
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal_cf_slip" tabindex="-1" aria-labelledby="Label_Modal_cf_slip" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Label_Modal_cf_slip">โปรดตรวจสอบ</h5>
+                <button id="btn_close_Modal_cf_slip" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="content_Modal_cf_slip">
+                </div>
+                    ยืนยัน ?
+            </div>
+            <div class="modal-footer">
+                <button id="btn_change_status" type="button" class="btn btn-primary">ยืนยัน</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="card">
     <div class="card-body">
 
-        <h4 class="mb-0 text-uppercase">
-            รายชื่อสมาชิกทั้งหมด
-            <span style="font-size: 15px;color: gray;">
-                ทั้งหมด (<span id="count_account_all" style="font-size: 15px;color: gray;"></span>) คน
-            </span>
-        </h4>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <h4 class="mb-0 text-uppercase">
+                    รายชื่อสมาชิกทั้งหมด
+                    <span style="font-size: 15px;color: gray;">
+                        ทั้งหมด (<span id="count_account_all" style="font-size: 15px;color: gray;"></span>) คน
+                    </span>
+                </h4>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="InputContainer float-end">
+                    <input placeholder="Search.." id="Search_input" class="Search_input" name="text" type="text" oninput="Search_data();">
+                </div>
+            </div>
+        </div>
+        
         <hr class="mt-3 mb-3">
 
         <div class="table-responsive">
@@ -184,6 +247,7 @@
                         <th class="text-center">Role</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Pay slip</th>
+                        <th class="text-center"></th>
                     </tr>
                 </thead>
                 <tbody id="content_tbody">
@@ -201,6 +265,10 @@
         // console.log("START");
         get_data_account('all');
     });
+
+    function Search_data(){
+        
+    }
 
     function get_data_account(type_get_data){
         // console.log(type_get_data);
@@ -254,15 +322,25 @@
                         if(result[i].pay_slip){
                             html_Pay_slip = `
                                 <div class="product-img bg-transparent border" id="small_Pay_slip_`+result[i].account+`">
-                                    <img src="{{ url('storage')}}/`+result[i].pay_slip+`" class="p-1" alt="">
+                                    <img src="{{ url('storage')}}/`+result[i].pay_slip+`" class="p-1" alt="" style="object-fit: cover;">
                                 </div>
                                 <div class="overlay" id="overlayPay_slip_`+result[i].account+`">
                                     <!-- เพิ่มภาพที่ใหญ่ขึ้นมาที่นี่ -->
                                     <img id="large_Pay_slip_`+result[i].account+`" src="{{ url('storage')}}/`+result[i].pay_slip+`" alt="Large Image">
                                 </div>
                             `;
+
+                            if(result[i].status != "เข้าร่วมแล้ว"){
+                                btn_cf_Pay_slip = `
+                                    <button type="button" class="btn btn-success" onclick="func_cf_pay_slip(`+result[i].account+`);">ยืนยัน</button>
+                                `;
+                            }else{
+                                btn_cf_Pay_slip = ``;
+                            }
+
                         }else{
                             html_Pay_slip = ``;
+                            btn_cf_Pay_slip = ``;
                         }
 
                         let html = `
@@ -283,12 +361,12 @@
                                     <br>
                                     <b>Phone</b> : `+result[i].phone+`
                                 </td>
-                                <td class="text-center">
+                                <td id="td_role_`+result[i].account+`" class="text-center">
                                     <a class="btn btn-sm btn-`+class_role+` radius-30">
                                         `+result[i].role+`
                                     </a>
                                 </td>
-                                <td class="text-center">
+                                <td id="td_status_`+result[i].account+`" class="text-center">
                                     <a class="btn btn-sm btn-`+class_status+` radius-30">
                                         `+html_status+`
                                     </a>
@@ -296,6 +374,11 @@
                                 <td>
                                     <center>
                                         `+html_Pay_slip+`
+                                    </center>
+                                </td>
+                                <td id="td_btn_cf_Pay_slip_`+result[i].account+`">
+                                    <center>
+                                        `+btn_cf_Pay_slip+`
                                     </center>
                                 </td>
                             </tr>
@@ -323,52 +406,50 @@
                             });
                         }
 
-
-                        // let smallImage = $('#small_Pay_slip_' + result[i].account);
-                        // let largeImage = $('#large_Pay_slip_' + result[i].account);
-
-                        // smallImage.hover(
-                        //     function() {
-                        //         // เมื่อนำเมาส์เข้าไป
-                        //         largeImage.fadeIn();
-                        //     },
-                        //     function() {
-                        //         // เมื่อนำเมาส์ออก
-                        //         largeImage.fadeOut();
-                        //     }
-                        // );
-
-                        // smallImage.hover(
-                        //     function() {
-                        //         // เมื่อนำเมาส์เข้าไป
-                        //         largeImage.fadeIn();
-                        //     },
-                        //     function() {
-                        //         // เมื่อนำเมาส์ออก
-                        //         largeImage.fadeOut();
-                        //     }
-                        // );
-
-                        // smallImage.mousemove(function(e) {
-                        //     // ติดตามตำแหน่งของเมาส์และปรับตำแหน่งของ largeImage
-                        //     let posX = e.pageX - smallImage.offset().left;
-                        //     let posY = e.pageY - smallImage.offset().top;
-
-                        //     // ปรับตำแหน่งของ largeImage ให้อยู่กึ่งกลางหน้าจอ
-                        //     let offsetX = window.innerWidth / 2; // ครึ่งของความกว้างของหน้าจอ
-                        //     let offsetY = window.innerHeight / 2; // ครึ่งของความสูงของหน้าจอ
-
-                        //     largeImage.css({
-                        //         top: posY + 200,
-                        //         left: posX + 100,
-                        //         width: 200
-
-                        //     });
-                        // });
-
-
                     }
 
+                }
+
+            });
+    }
+
+    function func_cf_pay_slip(account){
+        // console.log(account);
+
+        document.querySelector('#content_Modal_cf_slip').innerHTML = account ;
+        document.querySelector('#btn_Modal_cf_slip').click();
+
+        let btn_change_status = document.querySelector('#btn_change_status');
+            btn_change_status.setAttribute("onclick", "change_status('" + account + "');");
+    }
+
+    function change_status(account){
+
+        fetch("{{ url('/') }}/api/change_status/" + account + "/" + "{{ Auth::user()->id }}")
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if(result == "success"){
+                    let td_role = document.querySelector('#td_role_' + account) ;
+                    let td_status = document.querySelector('#td_status_' + account) ;
+                    let td_btn_cf_Pay_slip = document.querySelector('#td_btn_cf_Pay_slip_' + account) ;
+
+                    let html_role = `
+                        <a class="btn btn-sm btn-primary radius-30">
+                            Challenger
+                        </a>
+                    `;
+                    td_role.innerHTML = html_role ;
+
+                    let html_status = `
+                        <a class="btn btn-sm btn-success radius-30">
+                            เข้าร่วมแล้ว
+                        </a>
+                    `;
+                    td_status.innerHTML = html_status ;
+
+                    td_btn_cf_Pay_slip.innerHTML = '' ;
+                    document.querySelector('#btn_close_Modal_cf_slip').click();
                 }
 
             });

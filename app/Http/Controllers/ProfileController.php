@@ -237,4 +237,21 @@ class ProfileController extends Controller
 
     }
 
+    function change_status($account , $Staff_id){
+
+        DB::table('users')
+            ->where([ 
+                    ['account', $account],
+                ])
+            ->update([
+                    'role' => 'Challenger',
+                    'status' => 'เข้าร่วมแล้ว',
+                    'staff_pay_slip_id' => $Staff_id,
+                    'time_cf_pay_slip' => date("Y-m-d H:i:s"),
+                ]);
+
+        return "success" ;
+
+    }
+
 }
