@@ -25,6 +25,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 // LOGIN
 Route::middleware(['auth',])->group(function () {
     Route::resource('profile', 'ProfileController');
@@ -40,7 +41,7 @@ Route::middleware(['auth', 'role:Challenger ,Admin-HLAB, Admin-Allianz'])->group
 
     Route::resource('pc_points', 'Pc_pointsController');
     Route::resource('groups', 'GroupsController');
-
+    Route::get('/group_my_team', 'GroupsController@my_team');
 });
 
 // admin

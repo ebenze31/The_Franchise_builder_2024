@@ -199,4 +199,8 @@ class GroupsController extends Controller
         return count($data_old) + $amount ;
 
     }
+
+    function my_team(){
+        return view('groups.my_team');
+    }
 }
