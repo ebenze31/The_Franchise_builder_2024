@@ -210,17 +210,6 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="{{ url('/admin/scanner') }}" class="">
-                        <div class="parent-icon">
-                            <i class="fa-sharp fa-regular fa-qrcode"></i>
-                        </div>
-                        <div class="menu-title">
-                            QR Code scanner
-                        </div>
-                    </a>
-                </li>
-
             </ul>
         </div>
 
@@ -228,7 +217,7 @@
             <div class="topbar d-flex align-items-center bg-menu-bar">
                 <nav class="navbar navbar-expand">
                     <div class="mobile-toggle-menu">
-                        <i class='bx bx-menu'></i>
+                        <i class="fa-solid fa-angle-right text-white"></i>
                     </div>
                     <div class="top-menu-left d-none d-lg-block">
                         <ul class="nav">
@@ -242,6 +231,11 @@
 
                     <div class="top-menu ms-auto">
                         <ul class="navbar-nav align-items-center">
+                            <li class="nav-item mobile-search-icon">
+                                <a href="{{ url('/admin/scanner') }}">
+                                    <img src="{{ asset('img/icon/scan.png') }}" style="width: 32px;">
+                                </a>
+                            </li>
                             <li class="nav-item dropdown dropdown-large">
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <div class="header-notifications-list">
