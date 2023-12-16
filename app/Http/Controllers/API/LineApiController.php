@@ -15,7 +15,37 @@ class LineApiController extends Controller
     public function store(Request $request)
     {
         //SAVE LOG
-        return "200" ;
+        $requestData = $request->all();
+        $data = [
+            "title" => "Line",
+            "content" => json_encode($requestData, JSON_UNESCAPED_UNICODE),
+        ];
+        MyLog::create($data);  
+
+        //GET ONLY FIRST EVENT
+        $event = $requestData["events"][0];
+
+        switch($event["type"]){
+            case "message" : 
+                // $this->messageHandler($event);
+                // SAVE LINK LINE GROUP
+                if($event["source"]['type'] == 'group'){
+                    $this->save_link_line_group($event);
+                }
+                break;
+            case "postback" : 
+                // $this->postbackHandler($event);
+                break;
+            case "join" :
+                $this->save_group_line($event);
+                break;
+            case "memberJoined" :
+                $this->check_memberJoined($event);
+                break;
+            case "follow" :
+                // $this->user_follow_line($event);
+                break;
+        }
     }
 
     public function save_group_line($event)
