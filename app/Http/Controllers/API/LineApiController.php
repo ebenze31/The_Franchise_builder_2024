@@ -111,21 +111,23 @@ class LineApiController extends Controller
 
     function save_link_line_group($event){
 
-        $data_group_line = Group_line::where('groupId' , $event['source']['groupId'])->first();
+        // $data_group_line = Group_line::where('groupId' , $event['source']['groupId'])->first();
 
-        if( !empty($data_group_line->group->link_line_group) ){
-            $text_reply = "กลุ่มนี้มีลิงก์ไลน์กลุ่มแล้ว" ;
-        }else{
-            DB::table('group_lines')
-                ->where([ 
-                        ['groupId', $event['source']['groupId']],
-                    ])
-                ->update([
-                        'link_line_group' => $event['message']['text'],
-                    ]);
+        // if( !empty($data_group_line->group->link_line_group) ){
+        //     $text_reply = "กลุ่มนี้มีลิงก์ไลน์กลุ่มแล้ว" ;
+        // }else{
+        //     DB::table('group_lines')
+        //         ->where([ 
+        //                 ['groupId', $event['source']['groupId']],
+        //             ])
+        //         ->update([
+        //                 'link_line_group' => $event['message']['text'],
+        //             ]);
 
-            $text_reply = "บันทึกลิงก์ไลน์กลุ่มเรียบร้อยแล้ว" ;
-        }
+        //     $text_reply = "บันทึกลิงก์ไลน์กลุ่มเรียบร้อยแล้ว" ;
+        // }
+
+        $text_reply = "ทดสอบตอบกลับ" ;
 
         $template_path = storage_path('../public/json/message_text.json');   
         $string_json = file_get_contents($template_path);
@@ -154,10 +156,10 @@ class LineApiController extends Controller
         $result = file_get_contents($url, false, $context);
 
         //SAVE LOG
-        $data = [
-            "title" => "SAVE Link Line Group >> " . $data_group_line->groupName,
-            "content" => $text_reply,
-        ];
+        // $data = [
+        //     "title" => "SAVE Link Line Group >> " . $data_group_line->groupName,
+        //     "content" => $text_reply,
+        // ];
 
         MyLog::create($data);
         return $result;
