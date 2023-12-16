@@ -24,15 +24,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->role == "Admin-HLAB" || Auth::user()->role == "Admin-Allianz"){
+        if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin"){
             return redirect("dashboard");
         }
 
-        else if(Auth::user()->role == "Challenger"){
+        else if(Auth::user()->role == "Player" || Auth::user()->role == "Staff"){
             return view('home_page');
         }
 
-        else if(Auth::user()->role == "Member"){
+        else if(Auth::user()->role == "AL"){
             return redirect("register_tfb2024");
         }
 
@@ -45,11 +45,8 @@ class HomeController extends Controller
 
     public function register_tfb2024(){
 
-        if(Auth::user()->status == "รอยืนยัน"){
-            return view('waiting_payment_confirm');
-        }else{
-            return view('register_tfb2024');
-        }
+        return view('register_tfb2024');
+        
     }
 
     public function admin_scanner(){

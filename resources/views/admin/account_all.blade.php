@@ -322,7 +322,7 @@
                             // check role
                             let class_role = '';
 
-                            if(result[i].role == "Member"){
+                            if(result[i].role == "AL"){
                                 class_role = 'secondary';
                             }else{
                                 class_role = 'primary';
@@ -462,7 +462,7 @@
 
                     let html_role = `
                         <a class="btn btn-sm btn-primary radius-30">
-                            Challenger
+                            Player
                         </a>
                     `;
                     td_role.innerHTML = html_role ;

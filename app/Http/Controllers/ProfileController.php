@@ -96,6 +96,32 @@ class ProfileController extends Controller
             $requestData['pay_slip'] = $request->file('pay_slip')->store('uploads', 'public');
         }
 
+        $requestData['status'] = "เข้าร่วมแล้ว" ;
+        $requestData['role'] = "Player" ;
+
+        $data = User::findOrFail($id);
+        $data->update($requestData);
+
+        // return redirect("register_tfb2024");
+        return view("waiting_payment_confirm");
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+    function edit_first_profile(Request $request, $id)
+    {
+        $requestData = $request->all();
+
+        // Crop ภาพ
         if ($request->hasFile('photo')) {
             $requestData['photo'] = $request->file('photo')->store('uploads', 'public');
 
@@ -116,24 +142,10 @@ class ProfileController extends Controller
             $image->save($imagePath);
 
         }
+        // END Crop ภาพ
 
-        $requestData['status'] = "รอยืนยัน" ;
+        return view('home_page');
 
-        $data = User::findOrFail($id);
-        $data->update($requestData);
-
-        return redirect("register_tfb2024");
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     function add_account(){
@@ -228,8 +240,8 @@ class ProfileController extends Controller
     function get_data_account($type_get_data){
 
         if($type_get_data == "all"){
-            $data = User::where('role' , "Member")
-                ->orWhere('role' , "Challenger")
+            $data = User::where('role' , "aL")
+                ->orWhere('role' , "Player")
                 ->get();
         }else{
             $data = User::where('account', 'LIKE', "%$type_get_data%")
@@ -252,7 +264,7 @@ class ProfileController extends Controller
                     ['account', $account],
                 ])
             ->update([
-                    'role' => 'Challenger',
+                    'role' => 'Player',
                     'status' => 'เข้าร่วมแล้ว',
                     'staff_pay_slip_id' => $Staff_id,
                     'time_cf_pay_slip' => date("Y-m-d H:i:s"),

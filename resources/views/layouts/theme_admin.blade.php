@@ -167,7 +167,7 @@
                     
                     <ul>
                         <li>
-                            <a href="{{ url('/add_group') }}">
+                            <a class="btn" href="{{ url('/add_group') }}">
                                 <i class="fa-solid fa-plus"></i> เพิ่มจำนวนบ้าน
                             </a>
                         </li>
@@ -185,7 +185,7 @@
                     
                     <ul>
                         <li>
-                            <a href="{{ url('/add_score') }}">
+                            <a class="btn" href="{{ url('/add_score') }}">
                                 <i class="fa-solid fa-grid-2-plus"></i> เพิ่มคะแนน
                             </a>
                         </li>
@@ -203,8 +203,26 @@
                     
                     <ul>
                         <li>
-                            <a href="{{ url('/add_news') }}">
+                            <a class="btn" href="{{ url('/add_news') }}">
                                 <i class="fa-solid fa-plus"></i> เพิ่มข่าวใหม่
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-calendar-lines-pen"></i>
+                        </div>
+                        <div class="menu-title">
+                            Activities
+                        </div>
+                    </a>
+                    
+                    <ul>
+                        <li>
+                            <a class="btn" href="{{ url('/add_activities') }}">
+                                <i class="fa-solid fa-plus"></i> เพิ่มกิจกรรมใหม่
                             </a>
                         </li>
                     </ul>
