@@ -249,10 +249,11 @@
                     <tr>
                         <th class="text-center">Photo</th>
                         <th>Information</th>
+                        <th></th>
                         <th class="text-center">Role</th>
                         <th class="text-center">Status</th>
-                        <th class="text-center">Pay slip</th>
-                        <th class="text-center"></th>
+                        <!-- <th class="text-center">Pay slip</th> -->
+                        <!-- <th class="text-center"></th> -->
                     </tr>
                 </thead>
                 <tbody id="content_tbody">
@@ -375,27 +376,28 @@
                                         <b>Account</b> : `+result[i].account+`
                                         <br>
                                         <b>Name</b> : `+result[i].name+`
-                                        <br>
+                                    </td>
+                                    <td>
                                         <b>Email</b> : `+result[i].email+`
                                         <br>
                                         <b>Phone</b> : `+result[i].phone+`
                                     </td>
                                     <td id="td_role_`+result[i].account+`" class="text-center">
-                                        <a class="btn btn-sm btn-`+class_role+` radius-30">
+                                        <a class="btn btn-sm btn-`+class_role+` radius-30" style="width:80%;">
                                             `+result[i].role+`
                                         </a>
                                     </td>
                                     <td id="td_status_`+result[i].account+`" class="text-center">
-                                        <a class="btn btn-sm btn-`+class_status+` radius-30">
+                                        <a class="btn btn-sm btn-`+class_status+` radius-30" style="width:80%;">
                                             `+html_status+`
                                         </a>
                                     </td>
-                                    <td>
+                                    <td class="d-none">
                                         <center>
                                             `+html_Pay_slip+`
                                         </center>
                                     </td>
-                                    <td id="td_btn_cf_Pay_slip_`+result[i].account+`">
+                                    <td class="d-none" id="td_btn_cf_Pay_slip_`+result[i].account+`">
                                         <center>
                                             `+btn_cf_Pay_slip+`
                                         </center>
