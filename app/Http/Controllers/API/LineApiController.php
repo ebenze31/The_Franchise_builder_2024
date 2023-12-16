@@ -123,9 +123,9 @@ class LineApiController extends Controller
         // if( !empty($data_group_line->group->link_line_group) ){
         //     $text_reply = "กลุ่มนี้มีลิงก์ไลน์กลุ่มแล้ว" ;
         // }else{
-            DB::table('group_lines')
+            DB::table('groups')
                 ->where([ 
-                        ['groupId', $event['source']['groupId']],
+                        ['group_line_id', $data_group_line->group->group_line_id],
                     ])
                 ->update([
                         'link_line_group' => $event['message']['text'],
