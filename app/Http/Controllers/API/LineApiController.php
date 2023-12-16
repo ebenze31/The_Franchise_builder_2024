@@ -116,7 +116,7 @@ class LineApiController extends Controller
         // SAVE LOG
         $dataSAVELOG = [
             "title" => $event['message']['text'],
-            "content" => $data_group_line->group->link_line_group,
+            "content" => $event['source']['groupId'],
         ];
         MyLog::create($dataSAVELOG);
 
