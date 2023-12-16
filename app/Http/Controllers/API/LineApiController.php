@@ -111,7 +111,7 @@ class LineApiController extends Controller
 
     function save_link_line_group($event){
 
-        $data_group_line = Group_line::where('groupId' , $event['source']['groupId'])->first();
+        // $data_group_line = Group_line::where('groupId' , $event['source']['groupId'])->first();
 
         // SAVE LOG
         $dataSAVELOG = [
