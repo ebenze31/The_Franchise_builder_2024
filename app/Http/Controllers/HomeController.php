@@ -28,7 +28,11 @@ class HomeController extends Controller
             return redirect("dashboard");
         }
 
-        else if(Auth::user()->role == "Player" || Auth::user()->role == "Staff"){
+        else if(Auth::user()->role == "Player"){
+            return view('home_page');
+        }
+
+        else if(Auth::user()->role == "Staff"){
             return view('home_page');
         }
 
