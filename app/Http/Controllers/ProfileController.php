@@ -103,7 +103,7 @@ class ProfileController extends Controller
         $data->update($requestData);
 
         // return redirect("register_tfb2024");
-        return view("waiting_payment_confirm");
+        return view("first_profile");
     }
 
     /**
