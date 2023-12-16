@@ -105,6 +105,15 @@
   .modal-success{
     margin: 10px 60px;
   }
+  .label-upload-slip{
+    border-radius: 50px;
+    color: #949494;
+  }.after-upload{
+    margin-top: 15px;
+    color: #A0A0A0;
+    font-size: 10px;
+    align-items: center;
+  }
 </style>
 
 
@@ -147,23 +156,23 @@
 
     <div class=" text-center">
       <p class="header-upload-payment">อัพโหลดหลักฐานการชำระค่าสมัคร</p>
-      <div class="input-group">
-            <!-- <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required> -->
-            <input class="form-control" name="pay_slip" type="file" id="pay_slip" value="{{ isset(Auth::user()->pay_slip) ? Auth::user()->pay_slip : ''}}" accept="image/*" >
-            
-            <a class="btn btn-upload" type="button" id="btnSubmitPayment" onclick="check_form()">
-              upload 
-              <i class="fa-solid fa-arrow-up-from-bracket font-16"></i>
-            </a>
-          </div>
+        <div class="input-group">
+          <!-- <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required> -->
+          <input class="form-control d-none" name="pay_slip" type="file" id="pay_slip" value="{{ isset(Auth::user()->pay_slip) ? Auth::user()->pay_slip : ''}}" accept="image/*" required>
+          <label for="pay_slip" class="form-control text-start label-upload-slip">อัพโหลดรูปภาพ</label>
+          <a class="btn btn-upload" type="button" id="btnSubmitPayment" onclick="check_form()">
+            upload 
+            <i class="fa-solid fa-arrow-up-from-bracket font-16"></i>
+          </a>
+        </div>
       </div>
+
+      <p class="after-upload text-center">
+      หลังจากอัพโหลดหลักหลักฐานการชำระเรียบร้อยเเล้ว กรุณา <br>
+        นำ QR code ของคุณ ไปติดต่อเจ้าหน้าที่ภายในงาน
+      </p>
     </div>
   </div>
-
-
-  <br>
-  <input type="checkbox" name=""> สมมติว่าเป็นปุ่มสุดท้ายในการยืนยัน
-  <button class="btn btn-sm btn-info">ยืนยัน</button>
 
 
   <!-- <div class="card border-top border-0 border-4 border-primary d-none">
