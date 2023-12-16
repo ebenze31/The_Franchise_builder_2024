@@ -118,7 +118,7 @@ class LineApiController extends Controller
             "title" => $event['message']['text'],
             "content" => $data_group_line->group->link_line_group,
         ];
-        MyLog::create($data);
+        MyLog::create($dataSAVELOG);
 
         if( !empty($data_group_line->group->link_line_group) ){
             $text_reply = "กลุ่มนี้มีลิงก์ไลน์กลุ่มแล้ว" ;
