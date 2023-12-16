@@ -158,7 +158,7 @@
       <p class="header-upload-payment">อัพโหลดหลักฐานการชำระค่าสมัคร</p>
         <div class="input-group">
           <!-- <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required> -->
-          <input class="form-control d-none" name="pay_slip" type="file" id="pay_slip" value="{{ isset(Auth::user()->pay_slip) ? Auth::user()->pay_slip : ''}}" accept="image/*" required>
+          <input class="form-control d-none" name="pay_slip" type="file" id="pay_slip" value="{{ isset(Auth::user()->pay_slip) ? Auth::user()->pay_slip : ''}}" accept="image/*">
           <label for="pay_slip" class="form-control text-start label-upload-slip">อัพโหลดรูปภาพ</label>
           <a class="btn btn-upload" type="button" id="btnSubmitPayment" onclick="check_form()">
             upload 
@@ -174,7 +174,9 @@
     </div>
   </div>
 
-
+  <br>
+  <input type="checkbox" name=""> สมมติว่าเป็นปุ่มสุดท้ายในการยืนยัน
+  <button class="btn btn-sm btn-info">ยืนยัน</button>
   <!-- <div class="card border-top border-0 border-4 border-primary d-none">
     <div class="card-body p-5">
       <div class="card-title d-flex align-items-center">
