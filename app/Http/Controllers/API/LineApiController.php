@@ -120,9 +120,9 @@ class LineApiController extends Controller
         ];
         MyLog::create($dataSAVELOG);
 
-        if( !empty($data_group_line->group->link_line_group) ){
-            $text_reply = "กลุ่มนี้มีลิงก์ไลน์กลุ่มแล้ว" ;
-        }else{
+        // if( !empty($data_group_line->group->link_line_group) ){
+        //     $text_reply = "กลุ่มนี้มีลิงก์ไลน์กลุ่มแล้ว" ;
+        // }else{
             DB::table('group_lines')
                 ->where([ 
                         ['groupId', $event['source']['groupId']],
@@ -132,7 +132,7 @@ class LineApiController extends Controller
                     ]);
 
             $text_reply = "บันทึกลิงก์ไลน์กลุ่มเรียบร้อยแล้ว" ;
-        }
+        // }
 
         $template_path = storage_path('../public/json/message_text.json');   
         $string_json = file_get_contents($template_path);
