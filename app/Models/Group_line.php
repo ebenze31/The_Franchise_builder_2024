@@ -25,7 +25,7 @@ class Group_line extends Model
      *
      * @var array
      */
-    protected $fillable = ['groupId', 'groupName', 'pictureUrl'];
+    protected $fillable = ['groupId', 'groupName', 'pictureUrl','group_id'];
 
     public function group(){
         return $this->belongsTo('App\Models\Group', 'group_line_id' , 'id'); 

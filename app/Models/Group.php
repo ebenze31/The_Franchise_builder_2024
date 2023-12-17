@@ -28,6 +28,6 @@ class Group extends Model
     protected $fillable = ['name_group', 'member', 'host', 'logo', 'group_line_id', 'key_invite', 'status', 'rank_last_week', 'request_join' ,'rank_record' ,'link_line_group'];
 
     public function group_line(){
-        return $this->hasOne('App\Models\Group_line', 'id');
+        return $this->hasOne('App\Models\Group_line', 'group_id');
     }
 }

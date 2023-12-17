@@ -74,6 +74,9 @@ class LineApiController extends Controller
         
         Group_line::firstOrCreate($save_name_group);
 
+        // จับคู่กลุ่มไลน์กับบ้าน
+        $last_data = Group_line::latest()->first();
+
         $data = [
             "title" => "บันทึก Name Group Line",
             "content" => $data_group_line->groupName,
