@@ -1,11 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.theme_admin')
 
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">Group_lines</div>
                     <div class="card-body">
@@ -30,12 +28,17 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>GroupId</th><th>GroupName</th><th>PictureUrl</th><th>Actions</th>
+                                        <th></th><th>#</th><th>GroupId</th><th>GroupName</th><th>PictureUrl</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($group_lines as $item)
                                     <tr>
+                                        <th>
+                                            @if( !empty($item->group->link_line_group) )
+                                                {{ $item->group->link_line_group }}
+                                            @endif
+                                        </th>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->groupId }}</td><td>{{ $item->groupName }}</td><td>{{ $item->pictureUrl }}</td>
                                         <td>

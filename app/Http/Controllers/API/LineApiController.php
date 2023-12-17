@@ -70,12 +70,26 @@ class LineApiController extends Controller
             "groupId" => $data_group_line->groupId,
             "groupName" => $data_group_line->groupName,
             "pictureUrl" => $data_group_line->pictureUrl,
+            "group_id" => null,
         ];
         
         Group_line::firstOrCreate($save_name_group);
+        $last_data = Group_line::latest()->first();
 
         // จับคู่กลุ่มไลน์กับบ้าน
-        $last_data = Group_line::latest()->first();
+        $groupName = str_replace(" ", "",$data_group_line->groupName);
+        $num_of_group = explode("-", $groupName)[1];
+
+        $data_home = Group::where('name_group', $num_of_group)->first();
+
+        $update_data_hoem = [];
+        $update_data_hoem['group_line_id'] = $last_data->id;
+
+        $update_Group_line = [];
+        $update_Group_line['group_id'] = $data_home->id;
+
+        $data_home->update($update_data_hoem);
+        $last_data->update($update_Group_line);
 
         $data = [
             "title" => "บันทึก Name Group Line",

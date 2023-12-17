@@ -29,12 +29,17 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Name Group</th><th>Member</th><th>Host</th><th>Logo</th><th>Group Line Id</th><th>Key Invite</th><th>Status</th><th>Rank Last Week</th><th>Request Join</th><th>Actions</th>
+                                        <th>#</th><th>#</th><th>Name Group</th><th>Member</th><th>Host</th><th>Logo</th><th>Group Line Id</th><th>Key Invite</th><th>Status</th><th>Rank Last Week</th><th>Request Join</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($groups as $item)
                                     <tr>
+                                        <th>
+                                            @if( !empty($item->group_line->groupName) )
+                                                {{ $item->group_line->groupName }}
+                                            @endif
+                                        </th>
                                         <td>{{ $loop->iteration }}
                                             @if( !empty($item->group_line->groupName) )
                                                 {{ $item->group_line->groupName }}
