@@ -109,28 +109,27 @@ class LineApiController extends Controller
     function save_link_line_group($event){
 
         $data_group_line = Group_line::where('groupId' , $event['source']['groupId'])->first();
+        $data_home = Group::where('id', $data_group_line->group_id)->first();
 
         if( !empty($data_group_line->group->link_line_group) ){
             $text_reply = "กลุ่มนี้มีลิงก์ไลน์กลุ่มแล้ว" ;
         }else{
-
-            $data_home = Group::where('id', $data_group_line->group_id)->first();
 
             $update_data_hoem = [];
             $update_data_hoem['link_line_group'] = $event['message']['text'];
             $data_home->update($update_data_hoem);
 
             $text_reply = "บันทึกลิงก์ไลน์กลุ่มเรียบร้อยแล้ว" ;
+
+            // SAVE LOG
+            $dataSAVELOG = [
+                "title" => "บันทึกลิงก์ไลน์กลุ่ม : " . $event['message']['text'],
+                "content" => "บ้านที่ : " . $data_home->name_group,
+            ];
+            MyLog::create($dataSAVELOG);
+
+            $this->send_text_to_line($event, $text_reply , $event['source']['groupId']);
         }
-
-        // SAVE LOG
-        $dataSAVELOG = [
-            "title" => "บันทึกลิงก์ไลน์กลุ่ม : " . $event['message']['text'],
-            "content" => "บ้านที่ : " . $data_home->name_group,
-        ];
-        MyLog::create($dataSAVELOG);
-
-        $this->send_text_to_line($event, $text_reply , $event['source']['groupId']);
         
     }
 
