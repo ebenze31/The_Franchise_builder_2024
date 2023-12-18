@@ -30,21 +30,21 @@ Route::middleware(['auth',])->group(function () {
     Route::resource('profile', 'ProfileController');
 });
 
-// REGISTER TFB 2024
+// REGISTER AL TFB 2024
 Route::middleware(['auth', 'role:AL'])->group(function () {
     Route::get('/register_tfb2024', 'HomeController@register_tfb2024');
 });
 
-// AL
-Route::middleware(['auth', 'role:Player ,Super-admin, Admin, Staff'])->group(function () {
+// Player
+Route::middleware(['auth', 'role:Player,Super-admin,Admin,Staff'])->group(function () {
 
     Route::resource('pc_points', 'Pc_pointsController');
     Route::resource('groups', 'GroupsController');
-    Route::get('/group_my_team', 'GroupsController@my_team');
+    Route::get('/group_my_team/{group_id}', 'GroupsController@my_team');
 });
 
 // Super-admin & Admin
-Route::middleware(['auth', 'role:Super-admin, Admin'])->group(function () {
+Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
     Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/add_account', 'ProfileController@add_account');

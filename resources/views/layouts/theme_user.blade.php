@@ -77,6 +77,12 @@
 <div class="container">
     <div class="row">
 
+        <div class="col">
+            <button type="button" class="btn btn-sm btn-outline-light radius-10 mt-2" onclick="goBack();">
+                <span class="mx-2"><i class="fa-solid fa-chevron-left"></i>Back</span>
+            </button>
+        </div>
+
         <div class="col-12">
             <div class="text-center">
                 <div class="col d-block d-md-none">
@@ -170,6 +176,12 @@
 
   }
 
+</script>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
 </script>
 
 <!-- Bootstrap JS -->

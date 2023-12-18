@@ -18,25 +18,7 @@ class GroupsController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $groups = Group::where('name_group', 'LIKE', "%$keyword%")
-                ->orWhere('member', 'LIKE', "%$keyword%")
-                ->orWhere('host', 'LIKE', "%$keyword%")
-                ->orWhere('logo', 'LIKE', "%$keyword%")
-                ->orWhere('group_line_id', 'LIKE', "%$keyword%")
-                ->orWhere('key_invite', 'LIKE', "%$keyword%")
-                ->orWhere('status', 'LIKE', "%$keyword%")
-                ->orWhere('rank_last_week', 'LIKE', "%$keyword%")
-                ->orWhere('request_join', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $groups = Group::latest()->paginate($perPage);
-        }
-
-        return view('groups.index', compact('groups'));
+        return view('groups.index');
     }
 
     /**
@@ -155,9 +137,11 @@ class GroupsController extends Controller
             $key_invite = '';
 
             if ($i <= 9) {
-                $name_group = '00'.$i ;
+                // $name_group = '00'.$i ;
+                $name_group = $i ;
             }else if($i > 9 && $i < 100){
-                $name_group = '0'.$i ;
+                // $name_group = '0'.$i ;
+                $name_group = $i ;
             }else{
                 $name_group = $i ;
             }
@@ -202,5 +186,32 @@ class GroupsController extends Controller
 
     function my_team(){
         return view('groups.my_team');
+    }
+
+    function get_data_groups($type_get_data){
+
+        $groups = Group::get();
+
+        // if( $type_get_data == "1-20" ){
+        //     $groups = Group::whereBetween('id', [1, 12])->get();
+        // }
+        // else if( $type_get_data == "21-40" ){
+        //     $groups = Group::whereBetween('id', [21, 40])->get();
+        // }
+        // else if( $type_get_data == "41-60" ){
+        //     $groups = Group::whereBetween('id', [41, 60])->get();
+        // }
+        // else if( $type_get_data == "61-80" ){
+        //     $groups = Group::whereBetween('id', [61, 80])->get();
+        // }
+        // else if( $type_get_data == "81-100" ){
+        //     $groups = Group::whereBetween('id', [81, 100])->get();
+        // }
+        // else if( $type_get_data == "101-120" ){
+        //     $groups = Group::whereBetween('id', [101, 120])->get();
+        // }
+
+        return $groups;
+
     }
 }

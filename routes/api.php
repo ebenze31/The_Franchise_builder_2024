@@ -32,3 +32,4 @@ Route::post('/create_score/excel', 'Pc_pointsController@create_score');
 
 // GROUP
 Route::get('/create_group/{amount}', 'GroupsController@create_group');
+Route::get('/get_data_groups/{type_get_data}', 'GroupsController@get_data_groups');
