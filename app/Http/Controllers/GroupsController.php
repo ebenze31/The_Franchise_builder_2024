@@ -188,6 +188,10 @@ class GroupsController extends Controller
         return view('groups.my_team');
     }
 
+    function preview_team(){
+        return view('groups.preview_team');
+    }
+
     function get_data_groups($type_get_data){
 
         $groups = Group::get();

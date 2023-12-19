@@ -40,6 +40,7 @@ Route::middleware(['auth', 'role:Player,Super-admin,Admin,Staff'])->group(functi
 
     Route::resource('pc_points', 'Pc_pointsController');
     Route::resource('groups', 'GroupsController');
+    Route::get('/preview_team/{group_id}', 'GroupsController@preview_team');
     Route::get('/group_my_team/{group_id}', 'GroupsController@my_team');
 });
 

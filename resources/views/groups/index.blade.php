@@ -91,7 +91,7 @@
                             }
 
                             let html = `
-                                <a id="Team_`+result[i].id+`" class="div_Team col-4 mt-2 mb-2" href="{{ url('/group_my_team/`+result[i].id+`') }}">
+                                <a id="Team_`+result[i].id+`" class="div_Team col-4 mt-2 mb-2" href="{{ url('/preview_team/`+result[i].id+`') }}">
                                     <div class="bg-`+class_team+`" style="width: 95%;height: auto;">
                                         <span class="float-end">`+count_member+`/10</span>
                                         <center>
