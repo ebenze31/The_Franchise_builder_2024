@@ -29,7 +29,14 @@ class HomeController extends Controller
         }
 
         else if(Auth::user()->role == "Player"){
-            return view('home_page');
+            $data_user = Auth::user();
+
+            if( empty($data_user->group_id) ){
+                return redirect('groups');
+            }else{
+                return view('home_page');
+            }
+
         }
 
         else if(Auth::user()->role == "Staff"){

@@ -266,6 +266,19 @@ class GroupsController extends Controller
                 ]);
         }else{
 
+            $data_group = Group::where('id' , $group_id)->first();
+            $all_member = json_decode($data_group->member , true);
+            $add_member = [$user_id];
+            $update_member = array_merge($all_member, $add_member);
+            $update_member = json_encode($update_member);
+
+            DB::table('groups')
+            ->where([ 
+                    ['id', $group_id],
+                ])
+            ->update([
+                    'member' => $update_member,
+                ]);
         }
 
 
@@ -278,6 +291,6 @@ class GroupsController extends Controller
                     'group_status' => "มีบ้านแล้ว",
                 ]);
 
-        return  $user_id ;
+        return  "success" ;
     }
 }

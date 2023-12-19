@@ -114,11 +114,26 @@
                             let html_member = `
 
                             `;
+
+                            let html_for_join = `
+                                <div id="Team_no" class="div_Team_Ex col-4 mt-2 mb-2" onclick="open_modal_join_team('member',`+type_get_data+`);">
+                                    <div class="bg-secondary text-center" style="width: 95%;height: auto;">
+                                        <i class="fa-solid fa-user-plus"></i>
+                                        <p>Join our team</p>
+                                    </div>
+                                </div>
+                            `;
+
+                            let member_next = member.length + 1 ;
+                            for (let i = member_next; i <= 10; i++) {
+                                content_my_team.insertAdjacentHTML('beforeend', html_for_join); // แทรกล่างสุด
+                            }
+
                         }else{
                             document.querySelector('#amount_member').innerHTML = "0" ;
 
                             let html_for_join = `
-                                <div id="Team_no" class="div_Team_Ex col-4 mt-2 mb-2" onclick="open_modal_join_team(`+type_get_data+`);">
+                                <div id="Team_no" class="div_Team_Ex col-4 mt-2 mb-2" onclick="open_modal_join_team('host',`+type_get_data+`);">
                                     <div class="bg-secondary text-center" style="width: 95%;height: auto;">
                                         <i class="fa-solid fa-user-plus"></i>
                                         <p>Join our team</p>
@@ -136,9 +151,9 @@
         });
     }
 
-    function open_modal_join_team(type_get_data){
+    function open_modal_join_team(type , type_get_data){
 
-        console.log('เช็คอีกครั้งว่าบ้านนี้มี Host แล้วหรือยัง');
+        // console.log('เช็คอีกครั้งว่าบ้านนี้มี Host แล้วหรือยัง');
 
         // เช็คอีกครั้งว่าบ้านนี้มี Host แล้วหรือยัง
         fetch("{{ url('/') }}/api/get_data_groups/" + type_get_data)
@@ -146,28 +161,47 @@
             .then(result => {
                 console.log(result);
 
-                if(!result.host){
-                    console.log('ยังไม่มี host');
+                if(type == "host"){
+                    if( !result.host){
+                        // console.log('ยังไม่มี host');
+
+                        let html_modal = `
+                            <h5>เนื่องจากคุณเป็นสมาชิกคนเเรกที่ได้เข้าร่วม</h5>
+                            <h4>Team `+type_get_data+`</h4>
+                            <span class="text-dark">
+                                คุณต้องการที่จะเป็น Host ประจำทีม หรือไม่ ?ซึ่ง Host สามารถอนุมัติคำขอเข้าร่วมทีม หรือ ปฏิเสธคำขอคำเข้าร่วมทีมของสมาชิกท่านอื่นที่ขอเข้าร่วมทีมหลังจากคุณได้
+                            </span>
+                        `;
+
+                        let html_footer = `
+                            <button type="button" class="btn btn-warning" onclick="cf_join_team('host','`+type_get_data+`')">Join our host</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        `;
+
+                        document.querySelector('#modal_join_team_content').innerHTML = html_modal;
+                        document.querySelector('#modal_join_team_footer').innerHTML = html_footer;
+
+                        document.querySelector('#btn_modal_join_team').click();
+                    }else{
+                        console.log('ขออภัย มี Host แล้วขณะคุณทำรายการ');
+                    }
+                }else if(type != "host"){
 
                     let html_modal = `
-                        <h5>เนื่องจากคุณเป็นสมาชิกคนเเรกที่ได้เข้าร่วม</h5>
+                        <h5>ต้องการเข้าร่วมทีม</h5>
                         <h4>Team `+type_get_data+`</h4>
                         <span class="text-dark">
-                            คุณต้องการที่จะเป็น Host ประจำทีม หรือไม่ ?ซึ่ง Host สามารถอนุมัติคำขอเข้าร่วมทีม หรือ ปฏิเสธคำขอคำเข้าร่วมทีมของสมาชิกท่านอื่นที่ขอเข้าร่วมทีมหลังจากคุณได้
+                            คุณจะสามารถเข้าร่วมทีมได้เมื่อ Host ทำการอนุมัติคำขอเข้าร่วมทีมของคุณเเละคุณสามารถออกจากทีมได้ทุกเมื่อในกรณีที่ทีมของคุณยังไม่ครบ 10 คน เมื่อทีมมีสมาชิกครบ 10 คน ระบบจะทำการปิดทีมทันที จากนั้นคุณจะไม่สามารถออกจากทีมได้
                         </span>
                     `;
 
                     let html_footer = `
-                        <button type="button" class="btn btn-warning" onclick="cf_join_team('host','`+type_get_data+`')">Join our host</button>
+                        <button type="button" class="btn btn-primary" onclick="cf_join_team('member','`+type_get_data+`')">Join</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     `;
 
                     document.querySelector('#modal_join_team_content').innerHTML = html_modal;
                     document.querySelector('#modal_join_team_footer').innerHTML = html_footer;
-
-                    document.querySelector('#btn_modal_join_team').click();
-                }else{
-                    console.log('ขออภัย มี Host แล้วขณะคุณทำรายการ');
 
                     document.querySelector('#btn_modal_join_team').click();
                 }
@@ -185,9 +219,8 @@
                 if(type == "host"){
 
                     if(!result.host){
-                        console.log('ยังไม่มี host');
+                        // console.log('ยังไม่มี host');
 
-                        // เช็คอีกครั้งว่าบ้านนี้มี Host แล้วหรือยัง
                         fetch("{{ url('/') }}/api/user_join_team/" + type + "/" + group_id + "/{{ Auth::user()->id }}")
                             .then(response => response.text())
                             .then(result => {
@@ -203,7 +236,24 @@
                     }
                     
                 }else if(type != "host"){
+                    let count_member = JSON.parse(result.member);
+                    
+                    if(count_member.length < 10){
 
+                        fetch("{{ url('/') }}/api/user_join_team/" + type + "/" + group_id + "/{{ Auth::user()->id }}")
+                            .then(response => response.text())
+                            .then(result => {
+                                console.log(result);
+
+                                let link_to_my_team = document.querySelector('#link_to_my_team');
+                                    link_to_my_team.setAttribute("href","{{ url('/group_my_team') . '/' . $group_id }}");
+
+                                link_to_my_team.click();
+                        });
+
+                    }else if(count_member.length >= 10){
+                        console.log('ขออภัย บ้านนี้มีสมาชิกครับ 10 ท่านแล้ว');
+                    }
                 }
         });
 
