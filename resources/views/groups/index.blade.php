@@ -23,7 +23,7 @@
                         <button id="btn_view_81_100" type="button" class="btn btn-outline-primary" onclick="change_menu_view('81-100');">
                             81-100
                         </button>
-                        <button id="btn_view_101_120" type="button" class="btn btn-outline-primary" onclick="change_menu_view('101-120');" onch>
+                        <button id="btn_view_101_120" type="button" class="btn btn-outline-primary" onclick="change_menu_view('101-120');">
                             101-120
                         </button>
                     </div>

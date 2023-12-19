@@ -185,6 +185,60 @@
                     </div>
                 </div>
             </div>
+
+            @php
+
+                $btn_class_20 = 'btn-outline-primary';
+                $btn_class_40 = 'btn-outline-primary';
+                $btn_class_60 = 'btn-outline-primary';
+                $btn_class_80 = 'btn-outline-primary';
+                $btn_class_100 = 'btn-outline-primary';
+                $btn_class_120 = 'btn-outline-primary';
+
+                if($activeGroupsCount == '20'){
+                    $btn_class_20 = 'btn-primary';
+                }else if($activeGroupsCount == '40'){
+                    $btn_class_40 = 'btn-primary';
+                }else if($activeGroupsCount == '60'){
+                    $btn_class_60 = 'btn-primary';
+                }else if($activeGroupsCount == '80'){
+                    $btn_class_80 = 'btn-primary';
+                }else if($activeGroupsCount == '100'){
+                    $btn_class_100 = 'btn-primary';
+                }else if($activeGroupsCount == '120'){
+                    $btn_class_120 = 'btn-primary';
+                }
+            @endphp
+            <!-- เลือกเปิดใช้งาน -->
+            <div class="col-12 mt-3">
+                <h4>เลือกเปิดใช้งาน</h4>
+                <div class="btn-group" role="group" aria-label="First group">
+                    <button id="btn_active_20" type="button" class="btn {{ $btn_class_20 }}"
+                    onclick="active_group('20')">
+                        20 กลุ่ม
+                    </button>
+                    <button id="btn_active_40" type="button" class="btn {{ $btn_class_40 }}"
+                    onclick="active_group('40')">
+                        40 กลุ่ม
+                    </button>
+                    <button id="btn_active_60" type="button" class="btn {{ $btn_class_60 }}"
+                    onclick="active_group('60')">
+                        60 กลุ่ม
+                    </button>
+                    <button id="btn_active_80" type="button" class="btn {{ $btn_class_80 }}"
+                    onclick="active_group('80')">
+                        80 กลุ่ม
+                    </button>
+                    <button id="btn_active_100" type="button" class="btn {{ $btn_class_100 }}"
+                    onclick="active_group('100')">
+                        100 กลุ่ม
+                    </button>
+                    <button id="btn_active_120" type="button" class="btn {{ $btn_class_120 }}"
+                    onclick="active_group('120')">
+                        120 กลุ่ม
+                    </button>
+                </div>
+            </div>
         </div>
         
     </div>
@@ -210,6 +264,24 @@
 
             });
 
+    }
+
+    function active_group(amount){
+        fetch("{{ url('/') }}/api/active_group" + "/" + amount )
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+
+                document.querySelector('#btn_active_20').setAttribute('class' , 'btn btn-outline-primary');
+                document.querySelector('#btn_active_40').setAttribute('class' , 'btn btn-outline-primary');
+                document.querySelector('#btn_active_60').setAttribute('class' , 'btn btn-outline-primary');
+                document.querySelector('#btn_active_80').setAttribute('class' , 'btn btn-outline-primary');
+                document.querySelector('#btn_active_100').setAttribute('class' , 'btn btn-outline-primary');
+                document.querySelector('#btn_active_120').setAttribute('class' , 'btn btn-outline-primary');
+
+                document.querySelector('#btn_active_'+amount).setAttribute('class' , 'btn btn-primary');
+
+            });
     }
 
 </script>

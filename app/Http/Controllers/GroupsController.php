@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\User;
 
 use App\Models\Group;
 use Illuminate\Http\Request;
@@ -18,7 +21,16 @@ class GroupsController extends Controller
      */
     public function index(Request $request)
     {
-        return view('groups.index');
+        $data_user = Auth::user();
+
+        if( empty($data_user->group_id) ){
+            return view('groups.index');
+        }else{
+            $group_id = $data_user->group_id;
+            return redirect('/group_my_team' .'/'. $group_id);
+        }
+
+        // return view('groups.index');
     }
 
     /**
@@ -121,8 +133,9 @@ class GroupsController extends Controller
 
         $data_old = Group::get();
         $count_group = count($data_old);
+        $activeGroupsCount = Group::where('active', 'Yes')->count();
 
-        return view('groups.add_group' , compact('count_group'));
+        return view('groups.add_group' , compact('count_group','activeGroupsCount'));
     }
 
     function create_group($amount){
@@ -137,8 +150,8 @@ class GroupsController extends Controller
             $key_invite = '';
 
             if ($i <= 9) {
-                // $name_group = '00'.$i ;
-                $name_group = $i ;
+                $name_group = '0'.$i ;
+                // $name_group = $i ;
             }else if($i > 9 && $i < 100){
                 // $name_group = '0'.$i ;
                 $name_group = $i ;
@@ -165,7 +178,7 @@ class GroupsController extends Controller
 
             // แทรกตัวอักษรลงในภาพ
             $image->text($name_group, 125, 125, function($font) {
-                $font->file(public_path('theme_admin/fonts/Prompt/Prompt-Black.ttf'));
+                $font->file(public_path('theme_admin/fonts/Font/Font/Allianz_Neo_webfonts/ttf/AllianzNeoW01-Bold.ttf'));
                 $font->size(100);
                 $font->color('#ffffff');
                 $font->align('center');
@@ -184,38 +197,87 @@ class GroupsController extends Controller
 
     }
 
-    function my_team(){
-        return view('groups.my_team');
+    function active_group($amount)
+    {
+        $groups = Group::all();
+
+        foreach ($groups as $group) {
+            $group->update(['active' => null]);
+        }
+
+
+        Group::where('id', '>=', 1)
+            ->where('id', '<=', $amount)
+            ->update(['active' => 'Yes']);
+
+        return 'success' ;
+
     }
 
-    function preview_team(){
-        return view('groups.preview_team');
+    function my_team($group_id)
+    {
+        $data_user = Auth::user();
+
+        if( empty($data_user->group_id) ){
+            return redirect('/groups');
+        }else if($data_user->group_id != $group_id){
+            $group_id = $data_user->group_id;
+            return redirect('/group_my_team' .'/'. $group_id);
+        }else{
+            return view('groups.my_team' , compact('group_id'));
+        }
+
+    }
+
+    function preview_team($group_id){
+
+        $data_user = Auth::user();
+
+        if( empty($data_user->group_id) ){
+            return view('groups.preview_team' , compact('group_id'));
+        }else{
+            $group_id = $data_user->group_id;
+            return redirect('/group_my_team' .'/'. $group_id);
+        }
     }
 
     function get_data_groups($type_get_data){
 
-        $groups = Group::get();
-
-        // if( $type_get_data == "1-20" ){
-        //     $groups = Group::whereBetween('id', [1, 12])->get();
-        // }
-        // else if( $type_get_data == "21-40" ){
-        //     $groups = Group::whereBetween('id', [21, 40])->get();
-        // }
-        // else if( $type_get_data == "41-60" ){
-        //     $groups = Group::whereBetween('id', [41, 60])->get();
-        // }
-        // else if( $type_get_data == "61-80" ){
-        //     $groups = Group::whereBetween('id', [61, 80])->get();
-        // }
-        // else if( $type_get_data == "81-100" ){
-        //     $groups = Group::whereBetween('id', [81, 100])->get();
-        // }
-        // else if( $type_get_data == "101-120" ){
-        //     $groups = Group::whereBetween('id', [101, 120])->get();
-        // }
+        if($type_get_data == "all"){
+            $groups = Group::get();
+        }else{
+            $groups = Group::where('id' , $type_get_data)->first();
+        }
 
         return $groups;
 
+    }
+
+    function user_join_team($type , $group_id , $user_id)
+    {
+        if($type == "host"){
+            DB::table('groups')
+            ->where([ 
+                    ['id', $group_id],
+                ])
+            ->update([
+                    'host' => $user_id,
+                    'member' => '["' . $user_id . '"]',
+                ]);
+        }else{
+
+        }
+
+
+        DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'group_id' => $group_id,
+                    'group_status' => "มีบ้านแล้ว",
+                ]);
+
+        return  $user_id ;
     }
 }
