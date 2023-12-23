@@ -6,41 +6,37 @@
         <div class="card">
             <div class="card-body">
 
-                <div class="col">
-                    <div class="btn-group" role="group" aria-label="First group">
-                        <button id="btn_view_1_20" type="button" class="btn btn-outline-primary" onclick="change_menu_view('1-20');">
-                            1-20
-                        </button>
-                        <button id="btn_view_21_40" type="button" class="btn btn-outline-primary" onclick="change_menu_view('21-40');">
-                            21-40
-                        </button>
-                        <button id="btn_view_41_60" type="button" class="btn btn-outline-primary" onclick="change_menu_view('41-60');">
-                            41-60
-                        </button>
-                        <button id="btn_view_61_80" type="button" class="btn btn-outline-primary" onclick="change_menu_view('61-80');">
-                            61-80
-                        </button>
-                        <button id="btn_view_81_100" type="button" class="btn btn-outline-primary" onclick="change_menu_view('81-100');">
-                            81-100
-                        </button>
-                        <button id="btn_view_101_120" type="button" class="btn btn-outline-primary" onclick="change_menu_view('101-120');">
-                            101-120
-                        </button>
+                <div id="div_menu_view" class="text-danger">
+                    @php
+                        $menu_row = ceil($activeGroupsCount / 20) ;
+                        $start = 1 ;
+                        $end = 20 ;
+                    @endphp
+                    <div class="col">
+                        <div class="btn-group" role="group" aria-label="First group">
+                        @for ($i=1; $i <= $menu_row; $i++) 
+                            @if($i == $menu_row)
+                                <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeGroupsCount }}" type="button" class="btn btn-outline-primary" onclick="change_menu_view('{{ $start }}-{{ $activeGroupsCount }}');">
+                                    {{ $start }} - {{ $activeGroupsCount }}
+                                </button>
+                            @else
+                                <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-outline-primary" onclick="change_menu_view('{{ $start }}-{{ $end }}');">
+                                    {{ $start }} - {{ $end }}
+                                </button>
+                            @endif
+                            <br>
+                            @php
+                                $start = $start + 20 ;
+                                $end = $end + 20 ;
+                            @endphp
+                        @endfor
+                        </div>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <!-- ออกแบบบล็อคมาตรงนี้ -->
                     <!-- ตัวอย่าง -->
-                    <a id="Team_no" class="div_Team_Ex col-4 mt-2 mb-2" href="{{ url('/group_my_team/1') }}">
-                        <div class="bg-secondary" style="width: 95%;height: auto;">
-                            <span class="float-end">2/10</span>
-                            <center>
-                                <img src="{{ url('/img/bg_group/logo_group/bg_group_1.png') }}" style="width: 90%;" class="mt-2 mb-2">
-                                <p>Team Ex.</p>
-                            </center>
-                        </div>
-                    </a>
                 </div>
 
                 <div id="content_groups" class="row mt-3">
@@ -118,12 +114,10 @@
 
         type_get_data = type_get_data.replace("-", "_");
 
-        document.querySelector('#btn_view_1_20').setAttribute('class' , 'btn btn-outline-primary');
-        document.querySelector('#btn_view_21_40').setAttribute('class' , 'btn btn-outline-primary');
-        document.querySelector('#btn_view_41_60').setAttribute('class' , 'btn btn-outline-primary');
-        document.querySelector('#btn_view_61_80').setAttribute('class' , 'btn btn-outline-primary');
-        document.querySelector('#btn_view_81_100').setAttribute('class' , 'btn btn-outline-primary');
-        document.querySelector('#btn_view_101_120').setAttribute('class' , 'btn btn-outline-primary');
+        let menu_view = document.querySelectorAll('[btn="menu_view"]');
+            menu_view.forEach(menu_view => {
+                menu_view.setAttribute('class' , 'btn btn-outline-primary');
+            });
 
         document.querySelector('#btn_view_'+type_get_data).setAttribute('class' , 'btn btn-primary');
 

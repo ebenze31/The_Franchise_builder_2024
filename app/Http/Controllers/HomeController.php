@@ -33,7 +33,11 @@ class HomeController extends Controller
 
             if( empty($data_user->group_id) ){
                 return redirect('groups');
-            }else{
+            }
+            else if( !empty($data_user->group_id) && $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
+                return redirect('preview_team'.'/'.$data_user->group_id);
+            }
+            else{
                 return view('home_page');
             }
 

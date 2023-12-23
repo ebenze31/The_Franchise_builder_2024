@@ -24,8 +24,13 @@ class GroupsController extends Controller
         $data_user = Auth::user();
 
         if( empty($data_user->group_id) ){
-            return view('groups.index');
-        }else{
+            $activeGroupsCount = Group::where('active', 'Yes')->count();
+            return view('groups.index' , compact('activeGroupsCount'));
+        }
+        else if( !empty($data_user->group_id) && $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
+            return redirect('preview_team'.'/'.$data_user->group_id);
+        }
+        else{
             $group_id = $data_user->group_id;
             return redirect('/group_my_team' .'/'. $group_id);
         }
@@ -220,10 +225,15 @@ class GroupsController extends Controller
 
         if( empty($data_user->group_id) ){
             return redirect('/groups');
-        }else if($data_user->group_id != $group_id){
+        }
+        else if( !empty($data_user->group_id) && $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
+            return redirect('preview_team'.'/'.$group_id);
+        }
+        else if($data_user->group_id != $group_id){
             $group_id = $data_user->group_id;
             return redirect('/group_my_team' .'/'. $group_id);
-        }else{
+        }
+        else{
             return view('groups.my_team' , compact('group_id'));
         }
 
@@ -234,8 +244,14 @@ class GroupsController extends Controller
         $data_user = Auth::user();
 
         if( empty($data_user->group_id) ){
-            return view('groups.preview_team' , compact('group_id'));
-        }else{
+            $group_status = null ;
+            return view('groups.preview_team' , compact('group_id' , 'group_status'));
+        }
+        else if( !empty($data_user->group_id) && $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
+            $group_status = 'กำลังขอเข้าร่วมบ้าน' ;
+            return view('groups.preview_team' , compact('group_id' , 'group_status'));
+        }
+        else{
             $group_id = $data_user->group_id;
             return redirect('/group_my_team' .'/'. $group_id);
         }
@@ -256,6 +272,7 @@ class GroupsController extends Controller
     function user_join_team($type , $group_id , $user_id)
     {
         if($type == "host"){
+
             DB::table('groups')
             ->where([ 
                     ['id', $group_id],
@@ -263,26 +280,10 @@ class GroupsController extends Controller
             ->update([
                     'host' => $user_id,
                     'member' => '["' . $user_id . '"]',
+                    'status' => 'กำลังรอ',
                 ]);
-        }else{
 
-            $data_group = Group::where('id' , $group_id)->first();
-            $all_member = json_decode($data_group->member , true);
-            $add_member = [$user_id];
-            $update_member = array_merge($all_member, $add_member);
-            $update_member = json_encode($update_member);
-
-            DB::table('groups')
-            ->where([ 
-                    ['id', $group_id],
-                ])
-            ->update([
-                    'member' => $update_member,
-                ]);
-        }
-
-
-        DB::table('users')
+            DB::table('users')
             ->where([ 
                     ['id', $user_id],
                 ])
@@ -290,6 +291,37 @@ class GroupsController extends Controller
                     'group_id' => $group_id,
                     'group_status' => "มีบ้านแล้ว",
                 ]);
+
+        }else{
+
+            $data_group = Group::where('id' , $group_id)->first();
+
+            if(!empty($data_group->request_join)){
+                $all_request_join = json_decode($data_group->request_join , true);
+                $add_request_join = [$user_id];
+                $update_request_join = array_merge($all_request_join, $add_request_join);
+                $update_request_join = json_encode($update_request_join);
+            }else{
+                $update_request_join = '["' . $user_id . '"]' ;
+            }
+
+            DB::table('groups')
+            ->where([ 
+                    ['id', $group_id],
+                ])
+            ->update([
+                    'request_join' => $update_request_join,
+                ]);
+
+            DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'group_id' => $group_id,
+                    'group_status' => "กำลังขอเข้าร่วมบ้าน",
+                ]);
+        }
 
         return  "success" ;
     }

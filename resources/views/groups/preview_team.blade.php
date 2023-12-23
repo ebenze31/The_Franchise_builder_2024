@@ -2,10 +2,26 @@
 
 @section('content')
 
-<!-- Button trigger modal -->
+<!-- modal_wait_host -->
+<button id="btn_modal_wait_host" class="d-none" data-toggle="modal" data-target="#modal_wait_host"></button>
+
+<div class="modal fade" id="modal_wait_host" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div id="modal_wait_host_content" class="modal-body text-center">
+                <!-- content -->
+            </div>
+            <div id="modal_wait_host_footer" class="modal-footer text-center">
+                <!-- BTN -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END modal_wait_host -->
+
+<!-- modal_join_team -->
 <button id="btn_modal_join_team" class="d-none" data-toggle="modal" data-target="#modal_join_team"></button>
 
-<!-- Modal -->
 <div class="modal fade" id="modal_join_team" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -19,6 +35,7 @@
         </div>
     </div>
 </div>
+<!-- END modal_join_team -->
 
 
 <div class="container-fluid">
@@ -90,7 +107,32 @@
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         get_data_groups("{{ $group_id }}");
+        check_wait_host();
     });
+
+    function check_wait_host(){
+        if("{{ $group_status }}" == 'กำลังขอเข้าร่วมบ้าน'){
+            let html_modal = `
+                <h5>กรุณารอการตอบรับจากทีม</h5>
+                <h4>Team `+"{{ $group_id }}"+`</h4>
+                <p class="text-info">Waiting : 23:59</p>
+                <span class="text-dark">
+                    หากภายใน 24 ชั่วโมง ทีม 01 ยังไม่มีการกด “Accept” หรือ “Reject” คุณจะไม่สามารถส่งคำขอเข้าร่วมกับทีมอื่นได้ ! 
+                    <br>
+                    เเละเมื่อครบ 24 ชั่วโมง เเละยังไม่มีการตอบกลับจากทีม 01 คำขอเข้าร่วมทีมของคุณจะถูกยกเลิกโดยอัตโนมัติ
+                </span>
+            `;
+
+            let html_footer = `
+                <button id="close_modal_wait_host" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            `;
+
+            document.querySelector('#modal_wait_host_content').innerHTML = html_modal;
+            document.querySelector('#modal_wait_host_footer').innerHTML = html_footer;
+
+            document.querySelector('#btn_modal_wait_host').click();
+        }
+    }
 
     function get_data_groups(type_get_data){
         console.log(type_get_data);
@@ -175,7 +217,7 @@
 
                         let html_footer = `
                             <button type="button" class="btn btn-warning" onclick="cf_join_team('host','`+type_get_data+`')">Join our host</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button id="close_modal_join_team" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         `;
 
                         document.querySelector('#modal_join_team_content').innerHTML = html_modal;
@@ -197,7 +239,7 @@
 
                     let html_footer = `
                         <button type="button" class="btn btn-primary" onclick="cf_join_team('member','`+type_get_data+`')">Join</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button id="close_modal_join_team" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     `;
 
                     document.querySelector('#modal_join_team_content').innerHTML = html_modal;
@@ -245,10 +287,26 @@
                             .then(result => {
                                 console.log(result);
 
-                                let link_to_my_team = document.querySelector('#link_to_my_team');
-                                    link_to_my_team.setAttribute("href","{{ url('/group_my_team') . '/' . $group_id }}");
+                                let html_modal = `
+                                    <h5>กรุณารอการตอบรับจากทีม</h5>
+                                    <h4>Team `+group_id+`</h4>
+                                    <p class="text-info">Waiting : 23:59</p>
+                                    <span class="text-dark">
+                                        หากภายใน 24 ชั่วโมง ทีม 01 ยังไม่มีการกด “Accept” หรือ “Reject” คุณจะไม่สามารถส่งคำขอเข้าร่วมกับทีมอื่นได้ ! 
+                                        <br>
+                                        เเละเมื่อครบ 24 ชั่วโมง เเละยังไม่มีการตอบกลับจากทีม 01 คำขอเข้าร่วมทีมของคุณจะถูกยกเลิกโดยอัตโนมัติ
+                                    </span>
+                                `;
 
-                                link_to_my_team.click();
+                                let html_footer = `
+                                    <button id="close_modal_wait_host" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                `;
+
+                                document.querySelector('#modal_wait_host_content').innerHTML = html_modal;
+                                document.querySelector('#modal_wait_host_footer').innerHTML = html_footer;
+
+                                document.querySelector('#close_modal_join_team').click();
+                                document.querySelector('#btn_modal_wait_host').click();
                         });
 
                     }else if(count_member.length >= 10){

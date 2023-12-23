@@ -139,6 +139,7 @@
         border-radius: 20px;
     }
 
+
 </style>
 
 <div class="card">
@@ -185,62 +186,64 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+    </div>
+</div>
 
+<div class="card">
+    <div class="card-body">
+
+        <h4>
+            เลือกเปิดใช้งาน
+            <span class="text-success">(เปิดใช้งานอยู่ <span id="count_active_group">{{ $activeGroupsCount }}</span> หลัง)</span>
+        </h4>
+        <hr class="mt-3 mb-3">
+
+        <div class="row">
             @php
 
-                $btn_class_20 = 'btn-outline-primary';
-                $btn_class_40 = 'btn-outline-primary';
-                $btn_class_60 = 'btn-outline-primary';
-                $btn_class_80 = 'btn-outline-primary';
-                $btn_class_100 = 'btn-outline-primary';
-                $btn_class_120 = 'btn-outline-primary';
+                $btn_class_50 = 'btn-outline-primary';
+                $btn_class_other = 'btn-outline-primary';
 
-                if($activeGroupsCount == '20'){
-                    $btn_class_20 = 'btn-primary';
-                }else if($activeGroupsCount == '40'){
-                    $btn_class_40 = 'btn-primary';
-                }else if($activeGroupsCount == '60'){
-                    $btn_class_60 = 'btn-primary';
-                }else if($activeGroupsCount == '80'){
-                    $btn_class_80 = 'btn-primary';
-                }else if($activeGroupsCount == '100'){
-                    $btn_class_100 = 'btn-primary';
-                }else if($activeGroupsCount == '120'){
-                    $btn_class_120 = 'btn-primary';
+                if($activeGroupsCount == '50'){
+                    $btn_class_50 = 'btn-primary';
+                    $class_div_select_active_group = 'd-none' ;
+                }else{
+                    $btn_class_other = 'btn-primary';
+                    $class_div_select_active_group = '' ;
                 }
             @endphp
             <!-- เลือกเปิดใช้งาน -->
             <div class="col-12 mt-3">
-                <h4>เลือกเปิดใช้งาน</h4>
+                
                 <div class="btn-group" role="group" aria-label="First group">
-                    <button id="btn_active_20" type="button" class="btn {{ $btn_class_20 }}"
-                    onclick="active_group('20')">
-                        20 กลุ่ม
+                    <button id="btn_active_50" type="button" class="btn {{ $btn_class_50 }}"
+                    onclick="active_group('50'),document.querySelector('#div_select_active_group').classList.add('d-none'),change_btn_active_group('50')">
+                        เปิด 50 กลุ่ม
                     </button>
-                    <button id="btn_active_40" type="button" class="btn {{ $btn_class_40 }}"
-                    onclick="active_group('40')">
-                        40 กลุ่ม
+                    <button id="btn_active_other" type="button" class="btn {{ $btn_class_other }}" onclick="document.querySelector('#div_select_active_group').classList.remove('d-none'),change_btn_active_group('other')">
+                        เลือกจำนวนที่ต้องการ
                     </button>
-                    <button id="btn_active_60" type="button" class="btn {{ $btn_class_60 }}"
-                    onclick="active_group('60')">
-                        60 กลุ่ม
-                    </button>
-                    <button id="btn_active_80" type="button" class="btn {{ $btn_class_80 }}"
-                    onclick="active_group('80')">
-                        80 กลุ่ม
-                    </button>
-                    <button id="btn_active_100" type="button" class="btn {{ $btn_class_100 }}"
-                    onclick="active_group('100')">
-                        100 กลุ่ม
-                    </button>
-                    <button id="btn_active_120" type="button" class="btn {{ $btn_class_120 }}"
-                    onclick="active_group('120')">
-                        120 กลุ่ม
+                </div>
+            </div>
+
+            <div id="div_select_active_group" class="row {{ $class_div_select_active_group }}">
+                <div class="col-3 mt-3">
+                    <label>จำนวนบ้านที่มีทั้งหมด {{ $count_group }}</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="input_active_other" name="input_active_other" value="{{ $activeGroupsCount }}" min="50" max="{{ $count_group }}">
+                    </div>
+                </div>
+                <div class="col-9 mt-3">
+                    <br>
+                    <button id="btn_active_other" type="button" class="btn {{ $btn_class_other }}"
+                        onclick="active_group('other')">
+                        ยืนยัน
                     </button>
                 </div>
             </div>
         </div>
-        
     </div>
 </div>
 
@@ -267,21 +270,47 @@
     }
 
     function active_group(amount){
-        fetch("{{ url('/') }}/api/active_group" + "/" + amount )
+
+        let num_amount ;
+
+        if(amount == "other"){
+            num_amount = document.querySelector('#input_active_other').value;
+        }else{
+            num_amount = amount ;
+        }
+
+        fetch("{{ url('/') }}/api/active_group" + "/" + num_amount )
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
 
-                document.querySelector('#btn_active_20').setAttribute('class' , 'btn btn-outline-primary');
-                document.querySelector('#btn_active_40').setAttribute('class' , 'btn btn-outline-primary');
-                document.querySelector('#btn_active_60').setAttribute('class' , 'btn btn-outline-primary');
-                document.querySelector('#btn_active_80').setAttribute('class' , 'btn btn-outline-primary');
-                document.querySelector('#btn_active_100').setAttribute('class' , 'btn btn-outline-primary');
-                document.querySelector('#btn_active_120').setAttribute('class' , 'btn btn-outline-primary');
+                document.querySelector('#btn_active_50').setAttribute('class' , 'btn btn-outline-primary');
+                document.querySelector('#btn_active_other').setAttribute('class' , 'btn btn-outline-primary');
 
-                document.querySelector('#btn_active_'+amount).setAttribute('class' , 'btn btn-primary');
+                if(amount == "other"){
+                    document.querySelector('#btn_active_other').setAttribute('class' , 'btn btn-primary');
+                }else{
+                    document.querySelector('#btn_active_50').setAttribute('class' , 'btn btn-primary');
+                }
+
+                if(num_amount >= {{ $count_group }}){
+                    document.querySelector('#count_active_group').innerHTML = {{ $count_group }} ;
+                }else{
+                    document.querySelector('#count_active_group').innerHTML = num_amount ;
+                }
 
             });
+    }
+
+    function change_btn_active_group(type){
+        document.querySelector('#btn_active_50').setAttribute('class' , 'btn btn-outline-primary');
+        document.querySelector('#btn_active_other').setAttribute('class' , 'btn btn-outline-primary');
+
+        if(type == "other"){
+            document.querySelector('#btn_active_other').setAttribute('class' , 'btn btn-primary');
+        }else{
+            document.querySelector('#btn_active_50').setAttribute('class' , 'btn btn-primary');
+        }
     }
 
 </script>
