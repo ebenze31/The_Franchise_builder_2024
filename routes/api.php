@@ -35,3 +35,4 @@ Route::get('/create_group/{amount}', 'GroupsController@create_group');
 Route::get('/active_group/{amount}', 'GroupsController@active_group');
 Route::get('/get_data_groups/{type_get_data}', 'GroupsController@get_data_groups');
 Route::get('/user_join_team/{type}/{group_id}/{user_id}', 'GroupsController@user_join_team');
+Route::get('/change_group_status/{type}/{group_id}/{user_id}', 'GroupsController@change_group_status');

@@ -191,9 +191,9 @@ class GroupsController extends Controller
             });
 
             // บันทึกภาพใหม่
-            $image->save(public_path('img/bg_group/logo_group/bg_group_'.$name_group.'.png'));
+            $image->save(public_path('img/bg_group/logo_group/bg_group_'.$i.'.png'));
 
-            $requestData['logo'] = 'img/bg_group/logo_group/bg_group_'.$name_group.'.png' ;
+            $requestData['logo'] = 'img/bg_group/logo_group/bg_group_'.$i.'.png' ;
 
             Group::create($requestData);
         }
@@ -226,15 +226,20 @@ class GroupsController extends Controller
         if( empty($data_user->group_id) ){
             return redirect('/groups');
         }
-        else if( !empty($data_user->group_id) && $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
-            return redirect('preview_team'.'/'.$group_id);
-        }
-        else if($data_user->group_id != $group_id){
-            $group_id = $data_user->group_id;
-            return redirect('/group_my_team' .'/'. $group_id);
+        else if($data_user->group_status == "มีบ้านแล้ว" || $data_user->group_status == "ยืนยันการสร้างบ้านแล้ว"){
+
+            if( $data_user->group_id != $group_id ){
+                $group_id = $data_user->group_id;
+                return redirect('/group_my_team' .'/'. $group_id);
+            }
+            else{
+                $group_status = $data_user->group_status ;
+                return view('groups.my_team' , compact('group_id','group_status'));
+            }
+
         }
         else{
-            return view('groups.my_team' , compact('group_id'));
+            return redirect('preview_team'.'/'.$group_id);
         }
 
     }
@@ -247,13 +252,13 @@ class GroupsController extends Controller
             $group_status = null ;
             return view('groups.preview_team' , compact('group_id' , 'group_status'));
         }
-        else if( !empty($data_user->group_id) && $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
-            $group_status = 'กำลังขอเข้าร่วมบ้าน' ;
-            return view('groups.preview_team' , compact('group_id' , 'group_status'));
-        }
-        else{
+        else if( $data_user->group_status == "มีบ้านแล้ว" || $data_user->group_status == "ยืนยันการสร้างบ้านแล้ว" ){
             $group_id = $data_user->group_id;
             return redirect('/group_my_team' .'/'. $group_id);
+        }
+        else{
+            $group_status = $data_user->group_status ;
+            return view('groups.preview_team' , compact('group_id' , 'group_status'));
         }
     }
 
@@ -324,5 +329,44 @@ class GroupsController extends Controller
         }
 
         return  "success" ;
+    }
+
+    function change_group_status($type, $group_id, $user_id){
+
+        if($type == "มีบ้านแล้ว"){
+
+            DB::table('users')
+                ->where([ 
+                        ['id', $user_id],
+                    ])
+                ->update([
+                        'group_status' => $type,
+                    ]);
+
+        }
+        else if($type ==  "Host Reject"){
+            DB::table('users')
+                ->where([ 
+                        ['id', $user_id],
+                    ])
+                ->update([
+                        'group_id' => null,
+                        'group_status' => null,
+                    ]);
+
+        }
+        else if($type ==  "ยืนยันการสร้างบ้านแล้ว"){
+            DB::table('users')
+                ->where([ 
+                        ['id', $user_id],
+                    ])
+                ->update([
+                        'group_status' => 'ยืนยันการสร้างบ้านแล้ว',
+                    ]);
+        }
+       
+
+        return  "success" ;
+
     }
 }

@@ -91,8 +91,8 @@
                                     <div class="bg-`+class_team+`" style="width: 95%;height: auto;">
                                         <span class="float-end">`+count_member+`/10</span>
                                         <center>
-                                            <img src="{{ url('/img/bg_group/logo_group/bg_group_`+result[i].name_group+`.png') }}" style="width: 90%;" class="mt-2 mb-2">
-                                            <p>Team `+result[i].name_group+`</p>
+                                            <img src="{{ url('/img/bg_group/logo_group/bg_group_`+result[i].id+`.png') }}" style="width: 90%;" class="mt-2 mb-2">
+                                            <p>Team `+result[i].id+`</p>
                                         </center>
                                     </div>
                                 </a>
