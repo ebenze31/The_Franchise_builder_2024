@@ -30,20 +30,19 @@
 </head>
 
 <style>
-    body {
-        background-image: url("{{ asset('theme_admin/images/BG/background_home.png') }}");
+    body{
+        background-image: url("{{ asset('theme_admin/images/BG/BG.png') }}");
         background-size: cover;
         background-position: center; 
         background-repeat: no-repeat;
         background-attachment: fixed;
         height: 100vh;
         margin: 0;
-        color: #ffffff;
+        backdrop-filter: blur(5px);
     }
 </style>
 
 <body>
-
 <div class="container">
     <div class="row">
 

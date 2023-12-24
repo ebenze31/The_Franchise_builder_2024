@@ -17,6 +17,7 @@
     }
     .label-form{
         font-size: 16px;
+        color: #fff;
     }
     #header-text-login{
         margin-top: 22%;
@@ -109,6 +110,21 @@
             float: right;
         }
     }
+    .btn-outline-terms{
+        outline: #005CD3 1px solid;
+        border-radius: 5px;
+        color: #005CD3;
+        padding: 5px 30px;
+    }
+    .btn-terms{
+        outline: #005CD3 1px solid;
+        border-radius: 5px;
+        color: #fff;
+        padding: 5px 30px;
+        background-color: #005CD3;
+    }.detail-login p {
+        color: #fff;
+    }
 </style>
 <div class="container">
     <div class="header-login">
@@ -123,7 +139,7 @@
     </div>
 
     <div class="form-login">
-        <form method="POST" action="{{ route('login') }}">
+        <form id="form_login" method="POST" action="{{ route('login') }}">
             @csrf
             <div class="form-group row">
                 <label for="account" class="col-md-4 col-form-label text-md-right label-form">{{ __('Username') }}</label>
@@ -158,9 +174,9 @@
 
             <div class="form-group mb-0 d-flex justify-content-center w-100 mt-3 ">
                 <div class="col-md-8">
-                    <button type="submit" class="btn btn-login">
+                    <a  class="btn btn-login" onclick="checkCookie()">
                         {{ __('Login') }}
-                    </button>
+                    </a>
                 </div>
             </div>
         </form>
@@ -177,14 +193,21 @@
         <p class="detail-terms">AZAY จะทำการเก็บรวบรวม ใช้ หรือเปิดเผยรหัส เอเจนท์ (Agent code) และวันเดือนปีเกิดของท่านต่อ บริษัท Box Exhibit เพื่อการเข้าร่วมและจัดกิจกรรม THE FRANCHISE BUILDER 2024</p>
         <p class="detail-terms"> AZAY will process your Agent code and date of birth for the purpose relating to organizing THE FRANCHISE BUILDER 2024</p>
         <div class="d-flex justify-content-center align-items-center mt-4">
-            <input type="checkbox" name="" id="acceptTerms" class="checkbox-accept" onclick="setCookie()">
+            <input type="checkbox" name="" id="acceptTerms" class="checkbox-accept" onclick="info_terms()">
             <span class="text-checkbox-accept ms-2 f"> 
                 <label for="acceptTerms"> 
                     I agree with the Terms and Conditions
                 </label>
             </span>
+
+            
             <button type="button" class="btn btn-secondary d-none" id="btn-colse-modal" data-dismiss="modal">Close</button>
 
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-4" onclick="accept_terms()">
+            <button id="btn-accept-terms" class="btn btn-outline-terms" disabled>
+                Next
+            </button>
         </div>
       </div>
      
@@ -199,38 +222,51 @@
     // ตรวจสอบว่ามีการโหลด cookie หรือไม่
     
     document.addEventListener('DOMContentLoaded', (event) => {
-        checkCookie();
+        // checkCookie();
         
     });
 
 function checkCookie() {
 
-  var isChecked = getCookie("Terms & condition");
-  if (isChecked === "") {
+    let isChecked = getCookie("Terms & condition");
+    if (isChecked === "") {
         // ถ้ามี cookie แล้วให้ตรวจสอบ checkbox
-        
-        $('#ModalTerms').modal('show');
-    } 
+        info_terms();
+    }else{
+        accept_terms();
+    }
 }
 
 // สร้าง cookie เมื่อ checkbox ถูกติ๊ก
-function setCookie() {
-  var checkbox = document.getElementById("acceptTerms");
-  if (checkbox.checked) {
-    document.cookie = "Terms & condition=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
-    document.getElementById("btn-colse-modal").click();
+function info_terms() {
+    $('#ModalTerms').modal('show');
+    let checkbox = document.getElementById("acceptTerms");
+    
+    if (checkbox.checked) {
+        // document.cookie = "Terms & condition=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+        // document.getElementById("btn-colse-modal").click();
+        document.getElementById("btn-accept-terms").classList.remove('btn-outline-terms');
+        document.getElementById("btn-accept-terms").classList.add('btn-terms');
+        document.getElementById("btn-accept-terms").disabled = false;
   } else {
-    document.cookie = "Terms & condition=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-
+        document.getElementById("btn-accept-terms").classList.add('btn-outline-terms');
+        document.getElementById("btn-accept-terms").classList.remove('btn-terms');
+        document.getElementById("btn-accept-terms").disabled = true;
+        document.cookie = "Terms & condition=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
   }
+}
+
+function accept_terms() {
+    document.cookie = "Terms & condition=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+    $("#form_login")[0].submit();
 }
 
 // ดึงค่าของ cookie
 function getCookie(name) {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(';');
-  for(var i = 0; i < ca.length; i++) {
-    var c = ca[i];
+  let nameEQ = name + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
     while (c.charAt(0) === ' ') c = c.substring(1, c.length);
     if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
   }

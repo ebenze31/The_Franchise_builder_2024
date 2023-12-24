@@ -117,8 +117,9 @@ class ProfileController extends Controller
         //
     }
 
-    function edit_first_profile(Request $request, $id)
+    function edit_profile(Request $request, $id)
     {
+
         $requestData = $request->all();
 
         // Crop ภาพ
@@ -144,8 +145,14 @@ class ProfileController extends Controller
         }
         // END Crop ภาพ
 
-        return view('home_page');
+        
+        $data_user = Auth::user();
 
+        if( empty($data_user->group_id) ){
+            return redirect('groups');
+        }else{
+            return view('home_page');
+        }
     }
 
     function add_account(){

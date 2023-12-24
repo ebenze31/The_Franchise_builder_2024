@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,18 +31,20 @@ Route::middleware(['auth',])->group(function () {
     Route::resource('profile', 'ProfileController');
 });
 
-// REGISTER AL TFB 2024
+// REGISTER TFB 2024
 Route::middleware(['auth', 'role:AL'])->group(function () {
     Route::get('/register_tfb2024', 'HomeController@register_tfb2024');
 });
 
-// Player
+// AL
 Route::middleware(['auth', 'role:Player,Super-admin,Admin,Staff'])->group(function () {
+    // Route::resource('news', 'NewsController')->except(['edit','view']);
+    Route::get('news/index', 'NewsController@index');
+    Route::get('news/{id}', 'NewsController@show');
 
     Route::resource('pc_points', 'Pc_pointsController');
     Route::resource('groups', 'GroupsController');
-    Route::get('/preview_team/{group_id}', 'GroupsController@preview_team');
-    Route::get('/group_my_team/{group_id}', 'GroupsController@my_team');
+    Route::get('/group_my_team', 'GroupsController@my_team');
 });
 
 // Super-admin & Admin
@@ -60,3 +63,15 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::get('/admin/scanner', 'HomeController@admin_scanner');
 });
 
+
+Route::post('/profile/{id}', 'ProfileController@edit_profile')->name('edit_profile');
+
+Route::get('/pp', function () {
+    return view('first_profile');
+});
+Route::get('/ranking_by_individual', function () {
+    return view('pc_points/ranking_by_individual');
+});
+Route::get('/ranking_by_team', function () {
+    return view('pc_points/ranking_by_team');
+});
