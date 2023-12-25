@@ -23,7 +23,9 @@ class ProfileController extends Controller
         $id = Auth::id();
         $data = User::findOrFail($id);
 
-        return view('ProfileUser/Profile' , compact('data') );
+        // return view('ProfileUser/Profile' , compact('data') );
+        return view("first_profile");
+
     }
 
     /**
@@ -53,12 +55,12 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
+        $id = Auth::id();
         $data = User::findOrFail($id);
 
         return view('ProfileUser/Profile' , compact('data') );
-            
     }
 
     /**
@@ -119,7 +121,7 @@ class ProfileController extends Controller
 
     function edit_profile(Request $request, $id)
     {
-
+        // dd($request);
         $requestData = $request->all();
 
         // Crop ภาพ
@@ -144,15 +146,15 @@ class ProfileController extends Controller
 
         }
         // END Crop ภาพ
-
-        
         $data_user = Auth::user();
 
-        if( empty($data_user->group_id) ){
-            return redirect('groups');
-        }else{
-            return view('home_page');
+        if ($requestData['type'] == "first_profile") {
+            return redirect('scanner');
+        } else {
+            return redirect('profile');
+
         }
+        
     }
 
     function add_account(){

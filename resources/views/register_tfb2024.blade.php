@@ -122,12 +122,6 @@
 </style>
 
 
-<form id="form_upload_payment" method="POST" action="{{ url('/profile/' . Auth::user()->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-  {{ method_field('PATCH') }}
-  {{ csrf_field() }}
-
-  
-
   <h4 class="header-instruction text-center">Video instruction</h4>
   <div class="container section-payment pb-3">
     <div>
@@ -242,11 +236,6 @@
   </div>
 <p class="text-center text-white text-warn">ผู้สมัครต้องอยู่ในระดับ AL ที่มี unit code แล้วเท่านั้นเเละมีค่าสมัครเข้าโครงการ 10,000 บาท โดยหักผ่านบัญชีตัวแทนเป็น 3 งวด </p>
 
-<!-- 
-  <br>
-  <input type="checkbox" name=""> สมมติว่าเป็นปุ่มสุดท้ายในการยืนยัน
-  <button class="btn btn-sm btn-info">ยืนยัน</button> -->
-
 
 <!-- Modal -->
 <div class="modal fade" id="modalAcceptRegis" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -258,7 +247,7 @@
         </div>
 
         <h6 class="text-center accept-text-header">
-        <b>คุณต้องการที่จะเข้าร่วมกิจกรรมใช่หรือไม่</b> 
+        <b>คุณต้องการเข้าร่วมกิจกรรมใช่หรือไม่ ?</b> 
         </h6>
         <p class="text-center modal-detail">ยืนยันการเข้าร่วม Franchise builder 2024 และยืนยอนให้บริษัทหักชำระค่าบริการ</p>
         <div class="text-center mt-5">
@@ -267,7 +256,7 @@
         </div>
 
         <div class="d-flex justify-content-center ">
-          <button type="submit" id="btnAcceptRegis" class="btn btn-outline-submit mx-3" disabled>Ok</button>
+          <button type="submit" id="btnAcceptRegis" class="btn btn-outline-submit mx-3" disabled onclick="location.href='{{ url('first_profile?type=first_profile') }}'">OK</button>
           <button type="button" class="btn btn-cancel px-4  " data-dismiss="modal">Cancel</button>
         </div>
         <a class="infomation" data-toggle="modal" data-target="#modal-infomation">
@@ -311,7 +300,7 @@
         </h6>
         <p class="text-center modal-detail">คุณสามารถทำการสมัครเข้าร่วมกิจกรรมได้ภายในวันที่ 24 ม.ค.2567</p>
         <div class="d-flex justify-content-center mt-4">
-          <a class="btn btn-submit mx-3 px-4"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Yes</a>
+          <a class="btn btn-submit mx-3 px-4"  href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">OK</a>
           <button type="button" class="btn btn-cancel px-4  " data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -322,105 +311,27 @@
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
     @csrf
 </form>
-
-  <!-- <div class="card border-top border-0 border-4 border-primary d-none">
-    <div class="card-body p-5">
-      <div class="card-title d-flex align-items-center">
-        <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
-        </div>
-        <h5 class="mb-0 text-primary">ลงทะเบียนเข้าร่วมกิจกรรม</h5>
-      </div>
-      <hr>
-
-      <form class="row g-3">
-        <div class="col-12 col-md-6">
-          <label for="name" class="form-label">ชื่อโปรไฟล์</label>
-          <input type="text" class="form-control" id="name" name="name" value="{{ isset(Auth::user()->name) ? Auth::user()->name : ''}}" readonly>
-        </div>
-
-        <input type="text" class="d-none" id="user_id" name="user_id" value="{{ Auth::user()->id }}" readonly>
-        <input type="text" class="d-none" id="currentX" name="currentX" value="" readonly>
-        <input type="text" class="d-none" id="currentY" name="currentY" value="" readonly>
-        <input type="text" class="d-none" id="currentWidth" name="currentWidth" value="" readonly>
-        <input type="text" class="d-none" id="currentHeight" name="currentHeight" value="" readonly>
-
-        <div class="col-12 col-md-6 mt-3">
-          <label for="photo" class="form-label">รูปโปรไฟล์</label>
-          <input class="form-control" name="photo" type="file" id="photo" accept="image/*" onchange="previewImage(this)" required>
-        </div>
-        <div id="imagePreview" class="col-12 col-md-6 mt-3" style="display:none;">
-          <label class="form-label">ภาพพรีวิว</label>
-          <img id="preview" src="" alt="ภาพพรีวิว" style="max-width:100%; height:auto; display:none;">
-        </div>
-
-        <div class="col-12 col-md-6 mt-3">
-          <label for="pay_slip" class="form-label">หลักฐานการชำระเงิน</label>
-          <input class="form-control" name="pay_slip" type="file" id="pay_slip" value="{{ isset(Auth::user()->pay_slip) ? Auth::user()->pay_slip : ''}}" accept="image/*" required>
-        </div>
-
-        <div class="col-12 col-md-6 mt-3">
-          <input type="checkbox" name="check_terms_of_service" id="check_terms_of_service" required>
-          <span class="text-dark">ฉันยอมรับ</span>
-          <br>
-          <span class="text-danger">
-            ข้อกำหนดและเงื่อนไขการใช้บริการบน เว็บไซต์ <span class="text-dark">และ</span> นโยบายเกี่ยวกับข้อมูลส่วนบุคคล
-          </span>
-        </div>
-
-        <div class="col-12 mt-3">
-          <button type="submit" class="btn btn-primary px-5">ยืนยันการลงทะเบียน</button>
-        </div>
-      </form>
-    </div>
-  </div> -->
-
-  <input type="text" class="d-none" id="user_id" name="user_id" value="{{ Auth::user()->id }}" readonly>
-    <input type="text" class="d-none" id="currentX" name="currentX" value="" readonly>
-    <input type="text" class="d-none" id="currentY" name="currentY" value="" readonly>
-    <input type="text" class="d-none" id="currentWidth" name="currentWidth" value="" readonly>
-    <input type="text" class="d-none" id="currentHeight" name="currentHeight" value="" readonly>
-</form>
-
-
-<a class="btn btn-sm btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top: 2%;right: 1%;">
-  <i class='bx bx-log-out-circle'></i>
-</a>
-
-<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-  @csrf
-</form>
-
-
 <!-- Modal -->
 <div class="modal fade" id="modal-infomation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered px-3" role="document">
     <div class="modal-content " style="background-color: rgb(0,0,0,0);">
       <div class="modal-body px-2 modal-border" style="background-color: #fff">
         <h6 class="modal-title text-center pb-2 header-infomation mb-4" id="exampleModalLabel"> กิจกรรม THE FRANCHISE BUILDER 2024 </h6>
 
-        <p class="sub-header-infomation mb-4 text-center">วิธีการสมัครเข้าร่วมกิจกรรม</p>
+        <p class="sub-header-infomation mb-4">เงื่อนไขการเข้าร่วมกิจกรรม</p>
         <ol class="detail-register">
-          <li>ผู้เล่นกิจกรรมต้องทำการลงทะเบียนเข้าร่วม โดยการกรอกข้อมูล Agent code และรหัสผ่าน โดยรหัสผ่านของคุณคือ วัน/เดือน/ปี เกิด 8 หลักเช่น เกิดวันที่ 1 เดือน มกราคม ค.ศ 1989 รหัสผ่านของคุณคือ 01011989 </li>
-          <li>ชำระค่าสมัคร เป็นจำนวนเงิน 10,000 บาท พร้อมอัพโหลดหลักฐานการชำระค่าสมัครที่ช่องอัพโหลดด้านล่าง</li>
-          <li>เเสดง QR code ยืนยันการชำระค่าสมัครกับเจ้าหน้าที่เเละรับเสื้อหน้างาน</li>
+          <li>ผู้เข้าร่วมกิจกรรม ต้องเป็นตัวแทนระดับ AL ที่มี unit code แล้วเท่านั้น</li>
+          <li>ผู้เข้ากิจกรรมยินยอมที่จะให้บริษัทหักค่าสมัคร 10,000 บาท (แบ่งชำระเป็นงวด) จากบัญชีตัวแทน หลักฐานการชำระค่าสมัครที่ช่องอัพโหลดด้านล่าง</li>
+          <li>ผู้ร่วมกิจกรรมจะได้รับสิทธิประโยชน์ด้านต่างๆตามที่บริษัทระบุ หากสามารถรักษาสิทธิ์ผู้เล่นไว้ได้</li>
         </ol>
-
-        <p class="sub-header-infomation mb-4 text-center">กติกาการร่วมเล่นกิจกรรม</p>
-        <ol class="detail-register">
-          <li>ระบบจะมี Group สำหรับรองรับผู้เข้าร่วมกิจกรรมทั้งหมด 80 Group</li>
-          <li>ผู้เล่นต้องทำการรวบรวมสมาชิกให้ครบ 10 คน / 1กลุ่ม โดยผู้เล่นคนเเรกจะมีหน้าที่เป็น Hostสามารถทำการอนุญาติ หรือปฏิเสธการขอเข้าร่วม Group ของผู้เล่นที่ขอเข้าร่วมหลัง จากคุณได้ เเละสามารถเชิญผู้เล่นที่ยังไม่มี Group เข้าร่วม Group เดียวกับคุณได้</li>
-          <li>ผู้เล่นสามารถส่งต่อสถานะ Host ให้กับสมาชิกภายใน Group ได้ โดยที่ผู้ที่ต้องการเป็น Host คนถัดไป ต้องกดยอมรับการ เปลี่ยนสถานะก่อน Host คนเดิมจึงจะสามารถส่งต่อสถานะ Host ได้</li>
-          <li>ผู้เล่นสามารถออกจาก Group ได้ทุกเมื่อ ในกรณีที่ Group ที่คุณอยู่ยังมีสมาชิกไม่ครบ 10 คน</li>
-          <li>หากผู้เล่นต้องการออกจาก Group สามารถกด “ออกจาก Group” ได้ด้วยตนเอง</li>
-          <li>ในกรณีที่ Group มีสมาชิกครบ 10 คน ระบบจะทำการปิด Group อัตโนมัติ โดยที่สมาชิกทุกคนจะไม่สามารถเข้าหรือออกจากกลุ่มได้</li>
-        </ol>
-      </div>
-  <div class="d-flex justify-content-center w-100">
+        <div class="d-flex justify-content-center w-100">
       <button class="btn btn-submit"  data-dismiss="modal">
         Close
       </button>
       
     </div>
+      </div>
+  
   </div>
 
   </div>

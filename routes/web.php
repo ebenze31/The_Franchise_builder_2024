@@ -28,8 +28,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // LOGIN
 Route::middleware(['auth',])->group(function () {
-    Route::resource('profile', 'ProfileController');
-    Route::post('/profile/{id}', 'ProfileController@edit_profile')->name('edit_profile');
+    Route::get('first_profile', 'ProfileController@index');
+    Route::get('profile', 'ProfileController@show');
+    Route::post('/edit_profile/{id}', 'ProfileController@edit_profile')->name('edit_profile');
+
 });
 
 // REGISTER AL TFB 2024
@@ -47,6 +49,7 @@ Route::middleware(['auth', 'role:Player,Super-admin,Admin,Staff'])->group(functi
     Route::resource('groups', 'GroupsController');
     Route::get('/preview_team/{group_id}', 'GroupsController@preview_team');
     Route::get('/group_my_team/{group_id}', 'GroupsController@my_team');
+    Route::get('/scanner', 'HomeController@scanner');
 });
 
 // Super-admin & Admin
