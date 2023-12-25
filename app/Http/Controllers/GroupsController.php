@@ -247,10 +247,11 @@ class GroupsController extends Controller
     function preview_team($group_id){
 
         $data_user = Auth::user();
+        $data_groups = Group::where('id' , $group_id)->first();
 
         if( empty($data_user->group_id) ){
             $group_status = null ;
-            return view('groups.preview_team' , compact('group_id' , 'group_status'));
+            return view('groups.preview_team' , compact('group_id' , 'group_status' ,'data_groups'));
         }
         else if( $data_user->group_status == "มีบ้านแล้ว" || $data_user->group_status == "ยืนยันการสร้างบ้านแล้ว" ){
             $group_id = $data_user->group_id;
@@ -258,7 +259,7 @@ class GroupsController extends Controller
         }
         else{
             $group_status = $data_user->group_status ;
-            return view('groups.preview_team' , compact('group_id' , 'group_status'));
+            return view('groups.preview_team' , compact('group_id' , 'group_status' ,'data_groups'));
         }
     }
 
@@ -272,6 +273,12 @@ class GroupsController extends Controller
 
         return $groups;
 
+    }
+
+    function get_data_my_team($group_id){
+
+        $groups = Group::where('id' , $group_id)->first();
+        return $groups;
     }
 
     function user_join_team($type , $group_id , $user_id)

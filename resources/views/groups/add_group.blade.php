@@ -294,7 +294,7 @@
                 }
 
                 if(num_amount >= {{ $count_group }}){
-                    document.querySelector('#count_active_group').innerHTML = {{ $count_group }} ;
+                    document.querySelector('#count_active_group').innerHTML = num_amount ;
                 }else{
                     document.querySelector('#count_active_group').innerHTML = num_amount ;
                 }

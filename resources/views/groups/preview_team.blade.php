@@ -43,12 +43,79 @@
             	</div>
 
                 <div class="row mt-3">
-                    <!-- ออกแบบบล็อคมาตรงนี้ -->
+                    
+                    @if( empty($data_groups->member) )
+                        @for ($i = 0; $i < 10; $i++) 
+                        <div id="Team_no" class=" col-4 mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');">
+                            <div class="bg-secondary text-center" style="width: 95%;height: auto;">
+                                <i class="fa-solid fa-user-plus"></i>
+                                <p>Join our team</p>
+                            </div>
+                        </div>
+                        @endfor
+                    @else
+                        @php
+                            $list_member = json_decode($data_groups->member);
+                        @endphp
+                        
+
+                        @for ($i = 0; $i < count($list_member); $i++) 
+
+                            @php $member = App\User::where('id' , $list_member[$i] )->first(); @endphp
+                            
+                            <div class=" col-4 mt-2 mb-2" style="position:relative;">
+                                @if( $list_member[$i] == $data_groups->host )
+                                <span class="btn" style="position:absolute;right: 1%;top: -25px;">
+                                    <i class="fa-solid fa-key text-warning"></i>
+                                </span>
+                                @endif
+                                <div class="text-center" style="width: 95%;height: auto;">
+                                    <img src="{{ url('storage')}}/{{ $member->photo }}" style="width: 90%;" class="mt-2 mb-2">
+                                    {{ $member->name }}
+                                </div>
+                            </div>
+                            
+                        @endfor
+
+                        @if( count($list_member) < 10)
+
+                            @if($group_status == 'กำลังขอเข้าร่วมบ้าน')
+
+                                <div class=" col-4 mt-2 mb-2" style="position:relative;">
+                                    <div class="text-center" style="width: 95%;height: auto;">
+                                        <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" style="width: 90%;" class="mt-2 mb-2">
+                                        {{ Auth::user()->name }}
+                                        <p class="text-danger">Waiting : 23:59</p>
+                                    </div>
+                                </div>
+
+                                @php $add_div = 9 - count($list_member) ; @endphp
+                            @else
+                                @php $add_div = 10 - count($list_member) ; @endphp
+                            @endif
+
+
+                            @for ($i = 0; $i < $add_div; $i++) 
+                                @if($group_status == 'กำลังขอเข้าร่วมบ้าน')
+                                <div id="Team_no" class=" col-4 mt-2 mb-2" >
+                                @else
+                                <div id="Team_no" class=" col-4 mt-2 mb-2" onclick="open_modal_join_team('member','{{ $data_groups->id }}');">
+                                @endif
+                                    <div class="bg-secondary text-center" style="width: 95%;height: auto;">
+                                        <i class="fa-solid fa-user-plus"></i>
+                                        <p>Join our team</p>
+                                    </div>
+                                </div>
+                            @endfor
+                        @endif
+
+                    @endif
+
                 </div>
 
-                <div id="content_my_team" class="row mt-3">
-                    <!-- data -->
-                </div>
+                <!-- <div id="content_my_team" class="row mt-3">
+                    data
+                </div> -->
             </div>
         </div>
     </div>
@@ -60,7 +127,7 @@
 	
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        get_data_groups("{{ $group_id }}");
+        // get_data_groups("{{ $group_id }}");
         check_wait_host();
     });
 
@@ -71,100 +138,6 @@
 
     }
 
-    function get_data_groups(type_get_data){
-        console.log(type_get_data);
-
-        fetch("{{ url('/') }}/api/get_data_groups/" + type_get_data)
-            .then(response => response.json())
-            .then(result => {
-                console.log('get_data_groups');
-                console.log(result);
-
-                let content_my_team = document.querySelector('#content_my_team');
-                    content_my_team.innerHTML = '' ;
-
-                setTimeout(() => {
-                    if(result){
-                        let member = JSON.parse(result.member);
-                        console.log(member);
-
-                        if(member){
-                            document.querySelector('#amount_member').innerHTML = member.length ;
-
-                            for (let zx = 0; zx < member.length; zx++) {
-
-                                let html_member = `
-                                    <div class="col-4 mt-2 mb-2 text-dark">Member ID : `+member[zx]+`</div>
-                                `;
-
-                                content_my_team.insertAdjacentHTML('beforeend', html_member); // แทรกล่างสุด
-                            }
-
-
-                            
-                            let html_for_join ;
-                            let member_next ;
-
-                            if("{{ $group_status }}" == 'กำลังขอเข้าร่วมบ้าน'){
-                                member_next = member.length ;
-                                let html_me = `
-                                    <div class="col-4 mt-2 mb-2 text-dark">
-                                        ฉันกำลังขอเข้าร่วม
-                                        <br>
-                                        เหลือเวลา 22:26
-                                    </div>
-                                `;
-
-                                content_my_team.insertAdjacentHTML('beforeend', html_me); // แทรกล่างสุด
-
-                                html_for_join = `
-                                    <div id="Team_no" class="div_Team_Ex col-4 mt-2 mb-2">
-                                        <div class="bg-secondary text-center" style="width: 95%;height: auto;">
-                                            <i class="fa-solid fa-user-plus"></i>
-                                            <p>Join our team</p>
-                                        </div>
-                                    </div>
-                                `;
-
-                            }else{
-                                member_next = member.length + 1 ;
-
-                                html_for_join = `
-                                    <div id="Team_no" class="div_Team_Ex col-4 mt-2 mb-2" onclick="open_modal_join_team('member',`+type_get_data+`);">
-                                        <div class="bg-secondary text-center" style="width: 95%;height: auto;">
-                                            <i class="fa-solid fa-user-plus"></i>
-                                            <p>Join our team</p>
-                                        </div>
-                                    </div>
-                                `;
-                            }
-
-                            for (let i = member_next; i <= 10; i++) {
-                                content_my_team.insertAdjacentHTML('beforeend', html_for_join); // แทรกล่างสุด
-                            }
-
-                        }else{
-                            document.querySelector('#amount_member').innerHTML = "0" ;
-
-                            let html_for_join = `
-                                <div id="Team_no" class="div_Team_Ex col-4 mt-2 mb-2" onclick="open_modal_join_team('host',`+type_get_data+`);">
-                                    <div class="bg-secondary text-center" style="width: 95%;height: auto;">
-                                        <i class="fa-solid fa-user-plus"></i>
-                                        <p>Join our team</p>
-                                    </div>
-                                </div>
-                            `;
-
-                            for (let i = 0; i < 10; i++) {
-                                content_my_team.insertAdjacentHTML('beforeend', html_for_join); // แทรกล่างสุด
-                            }
-                        }
-                    }
-                }, 500);
-
-        });
-    }
-
     function open_modal_join_team(type , type_get_data){
 
         // console.log('เช็คอีกครั้งว่าบ้านนี้มี Host แล้วหรือยัง');
@@ -173,7 +146,7 @@
         fetch("{{ url('/') }}/api/get_data_groups/" + type_get_data)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+              // console.log(result);
 
                 if(type == "host"){
 
@@ -183,7 +156,7 @@
                         document.querySelector('#btn_modal_join_team').click();
 
                     }else{
-                        console.log('ขออภัย มี Host แล้วขณะคุณทำรายการ');
+                      // console.log('ขออภัย มี Host แล้วขณะคุณทำรายการ');
                         create_modal('home_have_host' , type_get_data);
                         document.querySelector('#btn_modal_join_team').click();
                     }
@@ -203,7 +176,7 @@
         fetch("{{ url('/') }}/api/get_data_groups/" + group_id)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+              // console.log(result);
 
                 if(type == "host"){
 
@@ -212,7 +185,7 @@
                         fetch("{{ url('/') }}/api/user_join_team/" + type + "/" + group_id + "/{{ Auth::user()->id }}")
                             .then(response => response.text())
                             .then(result => {
-                                console.log(result);
+                              // console.log(result);
 
                                 let link_to_my_team = document.querySelector('#link_to_my_team');
                                     link_to_my_team.setAttribute("href","{{ url('/group_my_team') . '/' . $group_id }}?first=Yes");
@@ -232,15 +205,15 @@
                         fetch("{{ url('/') }}/api/user_join_team/" + type + "/" + group_id + "/{{ Auth::user()->id }}")
                             .then(response => response.text())
                             .then(result => {
-                                console.log(result);
+                              // console.log(result);
 
-                                console.log('รอการตอบรับจาก host');
+                                // console.log('รอการตอบรับจาก host');
                                 create_modal('wait_host_accept' , group_id);
 
                         });
 
                     }else if(count_member.length >= 10){
-                        console.log('ขออภัย บ้านนี้มีสมาชิกครับ 10 ท่านแล้ว');
+                        // console.log('ขออภัย บ้านนี้มีสมาชิกครับ 10 ท่านแล้ว');
                         create_modal('full_house' , group_id);
                     }
                 }
@@ -440,7 +413,7 @@
             fetch("{{ url('/') }}/api/change_group_status/" + 'มีบ้านแล้ว' + "/" + "{{ $group_id }}" + "/{{ Auth::user()->id }}")
                 .then(response => response.text())
                 .then(result => {
-                    console.log(result);
+                  // console.log(result);
 
                     // modal แจ้งเตือนการเข้าร่วมบ้าน ครั้งแรกครั้งเดียว
                     create_modal('Host Accept' , "{{ $group_id }}");
@@ -454,7 +427,7 @@
             fetch("{{ url('/') }}/api/change_group_status/" + 'Host Reject' + "/" + "{{ $group_id }}" + "/{{ Auth::user()->id }}")
                 .then(response => response.text())
                 .then(result => {
-                    console.log(result);
+                  // console.log(result);
 
                     // modal แจ้งเตือน Host Reject ครั้งเดียว
                     create_modal('Host Reject' , "{{ $group_id }}");
@@ -467,7 +440,7 @@
             fetch("{{ url('/') }}/api/change_group_status/" + 'ยืนยันการสร้างบ้านแล้ว' + "/" + "{{ $group_id }}" + "/{{ Auth::user()->id }}")
                 .then(response => response.text())
                 .then(result => {
-                    console.log(result);
+                  // console.log(result);
 
                     // modal แจ้งเตือนการเข้าร่วมบ้าน ครั้งแรกครั้งเดียว
                     create_modal('Team Ready' , "{{ $group_id }}");
@@ -477,6 +450,105 @@
         }
 
     }
+
+
+
+
+
+
+    // function get_data_groups(type_get_data){
+    //   // console.log(type_get_data);
+
+    //     fetch("{{ url('/') }}/api/get_data_groups/" + type_get_data)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //           // console.log('get_data_groups');
+    //           // console.log(result);
+
+    //             let content_my_team = document.querySelector('#content_my_team');
+    //                 content_my_team.innerHTML = '' ;
+
+    //             setTimeout(() => {
+    //                 if(result){
+    //                     let member = JSON.parse(result.member);
+    //                   // console.log(member);
+
+    //                     if(member){
+    //                         document.querySelector('#amount_member').innerHTML = member.length ;
+
+    //                         for (let zx = 0; zx < member.length; zx++) {
+
+    //                             let html_member = `
+    //                                 <div class="col-4 mt-2 mb-2 text-dark">Member ID : `+member[zx]+`</div>
+    //                             `;
+
+    //                             content_my_team.insertAdjacentHTML('beforeend', html_member); // แทรกล่างสุด
+    //                         }
+
+
+                            
+    //                         let html_for_join ;
+    //                         let member_next ;
+
+    //                         if("{{ $group_status }}" == 'กำลังขอเข้าร่วมบ้าน'){
+    //                             member_next = member.length ;
+    //                             let html_me = `
+    //                                 <div class="col-4 mt-2 mb-2 text-dark">
+    //                                     ฉันกำลังขอเข้าร่วม
+    //                                     <br>
+    //                                     เหลือเวลา 22:26
+    //                                 </div>
+    //                             `;
+
+    //                             content_my_team.insertAdjacentHTML('beforeend', html_me); // แทรกล่างสุด
+
+    //                             html_for_join = `
+    //                                 <div id="Team_no" class=" col-4 mt-2 mb-2">
+    //                                     <div class="bg-secondary text-center" style="width: 95%;height: auto;">
+    //                                         <i class="fa-solid fa-user-plus"></i>
+    //                                         <p>Join our team</p>
+    //                                     </div>
+    //                                 </div>
+    //                             `;
+
+    //                         }else{
+    //                             member_next = member.length + 1 ;
+
+    //                             html_for_join = `
+    //                                 <div id="Team_no" class=" col-4 mt-2 mb-2" onclick="open_modal_join_team('member',`+type_get_data+`);">
+    //                                     <div class="bg-secondary text-center" style="width: 95%;height: auto;">
+    //                                         <i class="fa-solid fa-user-plus"></i>
+    //                                         <p>Join our team</p>
+    //                                     </div>
+    //                                 </div>
+    //                             `;
+    //                         }
+
+    //                         for (let i = member_next; i <= 10; i++) {
+    //                             content_my_team.insertAdjacentHTML('beforeend', html_for_join); // แทรกล่างสุด
+    //                         }
+
+    //                     }else{
+    //                         document.querySelector('#amount_member').innerHTML = "0" ;
+
+    //                         let html_for_join = `
+    //                             <div id="Team_no" class=" col-4 mt-2 mb-2" onclick="open_modal_join_team('host',`+type_get_data+`);">
+    //                                 <div class="bg-secondary text-center" style="width: 95%;height: auto;">
+    //                                     <i class="fa-solid fa-user-plus"></i>
+    //                                     <p>Join our team</p>
+    //                                 </div>
+    //                             </div>
+    //                         `;
+
+    //                         for (let i = 0; i < 10; i++) {
+    //                             content_my_team.insertAdjacentHTML('beforeend', html_for_join); // แทรกล่างสุด
+    //                         }
+    //                     }
+    //                 }
+    //             }, 500);
+
+    //     });
+    // }
     
 </script>
 
