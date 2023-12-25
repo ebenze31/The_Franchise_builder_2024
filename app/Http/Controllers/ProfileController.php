@@ -121,8 +121,8 @@ class ProfileController extends Controller
 
     function edit_profile(Request $request, $id)
     {
-        // dd($request);
         $requestData = $request->all();
+        
 
         // Crop ภาพ
         if ($request->hasFile('photo')) {
@@ -145,13 +145,24 @@ class ProfileController extends Controller
             $image->save($imagePath);
 
         }
-        // END Crop ภาพ
+        
         $data_user = Auth::user();
+        $data = User::where('id',$data_user->id)->first();
+
+
 
         if ($requestData['type'] == "first_profile") {
-            return redirect('scanner');
+            
+            $requestData['status'] = "เข้าร่วมแล้ว" ;
+            $requestData['role'] = "Player" ;
+            
+            $data->update($requestData);
+
+            return redirect("scanner");
         } else {
-            return redirect('profile');
+
+            $data->update($requestData);
+            return redirect("ProfileUser/profile");
 
         }
         
