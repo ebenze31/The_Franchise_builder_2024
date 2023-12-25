@@ -178,22 +178,22 @@ class GroupsController extends Controller
             $requestData['key_invite'] = $key_invite ;
             $requestData['name_group'] = $name_group ;
 
-            // สร้างรูปกลุ่ม
-            $image = Image::make(public_path('img/bg_group/theme/bg_group.png'));
+            // // สร้างรูปกลุ่ม
+            // $image = Image::make(public_path('img/bg_group/theme/bg_group.png'));
 
-            // แทรกตัวอักษรลงในภาพ
-            $image->text($name_group, 125, 125, function($font) {
-                $font->file(public_path('theme_admin/fonts/Font/Font/Allianz_Neo_webfonts/ttf/AllianzNeoW01-Bold.ttf'));
-                $font->size(100);
-                $font->color('#ffffff');
-                $font->align('center');
-                $font->valign('middle');
-            });
+            // // แทรกตัวอักษรลงในภาพ
+            // $image->text($name_group, 125, 125, function($font) {
+            //     $font->file(public_path('theme_admin/fonts/Font/Font/Allianz_Neo_webfonts/ttf/AllianzNeoW01-Bold.ttf'));
+            //     $font->size(100);
+            //     $font->color('#ffffff');
+            //     $font->align('center');
+            //     $font->valign('middle');
+            // });
 
-            // บันทึกภาพใหม่
-            $image->save(public_path('img/bg_group/logo_group/bg_group_'.$i.'.png'));
+            // // บันทึกภาพใหม่
+            // $image->save(public_path('img/bg_group/logo_group/bg_group_'.$i.'.png'));
 
-            $requestData['logo'] = 'img/bg_group/logo_group/bg_group_'.$i.'.png' ;
+            // $requestData['logo'] = 'img/bg_group/logo_group/bg_group_'.$i.'.png' ;
 
             Group::create($requestData);
         }
