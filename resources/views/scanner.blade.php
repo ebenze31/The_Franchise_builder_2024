@@ -41,7 +41,7 @@
   }
 
   .qr-card {
-    padding: 3rem 2.8rem 1.8rem 2.8rem !important;
+    padding: 3rem 1rem 1.8rem 1rem !important;
     border-radius: 10px;
   }
 
@@ -75,7 +75,7 @@
   }
 
   .box {
-    --b: 5px;
+    --b: 0px;
     /* thickness of the border */
     --c: red;
     /* color of the border */
@@ -154,16 +154,7 @@
             <video style="width:100%;" id="qr-video"></video>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div>
-      <a href="{{ url('img/qr_profile')}}/{{ Auth::user()->qr_profile }}" class="btn btn-download" download>
-        Download
-      </a>
-    </div>
-
-    <style>
+        <style>
       .test{
         width: 38px;
         height: 38px;
@@ -180,6 +171,17 @@
     <button class="btn test">
         <img src="{{ url('/img/icon/select-img.png') }}" alt="">
     </button>
+      </div>
+      
+    </div>
+
+    <div>
+      <a href="{{ url('img/qr_profile')}}/{{ Auth::user()->qr_profile }}" class="btn btn-download" download>
+        Download
+      </a>
+    </div>
+
+    
   </div>
 </div>
 
