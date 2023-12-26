@@ -7,6 +7,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Models\Pc_point;
 
 use App\Models\Group;
 use Illuminate\Http\Request;
@@ -222,6 +223,9 @@ class GroupsController extends Controller
     function my_team($group_id)
     {
         $data_user = Auth::user();
+        $data_groups = Group::where('id' , $group_id)->first();
+        $current_week = Pc_point::orderBy('week', 'desc')->select('week')->first();
+        $current_week = $current_week->week ;
 
         if( empty($data_user->group_id) ){
             return redirect('/groups');
@@ -234,7 +238,7 @@ class GroupsController extends Controller
             }
             else{
                 $group_status = $data_user->group_status ;
-                return view('groups.my_team' , compact('group_id','group_status'));
+                return view('groups.my_team' , compact('group_id','group_status','data_groups','current_week'));
             }
 
         }
@@ -331,6 +335,7 @@ class GroupsController extends Controller
                 ])
             ->update([
                     'group_id' => $group_id,
+                    'time_request_join' => date("Y-m-d H:i:s"),
                     'group_status' => "กำลังขอเข้าร่วมบ้าน",
                 ]);
         }
