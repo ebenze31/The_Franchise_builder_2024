@@ -24,6 +24,13 @@ class GroupsController extends Controller
     {
         $data_user = Auth::user();
 
+        // Admin
+        if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin" || Auth::user()->role == "Staff"){
+            $activeGroupsCount = Group::where('active', 'Yes')->count();
+            return view('groups.index' , compact('activeGroupsCount'));
+        }
+
+        // Player
         if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
             $activeGroupsCount = Group::where('active', 'Yes')->count();
             return view('groups.index' , compact('activeGroupsCount'));
@@ -235,6 +242,13 @@ class GroupsController extends Controller
             $current_week = 0 ;
         }
 
+        // Admin
+        if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin" || Auth::user()->role == "Staff"){
+            $group_id = $data_user->group_id;
+            return redirect('/group_my_team' .'/'. $group_id);
+        }
+
+        // Player
         if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
             return redirect('/groups');
         }
@@ -267,6 +281,13 @@ class GroupsController extends Controller
         $data_user = Auth::user();
         $data_groups = Group::where('id' , $group_id)->first();
 
+        // Admin
+        if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin" || Auth::user()->role == "Staff"){
+            $group_status = $data_user->group_status ;
+            return view('groups.preview_team' , compact('group_id' , 'group_status' ,'data_groups'));
+        }
+
+        // Player
         if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
             $group_status = null ;
             return view('groups.preview_team' , compact('group_id' , 'group_status' ,'data_groups'));
