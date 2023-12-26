@@ -245,8 +245,14 @@ class GroupsController extends Controller
                 return redirect('/group_my_team' .'/'. $group_id);
             }
             else{
-                $group_status = $data_user->group_status ;
-                return view('groups.my_team' , compact('group_id','group_status','data_groups','current_week'));
+
+                if( !empty($data_user->time_cf_pay_slip) ){
+                    $group_status = $data_user->group_status ;
+                    return view('groups.my_team' , compact('group_id','group_status','data_groups','current_week'));
+                }else{
+                    return redirect('scanner');
+                }
+
             }
 
         }
@@ -270,8 +276,14 @@ class GroupsController extends Controller
             return redirect('/group_my_team' .'/'. $group_id);
         }
         else{
-            $group_status = $data_user->group_status ;
-            return view('groups.preview_team' , compact('group_id' , 'group_status' ,'data_groups'));
+
+            if( !empty($data_user->time_cf_pay_slip) ){
+                $group_status = $data_user->group_status ;
+                return view('groups.preview_team' , compact('group_id' , 'group_status' ,'data_groups'));
+            }else{
+                return redirect('scanner');
+            }
+            
         }
     }
 
