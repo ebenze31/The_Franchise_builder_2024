@@ -235,7 +235,7 @@ class GroupsController extends Controller
             $current_week = 0 ;
         }
 
-        if( empty($data_user->group_id) ){
+        if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
             return redirect('/groups');
         }
         else if($data_user->group_status == "มีบ้านแล้ว" || $data_user->group_status == "ยืนยันการสร้างบ้านแล้ว"){
@@ -267,7 +267,7 @@ class GroupsController extends Controller
         $data_user = Auth::user();
         $data_groups = Group::where('id' , $group_id)->first();
 
-        if( empty($data_user->group_id) ){
+        if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
             $group_status = null ;
             return view('groups.preview_team' , compact('group_id' , 'group_status' ,'data_groups'));
         }
