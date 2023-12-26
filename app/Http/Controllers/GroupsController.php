@@ -24,7 +24,7 @@ class GroupsController extends Controller
     {
         $data_user = Auth::user();
 
-        if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip ){
+        if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
             $activeGroupsCount = Group::where('active', 'Yes')->count();
             return view('groups.index' , compact('activeGroupsCount'));
         }
