@@ -50,7 +50,7 @@
 
 <div id="alert_success" class="div_alert" role="alert">
     <span id="alert_text">
-        คัดลอกเรียบร้อย
+        <!--  -->
     </span>
 </div>
 

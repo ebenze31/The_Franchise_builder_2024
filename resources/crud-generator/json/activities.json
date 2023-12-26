@@ -1,0 +1,21 @@
+{
+    "fields": [
+        {
+            "name": "name_Activities",
+            "type": "string"
+        },
+        {
+            "name": "detail",
+            "type": "string"
+        },
+        {
+            "name": "icon",
+            "type": "file"
+        },
+        {
+            "name": "member",
+            "type": "string"
+        }
+
+    ]
+}

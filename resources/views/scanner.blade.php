@@ -120,12 +120,12 @@
 <div class="w-100 qr-section">
   <div class="card qr-card text-center">
     <div class="d-flex justify-content-center w-100">
-      <ul class="nav nav-pills mb-3 d-flex justify-content-center w-100"" id=" pills-tab" role="tablist">
+      <ul class="nav nav-pills mb-3 d-flex justify-content-center w-100" id=" pills-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active btn-qr-code" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">My QR code</a>
+          <a class="nav-link active btn-qr-code" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" onclick="stopScanQRCode();">My QR code</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn-scan-code" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">scan QR code</a>
+          <a class="nav-link btn-scan-code" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" onclick="start_scanQRCode();">scan QR code</a>
         </li>
       </ul>
     </div>
@@ -145,8 +145,10 @@
       <div class="tab-pane fade show active text-white" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <div class="d-flex justify-content-center w-100">
           <img src="{{ url('img/qr_profile')}}/{{ Auth::user()->qr_profile }}" class="qr-profile" alt="รูปภาพ QR Code">
-
         </div>
+        <a href="{{ url('img/qr_profile')}}/{{ Auth::user()->qr_profile }}" class="btn btn-download" download>
+          Download
+        </a>
       </div>
       <div class="tab-pane fade text-white" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         <div class="d-flex w-100 justify-content-center">
@@ -168,76 +170,42 @@
         right: 10px;
       }
     </style>
-    <button class="btn test">
+    <button class="btn test" id="btnSelectImage">
         <img src="{{ url('/img/icon/select-img.png') }}" alt="">
     </button>
+    <input type="file" accept="image/*" style="display:none" id="inputImage" />
+
       </div>
       
     </div>
 
-    <div>
-      <a href="{{ url('img/qr_profile')}}/{{ Auth::user()->qr_profile }}" class="btn btn-download" download>
-        Download
-      </a>
-    </div>
 
     
-  </div>
-</div>
-
-<!-- Button trigger modal -->
-<button id="btn_Modal_cf_slip" type="button" class="d-none" data-toggle="modal" data-target="#Modal_cf_slip">
-  <!--  -->
-</button>
-<button class="btn" onclick="scanQRCode()">
-  asdf
-</button>
-<!-- Modal -->
-<div class="modal fade" id="Modal_cf_slip" tabindex="-1" aria-labelledby="Label_Modal_cf_slip" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="Label_Modal_cf_slip">โปรดตรวจสอบข้อมูลอีกครั้ง</h5>
-        <button id="btn_close_Modal_cf_slip" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div id="content_Modal_cf_slip" class="col-12 text-center">
-            <!-- DATA -->
-          </div>
-          <div class="col-12 text-center mt-4 mb-0">
-            <p>เจ้าหน้าที่ผู้ยืนยัน : {{ Auth::user()->name }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button id="btn_change_status" style="width: 40%;" type="button" class="btn btn-success">ยืนยัน</button>
-      </div>
-    </div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 
 <script>
-  window.onload = function() {
+
     const video = document.getElementById('qr-video');
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
-    navigator.mediaDevices.getUserMedia({
+    function start_scanQRCode() {
+      navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: 'environment'
         }
       })
       .then(function(stream) {
+        videoStream = stream; // เก็บ stream ในตัวแปร global
         video.srcObject = stream;
         video.play();
 
         scanQRCode();
       });
+    }
 
     function scanQRCode() {
       if (video.readyState === video.HAVE_ENOUGH_DATA) {
@@ -248,21 +216,72 @@
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
         if (code) {
-          // console.log(code.data);
+          console.log(code.data);
           alert(code.data);
-
-          if (code.data.split('=')[1]) {
-            let text_account = code.data.split('=')[1];
-            console.log(text_account);
-
-            document.querySelector('#btn_Modal_cf_slip').click();
-          }
           return;
         }
       }
 
       requestAnimationFrame(scanQRCode);
     }
-  };
+
+    function stopScanQRCode() {
+      if (videoStream) {
+        const tracks = videoStream.getTracks();
+        tracks.forEach(track => track.stop());
+        videoStream = null;
+      }
+    }
+
+
+    // อ่าน QR-CODE จากรูปภาพ
+    const btnSelectImage = document.getElementById('btnSelectImage');
+    const inputImage = document.getElementById('inputImage');
+
+    btnSelectImage.addEventListener('click', () => {
+        inputImage.click();
+    });
+
+    inputImage.addEventListener('change', (event) => {
+        const selectedFile = event.target.files[0];
+
+        if (selectedFile) {
+            // ในกรณีที่เลือกไฟล์เสร็จสิ้น
+            readQRCode(selectedFile);
+        }
+    });
+
+    function readQRCode(imageFile) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const img = new Image();
+            img.src = e.target.result;
+
+            img.onload = function () {
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                context.drawImage(img, 0, 0, img.width, img.height);
+
+                const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+                if (code) {
+                    // ทำอะไรกับข้อมูลจาก QR Code ที่ได้ เช่น alert
+                    alert(code.data);
+                    // เคลียรูปภาพที่เลือก
+                    inputImage.value = "";
+                } else {
+                    alert('ไม่พบ QR Code');
+                }
+            };
+        };
+
+        reader.readAsDataURL(imageFile);
+    }
+
+
 </script>
 @endsection

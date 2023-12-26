@@ -26,7 +26,7 @@ Route::post('/create_user/excel', 'ProfileController@create_user');
 Route::post('/create_qr_code', 'ProfileController@create_qr_code');
 Route::get('/change_status/{account}/{Staff_id}', 'ProfileController@change_status');
 Route::get('/get_data_account/{type_get_data}', 'ProfileController@get_data_account');
-
+Route::get('/get_users/{account}', 'ProfileController@get_users');
 // PC POINT
 Route::post('/create_score/excel', 'Pc_pointsController@create_score');
 

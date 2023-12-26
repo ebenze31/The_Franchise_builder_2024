@@ -284,13 +284,21 @@ class ProfileController extends Controller
                     ['account', $account],
                 ])
             ->update([
-                    'role' => 'Player',
-                    'status' => 'เข้าร่วมแล้ว',
+                    // 'role' => 'Player',
+                    // 'status' => 'เข้าร่วมแล้ว',
                     'staff_pay_slip_id' => $Staff_id,
                     'time_cf_pay_slip' => date("Y-m-d H:i:s"),
                 ]);
 
         return "success" ;
+
+    }
+
+    function get_users($account){
+
+        $data = User::where('account' , $account)->first();
+        
+        return $data;
 
     }
 

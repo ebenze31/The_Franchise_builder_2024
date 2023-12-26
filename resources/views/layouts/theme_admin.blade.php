@@ -221,8 +221,13 @@
                     
                     <ul>
                         <li>
-                            <a class="btn" href="{{ url('/add_activities') }}">
+                            <a class="btn" href="{{ url('/activities/create') }}">
                                 <i class="fa-solid fa-plus"></i> เพิ่มกิจกรรมใหม่
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn" href="{{ url('/activities') }}">
+                                <i class="fa-solid fa-calendar-days"></i> กิจกรรมทั้งหมด
                             </a>
                         </li>
                     </ul>

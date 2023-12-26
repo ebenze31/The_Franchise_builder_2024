@@ -64,7 +64,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::resource('news', 'NewsController');
 
     Route::resource('mylog', 'MylogController');
-
+    Route::resource('activities', 'ActivitiesController');
     Route::get('/admin/scanner', 'HomeController@admin_scanner');
 });
 
