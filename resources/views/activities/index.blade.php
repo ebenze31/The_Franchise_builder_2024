@@ -28,7 +28,7 @@
                         <div class="row mt-3 mb-3" id="accordionActivities">
 
                             @foreach($activities as $item)
-                            <div class="col-6">
+                            <div class="col-12 col-md-6">
                                 <div class="card radius-10 border shadow-none btn" data-bs-toggle="collapse" data-bs-target="#flush-{{ $item->id }}">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
