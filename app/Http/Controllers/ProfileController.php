@@ -302,4 +302,12 @@ class ProfileController extends Controller
 
     }
 
+    function check_pay_slip($user_id){
+
+        $data = User::where('id' , $user_id)->first();
+        
+        return $data;
+
+    }
+
 }

@@ -117,6 +117,28 @@
     mask-composite: exclude;
   }
 </style>
+
+<!-- modal -->
+<button id="btn_modal_cf_pay_slip" class="d-none" data-toggle="modal" data-target="#modal_cf_pay_slip"></button>
+
+<div class="modal fade" id="modal_cf_pay_slip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div id="modal_cf_pay_slip_content" class="modal-body text-center">
+                <img src="{{ url('/img/icon/Frame 2.png') }}" style="width:100%;" class="mt-2 mb-2">
+                <h4 class="text-info">ยืนยันการชำระเงินเรียบร้อยแล้ว</h4>
+                <p class="text-info">ไปยังหน้าจัดกลุ่ม</p>
+                <br>
+            </div>
+            <div id="modal_cf_pay_slip_footer" class="modal-footer text-center">
+                <a href="{{ url('/groups') }}" type="button" class="btn btn-primary">OK</a>
+            </div>
+            <a id="link_to_my_team" class="d-none"></a>
+        </div>
+    </div>
+</div>
+<!-- END modal -->
+
 <div class="w-100 qr-section">
   <div class="card qr-card text-center">
     <div class="d-flex justify-content-center w-100">
@@ -187,6 +209,35 @@
 <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 
 <script>
+
+    var loop_check_time_cf_pay_slip ;
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+
+        let check_time_cf_pay_slip = "{{ Auth::user()->time_cf_pay_slip }}" ;
+        if(!check_time_cf_pay_slip){
+          loop_check_time_cf_pay_slip = setInterval(function () {
+              fetch("{{ url('/') }}/api/check_pay_slip" + "/" + "{{ Auth::user()->id }}" )
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    // console.log(result.time_cf_pay_slip);
+
+                    if(result.time_cf_pay_slip){
+                      document.querySelector('#btn_modal_cf_pay_slip').click();
+                      myStop_check_time_cf_pay_slip();
+                    }
+              });
+          }, 5000);
+        }
+
+    });
+
+    function myStop_check_time_cf_pay_slip() {
+        clearInterval(loop_check_time_cf_pay_slip);
+        // console.log("STOP LOOP");
+    }
 
     const video = document.getElementById('qr-video');
     const canvas = document.createElement('canvas');

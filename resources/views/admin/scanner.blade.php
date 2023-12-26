@@ -284,45 +284,12 @@
             if (code) {
                 // console.log(code.data);
 
-                if(code.data){
+                let name_Activity = document.querySelector('#name_Activity').value ;
 
-                    let type = code.data.split('=')[0]
-                	let name = code.data.split('=')[1];
-
-                    if (type == "account") {
-
-                        let name_Activity = document.querySelector('#name_Activity').value ;
-
-                        fetch("{{ url('/') }}/api/get_users" + "/" + name )
-                            .then(response => response.json())
-                            .then(result => {
-                                // console.log(result);
-                                let html_modal = `
-                                    <h4>ยืนยันการเข้าร่วมกิจกรรมของ</h4>
-                                    <h3 class="text-info">`+result.name+`</h3>
-                                    <p>ในการเข้าร่วมกิจกรรม .....</p>
-                                    <h3>`+name_Activity+`</h3>
-                                `;
-
-                                let html_footer = `
-                
-                                    <button type="button" class="btn btn-primary" onclick="change_status('`+name+`','{{ Auth::user()->id }}')">
-                                        Confirm
-                                    </button>
-                                    <button id="btn_close_modal" type="button" class="btn btn-secondary" data-dismiss="modal">
-                                        Back
-                                    </button>
-                                `;
-
-                                document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
-                                document.querySelector('#modal_footer').innerHTML = html_footer;
-
-                                document.querySelector('#btn_modal_check_activity').click();
-                        });
-
-                        
-                    }
+                if(name_Activity == "ยืนยันการชำระเงิน"){
+                    create_modal(name_Activity , code);
                 }
+
                 return;
             }
         }
@@ -356,6 +323,42 @@
                     document.querySelector('#alert_success').classList.remove('up_down');
                 };
         });
+    }
+
+
+    function create_modal(type , code)
+    {
+        if(type == "ยืนยันการชำระเงิน"){
+            let type = code.data.split('=')[0]
+            let name = code.data.split('=')[1];
+
+            fetch("{{ url('/') }}/api/get_users" + "/" + name )
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    let html_modal = `
+                        <h4>ยืนยันการเข้าร่วมกิจกรรมของ</h4>
+                        <h3 class="text-info">`+result.name+`</h3>
+                        <p>ในการเข้าร่วมกิจกรรม .....</p>
+                        <h3>`+name_Activity+`</h3>
+                    `;
+
+                    let html_footer = `
+    
+                        <button type="button" class="btn btn-primary" onclick="change_status('`+name+`','{{ Auth::user()->id }}')">
+                            Confirm
+                        </button>
+                        <button id="btn_close_modal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Back
+                        </button>
+                    `;
+
+                    document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+                    document.querySelector('#modal_footer').innerHTML = html_footer;
+
+                    document.querySelector('#btn_modal_check_activity').click();
+            });
+        }
     }
 
 </script>
