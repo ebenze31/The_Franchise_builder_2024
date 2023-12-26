@@ -44,7 +44,7 @@
                                     <div id="flush-{{ $item->id }}" class="collapse" data-bs-parent="#accordionActivities" style="padding: 10px;">
                                         <div class="row">
                                             <hr>
-                                            <div class="col-12 col-md-4">
+                                            <div class="col-12 col-md-4 mt-2 mb-2">
                                                 <div class="d-flex justify-content-center w-100">
                                                     <img src="{{ url('img/qr_Activities')}}/{{ $item->qr_code }}" class="qr-profile" alt="รูปภาพ QR Code" style="width:80%;">
                                                 </div>
@@ -52,7 +52,7 @@
                                                     Download
                                                 </a>
                                             </div>
-                                            <div class="col-12 col-md-8 text-start">
+                                            <div class="col-12 col-md-8 mt-2 mb-2 text-start">
                                                 <span class="float-start">{{ $item->detail }}</span>
                                             </div>
                                         </div>
