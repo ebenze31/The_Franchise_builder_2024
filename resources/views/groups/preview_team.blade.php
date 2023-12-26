@@ -87,10 +87,10 @@
                                         {{ Auth::user()->name }}
 
                                         @php
-                                            $time_cf_pay_slip = Auth::user()->time_cf_pay_slip;
+                                            $time_request_join = Auth::user()->time_request_join;
 
                                             // สร้าง DateTime object จากเวลาที่กำหนด
-                                            $specifiedTime = new DateTime($time_cf_pay_slip);
+                                            $specifiedTime = new DateTime($time_request_join);
 
                                             // เพิ่มเวลา 24 ชั่วโมง
                                             $specifiedTime->modify("+24 hours");
