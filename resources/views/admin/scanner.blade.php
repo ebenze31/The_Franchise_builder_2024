@@ -340,7 +340,7 @@
                         <h4>ยืนยันการเข้าร่วมกิจกรรมของ</h4>
                         <h3 class="text-info">`+result.name+`</h3>
                         <p>ในการเข้าร่วมกิจกรรม .....</p>
-                        <h3>`+name_Activity+`</h3>
+                        <h3>`+type+`</h3>
                     `;
 
                     let html_footer = `
