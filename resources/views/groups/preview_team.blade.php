@@ -85,9 +85,65 @@
                                     <div class="text-center" style="width: 95%;height: auto;">
                                         <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" style="width: 90%;" class="mt-2 mb-2">
                                         {{ Auth::user()->name }}
-                                        <p class="text-danger">Waiting : 23:59</p>
+
+                                        @php
+                                            $time_cf_pay_slip = Auth::user()->time_cf_pay_slip;
+
+                                            // สร้าง DateTime object จากเวลาที่กำหนด
+                                            $specifiedTime = new DateTime($time_cf_pay_slip);
+
+                                            // เพิ่มเวลา 24 ชั่วโมง
+                                            $specifiedTime->modify("+24 hours");
+
+                                            // สร้าง DateTime object สำหรับเวลาปัจจุบัน
+                                            $currentTime = new DateTime();
+
+                                            // ตรวจสอบว่าเวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงยังไม่ผ่านหรือไม่
+                                            if ($specifiedTime > $currentTime) {
+                                                // คำนวณความแตกต่าง
+                                                $interval = $specifiedTime->diff($currentTime);
+
+                                                // แปลงความแตกต่างเป็นชั่วโมงและนาที
+                                                $hours = $interval->h;
+                                                $hours = $hours + ($interval->days * 24); // เพิ่มชั่วโมงจากวันที่มีความแตกต่าง
+                                                $minutes = $interval->i;
+
+                                                $text_time = "Waiting : $hours:$minutes";
+                                            } else {
+                                                $text_time = "เวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงได้ผ่านไปแล้ว";
+                                            }
+                                        @endphp
+
+                                        <p id="show_timer_wait_host" class="text-danger">{{ $text_time }}</p>
                                     </div>
                                 </div>
+
+                                <script>
+
+                                    show_timer_wait_host();
+
+                                    function show_timer_wait_host(){
+
+                                        let hours = "{{ $hours }}";
+                                        let minutes = "{{ $minutes }}";
+
+                                        setInterval(function () {
+
+                                            // ลดนาทีลง 1
+                                            minutes--;
+
+                                            // ถ้านาทีเป็น -1 ลดชั่วโมงลง 1 และตั้งนาทีเป็น 59
+                                            if (minutes < 0) {
+                                                hours--;
+                                                minutes = 59;
+                                            }
+
+                                            // แสดงเวลาที่เหลือ
+                                            document.querySelector('#show_timer_wait_host').innerHTML = "Waiting : " +hours + ":" + minutes ;
+
+                                        }, 60000);
+                                    }
+                                </script>
 
                                 @php $add_div = 9 - count($list_member) ; @endphp
                             @else
@@ -322,7 +378,7 @@
                 <img src="{{ url('/img/icon/Frame 1.png') }}" style="width:100%;" class="mt-2 mb-2">
                 <h4 class="text-dark">สถานะ : รอการตอบรับจาก host</h4>
                 <h4>Team `+name_group+`</h4>
-                <p class="text-info">Waiting : 23:59</p>
+                <p class="text-info">Waiting : <span id="modal_timer">23:59</span></p>
                 <span class="text-dark">
                     ระหว่างรอการยืนยันจาก Host คุณจะไม่สามารถกดคำขอเข้าทีมอื่นได้
                     <br>
@@ -339,6 +395,25 @@
 
             document.querySelector('#modal_join_team_content').innerHTML = html_modal;
             document.querySelector('#modal_join_team_footer').innerHTML = html_footer;
+
+            let hours = 23;
+            let minutes = 59;
+
+            setInterval(function () {
+
+                // ลดนาทีลง 1
+                minutes--;
+
+                // ถ้านาทีเป็น -1 ลดชั่วโมงลง 1 และตั้งนาทีเป็น 59
+                if (minutes < 0) {
+                    hours--;
+                    minutes = 59;
+                }
+
+                // แสดงเวลาที่เหลือ
+                document.querySelector('#modal_timer').innerHTML = hours + ":" + minutes ;
+
+            }, 60000);
 
         }
         else if(type == "Host Accept"){
