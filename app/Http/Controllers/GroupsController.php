@@ -24,16 +24,19 @@ class GroupsController extends Controller
     {
         $data_user = Auth::user();
 
-        if( empty($data_user->group_id) ){
+        if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip ){
             $activeGroupsCount = Group::where('active', 'Yes')->count();
             return view('groups.index' , compact('activeGroupsCount'));
         }
         else if( !empty($data_user->group_id) && $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
             return redirect('preview_team'.'/'.$data_user->group_id);
         }
-        else{
+        else if( !empty($data_user->group_id) && $data_user->group_status != "กำลังขอเข้าร่วมบ้าน" ){
             $group_id = $data_user->group_id;
             return redirect('/group_my_team' .'/'. $group_id);
+        }
+        else{
+            return redirect('scanner');
         }
 
         // return view('groups.index');
