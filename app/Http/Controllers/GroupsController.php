@@ -225,7 +225,12 @@ class GroupsController extends Controller
         $data_user = Auth::user();
         $data_groups = Group::where('id' , $group_id)->first();
         $current_week = Pc_point::orderBy('week', 'desc')->select('week')->first();
-        $current_week = $current_week->week ;
+
+        if( !empty($current_week->week) ){
+            $current_week = $current_week->week ;
+        }else{
+            $current_week = 0 ;
+        }
 
         if( empty($data_user->group_id) ){
             return redirect('/groups');
