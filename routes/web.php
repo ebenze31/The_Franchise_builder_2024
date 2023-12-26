@@ -68,11 +68,6 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::get('/admin/scanner', 'HomeController@admin_scanner');
 });
 
-
-
-Route::get('/pp', function () {
-    return view('first_profile');
-});
 Route::get('/ranking_by_individual', function () {
     return view('pc_points/ranking_by_individual');
 });

@@ -162,7 +162,7 @@
 </style>
 
 
-<form class="w-100 qr-section" action="{{ route('edit_profile', Auth::user()->id) }}" method="post">
+<form class="w-100 qr-section" action="{{ route('edit_profile', Auth::user()->id) }}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="card qr-card text-center">
     @if( !empty(Auth::user()->photo) )
@@ -207,7 +207,7 @@
     @else
 
     <div class=" d-flex justify-content-center w-100 mt-4 ">
-      <div class="edit-first-profile" id="test">
+      <div class="edit-first-profile" id="DivEditProfile">
         <img src="{{ url('/img/icon/profile.png') }}" class="user-new-img" alt="รูปภาพผู้ใช้">
         <label for="photo" class="btn-edit-profile">
           <img src="{{ url('/img/icon/edit-profile.png') }}" alt="รูปภาพผู้ใช้">
@@ -333,7 +333,7 @@
 <script>
   function previewImage(input) {
   let preview = document.getElementById('preview');
-  let edit_first_profile = document.querySelector('#test');
+  let edit_first_profile = document.querySelector('#DivEditProfile');
   let btn_select_new_img = document.querySelector('#btn_select_new_img');
 
   if (input.files && input.files[0]) {

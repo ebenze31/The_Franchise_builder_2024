@@ -68,6 +68,6 @@ class HomeController extends Controller
         return view('admin.scanner');
     }
     public function scanner(){
-        return view('admin.scanner');
+        return view('scanner');
     }
 }
