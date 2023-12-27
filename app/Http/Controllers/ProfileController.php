@@ -249,6 +249,8 @@ class ProfileController extends Controller
                 $qr_code->insert($logo_icon,'center')->save();
 
                 $return = "สร้าง";
+
+                sleep(1);
             }
         }
 
