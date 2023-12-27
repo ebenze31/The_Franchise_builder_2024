@@ -288,7 +288,7 @@
         const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
-        if (code) {
+        if (code.data) {
           console.log(code.data);
           alert(code.data);
           return;
