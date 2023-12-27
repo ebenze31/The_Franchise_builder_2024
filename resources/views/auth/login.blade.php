@@ -1,6 +1,9 @@
 @extends('layouts.theme_login')
 
 @section('content')
+<!-- HTML in your document's head -->
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <style>
     .header-login h6 {
         color: #fff;
@@ -77,10 +80,30 @@
     }.modal-border{
         border-radius: 10px;
     }
+    #header-text-login {
+        display: none;
+    }
+    @media only screen and (max-width: 767px) {
+        #header-img-login {
+            width: 60% !important;
+            margin-top: 60%;
+        }
+        #div_first{
+            margin-top: 25% !important;
 
-    @media (width > 767px) {
-        #header-text-login {
-            width: 40% !important;
+        }
+        .form-group{
+            margin-top: 10px;
+        }.btn-login{
+            float: right;
+        }
+    }
+   
+    @media only screen and (min-width: 767px) and (max-width: 991px){
+        #header-img-login {
+            width: 50% !important;
+            margin-top: 80%;
+
         }
         .form-group{
             margin-top: 10px;
@@ -89,20 +112,12 @@
         }
     }
 
-    @media (width > 991px) {
-        #header-text-login {
-           margin-top: 15%;
-        }
-        .form-group{
-            margin-top: 10px;
-        }.btn-login{
-            float: right;
-        }
-    }
+    @media only screen and (min-width: 991px) and (max-width: 1200px){
+        #header-img-login {
+            width: 60% !important;
 
-    @media (width >= 1200px) {
-        #header-text-login {
-           margin-top: 12%;
+            margin-top: 50%;
+
         }
         .form-group{
             margin-top: 10px;
@@ -110,6 +125,19 @@
             float: right;
         }
     }
+    @media only screen and (min-width: 1200px) {
+        #header-img-login {
+            width: 60% !important;
+
+           margin-top:30%;
+        }
+        .form-group{
+            margin-top: 10px;
+        }.btn-login{
+            float: right;
+        }
+    }
+    
     .btn-outline-terms{
         outline: #005CD3 1px solid;
         border-radius: 5px;
@@ -125,14 +153,31 @@
     }.detail-login p {
         color: #fff;
     }
+    #header-img-login_second{
+        width: 60% !important;
+        margin-top:30%;
+        align-items: center;
+
+    }
 </style>
-<div id="div_first" class="container text-center mt-5">
-    <a class="btn btn-login" onclick="document.querySelector('#div_second').classList.remove('d-none'),document.querySelector('#div_first').classList.add('d-none')">
-        Login
-    </a>
+<div id="div_first" class="container text-center mt-5 w-100 ">
+    <div>
+         <div class="col">
+            <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 20%" id="header-img-login">
+        </div>
+        <div class="d-flex justify-content-center">
+            <a style="margin-top: 100px;" class="btn btn-login" onclick="document.querySelector('#div_second').classList.remove('d-none'),document.querySelector('#div_first').classList.add('d-none')">
+                Login
+            </a>
+        </div>
+    </div>
+       
 </div>
 
 <div id="div_second" class="container d-none">
+    <div class="d-flex justify-content-center">
+        <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 20%" id="header-img-login_second">
+    </div>
     <div class="header-login">
         <h6>
             <b>Hi there, welcome!</b>

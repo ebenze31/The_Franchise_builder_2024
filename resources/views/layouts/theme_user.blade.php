@@ -108,6 +108,7 @@
         top: 0;
         left: 0;
         z-index: 9999;
+        width: 200px;
     }
 </style>
 
