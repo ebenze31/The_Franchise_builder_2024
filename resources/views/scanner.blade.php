@@ -320,7 +320,7 @@
         const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
-        if (code.data) {
+        if (code) {
           // console.log(code.data);
           // alert(code.data);
           let type = code.data.split('=')[0];
