@@ -402,6 +402,9 @@
                                             `+btn_cf_Pay_slip+`
                                         </center>
                                     </td>
+                                    <td class="">
+                                        <img src="{{ url('/img/qr_profile')}}/`+result[i].qr_profile+`" class="p-1" alt="" style="width:100px;">
+                                    </td>
                                 </tr>
                             `;
 
