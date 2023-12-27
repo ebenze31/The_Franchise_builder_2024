@@ -140,7 +140,7 @@
 
   .info-warn {
     font-size: 14px;
-    font-weight: bold;
+    font-weight: lighter;
     color: #002449;
   }
 
