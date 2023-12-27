@@ -41,23 +41,21 @@
         padding: 10px 0;
         font-size: 12px;
         height: 100%;
-        >.item{
-            display: flex;
-            align-items: center;
-        }
-    }.btn-sort-group-active{
+    }.btn-sort-group .item{
+        display: flex;
+        align-items: center;
+    }
+    
+    .btn-sort-group-active{
         color: #0a58ca;
         padding: 10px 0;
 
     }.item-team{
         padding: 10px 10px 0 10px;
-        
-        
-
     }
     .item-team img{
         outline: 1px solid #00E0FF;
-        border-radius: 5px;
+        border-radius: 5px !important;
     }
 
     #content_groups{
