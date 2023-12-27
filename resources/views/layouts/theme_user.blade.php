@@ -32,15 +32,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700;800&family=Prompt:wght@500&display=swap" rel="stylesheet">
+    
 </head>
 
 <style>
-     @font-face {
-        font-family: "AllianzNeo";
-        src: url("../public/theme_admin/fonts/Font/Font/Allianz_Neo_webfonts/ttf/AllianzNeo-Bold.ttf") format("truetype");
-    }
     *:not(i) {
-        font-family: "AllianzNeo" !important;
+        font-family: 'Kanit', sans-serif !important;
     }
     #navbar-botttom {
         position: fixed !important;

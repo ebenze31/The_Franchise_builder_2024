@@ -39,13 +39,9 @@
         height: 100vh;
         margin: 0;
         backdrop-filter: blur(5px);
-    }@font-face {
-        font-family: "AllianzNeo";
-        src: url("../public/theme_admin/fonts/Font/Font/Allianz_Neo_webfonts/ttf/AllianzNeo-Bold.ttf") format("truetype");
-            
     }
     *:not(i) {
-        font-family: "AllianzNeo" !important;
+        font-family: 'Kanit', sans-serif;
     }
 </style>
 
