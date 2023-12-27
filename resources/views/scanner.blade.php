@@ -162,6 +162,34 @@
 </div>
 <!-- END modal -->
 
+<!-- Button trigger modal -->
+<button id="btn_modal_check_activity" type="button" class="d-none" data-toggle="modal" data-target="#modal_check_activity">
+    <!--  -->
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_check_activity" tabindex="-1" aria-labelledby="Label_modal_check_activity" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content py-3 mx-4">
+            <div class="modal-body">
+                <div class="row">
+                    <div id="content_modal_check_activity" class="col-12 text-center">
+                        <!-- DATA -->
+                        
+                    </div>
+                    <div class="col-12 text-center mt-4 mb-0">
+                        <p>เจ้าหน้าที่ผู้ยืนยัน : {{ Auth::user()->name }}</p>
+                    </div>
+                </div>
+            </div>
+            <div id="modal_footer" class="text-center mb-3">
+                <!-- BTN -->
+               
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="w-100 qr-section">
   <div class="card qr-card text-center">
     <div class="d-flex justify-content-center w-100">
@@ -293,8 +321,17 @@
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
         if (code.data) {
-          console.log(code.data);
-          alert(code.data);
+          // console.log(code.data);
+          // alert(code.data);
+          let type = code.data.split('=')[0];
+          let name = code.data.split('=')[1];
+
+          if(type == "Activies"){
+            if(name == "รับเสื้อ"){
+              create_modal_Activies(name , code);
+            }
+          }
+
           return;
         }
       }
@@ -359,6 +396,67 @@
         reader.readAsDataURL(imageFile);
     }
 
+    function create_modal_Activies(type , code)
+    {
+        if(type == "รับเสื้อ"){
+            let name = code.data.split('=')[1];
 
+            let html_modal = `
+                <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
+                <h3>`+type+`</h3>
+                <br>
+                <h4>Title</h4>
+                <input type="radio" id="S" name="Title" value="S"/>S
+                <input type="radio" id="M" name="Title" value="M"/>M
+                <input type="radio" id="L" name="Title" value="L"/>L
+                <input type="radio" id="XL" name="Title" value="XL"/>XL
+            `;
+
+            let html_footer = `
+
+                <button type="button" class="btn btn-submit" onclick="cf_shirt_size('`+name+`')">
+                    Confirm
+                </button>
+                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal">
+                    Back
+                </button>
+            `;
+
+            document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+            document.querySelector('#modal_footer').innerHTML = html_footer;
+
+            document.querySelector('#btn_modal_check_activity').click();
+        }
+    }
+
+    function cf_shirt_size(account){
+
+        let Title = document.querySelectorAll('input[name="Title"]');
+        let Title_value = "" ;
+            Title.forEach(Title => {
+                if(Title.checked){
+                    Title_value = Title.value;
+                }
+            })
+        fetch("{{ url('/') }}/api/cf_shirt_size" + "/" + account + "/" + Title_value )
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                // console.log(result);
+                document.querySelector('#btn_close_modal').click();
+
+                // modal success
+                
+                // document.querySelector('#alert_text').innerHTML = `
+                //    <i class="fa-solid fa-check text-success"></i> Success fully !
+                // `;
+                // document.querySelector('#alert_success').classList.add('up_down');
+
+                // const animated = document.querySelector('.up_down');
+                // animated.onanimationend = () => {
+                //     document.querySelector('#alert_success').classList.remove('up_down');
+                // };
+        });
+    }
 </script>
 @endsection
