@@ -64,7 +64,7 @@
                 <h5 class="modal-title text-center" id="exampleModalLabel">
                     Pending requests
                 </h5>
-                <button class="close btn" data-dismiss="modal" aria-label="Close">
+                <button id="close_Pending" class="close btn" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -78,6 +78,34 @@
     </div>
 </div>
 <!-- END modal_request_join -->
+
+<!-- modal_cf_answer_request -->
+<button id="btn_modal_cf_answer_request" class="d-none" data-toggle="modal" data-target="#modal_cf_answer_request"></button>
+
+<div class="modal fade" id="modal_cf_answer_request" tabindex="-1" aria-labelledby="Label_cf" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="Label_cf">
+                    Request to join
+                </h5>
+                <button class="close btn" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modal_cf_answer_request_content" class="text-center">
+                    <!-- content -->
+                </div>
+                <div id="modal_cf_answer_request_footer" class="modal-footer text-center">
+                    <!-- BTN -->
+                </div>
+                <a id="a_group_my_team" href="{{ url('/group_my_team') . '/' . $group_id }}" class="d-none"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END modal_cf_answer_request -->
 
 <div class="container-fluid">
     <div class="row">
@@ -215,6 +243,7 @@
 
     function open_modal_request_join(){
 
+        document.querySelector('#modal_request_join_content').innerHTML = '' ;
         let html_modal ;
 
         @if( !empty($data_groups->request_join) )
@@ -224,7 +253,35 @@
 
             @for ($i = 0; $i < count($list_request_join); $i++) 
 
-            @php $member = App\User::where('id' , $list_request_join[$i] )->first(); @endphp
+            @php 
+                $member = App\User::where('id' , $list_request_join[$i] )->first();
+
+                $time_request_join = $member->time_request_join;
+
+                // สร้าง DateTime object จากเวลาที่กำหนด
+                $specifiedTime = new DateTime($time_request_join);
+
+                // เพิ่มเวลา 24 ชั่วโมง
+                $specifiedTime->modify("+24 hours");
+
+                // สร้าง DateTime object สำหรับเวลาปัจจุบัน
+                $currentTime = new DateTime();
+
+                // ตรวจสอบว่าเวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงยังไม่ผ่านหรือไม่
+                if ($specifiedTime > $currentTime) {
+                    // คำนวณความแตกต่าง
+                    $interval = $specifiedTime->diff($currentTime);
+
+                    // แปลงความแตกต่างเป็นชั่วโมงและนาที
+                    $hours = $interval->h;
+                    $hours = $hours + ($interval->days * 24); // เพิ่มชั่วโมงจากวันที่มีความแตกต่าง
+                    $minutes = $interval->i;
+
+                    $text_time = "Waiting : $hours:$minutes";
+                } else {
+                    $text_time = "เวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงได้ผ่านไปแล้ว";
+                }
+            @endphp
 
             html_modal = `
                 <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
@@ -233,11 +290,11 @@
                     </div>
                     <div class="ms-2">
                         <h6 class="mb-1 font-14">{{ $member->name }}</h6>
-                        <p class="mb-0 font-13 text-secondary">Waiting : 22:32</p>
+                        <p class="mb-0 font-13 text-secondary">{{ $text_time }}</p>
                     </div>
                     <div class="list-inline d-flex customers-contacts ms-auto">
-                        <span class="btn btn-sm btn-primary list-inline-item">Accept</span>
-                        <span class="btn btn-sm btn-danger list-inline-item">Reject</span>
+                        <span class="btn btn-sm btn-primary list-inline-item" onclick="answer_request('Accept', '{{ $group_id }}','{{ $member->id }}' , '{{ $member->name }}' , '{{ $member->photo }}')">Accept</span>
+                        <span class="btn btn-sm btn-danger list-inline-item" onclick="answer_request('Reject', '{{ $group_id }}','{{ $member->id }}' , '{{ $member->name }}' , '{{ $member->photo }}')">Reject</span>
                     </div>
                 </div>
             `;
@@ -253,6 +310,58 @@
         
         document.querySelector('#btn_modal_request_join').click();
 
+    }
+
+    function answer_request(answer , group_id , member_id , member_name , member_photo)
+    {
+        document.querySelector('#close_Pending').click();
+
+        let html_modal = `
+            <img src="{{ url('storage')}}/`+member_photo+`" style="width:115px;height:115px;" class="mt-2 mb-2">
+            <h4 class="mt-3 mb-0" style="color:#37BCBC;">`+member_name+`</h4>
+            <p style="color:#37BCBC;" class="warn-text"><b>ตอบรับคำขอเข้าร่วมทีม</b></p>
+            <div class="text-dark">
+                <p>Countdown : 20:51</p>
+            </div>
+        `;
+
+        let html_footer = `
+            <button type="button" class="btn btn-primary padding-btn" onclick="CF_answer_request('Accept' , '`+member_id+`' , '`+group_id+`')">
+                Confirm
+            </button>
+            <button type="button" class=" padding-btn btn btn-danger" onclick="CF_answer_request('Reject' , '`+member_id+`' , '`+group_id+`')">
+                Reject
+            </button>
+
+            <span class="mt-4 text-center">
+                หาก Confirm แล้วจะเป็นการยืนยันสมาชิก
+                <br>
+                และ ไม่สามารถเปลี่ยนได้อีก
+            </span>
+        `;
+
+        document.querySelector('#modal_cf_answer_request_content').innerHTML = html_modal;
+        document.querySelector('#modal_cf_answer_request_footer').innerHTML = html_footer;
+        
+        document.querySelector('#btn_modal_cf_answer_request').click();
+        
+    }
+
+    function CF_answer_request(answer , member_id , group_id)
+    {
+        // console.log("answer >> " + answer);
+        // console.log("member_id >> " + member_id);
+        // console.log("group_id >> " + group_id);
+
+        fetch("{{ url('/') }}/api/CF_answer_request/" + answer + "/" + member_id + "/" + group_id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+
+                if(result){
+                    document.querySelector('#a_group_my_team').click();
+                }
+        });
     }
 
 

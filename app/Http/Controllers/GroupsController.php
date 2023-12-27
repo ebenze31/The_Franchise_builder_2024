@@ -422,4 +422,18 @@ class GroupsController extends Controller
         return  "success" ;
 
     }
+
+    function CF_answer_request($answer , $member_id , $group_id)
+    {
+        if($answer == "Accept"){
+            
+        }
+        else if($answer == "Reject"){
+
+        }
+
+        return  "success" ;
+    }
+
+
 }
