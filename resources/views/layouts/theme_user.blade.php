@@ -63,35 +63,38 @@
     p{
         margin-bottom: 0px;
     }
+    
     .background { 
-            position: fixed; 
-            height: 100%; 
-            width: 100%; 
-            background-image: url("{{ asset('theme_admin/images/BG/BG.png') }}");
-            background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+        position: fixed; 
+        height: 100%; 
+        width: 100%; 
+        background-image: url("{{ asset('theme_admin/images/BG/BG.png') }}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         margin: 0;
         border: none;
         z-index: -10;
-        } .mheebar a svg{
-           width: 33px;
-           height: 33px;
-           fill: #fff;
-        }
+    } 
+    
+    .mheebar a svg{
+        width: 33px;
+        height: 33px;
+        fill: #fff;
+    }
 
-       
-        @media (width < 680px) {
-            #header-text-login{
-                width: 139.67px;
-            }
+
+    @media (width < 680px) {
+        #header-text-login{
+            width: 139.67px;
         }
-        
-        @media (680px <= width <=1200px) {
-            #header-text-login{
-                width: 200px;
-            }
+    }
+
+    @media (680px <= width <=1200px) {
+        #header-text-login{
+            width: 200px;
         }
+    }
 </style>
 
 <body>

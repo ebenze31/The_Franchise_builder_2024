@@ -10,23 +10,29 @@
         margin-top: 55px;
         padding: 15px;
         background: rgb(7,139,166);
-background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%, rgba(8,49,90,1) 84%, rgba(11,40,70,1) 100%);
+        background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%, rgba(8,49,90,1) 84%, rgba(11,40,70,1) 100%);
         border-radius: 10px 0 0 0;
         display: flex;
         align-items: center;
-        >img{
-            width: 114px;
-            height:114px;
-            position: absolute;
-            bottom: 0;
-            left: 15px;
-        }
-        >h1{
-            text-indent: 120px;
-            color: #fff;
-            font-weight: lighter;
-        }
-    }.member-section{
+        
+    }
+    .header-team img{
+        width: 114px;
+        height:114px;
+        position: absolute;
+        bottom: 0;
+        left: 15px;
+    }
+    .header-team h1{
+        text-indent: 120px;
+        color: #fff;
+        font-weight: lighter;
+    }
+
+    
+    
+    
+    .member-section{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -98,12 +104,13 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
     .modal-footer{
         border-top: none !important;
         justify-content: center !important;
-
-        >button{
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-    }.text-info-modal{
+    } 
+    .modal-footer button{
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+    
+    .text-info-modal{
         color: #00AAAC;
     }.warn-text{
         letter-spacing: -1px;
@@ -124,13 +131,15 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
         height: 31px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         padding: 2px 0 0 0;
-
-        >i{
-            margin-left: 5px;
+    }
+    .host-member i{
+        margin-left: 5px;
             /* margin-top: 0px; */
             font-size: 17px;
-        }
-    }.name-member{
+    }
+    
+    
+    .name-member{
         width: 95%;
         white-space: nowrap;
         overflow: hidden;

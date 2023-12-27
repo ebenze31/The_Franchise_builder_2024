@@ -3,22 +3,22 @@
 @section('content')
 <style>
     #header-text-login{
-            width:45% !important;
-        }.news-card{
-            border-radius: 10px;
-            background-color: #fff;
-        } .cover-img{
-            width: 100%;
-            aspect-ratio: 350 /185 ;
-        }.news-detail{
-            color: #07285A;
-            text-indent: 40px;
-            margin-bottom: 10px;
-        }.video-news{
-            width: 100%;
-        }.divvideo{
-            padding: 50px;
-        }
+        width:45% !important;
+    }.news-card{
+        border-radius: 10px;
+        background-color: #fff;
+    } .cover-img{
+        width: 100%;
+        aspect-ratio: 350 /185 ;
+    }.news-detail{
+        color: #07285A;
+        text-indent: 40px;
+        margin-bottom: 10px;
+    }.video-news{
+        width: 100%;
+    }.divvideo{
+        padding: 50px;
+    }
 </style>
     <div class="container p-0">
         <div class="row">

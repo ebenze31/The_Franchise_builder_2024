@@ -52,7 +52,7 @@
         margin-top: 55px;
         padding: 15px;
         background: rgb(7,139,166);
-background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%, rgba(8,49,90,1) 84%, rgba(11,40,70,1) 100%);
+        background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%, rgba(8,49,90,1) 84%, rgba(11,40,70,1) 100%);
         border-radius: 10px 0 0 0;
         display: flex;
         align-items: center;
@@ -82,11 +82,12 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
         flex-wrap: wrap;
         justify-content: center;
         margin-top: 20px;
-
-    }@media (width < 680px) {
+    }
+    
+    @media (width < 680px) {
         .member-item{
             width: 30%;
-            height: 128px;
+            height: 128px !important;
             margin: 0 2px;
         }
     }
@@ -125,10 +126,10 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
 
         
     }.host-member i{
-            margin-left: 5px;
-            /* margin-top: 0px; */
-            font-size: 17px;
-        }
+        margin-left: 5px;
+        /* margin-top: 0px; */
+        font-size: 17px;
+    }
     
     
     .member-card-join{
@@ -154,7 +155,7 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
     }
   
   
-  modal-header{
+  .modal-header{
     background-color: #002449;
   } .modalHeaderrequest {
     background-color: #002449;
@@ -284,7 +285,7 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
                 $data_pc_point = App\Models\Pc_point::where('week' , $current_week)->where('user_id' , $list_member[$i])->first();
             @endphp
             
-            <div class="member-item col-4 mt-2 mb-3" >
+            <div class="member-item col-4 mt-2 mb-2" >
                     <div class="member-card-join">
                         @if( $list_member[$i] == $data_groups->host )
                         <span class="btn host-member">
