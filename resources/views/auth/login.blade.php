@@ -168,13 +168,13 @@
                 </div>
             </div>
 
-            <div class="w-100 forgot-password">
+            <div class="w-100 forgot-password d-none">
                 <a href="" class=" w-100"><u>Forgot Password</u></a>
             </div>
 
             <div class="form-group mb-0 d-flex justify-content-center w-100 mt-3 ">
                 <div class="col-md-8">
-                    <a  class="btn btn-login" onclick="checkCookie()">
+                    <a  class="btn btn-login" onclick="accept_terms()">
                         {{ __('Login') }}
                     </a>
                 </div>
@@ -222,7 +222,7 @@
     // ตรวจสอบว่ามีการโหลด cookie หรือไม่
     
     document.addEventListener('DOMContentLoaded', (event) => {
-        // checkCookie();
+        checkCookie();
         
     });
 
@@ -232,8 +232,6 @@ function checkCookie() {
     if (isChecked === "") {
         // ถ้ามี cookie แล้วให้ตรวจสอบ checkbox
         info_terms();
-    }else{
-        accept_terms();
     }
 }
 
