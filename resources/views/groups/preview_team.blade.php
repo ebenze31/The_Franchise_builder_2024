@@ -177,10 +177,10 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
     </div>
 </div>
 <!-- END modal_join_team -->
-<button class="btn btn-warning" onclick="test_modal('Team Ready');">TEST</button>
+<button class="btn btn-warning d-none" onclick="test_modal('Team Ready');">TEST</button>
 
 <div class="d-flex header-team">
-    <img src="{{ url('/img/bg_group/logo_group/bg_group_') . $group_id . '.png' }}"  class="mt-2 mb-2 img-header-team">
+    <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}"  class="mt-2 mb-2 img-header-team">
     <h1>Team {{ $group_id }}</h1>
 </div>
 <div class="memberInRoom">

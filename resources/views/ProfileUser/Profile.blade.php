@@ -59,5 +59,10 @@
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
     @csrf
 </form>
-
+<script>
+     document.addEventListener('DOMContentLoaded', (event) => {
+    // console.log("START");
+    change_menu_bar('profile');
+  });
+</script>
 @endsection

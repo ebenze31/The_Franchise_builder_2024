@@ -208,7 +208,7 @@
 </div>
 
 <!-- Button trigger modal -->
-<button id="btn_modal_check_activity" type="button" class="d-nozne" data-toggle="modal" data-target="#modal_check_activity">
+<button id="btn_modal_check_activity" type="button" class="d-none" data-toggle="modal" data-target="#modal_check_activity">
     <!--  -->
 </button>
 

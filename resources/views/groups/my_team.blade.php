@@ -45,7 +45,118 @@
         100% {
             transform: translateY(0);
         }
+    } .content-section{
+        padding: 0;
+    }.header-team{
+        position: relative;
+        margin-top: 55px;
+        padding: 15px;
+        background: rgb(7,139,166);
+background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%, rgba(8,49,90,1) 84%, rgba(11,40,70,1) 100%);
+        border-radius: 10px 0 0 0;
+        display: flex;
+        align-items: center;
+        >img{
+            width: 114px;
+            height:114px;
+            position: absolute;
+            bottom: 0;
+            left: 15px;
+        }
+        >div{
+            text-indent: 140px;
+            color: #fff;
+            font-weight: lighter;
+        }
+    }.memberInRoom{
+        background-color:#0b2846;
+        padding: 15px 10px 10px 15px;
+        height: 100%;
+    }.text-mamber{
+        color:#05ADD0;
+    }.member-section{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+
+    }@media (width < 680px) {
+        .member-item{
+            min-width: 100px;
+            max-width: 120px;
+            height: 121px;
+            margin: 0 7px;
+        }
     }
+    @media (width > 680px) {
+        .member-item{
+            min-width: 100px;
+            max-width: 180px;
+            height: 121px;
+            margin: 0 10px;
+        }
+    }.member-card{
+        background-color: #fff;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        position: relative;
+    }.img-member{
+        width:100%;
+        height:87px;
+        /* outline: 1px solid #000; */
+        border-radius: 5px;
+        object-fit: contain;
+    }.host-member{
+        position:absolute;
+        right: -10px;
+        top: -10px;
+        background-color: #fff;
+        border-radius: 50%;
+        width: 31px;
+        height: 31px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding: 2px 0 0 0;
+
+        >i{
+            margin-left: 5px;
+            /* margin-top: 0px; */
+            font-size: 17px;
+        }
+    }.member-card-join{
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        position: relative;
+    }.name-member{
+        width: 95%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }.btn-close-modal {
+        font-size: 18px;
+
+    >span {
+      background-color: #fff;
+      color: #002449;
+      padding: 0px 8px;
+      border-radius: 50%;
+      font-size: 22px;
+    }
+  }modal-header{
+    background-color: #002449;
+  } .modalHeaderrequest {
+    background-color: #002449;
+    color: #fff !important;
+    padding: 3px;
+  }.text-count-down{
+    color: #005CD3;
+  }.btn-accept{
+    background-color: #128DFF;
+    color: #fff;
+  }
 </style>
 
 <div id="alert_success" class="div_alert" role="alert">
@@ -60,12 +171,13 @@
 <div class="modal fade" id="modal_request_join" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLabel">
-                    Pending requests
-                </h5>
-                <button id="close_Pending" class="close btn" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+            <div class="modal-header modalHeaderrequest">
+                <div class="w-100 text-center">
+
+                    <p class="modal-request-title text-white text-center" id="exampleModalLongTitle">Pending requests</p>
+                </div>
+                <button type="button" class="close btn btn-close-modal" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -106,8 +218,105 @@
     </div>
 </div>
 <!-- END modal_cf_answer_request -->
+<div class="d-flex header-team">
+    <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}"  class="mt-2 mb-2 img-header-team">
+    <div>
+        <h1 class="text-white">Team {{ $group_id }}</h1>
+        @if( !empty($data_groups->rank_of_week) )
+            <p style="font-size: 14px;color: yellow;">PC : <span>xxxx</span></p>
+        @endif
+    </div>
+</div>
 
-<div class="container-fluid">
+<div class="memberInRoom">
+    <div class="d-flex justify-content-between px-4 align-items-center">
+        <div>
+            <span class="text-mamber h4">Members</span>  <span class="text-white">: Team {{ $group_id }}</span>
+            <p class="text-white">Member : <span id="amount_member"></span>/10</p>
+        </div>
+        <div>
+            <button style="font-size:9px;" class="float-end btn btn-sm btn-warning position-relative" onclick="open_modal_request_join();">
+                Pending requests
+
+                @if( !empty($data_groups->request_join) )
+                @php
+                    $list_request_join = json_decode($data_groups->request_join);
+                @endphp
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ count($list_request_join) }}
+                </span>
+                @endif
+
+            </button>
+        </div>
+    </div>
+
+    <div class="member-section ">
+        @php
+            $list_member = json_decode($data_groups->member);
+        @endphp
+                    
+
+        @for ($i = 0; $i < count($list_member); $i++) 
+
+            @php 
+                $member = App\User::where('id' , $list_member[$i] )->first();
+                $data_pc_point = App\Models\Pc_point::where('week' , $current_week)->where('user_id' , $list_member[$i])->first();
+            @endphp
+            
+            <div class="member-item col-4 mt-2 mb-3" >
+                    <div class="member-card-join">
+                        @if( $list_member[$i] == $data_groups->host )
+                        <span class="btn host-member">
+                            <i class="fa-solid fa-key text-warning"></i>
+                        </span>
+                        @endif
+                        <div class="text-center">
+                            <div class="text-center" >
+                                <img src="{{ url('storage')}}/{{ $member->photo }}" class="img-member">
+                            </div>
+                            <div class="name-member">
+                                <span class="font-10"><b>{{ $member->name }}</b></span> 
+                            </div>
+                        </div>
+                        
+                    </div>
+                 
+                </div>
+            
+        @endfor
+
+        @if( count($list_member) < 10)
+
+            @php $add_div = 10 - count($list_member) ; @endphp
+
+            @for ($i = 0; $i < $add_div; $i++) 
+                <div id="Team_no" class="member-item col-4 mt-2 mb-2">
+                <div class="member-card h-100" style="width: 100%;height: auto;">
+                        <div class="text-center">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <p class="font-12">Join our team</p>
+                        </div>
+                        </div>
+                </div>
+            @endfor
+        @endif
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container-fluid d-none">
     <div class="row">
         <div class="card">
             <div class="card-body">
@@ -215,12 +424,13 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <script>
     
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+    change_menu_bar('team');
 
         var group_id = "{{ $group_id }}" ;
 
@@ -287,14 +497,17 @@
             html_modal = `
                 <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
                     <div class="">
-                        <img src="{{ url('storage')}}/{{ $member->photo }}" class="rounded-circle" width="46" height="46" alt="">
+                        <img src="{{ url('storage')}}/{{ $member->photo }}" class="rounded-circle" width="50" height="50" alt="">
                     </div>
-                    <div class="ms-2">
-                        <h6 class="mb-1 font-14">{{ $member->name }}</h6>
-                        <p class="mb-0 font-13 text-secondary">{{ $text_time }}</p>
+                    <div class="ms-2 d-flex align-items-center">
+                        <div> 
+                            <h6 class="mb-0 font-14">{{ $member->name }}</h6>
+                            <p class="mb-0 font-13 text-count-down text-start">{{ $text_time }}</p>
+                        </div>
+                       
                     </div>
                     <div class="list-inline d-flex customers-contacts ms-auto">
-                        <span class="btn btn-sm btn-primary list-inline-item" onclick="answer_request('Accept', '{{ $group_id }}','{{ $member->id }}' , '{{ $member->name }}' , '{{ $member->photo }}','{{ $Countdown }}')">Accept</span>
+                        <span class="btn btn-sm btn-accept list-inline-item" onclick="answer_request('Accept', '{{ $group_id }}','{{ $member->id }}' , '{{ $member->name }}' , '{{ $member->photo }}','{{ $Countdown }}')">Accept</span>
                         <span class="btn btn-sm btn-danger list-inline-item" onclick="answer_request('Reject', '{{ $group_id }}','{{ $member->id }}' , '{{ $member->name }}' , '{{ $member->photo }}','{{ $Countdown }}')">Reject</span>
                     </div>
                 </div>
