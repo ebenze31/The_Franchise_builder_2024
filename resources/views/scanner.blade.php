@@ -322,7 +322,7 @@
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
         if (code) {
-            // console.log(code.data);
+            console.log(code.data);
 
             let type = code.data.split('=')[0];
             let name = code.data.split('=')[1];
