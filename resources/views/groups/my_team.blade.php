@@ -77,27 +77,36 @@
         height: 100%;
     }.text-mamber{
         color:#05ADD0;
-    }.member-section{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-top: 20px;
-    }
-    
-    @media (width < 680px) {
+    }@media only screen and (max-width: 680px) {
         .member-item{
             width: 30%;
-            height: 128px !important;
+            height: 128px;
             margin: 0 2px;
         }
+         
+        .member-section{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+            width: 100%;
+        }
     }
-    @media (width > 680px) {
-        .member-item{
-            min-width: 100px;
-            max-width: 180px;
-            height: 128px;
 
+    @media only screen and (min-width: 680px) {
+        .member-item{
+            width: 150px;
+            height: 128px;
             margin: 0 10px;
+        }
+         
+        .member-section{
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            width: 100%;
+            
+
         }
     }.member-card{
         background-color: #fff;
