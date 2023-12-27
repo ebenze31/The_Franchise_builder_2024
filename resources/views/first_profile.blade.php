@@ -172,7 +172,7 @@
   @csrf
   <div class="card qr-card text-center">
     @if(request("type") == "edit_profile")
-<div class=" d-flex justify-content-center w-100 mt-4 ">
+    <div class=" d-flex justify-content-center w-100 mt-4 ">
       <div class="edit-first-profile" id="DivEditProfile">
       @if(!empty(Auth::user()->photo) )
         <label for="photo">
@@ -189,10 +189,10 @@
       </div>
       <img id="preview" src="{{ url('/') }}" alt="ภาพพรีวิว" class="d-none" style="max-width:100%; height:auto;">
     </div>
-    <label for="photo" id="btn_select_new_img" class="btn btn-submit d-none">
-      เลือกใหม่
+    <label for="photo" id="btn_select_new_img" class="d-none">
+    <i class="fa-solid fa-chevron-right fa-rotate-180"></i> Chang image
     </label>
-    
+
     <p class="info-user mt-3 mb-0" data-toggle="modal" data-target="#exampleModalCenter">{{ Auth::user()->name }} </p>
     <!-- <p class="info-user">{{ Auth::user()->email }}</p> -->
 
@@ -230,7 +230,12 @@
   <input type="text" class="d-none" id="currentWidth" name="currentWidth" value="" readonly>
   <input type="text" class="d-none" id="currentHeight" name="currentHeight" value="" readonly>
   <input type="text" class="d-none" id="type" name="type" value="{{request("type")}}" readonly>
-  <input class="form-control d-none" name="photo" type="file" id="photo" accept="image/*" onchange="previewImage(this)" required>
+
+  @if(request("type") == "first_profile")
+  <input class="form-control d-none" name="photo" type="file" id="photo" accept="image/*" onchange="previewImage(this)"required>
+  @else
+  <input class="form-control d-none" name="photo" type="file" id="photo" accept="image/*" onchange="previewImage(this)" >
+  @endif
 
 </form>
 

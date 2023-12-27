@@ -35,14 +35,13 @@
 </head>
 
 <style>
-    @font-face {
-        font-family: 'AllianzNeoW04'; /* ตั้งชื่อฟอนต์ตามที่คุณต้องการ */
-        src: url('theme_admin/fonts/Font/Font/Allianz_Neo_webfonts/woff/AllianzNeoW04-Regular.woff') format('woff'); /* เปลี่ยนเส้นทางเพื่อชี้ไปยังไฟล์ฟอนต์ของคุณ */
-        /* คุณสามารถกำหนดคุณสมบัติอื่น ๆ ของฟอนต์ได้ตามต้องการ */
+      @font-face {
+        font-family: "AllianzNeo";
+        src: url("./theme_admin/fonts/Font/Font/Allianz_Neo_webfonts/woff/AllianzNeoW01-Re.ttf") format("ttf"),
     }
 
-    * {
-        font-family: 'AllianzNeoW02', sans-serif; /* ใช้ฟอนต์ใน body หรือที่คุณต้องการ */
+    *:not(i) {
+        font-family: AllianzNeo !important;
     }
     #navbar-botttom {
         position: fixed !important;

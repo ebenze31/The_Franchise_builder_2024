@@ -31,16 +31,7 @@
 
     
     
-    
-    .member-section{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        margin-top: 20px;
-        width: 100%;
-        
-
-    }.memberInRoom{
+   .memberInRoom{
         background-color:#0b2846;
         padding: 15px 10px 10px 15px;
         height: 100%;
@@ -55,6 +46,14 @@
             height: 128px;
             margin: 0 2px;
         }
+         
+        .member-section{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+            width: 100%;
+        }
     }
 
     @media only screen and (min-width: 680px) {
@@ -63,6 +62,15 @@
             height: 128px;
             margin: 0 10px;
         }
+         
+    .member-section{
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        width: 100%;
+        
+
+    }
     }
     .member-card{
         background-color: #fff;
@@ -373,7 +381,6 @@
     <div class="row">
         <div class="card">
             <div class="card-body">
-
             	<div class="row">
             		<div class="col-12" style="background-color: skyblue;height: auto;position: relative;">
             			<div class="row">
@@ -391,7 +398,6 @@
             	</div>
 
                 <div class="row mt-3">
-                    
                     @if( empty($data_groups->member) )
                         @for ($i = 0; $i < 10; $i++) 
                         <div id="Team_no" class=" col-4 mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');">
