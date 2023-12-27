@@ -807,7 +807,7 @@
         else if(type == "Host Accept"){
 
             let html_modal = `
-                <img src="{{ url('/img/icon/Group 694.png') }}" style="width:250px;" class="mt-2 mb-2">
+                <img src="{{ url('/img/icon/tick.png') }}" style="width: 125px;height: 125px;" class="mt-2 mb-2">
                 <h4 class="text-success">ยืนยันการเข้าร่วมสำเร็จ !</h4>
                 <p class="text-dark">คุณพร้อมเเล้วสำหรับการสร้าง Team work</p>
             `;
