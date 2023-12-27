@@ -477,7 +477,7 @@
                 }
             })
         fetch("{{ url('/') }}/api/cf_shirt_size" + "/" + account + "/" + Title_value )
-            .then(response => response.json())
+            .then(response => response.text())
             .then(result => {
                 // console.log(result);
                 // console.log(result);
