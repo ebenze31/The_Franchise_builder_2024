@@ -261,7 +261,7 @@
             @if( !empty(Auth::user()->scan_qr_for) )
             <option class="text-white text-center" value="{{ Auth::user()->scan_qr_for }}">{{ Auth::user()->scan_qr_for }}</option>
             @else
-            <option class="text-white text-center" value="">ชื่อกิจกรรม</option>
+            <option class="text-white text-center" value="">กรุณาเลือกกิจกรรม</option>
             @endif
 
             @foreach($Activity as $item)
