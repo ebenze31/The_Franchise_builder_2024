@@ -148,9 +148,9 @@
     <div class="modal-dialog modal-dialog-centered px-4">
         <div class="modal-content">
             <div id="modal_cf_pay_slip_content" class="modal-body text-center pb-0">
-                <img src="{{ url('/img/icon/Frame 2.png') }}" style="width:150px;" class="mt-2 mb-2">
-                <h4 class="text-info mt-3"><b>ยืนยันการชำระเงินเรียบร้อยแล้ว</b></h4>
-                <p class="text-info mb-0">ไปยังหน้าจัดกลุ่ม</p>
+              <img src="{{ url('/img/icon/tick.png') }}" style="width:125px;height:125px;" class="mt-2 mb-2">
+                <h4 class="text-success mt-3">ยืนยันการเข้าร่วมสำเร็จ !</h4>
+                <p class="text-dark">คุณพร้อมเเล้วสำหรับการสร้าง Team work</p>
                 <br>
             </div>
             <div id="modal_cf_pay_slip_footer" class="modal-footer text-center">
