@@ -133,6 +133,7 @@
     position: absolute;
     bottom: 0;
     right: 20px;
+  }.btn-edit-profile img{
     width: 47px;
     height: 47px;
   }

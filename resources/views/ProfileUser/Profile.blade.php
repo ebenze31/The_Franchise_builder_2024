@@ -51,11 +51,14 @@
         font-size: 12px;
         display: flex;
         align-items: center;
+        -webkit-border-radius: 50px; 
+    -moz-border-radius: 50px;
     }
 
     .btn-logout i {
         font-size: 15px;
         margin-top: -12px;
+        
     }
 
     .textScore {
@@ -107,15 +110,14 @@
         padding: 10px 40px;
         background-color: #005CD3;
         color: #fff;
-        -webkit-border-radius: 50px; 
-    -moz-border-radius: 50px;
+        
     }
 
   .btn-submit:hover {
     border: 1px solid #00E0FF;
     box-shadow: 0px 0px 15px 1px #00FBFF;
     color: #fff;
-
+    
   }
 </style>
 
