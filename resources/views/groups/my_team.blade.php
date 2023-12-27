@@ -299,40 +299,42 @@
                     $requests_little_h = 25;
                     $requests_little_m = 59;
 
-                    for ($i = 0; $i < count($list_request_join); $i++) {
+                    if( !empty($data_groups->request_join) ){
+                        for ($i = 0; $i < count($list_request_join); $i++) {
 
-                        $member = App\User::where('id' , $list_request_join[$i] )->first();
+                            $member = App\User::where('id' , $list_request_join[$i] )->first();
 
-                        $time_request_join = $member->time_request_join;
+                            $time_request_join = $member->time_request_join;
 
-                        // สร้าง DateTime object จากเวลาที่กำหนด
-                        $specifiedTime = new DateTime($time_request_join);
+                            // สร้าง DateTime object จากเวลาที่กำหนด
+                            $specifiedTime = new DateTime($time_request_join);
 
-                        // เพิ่มเวลา 24 ชั่วโมง
-                        $specifiedTime->modify("+24 hours");
+                            // เพิ่มเวลา 24 ชั่วโมง
+                            $specifiedTime->modify("+24 hours");
 
-                        // สร้าง DateTime object สำหรับเวลาปัจจุบัน
-                        $currentTime = new DateTime();
+                            // สร้าง DateTime object สำหรับเวลาปัจจุบัน
+                            $currentTime = new DateTime();
 
-                        // ตรวจสอบว่าเวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงยังไม่ผ่านหรือไม่
-                        if ($specifiedTime > $currentTime) {
-                            // คำนวณความแตกต่าง
-                            $interval = $specifiedTime->diff($currentTime);
+                            // ตรวจสอบว่าเวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงยังไม่ผ่านหรือไม่
+                            if ($specifiedTime > $currentTime) {
+                                // คำนวณความแตกต่าง
+                                $interval = $specifiedTime->diff($currentTime);
 
-                            // แปลงความแตกต่างเป็นชั่วโมงและนาที
-                            $hours = $interval->h;
-                            $hours = $hours + ($interval->days * 24); // เพิ่มชั่วโมงจากวันที่มีความแตกต่าง
-                            $minutes = $interval->i;
+                                // แปลงความแตกต่างเป็นชั่วโมงและนาที
+                                $hours = $interval->h;
+                                $hours = $hours + ($interval->days * 24); // เพิ่มชั่วโมงจากวันที่มีความแตกต่าง
+                                $minutes = $interval->i;
 
-                            if( $hours < $requests_little_h){
-                                $requests_little_h = $hours ;
-                                $requests_little_m = $minutes ;
-                            }
-                            else if( $hours == $requests_little_h && $minutes < $requests_little_m){
-                                $requests_little_h = $hours ;
-                                $requests_little_m = $minutes ;
-                            }
-                        } 
+                                if( $hours < $requests_little_h){
+                                    $requests_little_h = $hours ;
+                                    $requests_little_m = $minutes ;
+                                }
+                                else if( $hours == $requests_little_h && $minutes < $requests_little_m){
+                                    $requests_little_h = $hours ;
+                                    $requests_little_m = $minutes ;
+                                }
+                            } 
+                        }
                     }
 
                 @endphp
