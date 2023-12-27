@@ -14,7 +14,7 @@
 
   .info-user {
     color: #002449;
-    font-weight: lighter;
+    font-weight: bolder;
   }
 
   .qr-profile {
@@ -183,7 +183,7 @@
       @endif
 
     </div>
-    <p class="info-user mt-3 mb-0" data-toggle="modal" data-target="#exampleModalCenter">{{ Auth::user()->name }} </p>
+    <p class="info-user mt-3 mb-0" data-toggle="modal" data-target="#exampleModalCenter"><b>{{ Auth::user()->name }}</b> </p>
     <!-- <p class="info-user">{{ Auth::user()->email }}</p> -->
 
     <div class="tab-content mt-5 " id="pills-tabContent">

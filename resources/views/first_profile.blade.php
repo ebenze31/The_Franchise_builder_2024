@@ -20,7 +20,7 @@
 
   .info-user {
     color: #002449;
-    font-weight: lighter;
+    font-weight: bolder;
   }
 
   .qr-profile {
