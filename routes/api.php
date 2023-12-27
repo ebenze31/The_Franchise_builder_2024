@@ -30,6 +30,7 @@ Route::get('/get_users/{account}', 'ProfileController@get_users');
 Route::get('/check_pay_slip/{user_id}', 'ProfileController@check_pay_slip');
 Route::get('/check_pdpa/{account}', 'ProfileController@check_pdpa');
 Route::get('/update_pdpa/{account}', 'ProfileController@update_pdpa');
+Route::get('/keep_name_Activity/{name_Activity}/{user_id}', 'ProfileController@keep_name_Activity');
 
 // PC POINT
 Route::post('/create_score/excel', 'Pc_pointsController@create_score');

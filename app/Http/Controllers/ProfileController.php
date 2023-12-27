@@ -336,4 +336,18 @@ class ProfileController extends Controller
         return "success" ;
     }
 
+    function keep_name_Activity($name_Activity , $user_id){
+
+        DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'scan_qr_for' => $name_Activity,
+                ]);
+
+        return "success" ;
+
+    }
+
 }

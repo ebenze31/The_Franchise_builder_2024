@@ -1,4 +1,4 @@
-@extends('layouts.theme_admin')
+@extends('layouts.theme_login')
 
 @section('content')
 
@@ -29,7 +29,7 @@
 
   .qr-section {
     position: relative;
-    padding: 18px 35px 35px 35px;
+    padding: 18px 35px 15px 35px;
   }
 
   .btn-download {
@@ -199,6 +199,20 @@
     .padding-btn{
         padding: 8px 20px !important;
     }
+
+    .btn-logout {
+        color: rgb(244, 244, 244, .7);
+        outline: 1px solid rgb(244, 244, 244, .7);
+        border-radius: 50px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-logout i {
+        font-size: 15px;
+        margin-top: -12px;
+    }
 </style>    
 
 <div id="alert_success" class="div_alert" role="alert">
@@ -242,8 +256,14 @@
         $Activity = App\Models\Activity::get();
     @endphp
     <div class="">
-        <select name="name_Activity" id="name_Activity" class="form-control" onchange="start_scanQRCode();">
+        <select name="name_Activity" id="name_Activity" class="form-control" onchange="keep_name_Activity();start_scanQRCode();">
+
+            @if( !empty(Auth::user()->scan_qr_for) )
+            <option class="text-white text-center" value="{{ Auth::user()->scan_qr_for }}">{{ Auth::user()->scan_qr_for }}</option>
+            @else
             <option class="text-white text-center" value="">ชื่อกิจกรรม</option>
+            @endif
+
             @foreach($Activity as $item)
                 <option class="text-white text-center" value="{{ $item->name_Activities }}">{{ $item->name_Activities }}</option>
             @endforeach
@@ -272,10 +292,24 @@
   </div>
 </div>
 
+<div class="d-flex justify-content-center w-100">
+    <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+        <i class='bx bx-log-out-circle'></i> logout
+    </a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 
 <script>
+
+    @if( !empty(Auth::user()->scan_qr_for) )
+       start_scanQRCode();     
+    @endif
+
     const video = document.getElementById('qr-video');
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
@@ -381,6 +415,17 @@
                     document.querySelector('#btn_modal_check_activity').click();
             });
         }
+    }
+
+    function keep_name_Activity(){
+
+        let name_Activity = document.querySelector('#name_Activity').value ;
+
+        fetch("{{ url('/') }}/api/keep_name_Activity/" + name_Activity + "/" + "{{ Auth::user()->id }}")
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+        });
     }
 
 </script>

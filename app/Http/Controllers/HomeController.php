@@ -28,7 +28,7 @@ class HomeController extends Controller
             return redirect("dashboard");
         }
 
-        else if(Auth::user()->role == "Player" || Auth::user()->role == "Staff"){
+        else if(Auth::user()->role == "Player"){
             $data_user = Auth::user();
 
             if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
@@ -44,6 +44,10 @@ class HomeController extends Controller
                 return redirect('scanner');
             }
 
+        }
+
+        else if(Auth::user()->role == "Staff"){
+            return redirect("admin_scanner");
         }
 
         else if(Auth::user()->role == "AL"){

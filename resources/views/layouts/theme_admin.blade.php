@@ -167,7 +167,7 @@
                     
                     <ul>
                         <li>
-                            <a class="btn" href="{{ url('/add_group') }}">
+                            <a class="btn" onclick="pass_lock_menu('{{ url("/add_group") }}');">
                                 <i class="fa-solid fa-plus"></i> เพิ่มจำนวนบ้าน
                             </a>
                         </li>
@@ -185,7 +185,7 @@
                     
                     <ul>
                         <li>
-                            <a class="btn" href="{{ url('/add_score') }}">
+                            <a class="btn" onclick="pass_lock_menu('{{ url("/add_score") }}');">
                                 <i class="fa-solid fa-grid-2-plus"></i> เพิ่มคะแนน
                             </a>
                         </li>

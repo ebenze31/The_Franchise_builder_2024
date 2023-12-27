@@ -15,6 +15,7 @@ class AddPdpaToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('pdpa')->nullable();
+            $table->string('scan_qr_for')->nullable();
         });
     }
 

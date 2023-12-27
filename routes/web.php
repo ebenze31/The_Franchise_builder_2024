@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 // Player = กดตอบรับร่วมกิจกรรม
 // Super-admin = admin[อัพเดตคะแนน]
 // Admin = [เจ้าหน้าที่หลังบ้าน]
-// Staff = เจ้าหน้าาที่หน้าบ้าน /observer]
+// Staff = [เจ้าหน้าาที่หน้าบ้าน /observer]
 
 Auth::routes();
 
@@ -37,6 +37,11 @@ Route::middleware(['auth',])->group(function () {
 // REGISTER AL TFB 2024
 Route::middleware(['auth', 'role:AL'])->group(function () {
     Route::get('/register_tfb2024', 'HomeController@register_tfb2024');
+});
+
+// Staff
+Route::middleware(['auth', 'role:Staff'])->group(function () {
+    Route::get('/admin_scanner', 'HomeController@admin_scanner');
 });
 
 // Player
