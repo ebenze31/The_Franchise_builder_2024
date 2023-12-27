@@ -457,15 +457,6 @@ class GroupsController extends Controller
                 $data_group->request_join = json_encode($list_request_join);
             }
 
-            DB::table('groups')
-                    ->where([ 
-                            ['id', $group_id],
-                        ])
-                    ->update([
-                            'group_status' => 'ยืนยันเรียบร้อย',
-                            'member' => json_encode($list_member),
-                        ]);
-
             if( count($list_member) == 10 ){
 
                 // อัปเดตข้อมูลในฐานข้อมูล
@@ -484,14 +475,14 @@ class GroupsController extends Controller
                             ]);
                 }
 
-                // DB::table('groups')
-                //     ->where([ 
-                //             ['id', $group_id],
-                //         ])
-                //     ->update([
-                //             'group_status' => 'ยืนยันเรียบร้อย',
-                //             'member' => json_encode($list_member),
-                //         ]);
+                DB::table('groups')
+                    ->where([ 
+                            ['id', $group_id],
+                        ])
+                    ->update([
+                            'group_status' => 'ยืนยันเรียบร้อย',
+                            'member' => json_encode($list_member),
+                        ]);
 
             }else{
 
