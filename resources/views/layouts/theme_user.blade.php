@@ -135,7 +135,7 @@
             </div>
         </div>
 
-        <div class="col-12 content-section">
+        <div class="col-12 content-section ">
 
             @yield('content')
         </div>

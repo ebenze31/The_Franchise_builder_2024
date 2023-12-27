@@ -2,8 +2,15 @@
 
 @section('content')
 
-<!-- {{$data}} -->
 <style>
+    .content-section {
+        padding: 0 !important;
+    }
+
+    .navbar-botttom {
+        bottom: 20px;
+    }
+
     .btn-outline-light,
     #header-text-login {
         display: none;
@@ -13,7 +20,8 @@
         background-color: rgb(255, 255, 255, .25);
         border-radius: 0 0 40px 40px;
         position: relative;
-        padding-bottom: 10px;
+        padding-bottom: 50px;
+        min-width: 100vw;
     }
 
     .btn-edit-profile {
@@ -51,14 +59,15 @@
         font-size: 12px;
         display: flex;
         align-items: center;
-        -webkit-border-radius: 50px; 
-    -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        opacity: .7;
     }
 
     .btn-logout i {
         font-size: 15px;
         margin-top: -12px;
-        
+
     }
 
     .textScore {
@@ -84,7 +93,9 @@
     .badges-item img {
         width: 90px;
         height: 90px;
-    }.img-show-badges{
+    }
+
+    .img-show-badges {
         width: 137px;
         height: 137px;
         flex-shrink: 0;
@@ -94,15 +105,19 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
-    #contentBadges{
+
+    #contentBadges {
         border: #2E2E2E 1px solid;
         background-color: #686666;
     }
-    #contentBadges.active{
+
+    #contentBadges.active {
 
         border: #00E0FF 1px solid;
         background-color: #07203F;
-    }.btn-submit {
+    }
+
+    .btn-submit {
         border-radius: 5px;
         width: auto;
         font-size: 16px;
@@ -110,67 +125,78 @@
         padding: 10px 40px;
         background-color: #005CD3;
         color: #fff;
-        
+
     }
 
-  .btn-submit:hover {
-    border: 1px solid #00E0FF;
-    box-shadow: 0px 0px 15px 1px #00FBFF;
-    color: #fff;
-    
-  }
+    .btn-submit:hover {
+        border: 1px solid #00E0FF;
+        box-shadow: 0px 0px 3px 1px #00FBFF;
+        color: #fff;
+
+    }
 </style>
+<style>
 
-<div class="profile-header">
-    <div class=" d-flex justify-content-center w-100">
-        <div class="edit-profile" id="DivEditProfile">
-            @if( !empty(Auth::user()->photo) )
-            <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" class="user-new-img" alt="รูปภาพผู้ใช้">
-            @else
-            <img src="{{ url('/img/icon/profile.png') }}" class="user-new-img" alt="รูปภาพผู้ใช้">
-            @endif
-            <a href="{{url('/first_profile?type=edit_profile')}}" class="btn-edit-profile">
-                <img src="{{ url('/img/icon/edit-profile.png') }}" alt="รูปภาพผู้ใช้">
-            </a>
+    #navbar-botttom {
+        position: fixed !important;
+        bottom: 25px;
+        text-align: center;
+        left: 0;
+        right: 0;
+        background: rgb(3, 174, 209);
+        background: linear-gradient(180deg, rgba(3, 174, 209, 1) 0%, rgba(7, 101, 129, 1) 31%, rgba(9, 42, 67, 1) 100%);
+        z-index: 99999;
+    }
+</style>
+<div class="w-100">
+    <div class="profile-header w-100">
+        <div class=" d-flex justify-content-center w-100">
+            <div class="edit-profile" id="DivEditProfile">
+                @if( !empty(Auth::user()->photo) )
+                <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" class="user-new-img" alt="รูปภาพผู้ใช้">
+                @else
+                <img src="{{ url('/img/icon/profile.png') }}" class="user-new-img" alt="รูปภาพผู้ใช้">
+                @endif
+                <a href="{{url('/first_profile?type=edit_profile')}}" class="btn-edit-profile">
+                    <img src="{{ url('/img/icon/edit-profile.png') }}" alt="รูปภาพผู้ใช้">
+                </a>
+            </div>
+
         </div>
+        <h4 class="text-center mb-0 mt-3 text-white">
+            {{Auth::user()->name}}
+        </h4>
+        <p class="text-center ">
+            <small class="mt-3 text-white">id : {{Auth::user()->id}}</small>
+        </p>
+        <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
+            <i class='bx bx-log-out-circle'></i> logout
+        </a>
 
-    </div>
-    <h4 class="text-center mb-0 mt-3 text-white">
-        {{Auth::user()->name}}
-    </h4>
-    <p class="text-center ">
-        <small class="mt-3 text-white">id : {{Auth::user()->id}}</small>
-    </p>
-    <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
-        <i class='bx bx-log-out-circle'></i> logout
-    </a>
-
-    @if(Auth::user()->rank_of_week)
-    <div class="d-flex justify-content-center align-items-center text-white h6">
-        <span class="textPC"> PC :</span> <span class="textScore"> &nbsp;24.4M</span>
-    </div>
-    <div class="d-flex justify-content-around">
-        <div class="text-center">
-            <p class="text-white">Ranking of Individual</p>
-            <h4 class="text-rank">as</h4>
+        @if(Auth::user()->rank_of_week)
+        <div class="d-flex justify-content-center align-items-center text-white h6">
+            <span class="textPC"> PC :</span> <span class="textScore"> &nbsp;24.4M</span>
         </div>
-        <div class="text-center">
-            <p class="text-white">Ranking of team</p>
-            <h4 class="text-rank">as</h4>
+        <div class="d-flex justify-content-around">
+            <div class="text-center">
+                <p class="text-white">Ranking of Individual</p>
+                <h4 class="text-rank">as</h4>
+            </div>
+            <div class="text-center">
+                <p class="text-white">Ranking of team</p>
+                <h4 class="text-rank">as</h4>
+            </div>
         </div>
+        @endif
     </div>
-    @endif
-
-
 </div>
-
 <div class="row ">
     <div class="col-12">
-    <h4 class="header-badges">
-        My badges
-    </h4>
+        <h4 class="header-badges">
+            My badges
+        </h4>
     </div>
-    <div class="col-4 badges-item active" activity="ป้าย1"  onclick="open_badges(this)">
+    <div class="col-4 badges-item active" activity="ป้าย1" onclick="open_badges(this)">
         <img src="{{ url('/img/icon/badges-1.png') }}" alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
@@ -224,7 +250,6 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
     </div>
-    
 </div>
 
 <!-- Modal -->
@@ -238,7 +263,7 @@
 
                 <div class="d-flex justify-content-center mt-2">
 
-                    <button class="btn btn-submit">Close</button>
+                    <button class="btn btn-submit" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -246,7 +271,7 @@
 </div>
 
 <button type="button" id="btnmodalBadges" class="btn btn-primary d-none" data-toggle="modal" data-target="#modalBadges">
-  Launch demo modal
+    Launch demo modal
 </button>
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
     @csrf
@@ -272,8 +297,8 @@
             let imgUrl = imgElement.getAttribute('src');
 
             document.querySelector('#imgContentBadges').src = imgUrl;
-            document.querySelector('#badgesName').innerHTML  = badgesName;
-            document.querySelector('#detailBadges').innerHTML  = badgesDetail;
+            document.querySelector('#badgesName').innerHTML = badgesName;
+            document.querySelector('#detailBadges').innerHTML = badgesDetail;
         } else {
             document.querySelector('#contentBadges').classList.remove('active');
 
@@ -285,8 +310,8 @@
             let imgUrl = imgElement.getAttribute('src');
 
             document.querySelector('#imgContentBadges').src = imgUrl;
-            document.querySelector('#badgesName').innerHTML  = badgesName;
-            document.querySelector('#detailBadges').innerHTML  = badgesDetail;
+            document.querySelector('#badgesName').innerHTML = badgesName;
+            document.querySelector('#detailBadges').innerHTML = badgesDetail;
         }
 
     }

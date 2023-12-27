@@ -173,8 +173,8 @@ padding: 15px 30px;
         font-size: 12px;
         display: flex;
         align-items: center;
-      -webkit-border-radius: 50px; 
-      -moz-border-radius: 50px;
+
+      opacity: .7;
     }
 
     .btn-logout i {
