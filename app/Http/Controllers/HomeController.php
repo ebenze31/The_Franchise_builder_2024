@@ -37,6 +37,9 @@ class HomeController extends Controller
             else if( !empty($data_user->group_id) && $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
                 return redirect('preview_team'.'/'.$data_user->group_id);
             }
+            else if( $data_user->group_status == "มีบ้านแล้ว" || $data_user->group_status == "ยืนยันการสร้างบ้านแล้ว"){
+                return redirect('group_my_team'.'/'.$data_user->group_id);
+            }
             else{
                 return redirect('scanner');
             }
