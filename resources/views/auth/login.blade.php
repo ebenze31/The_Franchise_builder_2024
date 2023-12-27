@@ -222,7 +222,7 @@
     // ตรวจสอบว่ามีการโหลด cookie หรือไม่
     
     document.addEventListener('DOMContentLoaded', (event) => {
-        checkCookie();
+        // checkCookie();
         
     });
 
