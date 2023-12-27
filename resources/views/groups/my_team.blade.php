@@ -280,7 +280,7 @@
          @if($data_groups->host == Auth::user()->id)
             <div>
                 <span class="text-mamber h4">Members</span>  <span class="text-white">: Team {{ $group_id }}</span>
-                <p class="text-white">Member : <span id="amount_member"></span>/10</p>
+                <p class="text-white">Member : <span id="amount_member">{{ count($list_member) }}</span>/10</p>
             </div>
             <div>
                 @php
