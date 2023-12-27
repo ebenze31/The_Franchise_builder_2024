@@ -256,7 +256,7 @@
         $Activity = App\Models\Activity::get();
     @endphp
     <div class="" style="position: relative;">
-        <i style="position: absolute;" class="fa-sharp fa-solid fa-caret-down"></i>
+        <i style="position: absolute;top:50%; right:5%;" class="fa-solid fa-chevron-down fa-xl text-white"></i>
         <select name="name_Activity" id="name_Activity" class="form-control" onchange="keep_name_Activity();start_scanQRCode();">
             @if( !empty(Auth::user()->scan_qr_for) )
             <option class="text-white text-center" value="{{ Auth::user()->scan_qr_for }}">{{ Auth::user()->scan_qr_for }}</option>
@@ -307,7 +307,7 @@
 <script>
 
     @if( !empty(Auth::user()->scan_qr_for) )
-       start_scanQRCode();     
+       start_scanQRCode();  
     @endif
 
     const video = document.getElementById('qr-video');
