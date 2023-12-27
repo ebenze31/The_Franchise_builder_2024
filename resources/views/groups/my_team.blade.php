@@ -278,6 +278,7 @@
                     $minutes = $interval->i;
 
                     $text_time = "Waiting : $hours:$minutes";
+                    $Countdown = "Countdown : $hours:$minutes";
                 } else {
                     $text_time = "เวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงได้ผ่านไปแล้ว";
                 }
@@ -293,8 +294,8 @@
                         <p class="mb-0 font-13 text-secondary">{{ $text_time }}</p>
                     </div>
                     <div class="list-inline d-flex customers-contacts ms-auto">
-                        <span class="btn btn-sm btn-primary list-inline-item" onclick="answer_request('Accept', '{{ $group_id }}','{{ $member->id }}' , '{{ $member->name }}' , '{{ $member->photo }}')">Accept</span>
-                        <span class="btn btn-sm btn-danger list-inline-item" onclick="answer_request('Reject', '{{ $group_id }}','{{ $member->id }}' , '{{ $member->name }}' , '{{ $member->photo }}')">Reject</span>
+                        <span class="btn btn-sm btn-primary list-inline-item" onclick="answer_request('Accept', '{{ $group_id }}','{{ $member->id }}' , '{{ $member->name }}' , '{{ $member->photo }}','{{ $Countdown }}')">Accept</span>
+                        <span class="btn btn-sm btn-danger list-inline-item" onclick="answer_request('Reject', '{{ $group_id }}','{{ $member->id }}' , '{{ $member->name }}' , '{{ $member->photo }}','{{ $Countdown }}')">Reject</span>
                     </div>
                 </div>
             `;
@@ -312,7 +313,7 @@
 
     }
 
-    function answer_request(answer , group_id , member_id , member_name , member_photo)
+    function answer_request(answer , group_id , member_id , member_name , member_photo ,Countdown)
     {
         document.querySelector('#close_Pending').click();
 
@@ -321,7 +322,7 @@
             <h4 class="mt-3 mb-0" style="color:#37BCBC;">`+member_name+`</h4>
             <p style="color:#37BCBC;" class="warn-text"><b>ตอบรับคำขอเข้าร่วมทีม</b></p>
             <div class="text-dark">
-                <p>Countdown : 20:51</p>
+                <p>`+Countdown+`</p>
             </div>
         `;
 
