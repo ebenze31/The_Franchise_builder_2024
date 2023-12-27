@@ -459,8 +459,6 @@ class GroupsController extends Controller
 
             if( count($list_member) == 10 ){
 
-                echo count($list_member);
-
                 // อัปเดตข้อมูลในฐานข้อมูล
                 // $data_group->group_status = 'ยืนยันเรียบร้อย';
                 // $data_group->member = json_encode($list_member);
@@ -471,7 +469,7 @@ class GroupsController extends Controller
                             ['id', $group_id],
                         ])
                     ->update([
-                            'group_status' => 'ยืนยันเรียบร้อย',
+                            'status' => 'ยืนยันเรียบร้อย',
                             'member' => json_encode($list_member),
                         ]);
 
