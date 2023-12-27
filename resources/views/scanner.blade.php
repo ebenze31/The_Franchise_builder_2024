@@ -18,8 +18,8 @@
   }
 
   .qr-profile {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
     margin-top: 20px;
 
@@ -202,10 +202,9 @@
           </div>
         </div>
         <style>
-      .test{
-        width: 38px;
-        height: 38px;
-        background-color: #15093F;
+      .btn-edit-img{
+        
+        /* background-color: #15093F; */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -213,10 +212,15 @@
         position: absolute;
         bottom: 10px;
         right: 10px;
+      }.btn-edit-img img{
+        width: 38px !important;
+        height: 38px !important;
+        object-fit: contain;
       }
     </style>
-    <button class="btn test" id="btnSelectImage">
-        <img src="{{ url('/img/icon/select-img.png') }}" alt="">
+    <button class="btn btn-edit-img" id="btnSelectImage">
+        <img src="{{ url('/img/icon/edit-img.png') }}" alt="">
+        
     </button>
     <input type="file" accept="image/*" style="display:none" id="inputImage" />
 

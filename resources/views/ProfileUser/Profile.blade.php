@@ -133,9 +133,11 @@
         padding-top:60p;
         display: flex;
         flex-wrap: wrap;
+    }.asd{
+        display: flex;
+        flex-wrap: wrap;
     }
 </style>
-
 <div class="w-100 d-noe">
     <div class="profile-header w-100">
         <div class=" d-flex justify-content-center w-100">
@@ -158,7 +160,7 @@
             <small class="mt-3 text-white">id : {{Auth::user()->id}}</small>
         </p>
         <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
-            <i class='bx bx-log-out-circle'></i> logout
+        <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
         </a>
 
         @if(Auth::user()->rank_of_week)
@@ -178,62 +180,63 @@
         @endif
     </div>
 </div>
-<div class="row d-noe">
+
+<div class="asd d-noe">
     <div class="col-12">
         <h4 class="header-badges">
             My badges
         </h4>
     </div>
     <div class="col-4 badges-item active" activity="ป้าย1" onclick="open_badges(this)">
-        <img src="{{ url('/img/icon/badges-1.png') }}" alt="รูปภาพป้ายประกาศ">
+        <img src="{{ url('/img/icon/badges-1.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
     </div>
     <div class="col-4 badges-item" activity="ป้าย2" onclick="open_badges(this)">
-        <img src="{{ url('/img/icon/badges-2.png') }}" alt="รูปภาพป้ายประกาศ">
+        <img src="{{ url('/img/icon/badges-2.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
     </div>
-    <div class="col-4 badges-item " activity="ป้าย3" onclick="open_badges(this)">
-        <img src="{{ url('/img/icon/badges-3.png') }}" alt="รูปภาพป้ายประกาศ">
+    <div class="col-4 badges-item " activity="ป้าย3">
+        <img src="{{ url('/img/icon/badges-3.png') }}" width="100%"alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
     </div>
-    <div class="col-4 badges-item " activity="ป้าย4" onclick="open_badges(this)">
-        <img src="{{ url('/img/icon/badges-3.png') }}" alt="รูปภาพป้ายประกาศ">
+    <div class="col-4 badges-item " activity="ป้าย4">
+        <img src="{{ url('/img/icon/badges-3.png') }}" width="100%"alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
     </div>
-    <div class="col-4 badges-item " activity="ป้าย5" onclick="open_badges(this)">
-        <img src="{{ url('/img/icon/badges-3.png') }}" alt="รูปภาพป้ายประกาศ">
+    <div class="col-4 badges-item " activity="ป้าย5">
+        <img src="{{ url('/img/icon/badges-3.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
     </div>
-    <div class="col-4 badges-item " activity="ป้าย6" onclick="open_badges(this)">
-        <img src="{{ url('/img/icon/badges-3.png') }}" alt="รูปภาพป้ายประกาศ">
+    <div class="col-4 badges-item " activity="ป้าย6">
+        <img src="{{ url('/img/icon/badges-3.png') }}" width="100%"alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
     </div>
-    <div class="col-4 badges-item " activity="ป้าย7" onclick="open_badges(this)">
-        <img src="{{ url('/img/icon/badges-3.png') }}" alt="รูปภาพป้ายประกาศ">
+    <div class="col-4 badges-item " activity="ป้าย7">
+        <img src="{{ url('/img/icon/badges-3.png') }}" width="100%"alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
     </div>
-    <div class="col-4 badges-item " activity="ป้าย8" onclick="open_badges(this)">
-        <img src="{{ url('/img/icon/badges-3.png') }}" alt="รูปภาพป้ายประกาศ">
+    <div class="col-4 badges-item " activity="ป้าย8">
+        <img src="{{ url('/img/icon/badges-3.png') }}" width="100%"alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
     </div>
-    <div class="col-4 badges-item " activity="ป้าย9" onclick="open_badges(this)">
-        <img src="{{ url('/img/icon/badges-3.png') }}" alt="รูปภาพป้ายประกาศ">
+    <div class="col-4 badges-item " activity="ป้าย9">
+        <img src="{{ url('/img/icon/badges-3.png') }}" width="100%"alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
@@ -250,7 +253,6 @@
                 <p class="text-white" id="detailBadges"></p>
 
                 <div class="d-flex justify-content-center mt-2">
-
                     <button class="btn btn-submit" data-dismiss="modal">Close</button>
                 </div>
             </div>

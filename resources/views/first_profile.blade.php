@@ -149,8 +149,7 @@
     width: auto;
     font-size: 16px;
     margin-top: 15px;
-    padding: 10px 20px;
-padding: 15px 30px;
+    padding: 8px 35px;
     background-color: #005CD3;
     color: #fff;
   }
