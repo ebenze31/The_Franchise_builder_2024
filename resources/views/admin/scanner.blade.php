@@ -182,6 +182,22 @@
         color: #fff !important;
 
 
+    }.btn-submit{
+      border-radius: 5px;
+      font-size: 16px;
+      padding: 5px 40px;
+      background-color: #005CD3;
+      color: #fff;
+    }
+    .btn-submit:hover{
+      border: 1px solid #00E0FF;
+      box-shadow: 0px 0px 15px 1px #00FBFF;
+      color: #fff;
+
+    }
+    
+    .padding-btn{
+        padding: 8px 20px !important;
     }
 </style>    
 
@@ -192,7 +208,7 @@
 </div>
 
 <!-- Button trigger modal -->
-<button id="btn_modal_check_activity" type="button" class="d-none" data-toggle="modal" data-target="#modal_check_activity">
+<button id="btn_modal_check_activity" type="button" class="d-nozne" data-toggle="modal" data-target="#modal_check_activity">
     <!--  -->
 </button>
 
@@ -351,10 +367,10 @@
 
                     let html_footer = `
     
-                        <button type="button" class="btn btn-primary" onclick="change_status('`+name+`','{{ Auth::user()->id }}')">
+                        <button type="button" class="btn btn-submit" onclick="change_status('`+name+`','{{ Auth::user()->id }}')">
                             Confirm
                         </button>
-                        <button id="btn_close_modal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal">
                             Back
                         </button>
                     `;
