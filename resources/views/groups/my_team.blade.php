@@ -166,7 +166,25 @@
     color: #fff;
   }.member-section {
     width: 100%;
-  }
+  }.btn-submit{
+      border-radius: 5px;
+      font-size: 16px;
+      padding: 5px 40px;
+      background-color: #005CD3;
+      color: #fff;
+    }
+    .btn-submit:hover{
+      border: 1px solid #00E0FF;
+      box-shadow: 0px 0px 15px 1px #00FBFF;
+      color: #fff;
+
+    }
+    
+    .padding-btn{
+        padding: 8px 20px !important;
+    }#modal_cf_answer_request_footer.modal-footer{
+        border: none;
+    }
 </style>
 
 <div id="alert_success" class="div_alert" role="alert">
@@ -207,12 +225,14 @@
 <div class="modal fade" id="modal_cf_answer_request" tabindex="-1" aria-labelledby="Label_cf" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-center" id="Label_cf">
-                    Request to join
-                </h5>
-                <button class="close btn" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+            <div class="modal-header modalHeaderrequest">
+                <div class="w-100 text-center">
+                    <h5 class="modal-title text-center text-white" id="Label_cf">
+                        Request to join
+                    </h5>
+                </div>
+                <button id="close_Pending" type="button" class="close btn btn-close-modal" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -451,7 +471,7 @@
     
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-    change_menu_bar('team');
+        change_menu_bar('team');
 
         var group_id = "{{ $group_id }}" ;
 
@@ -552,10 +572,10 @@
         document.querySelector('#close_Pending').click();
 
         let html_modal = `
-            <img src="{{ url('storage')}}/`+member_photo+`" style="width:115px;height:115px;" class="mt-2 mb-2">
-            <h4 class="mt-3 mb-0" style="color:#37BCBC;">`+member_name+`</h4>
-            <p style="color:#37BCBC;" class="warn-text"><b>ตอบรับคำขอเข้าร่วมทีม</b></p>
-            <div class="text-dark">
+            <img src="{{ url('storage')}}/`+member_photo+`" style="width:115px;height:115px;border-radius:50%" class="mt-2 mb-2">
+            <h4 class="mt-3 mb-0" style="color:#002449;">`+member_name+`</h4>
+            <p style="color:#07285A;" class="warn-text"><b>ตอบรับคำขอเข้าร่วมทีม</b></p>
+            <div  style="color:#005CD3  ;">
                 <p>`+Countdown+`</p>
             </div>
         `;
@@ -564,22 +584,23 @@
 
         if(answer == "Accept"){
             html_footer = `
-                <button type="button" class="btn btn-primary padding-btn" onclick="CF_answer_request('Accept' , '`+member_id+`' , '`+group_id+`')">
+                <div class="d-flex justify-content-center w-100">
+                <button type="button" class="btn btn-submit padding-btn" onclick="CF_answer_request('Accept' , '`+member_id+`' , '`+group_id+`')">
                     Confirm
                 </button>
+                </div>
 
-                <span class="mt-4 text-center">
-                    หาก Confirm แล้วจะเป็นการยืนยันสมาชิก
-                    <br>
-                    และ ไม่สามารถเปลี่ยนได้อีก
-                </span>
+                <p class="mt-4 text-center w-100">หาก Confirm แล้วจะเป็นการยืนยันสมาชิก และ <span class="text-danger">ไม่สามารถเปลี่ยนได้อีก</span></p>
+               
             `;
         }else if(answer == "Reject"){
 
             html_footer = `
-                <button type="button" class=" padding-btn btn btn-danger" onclick="CF_answer_request('Reject' , '`+member_id+`' , '`+group_id+`')">
-                    Reject
-                </button>
+                <div class="d-flex justify-content-center w-100">
+                    <button type="button" class=" padding-btn btn btn-danger" onclick="CF_answer_request('Reject' , '`+member_id+`' , '`+group_id+`')">
+                        Reject
+                    </button>
+                </div>
 
                 <span class="mt-4 text-center">
                     หาก Reject แล้วจะเป็นการปฎิเสธคำขอเข้าร่วมทีม

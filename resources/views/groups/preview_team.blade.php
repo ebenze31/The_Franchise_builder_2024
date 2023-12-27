@@ -201,7 +201,7 @@
     </div>
 </div>
 <!-- END modal_join_team -->
-<button class="btn btn-warning d-none" onclick="test_modal('Delete team');">TEST</button>
+<button class="btn btn-warning d-nonve" onclick="test_modal('Host Accept');">TEST</button>
 
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}"  class="mt-2 mb-2 img-header-team">
@@ -808,14 +808,13 @@
 
             let html_modal = `
                 <img src="{{ url('/img/icon/Group 694.png') }}" style="width:250px;" class="mt-2 mb-2">
-                <h4 class="text-info">Team `+name_group+`</h4>
-                <p class="text-dark">ได้อนุมัติคำขอเข้าร่วมทีมของคุณเเล้ว</p>
+                <h4 class="text-success">ยืนยันการเข้าร่วมสำเร็จ !</h4>
+                <p class="text-dark">คุณพร้อมเเล้วสำหรับการสร้าง Team work</p>
             `;
 
             let html_footer = `
-                
                 <a href="{{ url('/group_my_team/`+id_group+`') }}" type="button" class="btn btn-submit padding-btn">
-                    Close
+                    Next
                 </a>
             `;
 
