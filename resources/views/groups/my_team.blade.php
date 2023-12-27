@@ -56,19 +56,22 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
         border-radius: 10px 0 0 0;
         display: flex;
         align-items: center;
-        >img{
-            width: 114px;
-            height:114px;
-            position: absolute;
-            bottom: 0;
-            left: 15px;
-        }
-        >div{
-            text-indent: 140px;
-            color: #fff;
-            font-weight: lighter;
-        }
-    }.memberInRoom{
+
+       
+    }
+    .header-team img{
+        width: 114px;
+        height:114px;
+        position: absolute;
+        bottom: 0;
+        left: 15px;
+    }
+    .header-team div{
+        text-indent: 140px;
+        color: #fff;
+        font-weight: lighter;
+    }
+    .memberInRoom{
         background-color:#0b2846;
         padding: 15px 10px 10px 15px;
         height: 100%;
@@ -120,12 +123,15 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         padding: 2px 0 0 0;
 
-        >i{
+        
+    }.host-member i{
             margin-left: 5px;
             /* margin-top: 0px; */
             font-size: 17px;
         }
-    }.member-card-join{
+    
+    
+    .member-card-join{
         background-color: #fff;
         padding: 10px;
         border-radius: 10px;
@@ -138,14 +144,17 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
     }.btn-close-modal {
         font-size: 18px;
 
-    >span {
+    
+  }.btn-close-modal span {
       background-color: #fff;
       color: #002449;
       padding: 0px 8px;
       border-radius: 50%;
       font-size: 22px;
     }
-  }modal-header{
+  
+  
+  modal-header{
     background-color: #002449;
   } .modalHeaderrequest {
     background-color: #002449;
