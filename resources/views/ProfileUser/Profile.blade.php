@@ -14,8 +14,10 @@
     position: absolute;
     bottom: 0;
     right: 20px;
-    width: 47px;
-    height: 47px;
+    >img{
+        width: 26px;
+height: 26px;
+    }
   }.user-new-img {
     margin-top: 20px;
     width: 100px;
@@ -42,13 +44,16 @@
 <div class="profile-header">
 <div class=" d-flex justify-content-center w-100">
       <div class="edit-profile" id="DivEditProfile">
-        <img src="{{ url('/img/icon/profile.png') }}" class="user-new-img" alt="รูปภาพผู้ใช้">
+            @if( !empty(Auth::user()->photo) )
+            <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" class="user-new-img" alt="รูปภาพผู้ใช้">
+            @else
+            <img src="{{ url('/img/icon/profile.png') }}" class="user-new-img" alt="รูปภาพผู้ใช้">
+            @endif
         <a href="{{url('/first_profile?type=edit_profile')}}" class="btn-edit-profile">
           <img src="{{ url('/img/icon/edit-profile.png') }}" alt="รูปภาพผู้ใช้">
         </a>
       </div>
-      <img id="preview" src="{{ url('/') }}" alt="ภาพพรีวิว" class="d-none" style="max-width:100%; height:auto;">
-    
+      
     </div> 
     <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
         <i class='bx bx-log-out-circle'></i> logout

@@ -82,17 +82,17 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
 
     }@media (width < 680px) {
         .member-item{
-            min-width: 100px;
-            max-width: 120px;
-            height: 121px;
-            margin: 0 7px;
+            width: 30%;
+            height: 128px;
+            margin: 0 2px;
         }
     }
     @media (width > 680px) {
         .member-item{
             min-width: 100px;
             max-width: 180px;
-            height: 121px;
+            height: 128px;
+
             margin: 0 10px;
         }
     }.member-card{
@@ -156,6 +156,8 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
   }.btn-accept{
     background-color: #128DFF;
     color: #fff;
+  }.member-section {
+    width: 100%;
   }
 </style>
 
@@ -176,7 +178,7 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
 
                     <p class="modal-request-title text-white text-center" id="exampleModalLongTitle">Pending requests</p>
                 </div>
-                <button type="button" class="close btn btn-close-modal" data-dismiss="modal" aria-label="Close">
+                <button id="close_Pending" type="button" class="close btn btn-close-modal" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
