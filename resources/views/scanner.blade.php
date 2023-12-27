@@ -267,18 +267,32 @@
     const context = canvas.getContext('2d');
 
     function start_scanQRCode() {
-      navigator.mediaDevices.getUserMedia({
-        video: {
-          facingMode: 'environment'
-        }
-      })
-      .then(function(stream) {
-        videoStream = stream; // เก็บ stream ในตัวแปร global
-        video.srcObject = stream;
-        video.play();
+      // navigator.mediaDevices.getUserMedia({
+      //     video: { facingMode: 'environment'}
+      // })
+      // .then(function(stream) {
+      //   videoStream = stream; // เก็บ stream ในตัวแปร global
+      //   video.srcObject = stream;
+      //   video.play();
 
-        scanQRCode();
-      });
+      //   scanQRCode();
+      // });
+      if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+          // { video: true}
+          // { video: { facingMode: { exact: "environment" } } }
+          .then(function (stream) {
+            if (typeof video.srcObject == "object") {
+                video.srcObject = stream;
+              } else {
+                video.src = URL.createObjectURL(stream);
+              }
+          })
+          .catch(function (err0r) {
+            console.log("Something went wrong!");
+          });
+      }
+        
     }
 
     function scanQRCode() {

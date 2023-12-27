@@ -437,7 +437,7 @@ class GroupsController extends Controller
                         ['id', $member_id],
                     ])
                 ->update([
-                        'group_status' => 'มีบ้านแล้ว',
+                        'group_status' => 'Host Accept',
                         'time_request_join' => null,
                     ]);
 
@@ -468,8 +468,7 @@ class GroupsController extends Controller
                         ['id', $member_id],
                     ])
                 ->update([
-                        'group_id' => null,
-                        'group_status' => null,
+                        'group_status' => 'Host Reject',
                         'time_request_join' => null,
                     ]);
         }
