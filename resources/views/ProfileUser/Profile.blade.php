@@ -7,10 +7,6 @@
         padding: 0 !important;
     }
 
-    .navbar-botttom {
-        bottom: 20px;
-    }
-
     .btn-outline-light,
     #header-text-login {
         display: none;
@@ -133,22 +129,14 @@
         box-shadow: 0px 0px 3px 1px #00FBFF;
         color: #fff;
 
+    }.sectionBadge{
+        padding-top:60p;
+        display: flex;
+        flex-wrap: wrap;
     }
 </style>
-<style>
 
-    #navbar-botttom {
-        position: fixed !important;
-        bottom: 25px;
-        text-align: center;
-        left: 0;
-        right: 0;
-        background: rgb(3, 174, 209);
-        background: linear-gradient(180deg, rgba(3, 174, 209, 1) 0%, rgba(7, 101, 129, 1) 31%, rgba(9, 42, 67, 1) 100%);
-        z-index: 99999;
-    }
-</style>
-<div class="w-100">
+<div class="w-100 d-noe">
     <div class="profile-header w-100">
         <div class=" d-flex justify-content-center w-100">
             <div class="edit-profile" id="DivEditProfile">
@@ -174,23 +162,23 @@
         </a>
 
         @if(Auth::user()->rank_of_week)
-        <div class="d-flex justify-content-center align-items-center text-white h6">
-            <span class="textPC"> PC :</span> <span class="textScore"> &nbsp;24.4M</span>
-        </div>
-        <div class="d-flex justify-content-around">
-            <div class="text-center">
-                <p class="text-white">Ranking of Individual</p>
-                <h4 class="text-rank">as</h4>
+            <div class="d-flex justify-content-center align-items-center text-white h6">
+                <span class="textPC"> PC :</span> <span class="textScore"> &nbsp;24.4M</span>
             </div>
-            <div class="text-center">
-                <p class="text-white">Ranking of team</p>
-                <h4 class="text-rank">as</h4>
+            <div class="d-flex justify-content-around">
+                <div class="text-center">
+                    <p class="text-white">Ranking of Individual</p>
+                    <h4 class="text-rank">as</h4>
+                </div>
+                <div class="text-center">
+                    <p class="text-white">Ranking of team</p>
+                    <h4 class="text-rank">as</h4>
+                </div>
             </div>
-        </div>
         @endif
     </div>
 </div>
-<div class="row ">
+<div class="row d-noe">
     <div class="col-12">
         <h4 class="header-badges">
             My badges

@@ -38,7 +38,6 @@
      @font-face {
         font-family: "AllianzNeo";
         src: url("../public/theme_admin/fonts/Font/Font/Allianz_Neo_webfonts/ttf/AllianzNeo-Bold.ttf") format("truetype");
-            
     }
     *:not(i) {
         font-family: "AllianzNeo" !important;
@@ -53,7 +52,6 @@
         background: linear-gradient(180deg, rgba(3,174,209,1) 0%, rgba(7,101,129,1) 31%, rgba(9,42,67,1) 100%);
         z-index: 99999;
     }
-
     .mheebar {
         padding-top: 10px;
     }

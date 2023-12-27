@@ -195,6 +195,9 @@
         border: none;
     }.text-count-down{
         font-size: 9px;
+    } #header-text-login{
+        width: 140px;
+        margin-top: 10px;
     }
 </style>
 
