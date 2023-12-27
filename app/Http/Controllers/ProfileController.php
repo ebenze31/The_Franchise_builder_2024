@@ -310,4 +310,30 @@ class ProfileController extends Controller
 
     }
 
+    function check_pdpa($account)
+    {
+        $data = User::where('account' , $account)->first();
+
+        if( !empty($data->pdpa) ){
+            $return = "Yes" ;
+        }else{
+            $return ="No" ;
+        }
+        
+        return $return;
+    }
+
+    function update_pdpa($account){
+
+        DB::table('users')
+            ->where([ 
+                    ['account', $account],
+                ])
+            ->update([
+                    'pdpa' => 'Yes',
+                ]);
+
+        return "success" ;
+    }
+
 }

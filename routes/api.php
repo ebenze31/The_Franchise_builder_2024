@@ -28,6 +28,8 @@ Route::get('/change_status/{account}/{Staff_id}', 'ProfileController@change_stat
 Route::get('/get_data_account/{type_get_data}', 'ProfileController@get_data_account');
 Route::get('/get_users/{account}', 'ProfileController@get_users');
 Route::get('/check_pay_slip/{user_id}', 'ProfileController@check_pay_slip');
+Route::get('/check_pdpa/{account}', 'ProfileController@check_pdpa');
+Route::get('/update_pdpa/{account}', 'ProfileController@update_pdpa');
 
 // PC POINT
 Route::post('/create_score/excel', 'Pc_pointsController@create_score');

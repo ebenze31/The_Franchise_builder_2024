@@ -134,7 +134,13 @@
         color: #fff;
     }
 </style>
-<div class="container">
+<div id="div_first" class="container text-center mt-5">
+    <a class="btn btn-login" onclick="document.querySelector('#div_second').classList.remove('d-none'),document.querySelector('#div_first').classList.add('d-none')">
+        Login
+    </a>
+</div>
+
+<div id="div_second" class="container d-none">
     <div class="header-login">
         <h6>
             <b>Hi there, welcome!</b>
@@ -166,7 +172,7 @@
                 <label for="password" class="col-md-4 col-form-label text-md-right label-form mt-2">{{ __('Password') }}</label>
 
                 <div class="col-md-6">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror input-login" name="password" required autocomplete="current-password">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror input-login" name="password" required autocomplete="current-password" onchange="check_pdpa();">
 
                     @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -182,7 +188,7 @@
 
             <div class="form-group mb-0 d-flex justify-content-center w-100 mt-3 ">
                 <div class="col-md-8">
-                    <a  class="btn btn-login" onclick="accept_terms()">
+                    <a id="btn_for_login" class="btn btn-login">
                         {{ __('Login') }}
                     </a>
                 </div>
@@ -201,7 +207,7 @@
         <p class="detail-terms">AZAY จะทำการเก็บรวบรวม ใช้ หรือเปิดเผยรหัส เอเจนท์ (Agent code) และวันเดือนปีเกิดของท่านต่อ บริษัท Box Exhibit เพื่อการเข้าร่วมและจัดกิจกรรม THE FRANCHISE BUILDER 2024</p>
         <p class="detail-terms"> AZAY will process your Agent code and date of birth for the purpose relating to organizing THE FRANCHISE BUILDER 2024</p>
         <div class="d-flex justify-content-center align-items-center mt-4">
-            <input type="checkbox" name="" id="acceptTerms" class="checkbox-accept" onclick="info_terms()">
+            <input type="checkbox" name="" id="acceptTerms" class="checkbox-accept" onclick="check_acceptTerms()">
             <span class="text-checkbox-accept ms-2 f"> 
                 <label for="acceptTerms"> 
                     I agree with the Terms and Conditions
@@ -212,10 +218,10 @@
             <button type="button" class="btn btn-secondary d-none" id="btn-colse-modal" data-dismiss="modal">Close</button>
 
         </div>
-        <div class="d-flex justify-content-center align-items-center mt-4" onclick="accept_terms()">
-            <button id="btn-accept-terms" class="btn btn-outline-terms" disabled>
+        <div id="login_in_Terms" class="d-flex justify-content-center align-items-center mt-4">
+            <span id="btn-accept-terms" class="btn btn-outline-terms" disabled>
                 Next
-            </button>
+            </span>
         </div>
       </div>
      
@@ -230,9 +236,70 @@
     // ตรวจสอบว่ามีการโหลด cookie หรือไม่
     
     document.addEventListener('DOMContentLoaded', (event) => {
-        checkCookie();
+        // checkCookie();
         
     });
+
+    function check_pdpa(){
+        let account = document.querySelector('#account').value;
+        console.log(account);
+
+        fetch("{{ url('/') }}/api/check_pdpa/" + account)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+
+                if(result != "Yes"){
+                    $('#ModalTerms').modal('show');
+                }else{
+                    document.querySelector('#btn_for_login').setAttribute('onclick' , 'to_login();');
+                }
+        });
+    }
+
+    function to_login(){
+
+        let account = document.querySelector('#account').value;
+        
+        fetch("{{ url('/') }}/api/update_pdpa/" + account)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+
+                if(result){
+                    $("#form_login")[0].submit();
+                }
+        });
+
+    }
+
+    function check_acceptTerms(){
+
+        let checkbox = document.getElementById("acceptTerms");
+    
+        if (checkbox.checked) {
+            document.getElementById("btn-accept-terms").classList.remove('btn-outline-terms');
+            document.getElementById("btn-accept-terms").classList.add('btn-terms');
+            document.getElementById("btn-accept-terms").disabled = false;
+            document.querySelector('#login_in_Terms').setAttribute('onclick' , 'to_login();');
+
+        } else {
+            document.getElementById("btn-accept-terms").classList.add('btn-outline-terms');
+            document.getElementById("btn-accept-terms").classList.remove('btn-terms');
+            document.getElementById("btn-accept-terms").disabled = true;
+            document.querySelector('#login_in_Terms').setAttribute('onclick' , '');
+        }
+
+    }
+
+
+
+
+
+
+
+
+
 
 function checkCookie() {
 
@@ -254,12 +321,12 @@ function info_terms() {
         document.getElementById("btn-accept-terms").classList.remove('btn-outline-terms');
         document.getElementById("btn-accept-terms").classList.add('btn-terms');
         document.getElementById("btn-accept-terms").disabled = false;
-  } else {
+    } else {
         document.getElementById("btn-accept-terms").classList.add('btn-outline-terms');
         document.getElementById("btn-accept-terms").classList.remove('btn-terms');
         document.getElementById("btn-accept-terms").disabled = true;
         document.cookie = "Terms & condition=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-  }
+    }
 }
 
 function accept_terms() {
