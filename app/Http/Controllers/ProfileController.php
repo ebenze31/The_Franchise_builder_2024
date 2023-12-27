@@ -234,7 +234,7 @@ class ProfileController extends Controller
                 $return = "ไม่สร้าง";
             }else{
 
-                $url_for_scan = $_SERVER[REQUEST_URI] . "/for_scan" ;
+                $url_for_scan = $request->fullUrl() . "/for_scan" ;
                 // QR-CODE
                 $url = "https://chart.googleapis.com/chart?cht=qr&chl=". $url_for_scan . "?account=".$data_arr['account']."&chs=500x500&choe=UTF-8" ;
 
