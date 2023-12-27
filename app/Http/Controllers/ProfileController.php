@@ -350,7 +350,15 @@ class ProfileController extends Controller
     }
 
     function cf_shirt_size($account,$Title_value){
+        DB::table('users')
+            ->where([ 
+                    ['account', $account],
+                ])
+            ->update([
+                    'shirt_size' => $Title_value,
+                ]);
 
+        return "success" ;
     }
 
 }
