@@ -201,7 +201,7 @@
     </div>
 </div>
 <!-- END modal_join_team -->
-<button class="btn btn-warning d-nonve" onclick="test_modal('Host Accept');">TEST</button>
+<button class="btn btn-warning d-none" onclick="test_modal('Host Accept');">TEST</button>
 
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}"  class="mt-2 mb-2 img-header-team">
