@@ -240,7 +240,7 @@
 <!-- Modal -->
 <div class="modal fade" id="modalAcceptRegis" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content mx-5">
+    <div class="modal-content">
       <div class="modal-body">
         <div class="d-flex justify-content-center">
           <img src="{{ url('/img/icon/ask.png') }}" class="img-modal text-center">
