@@ -17,7 +17,6 @@
         border-radius: 0 0 40px 40px;
         position: relative;
         padding-bottom: 50px;
-        min-width: 100vw;
     }
 
     .btn-edit-profile {
