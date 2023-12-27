@@ -112,7 +112,7 @@
         height:87px;
         /* outline: 1px solid #000; */
         border-radius: 5px;
-        object-fit: contain;
+        object-fit: cover;
     }.host-member{
         position:absolute;
         right: -10px;
@@ -123,8 +123,6 @@
         height: 31px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         padding: 2px 0 0 0;
-
-        
     }.host-member i{
         margin-left: 5px;
         /* margin-top: 0px; */
