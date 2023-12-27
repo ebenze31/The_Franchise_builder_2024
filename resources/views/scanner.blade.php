@@ -299,17 +299,18 @@
     const context = canvas.getContext('2d');
 
     function start_scanQRCode() {
-      navigator.mediaDevices.getUserMedia({
-          video: { facingMode: 'environment'}
-      })
-      .then(function(stream) {
-        videoStream = stream; // เก็บ stream ในตัวแปร global
-        video.srcObject = stream;
-        video.play();
+        navigator.mediaDevices.getUserMedia({
+            video: {
+              facingMode: 'environment'
+            }
+        })
+        .then(function(stream) {
+            videoStream = stream; // เก็บ stream ในตัวแปร global
+            video.srcObject = stream;
+            video.play();
 
-        scanQRCode();
-      });
-
+            scanQRCode();
+        });
     }
 
     function scanQRCode() {
@@ -321,19 +322,20 @@
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
         if (code) {
-          // console.log(code.data);
-          // alert(code.data);
-          let type = code.data.split('=')[0];
-          let name = code.data.split('=')[1];
+            // console.log(code.data);
 
-          if(type == "Activies"){
-            if(name == "รับเสื้อ"){
-              create_modal_Activies(name , code);
+            let type = code.data.split('=')[0];
+            let name = code.data.split('=')[1];
+
+            if(type == "Activies"){
+              if(name == "รับเสื้อ"){
+                create_modal_Activies(name , code);
+              }
             }
-          }
 
-          return;
+            return;
         }
+        
       }
 
       requestAnimationFrame(scanQRCode);
