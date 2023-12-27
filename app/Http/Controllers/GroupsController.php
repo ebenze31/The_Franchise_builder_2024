@@ -458,6 +458,12 @@ class GroupsController extends Controller
             }
 
             if( count($list_member) == 10 ){
+
+                // อัปเดตข้อมูลในฐานข้อมูล
+                $data_group->group_status = 'ยืนยันเรียบร้อย';
+                $data_group->member = json_encode($list_member);
+                $data_group->save();
+                
                 for ($i=0; $i < count($list_member); $i++) { 
                     DB::table('users')
                         ->where([ 
@@ -468,11 +474,6 @@ class GroupsController extends Controller
                                 'time_request_join' => null,
                             ]);
                 }
-
-                // อัปเดตข้อมูลในฐานข้อมูล
-                $data_group->group_status = 'ยืนยันเรียบร้อย';
-                $data_group->member = json_encode($list_member);
-                $data_group->save();
 
                 // DB::table('groups')
                 //     ->where([ 
