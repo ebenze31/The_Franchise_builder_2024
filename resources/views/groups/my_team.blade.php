@@ -340,7 +340,11 @@
                 @endphp
 
                 @if( count($list_member) < 10 )
+                @if( !empty($data_groups->request_join) )
                 <button style="font-size:9px;" class="float-end btn btn-sm btn-{{ $class_div_request_join }} position-relative" onclick="open_modal_request_join();">
+                @else
+                <button style="font-size:9px;" class="float-end btn btn-sm btn-{{ $class_div_request_join }} position-relative">
+                @endif
                     Pending requests
 
                     @if( !empty($data_groups->request_join) )
