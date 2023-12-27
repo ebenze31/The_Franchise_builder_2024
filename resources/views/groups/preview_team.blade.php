@@ -35,9 +35,10 @@
     .member-section{
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-around;
         margin-top: 20px;
         width: 100%;
+        
 
     }.memberInRoom{
         background-color:#0b2846;
@@ -48,19 +49,18 @@
         font-size: 20px;
         font-weight: bold;
     }
-    @media (width < 680px) {
+    @media only screen and (max-width: 680px) {
         .member-item{
             width: 30%;
             height: 128px;
             margin: 0 2px;
         }
     }
-    @media (width > 680px) {
-        .member-item{
-            min-width: 100px;
-            max-width: 180px;
-            height: 128px;
 
+    @media only screen and (min-width: 680px) {
+        .member-item{
+            width: 150px;
+            height: 128px;
             margin: 0 10px;
         }
     }
@@ -72,12 +72,17 @@
         justify-content: center;
         border-radius: 10px;
         position: relative;
-    }.member-card-join{
+        width: 100%;
+        
+    }
+    
+    .member-card-join{
         background-color: #fff;
         padding: 10px;
         border-radius: 10px;
         position: relative;
-    }.font-12{
+    }
+    .font-12{
         font-size: 12px;
         font-weight: bold;
     }.font-14{
@@ -206,41 +211,40 @@
     <div class="member-section ">
         @if( empty($data_groups->member) )
             @for ($i = 0; $i < 10; $i++) 
-            @if($i == 0)
-            <div id="Team_no" class="member-item mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');">
-                <div class="member-card h-100" style="width: 100%;height: auto;">
-                    <div class="text-center">
-                        <i class="fa-solid fa-user-plus"></i>
-                        <p class="font-12">Be the host</p>
+                @if($i == 0)
+                    <div id="Team_no" class="member-item mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');">
+                        <div class="member-card h-100" style="width: 100%;height: auto;">
+                            <div class="text-center w-100">
+                                <i class="fa-solid fa-user-plus"></i>
+                                <p class="font-12 w-100"> Be the host</p>
+                            </div>
+                            <span class="btn host-member">
+                                <i class="fa-solid fa-key text-warning"></i>
+                            </span>
+                        </div>
                     </div>
-                    <span class="btn host-member">
-                        <i class="fa-solid fa-key text-warning"></i>
-                    </span>
-                </div>
-            </div>
-            @else
-            <div id="Team_no" class="member-item mt-2 mb-2">
-                <div class="disable-card w-100 h-100" >
-                    <div class="text-center">
-                        <i class="fa-solid fa-user-plus"></i>
-                        <p class="font-12">Join as member</p>
+                @else
+                    <div id="Team_no" class="member-item mt-2 mb-2">
+                        <div class="disable-card h-100" >
+                            <div class="text-center">
+                                <i class="fa-solid fa-user-plus"></i>
+                                <p class="font-12">Join as member</p>
+                            </div>
+                            
+                        </div>
                     </div>
-                    
-                </div>
-            </div>
-            @endif
+                @endif
             @endfor
         @else
             @php
                 $list_member = json_decode($data_groups->member);
             @endphp
             
-
             @for ($i = 0; $i < count($list_member); $i++) 
 
                 @php $member = App\User::where('id' , $list_member[$i] )->first(); @endphp
                 
-                <div class="member-item col-4 mt-2 mb-3" >
+                <div class="member-item mt-2 mb-3" >
                     <div class="member-card-join">
                         @if( $list_member[$i] == $data_groups->host )
                         <span class="btn host-member">
