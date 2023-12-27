@@ -259,6 +259,12 @@
     </div>
 </div>
 <!-- END modal_cf_answer_request -->
+
+
+@php
+    $list_member = json_decode($data_groups->member);
+@endphp
+
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}"  class="mt-2 mb-2 img-header-team">
     <div>
@@ -277,37 +283,41 @@
                 <p class="text-white">Member : <span id="amount_member"></span>/10</p>
             </div>
             <div>
-                <button style="font-size:9px;" class="float-end btn btn-sm btn-warning position-relative" onclick="open_modal_request_join();">
+                @php
+                    $list_request_join = json_decode($data_groups->request_join);
+                    $class_div_request_join = '';
+
+                    if( !empty($data_groups->request_join) ){
+                        $class_div_request_join = 'warning';
+                    }else{
+                        $class_div_request_join = 'secondary';
+                    }
+                @endphp
+
+                @if( count($list_member) < 10 )
+                <button style="font-size:9px;" class="float-end btn btn-sm btn-{{ $class_div_request_join }} position-relative" onclick="open_modal_request_join();">
                     Pending requests
 
                     @if( !empty($data_groups->request_join) )
-                    @php
-                        $list_request_join = json_decode($data_groups->request_join);
-                    @endphp
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         {{ count($list_request_join) }}
                     </span>
+                    <p class="text-count-down">Countdown : <span id="requests_little"></span></p>
                     @endif
-                    <p class="text-count-down">Countdown : 00:00</p>
                 </button>
+                @endif
             </div>
         @else
             <div>
                 <span class="text-mamber h4">Members</span>  <span class="text-white">: Team {{ $group_id }}</span>
             </div>
             <div>
-                <p class="text-white">Member : <span id="amount_member"></span>/10</p>
+                <p class="text-white">Member : <span id="amount_member">{{ count($list_member) }}</span>/10</p>
             </div>
         @endif
     </div>
 
     <div class="member-section ">
-
-        
-        @php
-            $list_member = json_decode($data_groups->member);
-        @endphp
-                    
 
         @for ($i = 0; $i < count($list_member); $i++) 
 
@@ -347,7 +357,7 @@
                 <div class="member-card h-100" style="width: 100%;height: auto;">
                         <div class="text-center">
                             <i class="fa-solid fa-user-plus"></i>
-                            <p class="font-12">Join our team</p>
+                            <p class="font-12">Waiting for member</p>
                         </div>
                     </div>
             </div>
