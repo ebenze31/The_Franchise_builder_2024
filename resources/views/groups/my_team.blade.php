@@ -80,7 +80,7 @@
     }.member-section{
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
         margin-top: 20px;
     }
     
@@ -273,6 +273,9 @@
     </div>
 
     <div class="member-section ">
+        <center>
+
+        
         @php
             $list_member = json_decode($data_groups->member);
         @endphp
@@ -323,6 +326,7 @@
             @endfor
         @endif
     </div>
+    </center>
 </div>
 
 

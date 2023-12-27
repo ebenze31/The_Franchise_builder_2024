@@ -82,13 +82,14 @@
     <p class="text-center ">
         <small class="mt-3 text-white">id : {{Auth::user()->id}}</small>
     </p>
-    <div class="d-flex justify-content-center align-items-center text-white h6">
-       <span class="textPC"> PC :</span> <span class="textScore"> &nbsp;24.4M</span>
-    </div>
     <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
         <i class='bx bx-log-out-circle'></i> logout
     </a>
-
+    
+    @if(Auth::user()->rank_of_week)
+    <div class="d-flex justify-content-center align-items-center text-white h6">
+       <span class="textPC"> PC :</span> <span class="textScore"> &nbsp;24.4M</span>
+    </div>
     <div class="d-flex justify-content-around">
         <div class="text-center">
             <p class="text-white">Ranking of Individual</p>
@@ -99,6 +100,7 @@
             <h4 class="text-rank">as</h4>
         </div>
     </div>
+    @endif
 </div>
 
 

@@ -35,7 +35,7 @@
     .member-section{
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
         margin-top: 20px;
         width: 100%;
 
@@ -207,8 +207,8 @@
         @if( empty($data_groups->member) )
             @for ($i = 0; $i < 10; $i++) 
             @if($i == 0)
-            <div id="Team_no" class="member-item col-4 mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');">
-                <div class="member-card h-100" style="width: 95%;height: auto;">
+            <div id="Team_no" class="member-item mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');">
+                <div class="member-card h-100" style="width: 100%;height: auto;">
                     <div class="text-center">
                         <i class="fa-solid fa-user-plus"></i>
                         <p class="font-12">Be the host</p>
@@ -219,7 +219,7 @@
                 </div>
             </div>
             @else
-            <div id="Team_no" class="member-item col-4 mt-2 mb-2">
+            <div id="Team_no" class="member-item mt-2 mb-2">
                 <div class="disable-card w-100 h-100" >
                     <div class="text-center">
                         <i class="fa-solid fa-user-plus"></i>
