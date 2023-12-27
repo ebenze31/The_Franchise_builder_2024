@@ -250,7 +250,7 @@ class ProfileController extends Controller
 
                 $return = "สร้าง";
 
-                sleep(1);
+                sleep(3);
             }
         }
 

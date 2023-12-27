@@ -207,6 +207,11 @@
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}"  class="mt-2 mb-2 img-header-team">
     <h1>Team {{ $group_id }}</h1>
 </div>
+
+@php
+    $list_member = json_decode($data_groups->member);
+@endphp
+
 <div class="memberInRoom">
     <div class="d-flex justify-content-between px-4 align-items-center">
         <div>
@@ -214,7 +219,11 @@
             <span class="text-mamber">Members</span>  <span class="text-white">: Team {{ $group_id }}</span>
         </div>
         <div>
-            <span class="text-white">Member : <span id="amount_member"></span>/10</span>
+            @if( empty($data_groups->member) )
+            <span class="text-white">Member : <span id="amount_member">00</span>/10</span>
+            @eles
+            <span class="text-white">Member : <span id="amount_member">{{ count($list_member) }}</span>/10</span>
+            @endif
         </div>
     </div>
     <div class="member-section ">
@@ -245,9 +254,7 @@
                 @endif
             @endfor
         @else
-            @php
-                $list_member = json_decode($data_groups->member);
-            @endphp
+            
             
             @for ($i = 0; $i < count($list_member); $i++) 
 
@@ -395,7 +402,12 @@
                         </div>
                     </div>
                     <div class="col-12 mt-2 mb-2 text-dark">
-                        Members : Team {{ $group_id }} <span class="float-end">Member : <span id="amount_member"></span>/10</span>
+                        Members : Team {{ $group_id }} 
+                        @if( empty($data_groups->member) )
+                        <span class="text-white">Member : <span id="amount_member">00</span>/10</span>
+                        @eles
+                        <span class="text-white">Member : <span id="amount_member">{{ count($list_member) }}</span>/10</span>
+                        @endif
                     </div>
                 </div>
 
