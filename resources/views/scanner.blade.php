@@ -189,9 +189,9 @@
     <div class="tab-content mt-5 " id="pills-tabContent">
       <div class="tab-pane fade show active text-white" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <div class="d-flex justify-content-center w-100">
-          <img src="{{ url('img/qr_profile')}}/{{ Auth::user()->qr_profile }}" class="qr-profile" alt="รูปภาพ QR Code">
+          <img src="{{ url('/img/qr_profile')}}/{{ Auth::user()->qr_profile }}" class="qr-profile" alt="รูปภาพ QR Code">
         </div>
-        <a href="{{ url('img/qr_profile')}}/{{ Auth::user()->qr_profile }}" class="btn btn-download" download>
+        <a href="{{ url('/img/qr_profile')}}/{{ Auth::user()->qr_profile }}" class="btn btn-download" download>
           Download
         </a>
       </div>
