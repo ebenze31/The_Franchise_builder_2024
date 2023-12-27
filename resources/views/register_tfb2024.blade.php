@@ -127,7 +127,7 @@
     <div>
       <div class="text-center">
       </div>
-      <video src="https://res.cloudinary.com/codelife/video/upload/v1637805738/intro_l5ul1k.mp4" controls autoplay loop muted style="width:100%;" class="video-preview"></video>
+      <video src="https://tfb2024.988garage.com/video/The%20Franchise%20Builder%20season2%20Introduction.mp4" controls autoplay loop muted style="width:100%;" class="video-preview"></video>
       
 
       
