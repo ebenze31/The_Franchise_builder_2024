@@ -2,14 +2,6 @@
 
 @section('content')
 <style>
-    @font-face {
-        font-family: "AllianzNeo";
-        src: url("./theme_admin/fonts/Font/Font/Allianz_Neo_webfonts/ttf/AllianzNeo-Bold.ttf") format("truetype");
-    }
-
-    *:not(i) {
-        font-family: "AllianzNeo" !important;
-    }
     .header-login h6 {
         color: #fff;
         text-align: center;
