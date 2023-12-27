@@ -481,7 +481,7 @@ class GroupsController extends Controller
                         ])
                     ->update([
                             'group_status' => 'ยืนยันเรียบร้อย',
-                            'group_status' => json_encode($list_member),
+                            'member' => json_encode($list_member),
                         ]);
 
             }else{
