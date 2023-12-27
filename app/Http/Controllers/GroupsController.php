@@ -473,16 +473,16 @@ class GroupsController extends Controller
                                 'group_status' => 'Team Ready',
                                 'time_request_join' => null,
                             ]);
+                    DB::table('groups')
+                        ->where([ 
+                                ['id', $group_id],
+                            ])
+                        ->update([
+                                'group_status' => 'ยืนยันเรียบร้อย',
+                                'member' => json_encode($list_member),
+                            ]);
                 }
 
-                DB::table('groups')
-                    ->where([ 
-                            ['id', $group_id],
-                        ])
-                    ->update([
-                            'group_status' => 'ยืนยันเรียบร้อย',
-                            'member' => json_encode($list_member),
-                        ]);
 
             }else{
 
