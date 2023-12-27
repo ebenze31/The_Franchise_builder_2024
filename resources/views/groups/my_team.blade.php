@@ -628,7 +628,7 @@
                 // console.log(result);
 
                 if(result){
-                    document.querySelector('#a_group_my_team').click();
+                    // document.querySelector('#a_group_my_team').click();
                 }
         });
     }
