@@ -443,7 +443,6 @@ class GroupsController extends Controller
 
             // เพิ่ม $member_id_to_add เข้าไปใน $list_member
             array_push($list_member, $member_id_to_add);
-                echo "lllllll";
 
             // ลบ $member_id_to_add ออกจาก $list_request_join
             $list_request_join = array_diff($list_request_join, [$member_id_to_add]);
@@ -460,8 +459,8 @@ class GroupsController extends Controller
 
             if( count($list_member) == 10 ){
 
-            ddd($list_member);
-                
+                echo count($list_member);
+
                 // อัปเดตข้อมูลในฐานข้อมูล
                 // $data_group->group_status = 'ยืนยันเรียบร้อย';
                 // $data_group->member = json_encode($list_member);
