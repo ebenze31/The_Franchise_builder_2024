@@ -115,6 +115,29 @@
       linear-gradient(#000 0 0);
     -webkit-mask-composite: destination-out;
     mask-composite: exclude;
+  }#modal_cf_pay_slip .modal-dialog .modal-content{
+      border-radius: 10px;
+      >.modal-footer{
+        border-top: none;
+        display: flex;
+        justify-content: center !important;
+      }
+  }.btn-submit {
+    border-radius: 5px;
+    width: auto;
+    font-size: 16px;
+    margin-top: 15px;
+    padding: 10px 40px;
+
+    background-color: #005CD3;
+    color: #fff;
+  }
+
+  .btn-submit:hover {
+    border: 1px solid #00E0FF;
+    box-shadow: 0px 0px 15px 1px #00FBFF;
+    color: #fff;
+
   }
 </style>
 
@@ -122,16 +145,16 @@
 <button id="btn_modal_cf_pay_slip" class="d-none" data-toggle="modal" data-target="#modal_cf_pay_slip"></button>
 
 <div class="modal fade" id="modal_cf_pay_slip" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered px-4">
         <div class="modal-content">
-            <div id="modal_cf_pay_slip_content" class="modal-body text-center">
-                <img src="{{ url('/img/icon/Frame 2.png') }}" style="width:100%;" class="mt-2 mb-2">
-                <h4 class="text-info">ยืนยันการชำระเงินเรียบร้อยแล้ว</h4>
-                <p class="text-info">ไปยังหน้าจัดกลุ่ม</p>
+            <div id="modal_cf_pay_slip_content" class="modal-body text-center pb-0">
+                <img src="{{ url('/img/icon/Frame 2.png') }}" style="width:150px;" class="mt-2 mb-2">
+                <h4 class="text-info mt-3"><b>ยืนยันการชำระเงินเรียบร้อยแล้ว</b></h4>
+                <p class="text-info mb-0">ไปยังหน้าจัดกลุ่ม</p>
                 <br>
             </div>
             <div id="modal_cf_pay_slip_footer" class="modal-footer text-center">
-                <a href="{{ url('/groups') }}" type="button" class="btn btn-primary">OK</a>
+                <a href="{{ url('/groups') }}" type="button" class="btn btn-submit">OK</a>
             </div>
             <a id="link_to_my_team" class="d-none"></a>
         </div>

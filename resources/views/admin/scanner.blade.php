@@ -11,6 +11,7 @@
   .user-img-qr {
     width: 83px;
     height: 83px;
+    border-radius: 50%;
   }
 
   .info-user {
@@ -174,8 +175,15 @@
         100% {
             transform: translateY(0);
         }
+    }.form-control  {
+        background: #002449 !important;
+        border: 3px solid rgb(84, 73, 116);
+        font-size: large;
+        color: #fff !important;
+
+
     }
-</style>
+</style>    
 
 <div id="alert_success" class="div_alert" role="alert">
     <span id="alert_text">
@@ -190,26 +198,22 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal_check_activity" tabindex="-1" aria-labelledby="Label_modal_check_activity" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="Label_modal_check_activity">โปรดตรวจสอบข้อมูลอีกครั้ง</h5>
-                <button id="btn_close_modal_check_activity" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content py-3 mx-4">
             <div class="modal-body">
                 <div class="row">
                     <div id="content_modal_check_activity" class="col-12 text-center">
                         <!-- DATA -->
+                        
                     </div>
                     <div class="col-12 text-center mt-4 mb-0">
                         <p>เจ้าหน้าที่ผู้ยืนยัน : {{ Auth::user()->name }}</p>
                     </div>
                 </div>
             </div>
-            <div id="modal_footer" class="modal-footer text-center">
+            <div id="modal_footer" class="text-center mb-3">
                 <!-- BTN -->
+               
             </div>
         </div>
     </div>
@@ -223,9 +227,9 @@
     @endphp
     <div class="">
         <select name="name_Activity" id="name_Activity" class="form-control" onchange="start_scanQRCode();">
-            <option class="text-dark" value="">ชื่อกิจกรรม</option>
+            <option class="text-white text-center" value="">ชื่อกิจกรรม</option>
             @foreach($Activity as $item)
-                <option class="text-dark" value="{{ $item->name_Activities }}">{{ $item->name_Activities }}</option>
+                <option class="text-white text-center" value="{{ $item->name_Activities }}">{{ $item->name_Activities }}</option>
             @endforeach
         </select>
     </div>
@@ -237,10 +241,12 @@
             <img src="{{ url('/img/icon/profile.png') }}" class="user-img-qr" alt="รูปภาพผู้ใช้">
         @endif
     </div>
-    <p class="info-user mt-3 mb-0" data-toggle="modal" data-target="#exampleModalCenter">
+    <p class="info-user mt-3 mb-0">
         {{ Auth::user()->name }}
     </p>
-
+    <p class="info-user text-secondary">
+        ID : {{ Auth::user()->id }}
+    </p>
     <div class="d-flex w-100 justify-content-center mt-4">
         <div class="box" style="--c:#000;--w:40px;--b:2px;--r:20px;">
             <video style="width:100%;" id="qr-video"></video>
@@ -337,8 +343,8 @@
                 .then(result => {
                     // console.log(result);
                     let html_modal = `
-                        <h4>ยืนยันการเข้าร่วมกิจกรรมของ</h4>
-                        <h3 class="text-info">`+result.name+`</h3>
+                        <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
+                        <h3 class="text-info my-4">`+result.name+`</h3>
                         <p>ในการเข้าร่วมกิจกรรม .....</p>
                         <h3>`+type+`</h3>
                     `;
