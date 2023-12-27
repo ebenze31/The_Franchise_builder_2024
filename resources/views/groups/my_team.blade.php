@@ -184,6 +184,8 @@
         padding: 8px 20px !important;
     }#modal_cf_answer_request_footer.modal-footer{
         border: none;
+    }.text-count-down{
+        font-size: 9px;
     }
 </style>
 
@@ -277,7 +279,7 @@
                         {{ count($list_request_join) }}
                     </span>
                     @endif
-
+                    <p class="text-count-down">Countdown : 00:00</p>
                 </button>
             </div>
         @else

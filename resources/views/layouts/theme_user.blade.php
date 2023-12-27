@@ -103,6 +103,8 @@
         #header-text-login{
             width: 200px;
         }
+    }.btn-back{
+        color: #f8f9fa;
     }
 </style>
 
@@ -112,8 +114,8 @@
     <div class="row">
 
         <div class="col">
-            <button type="button" class="btn btn-sm btn-outline-light radius-10 mt-2" onclick="goBack();">
-                <span class="mx-2"><i class="fa-solid fa-chevron-left"></i>Back</span>
+            <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">
+               <i class="fa-solid fa-chevron-left"></i>
             </button>
         </div>
 
