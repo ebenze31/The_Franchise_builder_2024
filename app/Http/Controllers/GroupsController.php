@@ -479,7 +479,7 @@ class GroupsController extends Controller
                                 ['id', $list_member[$i]],
                             ])
                         ->update([
-                                'group_status' => json_encode($list_member),
+                                'group_status' => 'Team Ready',
                                 'time_request_join' => null,
                             ]);
                 }
