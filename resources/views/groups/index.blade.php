@@ -52,12 +52,15 @@
     }.item-team{
         padding: 10px 10px 0 10px;
         
-        >img{
-            outline: 1px solid #00E0FF;
-            border-radius: 5px;
-        }
+        
 
-    }#content_groups{
+    }
+    .item-team img{
+        outline: 1px solid #00E0FF;
+        border-radius: 5px;
+    }
+
+    #content_groups{
         display: flex;
         justify-content: space-around;
     }
