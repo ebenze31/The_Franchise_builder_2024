@@ -4,7 +4,7 @@
 <style>
     .nav-menu {
         margin-top: 15px;
-        padding: 0 60px;
+        padding: 0 20px;
         background-color: rgb(255, 255, 255, 0.5);
         position: relative;
         z-index: 1;
@@ -28,14 +28,14 @@
         top: 50%;
         transform: translate(-50%, -50%);
         z-index: 9999999;
-        width: 50px;
+        width: 20px;
         display: flex;
         justify-content: center;
     }
     .owl-carousel__next{
-        right: 0px;
+        right: -5px;
     }.owl-carousel__prev{
-        left: 40px;
+        left: 15px;
     }.btn-sort-group{
         color: #fff;
         padding: 10px 0;
