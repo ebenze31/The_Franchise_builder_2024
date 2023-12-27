@@ -432,10 +432,10 @@
                         <h3>`+type+`</h3>
                         <br>
                         <h4>Title</h4>
-                        <input type="radio" id="S" name="Title" value="S"/>
-                        <input type="radio" id="M" name="Title" value="M"/>
-                        <input type="radio" id="L" name="Title" value="L"/>
-                        <input type="radio" id="XL" name="Title" value="XL"/>
+                        <input type="radio" id="S" name="Title" value="S"/>S
+                        <input type="radio" id="M" name="Title" value="M"/>M
+                        <input type="radio" id="L" name="Title" value="L"/>L
+                        <input type="radio" id="XL" name="Title" value="XL"/>XL
                     `;
 
                     let html_footer = `
