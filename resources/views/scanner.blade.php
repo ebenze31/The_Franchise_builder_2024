@@ -327,7 +327,7 @@
             let type = code.data.split('=')[0];
             let name = code.data.split('=')[1];
 
-            if(type == "Activies"){
+            if(type == "Activities"){
               if(name == "รับเสื้อ"){
                 create_modal_Activies(name , code);
               }
