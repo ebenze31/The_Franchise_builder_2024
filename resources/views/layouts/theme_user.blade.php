@@ -37,9 +37,9 @@
 <style>
      @font-face {
         font-family: "AllianzNeo";
-        src: url("./theme_admin/fonts/Font/Font/Allianz_Neo_webfonts/ttf/AllianzNeo-Bold.ttf") format("truetype");
+        src: url("../public/theme_admin/fonts/Font/Font/Allianz_Neo_webfonts/ttf/AllianzNeo-Bold.ttf") format("truetype");
+            
     }
-
     *:not(i) {
         font-family: "AllianzNeo" !important;
     }
@@ -105,6 +105,10 @@
         }
     }.btn-back{
         color: #f8f9fa;
+    }.div-btn-back{
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 </style>
 
@@ -113,7 +117,7 @@
 <div class="container ">
     <div class="row">
 
-        <div class="col">
+        <div class="div-btn-back">
             <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">
                <i class="fa-solid fa-chevron-left"></i>
             </button>

@@ -69,7 +69,7 @@
 
     .header-badges {
         color: #fff;
-        margin: 40px 40px;
+        margin: 40px 40px 40px 20px;
     }
 
     .badges-item {
@@ -96,9 +96,27 @@
         background-color: #686666;
     }
     #contentBadges.active{
+
         border: #00E0FF 1px solid;
         background-color: #07203F;
+    }.btn-submit {
+        border-radius: 5px;
+        width: auto;
+        font-size: 16px;
+        margin-top: 15px;
+        padding: 10px 40px;
+        background-color: #005CD3;
+        color: #fff;
+        -webkit-border-radius: 50px; 
+    -moz-border-radius: 50px;
     }
+
+  .btn-submit:hover {
+    border: 1px solid #00E0FF;
+    box-shadow: 0px 0px 15px 1px #00FBFF;
+    color: #fff;
+
+  }
 </style>
 
 <div class="profile-header">
@@ -143,17 +161,20 @@
 
 
 </div>
-<h4 class="header-badges">
-    My badges
-</h4>
+
 <div class="row ">
+    <div class="col-12">
+    <h4 class="header-badges">
+        My badges
+    </h4>
+    </div>
     <div class="col-4 badges-item active" activity="ป้าย1"  onclick="open_badges(this)">
         <img src="{{ url('/img/icon/badges-1.png') }}" alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
     </div>
-    <div class="col-4 badges-item active" activity="ป้าย2" onclick="open_badges(this)">
+    <div class="col-4 badges-item" activity="ป้าย2" onclick="open_badges(this)">
         <img src="{{ url('/img/icon/badges-2.png') }}" alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
@@ -212,6 +233,11 @@
                 <img id="imgContentBadges" class="img-show-badges mb-3" src="{{ url('/img/icon/badges-1.png') }}" alt="">
                 <h5 class="text-center text-white mt-5" id="badgesName">asd</h5>
                 <p class="text-white" id="detailBadges"></p>
+
+                <div class="d-flex justify-content-center mt-2">
+
+                    <button class="btn btn-submit">Close</button>
+                </div>
             </div>
         </div>
     </div>

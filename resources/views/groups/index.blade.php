@@ -2,6 +2,9 @@
 
 @section('content')
 <style>
+    #header-text-login{
+        width: 140px;
+    }
     .nav-menu {
         margin-top: 15px;
         padding: 0 20px;
@@ -41,7 +44,10 @@
         padding: 10px 0;
         font-size: 12px;
         height: 100%;
-    }.btn-sort-group .item{
+    }.btn:hover ,.btn:active{
+    color: #0a58ca !important;
+}
+    .btn-sort-group .item{
         display: flex;
         align-items: center;
     }
@@ -56,6 +62,8 @@
     .item-team img{
         outline: 1px solid #00E0FF;
         border-radius: 5px !important;
+        -webkit-border-radius: 5px; 
+    -moz-border-radius: 5px;
     }
 
     #content_groups{

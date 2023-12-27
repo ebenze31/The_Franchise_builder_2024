@@ -4,12 +4,12 @@
 <style>
   #header-text-login {
     width: 45% !important;
-    margin-top: 35px;
+    margin-top:5px;
   }
 
   .user-img {
-    width: 83px;
-    height: 83px;
+    width: 110px;
+    height: 110px;
   }
 
   .info-user {
@@ -48,7 +48,7 @@
   .btn-qr-code {
     background-color: #3980B9 !important;
     color: #fff !important;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 5px 0 0 5px !important;
   }
 
@@ -60,7 +60,7 @@
   .btn-scan-code {
     background-color: #3980B9 !important;
     color: #fff !important;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 0 5px 5px 0 !important;
   }
 
@@ -196,7 +196,7 @@
         </a>
       </div>
       <div class="tab-pane fade text-white" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-        <div class="d-flex w-100 justify-content-center">
+        <div class="d-flex w-100 justify-content-center mb-5">
           <div class="box" style="--c:#000;--w:40px;--b:2px;--r:20px;">
             <video style="width:100%;" id="qr-video"></video>
           </div>

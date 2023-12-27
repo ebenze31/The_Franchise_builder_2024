@@ -149,7 +149,7 @@
     font-size: 16px;
     margin-top: 15px;
     padding: 10px 20px;
-
+padding: 15px 30px;
     background-color: #005CD3;
     color: #fff;
   }
@@ -157,6 +157,7 @@
   .btn-submit:hover {
     border: 1px solid #00E0FF;
     box-shadow: 0px 0px 15px 1px #00FBFF;
+    
     color: #fff;
 
   }#btn_select_new_img{
@@ -164,7 +165,21 @@
     top: 20px;
     left: 20px;
     color: #005CD3;
-  }
+  } .btn-logout {
+        color: rgb(244, 244, 244, .7);
+        outline: 1px solid rgb(244, 244, 244, .7);
+        border-radius: 50px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+      -webkit-border-radius: 50px; 
+      -moz-border-radius: 50px;
+    }
+
+    .btn-logout i {
+        font-size: 15px;
+        margin-top: -12px;
+    }
 </style>
 
 
@@ -195,8 +210,9 @@
 
     <p class="info-user mt-3 mb-0" data-toggle="modal" data-target="#exampleModalCenter">{{ Auth::user()->name }} </p>
     <!-- <p class="info-user">{{ Auth::user()->email }}</p> -->
-
-    <button class="btn btn-submit" type="submit">ยืนยัน</button>
+    <div>
+      <button class="btn btn-submit" type="submit">Next</button>
+    </div>
     @else
     <div class=" d-flex justify-content-center w-100 mt-4 ">
       <div class="edit-first-profile" id="DivEditProfile">
@@ -242,9 +258,9 @@
 <!-- <img id="preview" src="{{ url('/') }}" alt="ภาพพรีวิว" style="max-width:100%; height:auto; display:none;"> -->
 
 
-<a class="btn btn-sm btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top: 2%;right: 1%;">
-  <i class='bx bx-log-out-circle'></i>
-</a>
+<a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
+        <i class='bx bx-log-out-circle'></i> logout
+    </a>
 
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
   @csrf

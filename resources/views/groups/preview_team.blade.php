@@ -64,14 +64,14 @@
             margin: 0 10px;
         }
          
-    .member-section{
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 20px;
-        width: 100%;
-        
+        .member-section{
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            width: 100%;
+            
 
-    }
+        }
     }
     .member-card{
         background-color: #fff;
