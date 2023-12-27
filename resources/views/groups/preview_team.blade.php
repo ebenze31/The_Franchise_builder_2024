@@ -221,7 +221,7 @@
         <div>
             @if( empty($data_groups->member) )
             <span class="text-white">Member : <span id="amount_member">00</span>/10</span>
-            @eles
+            @else
             <span class="text-white">Member : <span id="amount_member">{{ count($list_member) }}</span>/10</span>
             @endif
         </div>
