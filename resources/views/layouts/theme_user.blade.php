@@ -79,6 +79,19 @@
            height: 33px;
            fill: #fff;
         }
+
+       
+        @media (width < 680px) {
+            #header-text-login{
+                width: 139.67px;
+            }
+        }
+        
+        @media (680px <= width <=1200px) {
+            #header-text-login{
+                width: 200px;
+            }
+        }
 </style>
 
 <body>
@@ -94,13 +107,13 @@
 
         <div class="col-12">
             <div class="text-center">
-                <div class="col d-block d-md-none">
-                    <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 60%" id="header-text-login">
+                <div class="col">
+                    <img src="{{ url('/img/logo/Favicons.png') }}" id="header-text-login">
                 </div>
 
-                <div class="col d-none d-lg-block">
+                <!-- <div class="col d-none d-lg-block">
                     <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 20%" id="header-text-login">
-                </div>
+                </div> -->
             </div>
         </div>
 
