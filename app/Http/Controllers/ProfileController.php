@@ -242,12 +242,6 @@ class ProfileController extends Controller
                 // Save image
                 file_put_contents($img, file_get_contents($url));
 
-                $qr_code = Image::make( $img );
-                //logo viicheck
-                $logo_icon = Image::make(public_path('img/logo/ALV.DE-78cd6600.png'));
-                $logo_icon->resize(80,80);
-                $qr_code->insert($logo_icon,'center')->save();
-
                 $return = "สร้าง";
 
                 sleep(3);
