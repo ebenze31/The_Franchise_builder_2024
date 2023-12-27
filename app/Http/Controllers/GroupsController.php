@@ -443,6 +443,7 @@ class GroupsController extends Controller
 
             // เพิ่ม $member_id_to_add เข้าไปใน $list_member
             array_push($list_member, $member_id_to_add);
+            ddd($list_member);
 
             // ลบ $member_id_to_add ออกจาก $list_request_join
             $list_request_join = array_diff($list_request_join, [$member_id_to_add]);
