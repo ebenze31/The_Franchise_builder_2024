@@ -32,7 +32,8 @@
   }
 
   .qr-section {
-    padding: 18px 35px 35px 35px;
+    padding: 18px 5px 35px 5px;
+
   }
 
   .btn-download {
