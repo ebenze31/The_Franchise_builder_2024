@@ -32,15 +32,7 @@
     
     
     
-    .member-section{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        margin-top: 20px;
-        width: 100%;
-        
-
-    }.memberInRoom{
+   .memberInRoom{
         background-color:#0b2846;
         padding: 15px 10px 10px 15px;
         height: 100%;
@@ -55,6 +47,14 @@
             height: 128px;
             margin: 0 2px;
         }
+         
+        .member-section{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+            width: 100%;
+        }
     }
 
     @media only screen and (min-width: 680px) {
@@ -63,6 +63,15 @@
             height: 128px;
             margin: 0 10px;
         }
+         
+    .member-section{
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        width: 100%;
+        
+
+    }
     }
     .member-card{
         background-color: #fff;
