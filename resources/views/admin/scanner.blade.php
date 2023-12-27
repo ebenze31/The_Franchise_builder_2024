@@ -255,9 +255,9 @@
     @php
         $Activity = App\Models\Activity::get();
     @endphp
-    <div class="">
+    <div class="" style="position: relative;">
+        <i style="position: absolute;" class="fa-sharp fa-solid fa-caret-down"></i>
         <select name="name_Activity" id="name_Activity" class="form-control" onchange="keep_name_Activity();start_scanQRCode();">
-
             @if( !empty(Auth::user()->scan_qr_for) )
             <option class="text-white text-center" value="{{ Auth::user()->scan_qr_for }}">{{ Auth::user()->scan_qr_for }}</option>
             @else

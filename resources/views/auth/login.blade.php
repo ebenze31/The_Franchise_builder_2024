@@ -151,7 +151,7 @@
                 <label for="account" class="col-md-4 col-form-label text-md-right label-form">{{ __('Username') }}</label>
 
                 <div class="col-md-6">
-                    <input id="account" type="account" class="form-control @error('account') is-invalid @enderror input-login" name="account" value="{{ old('account') }}" required autocomplete="account" autofocus>
+                    <input id="account" type="account" class="form-control @error('account') is-invalid @enderror input-login" name="account" value="{{ old('account') }}" required autocomplete="account" autofocus onchange="check_pdpa();">
                     @error('account')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -233,20 +233,24 @@
     });
 
     function check_pdpa(){
+
         let account = document.querySelector('#account').value;
+        let password = document.querySelector('#password').value;
         console.log(account);
 
-        fetch("{{ url('/') }}/api/check_pdpa/" + account)
-            .then(response => response.text())
-            .then(result => {
-                // console.log(result);
+        if(account && password){
+            fetch("{{ url('/') }}/api/check_pdpa/" + account)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
 
-                if(result != "Yes"){
-                    $('#ModalTerms').modal('show');
-                }else{
-                    document.querySelector('#btn_for_login').setAttribute('onclick' , 'to_login();');
-                }
-        });
+                    if(result != "Yes"){
+                        $('#ModalTerms').modal('show');
+                    }else{
+                        document.querySelector('#btn_for_login').setAttribute('onclick' , 'to_login();');
+                    }
+            });
+        }
     }
 
     function to_login(){
