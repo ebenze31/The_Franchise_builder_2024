@@ -402,12 +402,7 @@
                         </div>
                     </div>
                     <div class="col-12 mt-2 mb-2 text-dark">
-                        Members : Team {{ $group_id }} 
-                        @if( empty($data_groups->member) )
-                        <span class="text-white">Member : <span id="amount_member">00</span>/10</span>
-                        @eles
-                        <span class="text-white">Member : <span id="amount_member">{{ count($list_member) }}</span>/10</span>
-                        @endif
+                        Members : Team {{ $group_id }} <span class="float-end">Member : <span id="amount_member">00</span>/10</span>
                     </div>
                 </div>
 
