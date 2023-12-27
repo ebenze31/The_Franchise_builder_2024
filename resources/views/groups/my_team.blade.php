@@ -305,6 +305,10 @@
                     <p class="text-count-down">Countdown : <span id="requests_little"></span></p>
                     @endif
                 </button>
+                @else
+                <div>
+                    <p class="text-white">Member : <span id="amount_member">{{ count($list_member) }}</span>/10</p>
+                </div>
                 @endif
             </div>
         @else
