@@ -460,9 +460,9 @@ class GroupsController extends Controller
             if( count($list_member) == 10 ){
 
                 // อัปเดตข้อมูลในฐานข้อมูล
-                $data_group->group_status = 'ยืนยันเรียบร้อย';
-                $data_group->member = json_encode($list_member);
-                $data_group->save();
+                // $data_group->group_status = 'ยืนยันเรียบร้อย';
+                // $data_group->member = json_encode($list_member);
+                // $data_group->save();
                 
                 for ($i=0; $i < count($list_member); $i++) { 
                     DB::table('users')
@@ -475,13 +475,14 @@ class GroupsController extends Controller
                             ]);
                 }
 
-                // DB::table('groups')
-                //     ->where([ 
-                //             ['id', $group_id],
-                //         ])
-                //     ->update([
-                //             'group_status' => 'ยืนยันเรียบร้อย',
-                //         ]);
+                DB::table('groups')
+                    ->where([ 
+                            ['id', $group_id],
+                        ])
+                    ->update([
+                            'group_status' => 'ยืนยันเรียบร้อย',
+                            'group_status' => json_encode($list_member),
+                        ]);
 
             }else{
 
