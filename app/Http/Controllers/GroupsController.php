@@ -456,9 +456,38 @@ class GroupsController extends Controller
                 $data_group->request_join = json_encode($list_request_join);
             }
 
-            // อัปเดตข้อมูลในฐานข้อมูล
-            $data_group->member = json_encode($list_member);
-            $data_group->save();
+            if( count($list_member) == 10 ){
+                for ($i=0; $i < count($list_member); $i++) { 
+                    DB::table('users')
+                        ->where([ 
+                                ['id', $list_member[$i]],
+                            ])
+                        ->update([
+                                'group_status' => 'Team Ready',
+                                'time_request_join' => null,
+                            ]);
+                }
+
+                // อัปเดตข้อมูลในฐานข้อมูล
+                $data_group->group_status = 'ยืนยันเรียบร้อย';
+                $data_group->member = json_encode($list_member);
+                $data_group->save();
+
+                // DB::table('groups')
+                //     ->where([ 
+                //             ['id', $group_id],
+                //         ])
+                //     ->update([
+                //             'group_status' => 'ยืนยันเรียบร้อย',
+                //         ]);
+
+            }else{
+
+                // อัปเดตข้อมูลในฐานข้อมูล
+                $data_group->member = json_encode($list_member);
+                $data_group->save();
+            }
+
 
         }
         else if($answer == "Reject"){
@@ -471,6 +500,22 @@ class GroupsController extends Controller
                         'group_status' => 'Host Reject',
                         'time_request_join' => null,
                     ]);
+
+            // ลบ $member_id_to_add ออกจาก $list_request_join
+            $list_request_join = array_diff($list_request_join, [$member_id_to_add]);
+
+            // ตรวจสอบว่า $list_request_join ว่างหรือไม่
+            if (empty($list_request_join)) {
+                // ถ้าว่างให้กำหนดค่าเป็น null
+                $data_group->request_join = null;
+            } else {
+                // ไม่ว่างให้ encode กลับเป็น JSON และอัปเดตในฐานข้อมูล
+                $data_group->request_join = json_encode($list_request_join);
+            }
+
+            // อัปเดตข้อมูลในฐานข้อมูล
+            $data_group->member = json_encode($list_member);
+            $data_group->save();
         }
 
         return  "success" ;

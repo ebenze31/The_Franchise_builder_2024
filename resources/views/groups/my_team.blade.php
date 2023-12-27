@@ -560,20 +560,33 @@
             </div>
         `;
 
-        let html_footer = `
-            <button type="button" class="btn btn-primary padding-btn" onclick="CF_answer_request('Accept' , '`+member_id+`' , '`+group_id+`')">
-                Confirm
-            </button>
-            <button type="button" class=" padding-btn btn btn-danger" onclick="CF_answer_request('Reject' , '`+member_id+`' , '`+group_id+`')">
-                Reject
-            </button>
+        let html_footer ;
 
-            <span class="mt-4 text-center">
-                หาก Confirm แล้วจะเป็นการยืนยันสมาชิก
-                <br>
-                และ ไม่สามารถเปลี่ยนได้อีก
-            </span>
-        `;
+        if(answer == "Accept"){
+            html_footer = `
+                <button type="button" class="btn btn-primary padding-btn" onclick="CF_answer_request('Accept' , '`+member_id+`' , '`+group_id+`')">
+                    Confirm
+                </button>
+
+                <span class="mt-4 text-center">
+                    หาก Confirm แล้วจะเป็นการยืนยันสมาชิก
+                    <br>
+                    และ ไม่สามารถเปลี่ยนได้อีก
+                </span>
+            `;
+        }else if(answer == "Reject"){
+
+            html_footer = `
+                <button type="button" class=" padding-btn btn btn-danger" onclick="CF_answer_request('Reject' , '`+member_id+`' , '`+group_id+`')">
+                    Reject
+                </button>
+
+                <span class="mt-4 text-center">
+                    หาก Reject แล้วจะเป็นการปฎิเสธคำขอเข้าร่วมทีม
+                </span>
+            `;
+        }
+
 
         document.querySelector('#modal_cf_answer_request_content').innerHTML = html_modal;
         document.querySelector('#modal_cf_answer_request_footer').innerHTML = html_footer;

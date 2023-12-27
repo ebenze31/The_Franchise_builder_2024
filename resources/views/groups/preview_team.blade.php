@@ -31,7 +31,16 @@
 
     
     
-   .memberInRoom{
+    
+    .member-section{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 20px;
+        width: 100%;
+        
+
+    }.memberInRoom{
         background-color:#0b2846;
         padding: 15px 10px 10px 15px;
         height: 100%;
@@ -46,14 +55,6 @@
             height: 128px;
             margin: 0 2px;
         }
-         
-        .member-section{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-top: 20px;
-            width: 100%;
-        }
     }
 
     @media only screen and (min-width: 680px) {
@@ -62,15 +63,6 @@
             height: 128px;
             margin: 0 10px;
         }
-         
-    .member-section{
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 20px;
-        width: 100%;
-        
-
-    }
     }
     .member-card{
         background-color: #fff;
@@ -381,23 +373,25 @@
     <div class="row">
         <div class="card">
             <div class="card-body">
-            	<div class="row">
-            		<div class="col-12" style="background-color: skyblue;height: auto;position: relative;">
-            			<div class="row">
-            				<div class="col-3">
-            					<img src="{{ url('/img/bg_group/logo_group/bg_group_') . $group_id . '.png' }}" style="width: 90%;position: absolute;top:-20px;left: 4%;width: 50px;" class="mt-2 mb-2">
-            				</div>
-            				<div class="col-9 mt-2 mb-2">
-            					Team {{ $group_id }}
-            				</div>
-            			</div>
-            		</div>
-            		<div class="col-12 mt-2 mb-2 text-dark">
-            			Members : Team {{ $group_id }} <span class="float-end">Member : <span id="amount_member"></span>/10</span>
-            		</div>
-            	</div>
+
+                <div class="row">
+                    <div class="col-12" style="background-color: skyblue;height: auto;position: relative;">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="{{ url('/img/bg_group/logo_group/bg_group_') . $group_id . '.png' }}" style="width: 90%;position: absolute;top:-20px;left: 4%;width: 50px;" class="mt-2 mb-2">
+                            </div>
+                            <div class="col-9 mt-2 mb-2">
+                                Team {{ $group_id }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2 mb-2 text-dark">
+                        Members : Team {{ $group_id }} <span class="float-end">Member : <span id="amount_member"></span>/10</span>
+                    </div>
+                </div>
 
                 <div class="row mt-3">
+                    
                     @if( empty($data_groups->member) )
                         @for ($i = 0; $i < 10; $i++) 
                         <div id="Team_no" class=" col-4 mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');">
@@ -533,8 +527,8 @@
 
 
 <script>
-	
-	document.addEventListener('DOMContentLoaded', (event) => {
+    
+    document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         // get_data_groups("{{ $group_id }}");
         check_wait_host();
@@ -585,47 +579,74 @@
         fetch("{{ url('/') }}/api/get_data_groups/" + group_id)
             .then(response => response.json())
             .then(result => {
-              // console.log(result);
+              console.log(result);
 
-                if(type == "host"){
+                let list_member = JSON.parse(result.member);
+                let list_request_join = JSON.parse(result.request_join);
 
-                    if(!result.host){
-                        // console.log('ยังไม่มี host');
-                        fetch("{{ url('/') }}/api/user_join_team/" + type + "/" + group_id + "/{{ Auth::user()->id }}")
-                            .then(response => response.text())
-                            .then(result => {
-                              // console.log(result);
+                // console.log("{{ Auth::user()->id }}");
+                // console.log("------------");
+                // console.log(result.host);
+                // console.log(list_member);
+                // console.log(list_request_join);
 
-                                let link_to_my_team = document.querySelector('#link_to_my_team');
-                                    link_to_my_team.setAttribute("href","{{ url('/group_my_team') . '/' . $group_id }}?first=Yes");
+                let check_list_member = false ;
+                let check_list_request_join = false ;
 
-                                link_to_my_team.click();
-                        });
-                    }else{
-                        // console.log('ขออภัย มี Host แล้วขณะคุณทำรายการ');
-                        create_modal('home_have_host' , group_id);
-                    }
-                    
-                }else if(type != "host"){
-                    let count_member = JSON.parse(result.member);
-                    
-                    if(count_member.length < 10){
+                if(list_member){
+                    check_list_member = list_member.includes("{{ Auth::user()->id }}");
+                }
 
-                        fetch("{{ url('/') }}/api/user_join_team/" + type + "/" + group_id + "/{{ Auth::user()->id }}")
-                            .then(response => response.text())
-                            .then(result => {
-                              // console.log(result);
+                if(list_request_join){
+                    check_list_request_join = list_request_join.includes("{{ Auth::user()->id }}");
+                }
 
-                                // console.log('รอการตอบรับจาก host');
-                                create_modal('wait_host_accept' , group_id);
+                if( "{{ Auth::user()->id }}" == result.host || check_list_member || check_list_request_join ){
+                    // console.log('ไม่ทำงาน');
+                    location.reload();
+                }else{
+                    // console.log('ทำงาน');
+                    if(type == "host"){
 
-                        });
+                        if(!result.host){
+                            // console.log('ยังไม่มี host');
+                            fetch("{{ url('/') }}/api/user_join_team/" + type + "/" + group_id + "/{{ Auth::user()->id }}")
+                                .then(response => response.text())
+                                .then(result => {
+                                  // console.log(result);
 
-                    }else if(count_member.length >= 10){
-                        // console.log('ขออภัย บ้านนี้มีสมาชิกครับ 10 ท่านแล้ว');
-                        create_modal('full_house' , group_id);
+                                    let link_to_my_team = document.querySelector('#link_to_my_team');
+                                        link_to_my_team.setAttribute("href","{{ url('/group_my_team') . '/' . $group_id }}?first=Yes");
+
+                                    link_to_my_team.click();
+                            });
+                        }else{
+                            // console.log('ขออภัย มี Host แล้วขณะคุณทำรายการ');
+                            create_modal('home_have_host' , group_id);
+                        }
+                        
+                    }else if(type != "host"){
+                        let count_member = JSON.parse(result.member);
+                        
+                        if(count_member.length < 10){
+
+                            fetch("{{ url('/') }}/api/user_join_team/" + type + "/" + group_id + "/{{ Auth::user()->id }}")
+                                .then(response => response.text())
+                                .then(result => {
+                                  // console.log(result);
+
+                                    // console.log('รอการตอบรับจาก host');
+                                    create_modal('wait_host_accept' , group_id);
+
+                            });
+
+                        }else if(count_member.length >= 10){
+                            // console.log('ขออภัย บ้านนี้มีสมาชิกครับ 10 ท่านแล้ว');
+                            create_modal('full_house' , group_id);
+                        }
                     }
                 }
+
         });
 
     }
