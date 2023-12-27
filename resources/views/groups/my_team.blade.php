@@ -271,7 +271,6 @@
     </div>
 
     <div class="member-section ">
-        <center>
 
         
         @php
@@ -287,24 +286,24 @@
             @endphp
             
             <div class="member-item col-4 mt-2 mb-2" >
-                    <div class="member-card-join">
-                        @if( $list_member[$i] == $data_groups->host )
-                        <span class="btn host-member">
-                            <i class="fa-solid fa-key text-warning"></i>
-                        </span>
-                        @endif
-                        <div class="text-center">
-                            <div class="text-center" >
-                                <img src="{{ url('storage')}}/{{ $member->photo }}" class="img-member">
-                            </div>
-                            <div class="name-member">
-                                <span class="font-10"><b>{{ $member->name }}</b></span> 
-                            </div>
+                <div class="member-card-join">
+                    @if( $list_member[$i] == $data_groups->host )
+                    <span class="btn host-member">
+                        <i class="fa-solid fa-key text-warning"></i>
+                    </span>
+                    @endif
+                    <div class="text-center">
+                        <div class="text-center" >
+                            <img src="{{ url('storage')}}/{{ $member->photo }}" class="img-member">
                         </div>
-                        
+                        <div class="name-member">
+                            <span class="font-10"><b>{{ $member->name }}</b></span> 
+                        </div>
                     </div>
-                 
+                    
                 </div>
+                
+            </div>
             
         @endfor
 
@@ -313,18 +312,17 @@
             @php $add_div = 10 - count($list_member) ; @endphp
 
             @for ($i = 0; $i < $add_div; $i++) 
-                <div id="Team_no" class="member-item col-4 mt-2 mb-2">
+            <div id="Team_no" class="member-item col-4 mt-2 mb-2">
                 <div class="member-card h-100" style="width: 100%;height: auto;">
                         <div class="text-center">
                             <i class="fa-solid fa-user-plus"></i>
                             <p class="font-12">Join our team</p>
                         </div>
-                        </div>
-                </div>
+                    </div>
+            </div>
             @endfor
         @endif
     </div>
-    </center>
 </div>
 
 

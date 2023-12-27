@@ -159,6 +159,11 @@
     box-shadow: 0px 0px 15px 1px #00FBFF;
     color: #fff;
 
+  }#btn_select_new_img{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #005CD3;
   }
 </style>
 
@@ -202,8 +207,8 @@
       </div>
       <img id="preview" src="{{ url('/') }}" alt="ภาพพรีวิว" class="d-none" style="max-width:100%; height:auto;">
     </div>
-    <label for="photo" id="btn_select_new_img" class="btn btn-submit d-none">
-      เลือกใหม่
+    <label for="photo" id="btn_select_new_img" class="d-none">
+    <i class="fa-solid fa-chevron-right fa-rotate-180"></i> Chang image
     </label>
     <p class="info-user mt-3 mb-0">{{ Auth::user()->name }}</p>
     @if(request("type") == "first_profile")

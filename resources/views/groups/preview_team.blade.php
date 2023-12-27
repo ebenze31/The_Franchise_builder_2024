@@ -192,7 +192,7 @@
     </div>
 </div>
 <!-- END modal_join_team -->
-<button class="btn btn-warning d-none" onclick="test_modal('Team Ready');">TEST</button>
+<button class="btn btn-warning d-nosne" onclick="test_modal('Delete team');">TEST</button>
 
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}"  class="mt-2 mb-2 img-header-team">
@@ -772,7 +772,7 @@
 
             let html_modal = `
                 <img src="{{ url('/img/icon/Group 694.png') }}" style="width:250px;" class="mt-2 mb-2">
-                <h4 class=text-info>Team `+name_group+`</h4>
+                <h4 class="text-info">Team `+name_group+`</h4>
                 <p class="text-dark">ได้อนุมัติคำขอเข้าร่วมทีมของคุณเเล้ว</p>
             `;
 
@@ -791,7 +791,7 @@
 
             let html_modal = `
                 <img src="{{ url('/img/icon/Group 695 (1).png') }}" style="width:200px;" class="mt-2 mb-2">
-                <h4 class=text-danger><b>คำขอของคุณถูกปฏิเสธ !</b></h4>
+                <h4 class="text-danger"><b>คำขอของคุณถูกปฏิเสธ !</b></h4>
                 <p class="text-dark mt-4">คุณยังสามารถสมัครเข้าทีมอื่นๆได้ โดยระบบจะปิดการสมัครภายในวันที่ 24 ม.ค. 2567</p>
             `;
 
@@ -810,7 +810,7 @@
 
             let html_modal = `
                 <img src="{{ url('/img/icon/Frame 8.png') }}" style="width:205px;" class="mt-2 mb-2">
-                <h4 class=text-success>Completed ! </h4>
+                <h4 class="text-success">Completed ! </h4>
                 <p style="color:#193490;margin-top:15px">ทีมของคุณพร้อมเเล้วสำหรับภารกิจที่รออยู่</p>
             `;
 
@@ -823,6 +823,27 @@
 
             document.querySelector('#modal_join_team_content').innerHTML = html_modal;
             document.querySelector('#modal_join_team_footer').innerHTML = html_footer;
+
+        }
+
+        else if(type == "Delete team"){
+
+        let html_modal = `
+            <img src="{{ url('/img/icon/alert.png') }}" style="width:calc(100% - 70%);" class="mt-4 mb-2">
+            <h4 class="text-success" style="color:#00AAAC;margin-top:15px">ทีมของคุณไม่ผ่านเกณฑ์ !</h4>
+            <p style=";margin-top:15px">เนื่องจากทีมของคุณมีสมาชิกไม่ครบตามข้อตกลง ระบบจึงทำการรีเซ็ตทีมของคุณ</p>
+            <p class="text-danger" style=";margin-top:30px">คุณสามารถทำการสร้างทีม หรือขอเข้าร่วมทีมที่ยังว่างได้จนถึง 17:00 น. ของวันที่ 23 ม.ค. 2567</p>
+        `;
+
+        let html_footer = `
+            
+            <a href="{{ url('/group_my_team/`+id_group+`') }}" type="button" class="btn btn-submit padding-btn">
+                Close
+            </a>
+        `;
+
+        document.querySelector('#modal_join_team_content').innerHTML = html_modal;
+        document.querySelector('#modal_join_team_footer').innerHTML = html_footer;
 
         }
 
