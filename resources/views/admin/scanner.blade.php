@@ -430,6 +430,12 @@
                         <h3 class="text-info my-4">`+result.name+`</h3>
                         <p>ในการเข้าร่วมกิจกรรม .....</p>
                         <h3>`+type+`</h3>
+                        <br>
+                        <h4>Title</h4>
+                        <input type="radio" id="S" name="Title" value="S"/>
+                        <input type="radio" id="M" name="Title" value="M"/>
+                        <input type="radio" id="L" name="Title" value="L"/>
+                        <input type="radio" id="XL" name="Title" value="XL"/>
                     `;
 
                     let html_footer = `
@@ -456,6 +462,22 @@
 
         fetch("{{ url('/') }}/api/keep_name_Activity/" + name_Activity + "/" + "{{ Auth::user()->id }}")
             .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+        });
+    }
+
+    function cf_shirt_size(account){
+
+        let Title = document.querySelectorAll('input[name="Title"]');
+        let Title_value = "" ;
+            Title.forEach(Title => {
+                if(Title.checked){
+                    Title_value = Title.value;
+                }
+            })
+        fetch("{{ url('/') }}/api/cf_shirt_size" + "/" + account + "/" + Title_value )
+            .then(response => response.json())
             .then(result => {
                 // console.log(result);
         });

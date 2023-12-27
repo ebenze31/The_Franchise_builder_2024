@@ -235,7 +235,7 @@ class ProfileController extends Controller
             }else{
 
                 $url_for_scan = $request->fullUrl() . "/for_scan" ;
-                $url_for_scan = str_replace("/var","",$url_for_scan);
+                $url_for_scan = str_replace("/var/www/","www.",$url_for_scan);
                 // QR-CODE
                 $url = "https://chart.googleapis.com/chart?cht=qr&chl=". $url_for_scan . "?account=".$data_arr['account']."&chs=500x500&choe=UTF-8" ;
 
@@ -346,6 +346,10 @@ class ProfileController extends Controller
                 ]);
 
         return "success" ;
+
+    }
+
+    function cf_shirt_size($account,$Title_value){
 
     }
 
