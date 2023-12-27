@@ -162,7 +162,7 @@ class ProfileController extends Controller
         } else {
 
             $data->update($requestData);
-            return redirect("ProfileUser/profile");
+            return redirect("profile");
 
         }
         

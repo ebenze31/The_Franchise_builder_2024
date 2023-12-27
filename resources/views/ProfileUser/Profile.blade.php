@@ -9,6 +9,7 @@
     }.profile-header{
         background-color: rgb(255, 255, 255,.25);
         border-radius: 0 0 40px 40px;
+        position: relative;
     }.btn-edit-profile {
     position: absolute;
     bottom: 0;
@@ -42,17 +43,18 @@
 <div class=" d-flex justify-content-center w-100">
       <div class="edit-profile" id="DivEditProfile">
         <img src="{{ url('/img/icon/profile.png') }}" class="user-new-img" alt="รูปภาพผู้ใช้">
-        <label for="photo" class="btn-edit-profile">
+        <a href="{{url('/first_profile?type=edit_profile')}}" class="btn-edit-profile">
           <img src="{{ url('/img/icon/edit-profile.png') }}" alt="รูปภาพผู้ใช้">
-        </label>
+        </a>
       </div>
       <img id="preview" src="{{ url('/') }}" alt="ภาพพรีวิว" class="d-none" style="max-width:100%; height:auto;">
     
     </div> 
+    <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
+        <i class='bx bx-log-out-circle'></i> logout
+    </a>
 </div>
-<a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top: 2%;right: 1%;">
-    <i class='bx bx-log-out-circle'></i> logout
-</a>
+
 
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
     @csrf

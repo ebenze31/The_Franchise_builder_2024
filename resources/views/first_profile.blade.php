@@ -165,47 +165,33 @@
 <form class="w-100 qr-section" action="{{ route('edit_profile', Auth::user()->id) }}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="card qr-card text-center">
-    @if( !empty(Auth::user()->photo) )
-    <div class="d-flex justify-content-center w-100">
-      <ul class="nav nav-pills mb-3 d-flex justify-content-center w-100"" id=" pills-tab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active btn-qr-code" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">My QR code</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn-scan-code" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">scan QR code</a>
-        </li>
-      </ul>
+    @if(request("type") == "edit_profile")
+<div class=" d-flex justify-content-center w-100 mt-4 ">
+      <div class="edit-first-profile" id="DivEditProfile">
+      @if(!empty(Auth::user()->photo) )
+        <label for="photo">
+          <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" class="user-new-img" alt="รูปภาพผู้ใช้">
+        </label>
+        @else
+        <label for="photo">
+          <img src="{{ url('/img/icon/profile.png') }}" class="user-new-img" alt="รูปภาพผู้ใช้">
+        </label>
+        @endif
+        <label for="photo" class="btn-edit-profile">
+          <img src="{{ url('/img/icon/edit-profile.png') }}" alt="รูปภาพผู้ใช้">
+        </label>
+      </div>
+      <img id="preview" src="{{ url('/') }}" alt="ภาพพรีวิว" class="d-none" style="max-width:100%; height:auto;">
     </div>
-
-    <div class=" d-flex justify-content-center w-100 mt-4">
-
-      @if( !empty(Auth::user()->photo) )
-      <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" class="user-img" alt="รูปภาพผู้ใช้">
-      @else
-      <img src="{{ url('/img/icon/profile.png') }}" class="user-img" alt="รูปภาพผู้ใช้">
-      @endif
-
-    </div>
+    <label for="photo" id="btn_select_new_img" class="btn btn-submit d-none">
+      เลือกใหม่
+    </label>
+    
     <p class="info-user mt-3 mb-0" data-toggle="modal" data-target="#exampleModalCenter">{{ Auth::user()->name }} </p>
     <!-- <p class="info-user">{{ Auth::user()->email }}</p> -->
 
-    <div class="tab-content mt-5 " id="pills-tabContent">
-      <div class="tab-pane fade show active text-white" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-        <div class="d-flex justify-content-center w-100">
-          <img src="{{ url('img/qr_profile')}}/{{ Auth::user()->qr_profile }}" class="qr-profile" alt="รูปภาพ QR Code">
-
-        </div>
-      </div>
-      <div class="tab-pane fade text-white" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">2</div>
-    </div>
-
-    <div>
-      <a href="{{ url('img/qr_profile')}}/{{ Auth::user()->qr_profile }}" class="btn btn-download" download>
-        Download
-      </a>
-    </div>
+    <button class="btn btn-submit" type="submit">ยืนยัน</button>
     @else
-
     <div class=" d-flex justify-content-center w-100 mt-4 ">
       <div class="edit-first-profile" id="DivEditProfile">
         <img src="{{ url('/img/icon/profile.png') }}" class="user-new-img" alt="รูปภาพผู้ใช้">
@@ -214,21 +200,19 @@
         </label>
       </div>
       <img id="preview" src="{{ url('/') }}" alt="ภาพพรีวิว" class="d-none" style="max-width:100%; height:auto;">
-    
-    </div> 
-     <label for="photo" id="btn_select_new_img" class="btn btn-submit d-none">
-        เลือกใหม่
-      </label>
+    </div>
+    <label for="photo" id="btn_select_new_img" class="btn btn-submit d-none">
+      เลือกใหม่
+    </label>
     <p class="info-user mt-3 mb-0">{{ Auth::user()->name }}</p>
-      @if(request("type") == "first_profile")
-      <p class="info-warn mt-3 mb-0 d-inline"><b>กรุณาเปลี่ยนรูป Profile ของคุณก่อนเข้าร่วมกิจกรรม</b></p>
-      @endif
+    @if(request("type") == "first_profile")
+    <p class="info-warn mt-3 mb-0 d-inline"><b>กรุณาเปลี่ยนรูป Profile ของคุณก่อนเข้าร่วมกิจกรรม</b></p>
+    @endif
     <div>
       <button class="btn btn-submit">
         Next
       </button>
     </div>
-
     @endif
 
   </div>
@@ -332,56 +316,55 @@
 
 <script>
   function previewImage(input) {
-  let preview = document.getElementById('preview');
-  let edit_first_profile = document.querySelector('#DivEditProfile');
-  let btn_select_new_img = document.querySelector('#btn_select_new_img');
+    let preview = document.getElementById('preview');
+    let edit_first_profile = document.querySelector('#DivEditProfile');
+    let btn_select_new_img = document.querySelector('#btn_select_new_img');
+    console.log('asd');
+    if (input.files && input.files[0]) {
+      let reader = new FileReader();
 
-  if (input.files && input.files[0]) {
-    let reader = new FileReader();
+      reader.onload = function(e) {
+        edit_first_profile.classList.add('d-none');
+        btn_select_new_img.classList.remove('d-none');
+        preview.src = e.target.result;
+        preview.classList.remove('d-none');
 
-    reader.onload = function(e) {
-      edit_first_profile.classList.add('d-none');
-      btn_select_new_img.classList.remove('d-none');
-      preview.src = e.target.result;
-      preview.classList.remove('d-none');
+        // Initialize or update cropper
+        if (preview.cropper) {
+          preview.cropper.destroy();
+        }
+        cropper_img(preview);
+      };
 
-      // Initialize or update cropper
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      preview.src = '#';
+      preview.classList.add('d-none');
       if (preview.cropper) {
         preview.cropper.destroy();
       }
-      cropper_img(preview);
-    };
-
-    reader.readAsDataURL(input.files[0]);
-  } else {
-    preview.src = '#';
-    preview.classList.add('d-none');
-    if (preview.cropper) {
-      preview.cropper.destroy();
     }
   }
-}
 
-function cropper_img(imageElement) {
-  new Cropper(imageElement, {
-    aspectRatio: 1 / 1,
-    viewMode: 3,
-    crop(event) {
-       // console.log("x >> " + event.detail.x);
+  function cropper_img(imageElement) {
+    new Cropper(imageElement, {
+      aspectRatio: 1 / 1,
+      viewMode: 3,
+      crop(event) {
+        // console.log("x >> " + event.detail.x);
         // console.log("y >> " + event.detail.y);
         // console.log("width >> " + event.detail.width);
         // console.log("height >> " + event.detail.height);
         // console.log("rotate >> " + event.detail.rotate);
         // console.log("scaleX >> " + event.detail.scaleX);
         // console.log("scaleY >> " + event.detail.scaleY);
-      document.querySelector('#currentX').value = event.detail.x;
-      document.querySelector('#currentY').value = event.detail.y;
-      document.querySelector('#currentWidth').value = event.detail.width;
-      document.querySelector('#currentHeight').value = event.detail.height;
-    },
-  });
-}
-
+        document.querySelector('#currentX').value = event.detail.x;
+        document.querySelector('#currentY').value = event.detail.y;
+        document.querySelector('#currentWidth').value = event.detail.width;
+        document.querySelector('#currentHeight').value = event.detail.height;
+      },
+    });
+  }
 </script>
 
 <script>
