@@ -464,17 +464,6 @@ class GroupsController extends Controller
                 // $data_group->member = json_encode($list_member);
                 // $data_group->save();
 
-                for ($i=0; $i < count($list_member); $i++) { 
-                    DB::table('users')
-                        ->where([ 
-                                ['id', $list_member[$i]],
-                            ])
-                        ->update([
-                                'group_status' => 'Team Ready',
-                                'time_request_join' => null,
-                            ]);
-                }
-
                 DB::table('groups')
                     ->where([ 
                             ['id', $group_id],
@@ -483,6 +472,19 @@ class GroupsController extends Controller
                             'group_status' => 'ยืนยันเรียบร้อย',
                             'member' => json_encode($list_member),
                         ]);
+
+                for ($i=0; $i < count($list_member); $i++) { 
+                    DB::table('users')
+                        ->where([ 
+                                ['id', $list_member[$i]],
+                            ])
+                        ->update([
+                                'group_status' => json_encode($list_member),
+                                'time_request_join' => null,
+                            ]);
+                }
+
+                
 
             }else{
 
