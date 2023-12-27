@@ -511,6 +511,7 @@ class GroupsController extends Controller
                 $data_group->request_join = null;
             } else {
                 // ไม่ว่างให้ encode กลับเป็น JSON และอัปเดตในฐานข้อมูล
+                $list_request_join = array_values($list_request_join);
                 $data_group->request_join = json_encode($list_request_join);
             }
 
