@@ -425,11 +425,53 @@ class GroupsController extends Controller
 
     function CF_answer_request($answer , $member_id , $group_id)
     {
+        $member_id_to_add = $member_id; 
+        $data_group = Group::where('id', $group_id)->first();
+        $list_member = json_decode($data_group->member, true);
+        $list_request_join = json_decode($data_group->request_join, true);
+
         if($answer == "Accept"){
-            
+            // User
+            DB::table('users')
+                ->where([ 
+                        ['id', $member_id],
+                    ])
+                ->update([
+                        'group_status' => 'มีบ้านแล้ว',
+                        'time_request_join' => null,
+                    ]);
+
+            // เพิ่ม $member_id_to_add เข้าไปใน $list_member
+            array_push($list_member, $member_id_to_add);
+
+            // ลบ $member_id_to_add ออกจาก $list_request_join
+            $list_request_join = array_diff($list_request_join, [$member_id_to_add]);
+
+            // ตรวจสอบว่า $list_request_join ว่างหรือไม่
+            if (empty($list_request_join)) {
+                // ถ้าว่างให้กำหนดค่าเป็น null
+                $data_group->request_join = null;
+            } else {
+                // ไม่ว่างให้ encode กลับเป็น JSON และอัปเดตในฐานข้อมูล
+                $data_group->request_join = json_encode($list_request_join);
+            }
+
+            // อัปเดตข้อมูลในฐานข้อมูล
+            $data_group->member = json_encode($list_member);
+            $data_group->save();
+
         }
         else if($answer == "Reject"){
-
+            // User
+            DB::table('users')
+                ->where([ 
+                        ['id', $member_id],
+                    ])
+                ->update([
+                        'group_id' => null,
+                        'group_status' => null,
+                        'time_request_join' => null,
+                    ]);
         }
 
         return  "success" ;
