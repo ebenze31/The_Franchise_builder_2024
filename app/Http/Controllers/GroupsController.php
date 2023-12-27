@@ -451,6 +451,7 @@ class GroupsController extends Controller
             if (empty($list_request_join)) {
                 // ถ้าว่างให้กำหนดค่าเป็น null
                 $data_group->request_join = null;
+                $update_request_join = null;
             } else {
                 // ไม่ว่างให้ encode กลับเป็น JSON และอัปเดตในฐานข้อมูล
                 $list_request_join = array_values($list_request_join);
@@ -464,15 +465,6 @@ class GroupsController extends Controller
                 // $data_group->member = json_encode($list_member);
                 // $data_group->save();
 
-                DB::table('groups')
-                    ->where([ 
-                            ['id', $group_id],
-                        ])
-                    ->update([
-                            'status' => 'ยืนยันเรียบร้อย',
-                            'member' => json_encode($list_member),
-                        ]);
-
                 for ($i=0; $i < count($list_member); $i++) { 
                     DB::table('users')
                         ->where([ 
@@ -484,7 +476,30 @@ class GroupsController extends Controller
                             ]);
                 }
 
-                
+                if( !empty($list_request_join) ){
+                    for ($xz=0; $xz < count($list_request_join); $xz++) { 
+                        DB::table('users')
+                            ->where([ 
+                                    ['id', $list_request_join[$xz]],
+                                ])
+                            ->update([
+                                    'group_status' => 'Host Reject',
+                                    'time_request_join' => null,
+                                ]);
+                    }
+
+                    $update_request_join = null;
+                }
+
+                DB::table('groups')
+                    ->where([ 
+                            ['id', $group_id],
+                        ])
+                    ->update([
+                            'status' => 'ยืนยันเรียบร้อย',
+                            'member' => json_encode($list_member),
+                            'request_join' => $update_request_join,
+                        ]);
 
             }else{
 
