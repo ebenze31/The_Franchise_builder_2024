@@ -31,6 +31,7 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
         flex-wrap: wrap;
         justify-content: center;
         margin-top: 20px;
+        width: 100%;
 
     }.memberInRoom{
         background-color:#0b2846;
@@ -43,17 +44,17 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
     }
     @media (width < 680px) {
         .member-item{
-            min-width: 100px;
-            max-width: 120px;
-            height: 121px;
-            margin: 0 7px;
+            width: 30%;
+            height: 128px;
+            margin: 0 2px;
         }
     }
     @media (width > 680px) {
         .member-item{
             min-width: 100px;
             max-width: 180px;
-            height: 121px;
+            height: 128px;
+
             margin: 0 10px;
         }
     }
