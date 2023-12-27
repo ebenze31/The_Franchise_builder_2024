@@ -232,25 +232,34 @@ background: linear-gradient(180deg, rgba(7,139,166,1) 0%, rgba(40,63,136,1) 51%,
 
 <div class="memberInRoom">
     <div class="d-flex justify-content-between px-4 align-items-center">
-        <div>
-            <span class="text-mamber h4">Members</span>  <span class="text-white">: Team {{ $group_id }}</span>
-            <p class="text-white">Member : <span id="amount_member"></span>/10</p>
-        </div>
-        <div>
-            <button style="font-size:9px;" class="float-end btn btn-sm btn-warning position-relative" onclick="open_modal_request_join();">
-                Pending requests
+         @if($data_groups->host == Auth::user()->id)
+            <div>
+                <span class="text-mamber h4">Members</span>  <span class="text-white">: Team {{ $group_id }}</span>
+                <p class="text-white">Member : <span id="amount_member"></span>/10</p>
+            </div>
+            <div>
+                <button style="font-size:9px;" class="float-end btn btn-sm btn-warning position-relative" onclick="open_modal_request_join();">
+                    Pending requests
 
-                @if( !empty($data_groups->request_join) )
-                @php
-                    $list_request_join = json_decode($data_groups->request_join);
-                @endphp
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {{ count($list_request_join) }}
-                </span>
-                @endif
+                    @if( !empty($data_groups->request_join) )
+                    @php
+                        $list_request_join = json_decode($data_groups->request_join);
+                    @endphp
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{ count($list_request_join) }}
+                    </span>
+                    @endif
 
-            </button>
-        </div>
+                </button>
+            </div>
+        @else
+            <div>
+                <span class="text-mamber h4">Members</span>  <span class="text-white">: Team {{ $group_id }}</span>
+            </div>
+            <div>
+                <p class="text-white">Member : <span id="amount_member"></span>/10</p>
+            </div>
+        @endif
     </div>
 
     <div class="member-section ">
