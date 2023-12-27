@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'account' , 'photo', 'status', 'role', 'rank_last_week', 'group_id', 'group_status', 'phone', 'rank_record', 'get_shirt', 'pay_slip','time_cf_pay_slip','staff_pay_slip_id' ,'staff_get_shirt_id', 'qr_profile' ,'time_upload_pay_slip','provider_id' ,'time_request_join','activities','pdpa','scan_qr_for'
+        'name', 'email', 'password', 'account' , 'photo', 'status', 'role', 'rank_last_week', 'group_id', 'group_status', 'phone', 'rank_record', 'get_shirt', 'pay_slip','time_cf_pay_slip','staff_pay_slip_id' ,'staff_get_shirt_id', 'qr_profile' ,'time_upload_pay_slip','provider_id' ,'time_request_join','activities','pdpa','scan_qr_for','shirt_size'
     ];
     
     /**

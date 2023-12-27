@@ -31,7 +31,7 @@ Route::middleware(['auth',])->group(function () {
     Route::get('first_profile', 'ProfileController@index');
     Route::get('profile', 'ProfileController@show');
     Route::post('/edit_profile/{id}', 'ProfileController@edit_profile')->name('edit_profile');
-
+    Route::get('/for_scan', 'HomeController@for_scan');
 });
 
 // REGISTER AL TFB 2024

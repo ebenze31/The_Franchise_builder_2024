@@ -56,6 +56,13 @@ class HomeController extends Controller
 
     }
 
+    function for_scan(Request $request)
+    {
+        $requestData = $request->all();
+
+        echo "account >> " . $requestData['account'];
+    }
+
     public function dashboard()
     {
         return view('admin.dashboard');

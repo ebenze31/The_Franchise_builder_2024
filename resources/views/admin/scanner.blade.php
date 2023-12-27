@@ -345,6 +345,9 @@
                 if(name_Activity == "ยืนยันการชำระเงิน"){
                     create_modal(name_Activity , code);
                 }
+                else if(name_Activity == "รับเสื้อ"){
+                    create_modal(name_Activity , code);
+                }
 
                 return;
             }
@@ -402,6 +405,36 @@
                     let html_footer = `
     
                         <button type="button" class="btn btn-submit" onclick="change_status('`+name+`','{{ Auth::user()->id }}')">
+                            Confirm
+                        </button>
+                        <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal">
+                            Back
+                        </button>
+                    `;
+
+                    document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+                    document.querySelector('#modal_footer').innerHTML = html_footer;
+
+                    document.querySelector('#btn_modal_check_activity').click();
+            });
+        }
+        else if(type == "รับเสื้อ"){
+            let name = code.data.split('=')[1];
+
+            fetch("{{ url('/') }}/api/get_users" + "/" + name )
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    let html_modal = `
+                        <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
+                        <h3 class="text-info my-4">`+result.name+`</h3>
+                        <p>ในการเข้าร่วมกิจกรรม .....</p>
+                        <h3>`+type+`</h3>
+                    `;
+
+                    let html_footer = `
+    
+                        <button type="button" class="btn btn-submit" onclick="cf_shirt_size('`+name+`')">
                             Confirm
                         </button>
                         <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal">
