@@ -233,8 +233,10 @@ class ProfileController extends Controller
             if( !empty($check_user->account) ){
                 $return = "ไม่สร้าง";
             }else{
+
+                $url_for_scan = public_path("/for_scan") ;
                 // QR-CODE
-                $url = "https://chart.googleapis.com/chart?cht=qr&chl={{ url('/for_scan') }}?account=".$data_arr['account']."&chs=500x500&choe=UTF-8" ;
+                $url = "https://chart.googleapis.com/chart?cht=qr&chl=". $url_for_scan . "?account=".$data_arr['account']."&chs=500x500&choe=UTF-8" ;
 
                 $img = public_path("img/qr_profile" . "/" . $data_arr['account'] . '.png');
                 // Save image
