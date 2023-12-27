@@ -372,15 +372,17 @@
                 // console.log(result);
                 document.querySelector('#btn_close_modal').click();
 
-                document.querySelector('#alert_text').innerHTML = `
-                   <i class="fa-solid fa-check text-success"></i> Success fully !
-                `;
-                document.querySelector('#alert_success').classList.add('up_down');
+                // modal success
 
-                const animated = document.querySelector('.up_down');
-                animated.onanimationend = () => {
-                    document.querySelector('#alert_success').classList.remove('up_down');
-                };
+                // document.querySelector('#alert_text').innerHTML = `
+                //    <i class="fa-solid fa-check text-success"></i> Success fully !
+                // `;
+                // document.querySelector('#alert_success').classList.add('up_down');
+
+                // const animated = document.querySelector('.up_down');
+                // animated.onanimationend = () => {
+                //     document.querySelector('#alert_success').classList.remove('up_down');
+                // };
         });
     }
 
@@ -483,15 +485,17 @@
                 // console.log(result);
                 document.querySelector('#btn_close_modal').click();
 
-                document.querySelector('#alert_text').innerHTML = `
-                   <i class="fa-solid fa-check text-success"></i> Success fully !
-                `;
-                document.querySelector('#alert_success').classList.add('up_down');
+                // modal success
+                
+                // document.querySelector('#alert_text').innerHTML = `
+                //    <i class="fa-solid fa-check text-success"></i> Success fully !
+                // `;
+                // document.querySelector('#alert_success').classList.add('up_down');
 
-                const animated = document.querySelector('.up_down');
-                animated.onanimationend = () => {
-                    document.querySelector('#alert_success').classList.remove('up_down');
-                };
+                // const animated = document.querySelector('.up_down');
+                // animated.onanimationend = () => {
+                //     document.querySelector('#alert_success').classList.remove('up_down');
+                // };
         });
     }
 
