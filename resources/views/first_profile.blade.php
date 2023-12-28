@@ -81,18 +81,16 @@
   }
 
   .btn-close-modal {
-
-
-    >span {
-      background-color: #fff;
-      color: #002449;
-      padding: 0px 8px;
-      border-radius: 50%;
-      font-size: 22px;
-    }
-
-    font-size: 18px;
+        font-size: 22px;
   }
+  .btn-close-modal span {
+    background-color: #fff;
+    color: #002449;
+    padding: 0px 12px;
+    border-radius: 50%;
+    font-size: 22px;
+}
+  
 
   .modalHeaderRename {
     background-color: #002449;
