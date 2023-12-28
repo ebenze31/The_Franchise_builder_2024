@@ -265,7 +265,9 @@
             @endif
 
             @foreach($Activity as $item)
+                @if( !empty(Auth::user()->scan_qr_for) && Auth::user()->scan_qr_for != $item->name_Activities )
                 <option class="text-white text-center" value="{{ $item->name_Activities }}">{{ $item->name_Activities }}</option>
+                @else
             @endforeach
         </select>
     </div>
