@@ -249,7 +249,7 @@
         <script>
             
             function select_type(type){
-
+                console.log(type);
                 if(type == "เข้าร่วมแล้ว"){
                     let div_1 = document.querySelectorAll('tr[tpye="เข้าร่วมแล้ว"]');
                         div_1.forEach(div_1 => {
