@@ -243,8 +243,22 @@
         
         <hr class="mt-3 mb-3">
 
-        <button type="button" class="btn btn-success">เข้าร่วมแล้ว</button>
-        <button type="button" class="btn btn-secondary">ยังไม่เข้าร่วม</button>
+        <button type="button" class="btn btn-success" onclick="select_type('เข้าร่วมแล้ว');">เข้าร่วมแล้ว</button>
+        <button type="button" class="btn btn-secondary" onclick="select_type('ยังไม่เข้าร่วม');">ยังไม่เข้าร่วม</button>
+
+        <script>
+            
+            function select_type(type){
+
+                if(type == "เข้าร่วมแล้ว"){
+                    let div_1 = document.querySelectorAll('tr[tpye="เข้าร่วมแล้ว"]');
+                        div_1.forEach(div_1 => {
+                            div_1.classList.remove('d-none')
+                        })
+                }
+            }
+
+        </script>
 
         <br>
 

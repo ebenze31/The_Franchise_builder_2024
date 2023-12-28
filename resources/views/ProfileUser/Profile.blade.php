@@ -187,7 +187,11 @@
         </h4>
     </div>
     <div class="col-4 badges-item active" activity="ป้าย1" onclick="open_badges(this)">
-        <img src="{{ url('/img/icon/badges-1.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
+        @if( !empty(Auth::user()->shirt_size) )
+            <img src="{{ url('/img/icon/badges-1.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
+        @else
+            <img src="{{ url('/img/icon/Allianz ayudhya-22-22 1.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
+        @endif
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
