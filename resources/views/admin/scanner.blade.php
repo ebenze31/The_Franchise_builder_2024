@@ -411,7 +411,7 @@
         if(type == "ยืนยันการชำระเงิน"){
             // let type = code.data.split('=')[0]
             // let name = code.data.split('=')[1];
-            // let name = code.data.split('=')[1];
+            let name = code.data.split('=')[1];
 
             fetch("{{ url('/') }}/api/get_users" + "/" + name )
                 .then(response => response.json())
