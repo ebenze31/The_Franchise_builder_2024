@@ -253,7 +253,23 @@
                 if(type == "เข้าร่วมแล้ว"){
                     let div_1 = document.querySelectorAll('tr[tpye="เข้าร่วมแล้ว"]');
                         div_1.forEach(div_1 => {
-                            div_1.classList.remove('d-none')
+                            div_1.classList.remove('d-none');
+                        })
+
+                    let div_2 = document.querySelectorAll('tr[tpye="ยังไม่เข้าร่วม"]');
+                        div_2.forEach(div_2 => {
+                            div_2.classList.add('d-none');
+                        })
+                }
+                else if(type == "ยังไม่เข้าร่วม"){
+                    let div_1 = document.querySelectorAll('tr[tpye="เข้าร่วมแล้ว"]');
+                        div_1.forEach(div_1 => {
+                            div_1.classList.add('d-none');
+                        })
+
+                    let div_2 = document.querySelectorAll('tr[tpye="ยังไม่เข้าร่วม"]');
+                        div_2.forEach(div_2 => {
+                            div_2.classList.remove('d-none');
                         })
                 }
             }
