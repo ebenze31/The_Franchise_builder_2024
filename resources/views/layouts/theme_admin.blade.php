@@ -61,7 +61,7 @@
 
 @php
     // PASSWORD FOR LOG MENU
-    $pass_lock = "1234";
+    $pass_lock = "superadmin";
 @endphp
 
 <body>
