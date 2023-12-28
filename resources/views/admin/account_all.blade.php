@@ -243,17 +243,29 @@
         
         <hr class="mt-3 mb-3">
 
-        <button type="button" class="btn btn-success" onclick="select_type('เข้าร่วมแล้ว');">เข้าร่วมแล้ว</button>
-        <button type="button" class="btn btn-secondary" onclick="select_type('ยังไม่เข้าร่วม');">ยังไม่เข้าร่วม</button>
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-success" onclick="select_type('เข้าร่วมแล้ว');">เข้าร่วมแล้ว</button>
+                <button type="button" class="btn btn-secondary" onclick="select_type('ยังไม่เข้าร่วม');">ยังไม่เข้าร่วม</button>
+                <button type="button" class="btn btn-info" onclick="select_type('ทั้งหมด');">ทั้งหมด</button>
+            </div>
+            <div class="col-6 d-none">
+                ที่กำลังดู : <span id="amount_select"></span>
+            </div>
+        </div>
+        
 
         <script>
             
             function select_type(type){
                 console.log(type);
+                let amount_select = 0 ;
+
                 if(type == "เข้าร่วมแล้ว"){
                     let div_1 = document.querySelectorAll('tr[tpye="เข้าร่วมแล้ว"]');
                         div_1.forEach(div_1 => {
                             div_1.classList.remove('d-none');
+                            amount_select = amount_select + 1 ;
                         })
 
                     let div_2 = document.querySelectorAll('tr[tpye="ยังไม่เข้าร่วม"]');
@@ -270,8 +282,24 @@
                     let div_2 = document.querySelectorAll('tr[tpye="ยังไม่เข้าร่วม"]');
                         div_2.forEach(div_2 => {
                             div_2.classList.remove('d-none');
+                            amount_select = amount_select + 1 ;
                         })
                 }
+                else if(type == "ทั้งหมด"){
+                    let div_1 = document.querySelectorAll('tr[tpye="เข้าร่วมแล้ว"]');
+                        div_1.forEach(div_1 => {
+                            div_1.classList.remove('d-none');
+                            amount_select = amount_select + 1 ;
+                        })
+
+                    let div_2 = document.querySelectorAll('tr[tpye="ยังไม่เข้าร่วม"]');
+                        div_2.forEach(div_2 => {
+                            div_2.classList.remove('d-none');
+                            amount_select = amount_select + 1 ;
+                        })
+                }
+
+                document.querySelector('#amount_select').innerHTML = amount_select ;
             }
 
         </script>
@@ -334,6 +362,7 @@
 
                 setTimeout(() => {
                     document.querySelector('#count_account_all').innerHTML = result.length ;
+                    document.querySelector('#amount_select').innerHTML = result.length ;
                     if(result){
 
                         let content_tbody = document.querySelector('#content_tbody');
@@ -439,7 +468,7 @@
                                             `+btn_cf_Pay_slip+`
                                         </center>
                                     </td>
-                                    <td class="">
+                                    <td class="d-none">
                                         <img src="{{ url('/img/qr_profile')}}/`+result[i].qr_profile+`" class="p-1" alt="" style="width:100px;">
                                     </td>
                                 </tr>
