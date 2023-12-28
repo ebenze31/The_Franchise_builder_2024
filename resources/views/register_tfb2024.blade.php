@@ -12,7 +12,9 @@
     font-family: 'Kanit', sans-serif;
 
   }
-
+  #header-text-login{
+    display: none;
+  }
   label {
     color: #7D7D7D;
   }
@@ -122,7 +124,7 @@
 </style>
 
 
-  <h4 class="header-instruction text-center">Video instruction</h4>
+  <h4 class="header-instruction text-center mt-3">Video instruction</h4>
   <div class="container section-payment pb-3">
     <div>
       <div class="text-center">
