@@ -243,6 +243,9 @@
         
         <hr class="mt-3 mb-3">
 
+        <button type="button" class="btn btn-success">เข้าร่วมแล้ว</button>
+        <button type="button" class="btn btn-secondary">ยังไม่เข้าร่วม</button>
+
         <div class="table-responsive">
             <table class="table mb-0 align-middle">
                 <thead>
