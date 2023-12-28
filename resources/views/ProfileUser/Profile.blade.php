@@ -76,7 +76,7 @@
 
     .header-badges {
         color: #fff;
-        margin: 40px 40px 40px 20px;
+        margin: 40px 40px 20px 20px;
     }
 
     .badges-item {
