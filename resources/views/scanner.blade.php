@@ -416,7 +416,7 @@
 
             let html_footer = `
 
-                <button type="button" class="btn btn-submit" onclick="cf_shirt_size('`+"{{ Auth::user()->id }}"+`')">
+                <button type="button" class="btn btn-submit" onclick="cf_shirt_size('`+"{{ Auth::user()->account }}"+`')">
                     Confirm
                 </button>
                 <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal">
