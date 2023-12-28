@@ -248,9 +248,9 @@
   <input type="text" class="d-none" id="type" name="type" value="{{request("type")}}" readonly>
 
   @if(request("type") == "first_profile")
-  <input class="form-control d-none" name="photo" type="file" id="photo" accept="image/*" onchange="previewImage(this)"required>
+  <input class="form-control d-none" name="photo" type="file" id="photo" accept="image/*" onchange="checkimg(this)"required>
   @else
-  <input class="form-control d-none" name="photo" type="file" id="photo" accept="image/*" onchange="previewImage(this)" >
+  <input class="form-control d-none" name="photo" type="file" id="photo" accept="image/*" onchange="checkimg(this)" >
   @endif
 
 </form>
@@ -342,6 +342,18 @@
 
 
 <script>
+
+  function checkimg(data) {
+    if (data.files && data.files[0]) {
+      previewImage(data)
+    }else{
+      document.getElementById('preview').classList.add('d-none');
+      document.querySelector('.cropper-container').classList.add('d-none');
+      document.querySelector('#DivEditProfile').classList.remove('d-none');
+      document.querySelector('#btn_select_new_img').classList.add('d-none');
+    }
+   
+  }
   function previewImage(input) {
     let preview = document.getElementById('preview');
     let edit_first_profile = document.querySelector('#DivEditProfile');
