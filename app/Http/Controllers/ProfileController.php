@@ -261,6 +261,7 @@ class ProfileController extends Controller
         if($type_get_data == "all"){
             $data = User::where('role' , "aL")
                 ->orWhere('role' , "Player")
+                ->orderBy('account','ASC')
                 ->get();
         }else{
             $data = User::where('account', 'LIKE', "%$type_get_data%")
