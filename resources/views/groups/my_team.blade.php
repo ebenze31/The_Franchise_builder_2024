@@ -391,7 +391,11 @@
                     @endif
                     <div class="text-center">
                         <div class="text-center" >
+                            @if( !empty($member->photo) )
                             <img src="{{ url('storage')}}/{{ $member->photo }}" class="img-member">
+                            @else
+                            <img src="{{ url('/img/icon/profile.png') }}" class="img-member">
+                            @endif
                         </div>
                         <div class="name-member">
                             <span class="font-10"><b>{{ $member->name }}</b></span> 

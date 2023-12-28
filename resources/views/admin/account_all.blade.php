@@ -246,6 +246,8 @@
         <button type="button" class="btn btn-success">เข้าร่วมแล้ว</button>
         <button type="button" class="btn btn-secondary">ยังไม่เข้าร่วม</button>
 
+        <br>
+
         <div class="table-responsive">
             <table class="table mb-0 align-middle">
                 <thead>
@@ -369,7 +371,7 @@
                             }
 
                             let html = `
-                                <tr>
+                                <tr tpye="`+html_status+`" class="">
                                     <td>
                                         <center>
                                             <div id="product_img_account_111" class="product-img bg-transparent border">
