@@ -206,7 +206,7 @@
       </ul>
     </div>
 
-    <div class=" d-flex justify-content-center w-100 mt-4">
+    <div class=" d-flex justify-content-center w-100 mt-4 d-none">
       @if( !empty(Auth::user()->photo) )
       <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" class="user-img" alt="รูปภาพผู้ใช้">
       @else
