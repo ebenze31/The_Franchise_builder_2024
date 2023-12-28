@@ -146,7 +146,11 @@ class Pc_pointsController extends Controller
                     }else{
                         $data_arr['user_id'] = $data_user->id;
                     }
-                }else{
+                }
+                else if($key == "group_id"){
+                    $value = str_replace("Team","",$value);
+                }
+                else{
                     $data_arr[$key] = $value;
                 }
 
