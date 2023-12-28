@@ -73,7 +73,7 @@
     height: 100%;
     object-fit: cover;
     width: 100%;
-    border-radius: 12px;
+    border-radius: 13px;
   }
 
   .box {
