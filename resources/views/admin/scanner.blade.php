@@ -301,7 +301,7 @@
     </form>
 </div>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modalSuccess">
+<button type="button" class="btn btn-primary d-none" id="btnmodalSuccess" data-toggle="modal" data-target="#modalSuccess">
   Launch demo modal
 </button>
 
@@ -391,7 +391,7 @@
                 document.querySelector('#btn_close_modal').click();
 
                 // modal success
-                document.querySelector('#modalSuccess').click();
+                document.querySelector('#btnmodalSuccess').click();
 
                 // document.querySelector('#alert_text').innerHTML = `
                 //    <i class="fa-solid fa-check text-success"></i> Success fully !
@@ -513,7 +513,7 @@
                 document.querySelector('#btn_close_modal').click();
 
                 // modal success
-                document.querySelector('#modalSuccess').click();
+                document.querySelector('#btnmodalSuccess').click();
                 
                 // document.querySelector('#alert_text').innerHTML = `
                 //    <i class="fa-solid fa-check text-success"></i> Success fully !
