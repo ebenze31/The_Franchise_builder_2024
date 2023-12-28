@@ -288,7 +288,7 @@
     <p class="info-user text-secondary">
         ID : {{ Auth::user()->id }}
     </p>
-    <div class="d-flex w-100 justify-content-center mt-4">
+    <div id="div_video" class="d-flex w-100 justify-content-center mt-4">
         <div class="box" style="--c:#000;--w:40px;--b:2px;--r:20px;z-index: 99999;">
             <video style="width:100%;" id="qr-video" muted></video>
         </div>
@@ -368,11 +368,11 @@
 
                 if(name_Activity == "ยืนยันการชำระเงิน"){
                     create_modal(name_Activity , code);
-                    document.querySelector('#qr-video').classList.add('d-none');
+                    document.querySelector('#div_video').classList.add('d-none');
                 }
                 else if(name_Activity == "รับเสื้อ"){
                     create_modal(name_Activity , code);
-                    document.querySelector('#qr-video').classList.add('d-none');
+                    document.querySelector('#div_video').classList.add('d-none');
                 }
 
                 return;
