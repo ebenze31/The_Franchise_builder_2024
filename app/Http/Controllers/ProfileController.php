@@ -226,7 +226,8 @@ class ProfileController extends Controller
 
         foreach ($user as $item) {
             $url_for_scan = $request->fullUrl() . "/for_scan" ;
-            $url_for_scan = str_replace("/var/www/","www.",$url_for_scan);
+            $url_for_scan = str_replace("/var/www/","",$url_for_scan);
+            $url_for_scan = str_replace("/api/qr_profile","www.",$url_for_scan);
             // QR-CODE
             $url = "https://chart.googleapis.com/chart?cht=qr&chl=".$url_for_scan."?account=".$item->account."&chs=500x500&choe=UTF-8" ;
 

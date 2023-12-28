@@ -62,7 +62,7 @@ class HomeController extends Controller
     {
         $requestData = $request->all();
 
-        echo "account >> " . $requestData['account'];
+        return redirect('groups');
     }
 
     public function dashboard()
