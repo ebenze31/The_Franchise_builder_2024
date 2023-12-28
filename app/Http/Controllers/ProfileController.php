@@ -137,7 +137,8 @@ class ProfileController extends Controller
             // เรียกรูปภาพ
             $imagePath = storage_path("app/public")."/".$requestData['photo'];
             $image = Image::make($imagePath);
-
+            $image->orientate();
+            
             // Crop ภาพ
             $image->crop($cropWidth, $cropHeight, $cropX, $cropY);
 
