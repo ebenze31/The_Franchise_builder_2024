@@ -335,7 +335,7 @@
 
             return;
         }
-        
+
       }
 
       requestAnimationFrame(scanQRCode);
@@ -433,6 +433,9 @@
 
     function cf_shirt_size(account){
 
+                console.log(account);
+                console.log(Title_value);
+        
         let Title = document.querySelectorAll('input[name="Title"]');
         let Title_value = "" ;
             Title.forEach(Title => {
