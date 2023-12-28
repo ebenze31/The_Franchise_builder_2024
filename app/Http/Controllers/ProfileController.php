@@ -137,7 +137,7 @@ class ProfileController extends Controller
             // เรียกรูปภาพ
             $imagePath = storage_path("app/public")."/".$requestData['photo'];
             $image = Image::make($imagePath);
-
+            $image->orientate();
             // Crop ภาพ
             $image->crop($cropWidth, $cropHeight, $cropX, $cropY);
 
@@ -261,7 +261,6 @@ class ProfileController extends Controller
         if($type_get_data == "all"){
             $data = User::where('role' , "aL")
                 ->orWhere('role' , "Player")
-                ->orderBy('account','ASC')
                 ->get();
         }else{
             $data = User::where('account', 'LIKE', "%$type_get_data%")
