@@ -72,7 +72,7 @@
   #qr-video {
     height: 99.5%;
     object-fit: cover;
-    width: 98.5%;
+    width: 97.5%;
     border-radius: 15px;
   }
 
