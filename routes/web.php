@@ -45,7 +45,7 @@ Route::middleware(['auth', 'role:Staff'])->group(function () {
 });
 
 // Player
-Route::middleware(['auth', 'role:Player,Super-admin,Admin,Staff'])->group(function () {
+Route::middleware(['auth', 'role:Player,Super-admin,Admin'])->group(function () {
     // Route::resource('news', 'NewsController')->except(['edit','view']);
     Route::get('news/index', 'NewsController@index');
     Route::get('news/{id}', 'NewsController@show');
