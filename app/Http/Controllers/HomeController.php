@@ -61,6 +61,15 @@ class HomeController extends Controller
     function for_scan(Request $request)
     {
         $requestData = $request->all();
+        $account = $request->get('account');
+
+        if( !empty($account) ){
+            $data_user = User::where('account' , $account)->first();
+
+            if( !empty($data_user->group_id) ){
+                return redirect('preview_team'.'/'.$data_user->group_id);
+            }
+        }
 
         return redirect('groups');
     }
