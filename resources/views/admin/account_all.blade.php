@@ -249,7 +249,7 @@
                 <button type="button" class="btn btn-secondary" onclick="select_type('ยังไม่เข้าร่วม');">ยังไม่เข้าร่วม</button>
                 <button type="button" class="btn btn-info" onclick="select_type('ทั้งหมด');">ทั้งหมด</button>
             </div>
-            <div class="col-6 d-none">
+            <div class="col-6">
                 ที่กำลังดู : <span id="amount_select"></span>
             </div>
         </div>
