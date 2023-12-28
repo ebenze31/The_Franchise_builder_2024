@@ -197,7 +197,8 @@
     }
     
     .padding-btn{
-        padding: 8px 20px !important;
+        padding: 10px 30px !important;
+        border-radius: 5px;
     }
 
     .btn-logout {
@@ -220,7 +221,6 @@
         <!--  -->
     </span>
 </div>
-
 <!-- Button trigger modal -->
 <button id="btn_modal_check_activity" type="button" class="d-none" data-toggle="modal" data-target="#modal_check_activity">
     <!--  -->
@@ -243,7 +243,7 @@
             </div>
             <div id="modal_footer" class="text-center mb-3">
                 <!-- BTN -->
-               
+                
             </div>
         </div>
     </div>
@@ -300,7 +300,25 @@
         @csrf
     </form>
 </div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modalSuccess">
+  Launch demo modal
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-5">
+            <center>
+                <img src="{{ url('/img/icon/success.png') }}" alt="" width="87" height="87">
+                <h6 class="" style="font-weight: bolder;margin:50px 0 50px 0 ">ยืนยันการเข้าร่วมกิจกรรมสำเร็จ !</h6>
+                <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal">Close</button>
+            </center>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 
@@ -373,6 +391,7 @@
                 document.querySelector('#btn_close_modal').click();
 
                 // modal success
+                document.querySelector('#modalSuccess').click();
 
                 // document.querySelector('#alert_text').innerHTML = `
                 //    <i class="fa-solid fa-check text-success"></i> Success fully !
@@ -391,25 +410,26 @@
     {
         if(type == "ยืนยันการชำระเงิน"){
             // let type = code.data.split('=')[0]
-            let name = code.data.split('=')[1];
+            // let name = code.data.split('=')[1];
+            // let name = code.data.split('=')[1];
 
             fetch("{{ url('/') }}/api/get_users" + "/" + name )
                 .then(response => response.json())
                 .then(result => {
                     // console.log(result);
                     let html_modal = `
-                        <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
-                        <h3 class="text-info my-4">`+result.name+`</h3>
+                        <h4 class="mt-3" style="font-weight: bold;">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
+                        <h3 class="text-info my-4" style="font-weight: lighter;">`+result.name+`</h3>
                         <p>ในการเข้าร่วมกิจกรรม .....</p>
                         <h3>`+type+`</h3>
                     `;
 
                     let html_footer = `
     
-                        <button type="button" class="btn btn-submit" onclick="change_status('`+name+`','{{ Auth::user()->id }}')">
+                        <button type="button" class="btn btn-submit padding-btn" onclick="change_status('`+name+`','{{ Auth::user()->id }}')">
                             Confirm
                         </button>
-                        <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal">
+                        <button id="btn_close_modal" type="button" class="btn btn-secondary padding-btn" data-dismiss="modal">
                             Back
                         </button>
                     `;
@@ -428,24 +448,31 @@
                 .then(result => {
                     // console.log(result);
                     let html_modal = `
-                        <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
-                        <h3 class="text-info my-4">`+result.name+`</h3>
+                        <h4 class="mt-3" style="font-weight: bold;">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
+                        <h3 class="text-info my-4" style="font-weight: lighter;">`+result.name+`</h3>
                         <p>ในการเข้าร่วมกิจกรรม .....</p>
                         <h3>`+type+`</h3>
                         <br>
-                        <h4>Title</h4>
-                        <input type="radio" id="S" name="Title" value="S"/>S
-                        <input type="radio" id="M" name="Title" value="M"/>M
-                        <input type="radio" id="L" name="Title" value="L"/>L
-                        <input type="radio" id="XL" name="Title" value="XL"/>XL
+                        
+                        <div style="background-color: #090823;border-radius: 5px;padding: 10px;">
+                            <h4 class="text-white" style="font-weight: lighter;">Title</h4>
+                            <div class="w-100 ">
+                                <div class="d-flex justify-content-between px-5 text-white">
+                                    <div><input type="radio" id="S" name="Title" value="S"/>&nbsp;S</div>
+                                    <div><input type="radio" id="M" name="Title" value="M"/>&nbsp;M</div>
+                                    <div><input type="radio" id="L" name="Title" value="L"/>&nbsp;L</div>
+                                    <div><input type="radio" id="XL" name="Title" value="XL"/>&nbsp;XL</div>
+                                </div>
+                            </div>
+                        </div>
                     `;
 
                     let html_footer = `
     
-                        <button type="button" class="btn btn-submit" onclick="cf_shirt_size('`+name+`')">
+                        <button type="button" class="btn btn-submit padding-btn" onclick="cf_shirt_size('`+name+`')">
                             Confirm
                         </button>
-                        <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal">
+                        <button id="btn_close_modal" type="button" class="btn btn-secondary padding-btn" data-dismiss="modal">
                             Back
                         </button>
                     `;
@@ -486,6 +513,7 @@
                 document.querySelector('#btn_close_modal').click();
 
                 // modal success
+                document.querySelector('#modalSuccess').click();
                 
                 // document.querySelector('#alert_text').innerHTML = `
                 //    <i class="fa-solid fa-check text-success"></i> Success fully !
