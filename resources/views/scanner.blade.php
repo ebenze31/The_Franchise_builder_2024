@@ -416,7 +416,7 @@
 
             let html_footer = `
 
-                <button type="button" class="btn btn-submit" onclick="cf_shirt_size('`+name+`')">
+                <button type="button" class="btn btn-submit" onclick="cf_shirt_size('`+"{{ Auth::user()->id }}"+`')">
                     Confirm
                 </button>
                 <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal">
@@ -433,9 +433,6 @@
 
     function cf_shirt_size(account){
 
-                console.log(account);
-                console.log(Title_value);
-        
         let Title = document.querySelectorAll('input[name="Title"]');
         let Title_value = "" ;
             Title.forEach(Title => {
@@ -443,6 +440,10 @@
                     Title_value = Title.value;
                 }
             })
+
+        console.log(account);
+        console.log(Title_value);
+
         fetch("{{ url('/') }}/api/cf_shirt_size" + "/" + account + "/" + Title_value )
             .then(response => response.text())
             .then(result => {
