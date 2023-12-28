@@ -25,6 +25,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test_qr', 'HomeController@test_qr');
+Route::get('/404', 'HomeController@index');
 
 
 // LOGIN
