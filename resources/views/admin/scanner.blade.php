@@ -72,8 +72,9 @@
   }
 
   #qr-video {
-    width: 157px;
-    height: 157px;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
   }
 
   .box {
@@ -100,7 +101,8 @@
     font-size: 30px;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: center;  
+    overflow: hidden;
   }
 
   .box::before {
