@@ -394,7 +394,7 @@
                             @if( !empty($member->photo) )
                             <img src="{{ url('storage')}}/{{ $member->photo }}" class="img-member">
                             @else
-                            <img src="{{ url('/img/icon/profile.png') }}" class="img-member">
+                            <img src="{{ url('/img/icon/profile.png') }}" style="width:500px;height: 500px;" class="img-member">
                             @endif
                         </div>
                         <div class="name-member">
