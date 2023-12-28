@@ -148,7 +148,7 @@ class Pc_pointsController extends Controller
                     }
                 }
                 else if($key == "group_id"){
-                    $value = str_replace("Team","",$value);
+                    $data_arr[$key] = str_replace("Team","",$value);
                 }
                 else{
                     $data_arr[$key] = $value;
