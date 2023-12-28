@@ -443,7 +443,7 @@
         fetch("{{ url('/') }}/api/cf_shirt_size" + "/" + account + "/" + Title_value )
             .then(response => response.text())
             .then(result => {
-                // console.log(result);
+                console.log(result);
                 // console.log(result);
                 document.querySelector('#btn_close_modal').click();
 
