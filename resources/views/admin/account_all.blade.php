@@ -230,7 +230,7 @@
                 <h4 class="mb-0 text-uppercase">
                     รายชื่อสมาชิกทั้งหมด
                     <span style="font-size: 15px;color: gray;">
-                        ทั้งหมด (<span id="count_account_all" style="font-size: 15px;color: gray;"></span>) คน
+                        ทั้งหมด (<span id="count_player" style="font-size: 15px;color: gray;"></span>/<span id="count_account_all" style="font-size: 15px;color: gray;"></span>) คน
                     </span>
                 </h4>
             </div>
@@ -304,6 +304,7 @@
                         let content_tbody = document.querySelector('#content_tbody');
                             content_tbody.innerHTML = '';
 
+                        let Player = 0 ;
                         for (let i = 0; i < result.length; i++) {
 
                             // status
@@ -312,6 +313,7 @@
                             if(result[i].status == "เข้าร่วมแล้ว"){
                                 class_status = 'success';
                                 html_status = 'เข้าร่วมแล้ว';
+                                Player = Player + 1 ;
                             }else if(result[i].status == "รอยืนยัน"){
                                 class_status = 'warning';
                                 html_status = 'รอยืนยัน';
@@ -431,6 +433,8 @@
                             }
 
                         }
+
+                        document.querySelector('#count_player').innerHTML = Player;
 
                     }
 
