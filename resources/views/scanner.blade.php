@@ -307,6 +307,7 @@
         .then(function(stream) {
             videoStream = stream; // เก็บ stream ในตัวแปร global
             video.srcObject = stream;
+            video.setAttribute("playsinline", true);
             video.play();
 
             scanQRCode();
