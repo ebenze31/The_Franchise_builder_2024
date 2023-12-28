@@ -217,7 +217,7 @@
     <p class="info-user mt-3 mb-0" data-toggle="modal" data-target="#exampleModalCenter"><b>{{ Auth::user()->name }}</b> </p>
     <!-- <p class="info-user">{{ Auth::user()->email }}</p> -->
 
-    <div class="tab-content mt-5 " id="pills-tabContent">
+    <div class="tab-content " id="pills-tabContent">
       <div class="tab-pane fade show active text-white" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <div class="d-flex justify-content-center w-100">
           <img src="{{ url('/img/qr_profile')}}/{{ Auth::user()->qr_profile }}" class="qr-profile" alt="รูปภาพ QR Code">
