@@ -368,9 +368,11 @@
 
                 if(name_Activity == "ยืนยันการชำระเงิน"){
                     create_modal(name_Activity , code);
+                    document.querySelector('#qr-video').classList.add('d-none');
                 }
                 else if(name_Activity == "รับเสื้อ"){
                     create_modal(name_Activity , code);
+                    document.querySelector('#qr-video').classList.add('d-none');
                 }
 
                 return;
