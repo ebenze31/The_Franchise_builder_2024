@@ -209,7 +209,7 @@
                                 <div class="slider" style="--i:2"></div>
                                 <div class="slider" style="--i:3"></div>
                                 <div class="slider" style="--i:4"></div>
-                                <span class="text-success" style="margin-top: 25px;">กำลังประมวลผล..</span>
+                                <span id="text_load" class="text-success" style="margin-top: 25px;">กำลังประมวลผล..</span>
                             </section>
                         </div>
                         <div  class="loading-container" class="col-12 mt-5">
@@ -310,20 +310,20 @@
                 // ตรวจสอบข้อมูลในคอนโซล
                 // console.log(jsonData);
                 
-                // create_qr_code
-                fetch("{{ url('/') }}/api/create_qr_code", {
-                    method: 'post',
-                    body: JSON.stringify(jsonData),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function (response){
-                    return response.text();
-                }).then(function(data){
-                    console.log(data);
-                }).catch(function(error){
-                    // console.error(error);
-                });
+                // // create_qr_code
+                // fetch("{{ url('/') }}/api/create_qr_code", {
+                //     method: 'post',
+                //     body: JSON.stringify(jsonData),
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     }
+                // }).then(function (response){
+                //     return response.text();
+                // }).then(function(data){
+                //     console.log(data);
+                // }).catch(function(error){
+                //     // console.error(error);
+                // });
                     
                 // create_user
                 fetch("{{ url('/') }}/api/create_user/excel", {
@@ -341,8 +341,21 @@
                         // เคลียร์ input
                         clearFileInput('excel');
 
-                        document.querySelector('#div_loader_Excel').classList.add('d-none');
-                        document.querySelector('#div_success_Excel').classList.remove('d-none');
+                        document.querySelector('#text_load').innerHTML = 'กำลังสร้าง QR-Code..';
+
+                        fetch("{{ url('/') }}/api/qr_profile/")
+                            .then(response => response.text())
+                            .then(result => {
+                                // console.log(result);
+
+                                if(result){
+                                    document.querySelector('#div_loader_Excel').classList.add('d-none');
+                                    document.querySelector('#text_load').innerHTML = 'กำลังประมวลผล..';
+                                    document.querySelector('#div_success_Excel').classList.remove('d-none');
+
+                                }
+                        });
+                        
                     }
 
                 }).catch(function(error){

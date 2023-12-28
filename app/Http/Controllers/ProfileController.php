@@ -138,7 +138,7 @@ class ProfileController extends Controller
             $imagePath = storage_path("app/public")."/".$requestData['photo'];
             $image = Image::make($imagePath);
             $image->orientate();
-            
+
             // Crop ภาพ
             $image->crop($cropWidth, $cropHeight, $cropX, $cropY);
 
@@ -220,38 +220,56 @@ class ProfileController extends Controller
 
     }
 
-    function create_qr_code(Request $request)
-    {
-        $requestData = $request->all();
-        
-        foreach ($requestData as $item) {
-            foreach ($item as $key => $value) {
-                $data_arr[$key] = $value;
-            }
+    function qr_profile(Request $request){
 
-            $check_user = User::where('account',$data_arr['account'])->first();
+        $user = User::get();
 
-            if( !empty($check_user->account) ){
-                $return = "ไม่สร้าง";
-            }else{
+        foreach ($user as $item) {
+            $url_for_scan = $request->fullUrl() . "/for_scan" ;
+            $url_for_scan = str_replace("/var/www/","www.",$url_for_scan);
+            // QR-CODE
+            $url = "https://chart.googleapis.com/chart?cht=qr&chl=".$url_for_scan."?account=".$item->account."&chs=500x500&choe=UTF-8" ;
 
-                $url_for_scan = $request->fullUrl() . "/for_scan" ;
-                $url_for_scan = str_replace("/var/www/","www.",$url_for_scan);
-                // QR-CODE
-                $url = "https://chart.googleapis.com/chart?cht=qr&chl=account=".$data_arr['account']."&chs=500x500&choe=UTF-8" ;
-
-                $img = public_path("img/qr_profile" . "/" . $data_arr['account'] . '.png');
-                // Save image
-                file_put_contents($img, file_get_contents($url));
-
-                $return = "สร้าง";
-
-                sleep(3);
-            }
+            $img = public_path("img/qr_profile" . "/" . $item->account . '.png');
+            // Save image
+            file_put_contents($img, file_get_contents($url));
         }
 
-        return $return ;
+        return "success";
     }
+
+    // function create_qr_code(Request $request)
+    // {
+    //     $requestData = $request->all();
+        
+    //     foreach ($requestData as $item) {
+    //         foreach ($item as $key => $value) {
+    //             $data_arr[$key] = $value;
+    //         }
+
+    //         $check_user = User::where('account',$data_arr['account'])->first();
+
+    //         if( !empty($check_user->account) ){
+    //             $return = "ไม่สร้าง";
+    //         }else{
+
+    //             $url_for_scan = $request->fullUrl() . "/for_scan" ;
+    //             $url_for_scan = str_replace("/var/www/","www.",$url_for_scan);
+    //             // QR-CODE
+    //             $url = "https://chart.googleapis.com/chart?cht=qr&chl=account=".$data_arr['account']."&chs=500x500&choe=UTF-8" ;
+
+    //             $img = public_path("img/qr_profile" . "/" . $data_arr['account'] . '.png');
+    //             // Save image
+    //             file_put_contents($img, file_get_contents($url));
+
+    //             $return = "สร้าง";
+
+    //             sleep(3);
+    //         }
+    //     }
+
+    //     return $return ;
+    // }
 
     function account_all(){
         return view('admin.account_all');

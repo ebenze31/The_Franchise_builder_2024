@@ -315,6 +315,7 @@
                         <th></th>
                         <th class="text-center">Role</th>
                         <th class="text-center">Status</th>
+                        <th class="text-center">QR-code</th>
                         <!-- <th class="text-center">Pay slip</th> -->
                         <!-- <th class="text-center"></th> -->
                     </tr>
@@ -468,7 +469,7 @@
                                             `+btn_cf_Pay_slip+`
                                         </center>
                                     </td>
-                                    <td class="d-none">
+                                    <td class="d-">
                                         <img src="{{ url('/img/qr_profile')}}/`+result[i].qr_profile+`" class="p-1" alt="" style="width:100px;">
                                     </td>
                                 </tr>
