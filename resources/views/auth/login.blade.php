@@ -155,7 +155,6 @@
     }
     #header-img-login_second{
         width: 60% !important;
-        margin-top:30%;
         align-items: center;
 
     }
