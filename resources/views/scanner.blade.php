@@ -228,7 +228,7 @@
       </div>
       <div class="tab-pane fade text-white" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         <div class="d-flex w-100 justify-content-center mb-5">
-          <div class="box" style="--c:#000;--w:40px;--b:2px;--r:20px;">
+          <div class="box" style="--c:#000;--w:40px;--b:2px;--r:20px;z-index: 99999;">
             <video style="width:100%;" id="qr-video" muted></video>
           </div>
         </div>

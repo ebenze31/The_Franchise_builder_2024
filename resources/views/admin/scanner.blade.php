@@ -289,7 +289,7 @@
         ID : {{ Auth::user()->id }}
     </p>
     <div class="d-flex w-100 justify-content-center mt-4">
-        <div class="box" style="--c:#000;--w:40px;--b:2px;--r:20px;">
+        <div class="box" style="--c:#000;--w:40px;--b:2px;--r:20px;z-index: 99999;">
             <video style="width:100%;" id="qr-video" muted></video>
         </div>
     </div>
