@@ -250,7 +250,7 @@
                 <button type="button" class="btn btn-info" onclick="select_type('ทั้งหมด');">ทั้งหมด</button>
             </div>
             <div class="col-6">
-                ที่กำลังดู : <span id="amount_select"></span>
+                <p class="mt-3 float-end">ที่กำลังดู : <span id="amount_select"></span></p>
             </div>
         </div>
         
