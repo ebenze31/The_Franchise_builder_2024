@@ -158,6 +158,13 @@ class GroupsController extends Controller
         return view('groups.view_group');
     }
 
+    function get_data_view_group()
+    {
+        $data_group = Group::get();
+
+        return $data_group ;
+    }
+
     function create_group($amount){
 
         $data_old = Group::get();

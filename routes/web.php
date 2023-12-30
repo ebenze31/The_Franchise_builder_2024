@@ -66,6 +66,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::get('/add_account', 'ProfileController@add_account');
     Route::get('/account_all', 'ProfileController@account_all');
     Route::get('/account_reg_success', 'ProfileController@account_reg_success');
+    Route::get('/account_admin', 'ProfileController@account_admin');
     Route::get('/add_score', 'Pc_pointsController@add_score');
     Route::get('/add_group', 'GroupsController@add_group');
     Route::get('/view_group', 'GroupsController@view_group');

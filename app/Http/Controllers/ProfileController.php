@@ -281,6 +281,10 @@ class ProfileController extends Controller
         return view('admin.account_reg_success');
     }
 
+    function account_admin(){
+        return view('admin.account_admin');
+    }
+
     function get_account_reg_success(Request $request)
     {
         $requestData = $request->all();
@@ -302,6 +306,19 @@ class ProfileController extends Controller
                 ->orWhere('role' , "Player")
                 ->orderBy('account','ASC')
                 ->get();
+        }
+        else if($type_get_data == "admin"){
+            // $data = User::where('role' , "Super-admin")
+            //     ->orWhere('role' , "Admin")
+            //     ->orWhere('role' , "Staff")
+            //     ->orderBy('role','DESC')
+            //     ->get();
+
+           $data = User::whereIn('role', ['Super-admin', 'Admin', 'Staff'])
+                ->orderByRaw("FIELD(role, 'Super-admin', 'Admin', 'Staff')")
+                ->orderBy('role', 'DESC')
+                ->get();
+
         }
         else{
             $data = User::where('account', 'LIKE', "%$type_get_data%")
