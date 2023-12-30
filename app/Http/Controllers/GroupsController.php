@@ -154,6 +154,10 @@ class GroupsController extends Controller
         return view('groups.add_group' , compact('count_group','activeGroupsCount'));
     }
 
+    function view_group(){
+        return view('groups.view_group');
+    }
+
     function create_group($amount){
 
         $data_old = Group::get();

@@ -196,7 +196,7 @@
                 <label for="account" class="col-md-4 col-form-label text-md-right label-form">{{ __('Username') }}</label>
 
                 <div class="col-md-6">
-                    <input id="account" type="account" class="form-control @error('account') is-invalid @enderror input-login" name="account" value="{{ old('account') }}" required autocomplete="account" autofocus onchange="check_pdpa();">
+                    <input id="account" type="account" class="form-control @error('account') is-invalid @enderror input-login" name="account" value="{{ old('account') }}" required autocomplete="account" autofocus>
                     @error('account')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -209,7 +209,7 @@
                 <label for="password" class="col-md-4 col-form-label text-md-right label-form mt-2">{{ __('Password') }}</label>
 
                 <div class="col-md-6">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror input-login" name="password" required autocomplete="current-password" onchange="check_pdpa();">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror input-login" name="password" required autocomplete="current-password">
 
                     @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -225,8 +225,12 @@
 
             <div class="form-group mb-0 d-flex justify-content-center w-100 mt-3 ">
                 <div class="col-md-8">
-                    <a id="btn_for_login" class="btn btn-login">
+                    <a id="btn_for_login" class="btn btn-login d-none">
                         {{ __('Login') }}
+                    </a>
+
+                    <a class="btn btn-login" onclick="check_pdpa();">
+                        Login
                     </a>
                 </div>
             </div>
@@ -293,6 +297,7 @@
                         $('#ModalTerms').modal('show');
                     }else{
                         document.querySelector('#btn_for_login').setAttribute('onclick' , 'to_login();');
+                        document.querySelector('#btn_for_login').click();
                     }
             });
         }

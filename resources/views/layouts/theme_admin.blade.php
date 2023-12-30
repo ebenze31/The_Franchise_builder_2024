@@ -171,6 +171,11 @@
                                 <i class="fa-solid fa-plus"></i> เพิ่มจำนวนบ้าน
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ url('/view_group') }}" class="btn">
+                                <i class="fa-solid fa-house-building"></i> บ้านทั้งหมด
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li>

@@ -27,6 +27,7 @@ Route::post('/create_qr_code', 'ProfileController@create_qr_code');
 Route::get('/qr_profile', 'ProfileController@qr_profile');
 Route::get('/change_status/{account}/{Staff_id}', 'ProfileController@change_status');
 Route::get('/get_data_account/{type_get_data}', 'ProfileController@get_data_account');
+Route::post('/get_account_reg_success', 'ProfileController@get_account_reg_success');
 Route::get('/get_users/{account}', 'ProfileController@get_users');
 Route::get('/check_pay_slip/{user_id}', 'ProfileController@check_pay_slip');
 Route::get('/check_pdpa/{account}', 'ProfileController@check_pdpa');

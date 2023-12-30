@@ -156,6 +156,7 @@ class ProfileController extends Controller
             
             $requestData['status'] = "เข้าร่วมแล้ว" ;
             $requestData['role'] = "Player" ;
+            $requestData['time_cf_pay_slip'] = date("Y-m-d H:i:s") ;
             
             $data->update($requestData);
 
@@ -276,6 +277,24 @@ class ProfileController extends Controller
         return view('admin.account_all');
     }
 
+    function account_reg_success(){
+        return view('admin.account_reg_success');
+    }
+
+    function get_account_reg_success(Request $request)
+    {
+        $requestData = $request->all();
+        // ตรวจสอบว่า arr_member มีค่าหรือไม่
+        $arr_member = isset($requestData['arr_member']) ? $requestData['arr_member'] : [];
+
+        $data = User::where('role', "Player")
+            ->whereNotIn('id', $arr_member)
+            ->orderBy('time_cf_pay_slip', 'ASC')
+            ->get();
+
+        return $data ;
+    }
+
     function get_data_account($type_get_data){
 
         if($type_get_data == "all"){
@@ -283,7 +302,8 @@ class ProfileController extends Controller
                 ->orWhere('role' , "Player")
                 ->orderBy('account','ASC')
                 ->get();
-        }else{
+        }
+        else{
             $data = User::where('account', 'LIKE', "%$type_get_data%")
                 ->orWhere('name', 'LIKE', "%$type_get_data%")
                 ->orWhere('phone', 'LIKE', "%$type_get_data%")
