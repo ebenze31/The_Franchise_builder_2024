@@ -31,20 +31,29 @@ class GroupsController extends Controller
         }
 
         // Player
-        if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
+        if( $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
+            return redirect('preview_team'.'/'.$data_user->group_id);
+        }
+        else{
             $activeGroupsCount = Group::where('active', 'Yes')->count();
             return view('groups.index' , compact('activeGroupsCount'));
         }
-        else if( !empty($data_user->group_id) && $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
-            return redirect('preview_team'.'/'.$data_user->group_id);
-        }
-        else if( !empty($data_user->group_id) && $data_user->group_status != "กำลังขอเข้าร่วมบ้าน" ){
-            $group_id = $data_user->group_id;
-            return redirect('/group_my_team' .'/'. $group_id);
-        }
-        else{
-            return redirect('scanner');
-        }
+
+        // Player
+        // if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
+        //     $activeGroupsCount = Group::where('active', 'Yes')->count();
+        //     return view('groups.index' , compact('activeGroupsCount'));
+        // }
+        // else if( !empty($data_user->group_id) && $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
+        //     return redirect('preview_team'.'/'.$data_user->group_id);
+        // }
+        // else if( !empty($data_user->group_id) && $data_user->group_status != "กำลังขอเข้าร่วมบ้าน" ){
+        //     $group_id = $data_user->group_id;
+        //     return redirect('/group_my_team' .'/'. $group_id);
+        // }
+        // else{
+        //     return redirect('scanner');
+        // }
 
         // return view('groups.index');
     }
@@ -158,9 +167,13 @@ class GroupsController extends Controller
         return view('groups.view_group');
     }
 
-    function get_data_view_group()
+    function get_data_view_group($Search_input)
     {
-        $data_group = Group::get();
+        if($Search_input == 'all'){
+            $data_group = Group::get();
+        }else{
+            $data_group = Group::where('name_group', 'LIKE', "%$Search_input%")->get();
+        }
 
         return $data_group ;
     }
@@ -299,24 +312,38 @@ class GroupsController extends Controller
         }
 
         // Player
-        if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
-            $group_status = null ;
-            return view('groups.preview_team' , compact('group_id' , 'group_status' ,'data_groups'));
-        }
-        else if( $data_user->group_status == "มีบ้านแล้ว" || $data_user->group_status == "ยืนยันการสร้างบ้านแล้ว" ){
-            $group_id = $data_user->group_id;
-            return redirect('/group_my_team' .'/'. $group_id);
-        }
-        else{
+        if( $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
 
-            if( !empty($data_user->time_cf_pay_slip) ){
+            if($data_user->group_id == $group_id){
                 $group_status = $data_user->group_status ;
                 return view('groups.preview_team' , compact('group_id' , 'group_status' ,'data_groups'));
             }else{
-                return redirect('scanner');
+                return redirect('preview_team'.'/'.$data_user->group_id);
             }
-            
+        }else{
+            $group_status = $data_user->group_status ;
+            return view('groups.preview_team' , compact('group_id' , 'group_status' ,'data_groups'));
         }
+
+        // Player
+        // if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
+        //     $group_status = null ;
+        //     return view('groups.preview_team' , compact('group_id' , 'group_status' ,'data_groups'));
+        // }
+        // else if( $data_user->group_status == "มีบ้านแล้ว" || $data_user->group_status == "ยืนยันการสร้างบ้านแล้ว" ){
+        //     $group_id = $data_user->group_id;
+        //     return redirect('/group_my_team' .'/'. $group_id);
+        // }
+        // else{
+
+        //     if( !empty($data_user->time_cf_pay_slip) ){
+        //         $group_status = $data_user->group_status ;
+        //         return view('groups.preview_team' , compact('group_id' , 'group_status' ,'data_groups'));
+        //     }else{
+        //         return redirect('scanner');
+        //     }
+            
+        // }
     }
 
     function get_data_groups($type_get_data){

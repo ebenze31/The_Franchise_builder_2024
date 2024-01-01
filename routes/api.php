@@ -47,5 +47,5 @@ Route::get('/change_group_status/{type}/{group_id}/{user_id}', 'GroupsController
 
 Route::get('/get_data_my_team/{group_id}', 'GroupsController@get_data_my_team');
 Route::get('/CF_answer_request/{answer}/{member_id}/{group_id}', 'GroupsController@CF_answer_request');
-Route::get('/get_data_view_group', 'GroupsController@get_data_view_group');
+Route::get('/get_data_view_group/{Search_input}', 'GroupsController@get_data_view_group');
 

@@ -258,7 +258,7 @@
         <script>
             
             function select_type(type){
-                console.log(type);
+                // console.log(type);
                 let amount_select = 0 ;
 
                 if(type == "เข้าร่วมแล้ว"){
