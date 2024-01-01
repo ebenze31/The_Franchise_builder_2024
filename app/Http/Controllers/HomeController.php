@@ -33,19 +33,20 @@ class HomeController extends Controller
         else if(Auth::user()->role == "Player"){
             $data_user = Auth::user();
 
-            if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
-                return redirect('groups');
-            }
-            else if( !empty($data_user->group_id) && $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
-                return redirect('preview_team'.'/'.$data_user->group_id);
-            }
-            else if( $data_user->group_status == "มีบ้านแล้ว" || $data_user->group_status == "ยืนยันการสร้างบ้านแล้ว"){
-                return redirect('group_my_team'.'/'.$data_user->group_id);
-            }
-            else{
-                return redirect('scanner');
-            }
+            // if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
+            //     return redirect('groups');
+            // }
+            // else if( !empty($data_user->group_id) && $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
+            //     return redirect('preview_team'.'/'.$data_user->group_id);
+            // }
+            // else if( $data_user->group_status == "มีบ้านแล้ว" || $data_user->group_status == "ยืนยันการสร้างบ้านแล้ว"){
+            //     return redirect('group_my_team'.'/'.$data_user->group_id);
+            // }
+            // else{
+            //     return redirect('scanner');
+            // }
 
+            return redirect('scanner');
         }
 
         else if(Auth::user()->role == "Staff"){
