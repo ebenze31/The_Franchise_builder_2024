@@ -85,8 +85,8 @@
     }
     @media only screen and (max-width: 767px) {
         #header-img-login {
-            width: 60% !important;
-            margin-top: 60%;
+            width: 80% !important;
+           
         }
         #div_first{
             margin-top: 25% !important;
@@ -101,8 +101,8 @@
    
     @media only screen and (min-width: 767px) and (max-width: 991px){
         #header-img-login {
-            width: 50% !important;
-            margin-top: 80%;
+            width: 80% !important;
+            
 
         }
         .form-group{
@@ -116,7 +116,7 @@
         #header-img-login {
             width: 60% !important;
 
-            margin-top: 50%;
+         
 
         }
         .form-group{
@@ -129,7 +129,6 @@
         #header-img-login {
             width: 60% !important;
 
-           margin-top:30%;
         }
         .form-group{
             margin-top: 10px;
@@ -159,85 +158,100 @@
         align-items: center;
 
     }
+    .container-login{
+         display: flex;
+         position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  margin: 0;
+    }#div_second{
+        width: 90vw;
+    }
+
 </style>
-<div id="div_first" class="container text-center mt-5 w-100 ">
-    <div>
-         <div class="col">
-            <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 20%" id="header-img-login">
+<div class="container-login text-white">
+    <div id="div_first" class="container text-center mt-5 w-100 ">
+        <div>
+            <div class="col">
+                <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 20%" id="header-img-login">
+            </div>
+            <div class="d-flex justify-content-center">
+                <a style="margin-top: 100px;" class="btn btn-login" onclick="document.querySelector('#div_second').classList.remove('d-none'),document.querySelector('#div_first').classList.add('d-none')">
+                    Login
+                </a>
+            </div>
         </div>
-        <div class="d-flex justify-content-center">
-            <a style="margin-top: 100px;" class="btn btn-login" onclick="document.querySelector('#div_second').classList.remove('d-none'),document.querySelector('#div_first').classList.add('d-none')">
-                Login
-            </a>
-        </div>
-    </div>
-       
-</div>
-
-<div id="div_second" class="container d-none">
-    <div class="d-flex justify-content-center">
-        <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 20%" id="header-img-login_second">
-    </div>
-    <div class="header-login">
-        <h6>
-            <b>Hi there, welcome!</b>
-        </h6>
-    </div>
-    <div class="detail-login">
-        <p class="mb-1">กรุณากรอกหมายเลขรหัสเอเจนท์ (Agent Code) ที่ช่องแรกและ ใช้วันเดือนปีเกิด (ค.ศ. 4 ตัว) ของคุณ เพื่อเป็นรหัสผ่าน เช่น เกิดวันที่ 1 เดือนกันยายน ปี ค.ศ. 1984 รหัสผ่านของคุณจึงเป็น 01091984</p>
-        <p>Enter your Agent Code in the first field and use your date of birth (4-digit year) as your password in the second field. E.g. You were born on
-            Sep 1st, 1984, your password is 01091984.</p>
-    </div>
-
-    <div class="form-login">
-        <form id="form_login" method="POST" action="{{ route('login') }}">
-            @csrf
-            <div class="form-group row">
-                <label for="account" class="col-md-4 col-form-label text-md-right label-form">{{ __('Username') }}</label>
-
-                <div class="col-md-6">
-                    <input id="account" type="account" class="form-control @error('account') is-invalid @enderror input-login" name="account" value="{{ old('account') }}" required autocomplete="account" autofocus>
-                    @error('account')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right label-form mt-2">{{ __('Password') }}</label>
-
-                <div class="col-md-6">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror input-login" name="password" required autocomplete="current-password">
-
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="w-100 forgot-password d-none">
-                <a href="" class=" w-100"><u>Forgot Password</u></a>
-            </div>
-
-            <div class="form-group mb-0 d-flex justify-content-center w-100 mt-3 ">
-                <div class="col-md-8">
-                    <a id="btn_for_login" class="btn btn-login d-none">
-                        {{ __('Login') }}
-                    </a>
-
-                    <a class="btn btn-login" onclick="check_pdpa();">
-                        Login
-                    </a>
-                </div>
-            </div>
-        </form>
         
     </div>
+
+    <div id="div_second" class="container d-none">
+        <div class="d-flex justify-content-center">
+            <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 20%" id="header-img-login_second">
+        </div>
+        <div class="header-login">
+            <h6>
+                <b>Hi there, welcome!</b>
+            </h6>
+        </div>
+        <div class="detail-login">
+            <p class="mb-1">กรุณากรอกหมายเลขรหัสเอเจนท์ (Agent Code) ที่ช่องแรกและ ใช้วันเดือนปีเกิด (ค.ศ. 4 ตัว) ของคุณ เพื่อเป็นรหัสผ่าน เช่น เกิดวันที่ 1 เดือนกันยายน ปี ค.ศ. 1984 รหัสผ่านของคุณจึงเป็น 01091984</p>
+            <p>Enter your Agent Code in the first field and use your date of birth (4-digit year) as your password in the second field. E.g. You were born on
+                Sep 1st, 1984, your password is 01091984.</p>
+        </div>
+
+        <div class="form-login">
+            <form id="form_login" method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="form-group row">
+                    <label for="account" class="col-md-4 col-form-label text-md-right label-form">{{ __('Username') }}</label>
+
+                    <div class="col-md-6">
+                        <input id="account" type="account" class="form-control @error('account') is-invalid @enderror input-login" name="account" value="{{ old('account') }}" required autocomplete="account" autofocus>
+                        @error('account')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="password" class="col-md-4 col-form-label text-md-right label-form mt-2">{{ __('Password') }}</label>
+
+                    <div class="col-md-6">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror input-login" name="password" required autocomplete="current-password">
+
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="w-100 forgot-password d-none">
+                    <a href="" class=" w-100"><u>Forgot Password</u></a>
+                </div>
+
+                <div class="form-group mb-0 d-flex justify-content-center w-100 mt-3 ">
+                    <div class="col-md-8">
+                        <a id="btn_for_login" class="btn btn-login d-none">
+                            {{ __('Login') }}
+                        </a>
+
+                        <a class="btn btn-login" onclick="check_pdpa();">
+                            Login
+                        </a>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="ModalTerms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
