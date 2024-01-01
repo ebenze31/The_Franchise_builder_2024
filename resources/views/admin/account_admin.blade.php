@@ -356,8 +356,6 @@
 
                         }
 
-                        document.querySelector('#count_player').innerHTML = Player;
-
                     }
 
                 }, 500);

@@ -34,6 +34,10 @@ Route::get('/check_pdpa/{account}', 'ProfileController@check_pdpa');
 Route::get('/update_pdpa/{account}', 'ProfileController@update_pdpa');
 Route::get('/keep_name_Activity/{name_Activity}/{user_id}', 'ProfileController@keep_name_Activity');
 Route::get('/cf_shirt_size/{account}/{Title_value}', 'ProfileController@cf_shirt_size');
+Route::get('/cf_shirt_size/{account}/{Title_value}', 'ProfileController@cf_shirt_size');
+Route::get('/get_time_request_join/{user_id}', 'ProfileController@get_time_request_join');
+Route::get('/get_data_user/{user_id}', 'ProfileController@get_data_user');
+Route::get('/get_data_me/{user_id}', 'ProfileController@get_data_me');
 
 // PC POINT
 Route::post('/create_score/excel', 'Pc_pointsController@create_score');
@@ -48,4 +52,5 @@ Route::get('/change_group_status/{type}/{group_id}/{user_id}', 'GroupsController
 Route::get('/get_data_my_team/{group_id}', 'GroupsController@get_data_my_team');
 Route::get('/CF_answer_request/{answer}/{member_id}/{group_id}', 'GroupsController@CF_answer_request');
 Route::get('/get_data_view_group/{Search_input}', 'GroupsController@get_data_view_group');
+Route::get('/check_request_join/{group_id}', 'GroupsController@check_request_join');
 

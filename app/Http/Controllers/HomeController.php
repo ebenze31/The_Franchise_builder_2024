@@ -46,7 +46,14 @@ class HomeController extends Controller
             //     return redirect('scanner');
             // }
 
-            return redirect('scanner');
+            $check = $data_user->group_status ;
+            $validOptions = ["กำลังขอเข้าร่วมบ้าน", "Host Accept", "Host Reject", "Team Ready"];
+
+            if( in_array($check, $validOptions) ){
+                return redirect('preview_team'.'/'.$data_user->group_id);
+            }else{
+                return redirect('groups');
+            }
         }
 
         else if(Auth::user()->role == "Staff"){

@@ -31,13 +31,16 @@ class GroupsController extends Controller
         }
 
         // Player
-        if( $data_user->group_status == "กำลังขอเข้าร่วมบ้าน" ){
+        $check = $data_user->group_status ;
+        $validOptions = ["กำลังขอเข้าร่วมบ้าน", "Host Accept", "Host Reject", "Team Ready"];
+
+        if( in_array($check, $validOptions) ){
             return redirect('preview_team'.'/'.$data_user->group_id);
-        }
-        else{
+        }else{
             $activeGroupsCount = Group::where('active', 'Yes')->count();
             return view('groups.index' , compact('activeGroupsCount'));
         }
+
 
         // Player
         // if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
@@ -240,11 +243,20 @@ class GroupsController extends Controller
     function active_group($amount)
     {
         $groups = Group::all();
+        $amount_host = 0 ;
 
         foreach ($groups as $group) {
+
             $group->update(['active' => null]);
+
+            // if( !empty($group->host) ){
+            //     $amount_host = $amount_host + 1 ;
+            // }else if( empty($group->host) ){
+            //     $group->update(['active' => null]);
+            // }
         }
 
+        // $amount = $amount - $amount_host ;
 
         Group::where('id', '>=', 1)
             ->where('id', '<=', $amount)
@@ -362,6 +374,11 @@ class GroupsController extends Controller
 
         $groups = Group::where('id' , $group_id)->first();
         return $groups;
+    }
+
+    function check_request_join($group_id){
+        $groups = Group::where('id' , $group_id)->first();
+        return $groups->request_join;
     }
 
     function user_join_team($type , $group_id , $user_id)

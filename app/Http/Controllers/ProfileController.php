@@ -160,7 +160,7 @@ class ProfileController extends Controller
             
             $data->update($requestData);
 
-            return redirect("scanner");
+            return redirect("groups");
         } else {
 
             $data->update($requestData);
@@ -297,6 +297,27 @@ class ProfileController extends Controller
             ->get();
 
         return $data ;
+    }
+
+    function get_data_user($user_id){
+
+        $data_user = User::where('id', $user_id)->first();
+
+        return $data_user ;
+    }
+
+    function get_data_me($user_id){
+
+        $data_user = User::where('id', $user_id)->first();
+
+        return $data_user->group_status ;
+    }
+
+    function get_time_request_join($user_id){
+
+        $data_user = User::where('id', $user_id)->first();
+
+        return $data_user->time_request_join ;
     }
 
     function get_data_account($type_get_data){

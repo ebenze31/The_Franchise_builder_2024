@@ -124,6 +124,38 @@
         $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
     })
 </script>
+
+@if( Auth::user()->group_status == "มีบ้านแล้ว" || Auth::user()->group_status == "ยืนยันการสร้างบ้านแล้ว" )
+<div class="container">
+    <h5 class="mt-4 mb-2 text-white">
+        My team
+    </h5>
+</div>
+
+<div class="container-fluid">
+    <div class="">
+        <div class="row">
+            @php
+                $class_team = '';
+
+                if(Auth::user()->group_status == "มีบ้านแล้ว"){
+                    $class_team = 'warning' ;
+                }else if(Auth::user()->group_status == "ยืนยันการสร้างบ้านแล้ว"){
+                    $class_team = 'success' ;
+                }
+            @endphp
+
+            <a id="MyTeam_{{ Auth::user()->group_id }}" class="col-4 mt-2 mb-2 p-0" href="{{ url('/group_my_team') . '/' . Auth::user()->group_id }}">
+                <div class="item-team" style="width: 100%;height: auto;">
+                    <img src="{{ url('/img/group_profile') . '/' . $class_team . '/id (' . Auth::user()->group_id . ').png' }}" style="width: 100%;">
+                </div>
+            </a>
+            
+        </div>
+    </div>
+</div>
+@endif
+
 <div class="container">
     <h5 class="mt-4 mb-2 text-white">
         All team
@@ -163,7 +195,38 @@
                         let content_groups = document.querySelector('#content_groups');
                         content_groups.innerHTML = '';
 
+                        // @php
+                        //     $class_team = '';
+
+                        //     if(Auth::user()->group_status == "มีบ้านแล้ว"){
+                        //         $class_team = 'warning' ;
+                        //     }else if(Auth::user()->group_status == "ยืนยันการสร้างบ้านแล้ว"){
+                        //         $class_team = 'success' ;
+                        //     }
+                        // @endphp
+
+                        // let html_my_tem ;
+                        // @if( Auth::user()->group_status == "มีบ้านแล้ว" || Auth::user()->group_status == "ยืนยันการสร้างบ้านแล้ว" )
+                        //     html_my_tem = `<a id="MyTeam_{{ Auth::user()->group_id }}" class="col-4 mt-2 mb-2 p-0" href="{{ url('/preview_team') . '/' . Auth::user()->group_id }}">
+                        //         <div class="item-team" style="width: 100%;height: auto;">
+                        //             <img src="{{ url('/img/group_profile') . '/' . $class_team . '/id (' . Auth::user()->group_id . ').png' }}" style="width: 100%;">
+                        //         </div>
+                        //     </a>`;
+                        // @endif
+
+                        // content_groups.insertAdjacentHTML('beforeend', html_my_tem); // แทรกล่างสุด
+
+
                         for (let i = 0; i < result.length; i++) {
+
+                            // เช็คว่าเป็นบ้านตัวเอง
+                            let url_to = 'preview_team' ;
+                            if( "{{ Auth::user()->group_status }}" == "มีบ้านแล้ว" || "{{ Auth::user()->group_status }}" == "ยืนยันการสร้างบ้านแล้ว" ){
+                                if("{{ Auth::user()->group_id }}" == result[i].id){
+                                    url_to = 'group_my_team' ;
+                                }
+                            }
+
 
                             let member = JSON.parse(result[i].member);
 
@@ -181,7 +244,7 @@
                                 count_member = member.length;
                             }
                             let html = `
-                                <a id="Team_` + result[i].id + `" class="div_Team col-4 mt-2 mb-2 p-0" href="{{ url('/preview_team/` + result[i].id + `') }}">
+                                <a id="Team_` + result[i].id + `" class="div_Team col-4 mt-2 mb-2 p-0" href="{{ url('/`+url_to+`/` + result[i].id + `') }}">
                                     <div class="item-team" style="width: 100%;height: auto;">
                                         <img src="{{ url('/img/group_profile/` + class_team + `/id (` + result[i].id + `).png') }}" style="width: 100%;">
                                     </div>

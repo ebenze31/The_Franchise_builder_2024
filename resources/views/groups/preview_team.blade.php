@@ -205,7 +205,9 @@
 
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}"  class="mt-2 mb-2 img-header-team">
-    <h1>Team {{ $group_id }}</h1>
+    <h1>
+        Team {{ $group_id }}
+    </h1>
 </div>
 
 @php
@@ -228,31 +230,47 @@
     </div>
     <div class="member-section ">
         @if( empty($data_groups->member) )
-            @for ($i = 0; $i < 10; $i++) 
-                @if($i == 0)
-                    <div id="Team_no" class="member-item mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');">
-                        <div class="member-card h-100" style="width: 100%;height: auto;">
-                            <div class="text-center w-100">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <p class="font-12 w-100"> Be the host</p>
-                            </div>
-                            <span class="btn host-member">
-                                <i class="fa-solid fa-key text-warning"></i>
-                            </span>
+
+            <!-- เช็คว่ามีบ้านแล้ว -->
+            @if( Auth::user()->group_status == "มีบ้านแล้ว" || Auth::user()->group_status == "ยืนยันการสร้างบ้านแล้ว" )
+                @for ($i = 0; $i < 10; $i++)
+                <div id="Team_no" class="member-item col-4 mt-2 mb-2" >
+                    <div class="member-card h-100" style="width: 100%;height: auto;">
+                        <div class="text-center">
+                            <p class="font-12 w-100">ว่าง</p>
                         </div>
                     </div>
-                @else
-                    <div id="Team_no" class="member-item mt-2 mb-2">
-                        <div class="disable-card h-100" >
-                            <div class="text-center">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <p class="font-12">Join as member</p>
+                </div>
+                @endfor
+            @else
+                @for ($i = 0; $i < 10; $i++) 
+                    @if($i == 0)
+                        <div id="Team_no" class="member-item mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');">
+                            <div class="member-card h-100" style="width: 100%;height: auto;">
+                                <div class="text-center w-100">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                    <p class="font-12 w-100"> Be the host</p>
+                                </div>
+                                <span class="btn host-member">
+                                    <i class="fa-solid fa-key text-warning"></i>
+                                </span>
                             </div>
-                            
                         </div>
-                    </div>
-                @endif
-            @endfor
+                    @else
+                        <div id="Team_no" class="member-item mt-2 mb-2">
+                            <div class="disable-card h-100" >
+                                <div class="text-center">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                    <p class="font-12">Join as member</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    @endif
+                @endfor
+
+            @endif
+
         @else
             
             
@@ -364,19 +382,34 @@
                 @endif
 
 
-                @for ($i = 0; $i < $add_div; $i++) 
-                    @if($group_status == 'กำลังขอเข้าร่วมบ้าน')
-                    <div id="Team_no" class="member-item col-4 mt-2 mb-2" >
-                    @else
-                    <div id="Team_no" class="member-item col-4 mt-2 mb-2" onclick="open_modal_join_team('member','{{ $data_groups->id }}');">
-                    @endif
-                        <div class="member-card h-100" style="width: 100%;height: auto;">
-                            <div class="text-center">
-                                <i class="fa-solid fa-user-plus"></i>
-                                <p class="font-12">Join our team</p>
+                @for ($i = 0; $i < $add_div; $i++)
+
+                    <!-- เช็คว่ามีบ้านแล้ว -->
+                    @if( Auth::user()->group_status == "มีบ้านแล้ว" || Auth::user()->group_status == "ยืนยันการสร้างบ้านแล้ว" )
+                        <div id="Team_no" class="member-item col-4 mt-2 mb-2" >
+                            <div class="member-card h-100" style="width: 100%;height: auto;">
+                                <div class="text-center">
+                                    <p class="font-12 w-100">ว่าง</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @else
+
+                        @if($group_status == 'กำลังขอเข้าร่วมบ้าน')
+                        <div id="Team_no" class="member-item col-4 mt-2 mb-2" >
+                        @else
+                        <div id="Team_no" class="member-item col-4 mt-2 mb-2" onclick="open_modal_join_team('member','{{ $data_groups->id }}');">
+                        @endif
+                            <div class="member-card h-100" style="width: 100%;height: auto;">
+                                <div class="text-center">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                    <p class="font-12">Join our team</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    @endif
+
                 @endfor
             @endif
 
@@ -548,12 +581,29 @@
 
 
 <script>
+
+    var loop_check_wait_host ;
     
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         // get_data_groups("{{ $group_id }}");
-        check_wait_host();
+        check_wait_host("{{ $group_status }}");
+
+        loop_check_wait_host = setInterval(function() {
+            // console.log("LOOP");
+            fetch("{{ url('/') }}/api/get_data_me" + '/' + "{{ Auth::user()->id }}")
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                    check_wait_host(result);
+            });
+        }, 5000);
+
     });
+
+    function Stop_loop_check_wait_host() {
+        clearInterval(loop_check_wait_host);
+    }
 
     function test_modal(status){
 
@@ -600,7 +650,7 @@
         fetch("{{ url('/') }}/api/get_data_groups/" + group_id)
             .then(response => response.json())
             .then(result => {
-              console.log(result);
+            // console.log.log(result);
 
                 let list_member = JSON.parse(result.member);
                 let list_request_join = JSON.parse(result.request_join);
@@ -622,7 +672,7 @@
                     check_list_request_join = list_request_join.includes("{{ Auth::user()->id }}");
                 }
 
-                if( "{{ Auth::user()->id }}" == result.host || check_list_member || check_list_request_join ){
+                if( "{{ Auth::user()->id }}" == result.host || "{{ Auth::user()->group_status }}" == "กำลังขอเข้าร่วมบ้าน" || check_list_member || check_list_request_join ){
                     // console.log('ไม่ทำงาน');
                     location.reload();
                 }else{
@@ -898,11 +948,11 @@
 
 
 
-    function check_wait_host(){
+    function check_wait_host(group_status){
 
-        if("{{ $group_status }}" == 'กำลังขอเข้าร่วมบ้าน'){
+        if(group_status == 'กำลังขอเข้าร่วมบ้าน'){
             // ขึ้นเวลาที่รอผ่านไปกี่ ชม แล้ว
-        }else if("{{ $group_status }}" == 'Host Accept'){
+        }else if(group_status == 'Host Accept'){
             // เปลี่ยนสถานะเป็น มีบ้านแล้ว
             // เด้งไปหน้า my team
             fetch("{{ url('/') }}/api/change_group_status/" + 'มีบ้านแล้ว' + "/" + "{{ $group_id }}" + "/{{ Auth::user()->id }}")
@@ -913,10 +963,11 @@
                     // modal แจ้งเตือนการเข้าร่วมบ้าน ครั้งแรกครั้งเดียว
                     create_modal('Host Accept' , "{{ $group_id }}");
                     document.querySelector('#btn_modal_join_team').click();
+                    Stop_loop_check_wait_host();
 
             });
 
-        }else if("{{ $group_status }}" == 'Host Reject'){
+        }else if(group_status == 'Host Reject'){
             // หลังจากนั้นเปลี่ยนสถานะเป็น null | group_id = null
             // เด้งไปหน้า groups หาบ้านใหม่
             fetch("{{ url('/') }}/api/change_group_status/" + 'Host Reject' + "/" + "{{ $group_id }}" + "/{{ Auth::user()->id }}")
@@ -927,9 +978,10 @@
                     // modal แจ้งเตือน Host Reject ครั้งเดียว
                     create_modal('Host Reject' , "{{ $group_id }}");
                     document.querySelector('#btn_modal_join_team').click();
+                    Stop_loop_check_wait_host();
 
             });
-        }else if("{{ $group_status }}" == 'Team Ready'){
+        }else if(group_status == 'Team Ready'){
             // เปลี่ยนสถานะเป็น ยืนยันการสร้างบ้านแล้ว
             // เด้งไปหน้า my team
             fetch("{{ url('/') }}/api/change_group_status/" + 'ยืนยันการสร้างบ้านแล้ว' + "/" + "{{ $group_id }}" + "/{{ Auth::user()->id }}")
@@ -940,6 +992,7 @@
                     // modal แจ้งเตือนการเข้าร่วมบ้าน ครั้งแรกครั้งเดียว
                     create_modal('Team Ready' , "{{ $group_id }}");
                     document.querySelector('#btn_modal_join_team').click();
+                    Stop_loop_check_wait_host();
 
             });
         }

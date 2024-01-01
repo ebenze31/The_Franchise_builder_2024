@@ -270,7 +270,10 @@
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}"  class="mt-2 mb-2 img-header-team">
     <div>
-        <h1 class="text-white">Team {{ $group_id }}</h1>
+        <h1 class="text-white">
+            Team {{ $group_id }}
+            <span style="font-size:12px;">(My team)</span>
+        </h1>
         @if( !empty($data_groups->rank_of_week) )
             <p style="font-size: 14px;color: yellow;">PC : <span>xxxx</span></p>
         @endif
@@ -279,88 +282,15 @@
 
 <div class="memberInRoom">
     <div class="d-flex justify-content-between px-4 align-items-center">
-         @if($data_groups->host == Auth::user()->id)
+        @if($data_groups->host == Auth::user()->id)
             <div>
                 <span class="text-mamber h4">Members</span>  <span class="text-white">: Team {{ $group_id }}</span>
                 @if( count($list_member) < 10 )
                 <p class="text-white">Member : <span id="amount_member">{{ count($list_member) }}</span>/10</p>
                 @endif
             </div>
-            <div>
-                @php
-                    $list_request_join = json_decode($data_groups->request_join);
-
-                    $class_div_request_join = '';
-
-                    if( !empty($data_groups->request_join) ){
-                        $class_div_request_join = 'warning';
-                    }else{
-                        $class_div_request_join = 'secondary';
-                    }
-
-                    $requests_little_h = 25;
-                    $requests_little_m = 59;
-
-                    if( !empty($data_groups->request_join) ){
-                        for ($i = 0; $i < count($list_request_join); $i++) {
-
-                            $member = App\User::where('id' , $list_request_join[$i] )->first();
-
-                            $time_request_join = $member->time_request_join;
-
-                            // สร้าง DateTime object จากเวลาที่กำหนด
-                            $specifiedTime = new DateTime($time_request_join);
-
-                            // เพิ่มเวลา 24 ชั่วโมง
-                            $specifiedTime->modify("+24 hours");
-
-                            // สร้าง DateTime object สำหรับเวลาปัจจุบัน
-                            $currentTime = new DateTime();
-
-                            // ตรวจสอบว่าเวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงยังไม่ผ่านหรือไม่
-                            if ($specifiedTime > $currentTime) {
-                                // คำนวณความแตกต่าง
-                                $interval = $specifiedTime->diff($currentTime);
-
-                                // แปลงความแตกต่างเป็นชั่วโมงและนาที
-                                $hours = $interval->h;
-                                $hours = $hours + ($interval->days * 24); // เพิ่มชั่วโมงจากวันที่มีความแตกต่าง
-                                $minutes = $interval->i;
-
-                                if( $hours < $requests_little_h){
-                                    $requests_little_h = $hours ;
-                                    $requests_little_m = $minutes ;
-                                }
-                                else if( $hours == $requests_little_h && $minutes < $requests_little_m){
-                                    $requests_little_h = $hours ;
-                                    $requests_little_m = $minutes ;
-                                }
-                            } 
-                        }
-                    }
-
-                @endphp
-
-                @if( count($list_member) < 10 )
-                @if( !empty($data_groups->request_join) )
-                <button style="font-size:9px;" class="float-end btn btn-sm btn-{{ $class_div_request_join }} position-relative" onclick="open_modal_request_join();">
-                @else
-                <button style="font-size:9px;" class="float-end btn btn-sm btn-{{ $class_div_request_join }} position-relative">
-                @endif
-                    Pending requests
-
-                    @if( !empty($data_groups->request_join) )
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {{ count($list_request_join) }}
-                    </span>
-                    <p class="text-count-down">Countdown : <span id="requests_little">{{ $requests_little_h }}:{{ $requests_little_m }}</span></p>
-                    @endif
-                </button>
-                @else
-                <div>
-                    <p class="text-white">Member : <span id="amount_member">{{ count($list_member) }}</span>/10</p>
-                </div>
-                @endif
+            <div id="div_Pending_request">
+                <!-- ปุ่ม คำร้องขอเข้าร่วมบ้าน -->
             </div>
         @else
             <div>
@@ -415,7 +345,7 @@
             <div id="Team_no" class="member-item col-4 mt-2 mb-2">
                 <div class="member-card h-100" style="width: 100%;height: auto;">
                         <div class="text-center">
-                            <i class="fa-solid fa-user-plus"></i>
+                            <i class="fa-solid fa-hourglass-clock"></i>
                             <p class="font-12">Waiting for member</p>
                         </div>
                     </div>
@@ -549,9 +479,20 @@
 
 <script>
     
+    var loop_check_request_join ;
+
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         change_menu_bar('team');
+
+        @if( $data_groups->host == Auth::user()->id )
+            func_check_request_join();
+
+            loop_check_request_join = setInterval(function() {
+                // console.log("LOOP");
+                func_check_request_join();
+            }, 5000);
+        @endif
 
         var group_id = "{{ $group_id }}" ;
 
@@ -572,76 +513,84 @@
 
     });
 
+    function Stop_loop_check_request_join() {
+        clearInterval(loop_check_request_join);
+    }
+
     function open_modal_request_join(){
 
         document.querySelector('#modal_request_join_content').innerHTML = '' ;
         let html_modal ;
 
-        @if( !empty($data_groups->request_join) )
-            @php
-                $list_request_join = json_decode($data_groups->request_join);
-            @endphp
+        fetch("{{ url('/') }}/api/check_request_join" + '/' + "{{ $group_id }}")
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
 
-            @for ($i = 0; $i < count($list_request_join); $i++) 
+                if(result){
 
-            @php 
-                $member = App\User::where('id' , $list_request_join[$i] )->first();
+                    let list_request_join = JSON.parse(result);
 
-                $time_request_join = $member->time_request_join;
+                    for (let i = 0; i < list_request_join.length; i++) {
+                        let memberId = list_request_join[i];
 
-                // สร้าง DateTime object จากเวลาที่กำหนด
-                $specifiedTime = new DateTime($time_request_join);
+                        fetch("{{ url('/') }}/api/get_data_user" + '/' + memberId)
+                            .then(response => response.json())
+                            .then(users => {
+                                // console.log(memberId +" >> "+ users.time_request_join);
 
-                // เพิ่มเวลา 24 ชั่วโมง
-                $specifiedTime->modify("+24 hours");
+                                let timeRequestJoin = users.time_request_join;
 
-                // สร้าง DateTime object สำหรับเวลาปัจจุบัน
-                $currentTime = new DateTime();
+                                // สร้าง Date object จากเวลาที่กำหนด
+                                let specifiedTime = new Date(timeRequestJoin);
+                                specifiedTime.setHours(specifiedTime.getHours() + 24); // เพิ่มเวลา 24 ชั่วโมง
 
-                // ตรวจสอบว่าเวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงยังไม่ผ่านหรือไม่
-                if ($specifiedTime > $currentTime) {
-                    // คำนวณความแตกต่าง
-                    $interval = $specifiedTime->diff($currentTime);
+                                // สร้าง Date object สำหรับเวลาปัจจุบัน
+                                let currentTime = new Date();
 
-                    // แปลงความแตกต่างเป็นชั่วโมงและนาที
-                    $hours = $interval->h;
-                    $hours = $hours + ($interval->days * 24); // เพิ่มชั่วโมงจากวันที่มีความแตกต่าง
-                    $minutes = $interval->i;
+                                let textTime;
+                                let countdown;
+                                // ตรวจสอบว่าเวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงยังไม่ผ่านหรือไม่
+                                if (specifiedTime > currentTime) {
+                                    // คำนวณความแตกต่าง
+                                    let timeDiff = specifiedTime - currentTime;
+                                    let hours = Math.floor(timeDiff / (60 * 60 * 1000));
+                                    let minutes = Math.floor((timeDiff % (60 * 60 * 1000)) / (60 * 1000));
 
-                    $text_time = "Waiting : $hours:$minutes";
-                    $Countdown = "Countdown : $hours:$minutes";
-                } else {
-                    $text_time = "เวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงได้ผ่านไปแล้ว";
+                                    textTime = `Waiting : ${hours}:${minutes}`;
+                                    countdown = `Countdown : ${hours}:${minutes}`;
+                                } else {
+                                    textTime = "เวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงได้ผ่านไปแล้ว";
+                                }
+
+                                html_modal = `
+                                    <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+                                        <div class="">
+                                            <img src="{{ url('storage')}}/`+users.photo+`" class="rounded-circle" width="50" height="50" alt="">
+                                        </div>
+                                        <div class="ms-2 d-flex align-items-center">
+                                            <div> 
+                                                <h6 class="mb-0 font-14">`+users.name+`</h6>
+                                                <p class="mb-0 font-13 text-count-down text-start">`+textTime+`</p>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="list-inline d-flex customers-contacts ms-auto">
+                                            <span class="btn btn-sm btn-accept list-inline-item" onclick="answer_request('Accept', '{{ $group_id }}','`+users.id+`' , '`+users.name+`' , '`+users.photo+`','`+countdown+`')">Accept</span>
+                                            <span class="btn btn-sm btn-danger list-inline-item" onclick="answer_request('Reject', '{{ $group_id }}','`+users.id+`' , '`+users.name+`' , '`+users.photo+`','`+countdown+`')">Reject</span>
+                                        </div>
+                                    </div>
+                                `;
+
+                                // แทรกล่างสุด
+                                document.querySelector('#modal_request_join_content').insertAdjacentHTML('beforeend', html_modal);
+                        });
+
+                    }
+
                 }
-            @endphp
-
-            html_modal = `
-                <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
-                    <div class="">
-                        <img src="{{ url('storage')}}/{{ $member->photo }}" class="rounded-circle" width="50" height="50" alt="">
-                    </div>
-                    <div class="ms-2 d-flex align-items-center">
-                        <div> 
-                            <h6 class="mb-0 font-14">{{ $member->name }}</h6>
-                            <p class="mb-0 font-13 text-count-down text-start">{{ $text_time }}</p>
-                        </div>
-                       
-                    </div>
-                    <div class="list-inline d-flex customers-contacts ms-auto">
-                        <span class="btn btn-sm btn-accept list-inline-item" onclick="answer_request('Accept', '{{ $group_id }}','{{ $member->id }}' , '{{ $member->name }}' , '{{ $member->photo }}','{{ $Countdown }}')">Accept</span>
-                        <span class="btn btn-sm btn-danger list-inline-item" onclick="answer_request('Reject', '{{ $group_id }}','{{ $member->id }}' , '{{ $member->name }}' , '{{ $member->photo }}','{{ $Countdown }}')">Reject</span>
-                    </div>
-                </div>
-            `;
-
-            // แทรกล่างสุด
-            document.querySelector('#modal_request_join_content').insertAdjacentHTML('beforeend', html_modal); 
-
-            @endfor
-
-        @else
-            html_modal = `<h6 class="mb-1 font-14">ไม่มีคำขอในขณะนี้</h6>`;
-        @endif
+        });
+        
         
         document.querySelector('#btn_modal_request_join').click();
 
@@ -711,6 +660,122 @@
                     document.querySelector('#a_group_my_team').click();
                 }
         });
+    }
+
+
+    var count_list_request_join = 0 ;
+
+    function func_check_request_join(){
+        @if( $data_groups->host == Auth::user()->id && count($list_member) < 10 )
+
+            fetch("{{ url('/') }}/api/check_request_join" + '/' + "{{ $group_id }}")
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+
+                    let html ;
+
+                    if(result){
+
+                        let list_request_join = JSON.parse(result);
+
+
+                        let requestsLittleH = 25;
+                        let requestsLittleM = 59;
+
+                        if ( list_request_join.length != count_list_request_join) {
+
+                            count_list_request_join = list_request_join.length ;
+
+                            for (let i = 0; i < list_request_join.length; i++) {
+                                let memberId = list_request_join[i];
+
+                                // console.log(memberId);
+
+                                fetch("{{ url('/') }}/api/get_time_request_join" + '/' + memberId)
+                                    .then(response => response.text())
+                                    .then(time_request_join => {
+                                        // console.log(memberId +" >> "+ time_request_join);
+
+                                        let timeRequestJoin = time_request_join;
+
+                                        // สร้าง Date object จากเวลาที่กำหนด
+                                        let specifiedTime = new Date(timeRequestJoin);
+                                        specifiedTime.setHours(specifiedTime.getHours() + 24); // เพิ่มเวลา 24 ชั่วโมง
+
+                                        // สร้าง Date object สำหรับเวลาปัจจุบัน
+                                        let currentTime = new Date();
+
+                                        // ตรวจสอบว่าเวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงยังไม่ผ่านหรือไม่
+                                        if (specifiedTime > currentTime) {
+                                            // คำนวณความแตกต่าง
+                                            let timeDiff = specifiedTime - currentTime;
+                                            let hours = Math.floor(timeDiff / (60 * 60 * 1000));
+                                            let minutes = Math.floor((timeDiff % (60 * 60 * 1000)) / (60 * 1000));
+
+                                            if (hours < requestsLittleH || (hours === requestsLittleH && minutes < requestsLittleM)) {
+                                                requestsLittleH = hours;
+                                                requestsLittleM = minutes;
+
+                                                if(hours >= 0 && hours < 10){
+                                                    requestsLittleH = "0"+requestsLittleH;
+                                                }
+
+                                                if(minutes >= 0 && minutes < 10){
+                                                    requestsLittleM = "0"+requestsLittleM;
+                                                }
+                                            }
+                                        }
+
+                                });
+                            }
+
+                            setTimeout(() => {
+                                html = `
+                                    <button style="font-size:9px;" class="float-end btn btn-sm btn-warning position-relative" onclick="open_modal_request_join();">
+                                        Pending requests
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            `+list_request_join.length+`
+                                        </span>
+                                        <p class="text-count-down">
+                                            Countdown : 
+                                            <span id="requests_little">
+                                                `+requestsLittleH+`:`+requestsLittleM+`
+                                            </span>
+                                        </p>
+                                    </button>
+
+                                `;
+
+                                document.querySelector('#div_Pending_request').innerHTML = html;
+                            }, 1000);
+
+                        }
+
+                    }else{
+                        html = `
+                                <button style="font-size:9px;" class="float-end btn btn-sm btn-secondary position-relative">
+                                    Pending requests
+                                </button>
+                            `;
+
+                        document.querySelector('#div_Pending_request').innerHTML = html;
+
+                    }
+
+
+            });
+        @else
+            let html = `
+                <div>
+                    <p class="text-white">Member : <span id="amount_member">{{ count($list_member) }}</span>/10</p>
+                </div>
+            `;
+
+            document.querySelector('#div_Pending_request').innerHTML = html;
+
+            Stop_loop_check_request_join();
+        @endif
     }
 
 
