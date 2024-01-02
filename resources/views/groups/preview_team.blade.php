@@ -847,6 +847,7 @@
                 <a href="{{ url('/preview_team/`+id_group+`') }}" type="button" class="btn btn-submit padding-btn">
                     Close
                 </a>
+                <button id="close_modal_join_team" type="button" class="d-none padding-btn btn btn-secondary" data-dismiss="modal">Cancel</button>
             `;
 
             document.querySelector('#modal_join_team_content').innerHTML = html_modal;
@@ -967,7 +968,7 @@
                   // console.log(result);
 
                     // modal แจ้งเตือนการเข้าร่วมบ้าน ครั้งแรกครั้งเดียว
-                    $('.modal').modal('hide');
+                    document.querySelector('#close_modal_join_team').click();
                     create_modal('Host Accept' , "{{ $group_id }}");
                     document.querySelector('#btn_modal_join_team').click();
                     Stop_loop_check_wait_host();
@@ -983,7 +984,7 @@
                   // console.log(result);
 
                     // modal แจ้งเตือน Host Reject ครั้งเดียว
-                    $('.modal').modal('hide');
+                    document.querySelector('#close_modal_join_team').click();
                     create_modal('Host Reject' , "{{ $group_id }}");
                     document.querySelector('#btn_modal_join_team').click();
                     Stop_loop_check_wait_host();
@@ -998,7 +999,7 @@
                   // console.log(result);
 
                     // modal แจ้งเตือนการเข้าร่วมบ้าน ครั้งแรกครั้งเดียว
-                    $('.modal').modal('hide');
+                    document.querySelector('#close_modal_join_team').click();
                     create_modal('Team Ready' , "{{ $group_id }}");
                     document.querySelector('#btn_modal_join_team').click();
                     Stop_loop_check_wait_host();
