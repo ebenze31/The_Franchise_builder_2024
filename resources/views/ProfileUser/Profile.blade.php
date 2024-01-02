@@ -135,6 +135,8 @@
     }.asd{
         display: flex;
         flex-wrap: wrap;
+    }.badges-item.un-active img{
+        filter: grayscale(100%);
     }
 </style>
 <div class="w-100 d-noe">
@@ -186,18 +188,21 @@
             My badges
         </h4>
     </div>
-    <div class="col-4 badges-item active" activity="ป้าย1" onclick="open_badges(this)">
-        @if( !empty(Auth::user()->shirt_size) )
+    <div class="col-4 badges-item @if( !empty(Auth::user()->shirt_size) ) active @else un-active @endif" activity="ป้าย1" onclick="open_badges(this)">
+        <img src="{{ url('/img/icon/badges-1.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
+
+
+        <!-- @if( !empty(Auth::user()->shirt_size) )
             <img src="{{ url('/img/icon/badges-1.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
         @else
             <img src="{{ url('/img/icon/Allianz ayudhya-22-22 1.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
-        @endif
+        @endif -->
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
     </div>
-    <div class="col-4 badges-item" activity="ป้าย2" onclick="open_badges(this)">
-        <img src="{{ url('/img/icon/badges-2.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
+    <div class="col-4 badges-item un-active" activity="ป้าย2" onclick="open_badges(this)">
+        <img src="{{ url('/img/icon/badges-4.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
@@ -318,6 +323,8 @@ font-size: 12px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+    }.unactive-img{
+        filter: grayscale(100%);
     }
 </style>
 <button id="btn_contact_staff" class="btn btn-service" data-toggle="modal" data-target="#modal_contact_staff">               
@@ -411,7 +418,8 @@ line-height: normal;
             document.querySelector('#detailBadges').innerHTML = badgesDetail;
         } else {
             document.querySelector('#contentBadges').classList.remove('active');
-
+            document.querySelector('#imgContentBadges').classList.add('unactive-img');
+                
             let imgElement = data_badges.querySelector('img');
 
             let badgesDetail = data_badges.querySelector('.detail').textContent;
