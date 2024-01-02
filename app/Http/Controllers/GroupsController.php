@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Models\Pc_point;
+use App\Models\Activity;
 
 use App\Models\Group;
 use Illuminate\Http\Request;
@@ -464,12 +465,24 @@ class GroupsController extends Controller
 
         }
         else if($type ==  "ยืนยันการสร้างบ้านแล้ว"){
+
+            $dataUser = User::where('id' , $user_id)->first();
+            $dataActivities = Activity::where('name_Activities' , 'Team Completed!')->first();
+
+            $update_Activities = '';
+            if( !empty($dataUser->activities) ){
+                $update_Activities = $dataUser->activities . "," . $dataActivities->id ;
+            }else{
+                $update_Activities = $dataActivities->id ;
+            }
+
             DB::table('users')
                 ->where([ 
                         ['id', $user_id],
                     ])
                 ->update([
                         'group_status' => 'ยืนยันการสร้างบ้านแล้ว',
+                        'activities' => $update_Activities,
                     ]);
         }
        
