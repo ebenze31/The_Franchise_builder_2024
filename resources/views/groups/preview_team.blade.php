@@ -962,8 +962,10 @@
         }else if(group_status == 'Host Accept'){
             // เปลี่ยนสถานะเป็น มีบ้านแล้ว
             // เด้งไปหน้า my team
-            document.querySelector('#close_modal_join_team').click();
-            
+            if(document.querySelector('#close_modal_join_team')){
+                document.querySelector('#close_modal_join_team').click();
+            }
+
             fetch("{{ url('/') }}/api/change_group_status/" + 'มีบ้านแล้ว' + "/" + "{{ $group_id }}" + "/{{ Auth::user()->id }}")
                 .then(response => response.text())
                 .then(result => {
@@ -979,8 +981,10 @@
         }else if(group_status == 'Host Reject'){
             // หลังจากนั้นเปลี่ยนสถานะเป็น null | group_id = null
             // เด้งไปหน้า groups หาบ้านใหม่
-            document.querySelector('#close_modal_join_team').click();
-            
+            if(document.querySelector('#close_modal_join_team')){
+                document.querySelector('#close_modal_join_team').click();
+            }
+
             fetch("{{ url('/') }}/api/change_group_status/" + 'Host Reject' + "/" + "{{ $group_id }}" + "/{{ Auth::user()->id }}")
                 .then(response => response.text())
                 .then(result => {
@@ -995,8 +999,10 @@
         }else if(group_status == 'Team Ready'){
             // เปลี่ยนสถานะเป็น ยืนยันการสร้างบ้านแล้ว
             // เด้งไปหน้า my team
-            document.querySelector('#close_modal_join_team').click();
-            
+            if(document.querySelector('#close_modal_join_team')){
+                document.querySelector('#close_modal_join_team').click();
+            }
+
             fetch("{{ url('/') }}/api/change_group_status/" + 'ยืนยันการสร้างบ้านแล้ว' + "/" + "{{ $group_id }}" + "/{{ Auth::user()->id }}")
                 .then(response => response.text())
                 .then(result => {
