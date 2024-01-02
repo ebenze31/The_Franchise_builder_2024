@@ -989,11 +989,12 @@
                 .then(response => response.text())
                 .then(result => {
                   // console.log(result);
-
-                    // modal แจ้งเตือน Host Reject ครั้งเดียว
-                    create_modal('Host Reject' , "{{ $group_id }}");
-                    document.querySelector('#btn_modal_join_team').click();
-                    Stop_loop_check_wait_host();
+                    setTimeout(() => {
+                        // modal แจ้งเตือน Host Reject ครั้งเดียว
+                        create_modal('Host Reject' , "{{ $group_id }}");
+                        document.querySelector('#btn_modal_join_team').click();
+                        Stop_loop_check_wait_host();
+                    }, 1000);
 
             });
         }else if(group_status == 'Team Ready'){
