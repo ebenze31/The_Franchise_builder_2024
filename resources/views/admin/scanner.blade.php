@@ -537,7 +537,7 @@
         console.log(user_id);
         console.log(name_Activities);
         
-        name_Activities = name_Activity.replaceAll(" ","_");
+        name_Activities = name_Activities.replaceAll(" ","_");
 
         fetch("{{ url('/') }}/api/cf_Activities" + "/" + user_id + "/" + name_Activities )
             .then(response => response.text())
