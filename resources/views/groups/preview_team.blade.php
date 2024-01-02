@@ -968,6 +968,7 @@
 
                     // modal แจ้งเตือนการเข้าร่วมบ้าน ครั้งแรกครั้งเดียว
                     create_modal('Host Accept' , "{{ $group_id }}");
+                    $('.modal').modal('hide');
                     document.querySelector('#btn_modal_join_team').click();
                     Stop_loop_check_wait_host();
 
@@ -983,6 +984,7 @@
 
                     // modal แจ้งเตือน Host Reject ครั้งเดียว
                     create_modal('Host Reject' , "{{ $group_id }}");
+                    $('.modal').modal('hide');
                     document.querySelector('#btn_modal_join_team').click();
                     Stop_loop_check_wait_host();
 
@@ -997,6 +999,7 @@
 
                     // modal แจ้งเตือนการเข้าร่วมบ้าน ครั้งแรกครั้งเดียว
                     create_modal('Team Ready' , "{{ $group_id }}");
+                    $('.modal').modal('hide');
                     document.querySelector('#btn_modal_join_team').click();
                     Stop_loop_check_wait_host();
 
