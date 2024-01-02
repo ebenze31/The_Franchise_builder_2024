@@ -362,7 +362,6 @@ line-height: normal;
                         test ส่งเสร็จ
                     </button>
                 </div>
-            
             </div>
         </div>
     </div>
@@ -376,7 +375,7 @@ line-height: normal;
                     <img src="{{ url('/img/icon/contact-success.png') }}"  class="my-3" style="width: 149px;height: 71px;">
                 </div>
                <p class="my-1" style="color: #07285A;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;">
-                    ทีมงานรับเรื่องเเล้วเเละจำติดต่อกลับภายกลัง
+                    ทีมงานรับเรื่องเเล้วเเละจะติดต่อกลับภายหลัง
                 </p>
                 <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal" aria-label="Close">
                     close

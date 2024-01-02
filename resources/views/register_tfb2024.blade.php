@@ -135,12 +135,9 @@
     <h4 class="header-instruction text-center mt-3">Video instruction</h4>
     <div class="container section-payment pb-3">
       <div>
-        <div class="text-center">
+        <div class="d-flex-justify-content-center w-100">
+          <video src="https://tfb2024.988garage.com/video/The%20Franchise%20Builder%20season2%20Introduction.mp4" controls autoplay loop muted style="width:100%;" class="video-preview"></video>
         </div>
-        <video src="https://tfb2024.988garage.com/video/The%20Franchise%20Builder%20season2%20Introduction.mp4" controls autoplay loop muted style="width:100%;" class="video-preview"></video>
-        
-
-        
       </div>
       
       <div class="detail-payment">
