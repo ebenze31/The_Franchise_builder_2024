@@ -362,7 +362,7 @@
             const code = jsQR(imageData.data, imageData.width, imageData.height);
 
             if (code) {
-                // console.log(code.data);
+                console.log(code.data);
 
                 let name_Activity = document.querySelector('#name_Activity').value ;
 
@@ -373,6 +373,9 @@
                 else if(name_Activity == "รับเสื้อ"){
                     create_modal(name_Activity , code);
                     // document.querySelector('#div_video').classList.add('d-none');
+                }
+                else{
+                    create_modal(name_Activity , code);
                 }
 
                 return;
@@ -490,6 +493,8 @@
 
                     document.querySelector('#btn_modal_check_activity').click();
             });
+        }else{
+            
         }
     }
 

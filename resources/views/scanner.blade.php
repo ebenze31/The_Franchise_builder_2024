@@ -180,9 +180,6 @@
                         <!-- DATA -->
                         
                     </div>
-                    <div class="col-12 text-center mt-4 mb-0">
-                        <p>เจ้าหน้าที่ผู้ยืนยัน : {{ Auth::user()->name }}</p>
-                    </div>
                 </div>
             </div>
             <div id="modal_footer" class="text-center mb-3">
@@ -191,6 +188,26 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary d-none" id="btnmodalSuccess" data-toggle="modal" data-target="#modalSuccess">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-5">
+            <center>
+                <img src="{{ url('/img/icon/success.png') }}" alt="" width="87" height="87">
+                <h6 class="" style="font-weight: bolder;margin:50px 0 50px 0 ">ยืนยันการเข้าร่วมกิจกรรมสำเร็จ !</h6>
+                <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal">Close</button>
+            </center>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="w-100 qr-section">
@@ -333,13 +350,15 @@
 
             let name = code.data.split('=')[1];
 
+                name = name.replaceAll("_"," ");
+
             console.log(type);
             console.log(name);
 
             if(type == "Activities"){
-              if(name == "รับเสื้อ"){
+              // if(name == "รับเสื้อ"){
                 create_modal_Activies(name , code);
-              }
+              // }
             }
 
             return;
@@ -413,7 +432,7 @@
             let name = code.data.split('=')[1];
 
             let html_modal = `
-                <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
+                <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรม</h4>
                 <h3>`+type+`</h3>
                 <br>
                 <h4>Title</h4>
@@ -438,6 +457,53 @@
 
             document.querySelector('#btn_modal_check_activity').click();
         }
+        else{
+
+            let name = code.data.split('=')[1];
+
+            let html_modal = `
+                <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรม</h4>
+                <h3>`+type+`</h3>
+                <br>
+            `;
+
+            let html_footer = `
+
+                <button type="button" class="btn btn-submit" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
+                    Confirm
+                </button>
+                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal">
+                    Back
+                </button>
+            `;
+
+            document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+            document.querySelector('#modal_footer').innerHTML = html_footer;
+
+            document.querySelector('#btn_modal_check_activity').click();
+
+        }
+    }
+
+    function cf_Activities(user_id , name_Activities){
+
+        console.log(user_id);
+        console.log(name_Activities);
+
+        name_Activities = name_Activities.replaceAll(" ","_");
+
+        fetch("{{ url('/') }}/api/cf_Activities" + "/" + user_id + "/" + name_Activities )
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+
+                if(result){
+                    document.querySelector('#btn_close_modal').click();
+
+                    // modal success
+                    document.querySelector('#btnmodalSuccess').click();
+                }
+        });
     }
 
     function cf_shirt_size(account){
@@ -461,16 +527,7 @@
                 document.querySelector('#btn_close_modal').click();
 
                 // modal success
-                
-                // document.querySelector('#alert_text').innerHTML = `
-                //    <i class="fa-solid fa-check text-success"></i> Success fully !
-                // `;
-                // document.querySelector('#alert_success').classList.add('up_down');
-
-                // const animated = document.querySelector('.up_down');
-                // animated.onanimationend = () => {
-                //     document.querySelector('#alert_success').classList.remove('up_down');
-                // };
+                document.querySelector('#btnmodalSuccess').click();
         });
     }
 </script>

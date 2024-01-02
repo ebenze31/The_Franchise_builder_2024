@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Models\Activities_log;
+use App\User;
 
 use App\Models\Activity;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\DB;
 
 class ActivitiesController extends Controller
 {
@@ -149,5 +152,58 @@ class ActivitiesController extends Controller
         Activity::destroy($id);
 
         return redirect('activities')->with('flash_message', 'Activity deleted!');
+    }
+
+    function cf_Activities($user_id , $name_Activities){
+
+        $name_Activities = str_replace("_"," ",$name_Activities);
+        $dataActivities = Activity::where('name_Activities' , $name_Activities)->first();
+        $dataUser = User::where('id' , $user_id)->first();
+
+        $check_old_data = Activities_log::where('id_Activities' ,$dataActivities->id)
+            ->where('user_id',$user_id)
+            ->first();
+
+        // สร้าง Activities_log
+        Activities_log::firstOrCreate(
+            ['id_Activities' =>  $dataActivities->id],
+            ['user_id' => $user_id]
+        );
+
+        if( empty($check_old_data->id) ){
+            // update กิจกรรมที่ user เข้าร่วม
+            $update_Activities = '';
+            if( !empty($dataUser->activities) ){
+                $update_Activities = $dataUser->activities . "," . $dataActivities->id ;
+            }else{
+                $update_Activities = $dataActivities->id ;
+            }
+            DB::table('users')
+                ->where([ 
+                        ['id', $user_id],
+                    ])
+                ->update([
+                        'activities' => $update_Activities,
+                    ]);
+
+
+            // update จำนวน member ที่เข้าร่วม activities
+            $update_member = '';
+            if( !empty($dataActivities->member) ){
+                $update_member = intval($dataActivities->member) + 1 ;
+            }else{
+                $update_member = 1 ;
+            }
+            DB::table('activities')
+                ->where([ 
+                        ['id', $dataActivities->id],
+                    ])
+                ->update([
+                        'member' => $update_member,
+                    ]);
+        }
+
+        return "success" ;
+
     }
 }

@@ -1,0 +1,13 @@
+{
+    "fields": [
+        {
+            "name": "id_Activities",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        }
+
+    ]
+}

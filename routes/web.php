@@ -86,3 +86,4 @@ Route::get('/ranking_by_team', function () {
 });
 
 Route::resource('contact_staff', 'Contact_staffController');
+Route::resource('activities_log', 'Activities_logController');

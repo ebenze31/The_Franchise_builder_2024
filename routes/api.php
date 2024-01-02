@@ -54,3 +54,7 @@ Route::get('/CF_answer_request/{answer}/{member_id}/{group_id}', 'GroupsControll
 Route::get('/get_data_view_group/{Search_input}', 'GroupsController@get_data_view_group');
 Route::get('/check_request_join/{group_id}', 'GroupsController@check_request_join');
 
+// Activities
+Route::get('/cf_Activities/{user_id}/{name_Activities}', 'ActivitiesController@cf_Activities');
+
+
