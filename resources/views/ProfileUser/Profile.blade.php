@@ -308,6 +308,16 @@ line-height: normal;
     
     .padding-btn{
         padding: 8px 20px !important;
+    }.user_phone::placeholder{
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+    }#qusertion::placeholder{
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
     }
 </style>
 <button id="btn_contact_staff" class="btn btn-service" data-toggle="modal" data-target="#modal_contact_staff">               
@@ -329,11 +339,11 @@ line-height: normal;
             </div>
             <div class="modal-body">
                
-                <textarea style="border-radius: 5px;border: 1px solid #002449;background: #D9D9D9;" name="" id="" cols="30" rows="7" class="form-control" placeholder="กรุณากรอกรายละเอียดเพิ่มเติม"></textarea>
+                <textarea style="border-radius: 5px;border: 1px solid #002449;background: #D9D9D9;" name="question" id="question" cols="30" rows="7" class="form-control" placeholder="กรุณากรอกรายละเอียดเพิ่มเติม"></textarea>
                 <div class="col-12 w-100 mt-3">
                     <div class="input-group"> 
                         <span class="input-group-text " style="border-radius: 5px 0 0 5px;border: 1px solid #002449;background: #D9D9D9;"><i class="fa-solid fa-phone"></i></span>
-                        <input style="border-radius: 0 5px 5px 0 ;border: 1px solid #002449;background: #D9D9D9;" type="text" class="form-control border-start-0" id="inputLastName1" placeholder="กรุณากรอกหมายเลขโทรศัพท์ของคุณ">
+                        <input style="border-radius: 0 5px 5px 0 ;border: 1px solid #002449;background: #D9D9D9;" type="text" class="form-control border-start-0 user_phone" id="phone" name="phone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ของคุณ">
                     </div>
                 </div>
                 <div class=" d-flex justify-content-center">
@@ -356,9 +366,7 @@ line-height: normal;
         <div class="modal-content mx-5" style="border-radius: 10px;">
             <div class="modal-body text-center">
                 <div class=" d-flex justify-content-center">
-                    
                     <img src="{{ url('/img/icon/contact-success.png') }}"  class="my-3" style="width: 149px;height: 71px;">
-                    
                 </div>
                <p class="my-1" style="color: #07285A;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;">
                     ทีมงานรับเรื่องเเล้วเเละจำติดต่อกลับภายกลัง
