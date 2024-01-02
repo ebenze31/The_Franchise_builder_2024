@@ -28,47 +28,46 @@
                         <div class="row mt-3 mb-3" id="accordionActivities">
 
                             @foreach($activities as $item)
-                            <div class="col-12 col-md-6">
-                                <div class="card radius-10 border shadow-none btn" data-bs-toggle="collapse" data-bs-target="#flush-{{ $item->id }}">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center">
-                                            <div>
-                                                <h4 class="mb-0">{{ $item->name_Activities }}</h4>
-                                                <p class="mb-0 text-secondary"></p>
-                                            </div>
-                                            <div class="widgets-icons ms-auto">
-                                                <img src="{{ url('storage')}}/{{ $item->icon }}" style="width:90%;">
-                                            </div>
+
+                            <div class="col-6 card radius-10 border shadow-none btn">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <h4 class="mb-0">{{ $item->name_Activities }}</h4>
+                                            <p class="mb-0 text-secondary"></p>
+                                        </div>
+                                        <div class="widgets-icons ms-auto">
+                                            <img src="{{ url('storage')}}/{{ $item->icon }}" style="width:90%;">
                                         </div>
                                     </div>
-                                    <div id="flush-{{ $item->id }}" class="collapse" data-bs-parent="#accordionActivities" style="padding: 10px;">
-                                        <div class="row">
-                                            <hr>
-                                            <div class="col-12 col-md-4 mt-2 mb-2">
-                                                <div class="d-flex justify-content-center w-100">
-                                                    <img src="{{ url('img/qr_Activities')}}/{{ $item->qr_code }}" class="qr-profile" alt="รูปภาพ QR Code" style="width:80%;">
-                                                </div>
-                                                <a href="{{ url('img/qr_Activities')}}/{{ $item->qr_code }}" class="btn btn-sm btn-primary" download>
-                                                    Download
-                                                </a>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-12 col-md-4 mt-2 mb-2">
+                                            <div class="d-flex justify-content-center w-100">
+                                                <img src="{{ url('img/qr_Activities')}}/{{ $item->qr_code }}" class="qr-profile" alt="รูปภาพ QR Code" style="width:80%;">
                                             </div>
-                                            <div class="col-12 col-md-8 mt-2 mb-2 text-start">
-                                                <span class="float-start">{{ $item->detail }}</span>
-                                            </div>
+                                            <a href="{{ url('img/qr_Activities')}}/{{ $item->qr_code }}" class="btn btn-sm btn-primary" download>
+                                                Download
+                                            </a>
                                         </div>
-                                        <br>
-                                        <div class="float-end">
-                                            <a href="{{ url('/activities/' . $item->id . '/edit') }}" title="Edit Activity"><button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> Edit</button></a>
+                                        <div class="col-12 col-md-8 mt-2 mb-2 text-start">
+                                            <span class="float-start">{{ $item->detail }}</span>
+                                        </div>
+                                        <div class="col-12 mt-2 mb-2">
+                                            <div class="float-end">
+                                                <a href="{{ url('/activities/' . $item->id . '/edit') }}" title="Edit Activity"><button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> Edit</button></a>
 
-                                            <form method="POST" action="{{ url('/activities' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Activity" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa-solid fa-delete-right"></i> Delete</button>
-                                            </form>
+                                                <form method="POST" action="{{ url('/activities' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete Activity" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa-solid fa-delete-right"></i> Delete</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             @endforeach
 
                         </div>

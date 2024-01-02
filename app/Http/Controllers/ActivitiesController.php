@@ -60,27 +60,26 @@ class ActivitiesController extends Controller
                 ->store('uploads', 'public');
         }
 
-        $requestData['qr_code'] = $this->create_qr_code($requestData);
+        $requestData['qr_code'] = $this->create_qr_code($requestData , $request->fullUrl());
 
         Activity::create($requestData);
 
         return redirect('activities')->with('flash_message', 'Activity added!');
     }
 
-    function create_qr_code($requestData)
+    function create_qr_code($requestData , $fullUrl)
     {
+        $requestData['name_Activities'] = str_replace(" ","_",$requestData['name_Activities']);
+
+        $url_Activities = $fullUrl . "/for_Activities" ;
+        $url_Activities = str_replace("/var/www/","",$url_Activities);
+        $url_Activities = str_replace("/activities","",$url_Activities);
         // QR-CODE
-        $url = "https://chart.googleapis.com/chart?cht=qr&chl=Activities=".$requestData['name_Activities']."&chs=500x500&choe=UTF-8" ;
+        $url = "https://chart.googleapis.com/chart?cht=qr&chl=".$url_Activities."?Activities=".$requestData['name_Activities']."&chs=500x500&choe=UTF-8" ;
 
         $img = public_path("img/qr_Activities" . "/" . $requestData['name_Activities'] . '.png');
         // Save image
         file_put_contents($img, file_get_contents($url));
-
-        $qr_code = Image::make( $img );
-        //logo viicheck
-        $logo_icon = Image::make(public_path('img/logo/ALV.DE-78cd6600.png'));
-        $logo_icon->resize(80,80);
-        $qr_code->insert($logo_icon,'center')->save();
 
         $return = $requestData['name_Activities'] . '.png' ;
 

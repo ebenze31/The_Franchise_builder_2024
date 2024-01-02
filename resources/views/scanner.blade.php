@@ -329,7 +329,12 @@
             console.log(code.data);
 
             let type = code.data.split('=')[0];
+                type = type.split('?')[1];
+
             let name = code.data.split('=')[1];
+
+            console.log(type);
+            console.log(name);
 
             if(type == "Activities"){
               if(name == "รับเสื้อ"){
