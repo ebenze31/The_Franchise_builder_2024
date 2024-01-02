@@ -970,11 +970,12 @@
                 .then(response => response.text())
                 .then(result => {
                   // console.log(result);
-
-                    // modal แจ้งเตือนการเข้าร่วมบ้าน ครั้งแรกครั้งเดียว
-                    create_modal('Host Accept' , "{{ $group_id }}");
-                    document.querySelector('#btn_modal_join_team').click();
-                    Stop_loop_check_wait_host();
+                    setTimeout(() => {
+                        // modal แจ้งเตือนการเข้าร่วมบ้าน ครั้งแรกครั้งเดียว
+                        create_modal('Host Accept' , "{{ $group_id }}");
+                        document.querySelector('#btn_modal_join_team').click();
+                        Stop_loop_check_wait_host();
+                    }, 1000);
 
             });
 
@@ -1008,12 +1009,12 @@
                 .then(response => response.text())
                 .then(result => {
                   // console.log(result);
-
-                    // modal แจ้งเตือนการเข้าร่วมบ้าน ครั้งแรกครั้งเดียว
-                    create_modal('Team Ready' , "{{ $group_id }}");
-                    document.querySelector('#btn_modal_join_team').click();
-                    Stop_loop_check_wait_host();
-
+                    setTimeout(() => {
+                        // modal แจ้งเตือนการเข้าร่วมบ้าน ครั้งแรกครั้งเดียว
+                        create_modal('Team Ready' , "{{ $group_id }}");
+                        document.querySelector('#btn_modal_join_team').click();
+                        Stop_loop_check_wait_host();
+                    }, 1000);
             });
         }
 
