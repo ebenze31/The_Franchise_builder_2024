@@ -5,26 +5,27 @@
 <style>
     .div_alert {
         position: fixed;
-        top: -100px;
+        top: -120px;
         bottom: 0;
         left: 0;
         width: 100%;
         height: 50px;
-        text-align: center;
         font-family: 'Kanit', sans-serif;
         z-index: 9999;
         font-size: 18px;
+        background-color: white;
+        display: flex;
+        align-items: center;
 
     }
 
     .div_alert span {
-        background-color: white;
-        border-radius: 10px;
         color: #2DD284;
         padding: 15px;
         font-family: 'Kanit', sans-serif;
         z-index: 9999;
         font-size: 1em;
+        width: 100%;
     }
 
     .up_down {
@@ -197,6 +198,9 @@
     } #header-text-login{
         width: 140px;
         margin-top: 10px;
+    }.imgCloseBTN{
+        width: 25px;
+        height: 25px;
     }
 </style>
 
@@ -217,8 +221,9 @@
 
                     <p class="modal-request-title text-white text-center" id="exampleModalLongTitle">Pending requests</p>
                 </div>
-                <button id="close_Pending" type="button" class="close btn btn-close-modal" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button id="close_Pending" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                    <img src="{{ url('/img/icon/closeBTN.png') }}"  class="mt-2 mb-2 imgCloseBTN">
+
                 </button>
             </div>
             <div class="modal-body">
@@ -244,8 +249,8 @@
                         Request to join
                     </h5>
                 </div>
-                <button id="close_Pending" type="button" class="close btn btn-close-modal" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button id="close_Pending" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                    <img src="{{ url('/img/icon/closeBTN.png') }}"  class="mt-2 mb-2 imgCloseBTN">
                 </button>
             </div>
             <div class="modal-body">
@@ -327,7 +332,7 @@
                             @endif
                         </div>
                         <div class="name-member">
-                            <span class="font-10"><b>{{ $member->name }}</b></span> 
+                            <span style="font-size: 10px;"><b>{{ $member->name }}</b></span> 
                         </div>
                     </div>
                     
@@ -564,16 +569,15 @@
                                 }
 
                                 html_modal = `
-                                    <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+                                    <div class="customers-list-item d-flex align-items-center p-2 cursor-pointer">
                                         <div class="">
                                             <img src="{{ url('storage')}}/`+users.photo+`" class="rounded-circle" width="50" height="50" alt="">
                                         </div>
                                         <div class="ms-2 d-flex align-items-center">
                                             <div> 
-                                                <h6 class="mb-0 font-14">`+users.name+`</h6>
-                                                <p class="mb-0 font-13 text-count-down text-start">`+textTime+`</p>
+                                                <h6 class="mb-0 text-start" style="font-size: 16px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width:80px">`+users.name+`</h6>
+                                                <p class="mb-0 text-count-down text-start"  style="font-size: 12px;">`+textTime+`</p>
                                             </div>
-                                           
                                         </div>
                                         <div class="list-inline d-flex customers-contacts ms-auto">
                                             <span class="btn btn-sm btn-accept list-inline-item" onclick="answer_request('Accept', '{{ $group_id }}','`+users.id+`' , '`+users.name+`' , '`+users.photo+`','`+countdown+`')">Accept</span>
@@ -600,29 +604,48 @@
     {
         document.querySelector('#close_Pending').click();
 
-        let html_modal = `
-            <img src="{{ url('storage')}}/`+member_photo+`" style="width:115px;height:115px;border-radius:50%" class="mt-2 mb-2">
-            <h4 class="mt-3 mb-0" style="color:#002449;">`+member_name+`</h4>
-            <p style="color:#07285A;" class="warn-text"><b>ตอบรับคำขอเข้าร่วมทีม</b></p>
-            <div  style="color:#005CD3  ;">
-                <p>`+Countdown+`</p>
-            </div>
-        `;
-
+        // let html_modal = `
+        //     <img src="{{ url('storage')}}/`+member_photo+`" style="width:115px;height:115px;border-radius:50%" class="mt-2 mb-2">
+        //     <h4 class="mt-3 mb-0" style="color:#002449;">`+member_name+`</h4>
+        //     <p style="color:#07285A;" class="warn-text"><b>ตอบรับคำขอเข้าร่วมทีม</b></p>
+        //     <div  style="color:#005CD3  ;">
+        //         <p>`+Countdown+`</p>
+        //     </div>
+        // `;
+        let html_modal
         let html_footer ;
 
         if(answer == "Accept"){
+            html_modal = 
+            `
+                <img src="{{ url('storage')}}/`+member_photo+`" style="width:115px;height:115px;border-radius:50%" class="mt-2 mb-2">
+                <p style="color:#07285A; font-size:12px" class="warn-text">คุณต้องการตอบรับคำขอเข้าร่วมทีมของ</p>
+                <h4 class="mt-2 mb-2" style="color:#002449;font-weight:bold;">`+member_name+`</h4>
+                <div  style="color:#005CD3  ;">
+                    <p>`+Countdown+`</p>
+                </div>
+            `;
+
             html_footer = `
                 <div class="d-flex justify-content-center w-100">
-                <button type="button" class="btn btn-submit padding-btn" onclick="CF_answer_request('Accept' , '`+member_id+`' , '`+group_id+`')">
+                <button  style="background-color:#128DFF;" type="button" class="btn btn-submit padding-btn" onclick="CF_answer_request('Accept' , '`+member_id+`' , '`+group_id+`')">
                     Confirm
                 </button>
                 </div>
 
-                <p class="mt-4 text-center w-100">หาก Confirm แล้วจะเป็นการยืนยันสมาชิก และ <span class="text-danger">ไม่สามารถเปลี่ยนได้อีก</span></p>
+                <p class="mt-4 text-center w-100" style="font-size:10px">หาก Confirm แล้วจะเป็นการยืนยันสมาชิก <br> และ <span class="text-danger">ไม่สามารถเปลี่ยนได้อีก</span></p>
                
             `;
         }else if(answer == "Reject"){
+            html_modal = 
+            `
+                <img src="{{ url('storage')}}/`+member_photo+`" style="width:115px;height:115px;border-radius:50%" class="mt-2 mb-2">
+                <p style="color:#07285A; font-size:12px" class="warn-text">คุณต้องการปฎิเสธคำขอเข้าร่วมทีมของ</p>
+                <h4 class="mt-2 mb-2" style="color:#002449;font-weight:bold;">`+member_name+`</h4>
+                <div  style="color:#005CD3  ;">
+                    <p>`+Countdown+`</p>
+                </div>
+            `;
 
             html_footer = `
                 <div class="d-flex justify-content-center w-100">
@@ -630,10 +653,8 @@
                         Reject
                     </button>
                 </div>
+                <p class="mt-4 text-center w-100" style="font-size:10px">หาก Reject แล้วจะเป็นการปฎิเสธคำขอเข้าร่วมทีม</span></p>
 
-                <span class="mt-4 text-center">
-                    หาก Reject แล้วจะเป็นการปฎิเสธคำขอเข้าร่วมทีม
-                </span>
             `;
         }
 
@@ -755,7 +776,9 @@
                     }else{
                         html = `
                                 <button style="font-size:9px;" class="float-end btn btn-sm btn-secondary position-relative">
-                                    Pending requests
+                                    <p style="margin: 7px 0;">
+                                        Pending requests
+                                    </p>
                                 </button>
                             `;
 

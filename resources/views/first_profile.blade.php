@@ -47,7 +47,7 @@
   }
 
   .qr-card {
-    padding: 3rem 2.8rem 1.8rem 2.8rem !important;
+    padding:2.8rem 1rem 2rem 1rem!important;
     border-radius: 10px;
   }
 
@@ -137,7 +137,7 @@
   }
 
   .info-warn {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: lighter;
     color: #002449;
   }
@@ -177,6 +177,8 @@
     .btn-logout i {
         font-size: 15px;
         margin-top: -12px;
+    }.cropper-container{
+margin-top: 30px;
     }
 </style>
 
@@ -200,7 +202,7 @@
           <img src="{{ url('/img/icon/edit-profile.png') }}" alt="รูปภาพผู้ใช้">
         </label>
       </div>
-      <img id="preview" src="{{ url('/') }}" alt="ภาพพรีวิว" class="d-none" style="max-width:100%; height:auto;">
+      <img id="preview" src="{{ url('/') }}" alt="ภาพพรีวิว" class="d-none mt-3" style="max-width:100%; max-height:250px;">
     </div>
     <label for="photo" id="btn_select_new_img" class="d-none">
     <i class="fa-solid fa-chevron-right fa-rotate-180"></i> Chang image
@@ -209,32 +211,32 @@
     <p class="info-user mt-3 mb-0" data-toggle="modal" data-target="#exampleModalCenter">{{ Auth::user()->name }} </p>
     <!-- <p class="info-user">{{ Auth::user()->email }}</p> -->
     <div>
-      <button class="btn btn-submit" type="submit">Next</button>
+      <button id="btn-edit-profile" class="btn btn-submit" type="submit">Next</button>
     </div>
+  
     @else
-    <div class=" d-flex justify-content-center w-100 mt-4 ">
+    <div class=" d-flex justify-content-center w-100 mt-1 ">
       <div class="edit-first-profile" id="DivEditProfile">
         <img src="{{ url('/img/icon/profile.png') }}" class="user-new-img" alt="รูปภาพผู้ใช้">
         <label for="photo" class="btn-edit-profile">
           <img src="{{ url('/img/icon/edit-profile.png') }}" alt="รูปภาพผู้ใช้">
         </label>
       </div>
-      <img id="preview" src="{{ url('/') }}" alt="ภาพพรีวิว" class="d-none" style="max-width:100%; height:auto;">
+      <img id="preview" src="{{ url('/') }}" alt="ภาพพรีวิว" class="d-none mt-3" style="max-width:100%; max-height:250px;">
     </div>
     <label for="photo" id="btn_select_new_img" class="d-none">
     <i class="fa-solid fa-chevron-right fa-rotate-180"></i> Chang image
     </label>
-    <p class="info-user mt-3 mb-0">{{ Auth::user()->name }}</p>
+    <p class="info-user mt-4 mb-0">{{ Auth::user()->name }}</p>
     @if(request("type") == "first_profile")
-    <p class="info-warn mt-3 mb-0 d-inline"><b>กรุณาเปลี่ยนรูป Profile ของคุณก่อนเข้าร่วมกิจกรรม</b></p>
+    <p class="info-warn mb-4 d-inline"><b>กรุณาเปลี่ยนรูป Profile ของคุณก่อนเข้าร่วมกิจกรรม</b></p>
     @endif
     <div>
-      <button class="btn btn-submit">
+      <button id="btn-first-profile"class="btn btn-submit" disabled>
         Next
       </button>
     </div>
     @endif
-
   </div>
 
   <input type="text" class="form-control d-none" id="name" name="name" value="{{ isset(Auth::user()->name) ? Auth::user()->name : ''}}" readonly>
@@ -246,9 +248,9 @@
   <input type="text" class="d-none" id="type" name="type" value="{{request("type")}}" readonly>
 
   @if(request("type") == "first_profile")
-  <input class="form-control d-none" name="photo" type="file" id="photo" accept="image/*" onchange="checkimg(this)"required>
+  <input class="form-control d-none" name="photo" type="file" id="photo" typeEdit="first-profile" accept="image/*" onchange="checkimg(this)"required>
   @else
-  <input class="form-control d-none" name="photo" type="file" id="photo" accept="image/*" onchange="checkimg(this)" >
+  <input class="form-control d-none" name="photo" type="file" id="photo" typeEdit="edit-peofile" accept="image/*" onchange="checkimg(this)" >
   @endif
 
 </form>
@@ -342,21 +344,29 @@
 <script>
 
   function checkimg(data) {
+    let typeEdit = data.getAttribute('typeEdit');
     if (data.files && data.files[0]) {
       previewImage(data)
+      if(typeEdit == "first-profile"){
+      document.getElementById("btn-first-profile").disabled = false;
+    }
     }else{
       document.getElementById('preview').classList.add('d-none');
       document.querySelector('.cropper-container').classList.add('d-none');
       document.querySelector('#DivEditProfile').classList.remove('d-none');
       document.querySelector('#btn_select_new_img').classList.add('d-none');
+      if(typeEdit == "first-profile"){
+      document.getElementById("btn-first-profile").disabled = true;
     }
-   
+    }
+
+  
   }
   function previewImage(input) {
     let preview = document.getElementById('preview');
     let edit_first_profile = document.querySelector('#DivEditProfile');
     let btn_select_new_img = document.querySelector('#btn_select_new_img');
-    console.log('asd');
+    // console.log('asd');
     if (input.files && input.files[0]) {
       let reader = new FileReader();
 
@@ -386,7 +396,7 @@
   function cropper_img(imageElement) {
     new Cropper(imageElement, {
       aspectRatio: 1 / 1,
-      viewMode: 3,
+      viewMode: 2,
       crop(event) {
         // console.log("x >> " + event.detail.x);
         // console.log("y >> " + event.detail.y);

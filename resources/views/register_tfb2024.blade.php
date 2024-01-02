@@ -120,124 +120,133 @@
     color: #A0A0A0;
     font-size: 10px;
     align-items: center;
+  }.container-center{
+         position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0;
+        margin: 0;
   }
 </style>
 
+<div class="container-center text-white">
+  <div style="width: 90vw;">
+    <h4 class="header-instruction text-center mt-3">Video instruction</h4>
+    <div class="container section-payment pb-3">
+      <div>
+        <div class="text-center">
+        </div>
+        <video src="https://tfb2024.988garage.com/video/The%20Franchise%20Builder%20season2%20Introduction.mp4" controls autoplay loop muted style="width:100%;" class="video-preview"></video>
+        
 
-  <h4 class="header-instruction text-center mt-3">Video instruction</h4>
-  <div class="container section-payment pb-3">
-    <div>
-      <div class="text-center">
+        
       </div>
-      <video src="https://tfb2024.988garage.com/video/The%20Franchise%20Builder%20season2%20Introduction.mp4" controls autoplay loop muted style="width:100%;" class="video-preview"></video>
       
+      <div class="detail-payment">
+        <p class="header-payment text-center">
+        วิธีการสมัครเข้าร่วมกิจกรรม
+        </p>
+        <ol class="text-white">
+            <li>ผู้ที่ต้องการเข้าร่วมกิจกรรมต้องทำการชำระค่าสมัคร เป็นจำนวนเงิน 10,000 บาท </li>
+            <li>ผู้เล่นกิจกรรมต้องทำการลงทะเบียนเข้าร่วม โดยการกรอกข้อมูล Agent code และรหัสผ่าน โดยรหหัสผ่านของคุณคือ วัน/เดือน/ปี เกิด 8 หลักเช่น เกิดวันที่ 1 เดือน มกราคม ค.ศ 1989  รหัสผ่านของคุณคือ 01011989 </li>
+            <li>เเสดง QR code ยืนยันการชำระค่าสมัครกับเจ้าหน้าที่เเละรับเสื้อหน้างาน</li>
+          </ol>
+        <!-- <div class="w-100 float-start">
+          <p class="float-start w-100">ธนาคาร : XXXXX</p>
+          <div class="w-100 d-flex justify-content-between align-items-center">
+              <p class="float-start ">เลขบัญชี : <span id="number_payment">123xxxxxxxx</span></p>
+              <a class="btn btn-copy w-auto p-0" onclick="copy()">
+                <i class="fa-regular fa-copy"></i> คัดลอก
+              </a>
+          </div>
+          <p class="float-start w-100">จำนวนเงิน : 10,000 บาท</p>
+        </div> -->
 
-      
-    </div>
-    
-    <div class="detail-payment">
-      <p class="header-payment text-center">
-      วิธีการสมัครเข้าร่วมกิจกรรม
-      </p>
-      <ol class="text-white">
-          <li>ผู้ที่ต้องการเข้าร่วมกิจกรรมต้องทำการชำระค่าสมัคร เป็นจำนวนเงิน 10,000 บาท </li>
-          <li>ผู้เล่นกิจกรรมต้องทำการลงทะเบียนเข้าร่วม โดยการกรอกข้อมูล Agent code และรหัสผ่าน โดยรหหัสผ่านของคุณคือ วัน/เดือน/ปี เกิด 8 หลักเช่น เกิดวันที่ 1 เดือน มกราคม ค.ศ 1989  รหัสผ่านของคุณคือ 01011989 </li>
-          <li>เเสดง QR code ยืนยันการชำระค่าสมัครกับเจ้าหน้าที่เเละรับเสื้อหน้างาน</li>
-        </ol>
-      <!-- <div class="w-100 float-start">
-        <p class="float-start w-100">ธนาคาร : XXXXX</p>
-        <div class="w-100 d-flex justify-content-between align-items-center">
-            <p class="float-start ">เลขบัญชี : <span id="number_payment">123xxxxxxxx</span></p>
-            <a class="btn btn-copy w-auto p-0" onclick="copy()">
-              <i class="fa-regular fa-copy"></i> คัดลอก
+      <!-- <div class=" text-center">
+        <p class="header-upload-payment">อัพโหลดหลักฐานการชำระค่าสมัคร</p>
+          <div class="input-group">
+            <input class="form-control d-none" name="pay_slip" type="file" id="pay_slip" value="{{ isset(Auth::user()->pay_slip) ? Auth::user()->pay_slip : ''}}" accept="image/*">
+            <label for="pay_slip" class="form-control text-start label-upload-slip">อัพโหลดรูปภาพ</label>
+            <a class="btn btn-upload" type="button" id="btnSubmitPayment" onclick="check_form()">
+              upload 
+              <i class="fa-solid fa-arrow-up-from-bracket font-16"></i>
             </a>
+          </div>
         </div>
-        <p class="float-start w-100">จำนวนเงิน : 10,000 บาท</p>
+
+        <p class="after-upload text-center">
+        หลังจากอัพโหลดหลักหลักฐานการชำระเรียบร้อยเเล้ว กรุณา <br>
+          นำ QR code ของคุณ ไปติดต่อเจ้าหน้าที่ภายในงาน
+        </p>
       </div> -->
+    </div>
+    </div>
 
-    <!-- <div class=" text-center">
-      <p class="header-upload-payment">อัพโหลดหลักฐานการชำระค่าสมัคร</p>
-        <div class="input-group">
-          <input class="form-control d-none" name="pay_slip" type="file" id="pay_slip" value="{{ isset(Auth::user()->pay_slip) ? Auth::user()->pay_slip : ''}}" accept="image/*">
-          <label for="pay_slip" class="form-control text-start label-upload-slip">อัพโหลดรูปภาพ</label>
-          <a class="btn btn-upload" type="button" id="btnSubmitPayment" onclick="check_form()">
-            upload 
-            <i class="fa-solid fa-arrow-up-from-bracket font-16"></i>
-          </a>
-        </div>
-      </div>
+    <style>
+      .btn-submit{
+        border-radius: 5px;
+        
+        font-size: 16px;
+        margin-top: 15px;
+        padding: 5px 40px;
 
-      <p class="after-upload text-center">
-      หลังจากอัพโหลดหลักหลักฐานการชำระเรียบร้อยเเล้ว กรุณา <br>
-        นำ QR code ของคุณ ไปติดต่อเจ้าหน้าที่ภายในงาน
-      </p>
-    </div> -->
+        background-color: #005CD3;
+        color: #fff;
+      }
+      .btn-submit:hover{
+        border: 1px solid #00E0FF;
+        box-shadow: 0px 0px 15px 1px #00FBFF;
+        color: #fff;
+
+      }
+      .btn-cancel{
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 15px;
+        padding: 5px 40px;
+        outline: #FF3838 1px solid;
+
+        background-color: #FF3838;
+        color: #fff;
+      }
+      .img-modal{
+        margin:  20px 0px;
+        width: 120px;
+      }
+      .modal-text-header{
+        font-size: 16px;
+      }
+      .modal-detail{
+        font-size: 12px;
+      }.accept-text-header{
+        color: #128DFF;
+      }
+      .btn-outline-submit{
+        outline: #005CD3 1px solid;
+        color:  #005CD3;
+
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 15px;
+        padding: 5px 40px;
+      }.text-agree{
+        color: #00377F;
+      }#checkRegis{
+        accent-color: #002449;
+        font-size: 18px;
+      }.text-warn{
+        font-size: 12px;
+        padding: 0 30px;
+      }
+    </style>
+    <div class="d-flex justify-content-center mt-4 mb-3">
+      <button class="btn btn-submit mx-3" type="button" data-toggle="modal" data-target="#modalAcceptRegis">Join</button>
+      <button class="btn btn-cancel"  type="button" data-toggle="modal" data-target="#modalCancelRegis">Cancel</button>
+    </div>
+  <p class="text-center text-white text-warn">ผู้สมัครต้องอยู่ในระดับ AL ที่มี unit code แล้วเท่านั้นเเละมีค่าสมัครเข้าโครงการ 10,000 บาท โดยหักผ่านบัญชีตัวแทนเป็น 3 งวด </p>
   </div>
   </div>
-
-  <style>
-    .btn-submit{
-      border-radius: 5px;
-      
-      font-size: 16px;
-      margin-top: 15px;
-      padding: 5px 40px;
-
-      background-color: #005CD3;
-      color: #fff;
-    }
-    .btn-submit:hover{
-      border: 1px solid #00E0FF;
-      box-shadow: 0px 0px 15px 1px #00FBFF;
-      color: #fff;
-
-    }
-    .btn-cancel{
-      border-radius: 5px;
-      font-size: 16px;
-      margin-top: 15px;
-      padding: 5px 40px;
-      outline: #FF3838 1px solid;
-
-      background-color: #FF3838;
-      color: #fff;
-    }
-    .img-modal{
-      margin:  20px 0px;
-      width: 120px;
-    }
-    .modal-text-header{
-      font-size: 16px;
-    }
-    .modal-detail{
-      font-size: 12px;
-    }.accept-text-header{
-      color: #128DFF;
-    }
-    .btn-outline-submit{
-      outline: #005CD3 1px solid;
-      color:  #005CD3;
-
-      border-radius: 5px;
-      font-size: 16px;
-      margin-top: 15px;
-      padding: 5px 40px;
-    }.text-agree{
-      color: #00377F;
-    }#checkRegis{
-      accent-color: #002449;
-      font-size: 18px;
-    }.text-warn{
-      font-size: 12px;
-      padding: 0 30px;
-    }
-  </style>
-  <div class="d-flex justify-content-center mt-5 mb-3">
-    <button class="btn btn-submit mx-3" type="button" data-toggle="modal" data-target="#modalAcceptRegis">Join</button>
-    <button class="btn btn-cancel"  type="button" data-toggle="modal" data-target="#modalCancelRegis">Cancel</button>
-  </div>
-<p class="text-center text-white text-warn">ผู้สมัครต้องอยู่ในระดับ AL ที่มี unit code แล้วเท่านั้นเเละมีค่าสมัครเข้าโครงการ 10,000 บาท โดยหักผ่านบัญชีตัวแทนเป็น 3 งวด </p>
-
 
 <!-- Modal -->
 <div class="modal fade" id="modalAcceptRegis" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

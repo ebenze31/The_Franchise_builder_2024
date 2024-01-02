@@ -85,7 +85,7 @@
     }
     @media only screen and (max-width: 767px) {
         #header-img-login {
-            width: 80% !important;
+            width: 60% !important;
            
         }
         #div_first{
@@ -127,7 +127,7 @@
     }
     @media only screen and (min-width: 1200px) {
         #header-img-login {
-            width: 60% !important;
+            width: 30% !important;
 
         }
         .form-group{
@@ -161,21 +161,22 @@
     .container-login{
          display: flex;
          position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 0;
-  margin: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0;
+        margin: 0;
+        width: 100%;
     }#div_second{
         width: 90vw;
     }
 
 </style>
 <div class="container-login text-white">
-    <div id="div_first" class="container text-center mt-5 w-100 ">
-        <div>
-            <div class="col">
-                <img src="{{ url('/img/logo/Favicons.png') }}" style="width: 20%" id="header-img-login">
+    <div id="div_first" class="container text-center mt-5 w-100 p-0" style="width: 100vw;">
+        <div class="w-100">
+            <div class="col w-100">
+                <img src="{{ url('/img/logo/Favicons.png') }}"id="header-img-login">
             </div>
             <div class="d-flex justify-content-center">
                 <a style="margin-top: 100px;" class="btn btn-login" onclick="document.querySelector('#div_second').classList.remove('d-none'),document.querySelector('#div_first').classList.add('d-none')">
@@ -255,7 +256,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="ModalTerms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered p-5" role="document">
+  <div class="modal-dialog modal-dialog-centered p-3" role="document">
     <div class="modal-content modal-border">
       <div class="modal-body px-4">
         <h5 class="modal-title text-center pb-2 header-terms" id="exampleModalLabel">Terms & condition</h5>

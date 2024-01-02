@@ -143,7 +143,7 @@
         border-radius: 50%;
         width: 31px;
         height: 31px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
         padding: 2px 0 0 0;
     }
     .host-member i{
@@ -151,7 +151,13 @@
             /* margin-top: 0px; */
             font-size: 17px;
     }
-    
+    .modal-backdrop{
+   backdrop-filter: blur(5px);
+   background-color: #01223770;
+}
+.modal-backdrop.in{
+   opacity: 1 !important;
+}
     
     .name-member{
         width: 95%;
@@ -820,15 +826,15 @@
         }
         else if(type == "wait_host_accept"){
 
-            let html_modal = `
+           let html_modal = `
                 <img src="{{ url('/img/icon/Frame 1.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
-                <h4 class="text-dark"><b>สถานะ : รอการตอบรับจาก host</b></h4>
-                <h4 style="color:#00AAAC;margin-bottom:0;margin-top:15px">Team `+name_group+`</h4>
-                <p style="color:#005CD3;">Waiting : <span id="modal_timer">23:59</span></p>
+                <p class="text-dark" style="font-size:font-size: 18px;;"><b>สถานะ : รอการตอบรับจาก host</b></p>
+                <h4 style="color:#00AAAC;margin-bottom:0;margin-top:15px ;font-size: 20px;font-style: normal;font-weight: 700;line-height: normal;">Team `+name_group+`</h4>
+                <p style="color: #005CD3;text-align: center;font-family: Inter;font-size: 12px;font-style: normal;font-weight: 400;line-height: normal;">Waiting : <span id="modal_timer">23:59</span></p>
 
                 <div class="text-center mt-3">
-                    <p class="warn-text m-0 text-danger">ระหว่างรอการยืนยันจาก Host คุณจะไม่สามารถกดคำขอเข้าทีมอื่นได้</p>
-                    <p class="warn-text mt-3 text-danger">เเละหากครบ 24 ชั่วโมง เเล้วยังไม่มีการตอบกลับจาก Host คำขอนี้จะถูกระบบยกเลิกโดยอัตโนมัติ</p>
+                    <p class=" m-0 text-danger" style="color: #FF3838;text-align: center;font-family: Inter;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;">ระหว่างรอการยืนยันจาก Host <br>คุณจะไม่สามารถกดคำขอเข้าทีมอื่นได้</p>
+                    <p class=" mt-3 text-danger" style="color: #FF3838;text-align: center;font-family: Inter;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;">เเละหากครบ 24 ชั่วโมง เเล้วยังไม่มีการตอบกลับจาก Host <br>คำขอนี้จะถูกระบบยกเลิกโดยอัตโนมัติ</p>
                 </div>
                 <span class="text-dark">
                     
