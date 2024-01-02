@@ -554,6 +554,17 @@
         });
     }
 
+    function keep_name_Activity(){
+
+        let name_Activity = document.querySelector('#name_Activity').value ;
+
+        fetch("{{ url('/') }}/api/keep_name_Activity/" + name_Activity + "/" + "{{ Auth::user()->id }}")
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+        });
+    }
+
     function cf_shirt_size(account){
 
         let Title = document.querySelectorAll('input[name="Title"]');
