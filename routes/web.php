@@ -76,6 +76,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::resource('mylog', 'MylogController');
     Route::resource('activities', 'ActivitiesController');
     Route::get('/admin/scanner', 'HomeController@admin_scanner');
+    Route::get('/user_get_shirt', 'HomeController@user_get_shirt');
 });
 
 Route::get('/ranking_by_individual', function () {

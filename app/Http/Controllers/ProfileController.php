@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
 use QrCode;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Activities_log;
+use App\Models\Activity;
 
 class ProfileController extends Controller
 {
@@ -226,7 +228,7 @@ class ProfileController extends Controller
         $user = User::get();
 
         foreach ($user as $item) {
-            $url_for_scan = $request->fullUrl() . "/for_scan" ;
+            $url_for_scan = 'https://www.franchisebuilder2024.com' . "/for_scan" ;
             $url_for_scan = str_replace("/var/www/","",$url_for_scan);
             $url_for_scan = str_replace("/api/qr_profile","",$url_for_scan);
             // QR-CODE
@@ -436,6 +438,53 @@ class ProfileController extends Controller
             ->update([
                     'shirt_size' => $Title_value,
                 ]);
+
+        $dataActivities = Activity::where('name_Activities' , "รับเสื้อ")->first();
+        $dataUser = User::where('account' , $account)->first();
+
+        $check_old_data = Activities_log::where('id_Activities' ,$dataActivities->id)
+            ->where('user_id',$dataUser->id)
+            ->first();
+
+        if( !$check_old_data ){
+
+            // สร้าง Activities_log
+            $Data = [] ;
+            $Data['id_Activities'] = $dataActivities->id;
+            $Data['user_id'] = $dataUser->id;
+            Activities_log::create($Data);
+
+            // update กิจกรรมที่ user เข้าร่วม
+            $update_Activities = '';
+            if( !empty($dataUser->activities) ){
+                $update_Activities = $dataUser->activities . "," . $dataActivities->id ;
+            }else{
+                $update_Activities = $dataActivities->id ;
+            }
+            DB::table('users')
+                ->where([ 
+                        ['id', $dataUser->id],
+                    ])
+                ->update([
+                        'activities' => $update_Activities,
+                    ]);
+
+
+            // update จำนวน member ที่เข้าร่วม activities
+            $update_member = '';
+            if( !empty($dataActivities->member) ){
+                $update_member = intval($dataActivities->member) + 1 ;
+            }else{
+                $update_member = 1 ;
+            }
+            DB::table('activities')
+                ->where([ 
+                        ['id', $dataActivities->id],
+                    ])
+                ->update([
+                        'member' => $update_member,
+                    ]);
+        }
 
         return "success" ;
     }

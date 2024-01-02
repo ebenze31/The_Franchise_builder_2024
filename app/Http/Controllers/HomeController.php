@@ -115,4 +115,8 @@ class HomeController extends Controller
             file_put_contents($img, file_get_contents($url));
         }
     }
+
+    public function user_get_shirt(){
+        return view('admin.user_get_shirt');
+    }
 }

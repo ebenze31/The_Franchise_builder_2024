@@ -144,6 +144,8 @@
   }
 </style>
 
+<a id="a_to_account_scan" class="d-none"></a>
+
 <!-- modal -->
 <button id="btn_modal_cf_pay_slip" class="d-none" data-toggle="modal" data-target="#modal_cf_pay_slip"></button>
 
@@ -343,22 +345,33 @@
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
         if (code) {
-            console.log(code.data);
 
-            let type = code.data.split('=')[0];
-                type = type.split('?')[1];
+            if(code.data){
 
-            let name = code.data.split('=')[1];
+                // console.log(code.data);
 
-                name = name.replaceAll("_"," ");
+                let type = code.data.split('=')[0];
+                    type = type.split('?')[1];
 
-            console.log(type);
-            console.log(name);
+                let name = code.data.split('=')[1];
 
-            if(type == "Activities"){
-              // if(name == "รับเสื้อ"){
-                create_modal_Activies(name , code);
-              // }
+                    name = name.replaceAll("_"," ");
+
+                // console.log(type);
+                // console.log(name);
+
+                if(type == "Activities"){
+                  // if(name == "รับเสื้อ"){
+                    create_modal_Activies(name , code);
+                  // }
+                }
+                else if(type == "account"){
+                    document.querySelector('#a_to_account_scan').setAttribute('href' , 'https://www.franchisebuilder2024.com/for_scan?account='+name);
+                    document.querySelector('#a_to_account_scan').click();
+                }
+            }else{
+                // console.log('สแกนใหม่');
+                start_scanQRCode();
             }
 
             return;
@@ -447,7 +460,7 @@
                 <button type="button" class="btn btn-submit" onclick="cf_shirt_size('`+"{{ Auth::user()->account }}"+`')">
                     Confirm
                 </button>
-                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal">
+                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
                     Back
                 </button>
             `;
@@ -472,7 +485,7 @@
                 <button type="button" class="btn btn-submit" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
                     Confirm
                 </button>
-                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal">
+                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
                     Back
                 </button>
             `;
@@ -483,6 +496,7 @@
             document.querySelector('#btn_modal_check_activity').click();
 
         }
+
     }
 
     function cf_Activities(user_id , name_Activities){
@@ -502,6 +516,7 @@
 
                     // modal success
                     document.querySelector('#btnmodalSuccess').click();
+                    start_scanQRCode();
                 }
         });
     }
@@ -528,6 +543,7 @@
 
                 // modal success
                 document.querySelector('#btnmodalSuccess').click();
+                start_scanQRCode();
         });
     }
 </script>

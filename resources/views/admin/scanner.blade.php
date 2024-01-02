@@ -362,20 +362,26 @@
             const code = jsQR(imageData.data, imageData.width, imageData.height);
 
             if (code) {
-                console.log(code.data);
 
-                let name_Activity = document.querySelector('#name_Activity').value ;
+                if(code.data){
+                    console.log(code.data);
 
-                if(name_Activity == "ยืนยันการชำระเงิน"){
-                    create_modal(name_Activity , code);
-                    // document.querySelector('#div_video').classList.add('d-none');
-                }
-                else if(name_Activity == "รับเสื้อ"){
-                    create_modal(name_Activity , code);
-                    // document.querySelector('#div_video').classList.add('d-none');
-                }
-                else{
-                    create_modal(name_Activity , code);
+                    let name_Activity = document.querySelector('#name_Activity').value ;
+
+                    if(name_Activity == "ยืนยันการชำระเงิน"){
+                        create_modal(name_Activity , code);
+                        // document.querySelector('#div_video').classList.add('d-none');
+                    }
+                    else if(name_Activity == "รับเสื้อ"){
+                        create_modal(name_Activity , code);
+                        // document.querySelector('#div_video').classList.add('d-none');
+                    }
+                    else{
+                        create_modal(name_Activity , code);
+                    }
+                }else{
+                    // console.log('สแกนใหม่');
+                    start_scanQRCode();
                 }
 
                 return;
@@ -403,6 +409,7 @@
 
                 // modal success
                 document.querySelector('#btnmodalSuccess').click();
+                start_scanQRCode();
 
                 // document.querySelector('#alert_text').innerHTML = `
                 //    <i class="fa-solid fa-check text-success"></i> Success fully !
@@ -494,18 +501,56 @@
                     document.querySelector('#btn_modal_check_activity').click();
             });
         }else{
-            
+            let name = code.data.split('=')[1];
+
+            fetch("{{ url('/') }}/api/get_users" + "/" + name )
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                let html_modal = `
+                    <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรม</h4>
+                    <h3>`+type+`</h3>
+                    <br>
+                `;
+
+                let html_footer = `
+
+                    <button type="button" class="btn btn-submit" onclick="cf_Activities('`+result.id+`' , '`+type+`')">
+                        Confirm
+                    </button>
+                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
+                        Back
+                    </button>
+                `;
+
+                document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+                document.querySelector('#modal_footer').innerHTML = html_footer;
+
+                document.querySelector('#btn_modal_check_activity').click();
+            });
         }
     }
 
-    function keep_name_Activity(){
+    function cf_Activities(user_id , name_Activities){
 
-        let name_Activity = document.querySelector('#name_Activity').value ;
+        console.log(user_id);
+        console.log(name_Activities);
+        
+        name_Activities = name_Activity.replaceAll(" ","_");
 
-        fetch("{{ url('/') }}/api/keep_name_Activity/" + name_Activity + "/" + "{{ Auth::user()->id }}")
+        fetch("{{ url('/') }}/api/cf_Activities" + "/" + user_id + "/" + name_Activities )
             .then(response => response.text())
             .then(result => {
-                // console.log(result);
+                console.log(result);
+
+                if(result){
+                    document.querySelector('#btn_close_modal').click();
+
+                    // modal success
+                    document.querySelector('#btnmodalSuccess').click();
+                    start_scanQRCode();
+                }
         });
     }
 
@@ -527,6 +572,7 @@
 
                 // modal success
                 document.querySelector('#btnmodalSuccess').click();
+                start_scanQRCode();
                 
                 // document.querySelector('#alert_text').innerHTML = `
                 //    <i class="fa-solid fa-check text-success"></i> Success fully !

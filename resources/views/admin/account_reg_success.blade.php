@@ -277,7 +277,7 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="InputContainer float-end">
-                    <input placeholder="Search Account.." id="Search_input" class="Search_input" name="text" type="text" oninput="Search_data();">
+                    <input placeholder="ค้นหาด้วยเลขรหัสเท่านั้น" id="Search_input" class="Search_input" name="text" type="text" oninput="Search_data();">
                 </div>
             </div>
         </div>

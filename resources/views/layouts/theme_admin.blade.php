@@ -143,6 +143,11 @@
                             </a>
                         </li>
                         <li>
+                            <a class="btn" href="{{ url('/user_get_shirt') }}">
+                                <i class="fa-solid fa-shirt"></i> รับเสื้อแล้ว
+                            </a>
+                        </li>
+                        <li>
                             <a class="btn" href="{{ url('/account_reg_success') }}">
                                 <i class="fa-solid fa-user-check"></i> ผู้ร่วมกิจกรรม
                             </a>

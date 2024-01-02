@@ -63,18 +63,18 @@ class ActivitiesController extends Controller
                 ->store('uploads', 'public');
         }
 
-        $requestData['qr_code'] = $this->create_qr_code($requestData , $request->fullUrl());
+        $requestData['qr_code'] = $this->create_qr_code($requestData);
 
         Activity::create($requestData);
 
         return redirect('activities')->with('flash_message', 'Activity added!');
     }
 
-    function create_qr_code($requestData , $fullUrl)
+    function create_qr_code($requestData )
     {
         $requestData['name_Activities'] = str_replace(" ","_",$requestData['name_Activities']);
 
-        $url_Activities = $fullUrl . "/for_Activities" ;
+        $url_Activities = 'https://www.franchisebuilder2024.com' . "/for_Activities" ;
         $url_Activities = str_replace("/var/www/","",$url_Activities);
         $url_Activities = str_replace("/activities","",$url_Activities);
         // QR-CODE
@@ -164,13 +164,14 @@ class ActivitiesController extends Controller
             ->where('user_id',$user_id)
             ->first();
 
-        // สร้าง Activities_log
-        Activities_log::firstOrCreate(
-            ['id_Activities' =>  $dataActivities->id],
-            ['user_id' => $user_id]
-        );
+        if( !$check_old_data ){
 
-        if( empty($check_old_data->id) ){
+            // สร้าง Activities_log
+            $Data = [] ;
+            $Data['id_Activities'] = $dataActivities->id;
+            $Data['user_id'] = $user_id;
+            Activities_log::create($Data);
+
             // update กิจกรรมที่ user เข้าร่วม
             $update_Activities = '';
             if( !empty($dataUser->activities) ){
