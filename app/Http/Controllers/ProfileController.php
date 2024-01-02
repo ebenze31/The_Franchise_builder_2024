@@ -489,4 +489,21 @@ class ProfileController extends Controller
         return "success" ;
     }
 
+    function get_data_badges($user_id){
+
+        $data_badges = Activity::get();
+        $data_user = User::where('id',$user_id)->first();
+
+        $activities = '';
+        if( !empty($data_user->activities) ){
+            $activities = $data_user->activities ;
+        }
+
+        $data = [];
+        $data['data_badges'] = $data_badges;
+        $data['user_activities'] = $activities;
+
+        return $data ;
+    }
+
 }

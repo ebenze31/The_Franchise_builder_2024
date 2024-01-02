@@ -38,6 +38,7 @@ Route::get('/cf_shirt_size/{account}/{Title_value}', 'ProfileController@cf_shirt
 Route::get('/get_time_request_join/{user_id}', 'ProfileController@get_time_request_join');
 Route::get('/get_data_user/{user_id}', 'ProfileController@get_data_user');
 Route::get('/get_data_me/{user_id}', 'ProfileController@get_data_me');
+Route::get('/get_data_badges/{user_id}', 'ProfileController@get_data_badges');
 
 // PC POINT
 Route::post('/create_score/excel', 'Pc_pointsController@create_score');

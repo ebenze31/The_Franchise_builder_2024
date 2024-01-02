@@ -182,21 +182,16 @@
     </div>
 </div>
 
-<div class="asd d-noe">
-    <div class="col-12">
-        <h4 class="header-badges">
-            My badges
-        </h4>
-    </div>
-    <div class="col-4 badges-item @if( !empty(Auth::user()->shirt_size) ) active @else un-active @endif" activity="ป้าย1" onclick="open_badges(this)">
+<div class="col-12">
+    <h4 class="header-badges">
+        My badges
+    </h4>
+</div>
+
+<div id="div_badges" class="asd d-noe">
+
+    <!-- <div class="col-4 badges-item @if( !empty(Auth::user()->shirt_size) ) active @else un-active @endif" activity="ป้าย1" onclick="open_badges(this)">
         <img src="{{ url('/img/icon/badges-1.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
-
-
-        <!-- @if( !empty(Auth::user()->shirt_size) )
-            <img src="{{ url('/img/icon/badges-1.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
-        @else
-            <img src="{{ url('/img/icon/Allianz ayudhya-22-22 1.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
-        @endif -->
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
@@ -248,7 +243,8 @@
         <div class="d-none detail">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa temporibus eum, cupiditate blanditiis voluptates neque. Ut et optio necessitatibus expedita debitis deleniti non nobis, ratione soluta nesciunt ipsum. Omnis molestias molestiae nostrum rem dolorum soluta aspernatur, accusantium praesentium alias ex accusamus eos hic recusandae reiciendis adipisci laboriosam neque? Possimus, corrupti!
         </div>
-    </div>
+    </div> -->
+
 </div>
 
 <!-- Modal -->
@@ -396,7 +392,71 @@ line-height: normal;
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         change_menu_bar('profile');
+
+        get_data_badges("{{ Auth::user()->id }}");
     });
+
+    function get_data_badges(user_id){
+
+        // console.log(user_id);
+        fetch("{{ url('/') }}/api/get_data_badges" + "/" + user_id)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                if(result){
+                    for (let i = 0; i < result['data_badges'].length; i++) {
+                        // console.log(result['data_badges'][i].name_Activities);
+
+                        let user_activities = result['user_activities'].split(',');;
+                        let activityToCheck = result['data_badges'][i].id.toString();
+
+                        let check_activities = user_activities.includes(activityToCheck);
+                        let class_show_badges ;
+
+                        if (check_activities) {
+                            // console.log("มี " + activityToCheck);
+                            class_show_badges = 'active';
+                        } else {
+                            // console.log("ไม่มี " + activityToCheck);
+                            class_show_badges = 'un-active';
+                        }
+
+
+                        let html_badges = `
+                            <div class="col-4 badges-item `+class_show_badges+`" activity="`+result['data_badges'][i].name_Activities+`" onclick="open_badges(this)">
+                                <img src="{{ url('storage')}}/`+result['data_badges'][i].icon+`"width="100%">
+                                <div class="d-none detail">
+                                    `+result['data_badges'][i].detail+`
+                                </div>
+                            </div>
+                        `;
+
+                        document.querySelector('#div_badges').insertAdjacentHTML('beforeend', html_badges); // แทรกล่างสุด
+                    }
+
+                    if(result['data_badges'].length < 9){
+
+                        let count = result['data_badges'].length + 1;
+
+                        for (let zz = count; zz <= 9; zz++) {
+                            let html_badges = `
+                                <div class="col-4 badges-item " activity="badges `+zz+`" onclick="open_badges(this)">
+                                    <img src="{{ url('/img/icon/badges-3.png') }}" width="100%"alt="รูปภาพป้ายประกาศ">
+                                    <div class="d-none detail">
+                                        Upcoming activities 
+                                    </div>
+                                </div>
+                            `;
+
+                            document.querySelector('#div_badges').insertAdjacentHTML('beforeend', html_badges); // แทรกล่างสุด
+                        }
+
+                    }
+                }
+        });
+    }
+
 
     function open_badges(data_badges) {
         document.querySelector('#btnmodalBadges').click();
