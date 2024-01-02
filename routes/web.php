@@ -84,3 +84,5 @@ Route::get('/ranking_by_individual', function () {
 Route::get('/ranking_by_team', function () {
     return view('pc_points/ranking_by_team');
 });
+
+Route::resource('contact_staff', 'Contact_staffController');

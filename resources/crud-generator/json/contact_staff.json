@@ -1,0 +1,21 @@
+{
+    "fields": [
+        {
+            "name": "question",
+            "type": "string"
+        },
+        {
+            "name": "reading",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        },
+        {
+            "name": "staff_id",
+            "type": "integer"
+        }
+
+    ]
+}

@@ -263,6 +263,115 @@
     </div>
 </div>
 
+<style>
+    .btn-service{
+        position: fixed;
+        bottom: 60px;
+        right: 10px;
+        display: block;
+
+    }.img-service{
+        width: 41px;
+        height: 40px;
+    }.text-contact{
+        color: #FFF;
+
+text-align: center;
+font-family: Inter;
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+    }.imgCloseBTN{
+        width: 25px;
+        height: 25px;
+    }.modal-header{
+    background-color: #002449;
+  } .modalHeaderrequest {
+    background-color: #002449;
+    color: #fff !important;
+    padding: 3px;
+    
+  }.btn-submit{
+      border-radius: 5px;
+      font-size: 16px;
+      padding: 5px 40px;
+      background-color: #005CD3;
+      color: #fff;
+    }
+    .btn-submit:hover{
+      border: 1px solid #00E0FF;
+      box-shadow: 0px 0px 15px 1px #00FBFF;
+      color: #fff;
+
+    }
+    
+    .padding-btn{
+        padding: 8px 20px !important;
+    }
+</style>
+<button id="btn_contact_staff" class="btn btn-service" data-toggle="modal" data-target="#modal_contact_staff">               
+    <img src="{{ url('/img/icon/customer-service.png') }}"  class="mt-2 mb-2 img-service">
+    <p class="text-contact">Contact staff</p>
+</button>
+
+<div class="modal fade" id="modal_contact_staff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content mx-4" style="border-radius: 10px;">
+            <div class="modal-header modalHeaderrequest">
+                <div class="w-100 text-center">
+
+                    <p class="modal-request-title text-white text-center" id="exampleModalLongTitle">เเจ้งปัญหาที่ต้องการให้เราช่วย</p>
+                </div>
+                <button id="close_Pending" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                    <img src="{{ url('/img/icon/closeBTN.png') }}"  class="mt-2 mb-2 imgCloseBTN">
+                </button>
+            </div>
+            <div class="modal-body">
+               
+                <textarea style="border-radius: 5px;border: 1px solid #002449;background: #D9D9D9;" name="" id="" cols="30" rows="7" class="form-control" placeholder="กรุณากรอกรายละเอียดเพิ่มเติม"></textarea>
+                <div class="col-12 w-100 mt-3">
+                    <div class="input-group"> 
+                        <span class="input-group-text " style="border-radius: 5px 0 0 5px;border: 1px solid #002449;background: #D9D9D9;"><i class="fa-solid fa-phone"></i></span>
+                        <input style="border-radius: 0 5px 5px 0 ;border: 1px solid #002449;background: #D9D9D9;" type="text" class="form-control border-start-0" id="inputLastName1" placeholder="กรุณากรอกหมายเลขโทรศัพท์ของคุณ">
+                    </div>
+                </div>
+                <div class=" d-flex justify-content-center">
+                    <button type="button" class="btn btn-submit padding-btn">
+                        Send
+                    </button>
+
+                    <button type="button" class="btn btn-submit padding-btn" data-toggle="modal" data-target="#modal_contact_success">
+                        test ส่งเสร็จ
+                    </button>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_contact_success" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content mx-5" style="border-radius: 10px;">
+            <div class="modal-body text-center">
+                <div class=" d-flex justify-content-center">
+                    
+                    <img src="{{ url('/img/icon/contact-success.png') }}"  class="my-3" style="width: 149px;height: 71px;">
+                    
+                </div>
+               <p class="my-1" style="color: #07285A;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;">
+                    ทีมงานรับเรื่องเเล้วเเละจำติดต่อกลับภายกลัง
+                </p>
+                <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal" aria-label="Close">
+                    close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <button type="button" id="btnmodalBadges" class="btn btn-primary d-none" data-toggle="modal" data-target="#modalBadges">
     Launch demo modal
 </button>
