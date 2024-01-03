@@ -66,15 +66,16 @@ border-radius: 5px;
 
   .modal-border {
     -webkit-border-radius: 10px;    
-border-radius: 10px; 
--moz-border-radius:10px;
--khtml-border-radius:10px;
+    border-radius: 10px; 
+    -moz-border-radius:10px;
+    -khtml-border-radius:10px;
   }
 
   .header-payment {
     color: #fff;
     margin: 30px 0 10px 0;
     font-size: 14;
+    letter-spacing:0px;
   }
 
   .btn-copy {
