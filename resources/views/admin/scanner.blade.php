@@ -425,75 +425,109 @@
 
     function create_modal(type , code)
     {
-        if(type == "ยืนยันการชำระเงิน"){
-            // let type = code.data.split('=')[0]
-            // let name = code.data.split('=')[1];
-            let name = code.data.split('=')[1];
-
-            fetch("{{ url('/') }}/api/get_users" + "/" + name )
-                .then(response => response.json())
-                .then(result => {
-                    // console.log(result);
-                    let html_modal = `
-                        <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
-                        <h3 class="my-4" style="color: #38D7D7;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+result.name+`</h3>
-                        <p style="font-size: 12px;color: #002449;font-style: normal;font-weight: 400;line-height: normal;">ในการเข้าร่วมกิจกรรม .....</p>
-                        <h3 style="color: #002449;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">`+type+`</h3>
-                    `;
-
-                    let html_footer = `
-    
-                        <button type="button" class="btn btn-submit padding-btn" onclick="change_status('`+name+`','{{ Auth::user()->id }}')">
-                            Confirm
-                        </button>
-                        <button id="btn_close_modal" type="button" class="btn btn-secondary padding-btn" data-dismiss="modal">
-                            Back
-                        </button>
-                    `;
-
-                    document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
-                    document.querySelector('#modal_footer').innerHTML = html_footer;
-
-                    document.querySelector('#btn_modal_check_activity').click();
-            });
+        let check_name = code.data.split('=')[1];
+        if(!check_name){
+            start_scanQRCode();
         }
-        else if(type == "รับเสื้อ"){
-            let name = code.data.split('=')[1];
+        else{
+            if(type == "ยืนยันการชำระเงิน"){
+                // let type = code.data.split('=')[0]
+                // let name = code.data.split('=')[1];
+                let name = code.data.split('=')[1];
 
-            fetch("{{ url('/') }}/api/get_users" + "/" + name )
-                .then(response => response.json())
-                .then(result => {
-                    // console.log(result);
-                    let html_modal = `
-                        <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
+                fetch("{{ url('/') }}/api/get_users" + "/" + name )
+                    .then(response => response.json())
+                    .then(result => {
+                        // console.log(result);
+                        let html_modal = `
+                            <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
                             <h3 class="my-4" style="color: #38D7D7;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+result.name+`</h3>
                             <p style="font-size: 12px;color: #002449;font-style: normal;font-weight: 400;line-height: normal;">ในการเข้าร่วมกิจกรรม .....</p>
                             <h3 style="color: #002449;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">`+type+`</h3>
-                            <br>
-                            
-                            <div class="mx-2 py-3" style="background-color: #090823;border-radius: 5px;">
-                                <h4 class="text-white" style="font-weight: lighter;">Title</h4>
-                                <div class="w-100 ">
-                                    <div class="d-flex justify-content-between px-3 text-white">
-                                        <div><input type="radio" id="S" name="Title" value="S"/>&nbsp;S</div>
-                                        <div><input type="radio" id="M" name="Title" value="M"/>&nbsp;M</div>
-                                        <div><input type="radio" id="L" name="Title" value="L"/>&nbsp;L</div>
-                                        <div><input type="radio" id="XL" name="Title" value="XL"/>&nbsp;XL</div>
+                        `;
+
+                        let html_footer = `
+        
+                            <button type="button" class="btn btn-submit padding-btn" onclick="change_status('`+name+`','{{ Auth::user()->id }}')">
+                                Confirm
+                            </button>
+                            <button id="btn_close_modal" type="button" class="btn btn-secondary padding-btn" data-dismiss="modal">
+                                Back
+                            </button>
+                        `;
+
+                        document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+                        document.querySelector('#modal_footer').innerHTML = html_footer;
+
+                        document.querySelector('#btn_modal_check_activity').click();
+                });
+            }
+            else if(type == "รับเสื้อ"){
+                let name = code.data.split('=')[1];
+
+                fetch("{{ url('/') }}/api/get_users" + "/" + name )
+                    .then(response => response.json())
+                    .then(result => {
+                        // console.log(result);
+                        let html_modal = `
+                            <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
+                                <h3 class="my-4" style="color: #38D7D7;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+result.name+`</h3>
+                                <p style="font-size: 12px;color: #002449;font-style: normal;font-weight: 400;line-height: normal;">ในการเข้าร่วมกิจกรรม .....</p>
+                                <h3 style="color: #002449;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">`+type+`</h3>
+                                <br>
+                                
+                                <div class="mx-2 py-3" style="background-color: #090823;border-radius: 5px;">
+                                    <h4 class="text-white" style="font-weight: lighter;">Title</h4>
+                                    <div class="w-100 ">
+                                        <div class="d-flex justify-content-between px-3 text-white">
+                                            <div><input type="radio" id="S" name="Title" value="S"/>&nbsp;S</div>
+                                            <div><input type="radio" id="M" name="Title" value="M"/>&nbsp;M</div>
+                                            <div><input type="radio" id="L" name="Title" value="L"/>&nbsp;L</div>
+                                            <div><input type="radio" id="XL" name="Title" value="XL"/>&nbsp;XL</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 text-center mt-2 mb-0">
-                            <p>เจ้าหน้าที่ผู้ยืนยัน : {{ Auth::user()->name }}</p>
-                        </div>
+                            <div class="col-12 text-center mt-2 mb-0">
+                                <p>เจ้าหน้าที่ผู้ยืนยัน : {{ Auth::user()->name }}</p>
+                            </div>
+                        `;
+
+                        let html_footer = `
+        
+                            <button type="button" class="btn btn-submit padding-btn" onclick="cf_shirt_size('`+name+`')">
+                                Confirm
+                            </button>
+                            <button id="btn_close_modal" type="button" class="btn btn-secondary padding-btn" data-dismiss="modal">
+                                Back
+                            </button>
+                        `;
+
+                        document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+                        document.querySelector('#modal_footer').innerHTML = html_footer;
+
+                        document.querySelector('#btn_modal_check_activity').click();
+                });
+            }else{
+                let name = code.data.split('=')[1];
+
+                fetch("{{ url('/') }}/api/get_users" + "/" + name )
+                    .then(response => response.json())
+                    .then(result => {
+                        // console.log(result);
+
+                    let html_modal = `
+                        <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรม</h4>
+                        <h3>`+type+`</h3>
+                        <br>
                     `;
 
                     let html_footer = `
-    
-                        <button type="button" class="btn btn-submit padding-btn" onclick="cf_shirt_size('`+name+`')">
+
+                        <button type="button" class="btn btn-submit" onclick="cf_Activities('`+result.id+`' , '`+type+`')">
                             Confirm
                         </button>
-                        <button id="btn_close_modal" type="button" class="btn btn-secondary padding-btn" data-dismiss="modal">
+                        <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
                             Back
                         </button>
                     `;
@@ -502,37 +536,10 @@
                     document.querySelector('#modal_footer').innerHTML = html_footer;
 
                     document.querySelector('#btn_modal_check_activity').click();
-            });
-        }else{
-            let name = code.data.split('=')[1];
-
-            fetch("{{ url('/') }}/api/get_users" + "/" + name )
-                .then(response => response.json())
-                .then(result => {
-                    // console.log(result);
-
-                let html_modal = `
-                    <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรม</h4>
-                    <h3>`+type+`</h3>
-                    <br>
-                `;
-
-                let html_footer = `
-
-                    <button type="button" class="btn btn-submit" onclick="cf_Activities('`+result.id+`' , '`+type+`')">
-                        Confirm
-                    </button>
-                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
-                        Back
-                    </button>
-                `;
-
-                document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
-                document.querySelector('#modal_footer').innerHTML = html_footer;
-
-                document.querySelector('#btn_modal_check_activity').click();
-            });
+                });
+            }
         }
+        
     }
 
     function cf_Activities(user_id , name_Activities){

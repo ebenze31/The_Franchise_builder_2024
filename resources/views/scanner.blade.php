@@ -357,7 +357,11 @@
 
                 let name = code.data.split('=')[1];
 
+                  if(name){
                     name = name.replaceAll("_"," ");
+                  }else{
+                    start_scanQRCode();
+                  }
 
                 // console.log(type);
                 // console.log(name);
