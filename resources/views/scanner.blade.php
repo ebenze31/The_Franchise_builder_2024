@@ -284,7 +284,36 @@
     
   </div>
 </div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_worng_qrcode">
+  <!-- Launch demo modal -->
+</button>
 
+<!-- modal สแกนผิด -->
+<div class="modal fade" id="modal_worng_qrcode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-border modal-success mx-4" style="border-radius: 10px;">
+      <div class="modal-body px-2">
+        <div class="d-flex justify-content-center my-4">
+          <img src="{{ url('/img/icon/qrcode_worng.png') }}" style="width: 100px;height:100px">
+        </div>
+
+        <h4 class="modal-title text-center pb-2 header-upload-success mb-2 text-danger" id="exampleModalLabel">QR Code ไม่ถูกต้อง</h4>
+        <!-- <p class="detail-upload-success mb-4 text-center">
+            QR Code ไม่ถูกต้อง กรุณาสแกน QR Code<br> ที่ The Franchise builder สร้างขึ้นเท่านั้น
+        </p> -->
+        <p class="detail-upload-success mb-4 text-center">
+            ไม่สามารถสแกน Qr code นี้ได้
+        </p>
+        <div class="d-flex justify-content-center">
+
+        <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 
 <script>
