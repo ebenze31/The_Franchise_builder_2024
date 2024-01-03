@@ -370,6 +370,10 @@ line-height: normal;
                         Send
                     </button>
 
+                    <button id="close_modal_Send" type="button" class="btn btn-submit padding-btn d-none" data-dismiss="modal" aria-label="Close">
+                        close
+                    </button>
+
                     <button id="btn_Send_success" type="button" class="btn btn-submit padding-btn d-none" data-toggle="modal" data-target="#modal_contact_success">
                         test ส่งเสร็จ
                     </button>
@@ -424,8 +428,8 @@ line-height: normal;
             let question = document.querySelector('#question');
             let phone = document.querySelector('#phone');
 
-            console.log(question.value);
-            console.log(phone.value);
+            // console.log(question.value);
+            // console.log(phone.value);
 
             if( question.value && phone.value ){
                 document.querySelector('#btn_Send').disabled = false;
@@ -558,9 +562,12 @@ line-height: normal;
         }).then(function (response){
             return response.text();
         }).then(function(data){
-            console.log(data);
+            // console.log(data);
             if(data){
-                document.querySelector('#btn_Send_success').click();
+                document.querySelector('#close_modal_Send').click();
+                setTimeout(() => {
+                    document.querySelector('#btn_Send_success').click();
+                }, 800);
             }
         }).catch(function(error){
             // console.error(error);
