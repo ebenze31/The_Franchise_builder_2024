@@ -27,12 +27,7 @@
         text-indent: 120px;
         color: #fff;
         font-weight: lighter;
-    }
-
-    
-    
-    
-   .memberInRoom{
+    }.memberInRoom{
         background-color:#0b2846;
         padding: 15px 10px 10px 15px;
         height: 100%;
@@ -188,6 +183,10 @@
         justify-content: center;
         border-radius: 10px;
         position: relative;
+    } #header-text-login{
+        width: 140px !important;
+        max-width: 140px !important;
+        margin-top: 10px;
     }
 </style>
 <!-- modal_join_team -->
@@ -788,6 +787,7 @@
                 <img src="{{ url('/img/icon/Frame 3.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
                 <h4 class="mt-3 mb-0" style="color:#37BCBC;">Team `+name_group+`</h4>
                 <p style="color:#37BCBC;" class="warn-text"><b>คุณต้องการที่จะเป็นสมาชิกทีมนี้ใช่หรือไม่</b></p>
+                <br>
                 <div class="text-dark">
                     <p>คำขอของคุณจะได้รับการยืนยันภายใน 24 ชั่วโมง</p>
                     <p class="warn-text">(หาก host ตอบรับคุณเข้าทีมแล้ว จะไม่สามารถเปลี่ยนทีมได้อีก)</p>

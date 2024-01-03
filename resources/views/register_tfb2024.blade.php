@@ -152,7 +152,7 @@ border-radius: 10px;
         </p>
         <ol class="text-white">
             <li>ผู้ที่ต้องการเข้าร่วมกิจกรรมต้องทำการชำระค่าสมัคร เป็นจำนวนเงิน 10,000 บาท </li>
-            <li>ผู้เล่นกิจกรรมต้องทำการลงทะเบียนเข้าร่วม โดยการกรอกข้อมูล Agent code และรหัสผ่าน โดยรหหัสผ่านของคุณคือ วัน/เดือน/ปี เกิด 8 หลักเช่น เกิดวันที่ 1 เดือน มกราคม ค.ศ 1989  รหัสผ่านของคุณคือ 01011989 </li>
+            <li>ผู้เล่นกิจกรรมต้องทำการลงทะเบียนเข้าร่วม โดยการกรอกข้อมูล Agent code และรหัสผ่าน โดยรหหัสผ่านของคุณคือ วัน/เดือน/ปี เกิด 8 หลักเช่น เกิดวันที่ 1 เดือน มกราคม ค.ศ 1989  รหัสผ่านของคุณคือ <span style="color: #000 !important;">01011989</span> </li>
             <li>เเสดง QR code ยืนยันการชำระค่าสมัครกับเจ้าหน้าที่เเละรับเสื้อหน้างาน</li>
           </ol>
         <!-- <div class="w-100 float-start">
@@ -336,8 +336,10 @@ border-radius: 5px;
   <div class="modal-dialog modal-dialog-centered px-3" role="document">
     <div class="modal-content " style="background-color: rgb(0,0,0,0);">
       <div class="modal-body px-2 modal-border" style="background-color: #fff">
-        <h6 class="modal-title text-center pb-2 header-infomation mb-4" id="exampleModalLabel"> กิจกรรม THE FRANCHISE BUILDER 2024 </h6>
-
+        <h6 class="modal-title text-center pb-2 header-infomation mb-4" id="exampleModalLabel"> 
+          <b>กิจกรรม THE FRANCHISE BUILDER 2024</b> 
+        </h6>
+          
         <p class="sub-header-infomation mb-4">เงื่อนไขการเข้าร่วมกิจกรรม</p>
         <ol class="detail-register">
           <li>ผู้เข้าร่วมกิจกรรม ต้องเป็นตัวแทนระดับ AL ที่มี unit code แล้วเท่านั้น</li>
