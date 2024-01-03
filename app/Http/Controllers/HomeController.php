@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use QrCode;
 use App\User;
+use Phattarachai\LineNotify\Facade\Line;
 
 use Illuminate\Http\Request;
 
@@ -118,5 +119,11 @@ class HomeController extends Controller
 
     public function user_get_shirt(){
         return view('admin.user_get_shirt');
+    }
+
+    function send_Line_Notify(){
+        Line::send('ทดสอบส่งข้อความ');
+
+        return "success";
     }
 }

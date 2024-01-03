@@ -366,7 +366,7 @@ line-height: normal;
                     </div>
                 </div>
                 <div class=" d-flex justify-content-center">
-                    <button type="button" class="btn btn-submit padding-btn">
+                    <button type="button" class="btn btn-submit padding-btn" onclick="submit_qa();">
                         Send
                     </button>
 
@@ -478,7 +478,7 @@ line-height: normal;
         document.querySelector('#btnmodalBadges').click();
         // เช็คว่าป้ายประกาศมีคลาส "active" หรือไม่
         if (data_badges.classList.contains('active')) {
-            
+
             document.querySelector('#imgContentBadges').classList.remove('unactive-img');
             document.querySelector('#contentBadges').classList.add('active');
             // ดึงรูปภาพที่อยู่ในป้ายประกาศ
@@ -507,6 +507,18 @@ line-height: normal;
             document.querySelector('#badgesName').innerHTML = badgesName;
             document.querySelector('#detailBadges').innerHTML = badgesDetail;
         }
+
+    }
+
+    function submit_qa(){
+
+        console.log("submit_qa");
+
+        fetch("{{ url('/') }}/api/send_Line_Notify")
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+        });
 
     }
 </script>
