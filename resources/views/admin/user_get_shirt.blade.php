@@ -251,9 +251,9 @@
             </div>
             <div >
                 <div class=" d-flex align-items-center juustify-content-end w-100">
-                    <button class="btn float-end btn-dark mx-3" id="pdf" onclick="createPDF()">PDF</button>
-                    <button class="btn float-end btn-dark mx-3" onclick="createExcel()">Excel</button>
+                    <!-- <button class="btn float-end btn-dark mx-3" id="pdf" onclick="createPDF()">PDF</button> -->
                     <p class="float-end m-auto">ที่กำลังดู : <span id="amount_select"></span></p>
+                    <button class="btn float-end btn-dark mx-3" onclick="createExcel()">Excel</button>
                 </div>
             </div>
         </div>
