@@ -60,5 +60,5 @@ Route::get('/cf_Activities/{user_id}/{name_Activities}', 'ActivitiesController@c
 Route::get('/get_detail_activity/{id}', 'ActivitiesController@get_detail_activity');
 
 // LINE
-Route::get('/send_Line_Notify', 'HomeController@send_Line_Notify');
+Route::get('/send_Line_Notify', 'Contact_staffController@send_Line_Notify');
 

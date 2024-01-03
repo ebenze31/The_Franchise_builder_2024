@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Contact_staff;
 use Illuminate\Http\Request;
+use Phattarachai\LineNotify\Line;
 
 class Contact_staffController extends Controller
 {
@@ -119,5 +120,13 @@ class Contact_staffController extends Controller
         Contact_staff::destroy($id);
 
         return redirect('contact_staff')->with('flash_message', 'Contact_staff deleted!');
+    }
+
+    function send_Line_Notify(){
+
+        $line = new Line('bOxTmKE1TW1LxQzvzA2enfElb0Yg5Qywr4z472ptfR0');
+        $line->send('message');
+        
+        return "success";
     }
 }

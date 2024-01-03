@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use QrCode;
 use App\User;
-use Phattarachai\LineNotify\Line;
 
 use Illuminate\Http\Request;
 
@@ -121,13 +120,4 @@ class HomeController extends Controller
         return view('admin.user_get_shirt');
     }
 
-    function send_Line_Notify(){
-        // Line::setToken('bOxTmKE1TW1LxQzvzA2enfElb0Yg5Qywr4z472ptfR0')
-        //     ->send('test message');
-
-        $line = new Line('bOxTmKE1TW1LxQzvzA2enfElb0Yg5Qywr4z472ptfR0');
-        $line->send('message');
-
-        return "success";
-    }
 }
