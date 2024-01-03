@@ -196,7 +196,7 @@
     }.text-count-down{
         font-size: 9px;
     } #header-text-login{
-        width: 140px;
+        width: 140px !important;
         margin-top: 10px;
     }.imgCloseBTN{
         width: 25px;
