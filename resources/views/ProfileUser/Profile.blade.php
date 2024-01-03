@@ -358,19 +358,19 @@ line-height: normal;
             </div>
             <div class="modal-body">
                
-                <textarea style="border-radius: 5px;border: 1px solid #002449;background: #D9D9D9;" name="question" id="question" cols="30" rows="7" class="form-control" placeholder="กรุณากรอกรายละเอียดเพิ่มเติม"></textarea>
+                <textarea style="border-radius: 5px;border: 1px solid #002449;background: #D9D9D9;" name="question" id="question" cols="30" rows="7" class="form-control" placeholder="กรุณากรอกรายละเอียดเพิ่มเติม" oninput="check_input();"></textarea>
                 <div class="col-12 w-100 mt-3">
                     <div class="input-group"> 
                         <span class="input-group-text " style="border-radius: 5px 0 0 5px;border: 1px solid #002449;background: #D9D9D9;"><i class="fa-solid fa-phone"></i></span>
-                        <input style="border-radius: 0 5px 5px 0 ;border: 1px solid #002449;background: #D9D9D9;" type="text" class="form-control border-start-0 user_phone" id="phone" name="phone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ของคุณ">
+                        <input style="border-radius: 0 5px 5px 0 ;border: 1px solid #002449;background: #D9D9D9;" type="text" class="form-control border-start-0 user_phone" id="phone" name="phone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ของคุณ" value="{{ isset(Auth::user()->phone) ? Auth::user()->phone : ''}}" oninput="check_input();">
                     </div>
                 </div>
                 <div class=" d-flex justify-content-center">
-                    <button type="button" class="btn btn-submit padding-btn" onclick="submit_qa();">
+                    <button id="btn_Send" type="button" class="btn btn-submit padding-btn" onclick="submit_qa();" disabled>
                         Send
                     </button>
 
-                    <button type="button" class="btn btn-submit padding-btn" data-toggle="modal" data-target="#modal_contact_success">
+                    <button id="btn_Send_success" type="button" class="btn btn-submit padding-btn d-none" data-toggle="modal" data-target="#modal_contact_success">
                         test ส่งเสร็จ
                     </button>
                 </div>
@@ -410,7 +410,32 @@ line-height: normal;
         change_menu_bar('profile');
 
         get_data_badges("{{ Auth::user()->id }}");
+
+        check_input();
     });
+
+    var delay_time ;
+    function check_input(){
+
+        clearTimeout(delay_time);
+
+        delay_time = setTimeout(() => {
+            // console.log(Search_input);
+            let question = document.querySelector('#question');
+            let phone = document.querySelector('#phone');
+
+            console.log(question.value);
+            console.log(phone.value);
+
+            if( question.value && phone.value ){
+                document.querySelector('#btn_Send').disabled = false;
+            }else{
+                document.querySelector('#btn_Send').disabled = true;
+            }
+        }, 1000);
+
+        
+    }
 
     function get_data_badges(user_id){
 
@@ -513,11 +538,32 @@ line-height: normal;
     function submit_qa(){
 
         console.log("submit_qa");
+        let question = document.querySelector('#question');
+        let phone = document.querySelector('#phone');
 
-        fetch("{{ url('/') }}/api/send_Line_Notify")
-            .then(response => response.text())
-            .then(result => {
-                console.log(result);
+        let data_arr = [] ;
+
+        data_arr = {
+            "user_id" : "{{ Auth::user()->id }}",
+            "phone" : phone.value,
+            "question" : question.value,
+        };
+
+        fetch("{{ url('/') }}/api/send_Line_Notify", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            console.log(data);
+            if(data){
+                document.querySelector('#btn_Send_success').click();
+            }
+        }).catch(function(error){
+            // console.error(error);
         });
 
     }

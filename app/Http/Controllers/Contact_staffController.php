@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Contact_staff;
 use Illuminate\Http\Request;
 use Phattarachai\LineNotify\Line;
+use App\User;
 
 class Contact_staffController extends Controller
 {
@@ -122,11 +123,19 @@ class Contact_staffController extends Controller
         return redirect('contact_staff')->with('flash_message', 'Contact_staff deleted!');
     }
 
-    function send_Line_Notify(){
+    function send_Line_Notify(Request $request){
 
-        $line = new Line('bOxTmKE1TW1LxQzvzA2enfElb0Yg5Qywr4z472ptfR0');
-        $line->send('message');
-        
+        $requestData = $request->all();
+
+        $data_user = User::where('id' ,$requestData )->first();
+
+        $message = "คำถามจากคุณ " . $data_user->name . "\n" . $requestData['question'] . "\n" . "เบอร์ติดต่อ " . $requestData['phone'];
+
+        $line = new Line(env('LINE_NOTIFY_TOKEN'));
+        $line->send($message);
+
+        Contact_staff::create($requestData);
+
         return "success";
     }
 }
