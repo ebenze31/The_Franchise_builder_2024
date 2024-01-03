@@ -541,7 +541,7 @@ line-height: normal;
 
     function submit_qa(){
 
-        console.log("submit_qa");
+        // console.log("submit_qa");
         let question = document.querySelector('#question');
         let phone = document.querySelector('#phone');
 
