@@ -89,6 +89,11 @@
                 console.log(type);
                 let count_show_group = 0 ;
 
+                let div_eiei = document.querySelectorAll('tr[class="member-list-row"]');
+                    div_eiei.forEach(div_eiei => {
+                        div_eiei.classList.add('d-none');
+                    })
+
                 if(type == "ยืนยันเรียบร้อย"){
                     let div_2 = document.querySelectorAll('tr[tr="tr_list"]');
                         div_2.forEach(div_2 => {
@@ -210,7 +215,7 @@
         fetch("{{ url('/') }}/api/get_data_view_group" + "/" + Search_input)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 setTimeout(() => {
 
@@ -302,22 +307,13 @@
                             let html_list_member = `` ;
                             let btn_view_member = `` ;
 
+                            console.log(count_member);
+
                             if(count_member != 0){
+
                                 html_list_member = `
                                     <tr id="list_member_`+result[i].id+`" class="member-list-row d-none">
-                                        <td colspan="5">
-                                            <div class="d-flex align-items-center py-3 border-bottom cursor-pointer">
-                                            <div class="product-img me-2">
-                                                 <img src="assets/images/products/06.png" alt="product img">
-                                              </div>
-                                            <div class="">
-                                                <h6 class="mb-0 font-14">Grey Long Chair</h6>
-                                                <p class="mb-0">146 Sales</p>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <h6 class="mb-0">158.24</h6>
-                                            </div>
-                                          </div>
+                                        <td id="content_list_member_`+result[i].id+`" colspan="4" class="container">
                                         </td>
                                     </tr>
                                 `;
@@ -368,6 +364,32 @@
 
                             content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
+
+                            if(count_member != 0){
+
+                                let loop_member ;
+                                for (let zx = 0; zx < count_member; zx++) {
+                                    fetch("{{ url('/') }}/api/get_data_user" + "/" + member_arr[zx])
+                                        .then(response => response.json())
+                                        .then(user => {
+                                            console.log(user);
+                                        loop_member = `
+                                            <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+                                                <div class="">
+                                                    <img src="{{ url('storage')}}/`+user.photo+`" class="rounded-circle" width="46" height="46" alt="">
+                                                </div>
+                                                <div class="ms-2">
+                                                    <h6 class="mb-1 font-14">`+user.name+`</h6>
+                                                    <p class="mb-0 font-13 text-secondary">`+user.phone+`</p>
+                                                </div>
+                                            </div>
+                                        `;
+
+                                        document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', loop_member); // แทรกล่างสุด
+                                    });
+                                }
+
+                            }
 
                         }
 
