@@ -237,7 +237,7 @@
                 <div class="row">
                     <div id="content_modal_check_activity" class="col-12 text-center">
                         <!-- DATA -->
-                    
+                    </div>
                 </div>
             </div>
             <div id="modal_footer" class="text-center mb-3">
