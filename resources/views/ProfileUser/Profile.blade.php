@@ -478,7 +478,8 @@ line-height: normal;
         document.querySelector('#btnmodalBadges').click();
         // เช็คว่าป้ายประกาศมีคลาส "active" หรือไม่
         if (data_badges.classList.contains('active')) {
-
+            
+            document.querySelector('#imgContentBadges').classList.remove('unactive-img');
             document.querySelector('#contentBadges').classList.add('active');
             // ดึงรูปภาพที่อยู่ในป้ายประกาศ
             let imgElement = data_badges.querySelector('img');
