@@ -57,5 +57,6 @@ Route::get('/check_request_join/{group_id}', 'GroupsController@check_request_joi
 
 // Activities
 Route::get('/cf_Activities/{user_id}/{name_Activities}', 'ActivitiesController@cf_Activities');
+Route::get('/get_detail_activity/{id}', 'ActivitiesController@get_detail_activity');
 
 

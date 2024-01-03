@@ -27,5 +27,7 @@ class Activities_log extends Model
      */
     protected $fillable = ['id_Activities', 'user_id'];
 
-    
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id' , 'id'); 
+    }
 }

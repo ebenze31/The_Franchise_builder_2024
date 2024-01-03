@@ -207,4 +207,18 @@ class ActivitiesController extends Controller
         return "success" ;
 
     }
+
+    function get_detail_activity($id){
+
+        // $data = Activities_log::where('id_Activities' , $id)->get();
+
+        $data = DB::table('users')
+            ->join('activities_logs', 'users.id', '=', 'activities_logs.user_id')
+            ->select('users.*' , 'activities_logs.created_at as time_join' )
+            ->where('activities_logs.id_Activities', $id)
+            ->get();
+
+        return $data ;
+
+    }
 }
