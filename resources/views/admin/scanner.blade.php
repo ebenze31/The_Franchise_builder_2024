@@ -207,7 +207,10 @@
     .btn-logout {
         color: rgb(244, 244, 244, .7);
         outline: 1px solid rgb(244, 244, 244, .7);
-        border-radius: 50px;
+        -webkit-border-radius: 50px;    
+        border-radius: 50px; 
+        -moz-border-radius:50px;
+        -khtml-border-radius:50px;
         font-size: 12px;
         display: flex;
         align-items: center;

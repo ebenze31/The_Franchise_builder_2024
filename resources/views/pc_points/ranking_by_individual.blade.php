@@ -16,7 +16,10 @@
     }
 
     .sub-rank-img {
-        border-radius: 50%;
+        -webkit-border-radius: 50%;    
+        border-radius: 50%; 
+        -moz-border-radius:50%;
+        -khtml-border-radius:50%;
         width: 68px;
         height: 68px;
         aspect-ratio: 1/1;
@@ -24,7 +27,10 @@
     }
 
     .main-rank-img {
-        border-radius: 50%;
+        -webkit-border-radius: 50%;    
+        border-radius: 50%; 
+        -moz-border-radius:50%;
+        -khtml-border-radius:50%;
         width: 85px;
         height: 85px;
         aspect-ratio: 1/1;
@@ -54,7 +60,10 @@
         background: rgb(0, 27, 87);
         background: linear-gradient(360deg, rgba(0, 27, 87, 0) 0%, rgba(0, 27, 87, 1) 100%);
         margin: 10px 0 0 0;
-        border-radius: 20px;
+        -webkit-border-radius: 20px;    
+        border-radius: 20px; 
+        -moz-border-radius:20px;
+        -khtml-border-radius:20px;
         padding: 10px;
         color: #fff;
         z-index: -5;
@@ -65,7 +74,10 @@
     .my-team {
         padding: 10px 20px;
         display: flex;
-        border-radius: 10px;
+        -webkit-border-radius: 10px;    
+        border-radius: 10px; 
+        -moz-border-radius:10px;
+        -khtml-border-radius:10px;
         background-color: #25238A;
         z-index: 9999 !important;
         position: relative;
@@ -75,7 +87,10 @@
     .other-team {
         padding: 10px 20px;
         display: flex;
-        border-radius: 10px;
+        -webkit-border-radius: 10px;    
+        border-radius: 10px; 
+        -moz-border-radius:10px;
+        -khtml-border-radius:10px;
         background-color: rgb(35, 87, 127, 0.3);
         margin-top: 10px;
         z-index: 9999 !important;
@@ -84,7 +99,10 @@
     }
 
     .profileTeam {
-        border-radius: 50%;
+        -webkit-border-radius: 50%;    
+        border-radius: 50%; 
+        -moz-border-radius:50%;
+        -khtml-border-radius:50%;
         width: 40px;
         height: 40px;
         border: #fff 1px solid;
@@ -130,7 +148,10 @@
         color: #fff;
         position: relative;
         margin-bottom: 20px;
+        -webkit-border-radius: 0 0 10px 10px;    
         border-radius: 0 0 10px 10px;
+        -moz-border-radius:0 0 10px 10px;
+        -khtml-border-radius:0 0 10px 10px;
     }
 
     .statusTeam {
@@ -155,7 +176,10 @@
     }
 
     #dataMyteam {
-        border-radius: 10px;
+        -webkit-border-radius: 10px;    
+        border-radius: 10px; 
+        -moz-border-radius:10px;
+        -khtml-border-radius:10px;
         padding: 20px 10px 10px 10px;
     }
 
@@ -171,7 +195,10 @@
     .profile-img {
         width: 20px;
         height: 20px;
-        border-radius: 50%;
+        -webkit-border-radius: 50%;    
+        border-radius: 50%; 
+        -moz-border-radius:50%;
+        -khtml-border-radius:50%;
     }
 
     .nameUserteam {

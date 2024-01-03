@@ -29,7 +29,10 @@
     border: #fff 1px solid;
     margin-top: 25px;
     max-width: 888px;
-    border-radius: 5px;
+    -webkit-border-radius: 5px;    
+border-radius: 5px; 
+-moz-border-radius:5px;
+-khtml-border-radius:5px;
   }
 
   .infomation {
@@ -62,7 +65,10 @@
   }
 
   .modal-border {
-    border-radius: 10px;
+    -webkit-border-radius: 10px;    
+border-radius: 10px; 
+-moz-border-radius:10px;
+-khtml-border-radius:10px;
   }
 
   .header-payment {
@@ -182,8 +188,10 @@
 
     <style>
       .btn-submit{
-        border-radius: 5px;
-        
+        -webkit-border-radius: 5px;    
+        border-radius: 5px; 
+        -moz-border-radius:5px;
+        -khtml-border-radius:5px;
         font-size: 16px;
         margin-top: 15px;
         padding: 5px 40px;
@@ -198,11 +206,14 @@
 
       }
       .btn-cancel{
-        border-radius: 5px;
         font-size: 16px;
         margin-top: 15px;
         padding: 5px 40px;
         outline: #FF3838 1px solid;
+        -webkit-border-radius: 5px;    
+        border-radius: 5px; 
+        -moz-border-radius:5px;
+        -khtml-border-radius:5px;
 
         background-color: #FF3838;
         color: #fff;
@@ -223,7 +234,10 @@
         outline: #005CD3 1px solid;
         color:  #005CD3;
 
-        border-radius: 5px;
+        -webkit-border-radius: 5px;    
+border-radius: 5px; 
+-moz-border-radius:5px;
+-khtml-border-radius:5px;
         font-size: 16px;
         margin-top: 15px;
         padding: 5px 40px;
@@ -354,7 +368,10 @@
     padding: 10px 40px;
     background-color: #005CD3;
     color: white;
-    border-radius: 9px;
+    -webkit-border-radius: 5px;    
+border-radius: 5px; 
+-moz-border-radius:5px;
+-khtml-border-radius:5px;
   }.upload-slipe{
     width: 90%;
     height: auto;

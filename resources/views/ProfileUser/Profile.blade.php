@@ -14,7 +14,10 @@
 
     .profile-header {
         background-color: rgb(255, 255, 255, .25);
-        border-radius: 0 0 40px 40px;
+        -webkit-border-radius:  0 0 40px 40px;    
+border-radius:  0 0 40px 40px; 
+-moz-border-radius: 0 0 40px 40px;
+-khtml-border-radius: 0 0 40px 40px;
         position: relative;
         padding-bottom: 50px;
     }
@@ -37,6 +40,10 @@
         width: 100px;
         height: 100px;
         border-radius: 50%;
+        -webkit-border-radius: 50%;    
+        border-radius: 50%; 
+        -moz-border-radius:50%;
+        -khtml-border-radius:50%;
     }
 
     .edit-profile {
@@ -50,7 +57,10 @@
     .btn-logout {
         color: rgb(244, 244, 244, .7);
         outline: 1px solid rgb(244, 244, 244, .7);
-        border-radius: 50px;
+        -webkit-border-radius: 50px;    
+        border-radius: 50px; 
+        -moz-border-radius:50px;
+        -khtml-border-radius:50px;
         font-size: 12px;
         display: flex;
         align-items: center;
@@ -113,7 +123,10 @@
     }
 
     .btn-submit {
-        border-radius: 5px;
+        -webkit-border-radius: 5px;    
+        border-radius: 5px; 
+        -moz-border-radius:5px;
+        -khtml-border-radius:5px;
         width: auto;
         font-size: 16px;
         margin-top: 15px;
@@ -294,7 +307,10 @@ line-height: normal;
     padding: 3px;
     
   }.btn-submit{
-      border-radius: 5px;
+    -webkit-border-radius: 5px;    
+border-radius: 5px; 
+-moz-border-radius:5px;
+-khtml-border-radius:5px;
       font-size: 16px;
       padding: 5px 40px;
       background-color: #005CD3;
