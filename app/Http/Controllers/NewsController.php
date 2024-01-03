@@ -67,7 +67,7 @@ class NewsController extends Controller
 
         News::create($requestData);
 
-        return redirect('news')->with('flash_message', 'News added!');
+        return redirect('add_news')->with('flash_message', 'News added!');
     }
 
     /**
