@@ -153,7 +153,7 @@ border-radius: 5px;
         </p>
         <ol class="text-white">
             <li>ผู้ที่ต้องการเข้าร่วมกิจกรรมต้องทำการชำระค่าสมัคร เป็นจำนวนเงิน 10,000 บาท </li>
-            <li>ผู้เล่นกิจกรรมต้องทำการลงทะเบียนเข้าร่วม โดยการกรอกข้อมูล Agent code และรหัสผ่าน โดยรหหัสผ่านของคุณคือ วัน/เดือน/ปี เกิด 8 หลักเช่น เกิดวันที่ 1 เดือน มกราคม ค.ศ 1989  รหัสผ่านของคุณคือ <span style="color: #000 !important;">01011989</span> </li>
+            <li>ผู้เล่นกิจกรรมต้องทำการลงทะเบียนเข้าร่วม โดยการกรอกข้อมูล Agent code และรหัสผ่าน โดยรหหัสผ่านของคุณคือ วัน/เดือน/ปี เกิด 8 หลักเช่น เกิดวันที่ 1 เดือน มกราคม ค.ศ 1989  รหัสผ่านของคุณคือ <span style="color: #fff !important;">01011989</span> </li>
             <li>เเสดง QR code ยืนยันการชำระค่าสมัครกับเจ้าหน้าที่เเละรับเสื้อหน้างาน</li>
           </ol>
         <!-- <div class="w-100 float-start">
@@ -270,7 +270,7 @@ border-radius: 5px;
         <h6 class="text-center accept-text-header">
         <b>คุณต้องการเข้าร่วมกิจกรรมใช่หรือไม่ ?</b> 
         </h6>
-        <p class="text-center modal-detail">ยืนยันการเข้าร่วม Franchise builder 2024 และยืนยอนให้บริษัทหักชำระค่าบริการ</p>
+        <p class="text-center modal-detail">ยืนยันการเข้าร่วม Franchise builder 2024 และยินยอมให้บริษัทหักชำระค่าบริการ</p>
         <div class="text-center mt-5">
           <input type="checkbox" name="" id="checkRegis" onchange="AcceptRegister()" > 
           <span class="text-agree">ฉันยอมรับเงื่อนไขเเละข้อกำหนด</span>
