@@ -144,7 +144,6 @@
         padding: 5px 30px;
     }
     .btn-terms{
-        outline: #005CD3 1px solid;
         border-radius: 5px;
         color: #fff;
         padding: 5px 30px;
