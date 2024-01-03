@@ -80,6 +80,7 @@
                 <button type="button" class="btn btn-dark" onclick="select_type('บ้านที่ปิดอยู่');">
                     บ้านที่ปิดอยู่ (<span id="count_team_close"></span>)
                 </button>
+                <!-- <button class="btn float-end btn-dark mx-3" onclick="createExcel()">Excel</button> -->
             </div>
         </div>
 
@@ -163,7 +164,7 @@
         <br>
 
         <div class="table-responsive">
-            <table class="table mb-0 align-middle">
+            <table id="content_table" class="table mb-0 align-middle">
                 <thead>
                     <tr>
                         <th class="text-center">Photo</th>
@@ -356,6 +357,8 @@
                                         </span>
                                     </td>
                                     <td class="text-center">
+                                    </td>
+                                    <td class="text-center d-none">
                                         `+html_action+`
                                     </td>
                                 </tr>
@@ -410,5 +413,14 @@
     }
 
 </script>
+
+<!-- <script src='https://cdn.jsdelivr.net/npm/table2excel@1.0.4/dist/table2excel.min.js'></script>
+
+<script>
+function createExcel() {
+    let table2excel = new Table2Excel();
+    table2excel.export(document.querySelector("#content_table"));
+};
+</script> -->
 
 @endsection

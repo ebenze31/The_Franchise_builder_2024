@@ -280,19 +280,23 @@
                     <input placeholder="ค้นหาด้วยเลขรหัสเท่านั้น" id="Search_input" class="Search_input" name="text" type="text" oninput="Search_data();">
                 </div>
             </div>
+            
         </div>
         
         <hr class="mt-3 mb-3">
 
+        <div class="d-flex justify-content-end w-100">
+            <button class="btn float-end btn-dark mx-3" onclick="createExcel()">Excel</button>
+        </div>
+
         <br>
 
         <div class="table-responsive">
-            <table class="table mb-0 align-middle">
+            <table id="content_table" class="table mb-0 align-middle">
                 <thead>
                     <tr>
                         <th class="text-center">Photo</th>
-                        <th>Information</th>
-                        <th></th>
+                        <th colspan="2">Information</th>
                         <th class="text-center">Time joined</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">QR-code</th>
@@ -423,9 +427,11 @@
                         // photo 
                         let html_img = ''
                         if(result[i].photo){
-                            html_img = `<img src="{{ url('storage')}}/`+result[i].photo+`" class="p-1" alt="">`;
+                            html_img = `<img src="{{ url('storage')}}/`+result[i].photo+`" class="p-1" alt="">
+                                        <span class="d-none">{{ url('storage')}}/`+result[i].photo+`</span>`;
                         }else{
-                            html_img = `<img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt="">`;
+                            html_img = `<img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt="">
+                                        <span class="d-none">{{ url('/img/icon/profile.png') }}</span>`;
                         }
 
                         // Pay_slip 
@@ -463,15 +469,19 @@
                                         </div>
                                     </center>
                                 </td>
-                                <td>
-                                    <b>Account</b> : `+result[i].account+`
-                                    <br>
-                                    <b>Name</b> : `+result[i].name+`
-                                </td>
-                                <td>
-                                    <b>Email</b> : `+result[i].email+`
-                                    <br>
-                                    <b>Phone</b> : `+result[i].phone+`
+                                <td colspan="2">
+                                    <div class="row">
+                                        <div class="col-6">  
+                                            <b>Account</b> : `+result[i].account+`
+                                            <br>
+                                            <b>Name</b> : `+result[i].name+`
+                                        </div>
+                                        <div class="col-6">
+                                            <b>Email</b> : `+result[i].email+`
+                                            <br>
+                                            <b>Phone</b> : `+result[i].phone+`
+                                        </div>
+                                    </div>
                                 </td>
                                 <td id="td_role_`+result[i].account+`" class="text-center">
                                     `+result[i].time_cf_pay_slip+`
@@ -485,6 +495,7 @@
                                     <a href="{{ url('/img/qr_profile')}}/`+result[i].qr_profile+`" target="bank">
                                     <img src="{{ url('/img/qr_profile')}}/`+result[i].qr_profile+`" class="p-1" alt="" style="width:100px;">
                                     </a>
+                                    <span class="d-none">{{ url('/img/qr_profile')}}/`+result[i].qr_profile+`</span>
                                 </td>
                             </tr>
                         `;
@@ -520,5 +531,14 @@
 
 <!-- เพิ่ม jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src='https://cdn.jsdelivr.net/npm/table2excel@1.0.4/dist/table2excel.min.js'></script>
+
+<script>
+function createExcel() {
+    let table2excel = new Table2Excel();
+    table2excel.export(document.querySelector("#content_table"));
+};
+</script>
 
 @endsection
