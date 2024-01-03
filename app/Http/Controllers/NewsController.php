@@ -138,4 +138,8 @@ class NewsController extends Controller
 
         return redirect('news')->with('flash_message', 'News deleted!');
     }
+
+    function add_news(){
+        return view('news.add_news');
+    }
 }

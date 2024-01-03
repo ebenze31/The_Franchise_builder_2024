@@ -72,6 +72,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::get('/view_group', 'GroupsController@view_group');
     Route::resource('group_lines', 'Group_linesController');
     Route::resource('news', 'NewsController');
+    Route::get('add_news', 'NewsController@add_news');
 
     Route::resource('mylog', 'MylogController');
     Route::resource('activities', 'ActivitiesController');
