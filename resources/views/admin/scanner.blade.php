@@ -394,7 +394,7 @@
             if (code) {
 
                 if(code.data){
-                    console.log(code.data);
+                  // console.log.log(code.data);
 
                     let name_Activity = document.querySelector('#name_Activity').value ;
 
@@ -552,7 +552,7 @@
                     fetch("{{ url('/') }}/api/get_activity" + "/" + for_url )
                         .then(response => response.json())
                         .then(data_activity => {
-                            console.log(data_activity);
+                          // console.log.log(data_activity);
 
                             if(data_activity){
                                 let html_modal = `
@@ -588,15 +588,15 @@
 
     function cf_Activities(user_id , name_Activities){
 
-        console.log(user_id);
-        console.log(name_Activities);
+      // console.log.log(user_id);
+      // console.log.log(name_Activities);
         
         name_Activities = name_Activities.replaceAll(" ","_");
 
         fetch("{{ url('/') }}/api/cf_Activities" + "/" + user_id + "/" + name_Activities )
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+              // console.log.log(result);
 
                 if(result){
                     document.querySelector('#btn_close_modal').click();

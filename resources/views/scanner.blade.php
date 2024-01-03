@@ -524,7 +524,7 @@
             fetch("{{ url('/') }}/api/get_activity" + "/" + for_url )
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result);
+                    // console.log(result);
 
                     if(result){
 
@@ -559,15 +559,15 @@
 
     function cf_Activities(user_id , name_Activities){
 
-        console.log(user_id);
-        console.log(name_Activities);
+      // console.log.log(user_id);
+      // console.log.log(name_Activities);
 
         name_Activities = name_Activities.replaceAll(" ","_");
 
         fetch("{{ url('/') }}/api/cf_Activities" + "/" + user_id + "/" + name_Activities )
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+              // console.log.log(result);
 
                 if(result){
                     document.querySelector('#btn_close_modal').click();
