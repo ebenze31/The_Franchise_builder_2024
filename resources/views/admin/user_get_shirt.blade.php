@@ -307,7 +307,10 @@
                 <thead>
                     <tr>
                         <th class="text-center">Photo</th>
-                        <th colspan="2">Information</th>
+                        <th class="text-center">Account</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Phone</th>
                         <th class="text-center">Size</th>
                         <!-- <th class="text-center">Pay slip</th> -->
                         <!-- <th class="text-center"></th> -->
@@ -387,19 +390,17 @@
                                             </div>
                                         </center>
                                     </td>
-                                    <td colspan="2">
-                                        <div class="row">
-                                            <div class="col-6">  
-                                                <b>Account</b> : `+result[i].account+`
-                                                <br>
-                                                <b>Name</b> : `+result[i].name+`
-                                            </div>
-                                            <div class="col-6">
-                                                <b>Email</b> : `+result[i].email+`
-                                                <br>
-                                                <b>Phone</b> : `+result[i].phone+`
-                                            </div>
-                                        </div>
+                                    <td class="text-center">
+                                        `+result[i].account+`
+                                    </td>
+                                    <td class="text-center">
+                                        `+result[i].name+`
+                                    </td>
+                                    <td class="text-center">
+                                        `+result[i].email+`
+                                    </td>
+                                    <td class="text-center">
+                                        `+result[i].phone+`
                                     </td>
                                     <td class="text-center">
                                         `+result[i].shirt_size+`
