@@ -221,4 +221,14 @@ class ActivitiesController extends Controller
         return $data ;
 
     }
+
+    function get_activity($name){
+
+        $name = str_replace("_"," ",$name);
+        
+        $data = Activity::where('name_Activities' , $name)->first();
+
+        return $data ;
+
+    }
 }

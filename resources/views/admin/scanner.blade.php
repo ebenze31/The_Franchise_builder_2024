@@ -324,7 +324,7 @@
   </div>
 </div>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_worng_qrcode">
+<button id="btn_modal_worng_qrcode" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_worng_qrcode">
   <!-- Launch demo modal -->
 </button>
 
@@ -346,7 +346,9 @@
         </p>
         <div class="d-flex justify-content-center">
 
-        <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal"  onclick="start_scanQRCode();">
+            Close
+        </button>
           
         </div>
       </div>
@@ -456,7 +458,7 @@
     {
         let check_name = code.data.split('=')[1];
         if(!check_name){
-            start_scanQRCode();
+            document.querySelector('#btn_modal_worng_qrcode').click();
         }
         else{
             if(type == "ยืนยันการชำระเงิน"){
@@ -545,26 +547,39 @@
                     .then(result => {
                         // console.log(result);
 
-                    let html_modal = `
-                        <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรม</h4>
-                        <h3>`+type+`</h3>
-                        <br>
-                    `;
+                    let for_url = type.replaceAll(" " , "_");
 
-                    let html_footer = `
+                    fetch("{{ url('/') }}/api/get_activity" + "/" + for_url )
+                        .then(response => response.json())
+                        .then(data_activity => {
+                            console.log(data_activity);
 
-                        <button type="button" class="btn btn-submit" onclick="cf_Activities('`+result.id+`' , '`+type+`')">
-                            Confirm
-                        </button>
-                        <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
-                            Back
-                        </button>
-                    `;
+                            if(data_activity){
+                                let html_modal = `
+                                    <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรม</h4>
+                                    <h3>`+type+`</h3>
+                                    <br>
+                                    <img src="{{ url('storage')}}/`+data_activity.icon+`" style="width: 100px;height:100px">
+                                `;
 
-                    document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
-                    document.querySelector('#modal_footer').innerHTML = html_footer;
+                                let html_footer = `
 
-                    document.querySelector('#btn_modal_check_activity').click();
+                                    <button type="button" class="btn btn-submit" onclick="cf_Activities('`+result.id+`' , '`+type+`')">
+                                        Confirm
+                                    </button>
+                                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
+                                        Back
+                                    </button>
+                                `;
+
+                                document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+                                document.querySelector('#modal_footer').innerHTML = html_footer;
+
+                                document.querySelector('#btn_modal_check_activity').click();
+                            }
+                    });
+
+                    
                 });
             }
         }

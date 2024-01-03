@@ -285,7 +285,7 @@
   </div>
 </div>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_worng_qrcode">
+<button id="btn_modal_worng_qrcode" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_worng_qrcode">
   <!-- Launch demo modal -->
 </button>
 
@@ -307,7 +307,9 @@
         </p>
         <div class="d-flex justify-content-center">
 
-        <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal"  onclick="start_scanQRCode();">
+          Close
+        </button>
           
         </div>
       </div>
@@ -389,7 +391,7 @@
                   if(name){
                     name = name.replaceAll("_"," ");
                   }else{
-                    start_scanQRCode();
+                    document.querySelector('#btn_modal_worng_qrcode').click();
                   }
 
                 // console.log(type);
@@ -410,6 +412,8 @@
             }
 
             return;
+        }else{
+
         }
 
       }
@@ -515,27 +519,39 @@
         else{
 
             let name = code.data.split('=')[1];
+            let for_url = type.replaceAll(" " , "_");
 
-            let html_modal = `
-               <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรม</h4>
-              <h3 class="my-4" style="color: #000;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+type+`</h3>
-              <br>
-            `;
+            fetch("{{ url('/') }}/api/get_activity" + "/" + for_url )
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
 
-            let html_footer = `
+                    if(result){
 
-                <button type="button" class="btn btn-submit padding-btn  mt-4" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
-                    Confirm
-                </button>
-                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary padding-btn mt-4" data-dismiss="modal" onclick="start_scanQRCode();">
-                    Back
-                </button>
-            `;
+                      let html_modal = `
+                         <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรม</h4>
+                        <h3 class="my-4" style="color: #000;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+type+`</h3>
+                        <br>
+                        <img src="{{ url('storage')}}/`+result.icon+`" style="width: 100px;height:100px">
+                      `;
 
-            document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
-            document.querySelector('#modal_footer').innerHTML = html_footer;
+                      let html_footer = `
 
-            document.querySelector('#btn_modal_check_activity').click();
+                          <button type="button" class="btn btn-submit padding-btn  mt-4" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
+                              Confirm
+                          </button>
+                          <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary padding-btn mt-4" data-dismiss="modal" onclick="start_scanQRCode();">
+                              Back
+                          </button>
+                      `;
+
+                      document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+                      document.querySelector('#modal_footer').innerHTML = html_footer;
+
+                      document.querySelector('#btn_modal_check_activity').click();
+
+                    }
+              });
 
         }
 
