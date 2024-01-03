@@ -225,46 +225,89 @@
     <div class="card-body">
 
         <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-5">
                 <h4 class="mb-0 text-uppercase">
                     รายชื่อสมาชิกที่ได้รับเสื้อแล้ว
-                    <span style="font-size: 15px;color: gray;">
-                        ทั้งหมด (<span id="count_player" style="font-size: 15px;color: gray;"></span>/<span id="count_account_all" style="font-size: 15px;color: gray;"></span>) คน
+                    <span class="d-none" style="font-size: 15px;color: gray;">
+                        ทั้งหมด (<span id="count_account_all" style="font-size: 15px;color: gray;"></span>) คน
                     </span>
                 </h4>
             </div>
-            <div class="col-12 col-md-6">
-                <div class="InputContainer float-end">
-                    <input placeholder="Search.." id="Search_input" class="Search_input" name="text" type="text" oninput="Search_data();">
+            <div class="col-12 col-md-7">
+                <div class="float-end">
+                    <button type="button" class="btn btn-success" onclick="select_type('S');">
+                        Size S (<span id="count_size_s"></span>)
+                    </button>
+                    <button type="button" class="btn btn-danger" onclick="select_type('M');">
+                        Size M (<span id="count_size_m"></span>)
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="select_type('L');">
+                        Size L (<span id="count_size_l"></span>)
+                    </button>
+                    <button type="button" class="btn btn-warning" onclick="select_type('XL');">
+                        Size XL (<span id="count_size_xl"></span>)
+                    </button>
+                    <button type="button" class="btn btn-info" onclick="select_type('all');">
+                        ทั้งหมด (<span id="count_size_all"></span>)
+                    </button>
                 </div>
             </div>
         </div>
+
+        <script>
+            
+            function select_type(type){
+                // console.log(type);
+                let amount_select = 0 ;
+
+                if(type != "all"){
+
+                    let div_2 = document.querySelectorAll('tr[tr="shirt_size"]');
+                        div_2.forEach(div_2 => {
+                            div_2.classList.add('d-none');
+                        })
+
+                    let div_1 = document.querySelectorAll('tr[shirt_size="'+type+'"]');
+                        div_1.forEach(div_1 => {
+                            div_1.classList.remove('d-none');
+                            amount_select = amount_select + 1 ;
+                        })
+                    
+                }
+                else{
+                    let div_2 = document.querySelectorAll('tr[tr="shirt_size"]');
+                        div_2.forEach(div_2 => {
+                            div_2.classList.remove('d-none');
+                            amount_select = amount_select + 1 ;
+                        })
+                }
+
+                document.querySelector('#amount_select').innerHTML = amount_select ;
+            }
+
+        </script>
         
         <hr class="mt-3 mb-3">
 
         <div class="d-flex justify-content-between">
-            <div >
-                <button type="button" class="btn btn-success">Size S</button>
-                <button type="button" class="btn btn-danger" >Size M</button>
-                <button type="button" class="btn btn-primary" >Size L</button>
-                <button type="button" class="btn btn-warning" >Size XL</button>
+            <div>
+                <p class="float-end m-auto">ที่กำลังดู : <span id="amount_select"></span></p>
             </div>
             <div >
                 <div class=" d-flex align-items-center juustify-content-end w-100">
-                    <!-- <button class="btn float-end btn-dark mx-3" id="pdf" onclick="createPDF()">PDF</button> -->
-                    <p class="float-end m-auto">ที่กำลังดู : <span id="amount_select"></span></p>
-                    <button class="btn float-end btn-dark mx-3" onclick="createExcel()">Excel</button>
+                    <button id="btn_export_excel" class="btn float-end btn-dark mx-3 d-none" onclick="createExcel()">
+                        Export Excel
+                    </button>
                 </div>
             </div>
         </div>
+        <br>
         <div class="table-responsive">
-            <table class="table mb-0 align-middle" id="element-to-print">
+            <table id="content_table" class="table mb-0 align-middle" id="element-to-print">
                 <thead>
                     <tr>
                         <th class="text-center">Photo</th>
                         <th colspan="2">Information</th>
-                        <th class="text-center">Role</th>
-                        <th class="text-center">Status</th>
                         <th class="text-center">Size</th>
                         <!-- <th class="text-center">Pay slip</th> -->
                         <!-- <th class="text-center"></th> -->
@@ -272,119 +315,6 @@
                 </thead>
                 <tbody id="content_tbody">
                     <!-- DATA USER -->
-
-                    <tr tpye="`+html_status+`" class="">
-                        <td>
-                            <center>
-                                <div id="product_img_account_111" class="product-img bg-transparent border">
-                                    `+html_img+`
-                                </div>
-                            </center>
-                        </td>
-                        <td colspan="2">
-                            <div class="row">
-                                <div class="col-6">  
-                                    <b>Account</b> : `+result[i].account+`
-                                    <br>
-                                    <b>Name</b> : `+result[i].name+`
-                                </div>
-                                <div class="col-6">
-                                    <b>Email</b> : `+result[i].email+`
-                                    <br>
-                                    <b>Phone</b> : `+result[i].phone+`
-                                </div>
-                            </div>
-                          
-                            
-                        </td>
-                        <td id="td_role_`+result[i].account+`" class="text-center">
-                            <a class="btn btn-sm btn-`+class_role+` radius-30" style="width:80%;">
-                                `+result[i].role+`
-                            </a>
-                        </td>
-                        <td id="td_status_`+result[i].account+`" class="text-center">
-                            <a class="btn btn-sm btn-`+class_status+` radius-30" style="width:80%;">
-                                `+html_status+`
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            M
-                        </td>
-                    </tr>
-                    <tr tpye="`+html_status+`" class="">
-                        <td>
-                            <center>
-                                <div id="product_img_account_111" class="product-img bg-transparent border">
-                                    `+html_img+`
-                                </div>
-                            </center>
-                        </td>
-                        <td colspan="2">
-                            <div class="row">
-                                <div class="col-6">  
-                                    <b>Account</b> : `+result[i].account+`
-                                    <br>
-                                    <b>Name</b> : `+result[i].name+`
-                                </div>
-                                <div class="col-6">
-                                    <b>Email</b> : `+result[i].email+`
-                                    <br>
-                                    <b>Phone</b> : `+result[i].phone+`
-                                </div>
-                            </div>
-                          
-                            
-                        </td>
-                        <td id="td_role_`+result[i].account+`" class="text-center">
-                            <a class="btn btn-sm btn-`+class_role+` radius-30" style="width:80%;">
-                                `+result[i].role+`
-                            </a>
-                        </td>
-                        <td id="td_status_`+result[i].account+`" class="text-center">
-                            <a class="btn btn-sm btn-`+class_status+` radius-30" style="width:80%;">
-                                `+html_status+`
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            M
-                        </td>
-                    </tr>
-                    <tr tpye="`+html_status+`" class="">
-                        <td>
-                            <center>
-                                <div id="product_img_account_111" class="product-img bg-transparent border">
-                                    `+html_img+`
-                                </div>
-                            </center>
-                        </td>
-                        <td colspan="2">
-                            <div class="row">
-                                <div class="col-6">  
-                                    <b>Account</b> : `+result[i].account+`
-                                    <br>
-                                    <b>Name</b> : `+result[i].name+`
-                                </div>
-                                <div class="col-6">
-                                    <b>Email</b> : `+result[i].email+`
-                                    <br>
-                                    <b>Phone</b> : `+result[i].phone+`
-                                </div>
-                            </div>
-                        </td>
-                        <td id="td_role_`+result[i].account+`" class="text-center">
-                            <a class="btn btn-sm btn-`+class_role+` radius-30" style="width:80%;">
-                                `+result[i].role+`
-                            </a>
-                        </td>
-                        <td id="td_status_`+result[i].account+`" class="text-center">
-                            <a class="btn btn-sm btn-`+class_status+` radius-30" style="width:80%;">
-                                `+html_status+`
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            M
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -396,21 +326,114 @@
   <script src='https://cdn.jsdelivr.net/npm/table2excel@1.0.4/dist/table2excel.min.js'></script>
 
 <script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        get_user_get_shirt('all');
+    });
+
+    function get_user_get_shirt(type){
+
+        fetch("{{ url('/') }}/api/get_user_get_shirt" + '/' + type)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                if(result){
+                    setTimeout(() => {
+                        document.querySelector('#count_account_all').innerHTML = result.length ;
+                        document.querySelector('#amount_select').innerHTML = result.length ;
+                        document.querySelector('#count_size_all').innerHTML = result.length ;
+                        
+                        let content_tbody = document.querySelector('#content_tbody');
+                            content_tbody.innerHTML = '';
+
+                        let count_size_s = 0 ;
+                        let count_size_m = 0 ;
+                        let count_size_l = 0 ;
+                        let count_size_xl = 0 ;
+
+                        for (let i = 0; i < result.length; i++) {
+
+                            if (result[i].shirt_size == 'S') {
+                                count_size_s = count_size_s + 1;
+                            }
+                            else if (result[i].shirt_size == 'M') {
+                                count_size_m = count_size_m + 1;
+                            }
+                            else if (result[i].shirt_size == 'L') {
+                                count_size_l = count_size_l + 1;
+                            }
+                            else if (result[i].shirt_size == 'XL') {
+                                count_size_xl = count_size_xl + 1;
+                            }
+
+                            // photo 
+                            let html_img = ''
+                            if(result[i].photo){
+                                html_img = `<img src="{{ url('storage')}}/`+result[i].photo+`" class="p-1" alt=""> 
+                                            <span class="d-none">{{ url('storage')}}/`+result[i].photo+`</span>`;
+                            }else{
+                                html_img = `<img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt=""> 
+                                            <span class="d-none">{{ url('/img/icon/profile.png') }}</span>`;
+                            }
+
+                            let html = `
+                                <tr tr="shirt_size" shirt_size="`+result[i].shirt_size+`" class="">
+                                    <td>
+                                        <center>
+                                            <div id="product_img_account_111" class="product-img bg-transparent border">
+                                                `+html_img+`
+                                            </div>
+                                        </center>
+                                    </td>
+                                    <td colspan="2">
+                                        <div class="row">
+                                            <div class="col-6">  
+                                                <b>Account</b> : `+result[i].account+`
+                                                <br>
+                                                <b>Name</b> : `+result[i].name+`
+                                            </div>
+                                            <div class="col-6">
+                                                <b>Email</b> : `+result[i].email+`
+                                                <br>
+                                                <b>Phone</b> : `+result[i].phone+`
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        `+result[i].shirt_size+`
+                                    </td>
+                                </tr>
+                            `;
+
+                            content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                        }
+
+
+                        document.querySelector('#count_size_s').innerHTML = count_size_s ;
+                        document.querySelector('#count_size_m').innerHTML = count_size_m ;
+                        document.querySelector('#count_size_l').innerHTML = count_size_l ;
+                        document.querySelector('#count_size_xl').innerHTML = count_size_xl ;
+
+                        document.querySelector('#btn_export_excel').classList.remove('d-none');
+
+                    }, 500);
+                }
+
+            });
+
+    }
+
     function createExcel() {
         let table2excel = new Table2Excel();
-        table2excel.export(document.querySelector("#element-to-print"));
+        let currentDate = new Date();
+        let formattedDate = currentDate.toISOString().replace(/[:.]/g, "_"); // สร้างรูปแบบของวันที่ในรูปแบบที่ไม่มีเครื่องหมาย : และ .
+
+        // ตั้งชื่อไฟล์เป็น "รายชื่อสมาชิกทั้งหมด-2023-12-31T12_30_45.678Z.xlsx" (ตัวอย่าง)
+        let fileName = `รายชื่อสมาชิกที่ได้รับเสื้อแล้ว-${formattedDate}.xlsx`;
+
+        table2excel.export(document.querySelector("#content_table"), fileName);
     };
-  function createPDF() {
-            var element = document.getElementById('element-to-print');
-            html2pdf(element, {
-                margin:1,
-                padding:0,
-                filename: 'myfile.pdf',
-                image: { type: 'jpeg', quality: 1 },
-                html2canvas: { scale: 2,  logging: true },
-                jsPDF: { unit: 'in', format: 'A2', orientation: 'P' },
-                class: createPDF
-            });
-        };
 </script>
 @endsection

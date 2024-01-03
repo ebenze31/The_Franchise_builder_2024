@@ -286,7 +286,7 @@
         <hr class="mt-3 mb-3">
 
         <div class="d-flex justify-content-end w-100">
-            <button class="btn float-end btn-dark mx-3" onclick="createExcel()">Excel</button>
+            <button id="btn_export_excel" class="btn float-end btn-dark mx-3 d-none" onclick="createExcel()">Export Excel</button>
         </div>
 
         <br>
@@ -516,6 +516,8 @@
                     // console.log("-----");
                     // console.log(arr_member);
 
+                    document.querySelector('#btn_export_excel').classList.remove('d-none');
+
                 }
 
             }, 500);
@@ -535,10 +537,22 @@
 <script src='https://cdn.jsdelivr.net/npm/table2excel@1.0.4/dist/table2excel.min.js'></script>
 
 <script>
+// function createExcel() {
+//     let table2excel = new Table2Excel();
+//     table2excel.export(document.querySelector("#content_table"));
+// };
+
 function createExcel() {
     let table2excel = new Table2Excel();
-    table2excel.export(document.querySelector("#content_table"));
+    let currentDate = new Date();
+    let formattedDate = currentDate.toISOString().replace(/[:.]/g, "_"); // สร้างรูปแบบของวันที่ในรูปแบบที่ไม่มีเครื่องหมาย : และ .
+
+    // ตั้งชื่อไฟล์เป็น "รายชื่อสมาชิกทั้งหมด-2023-12-31T12_30_45.678Z.xlsx" (ตัวอย่าง)
+    let fileName = `รายชื่อผู้เข้าร่วมกิจกรรม-${formattedDate}.xlsx`;
+
+    table2excel.export(document.querySelector("#content_table"), fileName);
 };
+
 </script>
 
 @endsection

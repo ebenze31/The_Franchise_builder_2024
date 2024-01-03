@@ -87,7 +87,7 @@
         <script>
             
             function select_type(type){
-                console.log(type);
+              // console.log.log(type);
                 let count_show_group = 0 ;
 
                 let div_eiei = document.querySelectorAll('tr[class="member-list-row"]');
@@ -171,7 +171,7 @@
                         <th>Information</th>
                         <!-- <th class="text-center">Active</th> -->
                         <th class="text-center">Status</th>
-                        <th class="text-center">Action</th>
+                        <!-- <th class="text-center">Action</th> -->
                         <!-- <th class="text-center">Pay slip</th> -->
                         <!-- <th class="text-center"></th> -->
                     </tr>
@@ -308,13 +308,13 @@
                             let html_list_member = `` ;
                             let btn_view_member = `` ;
 
-                            console.log(count_member);
+                            // console.log(count_member);
 
                             if(count_member != 0){
 
                                 html_list_member = `
                                     <tr id="list_member_`+result[i].id+`" class="member-list-row d-none">
-                                        <td id="content_list_member_`+result[i].id+`" colspan="4" class="container">
+                                        <td id="content_list_member_`+result[i].id+`" colspan="4" class="container p-3">
                                         </td>
                                     </tr>
                                 `;
@@ -356,8 +356,6 @@
                                             <b>`+text_status+`</b>
                                         </span>
                                     </td>
-                                    <td class="text-center">
-                                    </td>
                                     <td class="text-center d-none">
                                         `+html_action+`
                                     </td>
@@ -375,20 +373,47 @@
                                     fetch("{{ url('/') }}/api/get_data_user" + "/" + member_arr[zx])
                                         .then(response => response.json())
                                         .then(user => {
-                                            console.log(user);
-                                        loop_member = `
-                                            <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
-                                                <div class="">
-                                                    <img src="{{ url('storage')}}/`+user.photo+`" class="rounded-circle" width="46" height="46" alt="">
-                                                </div>
-                                                <div class="ms-2">
-                                                    <h6 class="mb-1 font-14">`+user.name+`</h6>
-                                                    <p class="mb-0 font-13 text-secondary">`+user.phone+`</p>
-                                                </div>
-                                            </div>
-                                        `;
+                                            // console.log(user);
 
-                                        document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', loop_member); // แทรกล่างสุด
+                                            let html_shirt_size ;
+                                            if(user.shirt_size){
+                                                html_shirt_size = `
+                                                    <h6 class="mb-1 font-14 text-success"><b>รับเสื้อแล้ว</b></h6>
+                                                    <p class="mb-0 font-13 text-secondary">Size : `+user.shirt_size+`</p>
+                                                `;
+                                            }else{
+                                                html_shirt_size = `
+                                                    <h6 class="mb-1 font-14 text-danger"><b>ยังไม่ได้รับเสื้อ</b></h6>
+                                                `;
+                                            }
+
+                                            loop_member = `
+                                                <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
+                                                    <div class="col-2">
+                                                    <center>
+                                                        <img src="{{ url('storage')}}/`+user.photo+`" class="rounded-circle" width="46" height="46" alt="">
+                                                    </center>
+                                                    </div>
+                                                    <div class="col-5">
+                                                        <h6 class="mb-1 font-14">
+                                                            Name : `+user.name+`
+                                                        </h6>
+                                                        <p class="mb-0 font-13 text-secondary">
+                                                            Account : `+user.account+`
+                                                        </p>
+                                                        <p class="mb-0 font-13 text-secondary">
+                                                            Phone : `+user.phone+`
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-5">
+                                                        <div class="float-end text-center">
+                                                            `+html_shirt_size+`
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            `;
+
+                                            document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', loop_member); // แทรกล่างสุด
                                     });
                                 }
 

@@ -34,11 +34,11 @@ Route::get('/check_pdpa/{account}', 'ProfileController@check_pdpa');
 Route::get('/update_pdpa/{account}', 'ProfileController@update_pdpa');
 Route::get('/keep_name_Activity/{name_Activity}/{user_id}', 'ProfileController@keep_name_Activity');
 Route::get('/cf_shirt_size/{account}/{Title_value}', 'ProfileController@cf_shirt_size');
-// Route::get('/cf_shirt_size/{account}/{Title_value}', 'ProfileController@cf_shirt_size');
 Route::get('/get_time_request_join/{user_id}', 'ProfileController@get_time_request_join');
 Route::get('/get_data_user/{user_id}', 'ProfileController@get_data_user');
 Route::get('/get_data_me/{user_id}', 'ProfileController@get_data_me');
 Route::get('/get_data_badges/{user_id}', 'ProfileController@get_data_badges');
+Route::get('/get_user_get_shirt/{type}', 'ProfileController@get_user_get_shirt');
 
 // PC POINT
 Route::post('/create_score/excel', 'Pc_pointsController@create_score');

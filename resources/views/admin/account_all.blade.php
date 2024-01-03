@@ -253,7 +253,7 @@
                 <div class=" d-flex align-items-center juustify-content-end w-100">
                     <!-- <button class="btn float-end btn-dark mx-1 d-none" id="pdf" onclick="createPDF()">PDF</button> -->
                     <p class="float-end m-auto">ที่กำลังดู : <span id="amount_select"></span></p>
-                    <button class="btn float-end btn-dark mx-3" onclick="createExcel()">Excel</button>
+                    <button id="btn_export_excel" class="btn float-end btn-dark mx-3 d-none" onclick="createExcel()">Export Excel</button>
                 </div>
             </div>
         </div>
@@ -511,6 +511,7 @@
 
                         document.querySelector('#count_player').innerHTML = Player;
 
+                        document.querySelector('#btn_export_excel').classList.remove('d-none');
                     }
 
                 }, 500);
@@ -574,10 +575,22 @@
 <script src='https://cdn.jsdelivr.net/npm/table2excel@1.0.4/dist/table2excel.min.js'></script>
 
 <script>
+// function createExcel() {
+//     let table2excel = new Table2Excel();
+//     table2excel.export(document.querySelector("#content_table"));
+// };
+
 function createExcel() {
     let table2excel = new Table2Excel();
-    table2excel.export(document.querySelector("#content_table"));
+    let currentDate = new Date();
+    let formattedDate = currentDate.toISOString().replace(/[:.]/g, "_"); // สร้างรูปแบบของวันที่ในรูปแบบที่ไม่มีเครื่องหมาย : และ .
+
+    // ตั้งชื่อไฟล์เป็น "รายชื่อสมาชิกทั้งหมด-2023-12-31T12_30_45.678Z.xlsx" (ตัวอย่าง)
+    let fileName = `รายชื่อสมาชิกทั้งหมด-${formattedDate}.xlsx`;
+
+    table2excel.export(document.querySelector("#content_table"), fileName);
 };
+
 
 function createPDF() {
     var element = document.getElementById('content_table');

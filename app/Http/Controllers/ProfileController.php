@@ -506,4 +506,14 @@ class ProfileController extends Controller
         return $data ;
     }
 
+    function get_user_get_shirt($type){
+
+        if($type == 'all'){
+            $data_user = User::where('shirt_size', "!=" , null)->get();
+        }
+
+        return $data_user ;
+
+    }
+
 }
