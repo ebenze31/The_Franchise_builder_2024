@@ -164,8 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-        Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
-        
+        Phattarachai\LineNotify\LineNotifyServiceProvider::class,
         /*
          * Package Service Providers...
          */
