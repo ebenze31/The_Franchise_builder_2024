@@ -171,8 +171,8 @@
 <!-- END modal -->
 
 <!-- Button trigger modal -->
-<button id="btn_modal_check_activity" type="button" class="d-ndone" data-toggle="modal" data-target="#modal_check_activity">
-    <!--  -->asda
+<button id="btn_modal_check_activity" type="button" class="d-none" data-toggle="modal" data-target="#modal_check_activity">
+    <!--  -->
 </button>
 
 <!-- Modal -->
