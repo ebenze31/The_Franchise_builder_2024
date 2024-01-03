@@ -197,6 +197,7 @@
         font-size: 9px;
     } #header-text-login{
         width: 140px !important;
+        max-width: 140px !important;
         margin-top: 10px;
     }.imgCloseBTN{
         width: 25px;
