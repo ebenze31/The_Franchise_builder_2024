@@ -232,21 +232,17 @@
 <!-- Modal -->
 <div class="modal fade" id="modal_check_activity" tabindex="-1" aria-labelledby="Label_modal_check_activity" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content py-3 mx-4">
+        <div class="modal-content py-3 mx-5">
             <div class="modal-body">
                 <div class="row">
                     <div id="content_modal_check_activity" class="col-12 text-center">
                         <!-- DATA -->
-                        
-                    </div>
-                    <div class="col-12 text-center mt-4 mb-0">
-                        <p>เจ้าหน้าที่ผู้ยืนยัน : {{ Auth::user()->name }}</p>
-                    </div>
+                    
                 </div>
             </div>
             <div id="modal_footer" class="text-center mb-3">
                 <!-- BTN -->
-                
+        
             </div>
         </div>
     </div>
@@ -436,10 +432,10 @@
                 .then(result => {
                     // console.log(result);
                     let html_modal = `
-                        <h4 class="mt-3" style="font-weight: bold;">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
-                        <h3 class="text-info my-4" style="font-weight: lighter;">`+result.name+`</h3>
-                        <p>ในการเข้าร่วมกิจกรรม .....</p>
-                        <h3>`+type+`</h3>
+                        <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
+                        <h3 class="my-4" style="color: #38D7D7;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+result.name+`</h3>
+                        <p style="font-size: 12px;color: #002449;font-style: normal;font-weight: 400;line-height: normal;">ในการเข้าร่วมกิจกรรม .....</p>
+                        <h3 style="color: #002449;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">`+type+`</h3>
                     `;
 
                     let html_footer = `
@@ -466,22 +462,26 @@
                 .then(result => {
                     // console.log(result);
                     let html_modal = `
-                        <h4 class="mt-3" style="font-weight: bold;">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
-                        <h3 class="text-info my-4" style="font-weight: lighter;">`+result.name+`</h3>
-                        <p>ในการเข้าร่วมกิจกรรม .....</p>
-                        <h3>`+type+`</h3>
-                        <br>
-                        
-                        <div style="background-color: #090823;border-radius: 5px;padding: 10px;">
-                            <h4 class="text-white" style="font-weight: lighter;">Title</h4>
-                            <div class="w-100 ">
-                                <div class="d-flex justify-content-between px-5 text-white">
-                                    <div><input type="radio" id="S" name="Title" value="S"/>&nbsp;S</div>
-                                    <div><input type="radio" id="M" name="Title" value="M"/>&nbsp;M</div>
-                                    <div><input type="radio" id="L" name="Title" value="L"/>&nbsp;L</div>
-                                    <div><input type="radio" id="XL" name="Title" value="XL"/>&nbsp;XL</div>
+                        <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรมของ</h4>
+                            <h3 class="my-4" style="color: #38D7D7;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+result.name+`</h3>
+                            <p style="font-size: 12px;color: #002449;font-style: normal;font-weight: 400;line-height: normal;">ในการเข้าร่วมกิจกรรม .....</p>
+                            <h3 style="color: #002449;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">`+type+`</h3>
+                            <br>
+                            
+                            <div class="mx-2 py-3" style="background-color: #090823;border-radius: 5px;">
+                                <h4 class="text-white" style="font-weight: lighter;">Title</h4>
+                                <div class="w-100 ">
+                                    <div class="d-flex justify-content-between px-3 text-white">
+                                        <div><input type="radio" id="S" name="Title" value="S"/>&nbsp;S</div>
+                                        <div><input type="radio" id="M" name="Title" value="M"/>&nbsp;M</div>
+                                        <div><input type="radio" id="L" name="Title" value="L"/>&nbsp;L</div>
+                                        <div><input type="radio" id="XL" name="Title" value="XL"/>&nbsp;XL</div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-12 text-center mt-2 mb-0">
+                            <p>เจ้าหน้าที่ผู้ยืนยัน : {{ Auth::user()->name }}</p>
                         </div>
                     `;
 

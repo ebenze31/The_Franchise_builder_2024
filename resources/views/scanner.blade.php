@@ -141,7 +141,10 @@
     box-shadow: 0px 0px 15px 1px #00FBFF;
     color: #fff;
 
-  }
+  }.padding-btn{
+        padding: 10px 30px !important;
+        border-radius: 5px;
+    }
 </style>
 
 <a id="a_to_account_scan" class="d-none"></a>
@@ -168,8 +171,8 @@
 <!-- END modal -->
 
 <!-- Button trigger modal -->
-<button id="btn_modal_check_activity" type="button" class="d-none" data-toggle="modal" data-target="#modal_check_activity">
-    <!--  -->
+<button id="btn_modal_check_activity" type="button" class="d-ndone" data-toggle="modal" data-target="#modal_check_activity">
+    <!--  -->asda
 </button>
 
 <!-- Modal -->
@@ -186,7 +189,6 @@
             </div>
             <div id="modal_footer" class="text-center mb-3">
                 <!-- BTN -->
-               
             </div>
         </div>
     </div>
@@ -445,24 +447,31 @@
             let name = code.data.split('=')[1];
 
             let html_modal = `
-                <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรม</h4>
-                <h3>`+type+`</h3>
-                <br>
-                <h4>Title</h4>
-                <input type="radio" id="S" name="Title" value="S"/>S
-                <input type="radio" id="M" name="Title" value="M"/>M
-                <input type="radio" id="L" name="Title" value="L"/>L
-                <input type="radio" id="XL" name="Title" value="XL"/>XL
+              <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรม</h4>
+              <h3 class="my-4" style="color: #000;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+type+`</h3>
+              <br>
+              
+              <div class="mx-2 py-3" style="background-color: #090823;border-radius: 5px;">
+                  <h4 class="text-white" style="font-weight: lighter;">Title</h4>
+                  <div class="w-100 ">
+                      <div class="d-flex justify-content-between px-3 text-white">
+                          <div><input type="radio" id="S" name="Title" value="S"/>&nbsp;S</div>
+                          <div><input type="radio" id="M" name="Title" value="M"/>&nbsp;M</div>
+                          <div><input type="radio" id="L" name="Title" value="L"/>&nbsp;L</div>
+                          <div><input type="radio" id="XL" name="Title" value="XL"/>&nbsp;XL</div>
+                      </div>
+                  </div>
+              </div>
             `;
 
             let html_footer = `
 
-                <button type="button" class="btn btn-submit" onclick="cf_shirt_size('`+"{{ Auth::user()->account }}"+`')">
-                    Confirm
-                </button>
-                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
-                    Back
-                </button>
+              <button type="button" class="btn btn-submit padding-btn  mt-4" onclick="cf_shirt_size('`+"{{ Auth::user()->account }}"+`')">
+                  Confirm
+              </button>
+              <button id="btn_close_modal" type="button" class="btn btn-secondary padding-btn mt-4" data-dismiss="modal" onclick="start_scanQRCode();">
+                  Back
+              </button>
             `;
 
             document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
@@ -475,17 +484,17 @@
             let name = code.data.split('=')[1];
 
             let html_modal = `
-                <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรม</h4>
-                <h3>`+type+`</h3>
-                <br>
+               <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรม</h4>
+              <h3 class="my-4" style="color: #000;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+type+`</h3>
+              <br>
             `;
 
             let html_footer = `
 
-                <button type="button" class="btn btn-submit" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
+                <button type="button" class="btn btn-submit padding-btn  mt-4" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
                     Confirm
                 </button>
-                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
+                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary padding-btn mt-4" data-dismiss="modal" onclick="start_scanQRCode();">
                     Back
                 </button>
             `;
