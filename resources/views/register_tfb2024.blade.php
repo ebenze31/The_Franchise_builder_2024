@@ -195,7 +195,6 @@ border-radius: 10px;
         font-size: 16px;
         margin-top: 15px;
         padding: 5px 40px;
-
         background-color: #005CD3;
         color: #fff;
       }
@@ -209,7 +208,6 @@ border-radius: 10px;
         font-size: 16px;
         margin-top: 15px;
         padding: 5px 40px;
-        outline: #FF3838 1px solid;
         -webkit-border-radius: 5px;    
         border-radius: 5px; 
         -moz-border-radius:5px;
@@ -231,7 +229,7 @@ border-radius: 10px;
         color: #128DFF;
       }
       .btn-outline-submit{
-        outline: #005CD3 1px solid;
+        border: #005CD3 1px solid;
         color:  #005CD3;
 
         -webkit-border-radius: 5px;    
