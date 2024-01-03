@@ -133,9 +133,9 @@ class Contact_staffController extends Controller
 
         if( $data_user->group_status == "มีบ้านแล้ว" || $data_user->group_status == "ยืนยันการสร้างบ้านแล้ว"){
             if( intval($data_user->group_id) < 9 ){
-                $team = '0'.$data_user->group_id
+                $team = '0'.$data_user->group_id ;
             }else{
-                $team = $data_user->group_id
+                $team = $data_user->group_id ;
             }
         }
 
