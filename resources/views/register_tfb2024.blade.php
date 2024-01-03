@@ -338,7 +338,7 @@ border-radius: 5px;
     <div class="modal-content " style="background-color: rgb(0,0,0,0);">
       <div class="modal-body px-2 modal-border" style="background-color: #fff">
         <h6 class="modal-title text-center pb-2 header-infomation mb-4" id="exampleModalLabel"> 
-          <b>กิจกรรม THE FRANCHISE BUILDER 2024</b> 
+          <b style="letter-spacing: 0px;">กิจกรรม THE FRANCHISE BUILDER 2024</b> 
         </h6>
           
         <p class="sub-header-infomation mb-4">เงื่อนไขการเข้าร่วมกิจกรรม</p>
