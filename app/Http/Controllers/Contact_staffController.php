@@ -129,7 +129,23 @@ class Contact_staffController extends Controller
 
         $data_user = User::where('id' ,$requestData )->first();
 
-        $message = "คำถามจากคุณ " . $data_user->name . "\n" . $requestData['question'] . "\n" . "เบอร์ติดต่อ " . $requestData['phone'];
+        $team = '-';
+
+        if( $data_user->group_status == "มีบ้านแล้ว" || $data_user->group_status == "ยืนยันการสร้างบ้านแล้ว"){
+            if( intval($data_user->group_id) < 9 ){
+                $team = '0'.$data_user->group_id
+            }else{
+                $team = $data_user->group_id
+            }
+        }
+
+        $message =  "Question request !" . "\n" .
+                    "User : " . $data_user->name . "\n" .
+                    "ID : " . $data_user->account . "\n" .
+                    "Team  : " . $team . "\n" .
+                    "Date  : " . date("Y-m-d H:i") . " น. \n\n" .
+                    "Question : " . $requestData['question'] . "\n" .
+                    "Contact  : " . $requestData['phone'] . "\n" ;
 
         $line = new Line(env('LINE_NOTIFY_TOKEN'));
         $line->send($message);
