@@ -113,7 +113,12 @@
                                 name_group = result[i].group_id ;
                             }
 
-                            // arr_group = arr_group.push(result[i].group_id);
+                            let check_team = arr_group.includes(result[i].group_id.toString());
+
+                            if(!check_team){
+                                arr_group.push(result[i].group_id.toString());
+                            }
+
 
                             let html_user = `
                                 <div class="p-1">
@@ -134,7 +139,10 @@
                                                 Phone : `+result[i].phone+`
                                             </p>
                                         </div>
-                                        <div class="col-5">
+                                        <div class="col-2">
+                                            <b>Time joined</b> <br> `+result[i].time_join+`
+                                        </div>
+                                        <div class="col-2">
                                             <div class="float-end text-center">
                                                 Team : `+name_group+`
                                             </div>
@@ -147,7 +155,11 @@
 
                         }
 
-                        // console.log(arr_group);
+                        setTimeout(() => {
+                            console.log(arr_group);
+
+                            // Team
+                        }, 1000);
 
                     }, 500);
 
