@@ -56,7 +56,7 @@ border-radius:  0 0 40px 40px;
 
     .btn-logout {
         color: rgb(244, 244, 244, .7);
-        outline: 1px solid rgb(244, 244, 244, .7);
+        border: 1px solid rgb(244, 244, 244, .7);
         -webkit-border-radius: 50px;    
         border-radius: 50px; 
         -moz-border-radius:50px;
