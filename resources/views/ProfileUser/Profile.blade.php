@@ -337,6 +337,8 @@ font-weight: 400;
 line-height: normal;
     }.unactive-img{
         filter: grayscale(100%);
+    }.user_phone:focus{
+        box-shadow: none !important;
     }
 </style>
 <button id="btn_contact_staff" class="btn btn-service" data-toggle="modal" data-target="#modal_contact_staff">               
@@ -390,7 +392,7 @@ line-height: normal;
                 <div class=" d-flex justify-content-center">
                     <img src="{{ url('/img/icon/contact-success.png') }}"  class="my-3" style="width: 149px;height: 71px;">
                 </div>
-               <p class="my-1" style="color: #07285A;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;">
+               <p class="my-1" style="color: #07285A;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;letter-spacing: 0px;">
                     ทีมงานรับเรื่องเเล้วเเละจะติดต่อกลับภายหลัง
                 </p>
                 <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal" aria-label="Close">
