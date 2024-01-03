@@ -243,14 +243,18 @@
         
         <hr class="mt-3 mb-3">
 
-        <div class="row">
-            <div class="col-6">
+        <div class="d-flex justify-content-between">
+            <div >
                 <button type="button" class="btn btn-success" onclick="select_type('เข้าร่วมแล้ว');">เข้าร่วมแล้ว</button>
                 <button type="button" class="btn btn-secondary" onclick="select_type('ยังไม่เข้าร่วม');">ยังไม่เข้าร่วม</button>
                 <button type="button" class="btn btn-info" onclick="select_type('ทั้งหมด');">ทั้งหมด</button>
             </div>
-            <div class="col-6">
-                <p class="mt-3 float-end">ที่กำลังดู : <span id="amount_select"></span></p>
+            <div >
+                <div class=" d-flex align-items-center juustify-content-end w-100">
+                    <button class="btn float-end btn-dark mx-1 d-one" id="pdf" onclick="createPDF()">PDF</button>
+                    <button class="btn float-end btn-dark mx-1" onclick="createExcel()">Excel</button>
+                    <p class="float-end m-auto">ที่กำลังดู : <span id="amount_select"></span></p>
+                </div>
             </div>
         </div>
         
@@ -307,12 +311,11 @@
         <br>
 
         <div class="table-responsive">
-            <table class="table mb-0 align-middle">
+            <table class="table mb-0 align-middle" id="content_table">
                 <thead>
                     <tr>
                         <th class="text-center">Photo</th>
-                        <th>Information</th>
-                        <th></th>
+                        <th colspan="2">Information</th>
                         <th class="text-center">Role</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">QR-code</th>
@@ -399,9 +402,11 @@
                             // photo 
                             let html_img = ''
                             if(result[i].photo){
-                                html_img = `<img src="{{ url('storage')}}/`+result[i].photo+`" class="p-1" alt="">`;
+                                html_img = `<img src="{{ url('storage')}}/`+result[i].photo+`" class="p-1" alt=""> 
+                                            <span class="d-none">{{ url('storage')}}/`+result[i].photo+`</span>`;
                             }else{
-                                html_img = `<img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt="">`;
+                                html_img = `<img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt=""> 
+                                            <span class="d-none">{{ url('/img/icon/profile.png') }}</span>`;
                             }
 
                             // Pay_slip 
@@ -439,15 +444,19 @@
                                             </div>
                                         </center>
                                     </td>
-                                    <td>
-                                        <b>Account</b> : `+result[i].account+`
-                                        <br>
-                                        <b>Name</b> : `+result[i].name+`
-                                    </td>
-                                    <td>
-                                        <b>Email</b> : `+result[i].email+`
-                                        <br>
-                                        <b>Phone</b> : `+result[i].phone+`
+                                    <td colspan="2">
+                                        <div class="row">
+                                            <div class="col-6">  
+                                                <b>Account</b> : `+result[i].account+`
+                                                <br>
+                                                <b>Name</b> : `+result[i].name+`
+                                            </div>
+                                            <div class="col-6">
+                                                <b>Email</b> : `+result[i].email+`
+                                                <br>
+                                                <b>Phone</b> : `+result[i].phone+`
+                                            </div>
+                                        </div>
                                     </td>
                                     <td id="td_role_`+result[i].account+`" class="text-center">
                                         <a class="btn btn-sm btn-`+class_role+` radius-30" style="width:80%;">
@@ -459,6 +468,10 @@
                                             `+html_status+`
                                         </a>
                                     </td>
+                                    <td class="d-">
+                                        <img src="{{ url('/img/qr_profile')}}/`+result[i].qr_profile+`" class="p-1" alt="" style="width:100px;">
+                                        <span class="d-none">{{ url('/img/qr_profile')}}/`+result[i].qr_profile+`</span>
+                                    </td>
                                     <td class="d-none">
                                         <center>
                                             `+html_Pay_slip+`
@@ -468,9 +481,6 @@
                                         <center>
                                             `+btn_cf_Pay_slip+`
                                         </center>
-                                    </td>
-                                    <td class="d-">
-                                        <img src="{{ url('/img/qr_profile')}}/`+result[i].qr_profile+`" class="p-1" alt="" style="width:100px;">
                                     </td>
                                 </tr>
                             `;
@@ -559,5 +569,27 @@
 
 <!-- เพิ่ม jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.bootcss.com/html2pdf.js/0.9.1/html2pdf.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/table2excel@1.0.4/dist/table2excel.min.js'></script><script  src="./script.js"></script>
 
+<script>
+function createExcel() {
+    let table2excel = new Table2Excel();
+    table2excel.export(document.querySelector("#content_table"));
+};
+
+function createPDF() {
+    var element = document.getElementById('content_table');
+    html2pdf(element, {
+        margin:1,
+        padding:0,
+        filename: 'myfile.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2,  logging: true },
+        jsPDF: { unit: 'in', format: 'A2', orientation: 'P' },
+        class: createPDF
+    });
+};
+</script>
 @endsection
