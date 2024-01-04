@@ -55,11 +55,11 @@
         <div class="row">
             <div class="col-6">
                 <span style="font-size: 15px;color: gray;">
-                    บ้านเปิดอยู่ :  <span id="count_team_active" style="font-size: 15px;color: gray;"></span>
+                    Active :  <span id="count_team_active" style="font-size: 15px;color: gray;"></span>
                 </span>
             </div>
             <div class="col-6">
-                <p class="mt-3 float-end">ที่กำลังดู : <span id="count_show_group"></span></p>
+                <p class="mt-3 float-end">All : <span id="count_show_group"></span></p>
             </div>
         </div>
 
