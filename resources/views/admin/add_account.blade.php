@@ -252,9 +252,9 @@
                                         <label for="role" class="form-label">Role</label>
                                         <select name="role" id="role" class="form-select" onchange="check_data_Registration();">
                                             <option selected value="AL">AL</option>
-                                            <option selected value="Super-admin">Super-admin</option>
-                                            <option selected value="Admin">Admin</option>
-                                            <option selected value="Staff">Staff</option>
+                                            <option value="Super-admin">Super-admin</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Staff">Staff</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
