@@ -115,9 +115,12 @@
     <div class="row">
 
         <div class="div-btn-back">
-            <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">
+            <!-- <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">
                <i class="fa-solid fa-chevron-left"></i>
-            </button>
+            </button> -->
+            <a href="{{ url('/groups') }}" class="btn btn-sm btn-back  mt-3" >
+               <i class="fa-solid fa-chevron-left"></i>
+            </a>
         </div>
 
         <div class="col-12">
