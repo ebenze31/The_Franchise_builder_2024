@@ -455,6 +455,7 @@ class ProfileController extends Controller
                 ])
             ->update([
                     'shirt_size' => $Title_value,
+                    'time_get_shirt' => date("Y-m-d H:i:s"),
                 ]);
 
         $dataActivities = Activity::where('name_Activities' , "รับเสื้อ")->first();
@@ -527,7 +528,9 @@ class ProfileController extends Controller
     function get_user_get_shirt($type){
 
         if($type == 'all'){
-            $data_user = User::where('shirt_size', "!=" , null)->get();
+            $data_user = User::where('shirt_size', "!=" , null)
+                ->orderBy('time_get_shirt', 'DESC')
+                ->get();
         }
 
         return $data_user ;

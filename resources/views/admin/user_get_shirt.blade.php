@@ -392,6 +392,9 @@
                                         </center>
                                     </td>
                                     <td class="text-center">
+                                        `+result[i].time_get_shirt+`
+                                    </td>
+                                    <td class="text-center">
                                         `+result[i].account+`
                                     </td>
                                     <td class="text-center">
