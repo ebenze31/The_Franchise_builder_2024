@@ -183,7 +183,7 @@
                 <div class="row">
                     <div id="content_modal_check_activity" class="col-12 text-center">
                         <!-- DATA -->
-                        
+                          
                     </div>
                 </div>
             </div>
@@ -193,7 +193,6 @@
         </div>
     </div>
 </div>
-
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary d-none" id="btnmodalSuccess" data-toggle="modal" data-target="#modalSuccess">
   Launch demo modal
@@ -294,16 +293,15 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content modal-border modal-success mx-4" style="border-radius: 10px;">
       <div class="modal-body px-2">
-        <div class="d-flex justify-content-center my-4">
+        <!-- <div class="d-flex justify-content-center my-4">
           <img src="{{ url('/img/icon/qrcode_worng.png') }}" style="width: 100px;height:100px">
-        </div>
-
-        <h4 class="modal-title text-center pb-2 header-upload-success mb-2 text-danger" id="exampleModalLabel">QR Code ไม่ถูกต้อง</h4>
+        </div> -->
+        <h4 class="modal-title text-center pb-2 header-upload-success mb-2 text-danger" id="exampleModalLabel">QR code ของคุณไม่ถูกต้อง </h4>
         <!-- <p class="detail-upload-success mb-4 text-center">
             QR Code ไม่ถูกต้อง กรุณาสแกน QR Code<br> ที่ The Franchise builder สร้างขึ้นเท่านั้น
         </p> -->
         <p class="detail-upload-success mb-4 text-center">
-            ไม่สามารถสแกน Qr code นี้ได้
+          กรุณาใช้ QR code ภายในกิจกรรมเท่านั้น
         </p>
         <div class="d-flex justify-content-center">
 
@@ -484,21 +482,43 @@
             let name = code.data.split('=')[1];
 
             let html_modal = `
-              <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรม</h4>
-              <h3 class="my-4" style="color: #000;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+type+`</h3>
-              <br>
-              
-              <div class="mx-2 py-3" style="background-color: #090823;border-radius: 5px;">
-                  <h4 class="text-white" style="font-weight: lighter;">Title</h4>
-                  <div class="w-100 ">
-                      <div class="d-flex justify-content-between px-3 text-white">
-                          <div><input type="radio" id="S" name="Title" value="S"/>&nbsp;S</div>
-                          <div><input type="radio" id="M" name="Title" value="M"/>&nbsp;M</div>
-                          <div><input type="radio" id="L" name="Title" value="L"/>&nbsp;L</div>
-                          <div><input type="radio" id="XL" name="Title" value="XL"/>&nbsp;XL</div>
+                  <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรม</h4>
+                  <h3 class="my-4" style="color: #000;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+type+`</h3>
+                  <br>
+                  <div class="mx-2 py-3" style="background-color: #090823;border-radius: 5px;">
+                      <h4 class="text-white" style="font-weight: lighter;">Title</h4>
+                      <div class="w-100 ">
+                          <div class="row px-3 text-white">
+                              <div class="col-4 my-2">
+                                <input type="radio" value="XS(36)" id="XS(36)"  name="Title"/>&nbsp;<label for="XS(36)">XS(36)</label>
+                              </div>
+                              <div class="col-4 my-2">
+                                <input type="radio" value="S(38)" id="S(38)"  name="Title"/>&nbsp;<label for="S(38)">S(38)</label>
+                              </div>
+                              <div class="col-4 my-2">
+                                <input type="radio" value="M(40)" id="M(40)"  name="Title"/>&nbsp;<label for="M(40)">M(40)</label>
+                              </div>
+                              <div class="col-4 my-2">
+                                <input type="radio" value="L(42)" id="L(42)"  name="Title"/>&nbsp;<label for="L(42)">L(42)</label>
+                              </div> 
+                              <div class="col-4 my-2">
+                                <input type="radio" value="XL(44)" id="XL(44)"  name="Title"/>&nbsp;<label for="XL(44)">XL(44)</label>
+                              </div>
+                              <div class="col-4 my-2">
+                                <input type="radio" value="2XL(46)" id="2XL(46)"  name="Title"/>&nbsp;<label for="2XL(46)">2XL(46)</label>
+                              </div>
+                              <div class="col-4 my-2">
+                                <input type="radio" value="3XL(48)" id="3XL(48)"  name="Title"/>&nbsp;<label for="3XL(48)">3XL(48)</label>
+                              </div>
+                              <div class="col-4 my-2">
+                                <input type="radio" value="4XL(50)" id="4XL(50)"  name="Title"/>&nbsp;<label for="4XL(50)">4XL(50)</label>
+                              </div>
+                              <div class="col-4 my-2">
+                                <input type="radio" value="5XL(52)" id="5XL(52)"  name="Title"/>&nbsp;<label for="5XL(52)">5XL(52)</label>
+                              </div>
+                          </div>
                       </div>
                   </div>
-              </div>
             `;
 
             let html_footer = `
