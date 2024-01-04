@@ -139,7 +139,7 @@ border-radius: 5px;
 
 <div class="container-center text-white">
   <div style="width: 90vw;">
-    <h4 class="header-instruction text-center mt-3">Video instruction</h4>
+    <h4 class="header-instruction text-center mt-3">Welcome to the Franchise Builder 2024! </h4>
     <div class="container section-payment pb-3">
       <div>
         <div class="d-flex-justify-content-center w-100">
@@ -152,9 +152,9 @@ border-radius: 5px;
         วิธีการสมัครเข้าร่วมกิจกรรม
         </p>
         <ol class="text-white">
-            <li>ผู้ที่ต้องการเข้าร่วมกิจกรรมต้องทำการชำระค่าสมัคร เป็นจำนวนเงิน 10,000 บาท </li>
-            <li>ผู้เล่นกิจกรรมต้องทำการลงทะเบียนเข้าร่วม โดยการกรอกข้อมูล Agent code และรหัสผ่าน โดยรหหัสผ่านของคุณคือ วัน/เดือน/ปี เกิด 8 หลักเช่น เกิดวันที่ 1 เดือน มกราคม ค.ศ 1989  รหัสผ่านของคุณคือ <span style="color: #fff !important;">01011989</span> </li>
-            <li>เเสดง QR code ยืนยันการชำระค่าสมัครกับเจ้าหน้าที่เเละรับเสื้อหน้างาน</li>
+            <li>ผู้ที่เข้าร่วมกิจกรรมต้องเป็นตัวแทนระดับ AL ที่มี Unit Code แล้วเท่านั้น</li>
+            <li>กด Join เพื่อ ยินยอมให้บริษัทหักค่าสมัครเข้าโครงการ 10,000 บาท <span class="text-danger">(แบ่งชำระเป็น 3 งวด)</span> จากบัญชีตัวแทน</li>
+            <li>แสดง QR code กับเจ้าหน้าที่เพื่อรับเสื้อ</li>
           </ol>
         <!-- <div class="w-100 float-start">
           <p class="float-start w-100">ธนาคาร : XXXXX</p>
@@ -254,7 +254,6 @@ border-radius: 5px;
       <button class="btn btn-submit mx-3" type="button" data-toggle="modal" data-target="#modalAcceptRegis">Join</button>
       <button class="btn btn-cancel"  type="button" data-toggle="modal" data-target="#modalCancelRegis">Cancel</button>
     </div>
-  <p class="text-center text-white text-warn">ผู้สมัครต้องอยู่ในระดับ AL ที่มี unit code แล้วเท่านั้นเเละมีค่าสมัครเข้าโครงการ 10,000 บาท โดยหักผ่านบัญชีตัวแทนเป็น 3 งวด </p>
   </div>
   </div>
 
@@ -340,13 +339,16 @@ border-radius: 5px;
         <h6 class="modal-title text-center pb-2 header-infomation mb-4" id="exampleModalLabel"> 
           <b style="letter-spacing: 0px;">กิจกรรม THE FRANCHISE BUILDER 2024</b> 
         </h6>
-          
-        <p class="sub-header-infomation mb-4">เงื่อนไขการเข้าร่วมกิจกรรม</p>
-        <ol class="detail-register">
-          <li>ผู้เข้าร่วมกิจกรรม ต้องเป็นตัวแทนระดับ AL ที่มี unit code แล้วเท่านั้น</li>
-          <li>ผู้เข้ากิจกรรมยินยอมที่จะให้บริษัทหักค่าสมัคร 10,000 บาท (แบ่งชำระเป็นงวด) จากบัญชีตัวแทน หลักฐานการชำระค่าสมัครที่ช่องอัพโหลดด้านล่าง</li>
-          <li>ผู้ร่วมกิจกรรมจะได้รับสิทธิประโยชน์ด้านต่างๆตามที่บริษัทระบุ หากสามารถรักษาสิทธิ์ผู้เล่นไว้ได้</li>
-        </ol>
+        <div class="detail-payment">
+          <p class="header-payment text-center" style="color: #002449;">
+          <b>วิธีการสมัครเข้าร่วมกิจกรรม</b>
+          </p>
+          <ol style="color: #002449;">
+            <li>ผู้ที่เข้าร่วมกิจกรรมต้องเป็นตัวแทนระดับ AL ที่มี Unit Code แล้วเท่านั้น</li>
+            <li>กด Join เพื่อ ยินยอมให้บริษัทหักค่าสมัครเข้าโครงการ 10,000 บาท <span class="text-danger">(แบ่งชำระเป็น 3 งวด)</span> จากบัญชีตัวแทน</li>
+            <li>แสดง QR code กับเจ้าหน้าที่เพื่อรับเสื้อ</li>
+          </ol>
+        </div>
         <div class="d-flex justify-content-center w-100">
       <button class="btn btn-submit"  data-dismiss="modal">
         Close

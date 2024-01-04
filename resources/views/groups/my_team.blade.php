@@ -202,6 +202,9 @@
     }.imgCloseBTN{
         width: 25px;
         height: 25px;
+    }.warn-text{
+        letter-spacing: 0px;
+        font-size: 16px;
     }
 </style>
 
@@ -634,7 +637,7 @@
                 </button>
                 </div>
 
-                <p class="mt-4 text-center w-100" style="font-size:10px">หาก Confirm แล้วจะเป็นการยืนยันสมาชิก <br> และ <span class="text-danger">ไม่สามารถเปลี่ยนได้อีก</span></p>
+                <p class="mt-4 text-danger w-100 warn-text">* หาก Confirm แล้วจะเป็นการยืนยันสมาชิก <br> และ <u>ไม่สามารถเปลี่ยนได้อีก</u></p>
                
             `;
         }else if(answer == "Reject"){

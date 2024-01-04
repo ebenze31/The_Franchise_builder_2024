@@ -122,7 +122,8 @@
     .text-info-modal{
         color: #00AAAC;
     }.warn-text{
-        letter-spacing: -1px;
+        letter-spacing: 0px;
+        font-size: 16px;
     }
     .img-member{
         width:100%;
@@ -206,7 +207,34 @@
     </div>
 </div>
 <!-- END modal_join_team -->
-<button class="btn btn-warning d-none" onclick="test_modal('Host Accept');">TEST</button>
+<!-- modal ไม่ผ่านเกณท์ -->
+<button id="btn_modal_member_not_full" class="d-none" data-toggle="modal" data-target="#modal_member_not_full"></button>
+
+<div class="modal fade" id="modal_member_not_full" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered px-3">
+        <div class="modal-content" style="border-radius: 10px;">
+            <div  class="modal-body text-center">
+            <img src="{{ url('/img/icon/alert.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
+                <p  style="font-size: 20px;color: #00AAAC;"><b>ทีมของคุณไม่ผ่านเกณฑ์ !</b></p>
+                <p style="color: #002449;margin-bottom:0;margin-top:15px ;font-size: 16px;font-style: normal;font-weight: 500;line-height: normal;">เนื่องจากทีมของคุณมีสมาชิกไม่ครบตามข้อตกลง ระบบจึงทำการรีเซ็ตทีมของคุณ</p>
+                <div class="text-center mt-3 ">
+                    <p class=" m-0 text-danger warn-text" style="color: #FF3838;text-align: center;font-family: Inter;font-style: normal;font-weight: 500;line-height: normal;">คุณสามารถทำการสร้างทีม หรือขอเข้าร่วมทีมที่ยังว่างได้จนถึง 17:00 น. ของวันที่ 23 ม.ค. 2567</p>
+                </div>
+                <span class="text-dark">
+                    
+                    
+                </span>
+            </div>
+            <div class="modal-footer text-center">
+            <a type="button" class="btn btn-submit padding-btn" data-dismiss="modal">
+                    Close
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END modal ไม่ผ่านเกณท์ -->
+<button class="btn btn-warning d-none" onclick="test_modal('home_have_host');">TEST</button>
 
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}"  class="mt-2 mb-2 img-header-team">
@@ -746,8 +774,8 @@
                 <h4 class="text-info-modal">Team `+name_group+`</h4>
                 <p class="text-info-modal">คุณต้องการที่จะเป็น Host ประจำทีม หรือไม่ ?</p>
                 <br>
-                <span class="text-dark mt-3 font-14 warn-text">
-                    Host สามารถอนุมัติ หรือ ปฏิเสธคำขอเข้าร่วมทีมของผู้เล่นท่านอื่นได้ <br> (ตัดสินใจภายใน 24ชั่วโมงมิเช่นนั้นระบบจะยกเลิกคำขออัตโนมัติ)
+                <span class="text-danger mt-3 warn-text">
+                * Host สามารถอนุมัติ หรือ ปฏิเสธคำขอเข้าร่วมทีมของสมาชิกท่านอื่นได้ (หากคุณกด Join as Host แล้ว จะไม่สามารถเปลี่ยนแปลงทีม หรือ ปรับสถานะเป็น member ได้) 
                 </span>
             `;
 
@@ -767,9 +795,14 @@
                 <h4 class="mb-0" style="color:#FF7800;">ขออภัย !</h4>
                 <p style="color:#FF7800;">ตอนนี้ทีม `+name_group+` มี Host  เรียบร้อยเเล้ว</p>
                 <br>
-                <span class="text-dark mt-3">
+                <span class="text-danger mt-3" style="font-size:16px">
                     คุณต้องการเข้าร่วมทีม `+name_group+` ในสถานะ <b>สมาชิก</b> หรือไม่
                 </span>
+
+                <div class="text-danger warn-text mt-3">
+                    <p>* คำขอของคุณจะได้รับการยืนยันภายใน 24 ชั่วโมง</p>
+                    <p class="">(หาก host ตอบรับคุณเข้าทีมแล้ว จะไม่สามารถเปลี่ยนทีมได้อีก)</p>
+                </div>
             `;
 
             let html_footer = `
@@ -786,11 +819,11 @@
             let html_modal = `
                 <img src="{{ url('/img/icon/Frame 3.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
                 <h4 class="mt-3 mb-0" style="color:#37BCBC;">Team `+name_group+`</h4>
-                <p style="color:#37BCBC;" class="warn-text"><b>คุณต้องการที่จะเป็นสมาชิกทีมนี้ใช่หรือไม่</b></p>
+                <p style="color:#37BCBC;"><b>คุณต้องการที่จะเป็นสมาชิกทีมนี้ใช่หรือไม่</b></p>
                 <br>
-                <div class="text-dark">
-                    <p>คำขอของคุณจะได้รับการยืนยันภายใน 24 ชั่วโมง</p>
-                    <p class="warn-text">(หาก host ตอบรับคุณเข้าทีมแล้ว จะไม่สามารถเปลี่ยนทีมได้อีก)</p>
+                <div class="text-danger warn-text">
+                    <p>* คำขอของคุณจะได้รับการยืนยันภายใน 24 ชั่วโมง</p>
+                    <p class="">(หาก host ตอบรับคุณเข้าทีมแล้ว จะไม่สามารถเปลี่ยนทีมได้อีก)</p>
                 </div>
             `;
 
@@ -828,13 +861,13 @@
 
            let html_modal = `
                 <img src="{{ url('/img/icon/Frame 1.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
-                <p class="text-dark" style="font-size:font-size: 18px;;"><b>สถานะ : รอการตอบรับจาก host</b></p>
+                <p class="text-dark" style="font-size: 18px;"><b>สถานะ : รอการตอบรับจาก host</b></p>
                 <h4 style="color:#00AAAC;margin-bottom:0;margin-top:15px ;font-size: 20px;font-style: normal;font-weight: 700;line-height: normal;">Team `+name_group+`</h4>
                 <p style="color: #005CD3;text-align: center;font-family: Inter;font-size: 12px;font-style: normal;font-weight: 400;line-height: normal;">Waiting : <span id="modal_timer">23:59</span></p>
 
-                <div class="text-center mt-3">
-                    <p class=" m-0 text-danger" style="color: #FF3838;text-align: center;font-family: Inter;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;">ระหว่างรอการยืนยันจาก Host <br>คุณจะไม่สามารถกดคำขอเข้าทีมอื่นได้</p>
-                    <p class=" mt-3 text-danger" style="color: #FF3838;text-align: center;font-family: Inter;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;">เเละหากครบ 24 ชั่วโมง เเล้วยังไม่มีการตอบกลับจาก Host <br>คำขอนี้จะถูกระบบยกเลิกโดยอัตโนมัติ</p>
+                <div class="text-center mt-3 ">
+                    <p class=" m-0 text-danger warn-text" style="color: #FF3838;text-align: center;font-family: Inter;font-style: normal;font-weight: 500;line-height: normal;">* ระหว่างรอการยืนยันจาก Host คุณจะไม่สามารถกดคำขอเข้าทีมอื่นได้</p>
+                    <p class=" mt-3 text-danger warn-text" style="color: #FF3838;text-align: center;font-family: Inter;font-style: normal;font-weight: 500;line-height: normal;">* เเละหากครบ 24 ชั่วโมง เเล้วยังไม่มีการตอบกลับจาก Host คำขอนี้จะถูกระบบยกเลิกโดยอัตโนมัติ</p>
                 </div>
                 <span class="text-dark">
                     
