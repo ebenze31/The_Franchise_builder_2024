@@ -166,7 +166,7 @@
         <hr class="mt-3 mb-3">
 
         <ul class="nav nav-tabs nav-primary" role="tablist">
-            <li class="nav-item" role="presentation">
+            <li class="nav-item" role="presentation" onclick="clear_div_succell();">
                 <a class="nav-link active" data-bs-toggle="tab" href="#primaryExcel" role="tab" aria-selected="true">
                     <div class="d-flex align-items-center">
                         <div class="tab-icon">
@@ -176,7 +176,7 @@
                     </div>
                 </a>
             </li>
-            <li class="nav-item" role="presentation">
+            <li class="nav-item" role="presentation" onclick="clear_div_succell();">
                 <a class="nav-link" data-bs-toggle="tab" href="#primaryADDuser" role="tab" aria-selected="false">
                     <div class="d-flex align-items-center">
                         <div class="tab-icon">
@@ -211,31 +211,6 @@
                                 Read Excel
                             </button>
                         </div>
-
-                        <hr>
-
-                        <div id="div_loader_Excel" class="col-12 mt-5 d-none">
-                            <section class="loader">
-                                <div class="slider" style="--i:0"></div>
-                                <div class="slider" style="--i:1"></div>
-                                <div class="slider" style="--i:2"></div>
-                                <div class="slider" style="--i:3"></div>
-                                <div class="slider" style="--i:4"></div>
-                                <span id="text_load" class="text-success" style="margin-top: 25px;">กำลังประมวลผล..</span>
-                            </section>
-                        </div>
-                        <div  class="loading-container" class="col-12 mt-5">
-                            <div id="div_success_Excel" class="contrainerCheckmark d-none">
-                                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-                                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-                                </svg>
-                                <center>
-                                    <h5 class="mt-3">เสร็จสิ้น</h5>
-                                </center>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 
@@ -252,44 +227,68 @@
                                     <h5 class="mb-0 text-primary">User Registration</h5>
                                 </div>
                                 <hr>
-                                <form class="row g-3">
+                                <div class="row g-3">
                                     <div class="col-12 col-md-6">
                                         <label for="account" class="form-label">Account</label>
-                                        <input type="text" class="form-control" name="account" id="account">
+                                        <input type="text" class="form-control" name="account" id="account" onchange="check_data_Registration();">
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="password" class="form-label">Password</label>
-                                        <input type="text" class="form-control" name="password" id="password">
+                                        <input type="text" class="form-control" name="password" id="password" onchange="check_data_Registration();">
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="name" class="form-label">Name</label>
-                                        <input type="text" class="form-control" name="name" id="name">
+                                        <input type="text" class="form-control" name="name" id="name" onchange="check_data_Registration();">
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" class="form-control" name="phone" id="phone">
+                                        <input type="text" class="form-control" name="phone" id="phone" onchange="check_data_Registration();">
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="text" class="form-control" name="email" id="email">
+                                        <input type="text" class="form-control" name="email" id="email" onchange="check_data_Registration();">
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label for="role" class="form-label">Role</label>
-                                        <select name="role" id="role" class="form-select">
+                                        <select name="role" id="role" class="form-select" onchange="check_data_Registration();">
                                             <option selected value="Al">AL</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary px-5" onclick="check_data_Registration();">
+                                        <button id="btn_Registration" class="btn btn-primary px-5" disabled onclick="Registration_user();">
                                             ยืนยัน
                                         </button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+            </div>
+
+            <hr>
+
+            <div id="div_loader_Excel" class="col-12 mt-5 d-none">
+                <section class="loader">
+                    <div class="slider" style="--i:0"></div>
+                    <div class="slider" style="--i:1"></div>
+                    <div class="slider" style="--i:2"></div>
+                    <div class="slider" style="--i:3"></div>
+                    <div class="slider" style="--i:4"></div>
+                    <span id="text_load" class="text-success" style="margin-top: 25px;">กำลังประมวลผล..</span>
+                </section>
+            </div>
+            <div  class="loading-container" class="col-12 mt-5">
+                <div id="div_success_Excel" class="contrainerCheckmark d-none">
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                    </svg>
+                    <center>
+                        <h5 class="mt-3">เสร็จสิ้น</h5>
+                    </center>
+                </div>
             </div>
         </div>
     </div>
@@ -315,23 +314,26 @@
                         let last = result.length - 1 ;
                         // console.log(result[last]);
 
-                        // ตัวอย่างข้อมูลจาก PHP
-                        const phpDateString = result[last].created_at;
+                        if(result[last]){
+                            // ตัวอย่างข้อมูลจาก PHP
+                            const phpDateString = result[last].created_at;
 
-                        // สร้างวัตถุ Date จากข้อมูลที่ได้จาก PHP
-                        const phpDate = new Date(phpDateString);
+                            // สร้างวัตถุ Date จากข้อมูลที่ได้จาก PHP
+                            const phpDate = new Date(phpDateString);
 
-                        // สร้าง Options สำหรับการจัดรูปแบบ
-                        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                            // สร้าง Options สำหรับการจัดรูปแบบ
+                            const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
 
-                        // ใช้ toLocaleString() เพื่อแปลงวันที่
-                        const formattedDate = phpDate.toLocaleString('en-UK', options);
+                            // ใช้ toLocaleString() เพื่อแปลงวันที่
+                            const formattedDate = phpDate.toLocaleString('en-UK', options);
 
-                        // console.log(formattedDate);
+                            // console.log(formattedDate);
 
 
-                        document.querySelector('#count_user').innerHTML = result.length ;
-                        document.querySelector('#last_update').innerHTML = formattedDate ;
+                            document.querySelector('#count_user').innerHTML = result.length ;
+                            document.querySelector('#last_update').innerHTML = formattedDate ;
+                        }
+
                     }
                 }, 500);
 
@@ -347,38 +349,79 @@
         let email = document.querySelector('#email').value ;
         let role = document.querySelector('#role').value ;
 
-        console.log(account);
-        console.log(password);
-        console.log(name);
-        console.log(phone);
-        console.log(email);
-        console.log(role);
+        // console.log(account);
+        // console.log(password);
+        // console.log(name);
+        // console.log(phone);
+        // console.log(email);
+        // console.log(role);
 
         // ใช้ ternary operator และ every() เพื่อตรวจสอบทุกตัวแปร
         let allFieldsFilled = [account, password, name, phone, email, role].every(field => field !== '');
 
         // ตรวจสอบค่า allFieldsFilled
         if (allFieldsFilled) {
-            console.log('ทุกตัวมีข้อมูล');
-        } else {
-            console.log('มีตัวแปรบางตัวไม่มีข้อมูล');
-
-            // ตรวจสอบแยกตัวแปรที่ไม่มีข้อมูล
-            if (account === '') {
-                console.log('ตัวแปร account ไม่มีข้อมูล');
-            }
-
-            if (password === '') {
-                console.log('ตัวแปร password ไม่มีข้อมูล');
-            }
-
-            // ... ตรวจสอบแยกตัวแปรอื่น ๆ
+            document.querySelector('#btn_Registration').disabled = false ;
+        }else{
+            document.querySelector('#btn_Registration').disabled = true ;
         }
 
     }
 
     function Registration_user(){
-        
+
+        console.log('Registration_user');
+        let account = document.querySelector('#account').value ;
+        let password = document.querySelector('#password').value ;
+        let name = document.querySelector('#name').value ;
+        let phone = document.querySelector('#phone').value ;
+        let email = document.querySelector('#email').value ;
+        let role = document.querySelector('#role').value ;
+
+        let jsonData = [] ;
+            jsonData = {
+                    "account" : account,
+                    "password" : password,
+                    "name" : name,
+                    "phone" : phone,
+                    "email" : email,
+                    "role" : role,
+                };
+
+        // create_user
+        fetch("{{ url('/') }}/api/create_user/excel", {
+            method: 'post',
+            body: JSON.stringify(jsonData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            // console.log(data);
+
+            if(data == "success"){
+                // เคลียร์ input
+                document.querySelector('#text_load').innerHTML = 'กำลังสร้าง QR-Code..';
+
+                fetch("{{ url('/') }}/api/qr_profile/")
+                    .then(response => response.text())
+                    .then(result => {
+                        // console.log(result);
+
+                        if(result){
+                            document.querySelector('#div_loader_Excel').classList.add('d-none');
+                            document.querySelector('#text_load').innerHTML = 'กำลังประมวลผล..';
+                            document.querySelector('#div_success_Excel').classList.remove('d-none');
+
+                        }
+                });
+                
+            }
+
+        }).catch(function(error){
+            // console.error(error);
+        });
     }
 
     // EXCEL
@@ -549,8 +592,8 @@
     }
 
     function clear_div_succell(){
+        // console.log('clear_div_succell');
         document.querySelector('#div_success_Excel').classList.add('d-none');
-        document.querySelector('#div_success_CSV').classList.add('d-none');
     }
 
 </script>
