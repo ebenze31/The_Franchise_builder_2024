@@ -307,6 +307,7 @@
                 <thead>
                     <tr>
                         <th class="text-center">Photo</th>
+                        <th class="text-center">Date/Time</th>
                         <th class="text-center">Account</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Email</th>

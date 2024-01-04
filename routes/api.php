@@ -59,6 +59,8 @@ Route::get('/check_request_join/{group_id}', 'GroupsController@check_request_joi
 Route::get('/cf_Activities/{user_id}/{name_Activities}', 'ActivitiesController@cf_Activities');
 Route::get('/get_detail_activity/{id}', 'ActivitiesController@get_detail_activity');
 Route::get('/get_activity/{name}', 'ActivitiesController@get_activity');
+Route::get('/check_user_join_activity/{account}/{name_Activity}', 'ActivitiesController@check_user_join_activity');
+
 
 // LINE
 Route::post('/send_Line_Notify', 'Contact_staffController@send_Line_Notify');

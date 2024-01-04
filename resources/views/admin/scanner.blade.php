@@ -397,16 +397,35 @@
 
                     let name_Activity = document.querySelector('#name_Activity').value ;
 
-                    if(name_Activity == "ยืนยันการชำระเงิน"){
-                        create_modal(name_Activity , code);
-                        // document.querySelector('#div_video').classList.add('d-none');
-                    }
-                    else if(name_Activity == "รับเสื้อ"){
-                        create_modal(name_Activity , code);
-                        // document.querySelector('#div_video').classList.add('d-none');
-                    }
-                    else{
-                        create_modal(name_Activity , code);
+                    let check_account = code.data.split('=')[1];
+                    if(check_account){
+                        // console.log(check_account);
+
+                        let for_url = name_Activity.replaceAll(" " , "_");
+
+                        fetch("{{ url('/') }}/api/check_user_join_activity"+'/'+check_account+ "/" + for_url )
+                            .then(response => response.text())
+                            .then(result => {
+                                // console.log(result);
+
+                                // ผู้ใช้เคยเข้าร่วมกิจจกรรมนี้แล้ว
+                                if(result == 'joined'){
+                                    create_modal('joined' , code);
+                                }else{
+                                    // ไม่เคยเข้าร่วมกิจจกรรมนี้
+                                    if(name_Activity == "ยืนยันการชำระเงิน"){
+                                        create_modal(name_Activity , code);
+                                        // document.querySelector('#div_video').classList.add('d-none');
+                                    }
+                                    else if(name_Activity == "รับเสื้อ"){
+                                        create_modal(name_Activity , code);
+                                        // document.querySelector('#div_video').classList.add('d-none');
+                                    }
+                                    else{
+                                        create_modal(name_Activity , code);
+                                    }
+                                }
+                        });
                     }
                 }else{
                     // console.log('สแกนใหม่');
@@ -554,7 +573,27 @@
 
                         document.querySelector('#btn_modal_check_activity').click();
                 });
-            }else{
+            }
+            else if(type == "joined"){
+                let html_modal = `
+                    <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
+                    <br>
+                    <h4 class="mt-3 text-danger">ขออภัยผู้ใช้เข้าร่วมกิจกรรมนี้แล้ว</h4>
+                `;
+
+                let html_footer = `
+
+                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
+                        Close
+                    </button>
+                `;
+
+                document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+                document.querySelector('#modal_footer').innerHTML = html_footer;
+
+                document.querySelector('#btn_modal_check_activity').click();
+            }
+            else{
                 let name = code.data.split('=')[1];
 
                 fetch("{{ url('/') }}/api/get_users" + "/" + name )

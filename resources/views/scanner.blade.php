@@ -396,9 +396,22 @@
                 // console.log(name);
 
                 if(type == "Activities"){
-                  // if(name == "รับเสื้อ"){
-                    create_modal_Activies(name , code);
-                  // }
+
+                    let for_url = name.replaceAll(" " , "_");
+
+                    fetch("{{ url('/') }}/api/check_user_join_activity"+'/'+"{{ Auth::user()->account }}"+ "/" + for_url )
+                      .then(response => response.text())
+                      .then(result => {
+                          // console.log(result);
+
+                          // ผู้ใช้เคยเข้าร่วมกิจจกรรมนี้แล้ว
+                          if(result == 'joined'){
+                              create_modal_Activies('joined' , code);
+                          }else{
+                              // ไม่เคยเข้าร่วมกิจจกรรมนี้
+                              create_modal_Activies(name , code);
+                          }
+                    });
                 }
                 else if(type == "account"){
                     document.querySelector('#a_to_account_scan').setAttribute('href' , 'https://www.franchisebuilder2024.com/for_scan?account='+name);
@@ -536,6 +549,24 @@
 
             document.querySelector('#btn_modal_check_activity').click();
         }
+        else if(type == "joined"){
+            let html_modal = `
+                <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
+                <br>
+                <h4 class="mt-3 text-danger">ขออภัยผู้ใช้เข้าร่วมกิจกรรมนี้แล้ว</h4>
+            `;
+
+            let html_footer = `
+                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
+                    Close
+                </button>
+            `;
+
+            document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+            document.querySelector('#modal_footer').innerHTML = html_footer;
+
+            document.querySelector('#btn_modal_check_activity').click();
+        }
         else{
 
             let name = code.data.split('=')[1];
@@ -579,15 +610,16 @@
 
     function cf_Activities(user_id , name_Activities){
 
-      // console.log.log(user_id);
-      // console.log.log(name_Activities);
+      // console.log('cf_Activities');
+      // console.log(user_id);
+      // console.log(name_Activities);
 
         name_Activities = name_Activities.replaceAll(" ","_");
 
         fetch("{{ url('/') }}/api/cf_Activities" + "/" + user_id + "/" + name_Activities )
             .then(response => response.text())
             .then(result => {
-              // console.log.log(result);
+              // console.log(result);
 
                 if(result){
                     document.querySelector('#btn_close_modal').click();

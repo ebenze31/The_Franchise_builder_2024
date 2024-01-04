@@ -176,13 +176,13 @@
                     </div>
                 </a>
             </li>
-            <li class="nav-item d-none" role="presentation">
-                <a class="nav-link" data-bs-toggle="tab" href="#primaryCSV" role="tab" aria-selected="false">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" data-bs-toggle="tab" href="#primaryADDuser" role="tab" aria-selected="false">
                     <div class="d-flex align-items-center">
                         <div class="tab-icon">
-                            <i class="fa-solid fa-file-csv font-18 me-1"></i>
+                            <i class="fa-solid fa-plus font-18 me-1"></i>
                         </div>
-                        <div class="tab-title">CSV</div>
+                        <div class="tab-title">เพิ่มข้อมูลรายบุคคล</div>
                     </div>
                 </a>
             </li>
@@ -240,54 +240,53 @@
                 </div>
 
             </div>
-            <div class="tab-pane fade" id="primaryCSV" role="tabpanel">
+            <div class="tab-pane fade" id="primaryADDuser" role="tabpanel">
 
                 <div class="card border-top border-0 border-4 border-dark">
                     <div class="card-body p-5">
-                        <div class="card-title text-center">
-                            <i class="fa-solid fa-file-csv text-dark font-50"></i>
-                            <h5 class="mb-5 mt-2 text-dark">เพิ่มไฟล์ CSV ของคุณ</h5>
-                        </div>
-                        <hr>
                         <div class="col-12">
-                            <label for="inputLastEnterUsername" class="form-label">CSV file</label>
-                            <div class="input-group input-group-lg">
-                                <span class="input-group-text bg-transparent">
-                                    <i class="fa-solid fa-file-csv"></i>
-                                </span>
-                                <input class="form-control border-start-0" type="file" id="csvInput" accept=".csv" onclick="clear_div_succell();">
+                            <div class="card-body p-5">
+                                <div class="card-title d-flex align-items-center">
+                                    <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
+                                    </div>
+                                    <h5 class="mb-0 text-primary">User Registration</h5>
+                                </div>
+                                <hr>
+                                <form class="row g-3">
+                                    <div class="col-12 col-md-6">
+                                        <label for="account" class="form-label">Account</label>
+                                        <input type="text" class="form-control" name="account" id="account">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="text" class="form-control" name="password" id="password">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" name="name" id="name">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="phone" class="form-label">Phone</label>
+                                        <input type="text" class="form-control" name="phone" id="phone">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="text" class="form-control" name="email" id="email">
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="role" class="form-label">Role</label>
+                                        <select name="role" id="role" class="form-select">
+                                            <option selected value="Al">AL</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary px-5" onclick="check_data_Registration();">
+                                            ยืนยัน
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="col-12 mt-4 mb-2">
-                            <button class="btn btn-primary px-5" onclick="readCSV()">
-                                Read CSV
-                            </button>
-                        </div>
-
-                        <hr>
-
-                        <div id="div_loader_CSV" class="col-12 mt-5 d-none">
-                            <section class="loader">
-                                <div class="slider" style="--i:0"></div>
-                                <div class="slider" style="--i:1"></div>
-                                <div class="slider" style="--i:2"></div>
-                                <div class="slider" style="--i:3"></div>
-                                <div class="slider" style="--i:4"></div>
-                                <span class="text-success" style="margin-top: 25px;">กำลังประมวลผล..</span>
-                            </section>
-                        </div>
-                        <div  class="loading-container" class="col-12 mt-5">
-                            <div id="div_success_CSV" class="contrainerCheckmark d-none">
-                                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-                                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-                                </svg>
-                                <center>
-                                    <h5 class="mt-3">เสร็จสิ้น</h5>
-                                </center>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 
@@ -315,7 +314,7 @@
                     if(result){
                         let last = result.length - 1 ;
                         // console.log(result[last]);
-                        
+
                         // ตัวอย่างข้อมูลจาก PHP
                         const phpDateString = result[last].created_at;
 
@@ -337,6 +336,49 @@
                 }, 500);
 
             });
+    }
+
+    function check_data_Registration(){
+
+        let account = document.querySelector('#account').value ;
+        let password = document.querySelector('#password').value ;
+        let name = document.querySelector('#name').value ;
+        let phone = document.querySelector('#phone').value ;
+        let email = document.querySelector('#email').value ;
+        let role = document.querySelector('#role').value ;
+
+        console.log(account);
+        console.log(password);
+        console.log(name);
+        console.log(phone);
+        console.log(email);
+        console.log(role);
+
+        // ใช้ ternary operator และ every() เพื่อตรวจสอบทุกตัวแปร
+        let allFieldsFilled = [account, password, name, phone, email, role].every(field => field !== '');
+
+        // ตรวจสอบค่า allFieldsFilled
+        if (allFieldsFilled) {
+            console.log('ทุกตัวมีข้อมูล');
+        } else {
+            console.log('มีตัวแปรบางตัวไม่มีข้อมูล');
+
+            // ตรวจสอบแยกตัวแปรที่ไม่มีข้อมูล
+            if (account === '') {
+                console.log('ตัวแปร account ไม่มีข้อมูล');
+            }
+
+            if (password === '') {
+                console.log('ตัวแปร password ไม่มีข้อมูล');
+            }
+
+            // ... ตรวจสอบแยกตัวแปรอื่น ๆ
+        }
+
+    }
+
+    function Registration_user(){
+        
     }
 
     // EXCEL

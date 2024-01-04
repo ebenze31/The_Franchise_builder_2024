@@ -231,4 +231,24 @@ class ActivitiesController extends Controller
         return $data ;
 
     }
+
+    function check_user_join_activity($account , $name_Activity){
+
+        $name_Activity = str_replace("_"," ",$name_Activity);
+
+        $data_Activity = Activity::where('name_Activities' , $name_Activity)->first();
+        $Activity_id = $data_Activity->id;
+
+        $data_user = User::where('account' , $account)->first();
+        $list_activities = explode(",",$data_user->activities);
+
+        $return = 'No' ; // joined
+
+        if( in_array($Activity_id, $list_activities) ){
+            $return = 'joined' ;
+        }
+
+        return $return ;
+
+    }
 }
