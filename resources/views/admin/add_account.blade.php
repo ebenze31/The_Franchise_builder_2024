@@ -251,7 +251,7 @@
                                     <div class="col-12 col-md-6">
                                         <label for="role" class="form-label">Role</label>
                                         <select name="role" id="role" class="form-select" onchange="check_data_Registration();">
-                                            <option selected value="Al">AL</option>
+                                            <option selected value="AL">AL</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
@@ -370,7 +370,7 @@
 
     function Registration_user(){
 
-        console.log('Registration_user');
+        // console.log('Registration_user');
         let account = document.querySelector('#account').value ;
         let password = document.querySelector('#password').value ;
         let name = document.querySelector('#name').value ;
@@ -389,7 +389,7 @@
                 };
 
         // create_user
-        fetch("{{ url('/') }}/api/create_user/excel", {
+        fetch("{{ url('/') }}/api/Registration_user", {
             method: 'post',
             body: JSON.stringify(jsonData),
             headers: {

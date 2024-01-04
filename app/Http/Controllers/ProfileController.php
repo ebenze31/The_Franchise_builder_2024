@@ -225,6 +225,16 @@ class ProfileController extends Controller
 
     }
 
+    function Registration_user(Request $request)
+    {
+        $requestData = $request->all();
+        $requestData['password'] = Hash::make($requestData['password']);
+
+        User::create($requestData);
+
+        return "success" ;
+    }
+
     function qr_profile(Request $request){
 
         $user = User::get();

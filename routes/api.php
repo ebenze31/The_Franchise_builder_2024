@@ -23,6 +23,7 @@ Route::post('/lineapi', 'API\LineApiController@store');
 
 // PROFILE
 Route::post('/create_user/excel', 'ProfileController@create_user');
+Route::post('/Registration_user', 'ProfileController@Registration_user');
 Route::post('/create_qr_code', 'ProfileController@create_qr_code');
 Route::get('/qr_profile', 'ProfileController@qr_profile');
 Route::get('/change_status/{account}/{Staff_id}', 'ProfileController@change_status');
