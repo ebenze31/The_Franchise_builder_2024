@@ -255,7 +255,7 @@
                     <div class="top-menu-left d-none d-lg-block">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{url('/dashboard')}}">
+                                <a class="nav-link" href="{{url('/account_all')}}">
                                     <i class="fa-solid fa-house text-white"></i>
                                 </a>
                             </li>
