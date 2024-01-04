@@ -12,6 +12,7 @@ use QrCode;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Activities_log;
 use App\Models\Activity;
+use Illuminate\Support\Carbon;
 
 class ProfileController extends Controller
 {
@@ -173,6 +174,7 @@ class ProfileController extends Controller
     }
 
     function add_account(){
+
         return view('admin.add_account');
     }
 
@@ -342,6 +344,11 @@ class ProfileController extends Controller
                 ->orderBy('role', 'DESC')
                 ->get();
 
+        }
+        else if($type_get_data == "add_account"){
+            $data = User::where('role' , "aL")
+                ->orWhere('role' , "Player")
+                ->get();
         }
         else{
             $data = User::where('account', 'LIKE', "%$type_get_data%")

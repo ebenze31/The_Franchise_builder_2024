@@ -150,7 +150,19 @@
 <div class="card">
     <div class="card-body">
 
-        <h4 class="mb-0 text-uppercase">เพิ่มข้อมูลสมาชิก</h4>
+        <div class="row">
+            <div class="col-6">
+                <h4 class="mb-0 text-uppercase">
+                    เพิ่มข้อมูลสมาชิก
+                </h4>
+            </div>
+            <div class="col-6 text-end">
+                <b>สมาชิกทั้งหมด : <span id="count_user"></span></b>
+                <br>
+                อัพเดทล่าสุด : <span id="last_update"></span>
+            </div>
+        </div>
+        
         <hr class="mt-3 mb-3">
 
         <ul class="nav nav-tabs nav-primary" role="tablist">
@@ -285,6 +297,48 @@
 </div>
 
 <script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        get_data_account('add_account');
+    });
+
+    function get_data_account(type_get_data){
+        // console.log(type_get_data);
+
+        fetch("{{ url('/') }}/api/get_data_account/" + type_get_data)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                setTimeout(() => {
+                    if(result){
+                        let last = result.length - 1 ;
+                        // console.log(result[last]);
+                        
+                        // ตัวอย่างข้อมูลจาก PHP
+                        const phpDateString = result[last].created_at;
+
+                        // สร้างวัตถุ Date จากข้อมูลที่ได้จาก PHP
+                        const phpDate = new Date(phpDateString);
+
+                        // สร้าง Options สำหรับการจัดรูปแบบ
+                        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+
+                        // ใช้ toLocaleString() เพื่อแปลงวันที่
+                        const formattedDate = phpDate.toLocaleString('en-UK', options);
+
+                        // console.log(formattedDate);
+
+
+                        document.querySelector('#count_user').innerHTML = result.length ;
+                        document.querySelector('#last_update').innerHTML = formattedDate ;
+                    }
+                }, 500);
+
+            });
+    }
+
     // EXCEL
     function readExcel() {
 

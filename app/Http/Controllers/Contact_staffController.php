@@ -132,7 +132,7 @@ class Contact_staffController extends Controller
 
         $team = '-';
         $currentDateTime = Carbon::now();
-        $formattedDateTime = $currentDateTime->format('d F Y H:i');
+        $formattedDateTime = $currentDateTime->format('d F Y H:i a');
 
         if( $data_user->group_status == "มีบ้านแล้ว" || $data_user->group_status == "ยืนยันการสร้างบ้านแล้ว"){
             if( intval($data_user->group_id) < 9 ){
@@ -146,7 +146,7 @@ class Contact_staffController extends Controller
                     "User : " . $data_user->name . "\n" .
                     "ID : " . $data_user->account . "\n" .
                     "Team  : " . $team . "\n" .
-                    "Date  : " . $formattedDateTime . " น. \n\n" .
+                    "Date  : " . $formattedDateTime . "\n\n" .
                     "Question : " . $requestData['question'] . "\n" .
                     "Contact  : " . $requestData['phone'] . "\n" ;
 

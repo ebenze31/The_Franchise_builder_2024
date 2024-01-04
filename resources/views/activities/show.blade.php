@@ -155,10 +155,10 @@
 
                         }
 
+                        // Team
                         setTimeout(() => {
                             console.log(arr_group);
-
-                            // Team
+                            create_html_team(arr_group);
                         }, 1000);
 
                     }, 500);
@@ -166,6 +166,62 @@
                 }
 
         });
+
+    }
+
+    function create_html_team(arr_group){
+
+        for (let zz = 0; zz < arr_group.length; zz++) {
+                                
+            fetch("{{ url('/') }}/api/get_data_groups/" + arr_group[zz])
+                .then(response => response.json())
+                .then(groups => {
+                    console.log(groups);
+
+                    let view_team = document.querySelector('#view_team');
+                    view_team.innerHTML = '';
+
+                    if(groups){
+                        setTimeout(() => {
+                            
+                            let html_team = `
+                                <div class="p-1">
+                                    <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
+                                        <div class="col-2">
+                                        <center>
+                                            <img src="{{ url('storage')}}/`+result[i].photo+`" class="rounded-circle" width="46" height="46" alt="">
+                                        </center>
+                                        </div>
+                                        <div class="col-5">
+                                            <h6 class="mb-1 font-14">
+                                                Name : `+result[i].name+`
+                                            </h6>
+                                            <p class="mb-0 font-13 text-secondary">
+                                                Account : `+result[i].account+`
+                                            </p>
+                                            <p class="mb-0 font-13 text-secondary">
+                                                Phone : `+result[i].phone+`
+                                            </p>
+                                        </div>
+                                        <div class="col-2">
+                                            <b>Time joined</b> <br> `+result[i].time_join+`
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="float-end text-center">
+                                                Team : `+name_group+`
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+
+                            view_team.insertAdjacentHTML('beforeend', html_team); // แทรกล่างสุด
+
+                        }, 500);
+                    }
+            });
+
+        }
 
     }
 

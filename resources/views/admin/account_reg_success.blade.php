@@ -301,6 +301,7 @@
                         <th class="text-center">Email</th>
                         <th class="text-center">Phone</th>
                         <th class="text-center">Time joined</th>
+                        <th class="text-center">Shirt Size</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">QR-code</th>
                     </tr>
@@ -383,7 +384,7 @@
         }).then(function (response){
             return response.json();
         }).then(function(result){
-            // console.log(result);
+            console.log(result);
 
             updateTimestamp();
 
@@ -463,6 +464,11 @@
                             btn_cf_Pay_slip = ``;
                         }
 
+                        let text_shirt_size = '-' ;
+                        if(result[i].shirt_size){
+                            text_shirt_size = result[i].shirt_size ;
+                        }
+
                         let html = `
                             <tr account=`+result[i].account+` tpye="`+html_status+`" class="`+class_card_focus+`">
                                 <td>
@@ -487,12 +493,15 @@
                                 <td id="td_role_`+result[i].account+`" class="text-center">
                                     `+result[i].time_cf_pay_slip+`
                                 </td>
+                                <td id="shirt_size_id`+result[i].id+`" class="text-center" style="font-size:13px;">
+                                     `+text_shirt_size+`
+                                </td>
                                 <td id="td_status_`+result[i].account+`" class="text-center" style="font-size:13px;">
                                     <a class="btn btn-sm btn-`+class_status+` radius-30" style="width:90%;">
                                         `+html_status+`
                                     </a>
                                 </td>
-                                <td class="d-">
+                                <td class="text-center">
                                     <a href="{{ url('/img/qr_profile')}}/`+result[i].qr_profile+`" target="bank">
                                     <img src="{{ url('/img/qr_profile')}}/`+result[i].qr_profile+`" class="p-1" alt="" style="width:100px;">
                                     </a>
