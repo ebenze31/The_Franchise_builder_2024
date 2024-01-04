@@ -229,6 +229,7 @@ class ProfileController extends Controller
     {
         $requestData = $request->all();
         $requestData['password'] = Hash::make($requestData['password']);
+        $requestData['qr_profile'] = $requestData['account'] . '.png';
 
         User::create($requestData);
 
