@@ -371,6 +371,8 @@
     function Registration_user(){
 
         // console.log('Registration_user');
+        document.querySelector('#btn_Registration').disabled = true ;
+
         let account = document.querySelector('#account').value ;
         let password = document.querySelector('#password').value ;
         let name = document.querySelector('#name').value ;
@@ -402,6 +404,12 @@
 
             if(data == "success"){
                 // เคลียร์ input
+                document.querySelector('#account').value = '' ;
+                document.querySelector('#password').value = '' ;
+                document.querySelector('#name').value = '' ;
+                document.querySelector('#phone').value = '' ;
+                document.querySelector('#email').value = '' ;
+
                 document.querySelector('#text_load').innerHTML = 'กำลังสร้าง QR-Code..';
 
                 fetch("{{ url('/') }}/api/qr_profile/")
