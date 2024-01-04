@@ -110,7 +110,7 @@
             </div>
             <ul class="metismenu" id="menu">
 
-                <li>
+                <li class="d-none">
                     <a href="{{ url('/dashboard') }}" class="">
                         <div class="parent-icon">
                             <i class="fa-solid fa-chart-user"></i>
