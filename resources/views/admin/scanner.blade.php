@@ -404,25 +404,25 @@
                         let for_url = name_Activity.replaceAll(" " , "_");
 
                         fetch("{{ url('/') }}/api/check_user_join_activity"+'/'+check_account+ "/" + for_url )
-                            .then(response => response.text())
+                            .then(response => response.json())
                             .then(result => {
                                 // console.log(result);
 
                                 // ผู้ใช้เคยเข้าร่วมกิจจกรรมนี้แล้ว
-                                if(result == 'joined'){
-                                    create_modal('joined' , code);
+                                if(result.check == 'joined'){
+                                    create_modal('joined' , code , result.name_user);
                                 }else{
                                     // ไม่เคยเข้าร่วมกิจจกรรมนี้
                                     if(name_Activity == "ยืนยันการชำระเงิน"){
-                                        create_modal(name_Activity , code);
+                                        create_modal(name_Activity , code , null);
                                         // document.querySelector('#div_video').classList.add('d-none');
                                     }
                                     else if(name_Activity == "รับเสื้อ"){
-                                        create_modal(name_Activity , code);
+                                        create_modal(name_Activity , code , null);
                                         // document.querySelector('#div_video').classList.add('d-none');
                                     }
                                     else{
-                                        create_modal(name_Activity , code);
+                                        create_modal(name_Activity , code , null);
                                     }
                                 }
                         });
@@ -472,7 +472,7 @@
     }
 
 
-    function create_modal(type , code)
+    function create_modal(type , code , name_user)
     {
         let check_name = code.data.split('=')[1];
         if(!check_name){
@@ -578,11 +578,10 @@
                 let html_modal = `
                     <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
                     <br>
-                    <h4 class="mt-3 text-danger">ขออภัยผู้ใช้เข้าร่วมกิจกรรมนี้แล้ว</h4>
+                    <h4 class="mt-3 text-danger">คุณ (`+name_user+`) ได้เข้าร่วมกิจกรรมนี้เเล้ว !</h4>
                 `;
 
                 let html_footer = `
-
                     <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
                         Close
                     </button>

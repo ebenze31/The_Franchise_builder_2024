@@ -242,10 +242,13 @@ class ActivitiesController extends Controller
         $data_user = User::where('account' , $account)->first();
         $list_activities = explode(",",$data_user->activities);
 
-        $return = 'No' ; // joined
+        $return = [];
+        $return['check'] = 'No';
+        $return['name_user'] = '';
 
         if( in_array($Activity_id, $list_activities) ){
-            $return = 'joined' ;
+            $return['check'] = 'joined' ;
+            $return['name_user'] = $data_user->name ;
         }
 
         return $return ;

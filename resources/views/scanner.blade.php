@@ -400,16 +400,16 @@
                     let for_url = name.replaceAll(" " , "_");
 
                     fetch("{{ url('/') }}/api/check_user_join_activity"+'/'+"{{ Auth::user()->account }}"+ "/" + for_url )
-                      .then(response => response.text())
+                      .then(response => response.json())
                       .then(result => {
-                          // console.log(result);
+                          console.log(result.check);
 
                           // ผู้ใช้เคยเข้าร่วมกิจจกรรมนี้แล้ว
-                          if(result == 'joined'){
-                              create_modal_Activies('joined' , code);
+                          if(result.check == 'joined'){
+                              create_modal_Activies('joined' , code , name);
                           }else{
                               // ไม่เคยเข้าร่วมกิจจกรรมนี้
-                              create_modal_Activies(name , code);
+                              create_modal_Activies(name , code , null);
                           }
                     });
                 }
@@ -489,7 +489,7 @@
         reader.readAsDataURL(imageFile);
     }
 
-    function create_modal_Activies(type , code)
+    function create_modal_Activies(type , code , name_for_joined)
     {
         if(type == "รับเสื้อ"){
             let name = code.data.split('=')[1];
@@ -553,7 +553,7 @@
             let html_modal = `
                 <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
                 <br>
-                <h4 class="mt-3 text-danger">ขออภัยผู้ใช้เข้าร่วมกิจกรรมนี้แล้ว</h4>
+                <h4 class="mt-3 text-danger">คุณได้เข้าร่วมกิจกรรม (`+name_for_joined+`) เเล้ว !</h4>
             `;
 
             let html_footer = `
