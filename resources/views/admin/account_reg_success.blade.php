@@ -301,6 +301,7 @@
                         <th class="text-center">Email</th>
                         <th class="text-center">Phone</th>
                         <th class="text-center">Time joined</th>
+                        <th class="text-center">Team</th>
                         <th class="text-center">Shirt Size</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">QR-code</th>
@@ -492,6 +493,9 @@
                                 </td>
                                 <td id="td_role_`+result[i].account+`" class="text-center">
                                     `+result[i].time_cf_pay_slip+`
+                                </td>
+                                <td class="text-center">
+                                    -
                                 </td>
                                 <td id="shirt_size_id`+result[i].id+`" class="text-center" style="font-size:13px;">
                                      `+text_shirt_size+`
