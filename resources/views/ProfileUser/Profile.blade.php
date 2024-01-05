@@ -195,10 +195,19 @@ border-radius:  0 0 40px 40px;
     </div>
 </div>
 
-<div class="col-12">
-    <h4 class="header-badges">
-        My badges
-    </h4>
+<div class="row">
+    <div class="col-6">
+        <h4 class="header-badges">
+            My badges
+        </h4>
+    </div>
+    @if( Auth::user()->role == 'Super-admin' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Staff' )
+    <div class="col-6">
+        <div style="margin: 40px 40px 20px 20px;float: right;">
+            <a href="{{ url('/account_all') }}" class="btn btn-sm btn-light text-info">{{ Auth::user()->role }}</a>
+        </div>
+    </div>
+    @endif
 </div>
 
 <div id="div_badges" class="asd d-noe">

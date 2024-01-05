@@ -27,7 +27,11 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin"){
-            return redirect("account_all");
+            return redirect("groups");
+        }
+
+        else if(Auth::user()->role == "Staff"){
+            return redirect("groups");
         }
 
         else if(Auth::user()->role == "Player"){
@@ -56,10 +60,6 @@ class HomeController extends Controller
             }
         }
 
-        else if(Auth::user()->role == "Staff"){
-            return redirect("admin_scanner");
-        }
-        
         else if(Auth::user()->role == "QR"){
             return redirect("admin_scanner");
         }
