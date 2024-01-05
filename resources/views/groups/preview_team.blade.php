@@ -962,7 +962,6 @@
             document.querySelector('#modal_join_team_footer').innerHTML = html_footer;
 
         }
-
         else if(type == "Delete team"){
 
         let html_modal = `
@@ -974,7 +973,27 @@
 
         let html_footer = `
             
-            <a href="{{ url('/group_my_team/`+id_group+`') }}" type="button" class="btn btn-submit padding-btn">
+            <a href="{{ url('/groups') }}" type="button" class="btn btn-submit padding-btn">
+                Close
+            </a>
+        `;
+
+        document.querySelector('#modal_join_team_content').innerHTML = html_modal;
+        document.querySelector('#modal_join_team_footer').innerHTML = html_footer;
+
+        }
+        else if(type == "Time out"){
+
+        let html_modal = `
+            <img src="{{ url('/img/icon/Frame 4.png') }}" style="width:calc(100% - 70%);" class="mt-4 mb-2">
+            <h4 class="text-danger" style="color:#00AAAC;margin-top:15px">คุณไม่ได้รับการตอบกลับ</h4>
+            <p style=";margin-top:15px">ไม่มีการตอบกลับจาก Host คำขอนี้จึงถูกระบบยกเลิกโดยอัตโนมัติ</p>
+            <p class="text-danger" style=";margin-top:30px">คุณสามารถทำการสร้างทีม หรือขอเข้าร่วมทีมที่ยังว่างได้จนถึง 17:00 น. ของวันที่ 23 ม.ค. 2567</p>
+        `;
+
+        let html_footer = `
+            
+            <a href="{{ url('/groups') }}" type="button" class="btn btn-submit padding-btn">
                 Close
             </a>
         `;
@@ -989,6 +1008,8 @@
 
 
     function check_wait_host(group_status){
+
+        // console.log('check_wait_host');
 
         if(group_status == 'กำลังขอเข้าร่วมบ้าน'){
             // ขึ้นเวลาที่รอผ่านไปกี่ ชม แล้ว
@@ -1049,6 +1070,29 @@
                         Stop_loop_check_wait_host();
                     }, 1000);
             });
+        }
+        else if(group_status == 'Delete team'){
+
+        }
+        else if(group_status == 'Time out'){
+
+            if(document.querySelector('#close_modal_join_team')){
+                document.querySelector('#close_modal_join_team').click();
+            }
+
+            fetch("{{ url('/') }}/api/change_group_status/" + 'Host Reject' + "/" + "{{ $group_id }}" + "/{{ Auth::user()->id }}")
+                .then(response => response.text())
+                .then(result => {
+                  // console.log(result);
+                    setTimeout(() => {
+                        // modal แจ้งเตือน Host Reject ครั้งเดียว
+                        create_modal('Time out' , "{{ $group_id }}");
+                        document.querySelector('#btn_modal_join_team').click();
+                        Stop_loop_check_wait_host();
+                    }, 1000);
+
+            });
+
         }
 
     }

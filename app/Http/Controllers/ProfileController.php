@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Activities_log;
 use App\Models\Activity;
 use Illuminate\Support\Carbon;
+use App\Models\Group;
 
 class ProfileController extends Controller
 {
@@ -289,30 +290,6 @@ class ProfileController extends Controller
     // }
 
     function account_all(){
-
-        // $userId = 1 ;
-        // $data_user = User::where('time_request_join' , '!=' , null)->get(); // แทน $userId ด้วย ID ของผู้ใช้ที่คุณต้องการตรวจสอบ
-
-        // foreach ($data_user as $item) {
-        //     if ($item->id) {
-        //         $timeRequested = Carbon::parse($item->time_request_join);
-        //         $currentTime = Carbon::now();
-
-        //         $hoursDifference = $timeRequested->diffInHours($currentTime);
-        //         echo $item->id . " ผ่านไปแล้ว >> " . $hoursDifference . " ชม.<br>";
-        //         if ($hoursDifference >= 24) {
-        //             // ผ่านไปมากกว่าหรือเท่ากับ 24 ชั่วโมง
-        //             // ทำสิ่งที่คุณต้องการทำในกรณีนี้
-        //         } else {
-        //             // ยังไม่ครบ 24 ชั่วโมง
-        //             // ทำสิ่งที่คุณต้องการทำในกรณีนี้
-        //         }
-        //     } else {
-        //         // ไม่พบผู้ใช้
-        //     }
-        // }
-
-        // exit();
 
         return view('admin.account_all');
     }
