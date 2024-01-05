@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use QrCode;
 use App\User;
+use App\Models\Group;
 
 use Illuminate\Http\Request;
 
@@ -26,12 +27,19 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        $data_user = Auth::user();
+
         if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin"){
-            return redirect("groups");
+            // return redirect("groups");
+            $activeGroupsCount = Group::where('active', 'Yes')->count();
+            return view('groups.index' , compact('activeGroupsCount'));
         }
 
         else if(Auth::user()->role == "Staff"){
-            return redirect("groups");
+            // return redirect("groups");
+            $activeGroupsCount = Group::where('active', 'Yes')->count();
+            return view('groups.index' , compact('activeGroupsCount'));
         }
 
         else if(Auth::user()->role == "Player"){
@@ -56,7 +64,8 @@ class HomeController extends Controller
             if( in_array($check, $validOptions) ){
                 return redirect('preview_team'.'/'.$data_user->group_id);
             }else{
-                return redirect('groups');
+                $activeGroupsCount = Group::where('active', 'Yes')->count();
+                return view('groups.index' , compact('activeGroupsCount'));
             }
         }
 
