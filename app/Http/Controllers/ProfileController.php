@@ -289,6 +289,9 @@ class ProfileController extends Controller
     // }
 
     function account_all(){
+
+        
+
         return view('admin.account_all');
     }
 
@@ -312,6 +315,21 @@ class ProfileController extends Controller
             ->get();
 
         return $data ;
+    }
+
+    function check_Team_and_Shirt_Size(Request $request)
+    {
+        $requestData = $request->all();
+
+        $arr_member = isset($requestData['arr_member']) ? $requestData['arr_member'] : [];
+
+        $data = User::where('role', "Player")
+            ->whereIn('id', $arr_member)
+            ->orderBy('time_cf_pay_slip', 'ASC')
+            ->get();
+
+        return $data ;
+
     }
 
     function get_data_user($user_id){
@@ -350,8 +368,8 @@ class ProfileController extends Controller
             //     ->orderBy('role','DESC')
             //     ->get();
 
-           $data = User::whereIn('role', ['Super-admin', 'Admin', 'Staff'])
-                ->orderByRaw("FIELD(role, 'Super-admin', 'Admin', 'Staff')")
+           $data = User::whereIn('role', ['Super-admin', 'Admin', 'Staff' , 'QR'])
+                ->orderByRaw("FIELD(role, 'Super-admin', 'Admin', 'Staff', 'QR')")
                 ->orderBy('role', 'DESC')
                 ->get();
 
