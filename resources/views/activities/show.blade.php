@@ -53,10 +53,10 @@
                                     <div class="col-12 mt-3 mb-2">
                                         <div class="btn-group" role="group" aria-label="Basic example" style="width:40%;">
                                             <button id="btn_change_view_team" type="button" class="btn btn-primary" onclick="change_view('team');">
-                                                บ้าน
+                                                Team
                                             </button>
                                             <button id="btn_change_view_user" type="button" class="btn btn-outline-info" onclick="change_view('user');">
-                                                บุคคล
+                                                Individuals
                                             </button>
                                         </div>
                                     </div>

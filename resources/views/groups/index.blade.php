@@ -82,13 +82,13 @@
             @for ($i=1; $i <= $menu_row; $i++) @if($i==$menu_row) 
                 <div class="item text-center">
                     <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeGroupsCount }}" type="button" class="btn btn-sort-group text-center mt-1" onclick="change_menu_view('{{ $start }}-{{ $activeGroupsCount }}');">
-                       Team{{ $start }} - {{ $activeGroupsCount }}
+                       ลำดับที่ {{ $start }} - {{ $activeGroupsCount }}
                     </button>
                 </div>
                 @else
                 <div class="item text-center">
                     <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-sort-group text-center mt-1" onclick="change_menu_view('{{ $start }}-{{ $end }}');">
-                    Team{{ $start }} - {{ $end }}
+                    ลำดับที่ {{ $start }} - {{ $end }}
                     </button>
                 </div>
                 @endif
@@ -216,42 +216,49 @@
 
                         // content_groups.insertAdjacentHTML('beforeend', html_my_tem); // แทรกล่างสุด
 
+                        let count_a = 1 ;
 
                         for (let i = 0; i < result.length; i++) {
 
-                            // เช็คว่าเป็นบ้านตัวเอง
-                            let url_to = 'preview_team' ;
-                            if( "{{ Auth::user()->group_status }}" == "มีบ้านแล้ว" || "{{ Auth::user()->group_status }}" == "ยืนยันการสร้างบ้านแล้ว" ){
-                                if("{{ Auth::user()->group_id }}" == result[i].id){
-                                    url_to = 'group_my_team' ;
+                            if(result[i].active == "Yes"){
+                                // เช็คว่าเป็นบ้านตัวเอง
+                                let url_to = 'preview_team' ;
+                                if( "{{ Auth::user()->group_status }}" == "มีบ้านแล้ว" || "{{ Auth::user()->group_status }}" == "ยืนยันการสร้างบ้านแล้ว" ){
+                                    if("{{ Auth::user()->group_id }}" == result[i].id){
+                                        url_to = 'group_my_team' ;
+                                    }
                                 }
+
+
+                                let member = JSON.parse(result[i].member);
+
+                                let class_team = '';
+                                let count_member = '';
+
+                                if (!member) {
+                                    class_team = 'secondary';
+                                    count_member = 0;
+                                } else if (member.length == "10") {
+                                    class_team = 'success';
+                                    count_member = member.length;
+                                } else {
+                                    class_team = 'warning';
+                                    count_member = member.length;
+                                }
+
+
+                                let html = `
+                                    <a count="a_`+count_a+`" id="Team_` + result[i].id + `" class="div_Team col-4 mt-2 mb-2 p-0" href="{{ url('/`+url_to+`/` + result[i].id + `') }}">
+                                        <div class="item-team" style="width: 100%;height: auto;">
+                                            <img src="{{ url('/img/group_profile/` + class_team + `/id (` + result[i].id + `).png') }}" style="width: 100%;">
+                                        </div>
+                                    </a>
+                                `;
+
+                                content_groups.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+                                count_a++ ;
                             }
-
-
-                            let member = JSON.parse(result[i].member);
-
-                            let class_team = '';
-                            let count_member = '';
-
-                            if (!member) {
-                                class_team = 'secondary';
-                                count_member = 0;
-                            } else if (member.length == "10") {
-                                class_team = 'success';
-                                count_member = member.length;
-                            } else {
-                                class_team = 'warning';
-                                count_member = member.length;
-                            }
-                            let html = `
-                                <a id="Team_` + result[i].id + `" class="div_Team col-4 mt-2 mb-2 p-0" href="{{ url('/`+url_to+`/` + result[i].id + `') }}">
-                                    <div class="item-team" style="width: 100%;height: auto;">
-                                        <img src="{{ url('/img/group_profile/` + class_team + `/id (` + result[i].id + `).png') }}" style="width: 100%;">
-                                    </div>
-                                </a>
-                            `;
-
-                            content_groups.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
                         }
 
                         change_menu_view('1-20');
@@ -284,8 +291,11 @@
         })
 
         for (let i = parseInt(team_start); i <= parseInt(team_end); i++) {
-            if (document.querySelector('#Team_' + i)) {
-                document.querySelector('#Team_' + i).classList.remove('d-none');
+            // if (document.querySelector('#Team_' + i)) {
+            if (document.querySelector('a[count="a_'+i+'"]')) {
+                // document.querySelector('#Team_' + i).classList.remove('d-none');
+                document.querySelector('a[count="a_'+i+'"]').classList.remove('d-none');
+
             }
         }
 

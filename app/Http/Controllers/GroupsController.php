@@ -243,25 +243,48 @@ class GroupsController extends Controller
 
     function active_group($amount)
     {
-        $groups = Group::all();
-        $amount_host = 0 ;
 
-        foreach ($groups as $group) {
+        $selectedGroups = Group::where('member', '<>', '')
+            ->orderBy('id')
+            ->take($amount)
+            ->get();
 
-            $group->update(['active' => null]);
+        $selectedIds = $selectedGroups->pluck('id');
 
-            // if( !empty($group->host) ){
-            //     $amount_host = $amount_host + 1 ;
-            // }else if( empty($group->host) ){
-            //     $group->update(['active' => null]);
-            // }
+        Group::whereNotIn('id', $selectedIds)
+            ->update(['active' => null]);
+
+        Group::whereIn('id', $selectedIds)
+            ->update(['active' => 'Yes']);
+
+
+        $groups = Group::where('active' , null)->get();
+        $amount_host = intval($amount) - count($selectedIds) ;
+        // $amount_host = 20 - 3 ;
+
+        // ตรวจสอบว่าจำนวนรอบที่ต้องการไม่เกินจำนวนของแถวที่ค้นหาได้
+        $amount_host = min($amount_host, $groups->count());
+
+        for ($i = 0; $i < $amount_host; $i++) {
+            $group = $groups[$i];
+
+            // ทำสิ่งที่คุณต้องการทำกับ $group ในแต่ละรอบ
+
+            // ตัวอย่าง: อัปเดต 'active' เป็น 'Yes'
+            $group->update(['active' => 'Yes']);
         }
 
-        // $amount = $amount - $amount_host ;
+        
+        // foreach ($groups as $group) {
 
-        Group::where('id', '>=', 1)
-            ->where('id', '<=', $amount)
-            ->update(['active' => 'Yes']);
+            
+        // }
+
+        // // $amount = $amount - $amount_host ;
+
+        // Group::where('id', '>=', 1)
+        //     ->where('id', '<=', $amount)
+        //     ->update(['active' => 'Yes']);
 
         return 'success' ;
 

@@ -230,15 +230,16 @@
 
             <div id="div_select_active_group" class="row {{ $class_div_select_active_group }}">
                 <div class="col-3 mt-3">
-                    <label>จำนวนบ้านที่มีทั้งหมด {{ $count_group }}</label>
+                    <!-- <label>จำนวนบ้านที่มีทั้งหมด {{ $count_group }}</label> -->
+                    <label>Min 20 | Max {{ $count_group }}</label>
                     <div class="input-group">
-                        <input type="number" class="form-control" id="input_active_other" name="input_active_other" value="{{ $activeGroupsCount }}" min="50" max="{{ $count_group }}">
+                        <input type="number" class="form-control" id="input_active_other" name="input_active_other" value="{{ $activeGroupsCount }}" min="20" max="{{ $count_group }}" oninput="check_input_active_other();">
                     </div>
                 </div>
                 <div class="col-9 mt-3">
                     <br>
-                    <button id="btn_active_other" type="button" class="btn {{ $btn_class_other }}"
-                        onclick="active_group('other')">
+                    <button id="btn_cf_active_group" type="button" class="btn {{ $btn_class_other }}"
+                        onclick="active_group('other')" disabled>
                         ยืนยัน
                     </button>
                 </div>
@@ -305,13 +306,34 @@
     function change_btn_active_group(type){
         document.querySelector('#btn_active_50').setAttribute('class' , 'btn btn-outline-primary');
         document.querySelector('#btn_active_other').setAttribute('class' , 'btn btn-outline-primary');
+        document.querySelector('#btn_cf_active_group').setAttribute('class' , 'btn btn-outline-primary');
 
         if(type == "other"){
             document.querySelector('#btn_active_other').setAttribute('class' , 'btn btn-primary');
+            document.querySelector('#btn_cf_active_group').setAttribute('class' , 'btn btn-primary');
         }else{
             document.querySelector('#btn_active_50').setAttribute('class' , 'btn btn-primary');
         }
     }
+
+    var delayinput_active_other ;
+    function check_input_active_other(){
+
+        clearTimeout(delayinput_active_other);
+
+        let input_active_other = document.querySelector('#input_active_other').value ;
+
+        delayinput_active_other = setTimeout(() => {
+            // console.log(Search_input);
+            if( parseInt(input_active_other) >= 20 && parseInt(input_active_other) <= 120 ){
+                document.querySelector('#btn_cf_active_group').disabled = false ;
+            }else{
+                document.querySelector('#btn_cf_active_group').disabled = true ;
+            }
+        }, 500);
+
+    }
+
 
 </script>
 
