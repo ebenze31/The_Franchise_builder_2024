@@ -291,23 +291,25 @@ class ProfileController extends Controller
     function account_all(){
 
         // $userId = 1 ;
-        // $user = User::find($userId); // แทน $userId ด้วย ID ของผู้ใช้ที่คุณต้องการตรวจสอบ
+        // $data_user = User::where('time_request_join' , '!=' , null)->get(); // แทน $userId ด้วย ID ของผู้ใช้ที่คุณต้องการตรวจสอบ
 
-        // if ($user) {
-        //     $timeRequested = Carbon::parse($user->time_request_join);
-        //     $currentTime = Carbon::now();
+        // foreach ($data_user as $item) {
+        //     if ($item->id) {
+        //         $timeRequested = Carbon::parse($item->time_request_join);
+        //         $currentTime = Carbon::now();
 
-        //     $hoursDifference = $timeRequested->diffInHours($currentTime);
-        //     echo "ผ่านไปแล้ว >> " . $hoursDifference . " ชม.";
-        //     if ($hoursDifference >= 24) {
-        //         // ผ่านไปมากกว่าหรือเท่ากับ 24 ชั่วโมง
-        //         // ทำสิ่งที่คุณต้องการทำในกรณีนี้
+        //         $hoursDifference = $timeRequested->diffInHours($currentTime);
+        //         echo $item->id . " ผ่านไปแล้ว >> " . $hoursDifference . " ชม.<br>";
+        //         if ($hoursDifference >= 24) {
+        //             // ผ่านไปมากกว่าหรือเท่ากับ 24 ชั่วโมง
+        //             // ทำสิ่งที่คุณต้องการทำในกรณีนี้
+        //         } else {
+        //             // ยังไม่ครบ 24 ชั่วโมง
+        //             // ทำสิ่งที่คุณต้องการทำในกรณีนี้
+        //         }
         //     } else {
-        //         // ยังไม่ครบ 24 ชั่วโมง
-        //         // ทำสิ่งที่คุณต้องการทำในกรณีนี้
+        //         // ไม่พบผู้ใช้
         //     }
-        // } else {
-        //     // ไม่พบผู้ใช้
         // }
 
         // exit();

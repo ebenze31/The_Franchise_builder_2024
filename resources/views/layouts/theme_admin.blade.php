@@ -111,7 +111,7 @@
             <ul class="metismenu" id="menu">
 
                 <li class="d-none">
-                    <a href="{{ url('/dashboard') }}" class="">
+                    <a href="{{ url('/groups') }}" class="">
                         <div class="parent-icon">
                             <i class="fa-solid fa-chart-user"></i>
                         </div>
@@ -241,6 +241,17 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <hr>
+                <li class="">
+                    <a href="{{ url('/groups') }}" class="">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-people-group"></i>
+                        </div>
+                        <div class="menu-title">
+                            รวมบ้าน (ผู้ใช้)
+                        </div>
+                    </a>
                 </li>
 
             </ul>
