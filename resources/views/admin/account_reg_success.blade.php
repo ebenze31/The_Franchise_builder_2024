@@ -385,7 +385,7 @@
         }).then(function (response){
             return response.json();
         }).then(function(result){
-            console.log(result);
+            // console.log(result);
 
             updateTimestamp();
 
@@ -470,6 +470,11 @@
                             text_shirt_size = result[i].shirt_size ;
                         }
 
+                        let text_group_id = '-' ;
+                        if(result[i].group_id){
+                            text_group_id = result[i].group_id ;
+                        }
+
                         let html = `
                             <tr account=`+result[i].account+` tpye="`+html_status+`" class="`+class_card_focus+`">
                                 <td>
@@ -494,10 +499,10 @@
                                 <td id="td_role_`+result[i].account+`" class="text-center">
                                     `+result[i].time_cf_pay_slip+`
                                 </td>
-                                <td class="text-center">
-                                    -
+                                <td id="td_team_of_`+result[i].id+`" class="text-center">
+                                    `+text_group_id+`
                                 </td>
-                                <td id="shirt_size_id`+result[i].id+`" class="text-center" style="font-size:13px;">
+                                <td id="td_shirt_size_of_`+result[i].id+`" class="text-center" style="font-size:13px;">
                                      `+text_shirt_size+`
                                 </td>
                                 <td id="td_status_`+result[i].account+`" class="text-center" style="font-size:13px;">
@@ -527,11 +532,55 @@
                         })
                     }, 4500);
 
+                    check_Team_and_Shirt_Size(arr_member);
+
                     // console.log("-----");
                     // console.log(arr_member);
 
                     document.querySelector('#btn_export_excel').classList.remove('d-none');
 
+                }
+
+            }, 500);
+            
+        }).catch(function(error){
+            // console.error(error);
+        });
+
+    }
+
+    function check_Team_and_Shirt_Size(arr_member){
+
+        // console.log('check_Team_and_Shirt_Size');
+
+        fetch("{{ url('/') }}/api/check_Team_and_Shirt_Size", {
+            method: 'post',
+            body: JSON.stringify({ arr_member: arr_member }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.json();
+        }).then(function(result){
+            // console.log(result);
+
+            setTimeout(() => {
+                if(result){
+                    for (let i = 0; i < result.length; i++) {
+                        
+                        let text_shirt_size = '-' ;
+                        if(result[i].shirt_size){
+                            text_shirt_size = result[i].shirt_size ;
+                        }
+
+                        let text_group_id = '-' ;
+                        if(result[i].group_id){
+                            text_group_id = result[i].group_id ;
+                        }
+
+                        document.querySelector('#td_team_of_'+result[i].id).innerHTML = text_group_id;
+                        document.querySelector('#td_shirt_size_of_'+result[i].id).innerHTML = text_shirt_size;
+                    }
                 }
 
             }, 500);
