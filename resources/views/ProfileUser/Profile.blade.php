@@ -201,10 +201,16 @@ border-radius:  0 0 40px 40px;
             My badges
         </h4>
     </div>
-    @if( Auth::user()->role == 'Super-admin' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Staff' )
+    @if( Auth::user()->role == 'Super-admin' || Auth::user()->role == 'Admin' )
     <div>
         <div style="margin: 40px 40px 20px 20px;float: right;">
             <a href="{{ url('/account_all') }}" class="btn btn-sm btn-light text-info">{{ Auth::user()->role }}</a>
+        </div>
+    </div>
+    @elseif( Auth::user()->role == 'Staff' )
+    <div>
+        <div style="margin: 40px 40px 20px 20px;float: right;">
+            <a href="{{ url('/admin/scanner') }}" class="btn btn-sm btn-light text-info">{{ Auth::user()->role }}</a>
         </div>
     </div>
     @endif
