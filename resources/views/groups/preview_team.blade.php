@@ -265,7 +265,7 @@
         @if( empty($data_groups->member) )
 
             <!-- เช็คว่ามีบ้านแล้ว -->
-            @if( Auth::user()->group_status == "มีบ้านแล้ว" || Auth::user()->group_status == "ยืนยันการสร้างบ้านแล้ว" )
+            @if( Auth::user()->group_status == "มีบ้านแล้ว" || Auth::user()->group_status == "ยืนยันการสร้างบ้านแล้ว" || Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin" || Auth::user()->role == "Staff")
                 @for ($i = 0; $i < 10; $i++)
                 <div id="Team_no" class="member-item col-4 mt-2 mb-2" >
                     <div class="member-card h-100" style="width: 100%;height: auto;">
@@ -418,7 +418,7 @@
                 @for ($i = 0; $i < $add_div; $i++)
 
                     <!-- เช็คว่ามีบ้านแล้ว -->
-                    @if( Auth::user()->group_status == "มีบ้านแล้ว" || Auth::user()->group_status == "ยืนยันการสร้างบ้านแล้ว" )
+                    @if( Auth::user()->group_status == "มีบ้านแล้ว" || Auth::user()->group_status == "ยืนยันการสร้างบ้านแล้ว" || Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin" || Auth::user()->role == "Staff")
                         <div id="Team_no" class="member-item col-4 mt-2 mb-2" >
                             <div class="member-card h-100" style="width: 100%;height: auto;">
                                 <div class="text-center">
