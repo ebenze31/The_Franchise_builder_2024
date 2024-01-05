@@ -59,6 +59,10 @@ class HomeController extends Controller
         else if(Auth::user()->role == "Staff"){
             return redirect("admin_scanner");
         }
+        
+        else if(Auth::user()->role == "QR"){
+            return redirect("admin_scanner");
+        }
 
         else if(Auth::user()->role == "AL"){
             return redirect("register_tfb2024");

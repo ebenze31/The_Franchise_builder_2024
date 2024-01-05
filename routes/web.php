@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 // Super-admin = admin[อัพเดตคะแนน]
 // Admin = [เจ้าหน้าที่หลังบ้าน]
 // Staff = [เจ้าหน้าาที่หน้าบ้าน /observer]
+// QR = สำหรับสแกน QR อย่างเดียว
 
 Auth::routes();
 
@@ -42,7 +43,7 @@ Route::middleware(['auth', 'role:AL'])->group(function () {
 });
 
 // Staff
-Route::middleware(['auth', 'role:Staff'])->group(function () {
+Route::middleware(['auth', 'role:Staff,QR'])->group(function () {
     Route::get('/admin_scanner', 'HomeController@admin_scanner');
 });
 
