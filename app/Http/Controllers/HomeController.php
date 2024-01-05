@@ -70,11 +70,13 @@ class HomeController extends Controller
         }
 
         else if(Auth::user()->role == "QR"){
-            return redirect("admin_scanner");
+            // return redirect("admin_scanner");
+            return view('admin.scanner');
         }
 
         else if(Auth::user()->role == "AL"){
-            return redirect("register_tfb2024");
+            // return redirect("register_tfb2024");
+            return view('register_tfb2024');
         }
 
     }
