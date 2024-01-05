@@ -195,14 +195,14 @@ border-radius:  0 0 40px 40px;
     </div>
 </div>
 
-<div class="row">
-    <div class="col-6">
+<div class="d-flex justify-content-between">
+    <div>
         <h4 class="header-badges">
             My badges
         </h4>
     </div>
     @if( Auth::user()->role == 'Super-admin' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Staff' )
-    <div class="col-6">
+    <div>
         <div style="margin: 40px 40px 20px 20px;float: right;">
             <a href="{{ url('/account_all') }}" class="btn btn-sm btn-light text-info">{{ Auth::user()->role }}</a>
         </div>
@@ -210,7 +210,7 @@ border-radius:  0 0 40px 40px;
     @endif
 </div>
 
-<div id="div_badges" class="asd d-noe">
+<div id="div_badges" class="asd d-noe mt-3">
 
     <!-- <div class="col-4 badges-item @if( !empty(Auth::user()->shirt_size) ) active @else un-active @endif" activity="ป้าย1" onclick="open_badges(this)">
         <img src="{{ url('/img/icon/badges-1.png') }}"width="100%" alt="รูปภาพป้ายประกาศ">
