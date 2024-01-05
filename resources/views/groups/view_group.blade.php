@@ -387,14 +387,21 @@
                                                 `;
                                             }
 
+                                            let html_time_get_shirt ;
+                                            if(user.time_get_shirt){
+                                                html_time_get_shirt = user.time_get_shirt;
+                                            }else{
+                                                html_time_get_shirt = `-`;
+                                            }
+
                                             loop_member = `
                                                 <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
-                                                    <div class="col-2">
+                                                    <div class="col-3">
                                                     <center>
                                                         <img src="{{ url('storage')}}/`+user.photo+`" class="rounded-circle" width="46" height="46" alt="">
                                                     </center>
                                                     </div>
-                                                    <div class="col-5">
+                                                    <div class="col-3">
                                                         <h6 class="mb-1 font-14">
                                                             Name : `+user.name+`
                                                         </h6>
@@ -405,7 +412,15 @@
                                                             Phone : `+user.phone+`
                                                         </p>
                                                     </div>
-                                                    <div class="col-5">
+                                                    <div class="col-3 text-center">
+                                                        <h6 class="mb-1 font-14">
+                                                            รับเสื้อเมื่อเวลา
+                                                        </h6>
+                                                        <p class="mb-0 font-13 text-secondary">
+                                                            `+html_time_get_shirt+`
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-3">
                                                         <div class="float-end text-center">
                                                             `+html_shirt_size+`
                                                         </div>
