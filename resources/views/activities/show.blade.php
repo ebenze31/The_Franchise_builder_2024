@@ -26,7 +26,11 @@
                                                 รายละเอียด : {{ $activity->detail }}
                                             </p>
                                             <p class="text-start">
-                                                จำนวนผู้เข้าร่วม : {{ $activity->member }}
+                                                @if( !empty($activity->member) )
+                                                    จำนวนผู้เข้าร่วม : {{ $activity->member }}
+                                                @else
+                                                    จำนวนผู้เข้าร่วม : 0
+                                                @endif
                                             </p>
                                         </div>
                                     </div>
@@ -48,25 +52,25 @@
                                     </div>
                                     <div class="col-12 mt-3 mb-2">
                                         <div class="btn-group" role="group" aria-label="Basic example" style="width:40%;">
-                                            <button id="btn_change_view_user" type="button" class="btn btn-info" onclick="change_view('user');">
-                                                บุคคล
-                                            </button>
-                                            <button id="btn_change_view_team" type="button" class="btn btn-outline-primary" onclick="change_view('team');">
+                                            <button id="btn_change_view_team" type="button" class="btn btn-primary" onclick="change_view('team');">
                                                 บ้าน
+                                            </button>
+                                            <button id="btn_change_view_user" type="button" class="btn btn-outline-info" onclick="change_view('user');">
+                                                บุคคล
                                             </button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row mt-2">
-                                    <!-- บุคคล -->
-                                    <div id="view_user" class="col-12">
+                                    <!-- บ้าน -->
+                                    <div id="view_team" class="col-12">
                                         <!--  -->
                                     </div>
 
-                                    <!-- บ้าน -->
-                                    <div id="view_team" class="col-12 d-none">
-                                        บ้าน
+                                    <!-- บุคคล -->
+                                    <div id="view_user" class="col-12 d-none">
+                                        <!--  -->
                                     </div>
                                 </div>
 
@@ -93,12 +97,10 @@
         fetch("{{ url('/') }}/api/get_detail_activity/" + id)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let arr_group = [] ;
-
-                let view_user = document.querySelector('#view_user');
-                    view_user.innerHTML = '';
+                // let arr_user = [] ;
 
                 if(result){
                     setTimeout(() => {
@@ -106,12 +108,7 @@
                         // user
                         for (let i = 0; i < result.length; i++) {
                             
-                            let name_group = '';
-                            if(result[i].group_id < 9){
-                                name_group = "0"+result[i].group_id ;
-                            }else{
-                                name_group = result[i].group_id ;
-                            }
+                            // arr_user.push(result[i].id.toString());
 
                             let check_team = arr_group.includes(result[i].group_id.toString());
 
@@ -119,47 +116,16 @@
                                 arr_group.push(result[i].group_id.toString());
                             }
 
-
-                            let html_user = `
-                                <div class="p-1">
-                                    <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
-                                        <div class="col-2">
-                                        <center>
-                                            <img src="{{ url('storage')}}/`+result[i].photo+`" class="rounded-circle" width="46" height="46" alt="">
-                                        </center>
-                                        </div>
-                                        <div class="col-5">
-                                            <h6 class="mb-1 font-14">
-                                                Name : `+result[i].name+`
-                                            </h6>
-                                            <p class="mb-0 font-13 text-secondary">
-                                                Account : `+result[i].account+`
-                                            </p>
-                                            <p class="mb-0 font-13 text-secondary">
-                                                Phone : `+result[i].phone+`
-                                            </p>
-                                        </div>
-                                        <div class="col-2">
-                                            <b>Time joined</b> <br> `+result[i].time_join+`
-                                        </div>
-                                        <div class="col-2">
-                                            <div class="float-end text-center">
-                                                Team : `+name_group+`
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            `;
-
-                            view_user.insertAdjacentHTML('beforeend', html_user); // แทรกล่างสุด
-
                         }
 
-                        // Team
                         setTimeout(() => {
-                            console.log(arr_group);
                             create_html_team(arr_group);
+                        }, 200);
+
+                        setTimeout(() => {
+                            create_html_user(result);
                         }, 1000);
+
 
                     }, 500);
 
@@ -171,56 +137,155 @@
 
     function create_html_team(arr_group){
 
+        // console.log(arr_group);
+
         for (let zz = 0; zz < arr_group.length; zz++) {
                                 
             fetch("{{ url('/') }}/api/get_data_groups/" + arr_group[zz])
                 .then(response => response.json())
                 .then(groups => {
-                    console.log(groups);
+                    // console.log(groups);
 
                     let view_team = document.querySelector('#view_team');
                     view_team.innerHTML = '';
 
                     if(groups){
                         setTimeout(() => {
+
+                            let arr_member ;
+                            let count_member ;
+                            if(groups.member){
+                                arr_member = JSON.parse(groups.member);
+                                count_member = arr_member.length ;
+                            }
                             
                             let html_team = `
                                 <div class="p-1">
                                     <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
                                         <div class="col-2">
                                         <center>
-                                            <img src="{{ url('storage')}}/`+result[i].photo+`" class="rounded-circle" width="46" height="46" alt="">
+                                            <img src="{{ url('/img/group_profile/profile/id (`+groups.id+`).png')}}" class="rounded-circle" width="60" height="60" alt="">
                                         </center>
                                         </div>
-                                        <div class="col-5">
+                                        <div class="col-3">
                                             <h6 class="mb-1 font-14">
-                                                Name : `+result[i].name+`
+                                                Team : `+groups.name_group+`
                                             </h6>
-                                            <p class="mb-0 font-13 text-secondary">
-                                                Account : `+result[i].account+`
-                                            </p>
-                                            <p class="mb-0 font-13 text-secondary">
-                                                Phone : `+result[i].phone+`
-                                            </p>
                                         </div>
-                                        <div class="col-2">
-                                            <b>Time joined</b> <br> `+result[i].time_join+`
+                                        <div class="col-3 text-center">
+                                            <b>สมาชิกทั้งหมด</b> <br>
+                                            `+count_member+`
                                         </div>
-                                        <div class="col-2">
-                                            <div class="float-end text-center">
-                                                Team : `+name_group+`
-                                            </div>
+                                        <div class="col-3 text-center">
+                                            <b>สมาชิกที่ร่วมกิจกรรมนี้</b> <br>
+                                            <span id="count_member_join_of_`+groups.id+`">0</span>
+                                        </div>
+                                        <div class="col-1 float-end">
+                                            <span class="btn btn-sm" onclick="document.querySelector('#div_show_user_of_`+groups.id+`').classList.toggle('d-none');">
+                                                <i class="fa-solid fa-caret-down"></i>
+                                            </span>
+                                        </div>
+
+                                        <div id="div_show_user_of_`+groups.id+`" class="row mt-3 mb-3 px-5 d-none">
+                                            
                                         </div>
                                     </div>
                                 </div>
                             `;
 
-                            view_team.insertAdjacentHTML('beforeend', html_team); // แทรกล่างสุด
+                            view_team.insertAdjacentHTML('beforeend', html_team); 
 
-                        }, 500);
+                        }, 200);
                     }
             });
 
+        }
+
+    }
+
+    function create_html_user(result){
+
+        // console.log(result);
+
+        let view_user = document.querySelector('#view_user');
+            view_user.innerHTML = '';
+
+        for (let i = 0; i < result.length; i++) {
+
+            let name_group = '';
+            if(result[i].group_id < 9){
+                name_group = "0"+result[i].group_id ;
+            }else{
+                name_group = result[i].group_id ;
+            }
+
+            let html_check_Activities ;
+            if("{{ $activity->name_Activities }}" == "รับเสื้อ"){
+                html_check_Activities = `
+                    <div class="col-3">
+                        <h6 class="mb-1 font-14">
+                            Name : `+result[i].name+`
+                        </h6>
+                        <p class="mb-0 font-13 text-secondary">
+                            Account : `+result[i].account+`
+                        </p>
+                        <p class="mb-0 font-13 text-secondary">
+                            Phone : `+result[i].phone+`
+                        </p>
+                    </div>
+                    <div class="col-2 text-center">
+                        <h6 class="mb-1 font-14">
+                            Size
+                        </h6>
+                        <p class="mb-0 font-13 text-secondary">
+                            `+result[i].shirt_size+`
+                        </p>
+                    </div>
+                `;
+            }else{
+                html_check_Activities = `
+                    <div class="col-5">
+                        <h6 class="mb-1 font-14">
+                            Name : `+result[i].name+`
+                        </h6>
+                        <p class="mb-0 font-13 text-secondary">
+                            Account : `+result[i].account+`
+                        </p>
+                        <p class="mb-0 font-13 text-secondary">
+                            Phone : `+result[i].phone+`
+                        </p>
+                    </div>
+                `;
+            }
+
+            let html_user = `
+                <div class="p-1">
+                    <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
+                        <div class="col-2">
+                        <center>
+                            <img src="{{ url('storage')}}/`+result[i].photo+`" class="rounded-circle" width="46" height="46" alt="">
+                        </center>
+                        </div>
+                        `+html_check_Activities+`
+                        <div class="col-2">
+                            <b>Time joined</b> <br> `+result[i].time_join+`
+                        </div>
+                        <div class="col-2">
+                            <div class="float-end text-center">
+                                Team : `+name_group+`
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            let count_member_join = document.querySelector('#count_member_join_of_'+result[i].group_id).innerHTML;
+            let new_count_member_join = parseInt(count_member_join) + 1 ;
+            document.querySelector('#count_member_join_of_'+result[i].group_id).innerHTML = new_count_member_join ;
+
+            document.querySelector('#div_show_user_of_'+result[i].group_id).insertAdjacentHTML('beforeend', html_user);
+
+            view_user.insertAdjacentHTML('beforeend', html_user);
         }
 
     }
