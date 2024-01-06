@@ -110,10 +110,13 @@
                             
                             // arr_user.push(result[i].id.toString());
 
-                            let check_team = arr_group.includes(result[i].group_id.toString());
+                            if(result[i].group_id){
+                                
+                                let check_team = arr_group.includes(result[i].group_id.toString());
 
-                            if(!check_team){
-                                arr_group.push(result[i].group_id.toString());
+                                if(!check_team){
+                                    arr_group.push(result[i].group_id.toString());
+                                }
                             }
 
                         }
