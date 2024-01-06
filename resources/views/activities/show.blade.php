@@ -111,7 +111,7 @@
                             // arr_user.push(result[i].id.toString());
 
                             if(result[i].group_id){
-                                
+
                                 let check_team = arr_group.includes(result[i].group_id.toString());
 
                                 if(!check_team){
@@ -282,11 +282,15 @@
                 </div>
             `;
 
-            let count_member_join = document.querySelector('#count_member_join_of_'+result[i].group_id).innerHTML;
-            let new_count_member_join = parseInt(count_member_join) + 1 ;
-            document.querySelector('#count_member_join_of_'+result[i].group_id).innerHTML = new_count_member_join ;
+            if( document.querySelector('#count_member_join_of_'+result[i].group_id) ){
 
-            document.querySelector('#div_show_user_of_'+result[i].group_id).insertAdjacentHTML('beforeend', html_user);
+                let count_member_join = document.querySelector('#count_member_join_of_'+result[i].group_id).innerHTML;
+                let new_count_member_join = parseInt(count_member_join) + 1 ;
+                document.querySelector('#count_member_join_of_'+result[i].group_id).innerHTML = new_count_member_join ;
+
+                document.querySelector('#div_show_user_of_'+result[i].group_id).insertAdjacentHTML('beforeend', html_user);
+            }
+            
 
             view_user.insertAdjacentHTML('beforeend', html_user);
         }
