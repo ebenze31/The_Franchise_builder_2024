@@ -235,34 +235,34 @@
             </div>
             <div class="col-12 col-md-12 mt-2 mb-2">
                 <div class="float-end">
-                    <button type="button" class="btn btn-sm btn-success" onclick="select_type('XS(36)');">
+                    <button type="button" class="mt-2 btn btn-sm btn-success" onclick="select_type('XS(36)');">
                         Size XS(36) (<span id="count_size_xs"></span>)
                     </button>
-                    <button type="button" class="btn btn-sm btn-success" onclick="select_type('S(38)');">
+                    <button type="button" class="mt-2 btn btn-sm btn-success" onclick="select_type('S(38)');">
                         Size S(38) (<span id="count_size_s"></span>)
                     </button>
-                    <button type="button" class="btn btn-sm btn-danger" onclick="select_type('M(40)');">
+                    <button type="button" class="mt-2 btn btn-sm btn-danger" onclick="select_type('M(40)');">
                         Size M(40) (<span id="count_size_m"></span>)
                     </button>
-                    <button type="button" class="btn btn-sm btn-primary" onclick="select_type('L(42)');">
+                    <button type="button" class="mt-2 btn btn-sm btn-primary" onclick="select_type('L(42)');">
                         Size L(42) (<span id="count_size_l"></span>)
                     </button>
-                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('XL(44)');">
+                    <button type="button" class="mt-2 btn btn-sm btn-warning" onclick="select_type('XL(44)');">
                         Size XL(44) (<span id="count_size_xl"></span>)
                     </button>
-                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('2XL(46)');">
+                    <button type="button" class="mt-2 btn btn-sm btn-warning" onclick="select_type('2XL(46)');">
                         Size 2XL(46) (<span id="count_size_2xl"></span>)
                     </button>
-                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('3XL(48)');">
+                    <button type="button" class="mt-2 btn btn-sm btn-warning" onclick="select_type('3XL(48)');">
                         Size 3XL(48) (<span id="count_size_3xl"></span>)
                     </button>
-                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('4XL(50)');">
+                    <button type="button" class="mt-2 btn btn-sm btn-warning" onclick="select_type('4XL(50)');">
                         Size 4XL(50) (<span id="count_size_4xl"></span>)
                     </button>
-                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('5XL(52)');">
+                    <button type="button" class="mt-2 btn btn-sm btn-warning" onclick="select_type('5XL(52)');">
                         Size 5XL(52) (<span id="count_size_5xl"></span>)
                     </button>
-                    <button type="button" class="btn btn-sm btn-info" onclick="select_type('all');">
+                    <button type="button" class="mt-2 btn btn-sm btn-info" onclick="select_type('all');">
                         ทั้งหมด (<span id="count_size_all"></span>)
                     </button>
                 </div>
