@@ -255,6 +255,7 @@
                                             <option value="Super-admin">Super-admin</option>
                                             <option value="Admin">Admin</option>
                                             <option value="Staff">Staff</option>
+                                            <option value="QR">QR</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
