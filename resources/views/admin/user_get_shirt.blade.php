@@ -225,7 +225,7 @@
     <div class="card-body">
 
         <div class="row">
-            <div class="col-12 col-md-5">
+            <div class="col-12 col-md-12 mt-2 mb-2">
                 <h4 class="mb-0 text-uppercase">
                     รายชื่อสมาชิกที่ได้รับเสื้อแล้ว
                     <span class="d-none" style="font-size: 15px;color: gray;">
@@ -233,7 +233,7 @@
                     </span>
                 </h4>
             </div>
-            <div class="col-12 col-md-7">
+            <div class="col-12 col-md-12 mt-2 mb-2">
                 <div class="float-end">
                     <button type="button" class="btn btn-sm btn-success" onclick="select_type('XS(36)');">
                         Size XS(36) (<span id="count_size_xs"></span>)
