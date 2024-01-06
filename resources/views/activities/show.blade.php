@@ -222,6 +222,20 @@
                 name_group = result[i].group_id ;
             }
 
+            let html_name_group ;
+            if(result[i].group_id){
+                html_name_group = 
+                    `<div class="float-end text-center">
+                        Team : `+name_group+`
+                    </div>`;
+            }else{
+                html_name_group = `
+                    <div class="float-end text-center">
+                        -
+                    </div>
+                ` ;
+            }
+
             let html_check_Activities ;
             if("{{ $activity->name_Activities }}" == "รับเสื้อ"){
                 html_check_Activities = `
@@ -274,9 +288,7 @@
                             <b>Time joined</b> <br> `+result[i].time_join+`
                         </div>
                         <div class="col-2">
-                            <div class="float-end text-center">
-                                Team : `+name_group+`
-                            </div>
+                            `+html_name_group+`
                         </div>
                     </div>
                 </div>
