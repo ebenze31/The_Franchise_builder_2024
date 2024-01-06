@@ -299,7 +299,7 @@
 
         let account = document.querySelector('#account').value;
         let password = document.querySelector('#password').value;
-        console.log(account);
+        // console.log(account);
 
         if(account && password){
             fetch("{{ url('/') }}/api/check_pdpa/" + account)
@@ -307,11 +307,15 @@
                 .then(result => {
                     // console.log(result);
 
-                    if(result != "Yes"){
-                        $('#ModalTerms').modal('show');
-                    }else{
+                    if(result == "Account none"){
+                        alert("ขออภัย ไม่พบ Account ของคุณ");
+                    }
+                    else if(result == "Yes"){
                         document.querySelector('#btn_for_login').setAttribute('onclick' , 'to_login();');
                         document.querySelector('#btn_for_login').click();
+                    }
+                    else{
+                        $('#ModalTerms').modal('show');
                     }
             });
         }

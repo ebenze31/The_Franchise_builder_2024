@@ -429,10 +429,14 @@ class ProfileController extends Controller
     {
         $data = User::where('account' , $account)->first();
 
-        if( !empty($data->pdpa) ){
-            $return = "Yes" ;
+        if($data){
+            if( !empty($data->pdpa) ){
+                $return = "Yes" ;
+            }else{
+                $return ="No" ;
+            }
         }else{
-            $return ="No" ;
+            $return ="Account none" ;
         }
         
         return $return;
