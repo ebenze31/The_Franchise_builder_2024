@@ -235,19 +235,34 @@
             </div>
             <div class="col-12 col-md-7">
                 <div class="float-end">
-                    <button type="button" class="btn btn-success" onclick="select_type('S');">
-                        Size S (<span id="count_size_s"></span>)
+                    <button type="button" class="btn btn-sm btn-success" onclick="select_type('XS(36)');">
+                        Size XS(36) (<span id="count_size_xs"></span>)
                     </button>
-                    <button type="button" class="btn btn-danger" onclick="select_type('M');">
-                        Size M (<span id="count_size_m"></span>)
+                    <button type="button" class="btn btn-sm btn-success" onclick="select_type('S(38)');">
+                        Size S(38) (<span id="count_size_s"></span>)
                     </button>
-                    <button type="button" class="btn btn-primary" onclick="select_type('L');">
-                        Size L (<span id="count_size_l"></span>)
+                    <button type="button" class="btn btn-sm btn-danger" onclick="select_type('M(40)');">
+                        Size M(40) (<span id="count_size_m"></span>)
                     </button>
-                    <button type="button" class="btn btn-warning" onclick="select_type('XL');">
-                        Size XL (<span id="count_size_xl"></span>)
+                    <button type="button" class="btn btn-sm btn-primary" onclick="select_type('L(42)');">
+                        Size L(42) (<span id="count_size_l"></span>)
                     </button>
-                    <button type="button" class="btn btn-info" onclick="select_type('all');">
+                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('XL(44)');">
+                        Size XL(44) (<span id="count_size_xl"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('2XL(46)');">
+                        Size 2XL(46) (<span id="count_size_2xl"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('3XL(48)');">
+                        Size 3XL(48) (<span id="count_size_3xl"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('4XL(50)');">
+                        Size 4XL(50) (<span id="count_size_4xl"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('5XL(52)');">
+                        Size 5XL(52) (<span id="count_size_5xl"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-info" onclick="select_type('all');">
                         ทั้งหมด (<span id="count_size_all"></span>)
                     </button>
                 </div>
@@ -352,24 +367,76 @@
                         let content_tbody = document.querySelector('#content_tbody');
                             content_tbody.innerHTML = '';
 
+                    <button type="button" class="btn btn-sm btn-success" onclick="select_type('XS(36)');">
+                        Size XS(36) (<span id="count_size_xs"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-success" onclick="select_type('S(38)');">
+                        Size S(38) (<span id="count_size_s"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="select_type('M(40)');">
+                        Size M(40) (<span id="count_size_m"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary" onclick="select_type('L(42)');">
+                        Size L(42) (<span id="count_size_l"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('XL(44)');">
+                        Size XL(44) (<span id="count_size_xl"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('2XL(46)');">
+                        Size 2XL(46) (<span id="count_size_2xl"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('3XL(48)');">
+                        Size 3XL(48) (<span id="count_size_3xl"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('4XL(50)');">
+                        Size 4XL(50) (<span id="count_size_4xl"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="select_type('5XL(52)');">
+                        Size 5XL(52) (<span id="count_size_5xl"></span>)
+                    </button>
+                    <button type="button" class="btn btn-sm btn-info" onclick="select_type('all');">
+                        ทั้งหมด (<span id="count_size_all"></span>)
+                    </button>
+
+                        let count_size_xs = 0 ;
                         let count_size_s = 0 ;
                         let count_size_m = 0 ;
                         let count_size_l = 0 ;
                         let count_size_xl = 0 ;
+                        let count_size_2xl = 0 ;
+                        let count_size_3xl = 0 ;
+                        let count_size_4xl = 0 ;
+                        let count_size_5xl = 0 ;
+
 
                         for (let i = 0; i < result.length; i++) {
 
-                            if (result[i].shirt_size == 'S') {
+                            if (result[i].shirt_size == 'XS(36)') {
+                                count_size_xs = count_size_xs + 1;
+                            }
+                            else if (result[i].shirt_size == 'S(38)') {
                                 count_size_s = count_size_s + 1;
                             }
-                            else if (result[i].shirt_size == 'M') {
+                            else if (result[i].shirt_size == 'M(40)') {
                                 count_size_m = count_size_m + 1;
                             }
-                            else if (result[i].shirt_size == 'L') {
+                            else if (result[i].shirt_size == 'L(42)') {
                                 count_size_l = count_size_l + 1;
                             }
-                            else if (result[i].shirt_size == 'XL') {
+                            else if (result[i].shirt_size == 'XL(44)') {
                                 count_size_xl = count_size_xl + 1;
+                            }
+                            else if (result[i].shirt_size == '2XL(46)') {
+                                count_size_2xl = count_size_2xl + 1;
+                            }
+                            else if (result[i].shirt_size == '3XL(48)') {
+                                count_size_3xl = count_size_3xl + 1;
+                            }
+                            else if (result[i].shirt_size == '4XL(50)') {
+                                count_size_4xl = count_size_4xl + 1;
+                            }
+                            else if (result[i].shirt_size == '5XL(52)') {
+                                count_size_5xl = count_size_5xl + 1;
                             }
 
                             // photo 
@@ -416,10 +483,15 @@
                         }
 
 
+                        document.querySelector('#count_size_xs').innerHTML = count_size_xs ;
                         document.querySelector('#count_size_s').innerHTML = count_size_s ;
                         document.querySelector('#count_size_m').innerHTML = count_size_m ;
                         document.querySelector('#count_size_l').innerHTML = count_size_l ;
                         document.querySelector('#count_size_xl').innerHTML = count_size_xl ;
+                        document.querySelector('#count_size_2xl').innerHTML = count_size_2xl ;
+                        document.querySelector('#count_size_3xl').innerHTML = count_size_3xl ;
+                        document.querySelector('#count_size_4xl').innerHTML = count_size_4xl ;
+                        document.querySelector('#count_size_5xl').innerHTML = count_size_5xl ;
 
                         document.querySelector('#btn_export_excel').classList.remove('d-none');
 
