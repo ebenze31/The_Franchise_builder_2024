@@ -143,7 +143,7 @@ border-radius: 5px;
     <div class="container section-payment pb-3">
       <div>
         <div class="d-flex-justify-content-center w-100">
-          <video src="https://tfb2024.988garage.com/video/The%20Franchise%20Builder%20season2%20Introduction.mp4" controls autoplay loop muted style="width:100%;" class="video-preview"></video>
+          <video src="https://www.franchisebuilder2024.com/video/The%20Franchise%20Builder_Final.mp4" controls autoplay loop muted style="width:100%;" class="video-preview"></video>
         </div>
       </div>
       
