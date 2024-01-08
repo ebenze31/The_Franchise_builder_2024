@@ -166,6 +166,7 @@ class Contact_staffController extends Controller
         $contact_staff = DB::table('contact_staffs')
                 ->join('users', 'users.id', '=', 'contact_staffs.user_id')
                 ->select('contact_staffs.*', 'users.name as user_name' , 'users.account as user_account' , 'users.phone as user_phone' , 'users.group_id as user_group_id' , 'users.group_status as user_group_status')
+                ->orderBy('contact_staffs.created_at' , "DESC")
                 ->get();
 
         return $contact_staff ;
