@@ -443,9 +443,9 @@
                                     });
                                 }
 
-                                if(count_request_join != 0){
-                                    // request_join
-                                    setTimeout(() => {
+                                // request_join
+                                setTimeout(() => {
+                                    if(count_request_join != 0){
                                         document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', '<h4 class="mt-2">ขอเข้าร่วมบ้าน</h4>'); // แทรกล่างสุด
                                         
                                         let loop_request_join ;
@@ -511,8 +511,8 @@
                                                     document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', loop_request_join); // แทรกล่างสุด
                                             });
                                         }
-                                    }, 1000);
-                                }
+                                    }
+                                }, 1000);
 
                             }
 
