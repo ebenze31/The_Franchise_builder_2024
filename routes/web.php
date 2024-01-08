@@ -35,6 +35,14 @@ Route::middleware(['auth',])->group(function () {
     Route::get('profile', 'ProfileController@show');
     Route::post('/edit_profile/{id}', 'ProfileController@edit_profile')->name('edit_profile');
     Route::get('/for_scan', 'HomeController@for_scan');
+
+    Route::get('/ranking_by_individual', function () {
+        return view('pc_points/ranking_by_individual');
+    });
+    Route::get('/ranking_by_team', function () {
+        return view('pc_points/ranking_by_team');
+    });
+
 });
 
 // REGISTER AL TFB 2024
@@ -81,12 +89,6 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::get('/user_get_shirt', 'HomeController@user_get_shirt');
 });
 
-Route::get('/ranking_by_individual', function () {
-    return view('pc_points/ranking_by_individual');
-});
-Route::get('/ranking_by_team', function () {
-    return view('pc_points/ranking_by_team');
-});
 
 Route::resource('contact_staff', 'Contact_staffController');
 Route::resource('activities_log', 'Activities_logController');
