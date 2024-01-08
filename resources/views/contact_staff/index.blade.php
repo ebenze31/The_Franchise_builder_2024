@@ -70,7 +70,7 @@
             fetch("{{ url('/') }}/api/get_contact_staffs")
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result);
+                    // console.log(result);
 
                     setTimeout(() => {
 
