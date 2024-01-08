@@ -216,7 +216,7 @@
         fetch("{{ url('/') }}/api/get_data_view_group" + "/" + Search_input)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 setTimeout(() => {
 
@@ -270,9 +270,17 @@
                             let count_member = 0;
                             let member_arr ;
 
+                            let count_request_join = 0;
+                            let request_join_arr ;
+
                             if (result[i].member) {
                                 member_arr = JSON.parse(result[i].member);
                                 count_member = member_arr.length ;
+                            }
+
+                            if (result[i].request_join) {
+                                request_join_arr = JSON.parse(result[i].request_join);
+                                count_request_join = request_join_arr.length ;
                             }
 
                             let html_action = '' ;
@@ -368,6 +376,9 @@
 
                             if(count_member != 0){
 
+                                // MEMBER
+                                document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', '<h4>สมาชิก</h4>'); // แทรกล่างสุด
+
                                 let loop_member ;
                                 for (let zx = 0; zx < count_member; zx++) {
                                     fetch("{{ url('/') }}/api/get_data_user" + "/" + member_arr[zx])
@@ -431,6 +442,75 @@
                                             document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', loop_member); // แทรกล่างสุด
                                     });
                                 }
+
+                                // request_join
+                                setTimeout(() => {
+                                    document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', '<h4>ขอเข้าร่วมบ้าน</h4>'); // แทรกล่างสุด
+
+                                    let loop_request_join ;
+                                    for (let zx = 0; zx < count_request_join; zx++) {
+                                        fetch("{{ url('/') }}/api/get_data_user" + "/" + request_join_arr[zx])
+                                            .then(response => response.json())
+                                            .then(user => {
+                                                // console.log(user);
+
+                                                let html_shirt_size ;
+                                                if(user.shirt_size){
+                                                    html_shirt_size = `
+                                                        <h6 class="mb-1 font-14 text-success"><b>รับเสื้อแล้ว</b></h6>
+                                                        <p class="mb-0 font-13 text-secondary">Size : `+user.shirt_size+`</p>
+                                                    `;
+                                                }else{
+                                                    html_shirt_size = `
+                                                        <h6 class="mb-1 font-14 text-danger"><b>ยังไม่ได้รับเสื้อ</b></h6>
+                                                    `;
+                                                }
+
+                                                let html_time_get_shirt ;
+                                                if(user.time_get_shirt){
+                                                    html_time_get_shirt = user.time_get_shirt;
+                                                }else{
+                                                    html_time_get_shirt = `-`;
+                                                }
+
+                                                loop_request_join = `
+                                                    <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
+                                                        <div class="col-3">
+                                                        <center>
+                                                            <img src="{{ url('storage')}}/`+user.photo+`" class="rounded-circle" width="46" height="46" alt="">
+                                                        </center>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6 class="mb-1 font-14">
+                                                                Name : `+user.name+`
+                                                            </h6>
+                                                            <p class="mb-0 font-13 text-secondary">
+                                                                Account : `+user.account+`
+                                                            </p>
+                                                            <p class="mb-0 font-13 text-secondary">
+                                                                Phone : `+user.phone+`
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-3 text-center">
+                                                            <h6 class="mb-1 font-14">
+                                                                รับเสื้อเมื่อเวลา
+                                                            </h6>
+                                                            <p class="mb-0 font-13 text-secondary">
+                                                                `+html_time_get_shirt+`
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <div class="float-end text-center">
+                                                                `+html_shirt_size+`
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                `;
+
+                                                document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', loop_request_join); // แทรกล่างสุด
+                                        });
+                                    }
+                                }, 800);
 
                             }
 
