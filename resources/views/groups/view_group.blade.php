@@ -443,75 +443,76 @@
                                     });
                                 }
 
-                                // request_join
-                                setTimeout(() => {
-                                    if(count_request_join != 0){
+                                if(count_request_join != 0){
+                                    // request_join
+                                    setTimeout(() => {
                                         document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', '<h4 class="mt-2">ขอเข้าร่วมบ้าน</h4>'); // แทรกล่างสุด
-                                    }
-                                    let loop_request_join ;
-                                    for (let zx = 0; zx < count_request_join; zx++) {
-                                        fetch("{{ url('/') }}/api/get_data_user" + "/" + request_join_arr[zx])
-                                            .then(response => response.json())
-                                            .then(user => {
-                                                // console.log(user);
+                                        
+                                        let loop_request_join ;
+                                        for (let zx = 0; zx < count_request_join; zx++) {
+                                            fetch("{{ url('/') }}/api/get_data_user" + "/" + request_join_arr[zx])
+                                                .then(response => response.json())
+                                                .then(user => {
+                                                    // console.log(user);
 
-                                                let html_shirt_size ;
-                                                if(user.shirt_size){
-                                                    html_shirt_size = `
-                                                        <h6 class="mb-1 font-14 text-success"><b>รับเสื้อแล้ว</b></h6>
-                                                        <p class="mb-0 font-13 text-secondary">Size : `+user.shirt_size+`</p>
-                                                    `;
-                                                }else{
-                                                    html_shirt_size = `
-                                                        <h6 class="mb-1 font-14 text-danger"><b>ยังไม่ได้รับเสื้อ</b></h6>
-                                                    `;
-                                                }
+                                                    let html_shirt_size ;
+                                                    if(user.shirt_size){
+                                                        html_shirt_size = `
+                                                            <h6 class="mb-1 font-14 text-success"><b>รับเสื้อแล้ว</b></h6>
+                                                            <p class="mb-0 font-13 text-secondary">Size : `+user.shirt_size+`</p>
+                                                        `;
+                                                    }else{
+                                                        html_shirt_size = `
+                                                            <h6 class="mb-1 font-14 text-danger"><b>ยังไม่ได้รับเสื้อ</b></h6>
+                                                        `;
+                                                    }
 
-                                                let html_time_get_shirt ;
-                                                if(user.time_get_shirt){
-                                                    html_time_get_shirt = user.time_get_shirt;
-                                                }else{
-                                                    html_time_get_shirt = `-`;
-                                                }
+                                                    let html_time_get_shirt ;
+                                                    if(user.time_get_shirt){
+                                                        html_time_get_shirt = user.time_get_shirt;
+                                                    }else{
+                                                        html_time_get_shirt = `-`;
+                                                    }
 
-                                                loop_request_join = `
-                                                    <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
-                                                        <div class="col-3">
-                                                        <center>
-                                                            <img src="{{ url('storage')}}/`+user.photo+`" class="rounded-circle" width="46" height="46" alt="">
-                                                        </center>
-                                                        </div>
-                                                        <div class="col-3">
-                                                            <h6 class="mb-1 font-14">
-                                                                Name : `+user.name+`
-                                                            </h6>
-                                                            <p class="mb-0 font-13 text-secondary">
-                                                                Account : `+user.account+`
-                                                            </p>
-                                                            <p class="mb-0 font-13 text-secondary">
-                                                                Phone : `+user.phone+`
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-3 text-center">
-                                                            <h6 class="mb-1 font-14">
-                                                                รับเสื้อเมื่อเวลา
-                                                            </h6>
-                                                            <p class="mb-0 font-13 text-secondary">
-                                                                `+html_time_get_shirt+`
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-3">
-                                                            <div class="float-end text-center">
-                                                                `+html_shirt_size+`
+                                                    loop_request_join = `
+                                                        <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
+                                                            <div class="col-3">
+                                                            <center>
+                                                                <img src="{{ url('storage')}}/`+user.photo+`" class="rounded-circle" width="46" height="46" alt="">
+                                                            </center>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <h6 class="mb-1 font-14">
+                                                                    Name : `+user.name+`
+                                                                </h6>
+                                                                <p class="mb-0 font-13 text-secondary">
+                                                                    Account : `+user.account+`
+                                                                </p>
+                                                                <p class="mb-0 font-13 text-secondary">
+                                                                    Phone : `+user.phone+`
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-3 text-center">
+                                                                <h6 class="mb-1 font-14">
+                                                                    รับเสื้อเมื่อเวลา
+                                                                </h6>
+                                                                <p class="mb-0 font-13 text-secondary">
+                                                                    `+html_time_get_shirt+`
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <div class="float-end text-center">
+                                                                    `+html_shirt_size+`
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                `;
+                                                    `;
 
-                                                document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', loop_request_join); // แทรกล่างสุด
-                                        });
-                                    }
-                                }, 800);
+                                                    document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', loop_request_join); // แทรกล่างสุด
+                                            });
+                                        }
+                                    }, 1000);
+                                }
 
                             }
 
