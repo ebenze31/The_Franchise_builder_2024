@@ -5,6 +5,7 @@
 <style>
     .content-section {
         padding: 0;
+
     }
 
     #header-text-login {
@@ -17,9 +18,9 @@
 
     .sub-rank-img {
         -webkit-border-radius: 50%;    
-border-radius: 50%; 
--moz-border-radius:50%;
--khtml-border-radius:50%;
+        border-radius: 50%; 
+        -moz-border-radius:50%;
+        -khtml-border-radius:50%;
         width: 68px;
         height: 68px;
         aspect-ratio: 1/1;
@@ -28,9 +29,9 @@ border-radius: 50%;
 
     .main-rank-img {
         -webkit-border-radius: 50%;    
-border-radius: 50%; 
--moz-border-radius:50%;
--khtml-border-radius:50%;
+        border-radius: 50%; 
+        -moz-border-radius:50%;
+        -khtml-border-radius:50%;
         width: 85px;
         height: 85px;
         aspect-ratio: 1/1;
@@ -59,7 +60,7 @@ border-radius: 50%;
         width: 100%;
         background: rgb(0, 27, 87);
         background: linear-gradient(360deg, rgba(0, 27, 87, 0) 0%, rgba(0, 27, 87, 1) 100%);
-        margin: 10px 0 0 0;
+        margin: 10px 0 10px 0;
         -webkit-border-radius: 20px;    
         border-radius: 20px; 
         -moz-border-radius:20px;
@@ -68,7 +69,6 @@ border-radius: 50%;
         color: #fff;
         z-index: -5;
         overflow: auto;
-        height: 50vh;
     }
 
     .my-team {
@@ -298,7 +298,234 @@ border-radius: 50%;
             </div>
         </div>
     </div>
+    <div class="other-team">
+        <div class="number-my-team">1</div>
+        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
+        <div class="detailTeam">
+            <div>
+                <p class="nameTeam">Team 01</p>
+                <p class="menberInTeam">Member : 10</p>
+            </div>
+        </div>
+        <div class="score-my-team">
+            <span class="text-score">19.15M </span>
+            <span class="text-point"> Pc</span>
 
+        </div>
+        <div class="statusTeam">
+            <i class="fa-solid fa-triangle rankUP"></i>
+            <p class="statusNumber ">1</p>
+        </div>
+    </div>
+    <div class="other-team">
+        <div class="number-my-team">1</div>
+        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
+        <div class="detailTeam">
+            <div>
+                <p class="nameTeam">Team 01</p>
+                <p class="menberInTeam">Member : 10</p>
+            </div>
+        </div>
+        <div class="score-my-team">
+            <span class="text-score">19.15M </span>
+            <span class="text-point"> Pc</span>
+
+        </div>
+        <div class="statusTeam">
+            <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
+            <p class="statusNumber ">1</p>
+        </div>
+    </div>
+    <div class="other-team">
+        <div class="number-my-team">1</div>
+        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
+        <div class="detailTeam">
+            <div>
+                <p class="nameTeam">Team 01</p>
+                <p class="menberInTeam">Member : 10</p>
+            </div>
+        </div>
+        <div class="score-my-team">
+            <span class="text-score">19.15M </span>
+            <span class="text-point"> Pc</span>
+
+        </div>
+        <div class="statusTeam">
+            <i class="fa-solid fa-rectangle-wide rankNORMAL"></i>
+            <p class="statusNumber ">1</p>
+        </div>
+    </div>
+    <div class="other-team">
+        <div class="number-my-team">1</div>
+        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
+        <div class="detailTeam">
+            <div>
+                <p class="nameTeam">Team 01</p>
+                <p class="menberInTeam">Member : 10</p>
+            </div>
+        </div>
+        <div class="score-my-team">
+            <span class="text-score">19.15M </span>
+            <span class="text-point"> Pc</span>
+
+        </div>
+        <div class="statusTeam">
+            <i class="fa-solid fa-triangle rankUP"></i>
+            <p class="statusNumber ">1</p>
+        </div>
+    </div>
+    <div class="other-team">
+        <div class="number-my-team">1</div>
+        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
+        <div class="detailTeam">
+            <div>
+                <p class="nameTeam">Team 01</p>
+                <p class="menberInTeam">Member : 10</p>
+            </div>
+        </div>
+        <div class="score-my-team">
+            <span class="text-score">19.15M </span>
+            <span class="text-point"> Pc</span>
+
+        </div>
+        <div class="statusTeam">
+            <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
+            <p class="statusNumber ">1</p>
+        </div>
+    </div>
+    <div class="other-team">
+        <div class="number-my-team">1</div>
+        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
+        <div class="detailTeam">
+            <div>
+                <p class="nameTeam">Team 01</p>
+                <p class="menberInTeam">Member : 10</p>
+            </div>
+        </div>
+        <div class="score-my-team">
+            <span class="text-score">19.15M </span>
+            <span class="text-point"> Pc</span>
+
+        </div>
+        <div class="statusTeam">
+            <i class="fa-solid fa-rectangle-wide rankNORMAL"></i>
+            <p class="statusNumber ">1</p>
+        </div>
+    </div>
+    <div class="other-team">
+        <div class="number-my-team">1</div>
+        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
+        <div class="detailTeam">
+            <div>
+                <p class="nameTeam">Team 01</p>
+                <p class="menberInTeam">Member : 10</p>
+            </div>
+        </div>
+        <div class="score-my-team">
+            <span class="text-score">19.15M </span>
+            <span class="text-point"> Pc</span>
+
+        </div>
+        <div class="statusTeam">
+            <i class="fa-solid fa-triangle rankUP"></i>
+            <p class="statusNumber ">1</p>
+        </div>
+    </div>
+    <div class="other-team">
+        <div class="number-my-team">1</div>
+        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
+        <div class="detailTeam">
+            <div>
+                <p class="nameTeam">Team 01</p>
+                <p class="menberInTeam">Member : 10</p>
+            </div>
+        </div>
+        <div class="score-my-team">
+            <span class="text-score">19.15M </span>
+            <span class="text-point"> Pc</span>
+
+        </div>
+        <div class="statusTeam">
+            <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
+            <p class="statusNumber ">1</p>
+        </div>
+    </div>
+    <div class="other-team">
+        <div class="number-my-team">1</div>
+        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
+        <div class="detailTeam">
+            <div>
+                <p class="nameTeam">Team 01</p>
+                <p class="menberInTeam">Member : 10</p>
+            </div>
+        </div>
+        <div class="score-my-team">
+            <span class="text-score">19.15M </span>
+            <span class="text-point"> Pc</span>
+
+        </div>
+        <div class="statusTeam">
+            <i class="fa-solid fa-rectangle-wide rankNORMAL"></i>
+            <p class="statusNumber ">1</p>
+        </div>
+    </div>
+    <div class="other-team">
+        <div class="number-my-team">1</div>
+        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
+        <div class="detailTeam">
+            <div>
+                <p class="nameTeam">Team 01</p>
+                <p class="menberInTeam">Member : 10</p>
+            </div>
+        </div>
+        <div class="score-my-team">
+            <span class="text-score">19.15M </span>
+            <span class="text-point"> Pc</span>
+
+        </div>
+        <div class="statusTeam">
+            <i class="fa-solid fa-triangle rankUP"></i>
+            <p class="statusNumber ">1</p>
+        </div>
+    </div>
+    <div class="other-team">
+        <div class="number-my-team">1</div>
+        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
+        <div class="detailTeam">
+            <div>
+                <p class="nameTeam">Team 01</p>
+                <p class="menberInTeam">Member : 10</p>
+            </div>
+        </div>
+        <div class="score-my-team">
+            <span class="text-score">19.15M </span>
+            <span class="text-point"> Pc</span>
+
+        </div>
+        <div class="statusTeam">
+            <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
+            <p class="statusNumber ">1</p>
+        </div>
+    </div>
+    <div class="other-team">
+        <div class="number-my-team">1</div>
+        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
+        <div class="detailTeam">
+            <div>
+                <p class="nameTeam">Team 01</p>
+                <p class="menberInTeam">Member : 10</p>
+            </div>
+        </div>
+        <div class="score-my-team">
+            <span class="text-score">19.15M </span>
+            <span class="text-point"> Pc</span>
+
+        </div>
+        <div class="statusTeam">
+            <i class="fa-solid fa-rectangle-wide rankNORMAL"></i>
+            <p class="statusNumber ">1</p>
+        </div>
+    </div>
     <div class="other-team">
         <div class="number-my-team">1</div>
         <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
