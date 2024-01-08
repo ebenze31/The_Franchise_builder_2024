@@ -5,6 +5,31 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-2">
+                                <h4>Date/Time</h4>
+                            </div>
+                            <div class="col-3">
+                                <h4>User</h4>
+                            </div>
+                            <div class="col-4">
+                                <h4>Question</h4>
+                            </div>
+                            <div class="col-3">
+                                <h4>Approve / Finish</h4>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div id="row_content" class="row">
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card d-none">
                     <div class="card-header">FAQ</div>
                     <div class="card-body">
 
@@ -54,6 +79,9 @@
                             let content_tbody = document.querySelector('#content_tbody');
                                 content_tbody.innerHTML = '';
 
+                            let row_content = document.querySelector('#row_content');
+                                row_content.innerHTML = '';
+
                             for (let i = 0; i < result.length; i++) {
 
                                 // ข้อมูลจาก PHP
@@ -96,6 +124,44 @@
                                 `;
 
                                 content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+
+                                let html_row_content = `
+                                    <div class="col-2">
+                                        `+formattedDate+`
+                                    </div>
+                                    <div class="col-3">
+                                        Account :  `+result[i].user_account+`
+                                        <br>
+                                        Name : `+result[i].user_name+`
+                                        <br>
+                                        Phone : `+result[i].user_phone+`
+                                        <br>
+                                    </div>
+                                    <div class="col-4">
+                                        `+result[i].question+`
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="gridCheck3">
+                                                    <label class="form-check-label" for="gridCheck3">Approve</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="gridCheck3">
+                                                    <label class="form-check-label" for="gridCheck3">Finish</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="mt-3 mb-3">
+                                `;
+
+                                row_content.insertAdjacentHTML('beforeend', html_row_content); // แทรกล่างสุด
 
 
                             }
