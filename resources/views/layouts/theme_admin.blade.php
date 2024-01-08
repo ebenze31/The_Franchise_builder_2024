@@ -242,6 +242,16 @@
                         </li>
                     </ul>
                 </li>
+                <li class="">
+                    <a href="{{ url('/contact_staff') }}" class="">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-comments-question-check"></i>
+                        </div>
+                        <div class="menu-title">
+                            FAQ
+                        </div>
+                    </a>
+                </li>
                 <hr>
                 <li class="">
                     <a href="{{ url('/groups') }}" class="">

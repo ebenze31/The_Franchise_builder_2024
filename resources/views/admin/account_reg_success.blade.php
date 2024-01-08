@@ -409,13 +409,29 @@
                         // status
                         let class_status = '';
                         let html_status = '';
+                        let dropdown_status = '';
                         if(result[i].status == "เข้าร่วมแล้ว"){
                             class_status = 'success';
                             html_status = 'เข้าร่วมแล้ว';
-                        }else if(result[i].status == "รอยืนยัน"){
+                            dropdown_status = `
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-success radius-30 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        เข้าร่วมแล้ว
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <span class="dropdown-item btn text-danger" onclick="Cancel_join(`+result[i].id+`);">
+                                            ยกเลิกการเข้าร่วม
+                                        </span>
+                                    </div>
+                                </div>
+                            `;
+
+                        }
+                        else if(result[i].status == "รอยืนยัน"){
                             class_status = 'warning';
                             html_status = 'รอยืนยัน';
-                        }else{
+                        }
+                        else{
                             class_status = 'danger';
                             html_status = 'ยังไม่เข้าร่วม';
                         }
@@ -506,9 +522,7 @@
                                      `+text_shirt_size+`
                                 </td>
                                 <td id="td_status_`+result[i].account+`" class="text-center" style="font-size:13px;">
-                                    <a class="btn btn-sm btn-`+class_status+` radius-30" style="width:90%;">
-                                        `+html_status+`
-                                    </a>
+                                    `+dropdown_status+`
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ url('/img/qr_profile')}}/`+result[i].qr_profile+`" target="bank">
@@ -615,6 +629,11 @@ function createExcel() {
 
     table2excel.export(document.querySelector("#content_table"), fileName);
 };
+
+
+function Cancel_join(user_id){
+    console.log(user_id);
+}
 
 </script>
 

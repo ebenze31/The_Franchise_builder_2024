@@ -63,6 +63,9 @@ Route::get('/get_detail_activity/{id}', 'ActivitiesController@get_detail_activit
 Route::get('/get_activity/{name}', 'ActivitiesController@get_activity');
 Route::get('/check_user_join_activity/{account}/{name_Activity}', 'ActivitiesController@check_user_join_activity');
 
+// contact staffs
+Route::get('/get_contact_staffs', 'Contact_staffController@get_contact_staffs');
+
 
 // LINE
 Route::post('/send_Line_Notify', 'Contact_staffController@send_Line_Notify');

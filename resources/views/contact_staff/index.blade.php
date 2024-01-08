@@ -1,58 +1,30 @@
-@extends('layouts.app')
+@extends('layouts.theme_admin')
 
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Contact_staff</div>
+                    <div class="card-header">FAQ</div>
                     <div class="card-body">
-                        <a href="{{ url('/contact_staff/create') }}" class="btn btn-success btn-sm" title="Add New Contact_staff">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
 
-                        <form method="GET" action="{{ url('/contact_staff') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
-                                <span class="input-group-append">
-                                    <button class="btn btn-secondary" type="submit">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
-
-                        <br/>
-                        <br/>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table mb-0 align-middle" id="content_table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Question</th><th>Reading</th><th>User Id</th><th>Staff Id</th><th>Actions</th>
+                                        <th class="text-center">Date/Time</th>
+                                        <th class="text-center">Account</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Phone</th>
+                                        <th class="text-center">Question</th>
+                                        <th class="text-center">Approve</th>
+                                        <th class="text-center">Finish</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                @foreach($contact_staff as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->question }}</td><td>{{ $item->reading }}</td><td>{{ $item->user_id }}</td><td>{{ $item->staff_id }}</td>
-                                        <td>
-                                            <a href="{{ url('/contact_staff/' . $item->id) }}" title="View Contact_staff"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/contact_staff/' . $item->id . '/edit') }}" title="Edit Contact_staff"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-
-                                            <form method="POST" action="{{ url('/contact_staff' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Contact_staff" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                <tbody id="content_tbody">
+                                    <!-- DATA USER -->
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $contact_staff->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
 
                     </div>
@@ -60,4 +32,79 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+            get_contact_staffs();
+        });
+        
+        function get_contact_staffs(){
+
+            fetch("{{ url('/') }}/api/get_contact_staffs")
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+
+                    setTimeout(() => {
+
+                        if(result){
+
+                            let content_tbody = document.querySelector('#content_tbody');
+                                content_tbody.innerHTML = '';
+
+                            for (let i = 0; i < result.length; i++) {
+
+                                // ข้อมูลจาก PHP
+                                let phpDateString = result[i].created_at;
+
+                                // สร้างวัตถุ Date จากข้อมูลที่ได้จาก PHP
+                                let phpDate = new Date(phpDateString);
+
+                                // สร้าง Options สำหรับการจัดรูปแบบ
+                                let options = { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric' };
+
+                                // ใช้ toLocaleString() เพื่อแปลงวันที่
+                                let formattedDate = phpDate.toLocaleString('en-UK', options);
+
+
+                                let html = `
+                                    <tr class="">
+                                        <td class="text-center">
+                                            `+formattedDate+`
+                                        </td>
+                                        <td class="text-center">
+                                            `+result[i].user_account+`
+                                        </td>
+                                        <td class="text-center">
+                                            `+result[i].user_name+`
+                                        </td>
+                                        <td class="text-center">
+                                            `+result[i].user_phone+`
+                                        </td>
+                                        <td class="text-center">
+                                            `+result[i].question+`
+                                        </td>
+                                        <td class="text-center">
+                                            -
+                                        </td>
+                                        <td class="text-center">
+                                            -
+                                        </td>
+                                    </tr>
+                                `;
+
+                                content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+
+                            }
+                        }
+
+                    }, 500);
+
+                });
+        }
+
+    </script>
 @endsection

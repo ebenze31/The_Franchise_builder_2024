@@ -25,7 +25,7 @@ class Contact_staff extends Model
      *
      * @var array
      */
-    protected $fillable = ['question', 'reading', 'user_id', 'staff_id'];
+    protected $fillable = ['question', 'reading', 'user_id', 'staff_id','approve','finish'];
 
     
 }

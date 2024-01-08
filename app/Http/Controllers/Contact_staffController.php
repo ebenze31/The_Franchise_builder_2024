@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Phattarachai\LineNotify\Line;
 use App\User;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Contact_staffController extends Controller
 {
@@ -156,5 +157,17 @@ class Contact_staffController extends Controller
         Contact_staff::create($requestData);
 
         return "success";
+    }
+
+    function get_contact_staffs(){
+
+        // $contact_staff = Contact_staff::get();
+
+        $contact_staff = DB::table('contact_staffs')
+                ->join('users', 'users.id', '=', 'contact_staffs.user_id')
+                ->select('contact_staffs.*', 'users.name as user_name' , 'users.account as user_account' , 'users.phone as user_phone')
+                ->get();
+
+        return $contact_staff ;
     }
 }
