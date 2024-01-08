@@ -3,6 +3,36 @@
 @section('content')
     <div class="container">
         <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body row">
+                        <div class="col-10">
+                            <button id="btn_view_all" type="button" class="btn btn-info" onclick="view_data('all');">
+                                All
+                            </button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button id="btn_view_Approve" type="button" class="btn btn-outline-info" onclick="view_data('Approve');">
+                                Approve
+                            </button>
+                            <button id="btn_view_Not_Approve" type="button" class="btn btn-outline-info" onclick="view_data('Not_Approve');">
+                                Not Approve
+                            </button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button id="btn_view_Finish" type="button" class="btn btn-outline-info" onclick="view_data('Finish');">
+                                Finish
+                            </button>
+                            <button id="btn_view_Not_Finish" type="button" class="btn btn-outline-info" onclick="view_data('Not_Finish');">
+                                Not Finish
+                            </button>
+                        </div>
+                        <div class="col-2 text-end">
+                            กำลังดู : <span id="amount_select"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
@@ -23,7 +53,7 @@
 
                         <hr>
 
-                        <div id="row_content" class="row">
+                        <div id="row_content">
                             
                         </div>
                     </div>
@@ -73,6 +103,8 @@
                     // console.log(result);
 
                     setTimeout(() => {
+
+                        document.querySelector('#amount_select').innerHTML = result.length ;
 
                         if(result){
 
@@ -136,42 +168,44 @@
                                 }
 
                                 let html_row_content = `
-                                    <div class="col-2">
-                                        `+formattedDate+`
-                                    </div>
-                                    <div class="col-3">
-                                        <b>Account :</b>  `+result[i].user_account+`
-                                        <br>
-                                        <b>Name :</b> `+result[i].user_name+`
-                                        <br>
-                                        <b>Phone :</b> `+result[i].user_phone+`
-                                        <br>
-                                        <b>Group id :</b> `+result[i].user_group_id+`
-                                        <br>
-                                        <b>Group status :</b> `+result[i].user_group_status+`
-                                        <br>
-                                    </div>
-                                    <div class="col-4">
-                                        `+result[i].question+`
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="Approve_`+result[i].id+`" `+check_Approve+` onclick="change_approve(`+result[i].id+`);">
-                                                    <label class="form-check-label" for="Approve">Approve</label>
+                                    <div id="div_id_`+result[i].id+`" div_data="FAQ" Approve="`+check_Approve+`" Finish="`+check_Finish+`" class="row">
+                                        <div class="col-2">
+                                            `+formattedDate+`
+                                        </div>
+                                        <div class="col-3">
+                                            <b>Account :</b>  `+result[i].user_account+`
+                                            <br>
+                                            <b>Name :</b> `+result[i].user_name+`
+                                            <br>
+                                            <b>Phone :</b> `+result[i].user_phone+`
+                                            <br>
+                                            <b>Group id :</b> `+result[i].user_group_id+`
+                                            <br>
+                                            <b>Group status :</b> `+result[i].user_group_status+`
+                                            <br>
+                                        </div>
+                                        <div class="col-4">
+                                            `+result[i].question+`
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="Approve_`+result[i].id+`" `+check_Approve+` onclick="change_approve(`+result[i].id+`);">
+                                                        <label class="form-check-label" for="Approve">Approve</label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="Finish_`+result[i].id+`" `+check_Finish+` onclick="change_finish(`+result[i].id+`);">
-                                                    <label class="form-check-label" for="Finish">Finish</label>
+                                                <div class="col-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="Finish_`+result[i].id+`" `+check_Finish+` onclick="change_finish(`+result[i].id+`);">
+                                                        <label class="form-check-label" for="Finish">Finish</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <hr class="mt-3 mb-3">
                                     </div>
 
-                                    <hr class="mt-3 mb-3">
                                 `;
 
                                 row_content.insertAdjacentHTML('beforeend', html_row_content); // แทรกล่างสุด
@@ -193,8 +227,10 @@
             let check_Approve ;
             if(Approve.checked){
                 check_Approve = "Yes";
+                document.querySelector('#div_id_' + id).setAttribute('Approve' , 'checked');
             }else{
                 check_Approve = "No";
+                document.querySelector('#div_id_' + id).setAttribute('Approve' , 'No');
             }
 
             fetch("{{ url('/') }}/api/change_approve/" + id + "/" + check_Approve)
@@ -213,8 +249,10 @@
             let check_Finish ;
             if(Finish.checked){
                 check_Finish = "Yes";
+                document.querySelector('#div_id_' + id).setAttribute('Finish' , 'checked');
             }else{
                 check_Finish = "No";
+                document.querySelector('#div_id_' + id).setAttribute('Finish' , 'No');
             }
 
             fetch("{{ url('/') }}/api/change_finish/" + id + "/" + check_Finish)
@@ -226,4 +264,93 @@
         }
 
     </script>
+
+    <script>
+                
+        function view_data(type){
+
+            // console.log(type);
+
+            let amount_select = 0 ;
+
+            document.querySelector('#btn_view_all').setAttribute('class' , 'btn btn-outline-info');
+            document.querySelector('#btn_view_Approve').setAttribute('class' , 'btn btn-outline-info');
+            document.querySelector('#btn_view_Not_Approve').setAttribute('class' , 'btn btn-outline-info');
+            document.querySelector('#btn_view_Finish').setAttribute('class' , 'btn btn-outline-info');
+            document.querySelector('#btn_view_Not_Finish').setAttribute('class' , 'btn btn-outline-info');
+
+            document.querySelector('#btn_view_'+type).setAttribute('class' , 'btn btn-info');
+
+            if(type == 'all'){
+                let div = document.querySelectorAll('div[div_data="FAQ"]');
+                div.forEach(div => {
+                    div.classList.remove('d-none');
+                    amount_select = amount_select + 1 ;
+                })
+            }
+            else if(type == 'Approve'){
+                let div = document.querySelectorAll('div[div_data="FAQ"]');
+                div.forEach(div => {
+                    div.classList.add('d-none');
+                })
+
+                setTimeout(() => {
+                    let select = document.querySelectorAll('div[Approve="checked"]');
+                    select.forEach(select => {
+                        select.classList.remove('d-none');
+                        amount_select = amount_select + 1 ;
+                    })
+                }, 500);
+            }
+            else if(type == 'Not_Approve'){
+                let div = document.querySelectorAll('div[div_data="FAQ"]');
+                div.forEach(div => {
+                    div.classList.add('d-none');
+                })
+
+                setTimeout(() => {
+                    let select = document.querySelectorAll('div[Approve="No"]');
+                    select.forEach(select => {
+                        select.classList.remove('d-none');
+                        amount_select = amount_select + 1 ;
+                    })
+                }, 500);
+            }
+            else if(type == 'Finish'){
+                let div = document.querySelectorAll('div[div_data="FAQ"]');
+                div.forEach(div => {
+                    div.classList.add('d-none');
+                })
+
+                setTimeout(() => {
+                    let select = document.querySelectorAll('div[Finish="checked"]');
+                    select.forEach(select => {
+                        select.classList.remove('d-none');
+                        amount_select = amount_select + 1 ;
+                    })
+                }, 500);
+            }
+            else if(type == 'Not_Finish'){
+                let div = document.querySelectorAll('div[div_data="FAQ"]');
+                div.forEach(div => {
+                    div.classList.add('d-none');
+                })
+
+                setTimeout(() => {
+                    let select = document.querySelectorAll('div[Finish="No"]');
+                    select.forEach(select => {
+                        select.classList.remove('d-none');
+                        amount_select = amount_select + 1 ;
+                    })
+                }, 500);
+            }
+
+            setTimeout(() => {
+                document.querySelector('#amount_select').innerHTML = amount_select ;
+            }, 800);
+
+        }
+
+    </script>
+            
 @endsection
