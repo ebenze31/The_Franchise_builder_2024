@@ -323,6 +323,8 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
 
+        change_menu_bar('scan');
+
         let check_time_cf_pay_slip = "{{ Auth::user()->time_cf_pay_slip }}" ;
         if(!check_time_cf_pay_slip){
           loop_check_time_cf_pay_slip = setInterval(function () {
