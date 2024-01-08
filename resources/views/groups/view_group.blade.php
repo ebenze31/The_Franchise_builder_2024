@@ -322,10 +322,12 @@
 
                                 html_list_member = `
                                     <tr id="list_member_`+result[i].id+`" class="member-list-row d-none">
+                                        <td>
                                         <div id="content_list_member_`+result[i].id+`" colspan="4" class="container p-3">
                                         </div>
                                         <div id="content_list_request_join_`+result[i].id+`" colspan="4" class="container p-3">
                                         </div>
+                                        </td>
                                     </tr>
                                 `;
 
