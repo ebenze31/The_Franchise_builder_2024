@@ -137,9 +137,9 @@
                                         <br>
                                         <b>Phone :</b> `+result[i].user_phone+`
                                         <br>
-                                        <b>Group id :</b> `+result[i].user_phone+`
+                                        <b>Group id :</b> `+result[i].user_group_id+`
                                         <br>
-                                        <b>Group status :</b> `+result[i].user_phone+`
+                                        <b>Group status :</b> `+result[i].user_group_status+`
                                         <br>
                                     </div>
                                     <div class="col-4">
