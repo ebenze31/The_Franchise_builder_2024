@@ -7,6 +7,7 @@
             width: 100%;
             aspect-ratio: 350 /185 ;
             border-radius: 8px;
+            object-fit: cover;
         }.news-title{
             text-indent: 15px;
             margin-top: 5px;
