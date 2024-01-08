@@ -324,6 +324,8 @@
                                     <tr id="list_member_`+result[i].id+`" class="member-list-row d-none">
                                         <td id="content_list_member_`+result[i].id+`" colspan="4" class="container p-3">
                                         </td>
+                                        <td id="content_list_request_join_`+result[i].id+`" colspan="4" class="container p-3">
+                                        </td>
                                     </tr>
                                 `;
 
@@ -446,7 +448,7 @@
                                 // request_join
                                 setTimeout(() => {
                                     if(count_request_join != 0){
-                                        document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', '<h4 class="mt-2">ขอเข้าร่วมบ้าน</h4>'); // แทรกล่างสุด
+                                        document.querySelector('#content_list_request_join_'+result[i].id).insertAdjacentHTML('beforeend', '<h4 class="mt-2">ขอเข้าร่วมบ้าน</h4>'); // แทรกล่างสุด
                                         
                                         let loop_request_join ;
                                         for (let zx = 0; zx < count_request_join; zx++) {
@@ -508,7 +510,7 @@
                                                         </div>
                                                     `;
 
-                                                    document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', loop_request_join); // แทรกล่างสุด
+                                                    document.querySelector('#content_list_request_join_'+result[i].id).insertAdjacentHTML('beforeend', loop_request_join); // แทรกล่างสุด
                                             });
                                         }
                                     }
