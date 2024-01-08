@@ -445,8 +445,9 @@
 
                                 // request_join
                                 setTimeout(() => {
-                                    document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', '<h4 class="mt-2">ขอเข้าร่วมบ้าน</h4>'); // แทรกล่างสุด
-
+                                    if(count_request_join != 0){
+                                        document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', '<h4 class="mt-2">ขอเข้าร่วมบ้าน</h4>'); // แทรกล่างสุด
+                                    }
                                     let loop_request_join ;
                                     for (let zx = 0; zx < count_request_join; zx++) {
                                         fetch("{{ url('/') }}/api/get_data_user" + "/" + request_join_arr[zx])
