@@ -125,6 +125,15 @@
 
                                 content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
+                                let check_Approve = 'No' ;
+                                if(result[i].approve == "Yes"){
+                                    check_Approve = 'checked';
+                                }
+
+                                let check_Finish = 'No' ;
+                                if(result[i].finish == "Yes"){
+                                    check_Finish = 'checked';
+                                }
 
                                 let html_row_content = `
                                     <div class="col-2">
@@ -149,14 +158,14 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck3">
-                                                    <label class="form-check-label" for="gridCheck3">Approve</label>
+                                                    <input class="form-check-input" type="checkbox" id="Approve_`+result[i].id+`" `+check_Approve+` onclick="change_approve(`+result[i].id+`);">
+                                                    <label class="form-check-label" for="Approve">Approve</label>
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck3">
-                                                    <label class="form-check-label" for="gridCheck3">Finish</label>
+                                                    <input class="form-check-input" type="checkbox" id="Finish_`+result[i].id+`" `+check_Finish+` onclick="change_finish(`+result[i].id+`);">
+                                                    <label class="form-check-label" for="Finish">Finish</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -174,6 +183,46 @@
                     }, 500);
 
                 });
+        }
+
+        function change_approve(id){
+            let Approve = document.querySelector('#Approve_' + id);
+            // console.log(id);
+            // console.log(Approve.checked);
+
+            let check_Approve ;
+            if(Approve.checked){
+                check_Approve = "Yes";
+            }else{
+                check_Approve = "No";
+            }
+
+            fetch("{{ url('/') }}/api/change_approve/" + id + "/" + check_Approve)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+            });
+
+        }
+
+        function change_finish(id){
+            let Finish = document.querySelector('#Finish_' + id);
+            // console.log(id);
+            // console.log(Finish.checked);
+
+            let check_Finish ;
+            if(Finish.checked){
+                check_Finish = "Yes";
+            }else{
+                check_Finish = "No";
+            }
+
+            fetch("{{ url('/') }}/api/change_finish/" + id + "/" + check_Finish)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+            });
+
         }
 
     </script>

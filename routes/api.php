@@ -65,6 +65,8 @@ Route::get('/check_user_join_activity/{account}/{name_Activity}', 'ActivitiesCon
 
 // contact staffs
 Route::get('/get_contact_staffs', 'Contact_staffController@get_contact_staffs');
+Route::get('/change_approve/{id}/{check_Approve}', 'Contact_staffController@change_approve');
+Route::get('/change_finish/{id}/{check_Finish}', 'Contact_staffController@change_finish');
 
 
 // LINE

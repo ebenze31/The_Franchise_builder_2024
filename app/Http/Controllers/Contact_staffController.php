@@ -171,4 +171,41 @@ class Contact_staffController extends Controller
 
         return $contact_staff ;
     }
+
+    function change_approve($id , $check_Approve){
+
+        if($check_Approve != "Yes"){
+            $check_Approve = null ;
+        }
+
+        DB::table('contact_staffs')
+            ->where([ 
+                    ['id', $id],
+                ])
+            ->update([
+                    'approve' => $check_Approve,
+                ]);
+
+        return 'success' ; 
+
+    }
+
+    function change_finish($id , $check_Finish){
+
+        if($check_Finish != "Yes"){
+            $check_Finish = null ;
+        }
+
+        DB::table('contact_staffs')
+            ->where([ 
+                    ['id', $id],
+                ])
+            ->update([
+                    'finish' => $check_Finish,
+                ]);
+
+        return 'success' ; 
+
+    }
+
 }
