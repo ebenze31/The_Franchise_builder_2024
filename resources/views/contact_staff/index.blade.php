@@ -131,11 +131,15 @@
                                         `+formattedDate+`
                                     </div>
                                     <div class="col-3">
-                                        Account :  `+result[i].user_account+`
+                                        <b>Account :</b>  `+result[i].user_account+`
                                         <br>
-                                        Name : `+result[i].user_name+`
+                                        <b>Name :</b> `+result[i].user_name+`
                                         <br>
-                                        Phone : `+result[i].user_phone+`
+                                        <b>Phone :</b> `+result[i].user_phone+`
+                                        <br>
+                                        <b>Group id :</b> `+result[i].user_phone+`
+                                        <br>
+                                        <b>Group status :</b> `+result[i].user_phone+`
                                         <br>
                                     </div>
                                     <div class="col-4">
