@@ -627,7 +627,7 @@
 
                 let html_warning = `
                     <br>
-                    <b class="text-danger mt-3">หากกดยืนยัน สมาชิกนี้จะเปลี่ยนสถานะเป็น <u>"ไม่มีบ้าน"</u></b>
+                    <b class="text-danger mt-3">หากกดยืนยัน สมาชิกท่านนี้จะเปลี่ยนสถานะเป็น <u>"ไม่มีบ้าน"</u></b>
                 `;
 
                 document.querySelector('#title_cancel_join').innerHTML = `<b>ยืนยันการยกเลิก ?</b>`;
