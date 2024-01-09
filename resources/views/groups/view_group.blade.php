@@ -630,6 +630,7 @@
                     <b class="text-danger mt-3">หากกดยืนยัน สมาชิกนี้จะเปลี่ยนสถานะเป็น <u>"ไม่มีบ้าน"</u></b>
                 `;
 
+                document.querySelector('#title_cancel_join').innerHTML = `<b>ยืนยันการยกเลิก ?</b>`;
                 document.querySelector('#modal_content_cancel_join').innerHTML = html;
                 document.querySelector('#modal_html_warning').innerHTML = html_warning;
                 document.querySelector('#btn_submit_cancel_join').setAttribute('onclick' , 'CF_cancel_join("'+result.id+'")');
