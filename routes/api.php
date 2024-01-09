@@ -41,6 +41,7 @@ Route::get('/get_data_user/{user_id}', 'ProfileController@get_data_user');
 Route::get('/get_data_me/{user_id}', 'ProfileController@get_data_me');
 Route::get('/get_data_badges/{user_id}', 'ProfileController@get_data_badges');
 Route::get('/get_user_get_shirt/{type}', 'ProfileController@get_user_get_shirt');
+Route::get('/CF_cancel_join/{user_id}', 'ProfileController@CF_cancel_join');
 
 // PC POINT
 Route::post('/create_score/excel', 'Pc_pointsController@create_score');
@@ -56,6 +57,7 @@ Route::get('/get_data_my_team/{group_id}', 'GroupsController@get_data_my_team');
 Route::get('/CF_answer_request/{answer}/{member_id}/{group_id}', 'GroupsController@CF_answer_request');
 Route::get('/get_data_view_group/{Search_input}', 'GroupsController@get_data_view_group');
 Route::get('/check_request_join/{group_id}', 'GroupsController@check_request_join');
+Route::get('/CF_delete_team/{group_id}', 'ProfileController@CF_delete_team');
 
 // Activities
 Route::get('/cf_Activities/{user_id}/{name_Activities}', 'ActivitiesController@cf_Activities');

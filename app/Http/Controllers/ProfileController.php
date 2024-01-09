@@ -558,4 +558,153 @@ class ProfileController extends Controller
 
     }
 
+    function CF_cancel_join($user_id){
+
+        $member_id_to_add = $user_id;
+        $dataUser = User::where('id' , $user_id)->first();
+        $data_group = Group::where('id' , $dataUser->group_id)->first();
+
+        if($dataUser->group_status == "กำลังขอเข้าร่วมบ้าน"){
+
+            $list_request_join = json_decode($data_group->request_join, true);
+            // ลบ $member_id_to_add ออกจาก $list_request_join
+            $list_request_join = array_diff($list_request_join, [$member_id_to_add]);
+
+            // ตรวจสอบว่า $list_request_join ว่างหรือไม่
+            if (empty($list_request_join)) {
+                // ถ้าว่างให้กำหนดค่าเป็น null
+                $update_request_join = null;
+            } else {
+                // ไม่ว่างให้ encode กลับเป็น JSON และอัปเดตในฐานข้อมูล
+                $list_request_join = array_values($list_request_join);
+                $update_request_join = json_encode($list_request_join);
+            }
+
+            DB::table('groups')
+                ->where([ 
+                        ['id', $data_group->id],
+                    ])
+                ->update([
+                        'request_join' => $update_request_join,
+                    ]);
+
+            DB::table('users')
+                ->where([ 
+                        ['id', $user_id],
+                    ])
+                ->update([
+                        'group_id' => null,
+                        'group_status' => null,
+                        'time_request_join' => null,
+                    ]);
+
+            $return = "กำลังขอเข้าร่วมบ้าน";
+
+        }
+        else if($dataUser->group_status != "กำลังขอเข้าร่วมบ้าน" && $dataUser->group_status != null){
+
+            $list_member = json_decode($data_group->member, true);
+            // ลบ $member_id_to_add ออกจาก $list_member
+            $list_member = array_diff($list_member, [$member_id_to_add]);
+
+            // ตรวจสอบว่า $list_member ว่างหรือไม่
+            if (empty($list_member)) {
+                // ถ้าว่างให้กำหนดค่าเป็น null
+                $update_member = null;
+            } else {
+                // ไม่ว่างให้ encode กลับเป็น JSON และอัปเดตในฐานข้อมูล
+                $list_member = array_values($list_member);
+                $update_member = json_encode($list_member);
+            }
+
+            DB::table('groups')
+                ->where([ 
+                        ['id', $data_group->id],
+                    ])
+                ->update([
+                        'member' => $update_member,
+                    ]);
+
+            DB::table('users')
+                ->where([ 
+                        ['id', $user_id],
+                    ])
+                ->update([
+                        'group_id' => null,
+                        'group_status' => null,
+                        'time_request_join' => null,
+                    ]);
+
+            $return = "มีบ้านแล้ว";
+
+        }
+
+        return 'success' ;
+
+    }
+
+    function CF_delete_team($group_id){
+
+        $data_group = Group::where('id' , $group_id)->first();
+
+        // สมาชิกในบ้าน
+        if( !empty($data_group->member) ){
+
+            $list_member = json_decode($data_group->member, true);
+
+            for ($i=0; $i < count($list_member); $i++) { 
+                // echo "<br>";
+                // echo $list_member[$i];
+
+                DB::table('users')
+                    ->where([ 
+                            ['id', $list_member[$i]],
+                        ])
+                    ->update([
+                            'group_id' => null,
+                            'group_status' => null,
+                            'time_request_join' => null,
+                        ]);
+
+            }
+        }
+
+        // สมาชิกที่กำลังขอเข้าร่วมบ้าน
+        if( !empty($data_group->request_join) ){
+
+            $list_request_join = json_decode($data_group->request_join, true);
+
+            for ($zz=0; $zz < count($list_request_join); $zz++) { 
+                // echo "<br>";
+                // echo $list_request_join[$zz];
+
+                DB::table('users')
+                    ->where([ 
+                            ['id', $list_request_join[$zz]],
+                        ])
+                    ->update([
+                            'group_id' => null,
+                            'group_status' => null,
+                            'time_request_join' => null,
+                        ]);
+
+            }
+        }
+
+        // คืนค่าเริ่มต้นบ้าน
+        DB::table('groups')
+            ->where([ 
+                    ['id', $group_id],
+                ])
+            ->update([
+                    'host' => null,
+                    'member' => null,
+                    'status' => null,
+                    'request_join' => null,
+                ]);
+
+        return "success" ;
+
+    }
+
 }

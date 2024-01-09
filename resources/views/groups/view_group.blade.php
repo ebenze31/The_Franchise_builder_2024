@@ -34,6 +34,37 @@
 
 </style>
 
+<!-- moda -->
+<button id="btn_cancel_join" class="d-none" data-toggle="modal" data-target="#cancel_join"></button>
+
+<div class="modal fade" id="cancel_join" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered px-3">
+        <div class="modal-content" style="border-radius: 10px;">
+            <div id="modal_body_content"  class="modal-body text-center">
+                <img src="{{ url('/img/icon/alert.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
+                <p id="title_cancel_join" class="mt-4" style="font-size: 20px;color: red;">
+                    <b>ยืนยันการยกเลิก ?</b>
+                </p>
+                <span id="modal_content_cancel_join" class="mt-2">
+                    
+                </span>
+                <span id="modal_html_warning" class="mt-2">
+                    
+                </span>
+            </div>
+            <div class="modal-footer text-center">
+                <a id="btn_submit_cancel_join" type="button" class="btn btn-info padding-btn">
+                    ยืนยัน
+                </a>
+                <a id="close_modal_cancel_join" type="button" class="btn btn-submit padding-btn" data-dismiss="modal">
+                    Close
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END modal ไม่ผ่านเกณท์ -->
+
 <div class="card">
     <div class="card-body">
 
@@ -171,7 +202,7 @@
                         <th>Information</th>
                         <!-- <th class="text-center">Active</th> -->
                         <th class="text-center">Status</th>
-                        <!-- <th class="text-center">Action</th> -->
+                        <th class="text-center">Action</th>
                         <!-- <th class="text-center">Pay slip</th> -->
                         <!-- <th class="text-center"></th> -->
                     </tr>
@@ -216,7 +247,7 @@
         fetch("{{ url('/') }}/api/get_data_view_group" + "/" + Search_input)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 setTimeout(() => {
 
@@ -287,16 +318,22 @@
                             if (count_member == 0) {
 
                                 if(result[i].active == "Yes"){
+                                    // html_action = `
+                                    //     <a class="btn btn-sm btn-warning radius-30" style="width:80%;">
+                                    //         ปิดบ้านนี้
+                                    //     </a>
+                                    // `;
                                     html_action = `
-                                        <a class="btn btn-sm btn-warning radius-30" style="width:80%;">
-                                            ปิดบ้านนี้
-                                        </a>
+                                        
                                     `;
                                 }else{
+                                    // html_action = `
+                                    //     <a class="btn btn-sm btn-info radius-30" style="width:80%;">
+                                    //         เปิดบ้านนี้
+                                    //     </a>
+                                    // `;
                                     html_action = `
-                                        <a class="btn btn-sm btn-info radius-30" style="width:80%;">
-                                            เปิดบ้านนี้
-                                        </a>
+                                        
                                     `;
                                 }
 
@@ -304,7 +341,7 @@
 
                                 if(result[i].active == "Yes"){
                                     html_action = `
-                                        <a class="btn btn-sm btn-danger radius-30" style="width:80%;">
+                                        <a id="btn_delete_team_id_`+result[i].id+`" class="btn btn-sm btn-danger radius-30" style="width:80%;" onclick="delete_team('`+result[i].id+`');">
                                             ยุบบ้าน
                                         </a>
                                     `;
@@ -333,7 +370,7 @@
 
                                 btn_view_member = `
                                     <br>
-                                    <a style="cursor: pointer;text-decoration: underline;" class="text-info" onclick="document.querySelector('#list_member_`+result[i].id+`').classList.toggle('d-none');">ดูสมาชิกทั้งหมด</a>
+                                    <a id="view_all_member_`+result[i].id+`" style="cursor: pointer;text-decoration: underline;" class="text-info" onclick="document.querySelector('#list_member_`+result[i].id+`').classList.toggle('d-none');">ดูสมาชิกทั้งหมด</a>
                                 `;
                             }
 
@@ -346,29 +383,29 @@
                             }
 
                             let html = `
-                                <tr status="`+text_status+`" name_group="`+result[i].name_group+`" tr="tr_list" class="">
+                                <tr id="tr_group_id_`+result[i].id+`" status="`+text_status+`" name_group="`+result[i].name_group+`" tr="tr_list" class="">
                                     <td>
                                         <center>
-                                            <div id="product_img_account_111" class="product-img bg-transparent border">
-                                                <img src="{{ url('/img/group_profile/`+class_status+`/id (`+result[i].id+`).png') }}" class="p-1" alt="">
+                                            <div class="product-img bg-transparent border">
+                                                <img id="img_group_proficle_`+result[i].id+`" src="{{ url('/img/group_profile/`+class_status+`/id (`+result[i].id+`).png') }}" class="p-1" alt="">
                                             </div>
                                         </center>
                                     </td>
                                     <td>
                                         <b>ชื่อบ้าน</b> : `+result[i].name_group+`
                                         <br>
-                                        <b>จำนวนสมาชิก</b> : `+count_member+`
+                                        <b>จำนวนสมาชิก</b> : <span id="count_member_of_group_`+result[i].id+`">`+count_member+` </span>
                                         `+btn_view_member+`
                                     </td>
                                     <td class="text-center d-none">
                                         `+text_active+`
                                     </td>
-                                    <td id="td_status_`+text_status+`" class="text-center">
+                                    <td id="td_status_id_`+result[i].id+`" class="text-center">
                                         <span class="text-`+class_status+`">
                                             <b>`+text_status+`</b>
                                         </span>
                                     </td>
-                                    <td class="text-center d-none">
+                                    <td class="text-center">
                                         `+html_action+`
                                     </td>
                                 </tr>
@@ -379,9 +416,6 @@
 
 
                             if(count_member != 0){
-
-                                // MEMBER
-                                document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', '<h4>สมาชิก</h4>'); // แทรกล่างสุด
 
                                 let loop_member ;
                                 for (let zx = 0; zx < count_member; zx++) {
@@ -409,16 +443,30 @@
                                                 html_time_get_shirt = `-`;
                                             }
 
+                                            let check_host = ``;
+                                            let html_for_member = ``;
+                                            if(member_arr[zx] == result[i].host){
+                                                check_host = `(<span class="text-danger">Host</span>)`;
+                                            }else{
+                                                html_for_member = `
+                                                    <div class="float-end text-center">
+                                                        <a class="btn btn-sm btn-warning radius-30" style="width:100%;" onclick="cancel_join('`+user.account+`');">
+                                                            ยกเลิก
+                                                        </a>
+                                                    </div>
+                                                `;
+                                            }
+
                                             loop_member = `
-                                                <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
-                                                    <div class="col-3">
+                                                <div id="div_member_id_`+user.id+`"  class="div_member customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
+                                                    <div class="col-1">
                                                     <center>
                                                         <img src="{{ url('storage')}}/`+user.photo+`" class="rounded-circle" width="46" height="46" alt="">
                                                     </center>
                                                     </div>
                                                     <div class="col-3">
                                                         <h6 class="mb-1 font-14">
-                                                            Name : `+user.name+`
+                                                            Name : `+user.name+` `+check_host+`
                                                         </h6>
                                                         <p class="mb-0 font-13 text-secondary">
                                                             Account : `+user.account+`
@@ -435,15 +483,25 @@
                                                             `+html_time_get_shirt+`
                                                         </p>
                                                     </div>
-                                                    <div class="col-3">
+                                                    <div class="col-2">
                                                         <div class="float-end text-center">
                                                             `+html_shirt_size+`
                                                         </div>
                                                     </div>
+                                                    <div class="col-3">
+                                                        `+html_for_member+`
+                                                    </div>
                                                 </div>
-                                            `;
+                                            `; 
 
-                                            document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', loop_member); // แทรกล่างสุด
+
+                                            if(member_arr[zx] == result[i].host){
+                                                document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('afterbegin', loop_member); // แทรกบนสุด
+                                                document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('afterbegin', '<h4>สมาชิก</h4>'); // แทรกบนสุด
+                                            }else{
+                                                document.querySelector('#content_list_member_'+result[i].id).insertAdjacentHTML('beforeend', loop_member); // แทรกล่างสุด
+                                            }
+
                                     });
                                 }
 
@@ -479,8 +537,8 @@
                                                     }
 
                                                     loop_request_join = `
-                                                        <div class="customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
-                                                            <div class="col-3">
+                                                        <div id="div_request_join_id_`+user.id+`" class="div_request_join customers-list-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer row">
+                                                            <div class="col-1">
                                                             <center>
                                                                 <img src="{{ url('storage')}}/`+user.photo+`" class="rounded-circle" width="46" height="46" alt="">
                                                             </center>
@@ -504,9 +562,16 @@
                                                                     `+html_time_get_shirt+`
                                                                 </p>
                                                             </div>
-                                                            <div class="col-3">
+                                                            <div class="col-2">
                                                                 <div class="float-end text-center">
                                                                     `+html_shirt_size+`
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <div class="float-end text-center">
+                                                                    <a class="btn btn-sm btn-warning radius-30" style="width:100%;" onclick="cancel_join('`+user.account+`');">
+                                                                        ยกเลิก
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -536,6 +601,186 @@
                 }, 500);
 
             });
+    }
+
+</script>
+
+<!-- cancel_join -->
+<script>
+    
+    function cancel_join(account){
+
+        // console.log("account >> " + account);
+
+        fetch("{{ url('/') }}/api/get_users" + "/" + account)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                let html = `
+                    Account : `+result.account+` <br>
+                    Name : `+result.name+` <br>
+                    Phone : `+result.phone+` <br>
+                    Group id : `+result.group_id+` <br>
+                    Group status : `+result.group_status+` <br>
+                `;
+
+                let html_warning = `
+                    <br>
+                    <b class="text-danger mt-3">หากกดยืนยัน สมาชิกนี้จะเปลี่ยนสถานะเป็น <u>"ไม่มีบ้าน"</u></b>
+                `;
+
+                document.querySelector('#modal_content_cancel_join').innerHTML = html;
+                document.querySelector('#modal_html_warning').innerHTML = html_warning;
+                document.querySelector('#btn_submit_cancel_join').setAttribute('onclick' , 'CF_cancel_join("'+result.id+'")');
+                document.querySelector('#btn_cancel_join').click();
+        });
+
+    }
+
+    function CF_cancel_join(user_id){
+
+        // console.log("CF_cancel_join");
+        // console.log("user_id >> " + user_id);
+
+        fetch("{{ url('/') }}/api/CF_cancel_join" + "/" + user_id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+
+                if(result == 'success'){
+                    let html = `
+                        <img src="{{ url('/img/icon/Frame 2.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
+                        <p class="mt-4" style="font-size: 20px;color: green;">
+                            <b>เสร็จสิ้น</b>
+                        </p>
+                    `;
+
+                    document.querySelector('#modal_body_content').innerHTML = html;
+
+                    if(document.querySelector('#div_request_join_id_'+user_id)){
+                        document.querySelector('#div_request_join_id_'+user_id).classList.add('d-none');
+                    }
+
+                    if(document.querySelector('#div_member_id_'+user_id)){
+                        document.querySelector('#div_member_id_'+user_id).classList.add('d-none');
+                    }
+
+                    setTimeout(() => {
+                        document.querySelector('#close_modal_cancel_join').click();
+
+                        let old_html = `
+                            <img src="{{ url('/img/icon/alert.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
+                            <p class="mt-4" style="font-size: 20px;color: red;">
+                                <b>ยืนยันการยกเลิก ?</b>
+                            </p>
+                            <span id="modal_content_cancel_join" class="mt-2">
+                                
+                            </span>
+                            <span id="modal_html_warning" class="mt-2">
+                                
+                            </span>
+                        `;
+
+                        document.querySelector('#modal_body_content').innerHTML = old_html;
+                    }, 1000);
+
+                }
+        });
+
+    }
+
+    function delete_team(group_id){
+
+        // console.log("group_id >> " + group_id);
+
+        let text_group_id ;
+        if(parseInt(group_id) < 9){
+            text_group_id = '0'+group_id ;
+        }else{
+            text_group_id = group_id ;
+        }
+
+        let html = `
+            <b>ยืนยันการยุบบ้าน `+text_group_id+ ` ?</b>
+        `;
+
+        let html_warning = `
+            <br>
+            <b class="text-dark mt-3">หากกดยืนยัน สมาชิกทุกคนในบ้านนี้รวมถึงสมาชิกที่กำลังขอเข้าร่วม <br> จะเปลี่ยนสถานะเป็น <u>"ไม่มีบ้าน"</u></b>
+        `;
+
+        document.querySelector('#title_cancel_join').innerHTML = html;
+        document.querySelector('#modal_html_warning').innerHTML = html_warning;
+        document.querySelector('#btn_submit_cancel_join').setAttribute('onclick' , 'CF_delete_team("'+group_id+'")');
+        document.querySelector('#btn_cancel_join').click();
+
+    }
+
+    function CF_delete_team(group_id){
+        // console.log("group_id >> " + group_id);
+
+        fetch("{{ url('/') }}/api/CF_delete_team" + "/" + group_id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+
+                if(result == 'success'){
+                    let html = `
+                        <img src="{{ url('/img/icon/Frame 2.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
+                        <p class="mt-4" style="font-size: 20px;color: green;">
+                            <b>เสร็จสิ้น</b>
+                        </p>
+                    `;
+
+                    document.querySelector('#modal_body_content').innerHTML = html;
+
+                    let img_url = `{{ url('/img/group_profile/secondary/id (`+group_id+`).png') }}`;
+                        // console.log(img_url);
+                    document.querySelector('#img_group_proficle_'+group_id).setAttribute('src' , img_url);
+                    document.querySelector('#view_all_member_'+group_id).classList.add('d-none');
+                    document.querySelector('#list_member_'+group_id).classList.add('d-none');
+                    document.querySelector('#count_member_of_group_'+group_id).innerHTML = '0';
+                    document.querySelector('#tr_group_id_'+group_id).setAttribute('status','บ้านที่เปิดว่างอยู่');
+                    document.querySelector('#btn_delete_team_id_'+group_id).classList.add('d-none');
+                    document.querySelector('#td_status_id_'+group_id).innerHTML = `
+                        <span class="text-secondary">
+                            <b>บ้านที่เปิดว่างอยู่</b>
+                        </span>
+                    `;
+
+                    let count_team_waiting = document.querySelector('#count_team_waiting').innerHTML;
+                    let count_team_empty_active = document.querySelector('#count_team_empty_active').innerHTML;
+
+                    let update_count_team_waiting = parseInt(count_team_waiting) - 1 ;
+                    let update_count_team_empty_active = parseInt(count_team_empty_active) + 1 ;
+
+                    document.querySelector('#count_team_waiting').innerHTML = update_count_team_waiting;
+                    document.querySelector('#count_team_empty_active').innerHTML = update_count_team_empty_active;
+
+                    setTimeout(() => {
+                        document.querySelector('#close_modal_cancel_join').click();
+
+                        let old_html = `
+                            <img src="{{ url('/img/icon/alert.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
+                            <p class="mt-4" style="font-size: 20px;color: red;">
+                                <b>ยืนยันการยกเลิก ?</b>
+                            </p>
+                            <span id="modal_content_cancel_join" class="mt-2">
+                                
+                            </span>
+                            <span id="modal_html_warning" class="mt-2">
+                                
+                            </span>
+                        `;
+
+                        document.querySelector('#modal_body_content').innerHTML = old_html;
+                    }, 1000);
+
+                }
+
+        });
+
     }
 
 </script>
