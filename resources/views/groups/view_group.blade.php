@@ -451,7 +451,7 @@
                                                 html_for_member = `
                                                     <div class="float-end text-center">
                                                         <a class="btn btn-sm btn-warning radius-30" style="width:100%;" onclick="cancel_join('`+user.account+`');">
-                                                            ยกเลิก
+                                                            ยกเลิกการเป็นสมาชิก
                                                         </a>
                                                     </div>
                                                 `;
@@ -570,7 +570,7 @@
                                                             <div class="col-3">
                                                                 <div class="float-end text-center">
                                                                     <a class="btn btn-sm btn-warning radius-30" style="width:100%;" onclick="cancel_join('`+user.account+`');">
-                                                                        ยกเลิก
+                                                                        ยกเลิกการเป็นสมาชิก
                                                                     </a>
                                                                 </div>
                                                             </div>
