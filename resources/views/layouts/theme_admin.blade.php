@@ -157,6 +157,11 @@
                                 <i class="fa-duotone fa-user-nurse"></i> แอดมินและเจ้าหน้าที่
                             </a>
                         </li>
+                        <li>
+                            <a class="btn" href="{{ url('/view_cancel_join') }}">
+                                <i class="fa-solid fa-ban"></i> ยกเลิกการเข้าร่วม
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

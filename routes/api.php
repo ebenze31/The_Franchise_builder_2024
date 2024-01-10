@@ -44,6 +44,8 @@ Route::get('/get_user_get_shirt/{type}', 'ProfileController@get_user_get_shirt')
 Route::get('/CF_cancel_join/{user_id}', 'ProfileController@CF_cancel_join');
 Route::get('/check_account_Cancel_join/{account}', 'ProfileController@check_account_Cancel_join');
 Route::get('/CF_cancel_player/{user_id}', 'ProfileController@CF_cancel_player');
+Route::get('/get_data_cancel_join', 'ProfileController@get_data_cancel_join');
+Route::get('/change_return_shirt/{type}/{id}', 'ProfileController@change_return_shirt');
 
 // PC POINT
 Route::post('/create_score/excel', 'Pc_pointsController@create_score');

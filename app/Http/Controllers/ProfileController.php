@@ -317,6 +317,11 @@ class ProfileController extends Controller
         return $data ;
     }
 
+    function view_cancel_join(){
+
+        return view('admin.view_cancel_join');
+    }
+
     function check_Team_and_Shirt_Size(Request $request)
     {
         $requestData = $request->all();
@@ -797,6 +802,41 @@ class ProfileController extends Controller
                     'pdpa' => null,
                     'shirt_size' => null,
                     'time_get_shirt' => null,
+                ]);
+
+        return 'success' ;
+
+    }
+
+    function get_data_cancel_join(){
+
+        // $data = Cancel_player::orderBy('created_at', 'DESC')->get();
+
+        $data = DB::table('cancel_players')
+                ->join('users', 'users.id', '=', 'cancel_players.user_id')
+                ->select('cancel_players.*' , 'users.account as user_account' , 'users.name as user_name' , 'users.phone as user_phone' , 'users.email as user_email' )
+                ->orderBy('cancel_players.created_at', 'DESC')
+                ->get();
+
+        return $data ;
+
+    }
+
+    function change_return_shirt($type , $id){
+
+        if($type == "ยังไม่ได้คืนเสื้อ"){
+            $type = null ;
+        }
+        else if($type == "คืนเสื้อแล้ว"){
+            $type = 'Yes' ;
+        }
+
+        DB::table('cancel_players')
+            ->where([ 
+                    ['id', $id],
+                ])
+            ->update([
+                    'return_shirt' => $type,
                 ]);
 
         return 'success' ;
