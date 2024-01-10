@@ -1,0 +1,25 @@
+{
+    "fields": [
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "shirt_size",
+            "type": "string"
+        },
+        {
+            "name": "time_get_shirt",
+            "type": "datetime"
+        },
+        {
+            "name": "time_joined",
+            "type": "datetime"
+        },
+        {
+            "name": "return_shirt",
+            "type": "string"
+        }
+
+    ]
+}

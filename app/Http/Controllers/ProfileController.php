@@ -14,6 +14,7 @@ use App\Models\Activities_log;
 use App\Models\Activity;
 use Illuminate\Support\Carbon;
 use App\Models\Group;
+use App\Models\Cancel_player;
 
 class ProfileController extends Controller
 {
@@ -706,5 +707,101 @@ class ProfileController extends Controller
         return "success" ;
 
     }
+
+    function check_account_Cancel_join($account){
+
+        $check_host = 'No';
+        $data = User::where('account' , $account)->first();
+
+        if( !empty($data->group_id) ){
+            $data_group = Group::where('id' , $data->group_id)->first();
+
+            if($data->id == $data_group->host){
+                $check_host = 'Yes';
+            }
+        }
+
+        $data->check_host = $check_host;
+        
+        return $data;
+
+    }
+
+    function CF_cancel_player($user_id){
+
+        $data = User::where('id' , $user_id)->first();
+
+        // เพิ่มข้อมูลการยกเลิกการเข้าร่วมใน Cancel_player
+        $Data_player = [] ;
+        $Data_player['user_id'] = $user_id;
+        $Data_player['shirt_size'] = $data->shirt_size;
+        $Data_player['time_get_shirt'] = $data->time_get_shirt;;
+        $Data_player['time_joined'] = $data->time_cf_pay_slip;;
+
+        Cancel_player::create($Data_player);
+
+        // เช็คว่ามีบ้านหรือไม่
+        if( !empty($data->group_id) ){
+            $data_group = Group::where('id' , $data->group_id)->first();
+
+            // เช็คว่าเป็น Host หรือไม่
+            if($data->id == $data_group->host){
+                $this->CF_delete_team($data->group_id);
+            }
+            else{
+                $this->CF_cancel_join($user_id);
+            }
+
+        }
+
+        // เช็คว่ามี Activities หรือไม่
+        if( !empty($data->activities) ){
+            $list_activities = explode(",",$data->activities);
+
+            for ($i=0; $i < count($list_activities); $i++) { 
+
+                $data_Activity = Activity::where('id',$list_activities[$i])->first();
+
+                $old_amount = $data_Activity->member ;
+                $new_amount = intval($data_Activity->member) - 1 ;
+
+                DB::table('activities')
+                    ->where([ 
+                            ['id', $data_Activity->id],
+                        ])
+                    ->update([
+                            'member' => $new_amount,
+                        ]);
+
+                // delete Activities_log
+                $data_Activities_log = Activities_log::where('id_Activities',$data_Activity->id)
+                    ->where('user_id' , $user_id)
+                    ->delete();
+            }
+        }
+
+
+        DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'photo' => null,
+                    'role' => 'AL',
+                    'status' => null,
+                    'group_id' => null,
+                    'group_status' => null,
+                    'time_cf_pay_slip' => null,
+                    'time_request_join' => null,
+                    'activities' => null,
+                    'pdpa' => null,
+                    'shirt_size' => null,
+                    'time_get_shirt' => null,
+                ]);
+
+        return 'success' ;
+
+    }
+
 
 }

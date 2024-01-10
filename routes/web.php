@@ -93,3 +93,4 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
 
 Route::resource('activities_log', 'Activities_logController');
+Route::resource('cancel_player', 'Cancel_playerController');

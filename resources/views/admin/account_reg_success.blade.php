@@ -228,6 +228,37 @@
 
 </style>
 
+<!-- moda -->
+<button id="btn_cancel_join" class="d-none" data-toggle="modal" data-target="#cancel_join"></button>
+
+<div class="modal fade" id="cancel_join" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered px-3">
+        <div class="modal-content" style="border-radius: 10px;">
+            <div id="modal_body_content"  class="modal-body text-center">
+                <img src="{{ url('/img/icon/alert.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
+                <p id="title_cancel_join" class="mt-4" style="font-size: 20px;color: red;">
+                    <b>ยืนยันการยกเลิก ?</b>
+                </p>
+                <span id="modal_content_cancel_join" class="mt-2">
+                    
+                </span>
+                <span id="modal_html_warning" class="mt-2">
+                    
+                </span>
+            </div>
+            <div class="modal-footer text-center">
+                <a id="btn_submit_cancel_join" type="button" class="btn btn-info padding-btn">
+                    ยืนยัน
+                </a>
+                <a id="close_modal_cancel_join" type="button" class="btn btn-submit padding-btn" data-dismiss="modal">
+                    Close
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- Button trigger modal -->
 <button id="btn_Modal_cf_slip" type="button" class="d-none" data-toggle="modal" data-target="#Modal_cf_slip">
     <!--  -->
@@ -419,7 +450,7 @@
                                         เข้าร่วมแล้ว
                                     </button>
                                     <div class="dropdown-menu">
-                                        <span class="dropdown-item btn text-danger" onclick="Cancel_join(`+result[i].id+`);">
+                                        <span class="dropdown-item btn text-danger" onclick="Cancel_join('`+result[i].account+`');">
                                             ยกเลิกการเข้าร่วม
                                         </span>
                                     </div>
@@ -492,7 +523,7 @@
                         }
 
                         let html = `
-                            <tr account=`+result[i].account+` tpye="`+html_status+`" class="`+class_card_focus+`">
+                            <tr id="div_player_id_`+result[i].id+`" account=`+result[i].account+` tpye="`+html_status+`" class="`+class_card_focus+`">
                                 <td>
                                     <center>
                                         <div id="product_img_account_111" class="product-img bg-transparent border">
@@ -631,8 +662,200 @@ function createExcel() {
 };
 
 
-function Cancel_join(user_id){
-    console.log(user_id);
+function Cancel_join(account){
+
+    // console.log(account);
+
+    fetch("{{ url('/') }}/api/check_account_Cancel_join" + "/" + account)
+        .then(response => response.json())
+        .then(result => {
+            // console.log(result);
+
+            let modal_html_warning = document.querySelector('#modal_html_warning');
+                modal_html_warning.innerHTML = '' ;
+
+            let html = `
+                    Account : `+result.account+` <br>
+                    Name : `+result.name+` <br>
+                    Phone : `+result.phone+` <br> 
+                `;
+
+            if(result){
+
+                let text_warning = `
+                    <br>
+                    <b class="text-danger mt-3">
+                        หากกดยืนยัน สมาชิกท่านนี้จะเปลี่ยนสถานะเป็น <br>
+                        "<u>ยกเลิกการเข้าร่วมกิจกรรม</u>"
+                    </b>
+                    <br>
+                `;
+
+                modal_html_warning.insertAdjacentHTML('beforeend', text_warning); // แทรกล่างสุด
+
+                // เช็คว่ารับเสื้อหรือยัง
+                let html_shirt_size = ``;
+                if(result.shirt_size){
+                    html_shirt_size = `
+                        <div class="card radius-10 bg-info bg-gradient mt-2">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <h5 class="mb-0 text-white">
+                                            ผู้ใช้ท่านนี้เข้าร่วมกิจกรรมรับเสื้อแล้ว
+                                        </h5>
+                                        <h4 class="my-1">
+                                            Size : `+result.shirt_size+`
+                                        </h4>
+                                        <p class="mb-0 font-13 text-danger">
+                                            สามารถดูข้อมูลได้ที่เมนู "สมาชิก => ยกเลิกการเข้าร่วม"
+                                        </p>
+                                    </div>
+                                    <div class="widgets-icons bg-light-whith text-danger ms-auto">
+                                        <img src="{{ url('img/icon/Badge_polo_300.png')}}" style="width:80%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    modal_html_warning.insertAdjacentHTML('beforeend', html_shirt_size); // แทรกล่างสุด
+                }
+
+
+                // เช็คว่ามีบ้านหรือไม่
+                let html_group = ``;
+                if(result.group_id){
+
+                    let text_name_group ;
+                    if(parseInt(result.group_id) < 9){
+                        text_name_group = '0'+result.group_id;
+                    }else{
+                        text_name_group = result.group_id;
+                    }
+
+                    // เช็คว่าเป็น host หรือไม่
+                    if(result.check_host == "Yes"){
+
+                        html_group = `
+                            <div class="card radius-10 bg-warning bg-gradient mt-2">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <h4 class="mb-2 text-white">
+                                            ผู้ใช้ท่านนี้เป็น Host บ้าน `+text_name_group+`
+                                        </h4>
+                                        <b class="text-danger mt-2">
+                                            หากกดยืนยัน สมาชิกทุกคนในบ้านนี้รวมถึงสมาชิกที่กำลังขอเข้าร่วมบ้าน
+                                            จะเปลี่ยนสถานะเป็น "<u>ไม่มีบ้าน</u>"
+                                        </b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    }
+                    else if(result.check_host == "No"){
+
+                        // เช็คว่าเป็น สมาชิก หรือไม่
+                        if(result.group_status == "มีบ้านแล้ว"){
+
+                            html_group = `
+                                <div class="card radius-10 bg-warning bg-gradient mt-2">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <h4 class="mb-2 text-white">
+                                                ผู้ใช้ท่านนี้เป็นสมาชิกบ้าน `+text_name_group+`
+                                            </h4>
+                                            <b class="text-danger mt-2">
+                                                หากกดยืนยัน สมาชิกท่านนี้จะเปลี่ยนสถานะเป็น "<u>ไม่มีบ้าน</u>"
+                                            </b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+                        }
+                        else if(result.group_status == "กำลังขอเข้าร่วมบ้าน"){
+                            html_group = `
+                                <div class="card radius-10 bg-warning bg-gradient mt-2">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <h4 class="mb-2 text-white">
+                                                ผู้ใช้ท่านนี้กำลังขอเข้าร่วมบ้าน `+text_name_group+`
+                                            </h4>
+                                            <b class="text-danger mt-2">
+                                                หากกดยืนยัน สมาชิกท่านนี้จะเปลี่ยนสถานะเป็น "<u>ไม่มีบ้าน</u>"
+                                            </b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+                        }
+                    }
+
+                    modal_html_warning.insertAdjacentHTML('beforeend', html_group); // แทรกล่างสุด
+
+                }
+                
+
+                document.querySelector('#title_cancel_join').innerHTML = `<b>ยืนยันการยกเลิก ?</b>`;
+                document.querySelector('#modal_content_cancel_join').innerHTML = html;
+                document.querySelector('#btn_submit_cancel_join').setAttribute('onclick' , 'CF_cancel_player("'+result.id+'")');
+
+                document.querySelector('#btn_cancel_join').click();
+            }
+
+    });
+}
+
+function CF_cancel_player(user_id){
+
+    // console.log('user_id >> ' + user_id);
+
+    fetch("{{ url('/') }}/api/CF_cancel_player" + "/" + user_id)
+        .then(response => response.text())
+        .then(result => {
+            // console.log(result);
+
+            if(result == 'success'){
+                let html = `
+                    <img src="{{ url('/img/icon/Frame 2.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
+                    <p class="mt-4" style="font-size: 20px;color: green;">
+                        <b>เสร็จสิ้น</b>
+                    </p>
+                `;
+
+                document.querySelector('#modal_body_content').innerHTML = html;
+
+                if(document.querySelector('#div_player_id_'+user_id)){
+                    document.querySelector('#div_player_id_'+user_id).classList.add('d-none');
+                }
+
+                setTimeout(() => {
+                    document.querySelector('#close_modal_cancel_join').click();
+
+                    let old_html = `
+                        <img src="{{ url('/img/icon/alert.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
+                        <p id="title_cancel_join" class="mt-4" style="font-size: 20px;color: red;">
+                            <b>ยืนยันการยกเลิก ?</b>
+                        </p>
+                        <span id="modal_content_cancel_join" class="mt-2">
+                            
+                        </span>
+                        <span id="modal_html_warning" class="mt-2">
+                            
+                        </span>
+                    `;
+
+                    document.querySelector('#modal_body_content').innerHTML = old_html;
+                }, 1000);
+
+            }
+    });
+
 }
 
 </script>

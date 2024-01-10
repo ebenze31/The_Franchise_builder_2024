@@ -63,7 +63,6 @@
         </div>
     </div>
 </div>
-<!-- END modal ไม่ผ่านเกณท์ -->
 
 <div class="card">
     <div class="card-body">
