@@ -241,12 +241,12 @@
 <div class="contentSection">
 
     <!-- ของตัวเอง -->
-    <div id="content_ME">
+    <div class="mb-4" id="content_ME">
         <!--  -->
     </div>
 
     <!-- เรียงตามลำดับ -->
-    <div class="mt-4" id="content_ASC">
+    <div id="content_ASC">
         <!--  -->
     </div>
 

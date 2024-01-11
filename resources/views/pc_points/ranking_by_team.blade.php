@@ -128,6 +128,10 @@
 
     .nameTeam {
         font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 30vw;
     }
 
     .menberInTeam {
