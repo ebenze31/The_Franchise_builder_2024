@@ -241,7 +241,7 @@
 <div class="contentSection">
 
     <!-- ของตัวเอง -->
-    <div class="mb-4" id="content_ME">
+    <div class="mb-4 d-none" id="content_ME">
         <!--  -->
     </div>
 
@@ -334,6 +334,7 @@
                                 </div>
                             `;
 
+                            document.querySelector('#content_ME').classList.remove('d-none');
                             content_ME.insertAdjacentHTML('beforeend', html_me); // แทรกล่างสุด
 
                         }
