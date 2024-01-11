@@ -127,6 +127,10 @@
 
     .nameTeam {
         font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 30vw;
     }
 
     .menberInTeam {
@@ -216,20 +220,20 @@
         <div class="col-4 text-center sub-rank">
             <p class="number-top-rank">No.2</p>
             <img id="img_rank_2" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
-            <p id="name_rank_2" class="number-team">name..</p>
-            <p id="score_rank_2" class="score-team">12.71M</p>
+            <p id="name_rank_2" class="number-team"></p>
+            <p id="score_rank_2" class="score-team"></p>
         </div>
         <div class="col-4 text-center">
             <p class="number-top-rank">No.1</p>
-            <img src="{{ url('/img/icon/profile.png') }}" class="main-rank-img" alt="รูปภาพปก">
-            <p class="number-team">name..</p>
-            <p class="score-team">10.54M</p>
+            <img id="img_rank_1" src="{{ url('/img/icon/profile.png') }}" class="main-rank-img" alt="รูปภาพปก">
+            <p id="name_rank_1" class="number-team"></p>
+            <p id="score_rank_1" class="score-team"></p>
         </div>
         <div class="col-4 text-center sub-rank">
             <p class="number-top-rank">No.3</p>
-            <img src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
-            <p class="number-team">name..</p>
-            <p class="score-team">10.21M</p>
+            <img id="img_rank_3" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
+            <p id="name_rank_3" class="number-team"></p>
+            <p id="score_rank_3" class="score-team"></p>
         </div>
     </div>
 </div>
@@ -262,7 +266,7 @@
         fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
             .then(response => response.json())
             .then(result => {
-            console.log(result);
+            // console.log(result);
 
             let content_ASC = document.querySelector('#content_ASC');
             let content_ME = document.querySelector('#content_ME');
@@ -334,8 +338,12 @@
 
                         }
 
-                        if(i == 0 || i == 2 || i == 3){
+                        if(i == 0 || i == 1 || i == 2){
 
+                            let iii = i + 1 ;
+                            document.querySelector('#img_rank_'+iii).setAttribute('src' , "{{ url('storage')}}/"+result[i].user_photo);
+                            document.querySelector('#name_rank_'+iii).innerHTML = result[i].user_name;
+                            document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
                         }
 
                     }
