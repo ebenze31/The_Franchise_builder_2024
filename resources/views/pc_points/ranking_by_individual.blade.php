@@ -215,19 +215,19 @@
     <div class="container row ">
         <div class="col-4 text-center sub-rank">
             <p class="number-top-rank">No.2</p>
-            <img src="{{ url('/img/other/news-cover.png') }}" class="sub-rank-img" alt="รูปภาพปก">
-            <p class="number-team">name..</p>
-            <p class="score-team">12.71M</p>
+            <img id="img_rank_2" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
+            <p id="name_rank_2" class="number-team">name..</p>
+            <p id="score_rank_2" class="score-team">12.71M</p>
         </div>
         <div class="col-4 text-center">
             <p class="number-top-rank">No.1</p>
-            <img src="{{ url('/img/other/news-cover.png') }}" class="main-rank-img" alt="รูปภาพปก">
+            <img src="{{ url('/img/icon/profile.png') }}" class="main-rank-img" alt="รูปภาพปก">
             <p class="number-team">name..</p>
             <p class="score-team">10.54M</p>
         </div>
         <div class="col-4 text-center sub-rank">
             <p class="number-top-rank">No.3</p>
-            <img src="{{ url('/img/other/news-cover.png') }}" class="sub-rank-img" alt="รูปภาพปก">
+            <img src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
             <p class="number-team">name..</p>
             <p class="score-team">10.21M</p>
         </div>
@@ -235,91 +235,124 @@
 </div>
 
 <div class="contentSection">
-    <div class="my-team">
-        <div class="number-my-team">1</div>
-        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
-        <div class="detailTeam">
-            <div>
-                <p class="nameTeam">name..</p>
-                <p class="menberInTeam">Member : 10</p>
-            </div>
-        </div>
-        <div class="score-my-team">
-            <span class="text-score">19.15M </span>
-            <span class="text-point"> Pc</span>
 
-        </div>
-        <div class="statusTeam">
-            <i class="fa-solid fa-triangle rankUP"></i>
-            <p class="statusNumber ">1</p>
-        </div>
-    </div>
-    <div class="other-team">
-        <div class="number-my-team">1</div>
-        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
-        <div class="detailTeam">
-            <div>
-                <p class="nameTeam">Team 01</p>
-                <p class="menberInTeam">Member : 10</p>
-            </div>
-        </div>
-        <div class="score-my-team">
-            <span class="text-score">19.15M </span>
-            <span class="text-point"> Pc</span>
-
-        </div>
-        <div class="statusTeam">
-            <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-            <p class="statusNumber ">1</p>
-        </div>
-    </div>
-    <div class="other-team">
-        <div class="number-my-team">1</div>
-        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
-        <div class="detailTeam">
-            <div>
-                <p class="nameTeam">Team 01</p>
-                <p class="menberInTeam">Member : 10</p>
-            </div>
-        </div>
-        <div class="score-my-team">
-            <span class="text-score">19.15M </span>
-            <span class="text-point"> Pc</span>
-
-        </div>
-        <div class="statusTeam">
-            <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-            <p class="statusNumber ">1</p>
-        </div>
+    <!-- ของตัวเอง -->
+    <div id="content_ME">
+        <!--  -->
     </div>
 
-
-    <div class="other-team">
-        <div class="number-my-team">1</div>
-        <img src="{{ url('/img/other/news-cover.png') }}" class="profileTeam" alt="">
-        <div class="detailTeam">
-            <div>
-                <p class="nameTeam">Team 01</p>
-                <p class="menberInTeam">Member : 10</p>
-            </div>
-        </div>
-        <div class="score-my-team">
-            <span class="text-score">19.15M </span>
-            <span class="text-point"> Pc</span>
-
-        </div>
-        <div class="statusTeam">
-            <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-            <p class="statusNumber ">1</p>
-        </div>
+    <!-- เรียงตามลำดับ -->
+    <div class="mt-4" id="content_ASC">
+        <!--  -->
     </div>
+
 </div>
 
 
 <script>
+
     document.addEventListener('DOMContentLoaded', (event) => {
-    // console.log("START");
-    change_menu_bar('rank-individual');
-  });
+        // console.log("START");
+        change_menu_bar('rank-individual');
+        get_data_rank('individual');
+    });
+
+    function get_data_rank(type){
+
+        fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
+            .then(response => response.json())
+            .then(result => {
+            console.log(result);
+
+            let content_ASC = document.querySelector('#content_ASC');
+            let content_ME = document.querySelector('#content_ME');
+
+            if(result){
+                setTimeout(() => {
+
+                    for (var i = 0; i < result.length; i++) {
+
+                        let originalNumber = result[i].pc_point;
+                        let formattedNumber = formatLargeNumber(originalNumber);
+
+                        let rank_up ;
+                        if( parseInt(result[i].rank_of_week) > parseInt(result[i].rank_last_week) ){
+                            rank_up = `<i class="fa-solid fa-triangle rankUP"></i>`;
+                        }else if(parseInt(result[i].rank_of_week) < parseInt(result[i].rank_last_week)){
+                            rank_up = `<i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>`;
+                        }else{
+                            rank_up = `<i class="fa-solid fa-rectangle-wide rankNORMAL"></i>`;
+                        }
+
+                        let html = `
+                            <div class="other-team">
+                                <div class="number-my-team">`+result[i].rank_of_week+`</div>
+                                <img src="{{ url('storage')}}/`+result[i].user_photo+`" class="profileTeam" alt="">
+                                <div class="detailTeam">
+                                    <div>
+                                        <p class="nameTeam">`+result[i].user_name+`</p>
+                                    </div>
+                                </div>
+                                <div class="score-my-team">
+                                    <span class="text-score">`+formattedNumber+`</span>
+                                    <span class="text-point"> Pc</span>
+
+                                </div>
+                                <div class="statusTeam">
+                                    `+rank_up+`
+                                    <p class="statusNumber ">`+result[i].rank_last_week+`</p>
+                                </div>
+                            </div>
+                        `;
+
+                        content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+                        if(result[i].user_id == "{{ Auth::user()->id }}"){
+                            // ของตัวเอง
+                            let html_me = `
+                                <div class="my-team">
+                                    <div class="number-my-team">`+result[i].rank_of_week+`</div>
+                                    <img src="{{ url('storage')}}/`+result[i].user_photo+`" class="profileTeam" alt="">
+                                    <div class="detailTeam">
+                                        <div>
+                                            <p class="nameTeam">`+result[i].user_name+`</p>
+                                        </div>
+                                    </div>
+                                    <div class="score-my-team">
+                                        <span class="text-score">`+formattedNumber+`</span>
+                                        <span class="text-point"> Pc</span>
+
+                                    </div>
+                                    <div class="statusTeam">
+                                        `+rank_up+`
+                                        <p class="statusNumber ">`+result[i].rank_last_week+`</p>
+                                    </div>
+                                </div>
+                            `;
+
+                            content_ME.insertAdjacentHTML('beforeend', html_me); // แทรกล่างสุด
+
+                        }
+
+                        if(i == 0 || i == 2 || i == 3){
+
+                        }
+
+                    }
+
+                }, 500);
+            }
+        });
+
+    }
+
+    function formatLargeNumber(number) {
+        if (number >= 1e6) { // 1e6 = 1,000,000
+            return (number / 1e6).toFixed(2) + 'M';
+        } else {
+            return number.toLocaleString();
+        }
+    }
+
 </script>
 @endsection

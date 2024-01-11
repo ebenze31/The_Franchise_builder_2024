@@ -49,6 +49,8 @@ Route::get('/change_return_shirt/{type}/{id}', 'ProfileController@change_return_
 
 // PC POINT
 Route::post('/create_score/excel', 'Pc_pointsController@create_score');
+Route::get('/get_data_rank/{type}', 'Pc_pointsController@get_data_rank');
+
 
 // GROUP
 Route::get('/create_group/{amount}', 'GroupsController@create_group');

@@ -239,5 +239,26 @@ class Pc_pointsController extends Controller
         return "success" ;
     
     }
+
+    function get_data_rank($type){
+
+        $check_week = Pc_point::orderBy('week', 'desc')->first();
+        $week = $check_week->week ;
+
+        if($type == 'individual'){
+            $data = DB::table('pc_points')
+                ->join('users', 'users.id', '=', 'pc_points.user_id')
+                ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
+                ->where('week' , $week)
+                ->orderBy(DB::raw('CAST(pc_points.rank_of_week AS SIGNED)'), 'ASC')
+                ->get();
+        }
+        else if($type == 'team'){
+
+        }
+
+        return $data ;
+
+    }
 }
 
