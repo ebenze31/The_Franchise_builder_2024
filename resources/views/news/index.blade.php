@@ -12,11 +12,24 @@
             text-indent: 15px;
             margin-top: 5px;
             color: #07285A;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
         }
         .news-detail{
             color: #07285A;
+            font-size: 14px;
+
             text-indent: 40px;
             margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }.news-create{
             color: #07285A;
             text-align: end;
@@ -41,7 +54,7 @@
                 @else
                 <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
                 @endif
-                <h4 class="news-title">{{ $item->title }}</h4>
+                <p class="news-title">{{ $item->title }}</p>
                 <p class="news-detail">{{ $item->detail }}</p>
                 <p class="float-end news-create">{{ date("d/m/Y" , strtotime($item->created_at)) }} </p>
             </div>
