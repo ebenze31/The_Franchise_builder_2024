@@ -18,9 +18,27 @@
     }.video-news{
         width: 100%;
     }.divvideo{
+        display: flex;
+        justify-content: center;
         padding: 50px 0;
+        position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
     }.ytp-gradient-top {
         display: none !important;
+    }.videoWrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 */
+        padding-top: 25px;
+        height: 0;
+    }
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
 </style>
     <div class="container p-0">
@@ -41,14 +59,18 @@
 
                         <p class="news-detail">{{$news->detail}}</p>
 
-                        <div class="divvideo">
-                            <iframe id="asd" width="100%" height="560"
+                        <!-- <div class="divvideo"> -->
+                            <!-- <iframe id="asd" style="height: auto;"
                                 src="https://www.youtube.com/embed/{{ $news->link }}"
                                 title="YouTube video player"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowfullscreen>
-                            </iframe>
+                            </iframe> -->
+                        <!-- </div> -->
+
+                        <div class="videoWrapper mt-4">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $news->link }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>
                         <!-- <a href="{{ url('/news') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <a href="{{ url('/news/' . $news->id . '/edit') }}" title="Edit News"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
