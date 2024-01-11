@@ -22,7 +22,7 @@
         .news-detail{
             color: #07285A;
             font-size: 14px;
-
+            margin-top: 10px;
             text-indent: 40px;
             margin-bottom: 10px;
             display: -webkit-box;
