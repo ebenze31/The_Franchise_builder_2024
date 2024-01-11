@@ -23,7 +23,7 @@
         width: 68px;
         height: 68px;
         aspect-ratio: 1/1;
-        outline: 3px solid #fff;
+        border: 3px solid #fff;
     }
 
     .main-rank-img {
@@ -34,7 +34,7 @@
         width: 85px;
         height: 85px;
         aspect-ratio: 1/1;
-        outline: 3px solid #fff;
+        border: 3px solid #fff;
     }
 
     .number-top-rank {
