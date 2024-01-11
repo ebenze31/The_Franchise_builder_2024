@@ -562,6 +562,8 @@ line-height: normal;
         let question = document.querySelector('#question');
         let phone = document.querySelector('#phone');
 
+        document.querySelector('#btn_Send').disabled = true ;
+
         let data_arr = [] ;
 
         data_arr = {
