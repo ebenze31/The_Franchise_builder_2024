@@ -10,6 +10,7 @@
     } .cover-img{
         width: 100%;
         aspect-ratio: 350 /185 ;
+        object-fit: cover;
     }.news-detail{
         color: #07285A;
         text-indent: 40px;
@@ -17,7 +18,9 @@
     }.video-news{
         width: 100%;
     }.divvideo{
-        padding: 50px;
+        padding: 50px 0;
+    }.ytp-gradient-top {
+        display: none !important;
     }
 </style>
     <div class="container p-0">
@@ -39,7 +42,13 @@
                         <p class="news-detail">{{$news->detail}}</p>
 
                         <div class="divvideo">
-                            <video src="{{ $news->link }}" class="video-news" controls></video>
+                            <iframe id="asd" width="100%" height="560"
+                                src="https://www.youtube.com/embed/{{ $news->link }}"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
                         </div>
                         <!-- <a href="{{ url('/news') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <a href="{{ url('/news/' . $news->id . '/edit') }}" title="Edit News"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
