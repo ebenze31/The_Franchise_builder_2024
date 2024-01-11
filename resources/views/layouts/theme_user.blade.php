@@ -148,7 +148,7 @@
     $currentDate = date('Y-m-d H:i:s');
     @endphp
 
-    @if( 1 == 1 )
+    @if( 1 == 2 )
         <div id="navbar-botttom" class="mt-5">
                     
             <div class="row justify-content-between">

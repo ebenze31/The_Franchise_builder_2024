@@ -136,6 +136,19 @@ border-radius:  0 0 40px 40px;
 
     }
 
+    .btn-disabled{
+        -webkit-border-radius: 5px;    
+        border-radius: 5px; 
+        -moz-border-radius:5px;
+        -khtml-border-radius:5px;
+        width: auto;
+        font-size: 16px;
+        margin-top: 15px;
+        padding: 10px 40px;
+        background-color: #5C5C5C;
+        color: #fff;
+    }
+
     .btn-submit:hover {
         border: 1px solid #00E0FF;
         box-shadow: 0px 0px 3px 1px #00FBFF;
@@ -383,7 +396,7 @@ line-height: normal;
                     </div>
                 </div>
                 <div class=" d-flex justify-content-center">
-                    <button id="btn_Send" type="button" class="btn btn-submit padding-btn" onclick="submit_qa();" disabled>
+                    <button id="btn_Send" type="button" class="btn btn-disabled padding-btn" onclick="submit_qa();" disabled>
                         Send
                     </button>
 
@@ -450,8 +463,12 @@ line-height: normal;
 
             if( question.value && phone.value ){
                 document.querySelector('#btn_Send').disabled = false;
+                document.querySelector('#btn_Send').classList.remove('btn-disabled');
+                document.querySelector('#btn_Send').classList.add('btn-submit');
             }else{
                 document.querySelector('#btn_Send').disabled = true;
+                document.querySelector('#btn_Send').classList.remove('btn-submit');
+                document.querySelector('#btn_Send').classList.add('btn-disabled');
             }
         }, 1000);
 
@@ -563,6 +580,8 @@ line-height: normal;
         let phone = document.querySelector('#phone');
 
         document.querySelector('#btn_Send').disabled = true ;
+        document.querySelector('#btn_Send').classList.remove('btn-submit');
+        document.querySelector('#btn_Send').classList.add('btn-disabled');
 
         let data_arr = [] ;
 
