@@ -221,19 +221,19 @@
             <p class="number-top-rank">No.2</p>
             <img id="img_rank_2" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
             <p id="name_rank_2" class="number-team"></p>
-            <p id="score_rank_2" class="score-team"></p>
+            <p id="score_rank_2" class="score-team" style="color: #E7C517!important;"></p>
         </div>
         <div class="col-4 text-center">
             <p class="number-top-rank">No.1</p>
             <img id="img_rank_1" src="{{ url('/img/icon/profile.png') }}" class="main-rank-img" alt="รูปภาพปก">
             <p id="name_rank_1" class="number-team"></p>
-            <p id="score_rank_1" class="score-team"></p>
+            <p id="score_rank_1" class="score-team" style="color: #E7C517!important;"></p>
         </div>
         <div class="col-4 text-center sub-rank">
             <p class="number-top-rank">No.3</p>
             <img id="img_rank_3" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
             <p id="name_rank_3" class="number-team"></p>
-            <p id="score_rank_3" class="score-team"></p>
+            <p id="score_rank_3" class="score-team" style="color: #E7C517!important;"></p>
         </div>
     </div>
 </div>
@@ -298,8 +298,8 @@
                                     </div>
                                 </div>
                                 <div class="score-my-team">
-                                    <span class="text-score" style="content: #E7C517!important;">`+formattedNumber+`</span>
-                                    <span class="text-point"> Pc</span>
+                                    <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                    <span class="text-point"> PC</span>
 
                                 </div>
                                 <div class="statusTeam">
@@ -323,8 +323,8 @@
                                         </div>
                                     </div>
                                     <div class="score-my-team">
-                                        <span class="text-score" style="content: #E7C517!important;">`+formattedNumber+`</span>
-                                        <span class="text-point"> Pc</span>
+                                        <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                        <span class="text-point"> PC</span>
 
                                     </div>
                                     <div class="statusTeam">
