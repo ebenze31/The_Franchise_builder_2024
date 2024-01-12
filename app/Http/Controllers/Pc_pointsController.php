@@ -254,7 +254,12 @@ class Pc_pointsController extends Controller
                 ->get();
         }
         else if($type == 'team'){
+            $data['data'] = DB::table('groups')
+                ->where('rank_of_week' , '!=' , null)
+                ->orderBy('rank_of_week', 'ASC')
+                ->get();
 
+            $data['week'] = $week;
         }
 
         return $data ;
