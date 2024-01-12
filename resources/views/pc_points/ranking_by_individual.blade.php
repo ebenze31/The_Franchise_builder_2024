@@ -280,9 +280,9 @@
                         let formattedNumber = formatLargeNumber(originalNumber);
 
                         let rank_up ;
-                        if( parseInt(result[i].rank_of_week) > parseInt(result[i].rank_last_week) ){
+                        if( parseInt(result[i].rank_of_week) < parseInt(result[i].rank_last_week) ){
                             rank_up = `<i class="fa-solid fa-triangle rankUP"></i>`;
-                        }else if(parseInt(result[i].rank_of_week) < parseInt(result[i].rank_last_week)){
+                        }else if(parseInt(result[i].rank_of_week) > parseInt(result[i].rank_last_week)){
                             rank_up = `<i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>`;
                         }else{
                             rank_up = `<i class="fa-solid fa-rectangle-wide rankNORMAL"></i>`;
