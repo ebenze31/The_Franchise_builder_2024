@@ -47,6 +47,10 @@
         margin-top: 10px;
         font-size: 12px;
         color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width:100%;
     }
 
     .score-team {
@@ -71,7 +75,7 @@
     }
 
     .my-team {
-        padding: 15px 10px 15px 20px;
+        padding: 15px 10px 15px 18px;
         display: flex;
         -webkit-border-radius: 10px;    
         border-radius: 10px; 
@@ -84,7 +88,7 @@
     }
 
     .other-team {
-        padding: 15px 10px 15px 20px;
+        padding: 15px 10px 15px 18px;
         display: flex;
         -webkit-border-radius: 10px;    
         border-radius: 10px; 
@@ -120,9 +124,11 @@
     }
 
     .number-my-team {
-        margin-right: 15px;
+/*        margin-right: 15px;*/
+        width: 27.5%;
         display: flex;
         align-items: center;
+/*        justify-content: center;*/
     }
 
     .nameTeam {
