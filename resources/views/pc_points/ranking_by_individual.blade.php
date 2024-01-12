@@ -71,7 +71,7 @@
     }
 
     .my-team {
-        padding: 10px 20px;
+        padding: 15px 10px 15px 20px;
         display: flex;
         -webkit-border-radius: 10px;    
         border-radius: 10px; 
@@ -84,7 +84,7 @@
     }
 
     .other-team {
-        padding: 10px 20px;
+        padding: 15px 10px 15px 20px;
         display: flex;
         -webkit-border-radius: 10px;    
         border-radius: 10px; 
@@ -120,7 +120,7 @@
     }
 
     .number-my-team {
-        margin: 0 15px;
+        margin-right: 15px;
         display: flex;
         align-items: center;
     }
@@ -158,7 +158,8 @@
     }
 
     .statusTeam {
-        margin: 0 5px 0 15px;
+/*        margin: 0 5px 0 15px;*/
+        width: 27.5%;
     }
 
     .statusNumber {
@@ -302,7 +303,7 @@
                                     <span class="text-point"> PC</span>
 
                                 </div>
-                                <div class="statusTeam">
+                                <div class="statusTeam text-center">
                                     `+rank_up+`
                                     <p class="statusNumber ">`+result[i].rank_last_week+`</p>
                                 </div>
@@ -327,7 +328,7 @@
                                         <span class="text-point"> PC</span>
 
                                     </div>
-                                    <div class="statusTeam">
+                                    <div class="statusTeam text-center">
                                         `+rank_up+`
                                         <p class="statusNumber ">`+result[i].rank_last_week+`</p>
                                     </div>

@@ -2,10 +2,10 @@
 
 @section('content')
 
+
 <style>
     .content-section {
         padding: 0;
-
     }
 
     #header-text-login {
@@ -72,9 +72,9 @@
     }
 
     .my-team {
-        padding: 10px 20px;
+        padding: 15px 10px 15px 20px;
         display: flex;
-       -webkit-border-radius: 10px;    
+        -webkit-border-radius: 10px;    
         border-radius: 10px; 
         -moz-border-radius:10px;
         -khtml-border-radius:10px;
@@ -85,9 +85,9 @@
     }
 
     .other-team {
-        padding: 10px 20px;
+        padding: 15px 10px 15px 20px;
         display: flex;
-       -webkit-border-radius: 10px;    
+        -webkit-border-radius: 10px;    
         border-radius: 10px; 
         -moz-border-radius:10px;
         -khtml-border-radius:10px;
@@ -121,7 +121,7 @@
     }
 
     .number-my-team {
-        margin: 0 15px;
+        margin-right: 15px;
         display: flex;
         align-items: center;
     }
@@ -153,13 +153,14 @@
         position: relative;
         margin-bottom: 20px;
         -webkit-border-radius: 0 0 10px 10px;    
-        border-radius: 0 0 10px 10px; 
+        border-radius: 0 0 10px 10px;
         -moz-border-radius:0 0 10px 10px;
         -khtml-border-radius:0 0 10px 10px;
     }
 
     .statusTeam {
-        margin: 0 5px 0 15px;
+/*        margin: 0 5px 0 15px;*/
+        width: 27.5%;
     }
 
     .statusNumber {
@@ -181,9 +182,9 @@
 
     #dataMyteam {
         -webkit-border-radius: 10px;    
-border-radius: 10px; 
--moz-border-radius:10px;
--khtml-border-radius:10px;
+        border-radius: 10px; 
+        -moz-border-radius:10px;
+        -khtml-border-radius:10px;
         padding: 20px 10px 10px 10px;
     }
 
@@ -200,9 +201,9 @@ border-radius: 10px;
         width: 20px;
         height: 20px;
         -webkit-border-radius: 50%;    
-border-radius: 50%; 
--moz-border-radius:50%;
--khtml-border-radius:50%;
+        border-radius: 50%; 
+        -moz-border-radius:50%;
+        -khtml-border-radius:50%;
     }
 
     .nameUserteam {
@@ -315,7 +316,7 @@ border-radius: 50%;
                                     <span class="text-point"> PC</span>
 
                                 </div>
-                                <div class="statusTeam">
+                                <div class="statusTeam text-center">
                                     `+rank_up+`
                                     <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
                                 </div>
@@ -344,7 +345,7 @@ border-radius: 50%;
                                         <span class="text-point"> PC</span>
 
                                     </div>
-                                    <div class="statusTeam">
+                                    <div class="statusTeam text-center">
                                         `+rank_up+`
                                         <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
                                     </div>
