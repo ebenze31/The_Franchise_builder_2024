@@ -381,15 +381,15 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>
+                                                            <td class="text-center">
                                                                 01.
                                                             </td>
                                                             <td class="d-flex align-items-center">
                                                                 <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" class="profile-img" alt="รูปภาพปก">
                                                                 <span class="ms-2 nameUserteam">{{Auth::user()->name}}ssssssssssssssssssssss</span>
                                                             </td>
-                                                            <td class="text-data-team">1002,562</td>
-                                                            <td class="text-data-team">902,562</td>
+                                                            <td class="text-data-team text-center">1002,562</td>
+                                                            <td class="text-data-team text-center">902,562</td>
                                                             <!-- <td class="text-data-team text-center">4</td> -->
                                                             <!-- <td class="text-data-team text-center">2</td> -->
                                                         </tr>
