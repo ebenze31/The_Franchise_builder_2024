@@ -9,7 +9,7 @@
 
 <style>
   *:not(i) {
-    font-family: 'Kanit', sans-serif;
+    
 
   }
   #header-text-login{
@@ -54,13 +54,13 @@ border-radius: 5px;
   .sub-header-infomation {
     color: #002449;
     font-weight: bold;
-    font-family: 'Kanit', sans-serif;
+    
     font-size: 16px;
   }
 
   .detail-register li {
     color: #002449;
-    font-family: 'Kanit', sans-serif;
+    
 
   }
 

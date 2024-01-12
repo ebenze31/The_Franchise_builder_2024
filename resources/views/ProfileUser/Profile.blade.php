@@ -306,6 +306,7 @@ border-radius:  0 0 40px 40px;
 </div>
 
 <style>
+   
     .btn-service{
         position: fixed;
         bottom: 60px;
@@ -319,7 +320,6 @@ border-radius:  0 0 40px 40px;
         color: #FFF;
 
 text-align: center;
-font-family: Inter;
 font-size: 10px;
 font-style: normal;
 font-weight: 400;

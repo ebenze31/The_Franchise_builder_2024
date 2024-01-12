@@ -28,27 +28,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
     <!-- font -->
-    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Laila:wght@700&family=Mitr&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700;800&family=Prompt:wght@500&display=swap" rel="stylesheet">
+    
     
 </head>
 
 <style>
-    /* *:not(i) {
-        font-family: 'Kanit', sans-serif !important;
-    } */
 
-    @font-face {
-        font-family: 'Sukhumvit';
-        font-weight: normal;
-        font-style: normal;
-        src: url('../public/theme_admin/fonts/SukhumvitSet-Medium.ttf') format('truetype');
-    }
-    *:not(i) {
-        font-family: Sukhumvit !important;
-    }
+
     #navbar-botttom {
         position: fixed !important;
         bottom: 0;

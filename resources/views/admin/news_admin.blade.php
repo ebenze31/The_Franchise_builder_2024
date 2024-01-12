@@ -1,6 +1,14 @@
 @extends('layouts.theme_admin')
 
 @section('content')
+<style>
+    .news-title{
+        white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+    }
+</style>
 <div class="container-fluid">
     <div class="row">
 
@@ -25,8 +33,8 @@
                                             <!-- <div >
                                                 <img src="{{ url('storage')}}/{{ $item->photo_content }}" style="width:200px;">
                                             </div> -->
-                                            <div class="ms-4">
-                                                <h4 class="mb-0">{{ $item->title }}</h4>
+                                            <div class="ms-4 news-title">
+                                                <h4 class="mb-0 ">{{ $item->title }}</h4>
                                                 <p class="mb-0 text-secondary"></p>
                                             </div>
                                           
@@ -38,7 +46,7 @@
                                                     <img src="{{ url('storage')}}/{{ $item->photo_cover }}" class="qr-profile" alt="รูปภาพ QR Code" style="width:100%;">
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-9  mt-2 mb-2 text-start">
+                                            <div class="col-12 col-md-9  mt-2 mb-2 text-start ">
                                                 <span class="float-start">{{ $item->detail }}</span>
                                             </div>
                                             <div class="col-12 mt-2 mb-2">

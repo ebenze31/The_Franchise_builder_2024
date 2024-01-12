@@ -10,7 +10,6 @@
         left: 0;
         width: 100%;
         height: 50px;
-        font-family: 'Kanit', sans-serif;
         z-index: 9999;
         font-size: 18px;
         background-color: white;
@@ -22,7 +21,6 @@
     .div_alert span {
         color: #2DD284;
         padding: 15px;
-        font-family: 'Kanit', sans-serif;
         z-index: 9999;
         font-size: 1em;
         width: 100%;

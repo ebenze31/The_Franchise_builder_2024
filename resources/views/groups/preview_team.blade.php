@@ -218,7 +218,7 @@
                 <p  style="font-size: 20px;color: #00AAAC;"><b>ทีมของคุณไม่ผ่านเกณฑ์ !</b></p>
                 <p style="color: #002449;margin-bottom:0;margin-top:15px ;font-size: 16px;font-style: normal;font-weight: 500;line-height: normal;">เนื่องจากทีมของคุณมีสมาชิกไม่ครบตามข้อตกลง ระบบจึงทำการรีเซ็ตทีมของคุณ</p>
                 <div class="text-center mt-3 ">
-                    <p class=" m-0 text-danger warn-text" style="color: #FF3838;text-align: center;font-family: Inter;font-style: normal;font-weight: 500;line-height: normal;">คุณสามารถทำการสร้างทีม หรือขอเข้าร่วมทีมที่ยังว่างได้จนถึง 17:00 น. ของวันที่ 23 ม.ค. 2567</p>
+                    <p class=" m-0 text-danger warn-text" style="color: #FF3838;text-align: center;font-style: normal;font-weight: 500;line-height: normal;">คุณสามารถทำการสร้างทีม หรือขอเข้าร่วมทีมที่ยังว่างได้จนถึง 17:00 น. ของวันที่ 23 ม.ค. 2567</p>
                 </div>
                 <span class="text-dark">
                     
@@ -863,11 +863,11 @@
                 <img src="{{ url('/img/icon/Frame 1.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
                 <p class="text-dark" style="font-size: 18px;"><b>สถานะ : รอการตอบรับจาก host</b></p>
                 <h4 style="color:#00AAAC;margin-bottom:0;margin-top:15px ;font-size: 20px;font-style: normal;font-weight: 700;line-height: normal;">Team `+name_group+`</h4>
-                <p style="color: #005CD3;text-align: center;font-family: Inter;font-size: 12px;font-style: normal;font-weight: 400;line-height: normal;">Waiting : <span id="modal_timer">23:59</span></p>
+                <p style="color: #005CD3;text-align: center;font-size: 12px;font-style: normal;font-weight: 400;line-height: normal;">Waiting : <span id="modal_timer">23:59</span></p>
 
                 <div class="text-center mt-3 ">
-                    <p class=" m-0 text-danger warn-text" style="color: #FF3838;text-align: center;font-family: Inter;font-style: normal;font-weight: 500;line-height: normal;">* ระหว่างรอการยืนยันจาก Host คุณจะไม่สามารถกดคำขอเข้าทีมอื่นได้</p>
-                    <p class=" mt-3 text-danger warn-text" style="color: #FF3838;text-align: center;font-family: Inter;font-style: normal;font-weight: 500;line-height: normal;">* เเละหากครบ 24 ชั่วโมง เเล้วยังไม่มีการตอบกลับจาก Host คำขอนี้จะถูกระบบยกเลิกโดยอัตโนมัติ</p>
+                    <p class=" m-0 text-danger warn-text" style="color: #FF3838;text-align: center;font-style: normal;font-weight: 500;line-height: normal;">* ระหว่างรอการยืนยันจาก Host คุณจะไม่สามารถกดคำขอเข้าทีมอื่นได้</p>
+                    <p class=" mt-3 text-danger warn-text" style="color: #FF3838;text-align: center;font-style: normal;font-weight: 500;line-height: normal;">* เเละหากครบ 24 ชั่วโมง เเล้วยังไม่มีการตอบกลับจาก Host คำขอนี้จะถูกระบบยกเลิกโดยอัตโนมัติ</p>
                 </div>
                 <span class="text-dark">
                     

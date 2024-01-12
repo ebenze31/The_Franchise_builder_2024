@@ -40,9 +40,8 @@
         margin: 0;
         backdrop-filter: blur(5px);
     }
-    *:not(i) {
-        font-family: 'Kanit', sans-serif;
-    }
+    
+
 </style>
 
 <body>

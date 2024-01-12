@@ -22,9 +22,9 @@
         justify-content: center;
         padding: 50px 0;
         position: relative;
-	padding-bottom: 56.25%; /* 16:9 */
-	padding-top: 25px;
-	height: 0;
+        padding-bottom: 56.25%; /* 16:9 */
+        padding-top: 25px;
+        height: 0;
     }.ytp-gradient-top {
         display: none !important;
     }.videoWrapper {

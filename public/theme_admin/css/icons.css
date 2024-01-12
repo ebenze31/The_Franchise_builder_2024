@@ -24,22 +24,16 @@ File: icons.css
 
 }
 
-@font-face
-
-{
-
-	font-family: 'test';
-
+@font-face {
+	font-family: 'Sukhumvit';
 	font-weight: normal;
-
 	font-style: normal;
-
-	src: url('../fonts/SukhumvitSet-Medium.ttf');
-
-	src: url('../fonts/SukhumvitSet-Medium.ttf') format('embedded-opentype');
-
+	src: url('../fonts/SukhumvitSet-Medium.ttf') format('truetype');
 }
-
+*:not(i) {
+	font-family: Sukhumvit !important;
+	letter-spacing: 0px !important;
+}
 .bx {
 
 	font-family: 'boxicons' !important;

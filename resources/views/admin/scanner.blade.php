@@ -144,7 +144,6 @@
         width: 100%;
         height: 50px;
         text-align: center;
-        font-family: 'Kanit', sans-serif;
         z-index: 9999;
         font-size: 18px;
 
@@ -155,7 +154,6 @@
         border-radius: 10px;
         color: #2DD284;
         padding: 15px;
-        font-family: 'Kanit', sans-serif;
         z-index: 9999;
         font-size: 1em;
     }

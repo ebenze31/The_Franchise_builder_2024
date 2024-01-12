@@ -3,6 +3,7 @@
 @section('content')
 
     <style>
+        
         .cover-img{
             width: 100%;
             aspect-ratio: 350 /185 ;
@@ -49,15 +50,15 @@
             @foreach($news as $item)
             <a href="{{ url('/news/' . $item->id) }}" class="p-0 m-0">
                 <div class="card news-card p-2">
-                @if(!empty($item->photo_cover))
-                <img src="{{ url('storage')}}/{{ $item->photo_cover }}" class="cover-img" alt="รูปภาพปก">
-                @else
-                <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
-                @endif
-                <p class="news-title">{{ $item->title }}</p>
-                <p class="news-detail">{{ $item->detail }}</p>
-                <p class="float-end news-create">{{ date("d/m/Y" , strtotime($item->created_at)) }} </p>
-            </div>
+                        @if(!empty($item->photo_cover))
+                        <img src="{{ url('storage')}}/{{ $item->photo_cover }}" class="cover-img" alt="รูปภาพปก">
+                        @else
+                        <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
+                        @endif
+                    <p class="news-title">{{ $item->title }}</p>
+                    <p class="news-detail">{{ $item->detail }}</p>
+                    <p class="float-end news-create">{{ date("d/m/Y" , strtotime($item->created_at)) }} </p>
+                </div>
             </a>
             
             @endforeach
