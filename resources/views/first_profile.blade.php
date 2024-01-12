@@ -262,9 +262,8 @@ margin-top: 30px;
 
 
 <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
-        <i class='bx bx-log-out-circle'></i> logout
-    </a>
-
+  <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
+</a>
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
   @csrf
 </form>
