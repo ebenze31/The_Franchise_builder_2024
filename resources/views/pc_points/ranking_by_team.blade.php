@@ -266,7 +266,7 @@ border-radius: 50%;
         fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
             .then(response => response.json())
             .then(result => {
-            console.log(result);
+            // console.log(result);
 
             let content_ASC = document.querySelector('#content_ASC');
             let content_ME = document.querySelector('#content_ME');
@@ -284,7 +284,7 @@ border-radius: 50%;
                             pc_point_arr = JSON.parse(result['data'][i].rank_record);
 
                         let pc_point = pc_point_arr[week]['pc_point'] ;
-                            console.log(pc_point);
+                            // console.log(pc_point);
 
                         let originalNumber = pc_point;
                         let formattedNumber = formatLargeNumber(originalNumber);
@@ -324,8 +324,11 @@ border-radius: 50%;
 
                         content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
+                        // ของตัวเอง
                         if(result['data'][i].id == "{{ Auth::user()->group_id }}"){
-                            // ของตัวเอง
+
+                            
+                            
                             let html_me = `
                                 <div class="my-team" data-toggle="collapse" href="#dataMyteam" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
