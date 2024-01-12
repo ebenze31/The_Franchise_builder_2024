@@ -49,7 +49,7 @@
   </div>
   <div class="form-group {{ $errors->has('link') ? 'has-error' : ''}} col-12">
     <label for="link" class="control-label">{{ 'Link' }}</label>
-    <input class="form-control"  onchange="extractYouTubeID(this.value)" value="{{ isset($news->link) ? $news->link : ''}}"> 
+    <input class="form-control"  onchange="extractYouTubeID(this.value)" value=""> 
     {!! $errors->first('link', '<p class="help-block">:message</p>') !!}
   </div>
   <div class="col-12 mt-2">
@@ -126,7 +126,7 @@
 
 <input type="text" class="form-control d-none" id="name" name="name" value="{{ isset(Auth::user()->name) ? Auth::user()->name : ''}}" readonly>
   <input type="text" class="d-none" id="user_id" name="user_id" value="{{ Auth::user()->id }}" readonly>
-  <input type="text" class="d-none" id="link" name="link" value="" readonly>
+  <input type="text" class="d-none" id="link" name="link" value="{{ isset($news->link) ? $news->link : ''}}" readonly>
   <input type="text" class="d-none" id="photo_content_X" name="photo_content_X" value="" readonly>
   <input type="text" class="d-none" id="photo_content_Y" name="photo_content_Y" value="" readonly>
   <input type="text" class="d-none" id="photo_content_Width" name="photo_content_Width" value="" readonly>
@@ -141,7 +141,16 @@
 
 
 <script>
+ document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        let link_YT = document.querySelector('#link').value
+        let iframe_yt = document.getElementById('iframe_yt')
 
+        if (link_YT) {
+          iframe_yt.classList.remove('d-none');
+          iframe_yt.src = "https://www.youtube.com/embed/"+link_YT;
+        }
+    });
   function previewImage(input) {
     console.log(input.name);
     let preview = document.getElementById('preview_' + input.name);

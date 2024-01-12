@@ -229,7 +229,7 @@ class NewsController extends Controller
 
     public function new_index_admin(Request $request)
     {
-        $news = News::get();
+        $news = News::orderBy('created_at','desc')->get();
 
 
         return view('admin.news_admin', compact('news'));
