@@ -357,8 +357,8 @@
                                     </div>
                                 </div>
                                 <div class="collapseContent">
-                                    <div class="collapse" id="dataMyteam">
-                                        <div class="dataTeam">
+                                    <div class="collapse p-0" id="dataMyteam">
+                                        <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
                                             <div class="table-responsive">
                                                 <table class="table mb-0 align-middle table-borderless">
                                                     <thead class="head-teble-data-my-team">
