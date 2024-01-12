@@ -311,7 +311,7 @@ border-radius: 50%;
                                     </div>
                                 </div>
                                 <div class="score-my-team">
-                                    <span class="text-score">`+formattedNumber+`</span>
+                                    <span class="text-score" style="content: #E7C517!important;">`+formattedNumber+`</span>
                                     <span class="text-point"> Pc</span>
 
                                 </div>
@@ -327,8 +327,8 @@ border-radius: 50%;
                         // ของตัวเอง
                         if(result['data'][i].id == "{{ Auth::user()->group_id }}"){
 
-                            
-                            
+
+
                             let html_me = `
                                 <div class="my-team" data-toggle="collapse" href="#dataMyteam" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
