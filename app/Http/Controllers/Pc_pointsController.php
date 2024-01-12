@@ -256,7 +256,7 @@ class Pc_pointsController extends Controller
         else if($type == 'team'){
             $data['data'] = DB::table('groups')
                 ->where('rank_of_week' , '!=' , null)
-                ->orderBy('rank_of_week', 'ASC')
+                ->orderBy(DB::raw('CAST(rank_of_week AS SIGNED)'), 'ASC')
                 ->get();
 
             $data['week'] = $week;
