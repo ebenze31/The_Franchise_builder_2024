@@ -135,6 +135,8 @@ class Pc_pointsController extends Controller
         $data_arr = [];
         $group_pc = [] ;
 
+        $check_week = '';
+
         foreach ($requestData as $item) {
 
             foreach ($item as $key => $value) {
@@ -150,11 +152,30 @@ class Pc_pointsController extends Controller
                 else if($key == "group_id"){
                     $data_arr[$key] = str_replace("Team","",$value);
                 }
+                else if($key == "week"){
+                    $check_week = $value;
+                    $data_arr[$key] = $value;
+                }
                 else{
                     $data_arr[$key] = $value;
                 }
 
             }
+
+            $check_old_week = Pc_point::where('week',$check_week)
+                ->where('user_id',$data_arr['user_id'])
+                ->first();
+
+            if( !empty($check_old_week->id) ){
+                Pc_point::where('id', $check_old_week->id)
+                    ->update(['week' => 'old-'.$check_week]);
+            }
+
+            // $check_old_week = Pc_point::where('week',$check_week)->first();
+            // if( !empty($check_old_week->id) ){
+            //     Pc_point::where('week', $check_week)->delete();
+            // }
+
             // เพิ่มคะแนนเข้า DB
             Pc_point::create($data_arr);
 
@@ -242,7 +263,11 @@ class Pc_pointsController extends Controller
 
     function get_data_rank($type){
 
-        $check_week = Pc_point::orderBy('week', 'desc')->first();
+        // $check_week = Pc_point::orderBy('week', 'desc')->first();
+        $check_week = Pc_point::where('week', 'not like', 'old-%')
+            ->orderBy('week', 'desc')
+            ->first();
+
         $week = $check_week->week ;
 
         if($type == 'individual'){
