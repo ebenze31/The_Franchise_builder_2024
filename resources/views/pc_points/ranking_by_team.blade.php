@@ -311,7 +311,7 @@ border-radius: 50%;
                                     </div>
                                 </div>
                                 <div class="score-my-team">
-                                    <span class="text-score" style="content: #E7C517!important;">`+formattedNumber+`</span>
+                                    <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
                                     <span class="text-point"> Pc</span>
 
                                 </div>
