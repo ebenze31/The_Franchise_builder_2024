@@ -223,6 +223,13 @@
                             </a>
                         </li>
                     </ul>
+                    <ul>
+                        <li>
+                            <a class="btn" href="{{ url('/news_admin') }}">
+                            <i class="fa-duotone fa-newspaper"></i> ข่าวทั้งหมด
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="javascript:;" class="has-arrow">

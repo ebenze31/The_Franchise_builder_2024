@@ -156,21 +156,56 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         $requestData = $request->all();
-                if ($request->hasFile('photo_content')) {
-            $requestData['photo_content'] = $request->file('photo_content')
-                ->store('uploads', 'public');
+        if ($request->hasFile('photo_content')) {
+            $requestData['photo_content'] = $request->file('photo_content')->store('uploads', 'public');
+
+            // ตำแหน่งและขนาดของภาพที่คุณต้องการ crop
+            $photo_content_cropX = (int)$requestData['photo_content_X']; // ตำแหน่ง x ที่จะ crop
+            $photo_content_cropY = (int)$requestData['photo_content_Y']; // ตำแหน่ง y ที่จะ crop
+            $photo_content_cropWidth = (int)$requestData['photo_content_Width']; // ขนาดความกว้างที่จะ crop
+            $photo_content_cropHeight = (int)$requestData['photo_content_Height']; // ขนาดความสูงที่จะ crop
+
+            // เรียกรูปภาพ
+            $photo_content_imagePath = storage_path("app/public")."/".$requestData['photo_content'];
+            $photo_content_image = Image::make($photo_content_imagePath);
+            $photo_content_image->orientate();
+
+            // Crop ภาพ
+            $photo_content_image->crop($photo_content_cropWidth, $photo_content_cropHeight, $photo_content_cropX, $photo_content_cropY);
+
+            // Save ภาพหลังจาก crop
+            $photo_content_image->save($photo_content_imagePath);
+
         }
+
+
         if ($request->hasFile('photo_cover')) {
-            $requestData['photo_cover'] = $request->file('photo_cover')
-                ->store('uploads', 'public');
+            $requestData['photo_cover'] = $request->file('photo_cover')->store('uploads', 'public');
+
+            // ตำแหน่งและขนาดของภาพที่คุณต้องการ crop
+            $photo_cover_cropX = (int)$requestData['photo_cover_X']; // ตำแหน่ง x ที่จะ crop
+            $photo_cover_cropY = (int)$requestData['photo_cover_Y']; // ตำแหน่ง y ที่จะ crop
+            $photo_cover_cropWidth = (int)$requestData['photo_cover_Width']; // ขนาดความกว้างที่จะ crop
+            $photo_cover_cropHeight = (int)$requestData['photo_cover_Height']; // ขนาดความสูงที่จะ crop
+
+            // เรียกรูปภาพ
+            $photo_cover_imagePath = storage_path("app/public")."/".$requestData['photo_cover'];
+            $photo_cover_image = Image::make($photo_cover_imagePath);
+            $photo_cover_image->orientate();
+
+            // Crop ภาพ
+            $photo_cover_image->crop($photo_cover_cropWidth, $photo_cover_cropHeight, $photo_cover_cropX, $photo_cover_cropY);
+
+            // Save ภาพหลังจาก crop
+            $photo_cover_image->save($photo_cover_imagePath);
+
         }
 
         $news = News::findOrFail($id);
         $news->update($requestData);
 
-        return redirect('news')->with('flash_message', 'News updated!');
+        return redirect('news_admin')->with('flash_message', 'News updated!');
     }
 
     /**
@@ -184,10 +219,19 @@ class NewsController extends Controller
     {
         News::destroy($id);
 
-        return redirect('news')->with('flash_message', 'News deleted!');
+        return redirect('news_admin')->with('flash_message', 'News deleted!');
     }
 
     function add_news(){
         return view('news.add_news');
+    }
+
+
+    public function new_index_admin(Request $request)
+    {
+        $news = News::get();
+
+
+        return view('admin.news_admin', compact('news'));
     }
 }

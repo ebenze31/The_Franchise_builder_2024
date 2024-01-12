@@ -6,54 +6,118 @@
 <style>
     .cropper-container{
         margin-top: 10px;
+    }.container_upload_preview{
+      position: relative;
+      width: 100%;
+      height: 250px;
+      border-radius: 10px; 
+        -moz-border-radius:10px;
+        -khtml-border-radius:10px;
+    }.container_upload{
+      background-color: #bcbcbc;
+      width: 100%;
+      height: 250px;
+      border-radius: 10px; 
+        -moz-border-radius:10px;
+        -khtml-border-radius:10px;
+      position: relative;
+
+    }.upload_section{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 22px;
+      display: flex;
+      justify-content: center;
     }
 </style>
-<div class="form-group {{ $errors->has('title') ? 'has-error' : ''}} col-md-6">
-    <label for="title" class="control-label">{{ 'Title' }}</label>
-    <input class="form-control" name="title" type="text" id="title" value="{{ isset($news->title) ? $news->title : ''}}" >
-    {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}} col-md-6">
-    <label for="detail" class="control-label">{{ 'Detail' }}</label>
-    <input class="form-control" name="detail" type="text" id="detail" value="{{ isset($news->detail) ? $news->detail : ''}}" >
-    {!! $errors->first('detail', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('photo_content') ? 'has-error' : ''}} col-md-6">
-    <label for="photo_content" class="control-label">{{ 'Photo Content' }}</label>
-    <input class="form-control " name="photo_content" type="file" id="photo_content" value="{{ isset($news->photo_content) ? $news->photo_content : ''}}"  accept="image/*" onchange="previewImage(this)">
-    
-    <img id="preview_photo_content" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:100%; max-height:250px;">
 
-    {!! $errors->first('photo_content', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('photo_cover') ? 'has-error' : ''}} col-md-6">
-    <label for="photo_cover" class="control-label">{{ 'Photo Cover' }}</label>
-    <input class="form-control" name="photo_cover" type="file" id="photo_cover" value="{{ isset($news->photo_cover) ? $news->photo_cover : ''}}" accept="image/*" onchange="previewImage(this)">
+<div class="row">
 
-    <img id="preview_photo_cover" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:100%; max-height:250px;">
-
-    {!! $errors->first('photo_cover', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('link') ? 'has-error' : ''}} col-md-6">
+<div class="col-12 col-md-6">
+  <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}} col-12">
+      <label for="title" class="control-label">{{ 'Title' }}</label>
+      <input class="form-control" name="title" type="text" id="title" value="{{ isset($news->title) ? $news->title : ''}}" >
+      {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
+  </div>
+  <div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}} col-12">
+      <label for="detail" class="control-label">{{ 'Detail' }}</label>
+      <input class="form-control" name="detail" type="text" id="detail" value="{{ isset($news->detail) ? $news->detail : ''}}" >
+      {!! $errors->first('detail', '<p class="help-block">:message</p>') !!}
+  </div>
+  <div class="form-group {{ $errors->has('link') ? 'has-error' : ''}} col-12">
     <label for="link" class="control-label">{{ 'Link' }}</label>
     <input class="form-control"  onchange="extractYouTubeID(this.value)">
     {!! $errors->first('link', '<p class="help-block">:message</p>') !!}
+  </div>
+  <div class="col-12 mt-2">
+    <iframe  id="iframe_yt" class="d-none" width="100%" height="600"
+          src=""
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+      </iframe>
+  </div>
 </div>
+<div class="col-md-6 col-12">
+<div class="form-group {{ $errors->has('photo_content') ? 'has-error' : ''}} col-12">
+    <label for="photo_content" class="control-label">{{ 'Photo Content' }}</label>
+    <input class="form-control  d-none" name="photo_content" type="file" id="photo_content" value="{{ isset($news->photo_content) ? $news->photo_content : ''}}"  accept="image/*" onchange="previewImage(this)">
+    <!-- <label for="photo_content" class="control-label"><img src="{{ url('img/icon/upload.png') }}" alt="" style="width: 100%;"></label> -->
+    <br>
+    <label id="upload_photo_content" for="photo_content" class="container_upload">
+        <div class="upload_section">
+          <div class="text-center">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Upload img</p>
+          </div>
+          
+        </div>
+    </label>
+    <div id="container_photo_content" class="container_upload_preview d-none">
+      <label for="photo_content" class="btn btn-success" style="top: 10px; right: 10px;position: absolute; z-index: 999999999999999999;">เลือกใหม่</label>
+      <img id="preview_photo_content" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:50px; max-height:50px !important;">
+    </div>  
+
+    {!! $errors->first('photo_content', '<p class="help-block">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('photo_cover') ? 'has-error' : ''}} col-12">
+    <label for="photo_cover" class="control-label">{{ 'Photo Cover' }}</label>
+    <input class="form-control d-none" name="photo_cover" type="file" id="photo_cover" value="{{ isset($news->photo_cover) ? $news->photo_cover : ''}}" accept="image/*" onchange="previewImage(this)">
+
+    <!-- <img id="preview_photo_cover" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:100%; max-height:250px;"> -->
+
+    <label id="upload_photo_cover" for="photo_cover" class="container_upload">
+        <div class="upload_section">
+          <div class="text-center">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Upload img</p>
+          </div>
+          
+        </div>
+    </label>
+    <div id="container_photo_cover" class="container_upload_preview d-none">
+      <label for="photo_cover" class="btn btn-success" style="top: 10px; right: 10px;position: absolute; z-index: 999999999999999999;">เลือกใหม่</label>
+      <img id="preview_photo_cover" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:50px; max-height:50px !important;">
+    </div>  
+    {!! $errors->first('photo_cover', '<p class="help-block">:message</p>') !!}
+</div>
+</div>
+
+
+
 <div class="form-group d-none {{ $errors->has('user_id') ? 'has-error' : ''}} col-md-6">
     <label for="user_id" class="control-label">{{ 'User Id' }}</label>
     <input class="form-control" name="user_id" type="number" id="user_id" value="{{ Auth::user()->id}}" >
     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="col-md-12">
-    <iframe  id="iframe_yt" class="d-none" width="600" height="600"
-        src=""
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-    </iframe>
-</div>
 
+</div>
+</div>
 <div class="form-group">
     <input class="btn btn-primary px-5" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>
@@ -81,6 +145,8 @@
   function previewImage(input) {
     console.log(input.name);
     let preview = document.getElementById('preview_' + input.name);
+    let container_preview = document.getElementById('container_' + input.name);
+    let upload_preview = document.getElementById('upload_' + input.name);
     // let btn_select_new_img = document.querySelector('#btn_select_new_img');
     // console.log('asd');
     if (input.files && input.files[0]) {
@@ -91,7 +157,8 @@
         // btn_select_new_img.classList.remove('d-none');
         preview.src = e.target.result;
         preview.classList.remove('d-none');
-
+        container_preview.classList.remove('d-none');
+        upload_preview.classList.add('d-none');
         // Initialize or update cropper
         if (preview.cropper) {
           preview.cropper.destroy();
@@ -103,6 +170,9 @@
     } else {
       preview.src = '#';
       preview.classList.add('d-none');
+      container_preview.classList.add('d-none');
+      upload_preview.classList.remove('d-none');
+
       if (preview.cropper) {
         preview.cropper.destroy();
       }

@@ -1,27 +1,18 @@
-@extends('layouts.theme_user')
+@extends('layouts.theme_admin')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Edit News #{{ $news->id }}</div>
-                    <div class="card-body">
-                        <a href="{{ url('/news') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
-
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-
-                        <form method="POST" action="{{ url('/news/' . $news->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+<div class="container-fluid">
+    <div class="col">
+        <div class="card border-top border-0 border-4 border-primary">
+            <div class="card-body p-5">
+                <div class="card-title d-flex align-items-center">
+                    <div><i class="bx bxs-user me-1 font-22 text-primary"></i>
+                    </div>
+                    <h5 class="mb-0 text-primary">เพิ่มข่าวใหม่</h5>
+                </div>
+                <hr>
+              
+                <form method="POST" action="{{ url('/news/' . $news->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
@@ -29,9 +20,10 @@
 
                         </form>
 
-                    </div>
-                </div>
             </div>
         </div>
     </div>
+</div>
+
+
 @endsection

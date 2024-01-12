@@ -36,8 +36,18 @@
 </head>
 
 <style>
-    *:not(i) {
+    /* *:not(i) {
         font-family: 'Kanit', sans-serif !important;
+    } */
+
+    @font-face {
+        font-family: 'Sukhumvit';
+        font-weight: normal;
+        font-style: normal;
+        src: url('../public/theme_admin/fonts/SukhumvitSet-Medium.ttf') format('truetype');
+    }
+    *:not(i) {
+        font-family: Sukhumvit !important;
     }
     #navbar-botttom {
         position: fixed !important;
