@@ -49,7 +49,7 @@
   </div>
   <div class="form-group {{ $errors->has('link') ? 'has-error' : ''}} col-12">
     <label for="link" class="control-label">{{ 'Link' }}</label>
-    <input class="form-control"  onchange="extractYouTubeID(this.value)">
+    <input class="form-control"  onchange="extractYouTubeID(this.value)" value="{{ isset($news->link) ? $news->link : ''}}"> 
     {!! $errors->first('link', '<p class="help-block">:message</p>') !!}
   </div>
   <div class="col-12 mt-2">
