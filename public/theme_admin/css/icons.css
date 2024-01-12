@@ -33,6 +33,7 @@ File: icons.css
 *:not(i) {
 	font-family: Sukhumvit !important;
 	letter-spacing: 0px !important;
+	line-height: 1.2em;
 }
 .bx {
 

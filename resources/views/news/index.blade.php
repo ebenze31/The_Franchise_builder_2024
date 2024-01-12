@@ -55,7 +55,7 @@
                         @else
                         <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
                         @endif
-                    <p class="news-title">{{ $item->title }}</p>
+                    <p class="news-title mt-2">{{ $item->title }}</p>
                     <p class="news-detail">{{ $item->detail }}</p>
                     <p class="float-end news-create">{{ date("d/m/Y" , strtotime($item->created_at)) }} </p>
                 </div>
