@@ -306,28 +306,92 @@
                         }
 
                         let text_id_group = result['data'][i].id.toString();
+                        let html ;
 
-                        let html = `
-                            <div class="other-team">
-                                <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
-                                <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
-                                <div class="detailTeam">
-                                    <div>
-                                        <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
-                                        <p class="menberInTeam">Member : `+count_member+`</p>
+                        if("{{ Auth::user()->role }}" == "Player" || "{{ Auth::user()->role }}" == "QR"){
+
+                            html = `
+                                <div class="other-team">
+                                    <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
+                                    <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
+                                    <div class="detailTeam">
+                                        <div>
+                                            <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
+                                            <p class="menberInTeam">Member : `+count_member+`</p>
+                                        </div>
+                                    </div>
+                                    <div class="score-my-team">
+                                        <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                        <span class="text-point"> PC</span>
+
+                                    </div>
+                                    <div class="statusTeam text-center">
+                                        `+rank_up+`
+                                        <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
                                     </div>
                                 </div>
-                                <div class="score-my-team">
-                                    <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
-                                    <span class="text-point"> PC</span>
+                            `;
+                            
+                        }
+                        else{
 
+                            html = `
+                                <div class="other-team" data-toggle="collapse" href="#data_team_id_`+text_id_group+`" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
+                                    <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
+                                    <div class="detailTeam">
+                                        <div>
+                                            <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
+                                            <p class="menberInTeam">Member : `+count_member+`</p>
+                                        </div>
+                                    </div>
+                                    <div class="score-my-team">
+                                        <span class="text-score">`+formattedNumber+`</span>
+                                        <span class="text-point"> PC</span>
+
+                                    </div>
+                                    <div class="statusTeam text-center">
+                                        `+rank_up+`
+                                        <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
+                                    </div>
                                 </div>
-                                <div class="statusTeam text-center">
-                                    `+rank_up+`
-                                    <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
+                                <div class="collapseContent">
+                                    <div class="collapse p-0" id="data_team_id_`+text_id_group+`">
+                                        <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                                            <div class="table-responsive">
+                                                <table class="table mb-0 align-middle table-borderless">
+                                                    <thead class="head-teble-data-my-team">
+                                                        <tr>
+                                                            <th class="text-center">No.<p>&nbsp;</p>
+                                                            </th>
+                                                            <th class="text-center">User<p>&nbsp;</p>
+                                                            </th>
+                                                            <th class="text-center">YTD-PC<p>&nbsp;</p>
+                                                            </th>
+                                                            <th class="text-center">MTD-PC<p>&nbsp;</p>
+                                                            </th>
+                                                            <!-- <th class="text-center d-flex align-items-top">MTD-Case<p>&nbsp;</p>
+                                                            </th>
+                                                            <th class="text-center">
+                                                                <p>Active AG</p>
+                                                                <small style="font-size: 7px;">(include self)</small>
+                                                            </th> -->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbody_content_id_`+text_id_group+`">
+                                                        <!-- ข้อมูลสมาชิก -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        `;
+                            `;
+
+                            // สมาชิกในทีมของทุกทีม
+                            create_html_all_member(result['data'][i].id , week);
+
+                        }
 
                         content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
@@ -390,7 +454,7 @@
                             document.querySelector('#content_ME').classList.remove('d-none');
                             content_ME.insertAdjacentHTML('beforeend', html_me); // แทรกล่างสุด
 
-                            // สมาชิกในทีม
+                            // สมาชิกในทีมของฉัน
                             create_html_member_in_team(result['data'][i].id , week);
 
                         }
@@ -411,9 +475,10 @@
 
     }
 
-    function create_html_member_in_team(geoup_id , week){
+    // สมาชิกในทีมของฉัน
+    function create_html_member_in_team(group_id , week){
 
-        fetch("{{ url('/') }}/api/get_member_in_team" + "/" + geoup_id + "/" + week)
+        fetch("{{ url('/') }}/api/get_member_in_team" + "/" + group_id + "/" + week)
             .then(response => response.json())
             .then(member_in_team => {
                 // console.log(member_in_team);
@@ -466,6 +531,71 @@
                     `;
                     let tbody_content_ME = document.querySelector('#tbody_content_ME');
                     tbody_content_ME.insertAdjacentHTML('beforeend', html_tbody_content_ME); // แทรกล่างสุด
+
+                }
+
+
+        });
+
+    }
+
+    // สมาชิกในทีมของทุกทีม
+    function create_html_all_member(group_id , week){
+
+        fetch("{{ url('/') }}/api/get_member_in_team" + "/" + group_id + "/" + week)
+            .then(response => response.json())
+            .then(member_in_team => {
+                // console.log(member_in_team);
+
+                let arr_sum_point = [];
+                let arr_of_week = {};
+                let sum_point_of_year = 0 ;
+                let sum_point_of_month = 0 ;
+
+                for (let xz = 0; xz < member_in_team.length; xz++) {
+
+                    // let text_id_user = member_in_team[xz].user_id.toString();
+
+                    // สร้างวัตถุ Date สำหรับวันที่ปัจจุบัน
+                    let currentDate = new Date();
+
+                    // ดึงปีปัจจุบัน
+                    let currentYear = currentDate.getFullYear();
+
+                    // ดึงเดือนปัจจุบัน เพิ่ม +1 เพื่อให้เป็นเดือนจริง
+                    let currentMonth = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+
+                    // console.log("ปีปัจจุบัน:", currentYear);
+                    // console.log("เดือนปัจจุบัน:", currentMonth);
+
+                    let monthlyValue = member_in_team[xz].monthly[currentYear][currentMonth];
+                    let monthly_formatted = monthlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+
+                    let yearlyValue = member_in_team[xz].yearly[currentYear];
+                    let yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+
+                    let html_tbody_content_ME = `
+                        <tr>
+                            <td class="text-center">
+                                `+parseInt(xz+1)+`
+                            </td>
+                            <td class="d-flex align-items-center">
+                                <img src="{{ url('storage')}}/`+member_in_team[xz].user_photo+`" class="profile-img" alt="รูปภาพปก">
+                                <span class="ms-2 nameUserteam">`+member_in_team[xz].user_name+`</span>
+                            </td>
+                            <td class="text-data-team text-center">
+                                `+yearly_formatted+`
+                            </td>
+                            <td class="text-data-team text-center">
+                                `+monthly_formatted+`
+                            </td>
+                            <!-- <td class="text-data-team text-center">4</td> -->
+                            <!-- <td class="text-data-team text-center">2</td> -->
+                        </tr>
+                    `;
+
+                    let tbody_content = document.querySelector('#tbody_content_id_'+group_id);
+                    tbody_content.insertAdjacentHTML('beforeend', html_tbody_content_ME); // แทรกล่างสุด
 
                 }
 
