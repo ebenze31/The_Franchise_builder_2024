@@ -110,7 +110,7 @@
 <div class="container ">
     <div class="row">
 
-        <div class="div-btn-back">
+        <div class="div-btn-back d-none">
             <!-- <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">
                <i class="fa-solid fa-chevron-left"></i>
             </button> -->
