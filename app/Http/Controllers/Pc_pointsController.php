@@ -290,5 +290,79 @@ class Pc_pointsController extends Controller
         return $data ;
 
     }
+
+    function get_member_in_team($group_id , $week){
+
+        // $data_group = Group::where('id' , $group_id)->first();
+
+        // $data = Pc_point::where('week', $week)
+        //     ->where('group_id', $group_id)
+        //     ->orderBy('pc_point', 'desc')
+        //     ->get();
+
+        $data = DB::table('pc_points')
+                ->join('users', 'users.id', '=', 'pc_points.user_id')
+                ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
+                // ->where('pc_points.week' , $week)
+                ->where('week', 'not like', 'old-%')
+                ->where('pc_points.group_id', $group_id)
+                ->orderBy(DB::raw('CAST(pc_points.pc_point AS SIGNED)'), 'DESC')
+                ->get();
+
+        $sums = [];
+
+        foreach ($data as $row) {
+            $user_id = $row->user_id;
+            $year = date('Y', strtotime($row->created_at));
+            $month = date('m', strtotime($row->created_at));
+
+            // ผลรวม pc_point ของแต่ละ user_id
+            if (!isset($sums[$user_id])) {
+                $sums[$user_id] = [
+                    'user_id' => $user_id,
+                    'user_name' => $row->user_name,
+                    'user_photo' => $row->user_photo,
+                    'total' => 0,
+                    'yearly' => [],
+                    'monthly' => [],
+                ];
+            }
+
+            $sums[$user_id]['total'] += $row->pc_point;
+
+            // ผลรวม pc_point ประจำปี
+            if (!isset($sums[$user_id]['yearly'][$year])) {
+                $sums[$user_id]['yearly'][$year] = 0;
+            }
+
+            $sums[$user_id]['yearly'][$year] += $row->pc_point;
+
+            // ผลรวม pc_point ประจำเดือน
+            if (!isset($sums[$user_id]['monthly'][$year])) {
+                $sums[$user_id]['monthly'][$year] = [];
+            }
+
+            if (!isset($sums[$user_id]['monthly'][$year][$month])) {
+                $sums[$user_id]['monthly'][$year][$month] = 0;
+            }
+
+            $sums[$user_id]['monthly'][$year][$month] += $row->pc_point;
+        }
+
+        usort($sums, function ($a, $b) {
+            return $b['total'] - $a['total'];
+        });
+
+
+        return $sums;
+    }
+
+    function get_users_by_id($user_id){
+
+        $data = User::where('id', $user_id)->first();
+
+        return $data;
+
+    }
 }
 

@@ -283,7 +283,7 @@
 
                     let week = result['week'];
 
-                    for (var i = 0; i < result['data'].length; i++) {
+                    for (let i = 0; i < result['data'].length; i++) {
 
                         let count_member = JSON.parse(result['data'][i].member).length;
 
@@ -334,8 +334,6 @@
                         // ของตัวเอง
                         if(result['data'][i].id == "{{ Auth::user()->group_id }}"){
 
-
-
                             let html_me = `
                                 <div class="my-team" data-toggle="collapse" href="#dataMyteam" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
@@ -379,20 +377,8 @@
                                                             </th> -->
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="text-center">
-                                                                01.
-                                                            </td>
-                                                            <td class="d-flex align-items-center">
-                                                                <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" class="profile-img" alt="รูปภาพปก">
-                                                                <span class="ms-2 nameUserteam">{{Auth::user()->name}}ssssssssssssssssssssss</span>
-                                                            </td>
-                                                            <td class="text-data-team text-center">1002,562</td>
-                                                            <td class="text-data-team text-center">902,562</td>
-                                                            <!-- <td class="text-data-team text-center">4</td> -->
-                                                            <!-- <td class="text-data-team text-center">2</td> -->
-                                                        </tr>
+                                                    <tbody id="tbody_content_ME">
+                                                        <!-- ข้อมูลสมาชิก -->
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -403,6 +389,9 @@
 
                             document.querySelector('#content_ME').classList.remove('d-none');
                             content_ME.insertAdjacentHTML('beforeend', html_me); // แทรกล่างสุด
+
+                            // สมาชิกในทีม
+                            create_html_member_in_team(result['data'][i].id , week);
 
                         }
 
@@ -418,6 +407,69 @@
 
                 }, 500);
             }
+        });
+
+    }
+
+    function create_html_member_in_team(geoup_id , week){
+
+        fetch("{{ url('/') }}/api/get_member_in_team" + "/" + geoup_id + "/" + week)
+            .then(response => response.json())
+            .then(member_in_team => {
+                // console.log(member_in_team);
+
+                let arr_sum_point = [];
+                let arr_of_week = {};
+                let sum_point_of_year = 0 ;
+                let sum_point_of_month = 0 ;
+
+                for (let xz = 0; xz < member_in_team.length; xz++) {
+
+                    // let text_id_user = member_in_team[xz].user_id.toString();
+
+                    // สร้างวัตถุ Date สำหรับวันที่ปัจจุบัน
+                    let currentDate = new Date();
+
+                    // ดึงปีปัจจุบัน
+                    let currentYear = currentDate.getFullYear();
+
+                    // ดึงเดือนปัจจุบัน เพิ่ม +1 เพื่อให้เป็นเดือนจริง
+                    let currentMonth = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+
+                    // console.log("ปีปัจจุบัน:", currentYear);
+                    // console.log("เดือนปัจจุบัน:", currentMonth);
+
+                    let monthlyValue = member_in_team[xz].monthly[currentYear][currentMonth];
+                    let monthly_formatted = monthlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+
+                    let yearlyValue = member_in_team[xz].yearly[currentYear];
+                    let yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+
+                    let html_tbody_content_ME = `
+                        <tr>
+                            <td class="text-center">
+                                `+parseInt(xz+1)+`
+                            </td>
+                            <td class="d-flex align-items-center">
+                                <img src="{{ url('storage')}}/`+member_in_team[xz].user_photo+`" class="profile-img" alt="รูปภาพปก">
+                                <span class="ms-2 nameUserteam">`+member_in_team[xz].user_name+`</span>
+                            </td>
+                            <td class="text-data-team text-center">
+                                `+yearly_formatted+`
+                            </td>
+                            <td class="text-data-team text-center">
+                                `+monthly_formatted+`
+                            </td>
+                            <!-- <td class="text-data-team text-center">4</td> -->
+                            <!-- <td class="text-data-team text-center">2</td> -->
+                        </tr>
+                    `;
+                    let tbody_content_ME = document.querySelector('#tbody_content_ME');
+                    tbody_content_ME.insertAdjacentHTML('beforeend', html_tbody_content_ME); // แทรกล่างสุด
+
+                }
+
+
         });
 
     }
