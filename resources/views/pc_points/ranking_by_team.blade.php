@@ -332,6 +332,8 @@
                                 </div>
                             `;
                             
+                            content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                            
                         }
                         else{
 
@@ -388,12 +390,13 @@
                                 </div>
                             `;
 
+                            content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
                             // สมาชิกในทีมของทุกทีม
                             create_html_all_member(result['data'][i].id , week);
 
                         }
 
-                        content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
                         // ของตัวเอง
                         if(result['data'][i].id == "{{ Auth::user()->group_id }}"){
