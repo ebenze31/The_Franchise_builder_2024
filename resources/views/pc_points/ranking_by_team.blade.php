@@ -331,7 +331,7 @@
                                     </div>
                                 </div>
                             `;
-                            
+
                             content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
                             
                         }
@@ -393,8 +393,9 @@
                             content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
                             // สมาชิกในทีมของทุกทีม
-                            create_html_all_member(result['data'][i].id , week);
-
+                            setTimeout(() => {
+                                create_html_all_member(result['data'][i].id , week);
+                            }, 1000);
                         }
 
 
