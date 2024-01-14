@@ -217,7 +217,7 @@ border-radius:  0 0 40px 40px;
     @if( Auth::user()->role == 'Super-admin' || Auth::user()->role == 'Admin' )
     <div>
         <div style="margin: 40px 40px 20px 20px;float: right;">
-            <a href="{{ url('/account_all') }}" class="btn btn-sm btn-light" style="color: #041b3d!important;">{{ Auth::user()->role }}</a>
+            <a href="{{ url('/account_reg_success') }}" class="btn btn-sm btn-light" style="color: #041b3d!important;">{{ Auth::user()->role }}</a>
         </div>
     </div>
     @elseif( Auth::user()->role == 'Staff' )

@@ -288,7 +288,7 @@
                     <div class="top-menu-left d-none d-lg-block">
                         <ul class="nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{url('/account_all')}}">
+                                <a class="nav-link" href="{{url('/account_reg_success')}}">
                                     <i class="fa-solid fa-house text-white"></i>
                                 </a>
                             </li>
