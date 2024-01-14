@@ -205,6 +205,20 @@
                             </a>
                         </li>
                     </ul>
+                    <ul>
+                        <li>
+                            <a class="btn" href="{{ url('/ranking_by_individual') }}" target="bank">
+                                <i class="fa-solid fa-person"></i> Individual
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a class="btn" href="{{ url('/ranking_by_team') }}" target="bank">
+                                <i class="fa-solid fa-people-group"></i> Team
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="javascript:;" class="has-arrow">

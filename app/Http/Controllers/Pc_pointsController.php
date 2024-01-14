@@ -364,5 +364,15 @@ class Pc_pointsController extends Controller
         return $data;
 
     }
+
+    function check_last_update_pc_point(){
+
+        $check_last = Pc_point::where('week', 'not like', 'old-%')
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        return $check_last ;
+
+    }
 }
 

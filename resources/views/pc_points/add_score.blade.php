@@ -147,7 +147,19 @@
 <div class="card">
     <div class="card-body">
 
-        <h4 class="mb-0 text-uppercase">เพิ่มคะแนน PC</h4>
+        <div class="row">
+            <div class="col-6">
+                <h4 class="mb-0 text-uppercase">
+                    เพิ่มคะแนน PC
+                </h4>
+            </div>
+            <div class="col-6 text-end">
+                <b>วีคล่าสุด : <span id="last_week"></span></b>
+                <br>
+                อัพเดทล่าสุด : <span id="last_update"></span>
+            </div>
+        </div>
+
         <hr class="mt-3 mb-3">
 
         <ul class="nav nav-tabs nav-primary" role="tablist">
@@ -219,6 +231,51 @@
     </div>
 </div>
 
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        check_last_update_pc_point();
+    });
+
+    function check_last_update_pc_point(){
+        // console.log(type_get_data);
+
+        fetch("{{ url('/') }}/api/check_last_update_pc_point" )
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                setTimeout(() => {
+                    if(result){
+                        if(result){
+                            // ตัวอย่างข้อมูลจาก PHP
+                            const phpDateString = result.created_at;
+
+                            // สร้างวัตถุ Date จากข้อมูลที่ได้จาก PHP
+                            const phpDate = new Date(phpDateString);
+
+                            // สร้าง Options สำหรับการจัดรูปแบบ
+                            const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+
+                            // ใช้ toLocaleString() เพื่อแปลงวันที่
+                            const formattedDate = phpDate.toLocaleString('en-UK', options);
+
+                            // console.log(formattedDate);
+
+
+                            document.querySelector('#last_week').innerHTML = result.week ;
+                            document.querySelector('#last_update').innerHTML = formattedDate ;
+                        }
+
+                    }
+                }, 500);
+
+            });
+    }
+
+</script>
 
 <script>
     // EXCEL
