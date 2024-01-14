@@ -102,6 +102,36 @@
         left: 0;
         z-index: 9999;
         width: 200px;
+    }.imgCloseBTN{
+        width: 25px;
+        height: 25px;
+    }.title-news{
+        text-indent: 10px;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: left;
+        color: #07285A;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-top: 10px;
+    }
+    .detail-news{
+        text-indent: 40px;
+
+        text-align: left;
+        color: #07285A;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 </style>
 
@@ -356,6 +386,48 @@
 
         </div>
     @endif
+
+    
+<!-- modal_request_join -->
+<button id="btn_modal_request_join" class="d-nodne" data-toggle="modal" data-target="#modal_request_join"></button>
+
+<div class="modal fade" id="modal_request_join" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered px-3">
+        <div class="modal-content " style="border-radius: 10px;">
+            <div class="modal-header modalHeaderrequest pb-0 border-none px-1" style="border-bottom: none !important;">
+                <div class="w-100 text-center">
+
+                    <p style="color: #053063;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal; text-indent: 40px;" class="modal-request-title text-center" id="exampleModalLongTitle">News Update</p>
+                </div>
+                <button id="close_Pending" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                    <!-- <img src="{{ url('/img/icon/closeBTN.png') }}"  class="mt-2 mb-2 imgCloseBTN"> -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                        <path d="M12.5 0C5.5875 0 0 5.5875 0 12.5C0 19.4125 5.5875 25 12.5 25C19.4125 25 25 19.4125 25 12.5C25 5.5875 19.4125 0 12.5 0ZM17.875 17.875C17.7594 17.9909 17.622 18.0828 17.4708 18.1455C17.3196 18.2083 17.1575 18.2406 16.9937 18.2406C16.83 18.2406 16.6679 18.2083 16.5167 18.1455C16.3655 18.0828 16.2281 17.9909 16.1125 17.875L12.5 14.2625L8.8875 17.875C8.65378 18.1087 8.33678 18.24 8.00625 18.24C7.67572 18.24 7.35872 18.1087 7.125 17.875C6.89128 17.6413 6.75997 17.3243 6.75997 16.9937C6.75997 16.8301 6.79221 16.668 6.85484 16.5168C6.91747 16.3656 7.00927 16.2282 7.125 16.1125L10.7375 12.5L7.125 8.8875C6.89128 8.65378 6.75997 8.33678 6.75997 8.00625C6.75997 7.67572 6.89128 7.35872 7.125 7.125C7.35872 6.89128 7.67572 6.75997 8.00625 6.75997C8.33678 6.75997 8.65378 6.89128 8.8875 7.125L12.5 10.7375L16.1125 7.125C16.2282 7.00927 16.3656 6.91747 16.5168 6.85484C16.668 6.79221 16.8301 6.75997 16.9937 6.75997C17.1574 6.75997 17.3195 6.79221 17.4707 6.85484C17.6219 6.91747 17.7593 7.00927 17.875 7.125C17.9907 7.24073 18.0825 7.37812 18.1452 7.52932C18.2078 7.68053 18.24 7.84259 18.24 8.00625C18.24 8.16991 18.2078 8.33197 18.1452 8.48318C18.0825 8.63438 17.9907 8.77177 17.875 8.8875L14.2625 12.5L17.875 16.1125C18.35 16.5875 18.35 17.3875 17.875 17.875Z" fill="#053063"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body pt-1 pb-0">
+                <div id="modal_request_join_content" class="text-center">
+                    <!-- content -->
+                    <div class="btn-group owl-carousel owl-theme" role="group" aria-label="First group">
+            
+                    <div class="item mb-2">
+                        <img src="{{url('img/other/news-cover.png')}}" alt="" style="width: 100%;object-fit: cover;">
+                        <p class="title-news">Title 01</p>
+                        <p class="detail-news">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, perferendis labore sint debitis adipisci dolor consequatur, laboriosam sunt expedita iste molestiae, ipsa eveniet aperiam? Id veniam dignissimos mollitia ipsum numquam.
+                        </p>
+                    </div>
+                    <div class="item mb-2">
+                        <img src="{{url('img/other/news-cover.png')}}" alt="" style="width: 100%;object-fit: cover;">
+                        <p class="title-news">Title 01</p>
+                        <p class="detail-news">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, perferendis labore sint debitis adipisci dolor consequatur, laboriosam sunt expedita iste molestiae, ipsa eveniet aperiam? Id veniam dignissimos mollitia ipsum numquam.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
   
   var menu_rank = document.querySelector('#navbar-text-rank');
@@ -420,6 +492,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
+<script>
+    $(document).ready(function() {
+        const owl = $('.owl-carousel')
+        owl.owlCarousel({
+            loop: false,
+            margin: 5,
+            nav: false,
+            items: 1,
+            dots: true
+        });
 
+        // Custom Nav
+
+        $('.owl-carousel__next').click(() => owl.trigger('next.owl.carousel'))
+
+        $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
+    })
+</script>
 </body>
 </html>
