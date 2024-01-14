@@ -393,9 +393,7 @@
                             content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
                             // สมาชิกในทีมของทุกทีม
-                            setTimeout(() => {
-                                create_html_all_member(result['data'][i].id , week);
-                            }, 1000);
+                            create_html_all_member(result['data'][i].id , week);
                         }
 
 
