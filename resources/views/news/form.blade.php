@@ -63,48 +63,46 @@
   </div>
 </div>
 <div class="col-md-6 col-12">
-<div class="form-group {{ $errors->has('photo_content') ? 'has-error' : ''}} col-12">
-    <label for="photo_content" class="control-label">{{ 'Photo Content' }}</label>
-    <input class="form-control  d-none" name="photo_content" type="file" id="photo_content" value="{{ isset($news->photo_content) ? $news->photo_content : ''}}"  accept="image/*" onchange="previewImage(this)">
-    <!-- <label for="photo_content" class="control-label"><img src="{{ url('img/icon/upload.png') }}" alt="" style="width: 100%;"></label> -->
-    <br>
-    <label id="upload_photo_content" for="photo_content" class="container_upload">
-        <div class="upload_section">
-          <div class="text-center">
-            <i class="fa-solid fa-cloud-arrow-up"></i>
-            <p>Upload img</p>
+  <div class="form-group {{ $errors->has('photo_cover') ? 'has-error' : ''}} col-12">
+      <label for="photo_cover" class="control-label">{{ 'Photo Cover' }}</label>
+      <input class="form-control d-none" name="photo_cover" type="file" id="photo_cover" value="{{ isset($news->photo_cover) ? $news->photo_cover : ''}}" accept="image/*" onchange="previewImage(this)">
+      <!-- <img id="preview_photo_cover" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:100%; max-height:250px;"> -->
+      <label id="upload_photo_cover" for="photo_cover" class="container_upload">
+          <div class="upload_section">
+            <div class="text-center">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <p>Upload img</p>
+            </div>
+            
           </div>
-          
-        </div>
-    </label>
-    <div id="container_photo_content" class="container_upload_preview d-none">
-      <label for="photo_content" class="btn btn-success" style="top: 10px; right: 10px;position: absolute; z-index: 999999999999999999;">เลือกใหม่</label>
-      <img id="preview_photo_content" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:50px; max-height:50px !important;">
-    </div>  
-
-    {!! $errors->first('photo_content', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('photo_cover') ? 'has-error' : ''}} col-12">
-    <label for="photo_cover" class="control-label">{{ 'Photo Cover' }}</label>
-    <input class="form-control d-none" name="photo_cover" type="file" id="photo_cover" value="{{ isset($news->photo_cover) ? $news->photo_cover : ''}}" accept="image/*" onchange="previewImage(this)">
-
-    <!-- <img id="preview_photo_cover" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:100%; max-height:250px;"> -->
-
-    <label id="upload_photo_cover" for="photo_cover" class="container_upload">
-        <div class="upload_section">
-          <div class="text-center">
-            <i class="fa-solid fa-cloud-arrow-up"></i>
-            <p>Upload img</p>
+      </label>
+      <div id="container_photo_cover" class="container_upload_preview d-none">
+        <label for="photo_cover" class="btn btn-success" style="top: 10px; right: 10px;position: absolute; z-index: 999999999999999999;">เลือกใหม่</label>
+        <img id="preview_photo_cover" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:50px; max-height:50px !important;">
+      </div>  
+      {!! $errors->first('photo_cover', '<p class="help-block">:message</p>') !!}
+  </div>
+  <div class="form-group {{ $errors->has('photo_content') ? 'has-error' : ''}} col-12">
+      <label for="photo_content" class="control-label">{{ 'Photo Content' }}</label>
+      <input class="form-control  d-none" name="photo_content" type="file" id="photo_content" value="{{ isset($news->photo_content) ? $news->photo_content : ''}}"  accept="image/*" onchange="previewImage(this)">
+      <!-- <label for="photo_content" class="control-label"><img src="{{ url('img/icon/upload.png') }}" alt="" style="width: 100%;"></label> -->
+      <br>
+      <label id="upload_photo_content" for="photo_content" class="container_upload">
+          <div class="upload_section">
+            <div class="text-center">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <p>Upload img</p>
+            </div>
+            
           </div>
-          
-        </div>
-    </label>
-    <div id="container_photo_cover" class="container_upload_preview d-none">
-      <label for="photo_cover" class="btn btn-success" style="top: 10px; right: 10px;position: absolute; z-index: 999999999999999999;">เลือกใหม่</label>
-      <img id="preview_photo_cover" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:50px; max-height:50px !important;">
-    </div>  
-    {!! $errors->first('photo_cover', '<p class="help-block">:message</p>') !!}
-</div>
+      </label>
+      <div id="container_photo_content" class="container_upload_preview d-none">
+        <label for="photo_content" class="btn btn-success" style="top: 10px; right: 10px;position: absolute; z-index: 999999999999999999;">เลือกใหม่</label>
+        <img id="preview_photo_content" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:50px; max-height:50px !important;">
+      </div>  
+
+      {!! $errors->first('photo_content', '<p class="help-block">:message</p>') !!}
+  </div>
 </div>
 
 

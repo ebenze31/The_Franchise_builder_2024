@@ -72,11 +72,16 @@
                         @else
                             <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
                         @endif
+
+                        @if(!empty($news->title))
                         <p style="font-size: 16px;font-weight: bold;text-indent: 15px;color: #07285A;-webkit-letter-spacing: -1px !important; letter-spacing:-1px !important; -moz-letter-spacing:-1px !important;-khtml-letter-spacing:-1px !important;" class="mt-2">
                             {{$news->title}}
                         </p>
                         <br>
+                        @endif
+                        @if(!empty($news->detail))
                         <p class="news-detail">{{$news->detail}}</p>
+                        @endif
 
                         <!-- <div class="divvideo"> -->
                             <!-- <iframe id="asd" style="height: auto;"
@@ -87,7 +92,7 @@
                                 allowfullscreen>
                             </iframe> -->
                         <!-- </div> -->
-                        @if(!empty( $news->link))
+                        @if(!empty($news->link))
                         <div class="videoWrapper mt-4">
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $news->link }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>

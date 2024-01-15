@@ -66,13 +66,18 @@
             @foreach($news as $item)
             <a href="{{ url('/news/' . $item->id) }}" class="p-0 m-0">
                 <div class="card news-card p-2">
-                        @if(!empty($item->photo_cover))
-                        <img src="{{ url('storage')}}/{{ $item->photo_cover }}" class="cover-img" alt="รูปภาพปก">
-                        @else
-                        <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
-                        @endif
-                    <p class="news-title mt-2" style="-webkit-letter-spacing: -1px !important; letter-spacing:-1px !important; -moz-letter-spacing:-1px !important;-khtml-letter-spacing:-1px !important;">{{ $item->title }}</p>
+                    @if(!empty($item->photo_cover))
+                    <img src="{{ url('storage')}}/{{ $item->photo_cover }}" class="cover-img" alt="รูปภาพปก">
+                    @else
+                    <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
+                    @endif
+                    @if(!empty($item->title))
+                        <p class="news-title mt-2" style="-webkit-letter-spacing: -1px !important; letter-spacing:-1px !important; -moz-letter-spacing:-1px !important;-khtml-letter-spacing:-1px !important;">{{ $item->title }}</p>
+                    @endif
+
+                    @if(!empty($item->detail))
                     <p class="news-detail">{{ $item->detail }}</p>
+                    @endif
                     <p class="float-end news-create">{{ date("d/m/Y" , strtotime($item->created_at)) }} </p>
                 </div>
             </a>
