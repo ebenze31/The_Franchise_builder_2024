@@ -325,6 +325,7 @@
                 // console.log(jsonData);
 
                 let tbody_PreviewDATA = document.querySelector('#tbody_PreviewDATA');
+                    tbody_PreviewDATA.innerHTML = '' ;
 
                 for (let i = 0; i < jsonData.length; i++) {
                     
