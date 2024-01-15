@@ -130,7 +130,7 @@
         /* width: 20%; */
         display: flex;
         align-items: center;
-        text-indent: 10px;
+        /* text-indent: 10px; */
 /*        justify-content: center;*/
     }
 
@@ -143,10 +143,10 @@
     }
     @media screen and (max-device-width: 465px){
         .other-team {
-            padding: 10px 10px 10px 13px;
+            padding: 10px 10px 10px 18px;
         }
         .my-team {
-            padding: 10px 10px 10px 13px;
+            padding: 10px 10px 10px 18px;
         }.number-my-team {
 /*        margin-right: 15px;*/
             width: 85px
@@ -163,7 +163,7 @@
         }.number-my-team {
 /*        margin-right: 15px;*/
             width: 27.5%;
-            }
+        }
     }
     .menberInTeam {
         font-size: 10px;
