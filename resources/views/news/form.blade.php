@@ -21,8 +21,14 @@
         -moz-border-radius:10px;
         -khtml-border-radius:10px;
       position: relative;
+      overflow: hidden;
+    }
+    .container_upload img{
+   object-fit: contain;
 
-    }.upload_section{
+    }
+    
+    .upload_section{
       position: absolute;
       top: 50%;
       left: 50%;
@@ -67,15 +73,25 @@
       <label for="photo_cover" class="control-label">{{ 'Photo Cover' }}</label>
       <input class="form-control d-none" name="photo_cover" type="file" id="photo_cover" value="{{ isset($news->photo_cover) ? $news->photo_cover : ''}}" accept="image/*" onchange="previewImage(this)">
       <!-- <img id="preview_photo_cover" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:100%; max-height:250px;"> -->
+      
+      
+      
       <label id="upload_photo_cover" for="photo_cover" class="container_upload">
+          @if(!empty($news->photo_cover))
+          <div class="d-flex justify-content-center w-100 ">
+            <img src="{{ url('storage')}}/{{ $news->photo_cover }}" alt="รูปภาพปก">
+          </div>
+          @else
           <div class="upload_section">
             <div class="text-center">
               <i class="fa-solid fa-cloud-arrow-up"></i>
               <p>Upload img</p>
             </div>
-            
           </div>
+          @endif
       </label>
+
+
       <div id="container_photo_cover" class="container_upload_preview d-none">
         <label for="photo_cover" class="btn btn-success" style="top: 10px; right: 10px;position: absolute; z-index: 999999999999999999;">เลือกใหม่</label>
         <img id="preview_photo_cover" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:50px; max-height:50px !important;">
@@ -88,13 +104,18 @@
       <!-- <label for="photo_content" class="control-label"><img src="{{ url('img/icon/upload.png') }}" alt="" style="width: 100%;"></label> -->
       <br>
       <label id="upload_photo_content" for="photo_content" class="container_upload">
-          <div class="upload_section">
-            <div class="text-center">
-              <i class="fa-solid fa-cloud-arrow-up"></i>
-              <p>Upload img</p>
+          @if(!empty($news->photo_content))
+            <div class="d-flex justify-content-center w-100 ">
+              <img src="{{ url('storage')}}/{{ $news->photo_content }}" alt="รูปภาพปก">
             </div>
-            
-          </div>
+          @else
+            <div class="upload_section">
+              <div class="text-center">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <p>Upload img</p>
+              </div>
+            </div>
+          @endif
       </label>
       <div id="container_photo_content" class="container_upload_preview d-none">
         <label for="photo_content" class="btn btn-success" style="top: 10px; right: 10px;position: absolute; z-index: 999999999999999999;">เลือกใหม่</label>
