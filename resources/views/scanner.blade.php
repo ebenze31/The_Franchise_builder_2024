@@ -48,8 +48,9 @@
   .btn-qr-code {
     background-color: #3980B9 !important;
     color: #fff !important;
-    font-size: 16px;
+    font-size: 12px;
     border-radius: 5px 0 0 5px !important;
+    padding: 10px 15px;
   }
 
   .btn-qr-code.active {
@@ -58,9 +59,10 @@
   }
 
   .btn-scan-code {
+    padding: 10px 15px;
     background-color: #3980B9 !important;
     color: #fff !important;
-    font-size: 16px;
+    font-size: 12px;
     border-radius: 0 5px 5px 0 !important;
   }
 
