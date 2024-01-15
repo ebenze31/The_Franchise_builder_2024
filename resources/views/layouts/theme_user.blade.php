@@ -389,7 +389,7 @@
 
     
 <!-- modal_request_join -->
-<button id="btn_modal_request_join" class="d-nodne" data-toggle="modal" data-target="#modal_request_join"></button>
+<button id="btn_modal_request_join" class="d-none" data-toggle="modal" data-target="#modal_request_join"></button>
 
 <div class="modal fade" id="modal_request_join" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered px-3">

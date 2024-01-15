@@ -30,6 +30,17 @@
 </head>
 
 <style>
+    @font-face {
+	font-family: 'Sukhumvit';
+	font-weight: normal;
+	font-style: normal;
+	src: url('../fonts/SukhumvitSet-Medium.ttf') format('truetype');
+}
+*:not(i) {
+	font-family: Sukhumvit !important;
+	letter-spacing: 0px !important;
+	line-height: 1.2em;
+}
     body{
         background-image: url("{{ asset('theme_admin/images/BG/BG.png') }}");
         background-size: cover;
