@@ -149,7 +149,8 @@
             padding: 10px 10px 10px 18px;
         }.number-my-team {
 /*        margin-right: 15px;*/
-            width: 28%; 
+            width: 80px
+
         }
     }
     @media screen and (min-device-width: 465px){
