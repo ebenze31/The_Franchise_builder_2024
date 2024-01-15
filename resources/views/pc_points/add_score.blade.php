@@ -306,8 +306,6 @@
 
         let input = document.getElementById('excelInput');
         let file = input.files[0];
-        
-        document.querySelector('#div_PreviewDATA').classList.remove('d-none');
 
         if (file) {
             let reader = new FileReader();
@@ -348,6 +346,8 @@
                     tbody_PreviewDATA.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
                 }
+
+                document.querySelector('#div_PreviewDATA').classList.remove('d-none');
 
             };
 
@@ -429,7 +429,7 @@
 
     function clear_div_succell(){
         document.querySelector('#div_success_Excel').classList.add('d-none');
-        document.querySelector('#div_PreviewDATA').classList.add('d-none');
+        // document.querySelector('#div_PreviewDATA').classList.add('d-none');
     }
 
 </script>
