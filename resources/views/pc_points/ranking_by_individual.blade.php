@@ -149,11 +149,7 @@
             padding: 10px 10px 10px 18px;
         }.number-my-team {
 /*        margin-right: 15px;*/
-                width: 28%;
-            }
-        .statusTeam {
-/*        margin: 0 5px 0 15px;*/
-            width: 40%;
+            width: 28%; 
         }
     }
     @media screen and (min-device-width: 465px){
@@ -167,10 +163,6 @@
 /*        margin-right: 15px;*/
             width: 27.5%;
             }
-            .statusTeam {
-/*        margin: 0 5px 0 15px;*/
-            width: 30%;
-        }
     }
     .menberInTeam {
         font-size: 10px;
@@ -199,6 +191,8 @@
     .statusTeam {
 /*        margin: 0 5px 0 15px;*/
         /* width: 27.5%; */
+        width: 120px;
+
         display: flex;
         align-items: center;
         justify-content: center;
@@ -369,7 +363,7 @@
                                     </div>
                                     <div class="score-my-team">
                                         <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
-                                        <span class="text-point">PC</span>
+                                        <span class="text-point"> PC</span>
 
                                     </div>
                                     <div class="statusTeam text-center">
