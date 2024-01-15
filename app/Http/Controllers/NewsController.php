@@ -297,4 +297,27 @@ class NewsController extends Controller
 
     }
 
+    function remove_read_not_read($user_id , $news_id){
+
+        $data_user = User::where('id' , $user_id)->first();
+
+        if( !empty($data_user->read_not_read) ){
+            $arr_read_not_read = explode(",", $data_user->read_not_read);
+
+            $resultArray = array_diff($arr_read_not_read, array($news_id));
+            $resultString = implode(',', $resultArray);
+
+            DB::table('users')
+                ->where([ 
+                        ['id', $user_id],
+                    ])
+                ->update([
+                        'read_not_read' => $resultString,
+                    ]);
+        }
+
+        return 'success' ;
+
+    }
+
 }

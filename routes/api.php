@@ -58,6 +58,7 @@ Route::get('/check_last_update_pc_point', 'Pc_pointsController@check_last_update
 Route::get('/check_alert_news/{user_id}', 'NewsController@check_alert_news');
 Route::get('/null_alert_news/{user_id}', 'NewsController@null_alert_news');
 Route::get('/get_data_news/{news_id}', 'NewsController@get_data_news');
+Route::get('/remove_read_not_read/{user_id}/{news_id}', 'NewsController@remove_read_not_read');
 
 
 // GROUP

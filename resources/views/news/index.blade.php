@@ -62,9 +62,19 @@
         <div class="row px-3 pt-2">
             <!-- @include('admin.sidebar') -->
 
+            @php
+                $arr_read_not_read = explode(",", Auth::user()->read_not_read);
+            @endphp
             
             @foreach($news as $item)
-            <a href="{{ url('/news/' . $item->id) }}" class="p-0 m-0">
+            <a href="{{ url('/news/' . $item->id) }}" id="a_news_id_{{ $item->id }}" class="d-none"></a>
+            <div class="p-0 m-0" style="position: relative;" onclick="click_view_news('{{ Auth::user()->id }}' , '{{ $item->id }}');">                
+                @if(in_array($item->id, $arr_read_not_read))
+                    <span class="btn btn-sm btn-danger" style="position: absolute;right: 4%;top: 4%;z-index: 9999;font-size: 8px;">
+                        New
+                    </span>
+                @endif
+
                 <div class="card news-card p-2">
                     @if(!empty($item->photo_cover))
                     <img src="{{ url('storage')}}/{{ $item->photo_cover }}" class="cover-img" alt="รูปภาพปก">
@@ -80,7 +90,8 @@
                     @endif
                     <p class="float-end news-create">{{ date("d/m/Y" , strtotime($item->created_at)) }} </p>
                 </div>
-            </a>
+            </div>
+
             
             @endforeach
             <!-- <div class="col-md-9">
@@ -151,9 +162,27 @@
         </div>
     </div>
     <script>
-      document.addEventListener('DOMContentLoaded', (event) => {
-    // console.log("START");
-    change_menu_bar('news');
-  });
-</script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // console.log("START");
+            change_menu_bar('news');
+        });
+
+        function click_view_news(user_id , news_id){
+
+            let a_news_id = document.querySelector('#a_news_id_'+news_id);
+
+            // UPDATE alert_news == NULL
+            fetch("{{ url('/') }}/api/remove_read_not_read" + "/" + user_id + "/" + news_id )
+                .then(response => response.text())
+                .then(data => {
+                    // console.log(data);
+
+                    if(data == "success"){
+                        a_news_id.click();
+                    }
+
+            });
+
+        }
+    </script>
 @endsection
