@@ -87,10 +87,11 @@
                                 allowfullscreen>
                             </iframe> -->
                         <!-- </div> -->
-
+                        @if(!empty( $news->link))
                         <div class="videoWrapper mt-4">
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $news->link }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>
+                        @endif
                         <!-- <a href="{{ url('/news') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <a href="{{ url('/news/' . $news->id . '/edit') }}" title="Edit News"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
