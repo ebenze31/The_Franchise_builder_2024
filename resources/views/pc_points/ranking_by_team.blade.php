@@ -252,6 +252,8 @@
 
     .text-data-team {
         color: #00E0FF;
+    }.text-point{
+        margin-left: 5px;
     }
 </style>
 <div class="d-flex justify-content-center mt-1">
