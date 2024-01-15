@@ -384,7 +384,7 @@ line-height: normal;
 
                     <p class="modal-request-title text-white text-center" id="exampleModalLongTitle">เเจ้งปัญหาที่ต้องการให้เราช่วย</p>
                 </div>
-                <button id="close_Pending" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                <button id="close_Pending" type="button" class="close btn" data-bs-dismiss="modal" aria-label="Close">
                     <img src="{{ url('/img/icon/closeBTN.png') }}"  class="mt-2 mb-2 imgCloseBTN">
                 </button>
             </div>
