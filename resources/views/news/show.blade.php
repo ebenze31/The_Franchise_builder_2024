@@ -67,7 +67,7 @@
             <div class="col-12" >
                 <div class="card news-card ">
                     <div class="card-body">
-                        @if(!empty($news->photo_cover))
+                        @if(!empty($news->photo_content))
                             <img src="{{ url('storage')}}/{{ $news->photo_content }}" class="cover-img" alt="รูปภาพปก">
                         @else
                             <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
