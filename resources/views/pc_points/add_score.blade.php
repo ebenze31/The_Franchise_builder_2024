@@ -154,7 +154,7 @@
                 </h4>
             </div>
             <div class="col-6 text-end">
-                <b>Update : วีค <span id="last_week"></span></b>
+                <b>Update : Week <span id="last_week"></span></b>
                 <br>
                 Date/Time : <span id="last_update"></span>
             </div>
