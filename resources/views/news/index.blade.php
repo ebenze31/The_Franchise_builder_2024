@@ -41,12 +41,23 @@
         }#header-text-login{
             width:45% !important;
         }
+        .new-header{
+            width: 100%;
+            text-align: center;
+            background-color: rgb(255, 255, 255 ,.5);
+            color: #07285A;
+            padding:  5px 0;
+            font-weight: bold;
+        }.content-section{
+            padding: 0;
+        }
     </style>
-    <div class="container">
-        <div class="row">
+    <h4 class=" new-header">News</h4>
+    <div class="container ">
+        <div class="row px-3 pt-2">
             <!-- @include('admin.sidebar') -->
 
-            <h3 class="text-white">News</h3>
+            
             @foreach($news as $item)
             <a href="{{ url('/news/' . $item->id) }}" class="p-0 m-0">
                 <div class="card news-card p-2">
