@@ -53,7 +53,7 @@
     {!! $errors->first('link', '<p class="help-block">:message</p>') !!}
   </div>
   <div class="col-12 mt-2">
-    <iframe  id="iframe_yt" class="d-none" width="100%" height="600"
+    <iframe  id="iframe_yt" class="d-none" width="100%" height="360"
           src=""
           title="YouTube video player"
           frameborder="0"
@@ -118,8 +118,8 @@
 
 </div>
 </div>
-<div class="form-group">
-    <input class="btn btn-primary px-5" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+<div class="form-group mt-5">
+    <input class="btn btn-primary px-5 float-end" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>
 
 <!-- <input class="form-control d-noe" name="photo" type="file" id="photo" typeEdit="first-profile" accept="image/*" onchange="previewImage(this)"required> -->
