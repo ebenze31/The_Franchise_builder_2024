@@ -69,7 +69,7 @@
                         @else
                             <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
                         @endif
-                        <p style="word-spacing: 0;font-size: 16px;font-weight: bold;text-indent: 15px;color: #07285A;-webkit-letter-spacing: 0px !important; letter-spacing:0px !important; -moz-letter-spacing:0px !important;-khtml-letter-spacing:0px !important;" class="mt-2">
+                        <p style="font-size: 16px;font-weight: bold;text-indent: 15px;color: #07285A;-webkit-letter-spacing: -1px !important; letter-spacing:-1px !important; -moz-letter-spacing:-1px !important;-khtml-letter-spacing:-1px !important;" class="mt-2">
                             {{$news->title}}
                         </p>
                         <br>
