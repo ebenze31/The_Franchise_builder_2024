@@ -72,10 +72,10 @@
     <div class="modal fade" id="modal_pass_lock" tabindex="-1" aria-labelledby="Labelmodal_pass_lock" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header" style="position: relative;">
             <h5 class="modal-title" id="Labelmodal_pass_lock">กรุณาใส่รหัสผ่าน</h5>
-            <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+            <button type="button" class="close btn float-end" data-dismiss="modal" aria-label="Close" style="position: absolute;top: 10%;right: 0%;">
+                <i class="fa-sharp fa-solid fa-circle-xmark fa-2xl"></i>
             </button>
           </div>
           <div class="modal-body">

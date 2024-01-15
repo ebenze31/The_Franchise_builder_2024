@@ -219,7 +219,7 @@
                             </table>
                         </div>
 
-                        <div class="col-12 mt-4 mb-2">
+                        <div class="col-12 d-flex justify-content-end mt-4 mb-2">
                             <br><br>
                             <button class="btn btn-primary px-5" onclick="readExcel()">
                                 Upload
