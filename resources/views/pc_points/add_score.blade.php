@@ -306,6 +306,8 @@
 
         let input = document.getElementById('excelInput');
         let file = input.files[0];
+        
+        document.querySelector('#div_PreviewDATA').classList.remove('d-none');
 
         if (file) {
             let reader = new FileReader();
@@ -346,8 +348,6 @@
                     tbody_PreviewDATA.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
                 }
-
-                document.querySelector('#div_PreviewDATA').classList.remove('d-none');
 
             };
 
