@@ -47,6 +47,9 @@
         left: 10px;
         z-index: 9999;
         width: 200px;
+    }.news-detail{
+        line-height: 19px;
+
     }
 </style>
 <div class="div-btn-back">
