@@ -104,10 +104,10 @@
 
     @media screen and (max-device-width: 465px){
         .other-team {
-            padding: 15px 10px 15px 18px;
+            padding: 10px 10px 10px 18px;
         }
         .my-team {
-            padding: 15px 10px 15px 18px;
+            padding: 10px 10px 10px 18px;
         }.number-my-team {
 /*        margin-right: 15px;*/
                 width: 28%;
@@ -116,10 +116,10 @@
     @media screen and (min-device-width: 465px){
 
         .other-team {
-            padding: 15px 10px 15px 25px;
+            padding: 10px 10px 10px 25px;
         }
         .my-team {
-            padding: 15px 10px 15px 25px;
+            padding: 10px 10px 10px 25px;
         }.number-my-team {
 /*        margin-right: 15px;*/
             width: 27.5%;
