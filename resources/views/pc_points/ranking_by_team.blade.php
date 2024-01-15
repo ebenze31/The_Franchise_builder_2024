@@ -461,13 +461,13 @@
 
                         }
 
-                        // if(i == 0 || i == 1 || i == 2){
+                        if(i == 0 || i == 1 || i == 2){
 
-                        //     let iii = i + 1 ;
-                        //     document.querySelector('#img_rank_'+iii).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
-                        //     document.querySelector('#name_rank_'+iii).innerHTML = result['data'][i].name_group;
-                        //     document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
-                        // }
+                            let iii = i + 1 ;
+                            document.querySelector('#img_rank_'+iii).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
+                            document.querySelector('#name_rank_'+iii).innerHTML = result['data'][i].name_group;
+                            document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
+                        }
 
                     }
 
