@@ -132,6 +132,24 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    .notification-count {
+        position: absolute;
+        top: 5px;
+        right: 25%;
+        /* background-color: red; */
+        color: white;
+        width: 18px;
+        height: 18px;
+        font-size: 14px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .count-danger{
+        background-color: red;
+    }
 </style>
 
 <body>
@@ -237,6 +255,9 @@
                     <p id="navbar-text-news" class="text-truncate" style="font-size: 8px; text-overflow: unset; color: rgb(255, 255, 255); filter: none;">
                     News
                     </p>
+                    <span id="span_notification_news" class="notification-count count-danger d-none">
+                        <span class="text-white" id="show_count_noti_news">0</span>
+                    </span>
                     </a>
                 </div>
 
@@ -458,20 +479,25 @@
         .then(result => {
             // console.log(result);
 
+            let arr_read_not_read = result.read_not_read.split(',');
+
+            arr_read_not_read.sort(function(a, b) {
+                return b - a; // เปรียบเทียบให้เลขมากสุดมีค่าบวกสุด
+            });
+
+            if(result.read_not_read){
+                create_noti_news(arr_read_not_read.length);
+            }
+
             setTimeout(() => {
                 if(result.alert_news == "Yes"){
 
-                    let arr_read_not_read = result.read_not_read.split(',');
-
-                    arr_read_not_read.sort(function(a, b) {
-                        return b - a; // เปรียบเทียบให้เลขมากสุดมีค่าบวกสุด
-                    });
-
-                    console.log(arr_read_not_read);
+                    // console.log(arr_read_not_read);
 
                     let content_item = document.querySelector('#content_item');
 
                     setTimeout(() => {
+                        let max = arr_read_not_read[0] ;
                         for (let i = 0; i < arr_read_not_read.length; i++) {
                             
                             fetch("{{ url('/') }}/api/get_data_news" + "/" + arr_read_not_read[i] )
@@ -489,13 +515,15 @@
                                         </a>
                                     `;
 
-                                    content_item.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                                    if(max == arr_read_not_read[i]){
+                                        content_item.insertAdjacentHTML('afterbegin', html); // แทรกล่างสุด
+                                    }else{
+                                        content_item.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                                    }
 
                             });
                         }
-                    }, 200);
-
-                    document.querySelector('#btn_modal_alert_news').click();
+                    }, 400);
 
                     // UPDATE alert_news == NULL
                     fetch("{{ url('/') }}/api/null_alert_news" + "/" + user_id )
@@ -504,14 +532,24 @@
                             // console.log(data_null);
 
                     });
+
+                    document.querySelector('#btn_modal_alert_news').click();
+
                 }
             }, 500);
 
             setTimeout(() => {
                 create_carousel();
-            }, 1000);
+            }, 2500);
         });
 
+  }
+
+  function create_noti_news(amount){
+
+    document.querySelector('#show_count_noti_news').innerHTML = amount;
+    document.querySelector('#span_notification_news').classList.remove('d-none');
+  
   }
 
 </script>
