@@ -327,18 +327,16 @@ line-height: normal;
     }.imgCloseBTN{
         width: 25px;
         height: 25px;
-    }.modal-header{
+    }.modal-report{
     background-color: #002449;
-  } .modalHeaderrequest {
     background-color: #002449;
     color: #fff !important;
     padding: 3px;
-    
   }.btn-submit{
-    -webkit-border-radius: 5px;    
-border-radius: 5px; 
--moz-border-radius:5px;
--khtml-border-radius:5px;
+-webkit-border-radius: 5px;    
+        border-radius: 5px; 
+        -moz-border-radius:5px;
+    -khtml-border-radius:5px;
       font-size: 16px;
       padding: 5px 40px;
       background-color: #005CD3;
@@ -381,7 +379,7 @@ line-height: normal;
 <div class="modal fade" id="modal_contact_staff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content mx-4" style="border-radius: 10px;">
-            <div class="modal-header modalHeaderrequest">
+            <div class="modal-header modalHeaderrequest modal-report">
                 <div class="w-100 text-center">
 
                     <p class="modal-request-title text-white text-center" id="exampleModalLongTitle">เเจ้งปัญหาที่ต้องการให้เราช่วย</p>

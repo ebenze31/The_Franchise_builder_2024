@@ -310,7 +310,10 @@
         color: #fff !important;
         padding: 10px 0;
         font-size: 16px;
-
+        -webkit-border-radius: 0px;    
+        border-radius: 0px; 
+        -moz-border-radius:0px;
+        -khtml-border-radius:0px;
         border-bottom: #00B2FF 1px solid;
 
     }
