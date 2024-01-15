@@ -24,7 +24,7 @@
         width: 68px;
         height: 68px;
         aspect-ratio: 1/1;
-        border: 3px solid #fff;
+        border: 2px solid #fff;
     }
 
     .main-rank-img {
