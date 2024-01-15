@@ -104,13 +104,13 @@
 
     @media screen and (max-device-width: 465px){
         .other-team {
-            padding: 10px 10px 10px 18px;
+            padding: 10px 10px 10px 13px;
         }
         .my-team {
-            padding: 10px 10px 10px 18px;
+            padding: 10px 10px 10px 13px;
         }.number-my-team {
 /*        margin-right: 15px;*/
-            width: 80px
+            width: 85px
         }
       
     }
