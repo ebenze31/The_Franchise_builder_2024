@@ -368,6 +368,10 @@ line-height: normal;
     }.user_phone:focus{
         box-shadow: none !important;
     }
+    .btn.btn-service:focus {
+        outline: 0;
+        box-shadow: none !important;
+    }
 </style>
 <button id="btn_contact_staff" class="btn btn-service" data-toggle="modal" data-target="#modal_contact_staff">               
     <img src="{{ url('/img/icon/customer-service.png') }}"  class="mt-2 mb-2 img-service">
