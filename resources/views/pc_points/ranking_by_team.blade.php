@@ -381,7 +381,7 @@
                                         </div>
                                     </div>
                                     <div class="score-my-team">
-                                        <span class="text-score">`+formattedNumber+`</span>
+                                        <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
                                         <span class="text-point"> PC</span>
 
                                     </div>
@@ -446,7 +446,7 @@
                                         </div>
                                     </div>
                                     <div class="score-my-team">
-                                        <span class="text-score">`+formattedNumber+`</span>
+                                        <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
                                         <span class="text-point"> PC</span>
 
                                     </div>
