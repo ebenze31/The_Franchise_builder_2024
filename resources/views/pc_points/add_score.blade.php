@@ -193,7 +193,34 @@
                                 <input class="form-control border-start-0" type="file" id="excelInput" accept=".xlsx, .xls" onclick="clear_div_succell();" onchange="PreviewDATA();">
                             </div>
                         </div>
+
+                        <div id="div_PreviewDATA" class="col-12 mt-4 mb-2 d-none">
+
+                            <hr>
+                            <h4 class="text-info">Preview DATA</h4>
+
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">account</th>
+                                        <th scope="col">group_id</th>
+                                        <th scope="col">week</th>
+                                        <th scope="col">pc_point</th>
+                                        <th scope="col">new_code</th>
+                                        <th scope="col">rank_of_week</th>
+                                        <th scope="col">rank_last_week</th>
+                                        <th scope="col">csta</th>
+                                        <th scope="col">pers</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_PreviewDATA">
+                                    <!--  -->
+                                </tbody>
+                            </table>
+                        </div>
+
                         <div class="col-12 mt-4 mb-2">
+                            <br><br>
                             <button class="btn btn-primary px-5" onclick="readExcel()">
                                 Upload
                             </button>
@@ -295,7 +322,31 @@
                 let jsonData = XLSX.utils.sheet_to_json(sheet);
 
                 // ตรวจสอบข้อมูลในคอนโซล
-                console.log(jsonData);
+                // console.log(jsonData);
+
+                let tbody_PreviewDATA = document.querySelector('#tbody_PreviewDATA');
+
+                for (let i = 0; i < jsonData.length; i++) {
+                    
+                    let html = `
+                        <tr>
+                            <th>`+jsonData[i].account+`</th>
+                            <td>`+jsonData[i].group_id+`</td>
+                            <td>`+jsonData[i].week+`</td>
+                            <td>`+jsonData[i].pc_point+`</td>
+                            <td>`+jsonData[i].new_code+`</td>
+                            <td>`+jsonData[i].rank_of_week+`</td>
+                            <td>`+jsonData[i].rank_last_week+`</td>
+                            <td>`+jsonData[i].csta+`</td>
+                            <td>`+jsonData[i].pers+`</td>
+                        </tr>
+                    `;
+
+                    tbody_PreviewDATA.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+                }
+
+                document.querySelector('#div_PreviewDATA').classList.remove('d-none');
 
             };
 
@@ -377,6 +428,7 @@
 
     function clear_div_succell(){
         document.querySelector('#div_success_Excel').classList.add('d-none');
+        document.querySelector('#div_PreviewDATA').classList.add('d-none');
     }
 
 </script>
