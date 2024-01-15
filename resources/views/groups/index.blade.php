@@ -78,7 +78,7 @@
     $start = 1 ;
     $end = 20 ;
     @endphp
-        <div class="btn-group owl-carousel owl-theme" role="group" aria-label="First group">
+        <div class="btn-group owl-carousel carousel_group owl-theme" role="group" aria-label="First group">
             @for ($i=1; $i <= $menu_row; $i++) @if($i==$menu_row) 
                 <div class="item text-center">
                     <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeGroupsCount }}" type="button" class="btn btn-sort-group text-center mt-1" onclick="change_menu_view('{{ $start }}-{{ $activeGroupsCount }}');">
@@ -108,7 +108,7 @@
 
 <script>
     $(document).ready(function() {
-        const owl = $('.owl-carousel')
+        const owl = $('.carousel_group')
         owl.owlCarousel({
             loop: false,
             margin: 5,

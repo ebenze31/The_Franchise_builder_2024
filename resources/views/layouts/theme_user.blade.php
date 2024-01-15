@@ -387,13 +387,13 @@
     @endif
 
     
-<!-- modal_request_join -->
-<button id="btn_modal_request_join" class="d-none" data-toggle="modal" data-target="#modal_request_join"></button>
+<!-- modal_alert_news -->
+<button id="btn_modal_alert_news" class="d-none" data-toggle="modal" data-target="#modal_alert_news"></button>
 
-<div class="modal fade" id="modal_request_join" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_alert_news" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999999;">
     <div class="modal-dialog modal-dialog-centered px-3">
         <div class="modal-content " style="border-radius: 10px;">
-            <div class="modal-header modalHeaderrequest pb-0 border-none px-1" style="border-bottom: none !important;">
+            <div class="modal-header pb-0 border-none px-1" style="border-bottom: none !important;">
                 <div class="w-100 text-center">
 
                     <p style="color: #053063;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal; text-indent: 40px;" class="modal-request-title text-center" id="exampleModalLongTitle">News Update</p>
@@ -406,9 +406,9 @@
                 </button>
             </div>
             <div class="modal-body pt-1 pb-0">
-                <div id="modal_request_join_content" class="text-center">
+                <div id="modal_alert_news_content" class="text-center">
                     <!-- content -->
-                    <div class="btn-group owl-carousel owl-theme" role="group" aria-label="First group">
+                    <div class="btn-group owl-carousel carousel_alert_news owl-theme" role="group" aria-label="First group">
             
                     <div class="item mb-2">
                         <img src="{{url('img/other/news-cover.png')}}" alt="" style="width: 100%;object-fit: cover;">
@@ -435,10 +435,11 @@
   var menu_activities = document.querySelector('#navbar-text-activities');
   var menu_profile = document.querySelector('#navbar-text-profile');
 
-  document.addEventListener('DOMContentLoaded', (event) => {
-    // console.log("START");
-    // change_menu_bar('rank');
-  });
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        // change_menu_bar('rank');
+        check_alert_news();
+    });
 
   function change_menu_bar(menu){
     // console.log(menu);
@@ -455,6 +456,36 @@
             navbarIcon.style.filter = 'drop-shadow(0rem 0rem 2rem #00E0FF)W';
 
         });
+  }
+
+  function check_alert_news(){
+
+    let user_id = "{{ Auth::user()->id }}";
+    console.log(user_id);
+
+    fetch("{{ url('/') }}/api/check_alert_news" + "/" + user_id )
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+
+            setTimeout(() => {
+                if(result.alert_news == "Yes"){
+
+
+                    document.querySelector('#btn_modal_alert_news').click();
+
+                    // UPDATE alert_news == NULL
+                    // fetch("{{ url('/') }}/api/null_alert_news" + "/" + user_id )
+                    //     .then(response => response.json())
+                    //     .then(result => {
+                    //         console.log(result.alert_news);
+
+                    // });
+                }
+            }, 500);
+
+        });
+
   }
 
 </script>
@@ -493,7 +524,7 @@
 
 <script>
     $(document).ready(function() {
-        const owl = $('.owl-carousel')
+        const owl = $('.carousel_alert_news')
         owl.owlCarousel({
             loop: false,
             margin: 5,

@@ -8,6 +8,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
@@ -113,7 +115,11 @@ class NewsController extends Controller
         //         ->store('uploads', 'public');
         // }
 
-        News::create($requestData);
+        $createdNews = News::create($requestData);
+
+        // ดึงค่า id ของข้อมูลที่ถูกสร้างขึ้น
+        $newId = $createdNews->id;
+        $this->create_alert_news_user($newId);
 
         return redirect('add_news')->with('flash_message', 'News added!');
     }
@@ -234,4 +240,53 @@ class NewsController extends Controller
 
         return view('admin.news_admin', compact('news'));
     }
+
+    function create_alert_news_user($newId){
+
+        $data_user = User::get();
+
+        foreach ($data_user as $item) {
+
+            $update_read_not_read = '';
+
+            if( empty($item->read_not_read) ){
+                $update_read_not_read = $newId;
+            }else{
+                $update_read_not_read = $item->read_not_read . "," . $newId;
+            }
+
+            DB::table('users')
+                ->where([ 
+                        ['id', $item->id],
+                    ])
+                ->update([
+                        'alert_news' => 'Yes',
+                        'read_not_read' => $update_read_not_read,
+                    ]);
+
+        }
+
+    }
+
+    function check_alert_news($user_id){
+
+        $data_user = User::where('id' , $user_id)->first();
+        return $data_user ;
+
+    }
+
+    function null_alert_news($user_id){
+
+        DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'alert_news' => NULL,
+                ]);
+
+        return "success" ;
+
+    }
+
 }
