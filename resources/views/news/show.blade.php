@@ -39,8 +39,24 @@
         left: 0;
         width: 100%;
         height: 100%;
+    }.btn-back{
+        color: #f8f9fa;
+    }.div-btn-back{
+        position: absolute;
+        top: 0;
+        left: 10px;
+        z-index: 9999;
+        width: 200px;
     }
 </style>
+<div class="div-btn-back">
+            <!-- <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">
+               <i class="fa-solid fa-chevron-left"></i>
+            </button> -->
+            <a href="{{ url('/news/index') }}" class="btn btn-sm btn-back  mt-3" >
+               <i class="fa-solid fa-chevron-left"></i>
+            </a>
+        </div>
     <div class="container p-0">
         <div class="row">
             <!-- @include('admin.sidebar') -->
@@ -53,10 +69,10 @@
                         @else
                             <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
                         @endif
-                        <h4 class="text-center mt-2">
+                        <p style="font-size: 16px;font-weight: bold;text-indent: 15px;" class="mt-2">
                             {{$news->title}}
-                        </h4>
-
+                        </p>
+                        <br>
                         <p class="news-detail">{{$news->detail}}</p>
 
                         <!-- <div class="divvideo"> -->
