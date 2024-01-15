@@ -154,9 +154,9 @@
                 </h4>
             </div>
             <div class="col-6 text-end">
-                <b>วีคล่าสุด : <span id="last_week"></span></b>
+                <b>Update : วีค <span id="last_week"></span></b>
                 <br>
-                อัพเดทล่าสุด : <span id="last_update"></span>
+                Date/Time : <span id="last_update"></span>
             </div>
         </div>
 
@@ -195,7 +195,7 @@
                         </div>
                         <div class="col-12 mt-4 mb-2">
                             <button class="btn btn-primary px-5" onclick="readExcel()">
-                                Read Excel
+                                Upload
                             </button>
                         </div>
 
@@ -273,6 +273,38 @@
                 }, 500);
 
             });
+    }
+
+    function PreviewDATA(){
+
+        document.querySelector('#div_loader_Excel').classList.remove('d-none');
+
+        let input = document.getElementById('excelInput');
+        let file = input.files[0];
+
+        if (file) {
+            let reader = new FileReader();
+
+            reader.onload = function(e) {
+                let data = e.target.result;
+                let workbook = XLSX.read(data, { type: 'binary' });
+
+                // เลือกชีทที่ต้องการ (0 คือชีทแรก)
+                let sheetName = workbook.SheetNames[0];
+                let sheet = workbook.Sheets[sheetName];
+
+                // แปลงข้อมูลในชีทเป็น JSON
+                let jsonData = XLSX.utils.sheet_to_json(sheet);
+
+                // ตรวจสอบข้อมูลในคอนโซล
+                console.log(jsonData);
+
+            };
+
+            reader.readAsBinaryString(file);
+
+        }
+
     }
 
 </script>
