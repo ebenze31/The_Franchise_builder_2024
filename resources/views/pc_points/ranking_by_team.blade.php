@@ -64,11 +64,11 @@
         width: 100%;
         background: rgb(0, 27, 87);
         background: linear-gradient(360deg, rgba(0, 27, 87, 0) 0%, rgba(0, 27, 87, 1) 100%);
-        margin: 10px 0 10px 0;
-        -webkit-border-radius: 20px;    
-        border-radius: 20px; 
-        -moz-border-radius:20px;
-        -khtml-border-radius:20px;
+        margin: 0px 0 10px 0;
+        -webkit-border-radius: 0px;    
+        border-radius: 0px; 
+        -moz-border-radius:0px;
+        -khtml-border-radius:0px;
         padding: 10px;
         color: #fff;
         z-index: -5;
@@ -253,8 +253,75 @@
         color: #00E0FF;
     }.text-point{
         margin-left: 5px;
+    }.nav-menu {
+        margin-top: 25px;
+        padding: 0 40px;
+        /* background-color: rgb(255, 255, 255, 0.5); */
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        position: -webkit-sticky;
+        position: sticky;
+        background-color: rgb(0, 27, 87);
+        -webkit-border-radius:  15px 15px 0 0;    
+        border-radius:  15px 15px 0 0; 
+        -moz-border-radius: 15px 15px 0 0;
+        -khtml-border-radius: 15px 15px 0 0;
+    }   
+
+
+    .content-section {
+        padding: 0;
+    }
+
+    .owl-prev,
+    .owl-carousel__next,
+    .owl-carousel__prev {
+        position: absolute;
+        color: #fff;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999999;
+        width: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .owl-carousel__next{
+        right: 10px;
+    }.owl-carousel__prev{
+        left: 25px;
+    }.btn-sort-group{
+        color: rgb(255, 255, 255 ,.5);
+        padding: 10px 0;
+        font-size: 15px;
+        height: 100%;
+        position: sticky;
+    }.btn-sort-group.btn:hover ,.btn-sort-group.btn:active{
+        color: rgb(255, 255, 255 ,.5) ;
+        box-shadow: none !important;
+}
+    .btn-sort-group .item{
+        display: flex;
+        align-items: center;
+    }
+    
+    .btn-sort-group-active{
+        color: #fff !important;
+        padding: 10px 0;
+        font-size: 16px;
+
+        border-bottom: #00B2FF 1px solid;
+
+    }
+    .sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 99999999;
     }
 </style>
+
 <div class="d-flex justify-content-center mt-1">
     <div class="container row ">
         <div class="col-4 text-center sub-rank">
@@ -277,9 +344,35 @@
         </div>
     </div>
 </div>
-
+ 
+<div class="nav-menu sticky" id="div_menu_view">
+        <div class="btn-group owl-carousel owl-theme" role="group" aria-label="First group">
+                <div class="item text-center py-2">
+                    <button btn="menu_view" type="button" class="btn btn-sort-group text-center mt-1 btn-sort-group-active ">
+                       ลำดับที่ 1-20
+                    </button>
+                </div>
+                <div class="item text-center py-2">
+                    <button btn="menu_view" type="button" class="btn btn-sort-group text-center mt-1 " >
+                       ลำดับที่ 1-20
+                    </button>
+                </div>
+                <div class="item text-center py-2">
+                    <button btn="menu_view" type="button" class="btn btn-sort-group text-center mt-1 ">
+                       ลำดับที่ 1-20
+                    </button>
+                </div>
+                <div class="item text-center py-2">
+                    <button btn="menu_view" type="button" class="btn btn-sort-group text-center mt-1 ">
+                       ลำดับที่ 1-20
+                    </button>
+                </div>
+        </div>
+        <div class="owl-carousel__prev"><i class="fa-solid fa-caret-right fa-rotate-180"></i></div>
+        <div class="owl-carousel__next"><i class="fa-solid fa-caret-right"></i></div>
+    </div>
 <div class="contentSection">
-
+  
     <!-- ของตัวเอง -->
     <div class="mb-4 d-" id="content_ME">
         <!--  -->
@@ -291,6 +384,30 @@
     </div>
 
 </div>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
+
+
+<script>
+    $(document).ready(function() {
+        const owl = $('.owl-carousel')
+        owl.owlCarousel({
+            loop: false,
+            margin: 5,
+            nav: false,
+            items: 3,
+            dots: false
+        });
+
+        // Custom Nav
+
+        $('.owl-carousel__next').click(() => owl.trigger('next.owl.carousel'))
+
+        $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
+    })
+</script>
 
 <script>
 
