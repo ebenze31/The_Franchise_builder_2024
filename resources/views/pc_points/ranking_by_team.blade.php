@@ -95,7 +95,7 @@
         border-radius: 10px; 
         -moz-border-radius:10px;
         -khtml-border-radius:10px;
-        background-color: rgb(35, 87, 127, 0.3);
+        background-color: #0b2c62;
         margin-top: 10px;
         z-index: 9999 !important;
         position: relative;
