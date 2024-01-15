@@ -50,12 +50,12 @@
     }
 </style>
 <div class="div-btn-back">
-            <!-- <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">
+            <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">
                <i class="fa-solid fa-chevron-left"></i>
-            </button> -->
-            <a href="{{ url('/news/index') }}" class="btn btn-sm btn-back  mt-3" >
+            </button>
+            <!-- <a href="{{ url('/news/index') }}" class="btn btn-sm btn-back  mt-3" >
                <i class="fa-solid fa-chevron-left"></i>
-            </a>
+            </a> -->
         </div>
     <div class="container p-0">
         <div class="row">
