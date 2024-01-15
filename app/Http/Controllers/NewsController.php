@@ -289,4 +289,12 @@ class NewsController extends Controller
 
     }
 
+    function get_data_news($news_id){
+
+        $data_news = News::where('id' , $news_id)->first();
+
+        return $data_news ;
+
+    }
+
 }

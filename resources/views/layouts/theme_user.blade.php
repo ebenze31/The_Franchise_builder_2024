@@ -395,7 +395,6 @@
         <div class="modal-content " style="border-radius: 10px;">
             <div class="modal-header pb-0 border-none px-1" style="border-bottom: none !important;">
                 <div class="w-100 text-center">
-
                     <p style="color: #053063;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal; text-indent: 40px;" class="modal-request-title text-center" id="exampleModalLongTitle">News Update</p>
                 </div>
                 <button id="close_Pending" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
@@ -408,19 +407,10 @@
             <div class="modal-body pt-1 pb-0">
                 <div id="modal_alert_news_content" class="text-center">
                     <!-- content -->
-                    <div class="btn-group owl-carousel carousel_alert_news owl-theme" role="group" aria-label="First group">
-            
-                    <div class="item mb-2">
-                        <img src="{{url('img/other/news-cover.png')}}" alt="" style="width: 100%;object-fit: cover;">
-                        <p class="title-news">Title 01</p>
-                        <p class="detail-news">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, perferendis labore sint debitis adipisci dolor consequatur, laboriosam sunt expedita iste molestiae, ipsa eveniet aperiam? Id veniam dignissimos mollitia ipsum numquam.
-                        </p>
-                    </div>
-                    <div class="item mb-2">
-                        <img src="{{url('img/other/news-cover.png')}}" alt="" style="width: 100%;object-fit: cover;">
-                        <p class="title-news">Title 01</p>
-                        <p class="detail-news">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, perferendis labore sint debitis adipisci dolor consequatur, laboriosam sunt expedita iste molestiae, ipsa eveniet aperiam? Id veniam dignissimos mollitia ipsum numquam.
-                        </p>
+                    <div id="content_item" class="btn-group owl-carousel carousel_alert_news owl-theme" role="group" aria-label="First group">
+                        
+                        <!-- ITEM -->
+
                     </div>
                 </div>
             </div>
@@ -461,29 +451,65 @@
   function check_alert_news(){
 
     let user_id = "{{ Auth::user()->id }}";
-    console.log(user_id);
+    // console.log(user_id);
 
     fetch("{{ url('/') }}/api/check_alert_news" + "/" + user_id )
         .then(response => response.json())
         .then(result => {
-            console.log(result);
+            // console.log(result);
 
             setTimeout(() => {
                 if(result.alert_news == "Yes"){
 
+                    let arr_read_not_read = result.read_not_read.split(',');
+
+                    arr_read_not_read.sort(function(a, b) {
+                        return b - a; // เปรียบเทียบให้เลขมากสุดมีค่าบวกสุด
+                    });
+
+                    console.log(arr_read_not_read);
+
+                    let content_item = document.querySelector('#content_item');
+
+                    setTimeout(() => {
+                        for (let i = 0; i < arr_read_not_read.length; i++) {
+                            
+                            fetch("{{ url('/') }}/api/get_data_news" + "/" + arr_read_not_read[i] )
+                                .then(response => response.json())
+                                .then(data_news => {
+                                    // console.log(data_news);
+
+                                    let html = `
+                                        <a href="{{ url('/news/`+data_news.id+`') }}" class="item mb-2">
+                                            <img src="{{ url('storage')}}/`+data_news.photo_cover+`" alt="" style="width: 100%;object-fit: cover;">
+                                            <p class="title-news">`+data_news.title+`</p>
+                                            <p class="detail-news">
+                                            `+data_news.detail+`
+                                            </p>
+                                        </a>
+                                    `;
+
+                                    content_item.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+                            });
+                        }
+                    }, 200);
 
                     document.querySelector('#btn_modal_alert_news').click();
 
                     // UPDATE alert_news == NULL
-                    // fetch("{{ url('/') }}/api/null_alert_news" + "/" + user_id )
-                    //     .then(response => response.json())
-                    //     .then(result => {
-                    //         console.log(result.alert_news);
+                    fetch("{{ url('/') }}/api/null_alert_news" + "/" + user_id )
+                        .then(response => response.text())
+                        .then(data_null => {
+                            // console.log(data_null);
 
-                    // });
+                    });
                 }
             }, 500);
 
+            setTimeout(() => {
+                create_carousel();
+            }, 1000);
         });
 
   }
@@ -523,22 +549,25 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        const owl = $('.carousel_alert_news')
-        owl.owlCarousel({
-            loop: false,
-            margin: 5,
-            nav: false,
-            items: 1,
-            dots: true
-        });
 
-        // Custom Nav
+    function create_carousel(){
+        $(document).ready(function() {
+            const owl = $('.carousel_alert_news')
+            owl.owlCarousel({
+                loop: false,
+                margin: 5,
+                nav: false,
+                items: 1,
+                dots: true
+            });
 
-        $('.owl-carousel__next').click(() => owl.trigger('next.owl.carousel'))
+            // Custom Nav
 
-        $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
-    })
+            $('.owl-carousel__next').click(() => owl.trigger('next.owl.carousel'))
+
+            $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
+        })
+    }
 </script>
 </body>
 </html>
