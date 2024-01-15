@@ -72,7 +72,7 @@
                         @if(!empty($news->photo_content))
                             <img src="{{ url('storage')}}/{{ $news->photo_content }}" class="cover-img" alt="รูปภาพปก">
                         @else
-                            <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
+                            <img src="{{ url('/img/other/news-post.png') }}" class="cover-img" alt="รูปภาพปก">
                         @endif
 
                         @if(!empty($news->title))
