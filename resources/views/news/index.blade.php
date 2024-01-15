@@ -79,7 +79,7 @@
                     @if(!empty($item->photo_cover))
                     <img src="{{ url('storage')}}/{{ $item->photo_cover }}" class="cover-img" alt="รูปภาพปก">
                     @else
-                    <img src="{{ url('/img/other/new-post.png') }}" class="cover-img" alt="รูปภาพปก">
+                    <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
                     @endif
                     @if(!empty($item->title))
                         <p class="news-title mt-2" style="-webkit-letter-spacing: -1px !important; letter-spacing:-1px !important; -moz-letter-spacing:-1px !important;-khtml-letter-spacing:-1px !important;">{{ $item->title }}</p>
