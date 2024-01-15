@@ -190,7 +190,7 @@
                                 <span class="input-group-text bg-transparent">
                                     <i class="fa-solid fa-file-excel"></i>
                                 </span>
-                                <input class="form-control border-start-0" type="file" id="excelInput" accept=".xlsx, .xls" onclick="clear_div_succell();">
+                                <input class="form-control border-start-0" type="file" id="excelInput" accept=".xlsx, .xls" onclick="clear_div_succell();PreviewDATA();">
                             </div>
                         </div>
                         <div class="col-12 mt-4 mb-2">
