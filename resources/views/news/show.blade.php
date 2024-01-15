@@ -47,6 +47,15 @@
         left: 10px;
         z-index: 9999;
         width: 200px;
+    }.news-title{
+        -webkit-word-spacing:0px;
+        -moz-letter-spacing:0px;
+        -moz-word-spacing:0px;
+        word-spacing: 0px;
+        font-size: 16px;
+        font-weight: bold;
+        text-indent: 15px;
+        color: #07285A;
     }
 </style>
 <div class="div-btn-back">
@@ -69,7 +78,7 @@
                         @else
                             <img src="{{ url('/img/other/news-cover.png') }}" class="cover-img" alt="รูปภาพปก">
                         @endif
-                        <p style="font-size: 16px;font-weight: bold;text-indent: 15px;" class="mt-2">
+                        <p class="news-title" class="mt-2">
                             {{$news->title}}
                         </p>
                         <br>

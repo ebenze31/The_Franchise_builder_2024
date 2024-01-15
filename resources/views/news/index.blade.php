@@ -31,6 +31,10 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
+            -webkit-word-spacing:0px;
+        -moz-letter-spacing:0px;
+        -moz-word-spacing:0px;
+        word-spacing: 0px;
         }.news-create{
             color: #07285A;
             text-align: end;
