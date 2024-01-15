@@ -110,7 +110,7 @@
             padding: 10px 10px 10px 18px;
         }.number-my-team {
 /*        margin-right: 15px;*/
-            width: 150px
+            width: 80px
         }
       
     }
