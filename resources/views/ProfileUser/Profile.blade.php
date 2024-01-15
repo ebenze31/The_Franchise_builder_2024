@@ -371,12 +371,12 @@ line-height: normal;
         box-shadow: none !important;
     }
 </style>
-<button id="btn_contact_staff" class="btn btn-service" data-toggle="modal" data-target="#modal_contact_staff">               
+<button id="btn_contact_staff" class="btn btn-service" data-bs-toggle="modal" data-bs-target="#modal_contact_staff">               
     <img src="{{ url('/img/icon/customer-service.png') }}"  class="mt-2 mb-2 img-service">
     <p class="text-contact">Contact staff</p>
 </button>
 
-<div class="modal fade" id="modal_contact_staff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_contact_staff"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content mx-4" style="border-radius: 10px;">
             <div class="modal-header modalHeaderrequest modal-report">
