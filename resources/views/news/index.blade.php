@@ -67,8 +67,8 @@
             @endphp
             
             @foreach($news as $item)
-            <a href="{{ url('/news/' . $item->id) }}" id="a_news_id_{{ $item->id }}" class="d-none"></a>
-            <div class="p-0 m-0" style="position: relative;" onclick="click_view_news('{{ Auth::user()->id }}' , '{{ $item->id }}');">                
+            <a href="{{ url('/news/' . $item->id) }}" id="a_news_id_{{ $item->id }}_blade" class="d-none"></a>
+            <div class="p-0 m-0" style="position: relative;" onclick="click_view_news('{{ Auth::user()->id }}' , '{{ $item->id }}' , 'blade');">                
                 @if(in_array($item->id, $arr_read_not_read))
                     <span class="btn btn-sm btn-danger" style="position: absolute;right: 4%;top: 4%;z-index: 9999;font-size: 8px;">
                         New
@@ -167,22 +167,6 @@
             change_menu_bar('news');
         });
 
-        function click_view_news(user_id , news_id){
 
-            let a_news_id = document.querySelector('#a_news_id_'+news_id);
-
-            // UPDATE alert_news == NULL
-            fetch("{{ url('/') }}/api/remove_read_not_read" + "/" + user_id + "/" + news_id )
-                .then(response => response.text())
-                .then(data => {
-                    // console.log(data);
-
-                    if(data == "success"){
-                        a_news_id.click();
-                    }
-
-            });
-
-        }
     </script>
 @endsection

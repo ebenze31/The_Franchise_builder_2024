@@ -307,12 +307,21 @@ class NewsController extends Controller
             $resultArray = array_diff($arr_read_not_read, array($news_id));
             $resultString = implode(',', $resultArray);
 
+            $update_news_read = '';
+
+            if( empty($data_user->news_read) ){
+                $update_news_read = $news_id;
+            }else{
+                $update_news_read = $data_user->news_read . "," . $news_id;
+            }
+
             DB::table('users')
                 ->where([ 
                         ['id', $user_id],
                     ])
                 ->update([
                         'read_not_read' => $resultString,
+                        'news_read' => $update_news_read,
                     ]);
         }
 

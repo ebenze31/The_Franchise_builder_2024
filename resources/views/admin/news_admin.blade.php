@@ -51,7 +51,7 @@
                                             </div>
                                             <div class="col-12 mt-2 mb-2">
                                                 <div class="float-end">
-                                                    <a href="{{ url('/news/' . $item->id) }}" title="Edit Activity" >
+                                                    <a href="{{ url('/news/' . $item->id) }}" title="Edit Activity" target="bank">
                                                         <button class="btn btn-info btn-sm">
                                                             <i class="fa-solid fa-memo-circle-info"></i> 
                                                             รายละเอียด

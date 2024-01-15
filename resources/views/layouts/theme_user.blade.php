@@ -434,6 +434,9 @@
 
                     </div>
                 </div>
+                <div id="content_of_a" class="d-none">
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -495,6 +498,7 @@
                     // console.log(arr_read_not_read);
 
                     let content_item = document.querySelector('#content_item');
+                    let content_of_a = document.querySelector('#content_of_a');
 
                     setTimeout(() => {
                         let max = arr_read_not_read[0] ;
@@ -505,14 +509,20 @@
                                 .then(data_news => {
                                     // console.log(data_news);
 
+                                    let a_html = `
+                                        <a href="{{ url('/news/`+data_news.id+`') }}" id="a_news_id_`+data_news.id+`_modal" class="d-none"></a>
+                                    `;
+                                    content_of_a.insertAdjacentHTML('beforeend', a_html); // แทรกล่างสุด
+                                    
                                     let html = `
-                                        <a href="{{ url('/news/`+data_news.id+`') }}" class="item mb-2">
+                                        <div class="item mb-2" onclick="click_view_news('{{ Auth::user()->id }}' , '`+data_news.id+`' , 'modal');">
                                             <img src="{{ url('storage')}}/`+data_news.photo_cover+`" alt="" style="width: 100%;object-fit: cover;">
                                             <p class="title-news">`+data_news.title+`</p>
                                             <p class="detail-news">
                                             `+data_news.detail+`
                                             </p>
-                                        </a>
+                                        </div>
+                                        
                                     `;
 
                                     if(max == arr_read_not_read[i]){
@@ -551,6 +561,24 @@
     document.querySelector('#span_notification_news').classList.remove('d-none');
   
   }
+
+  function click_view_news(user_id , news_id , type){
+
+        let a_news_id = document.querySelector('#a_news_id_'+news_id+'_'+type);
+
+        // UPDATE alert_news == NULL
+        fetch("{{ url('/') }}/api/remove_read_not_read" + "/" + user_id + "/" + news_id )
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+
+                if(data == "success"){
+                    a_news_id.click();
+                }
+
+        });
+
+    }
 
 </script>
 
