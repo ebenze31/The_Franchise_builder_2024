@@ -482,15 +482,19 @@
         .then(result => {
             // console.log(result);
 
-            let arr_read_not_read = result.read_not_read.split(',');
-
-            arr_read_not_read.sort(function(a, b) {
-                return b - a; // เปรียบเทียบให้เลขมากสุดมีค่าบวกสุด
-            });
-
             if(result.read_not_read){
-                create_noti_news(arr_read_not_read.length);
+
+                let arr_read_not_read = result.read_not_read.split(',');
+                arr_read_not_read.sort(function(a, b) {
+                    return b - a; // เปรียบเทียบให้เลขมากสุดมีค่าบวกสุด
+                });
+
+                if(result.read_not_read){
+                    create_noti_news(arr_read_not_read.length);
+                }
+                
             }
+
 
             setTimeout(() => {
                 if(result.alert_news == "Yes"){
