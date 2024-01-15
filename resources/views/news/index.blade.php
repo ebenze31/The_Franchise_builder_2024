@@ -19,6 +19,10 @@
             width: 100%;
             font-size: 16px;
             font-weight: bold;
+            -webkit-letter-spacing: 5px !important;  
+            letter-spacing:5px !important; 
+            -moz-letter-spacing:5px !important;
+            -khtml-letter-spacing:5px !important;
         }
         .news-detail{
             color: #07285A;
@@ -29,10 +33,6 @@
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
-            -webkit-letter-spacing: 0px;  
-            letter-spacing:0px; 
-            -moz-letter-spacing:0px;
-            -khtml-letter-spacing:0px;
             overflow: hidden;
             text-overflow: ellipsis;
         }.news-create{
