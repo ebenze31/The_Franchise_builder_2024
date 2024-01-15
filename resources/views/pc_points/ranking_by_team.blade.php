@@ -348,8 +348,8 @@
     </div>
 </div>
  
-<div class="nav-menu sticky" id="div_menu_view">
-        <div class="btn-group owl-carousel owl-theme" role="group" aria-label="First group">
+    <div class="nav-menu sticky" id="div_menu_view">
+        <div class="btn-group owl-carousel owl-theme owl-nav-nemu" role="group" aria-label="First group">
                 <div class="item text-center py-2">
                     <button btn="menu_view" type="button" class="btn btn-sort-group text-center mt-1 btn-sort-group-active ">
                        ลำดับที่ 1-20
@@ -395,7 +395,7 @@
 
 <script>
     $(document).ready(function() {
-        const owl = $('.owl-carousel')
+        const owl = $('.owl-nav-nemu')
         owl.owlCarousel({
             loop: false,
             margin: 5,
