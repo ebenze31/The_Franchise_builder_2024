@@ -277,8 +277,6 @@
 
     function PreviewDATA(){
 
-        document.querySelector('#div_loader_Excel').classList.remove('d-none');
-
         let input = document.getElementById('excelInput');
         let file = input.files[0];
 
