@@ -35,7 +35,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-            line-height: 18px;
+            line-height: 19px;
         }.news-create{
             color: #07285A;
             text-align: end;
