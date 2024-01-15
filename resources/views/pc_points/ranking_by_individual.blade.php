@@ -34,13 +34,13 @@
         width: 85px;
         height: 85px;
         aspect-ratio: 1/1;
-        border: 3px solid #fff;
+        border: 2px solid #fff;
     }
 
     .number-top-rank {
         color: #fff;
         font-weight: bolder;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 
     .number-team {
@@ -75,7 +75,7 @@
     }
 
     .my-team {
-        padding: 15px 10px 15px 18px;
+        /* padding: 15px 10px 15px 25px; */
         display: flex;
         -webkit-border-radius: 10px;    
         border-radius: 10px; 
@@ -88,7 +88,7 @@
     }
 
     .other-team {
-        padding: 15px 10px 15px 18px;
+        /* padding: 15px 10px 15px 25px; */
         display: flex;
         -webkit-border-radius: 10px;    
         border-radius: 10px; 
@@ -106,8 +106,8 @@
         border-radius: 50%; 
         -moz-border-radius:50%;
         -khtml-border-radius:50%;
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         border: #fff 1px solid;
         margin-right: 15px;
     }
@@ -125,9 +125,10 @@
 
     .number-my-team {
 /*        margin-right: 15px;*/
-        width: 27.5%;
+        /* width: 20%; */
         display: flex;
         align-items: center;
+        text-indent: 10px;
 /*        justify-content: center;*/
     }
 
@@ -138,7 +139,28 @@
         text-overflow: ellipsis;
         width: 30vw;
     }
-
+    @media (max-width: 465px) {
+        .other-team {
+            padding: 15px 10px 15px 18px;
+        }
+        .my-team {
+            padding: 15px 10px 15px 18px;
+        }.number-my-team {
+/*        margin-right: 15px;*/
+                width: 20%;
+            }
+    }
+    @media (min-width: 465px) {
+        .other-team {
+            padding: 15px 10px 15px 25px;
+        }
+        .my-team {
+            padding: 15px 10px 15px 25px;
+        }.number-my-team {
+/*        margin-right: 15px;*/
+            width: 27.5%;
+            }
+    }
     .menberInTeam {
         font-size: 10px;
         color: #52cbff;
@@ -248,7 +270,7 @@
 <div class="contentSection">
 
     <!-- ของตัวเอง -->
-    <div class="mb-4 d-none" id="content_ME">
+    <div class="mb-2 d-none" id="content_ME">
         <!--  -->
     </div>
 
@@ -292,7 +314,7 @@
                         }else if(parseInt(result[i].rank_of_week) > parseInt(result[i].rank_last_week)){
                             rank_up = `<i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>`;
                         }else{
-                            rank_up = `<i class="fa-solid fa-rectangle-wide rankNORMAL"></i>`;
+                            rank_up = `<i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i>`;
                         }
 
                         let html = `

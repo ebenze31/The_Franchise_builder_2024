@@ -35,7 +35,7 @@
         width: 85px;
         height: 85px;
         aspect-ratio: 1/1;
-        border: 3px solid #fff;
+        border: 2px solid #fff;
     }
 
     .number-top-rank {
@@ -89,7 +89,6 @@
     }
 
     .other-team {
-        padding: 15px 10px 15px 18px;
         display: flex;
         -webkit-border-radius: 10px;    
         border-radius: 10px; 
@@ -100,6 +99,29 @@
         z-index: 9999 !important;
         position: relative;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    @media (max-width: 465px) {
+        .other-team {
+            padding: 15px 10px 15px 18px;
+        }
+        .my-team {
+            padding: 15px 10px 15px 18px;
+        }.number-my-team {
+/*        margin-right: 15px;*/
+                width: 20%;
+            }
+    }
+    @media (min-width: 465px) {
+        .other-team {
+            padding: 15px 10px 15px 25px;
+        }
+        .my-team {
+            padding: 15px 10px 15px 25px;
+        }.number-my-team {
+/*        margin-right: 15px;*/
+            width: 27.5%;
+            }
     }
 
     .profileTeam {
@@ -126,7 +148,7 @@
 
     .number-my-team {
 /*        margin-right: 15px;*/
-        width: 27.5%;
+        /* width: 27.5%; */
         display: flex;
         align-items: center;
 /*        justify-content: center;*/
@@ -171,6 +193,7 @@
 
     .statusNumber {
         text-align: center;
+        font-size: 14px;
     }
 
     .rankUP {
@@ -183,7 +206,6 @@
 
     .rankNORMAL {
         color: #C3C3C3;
-
     }
 
     #dataMyteam {
@@ -273,7 +295,7 @@
         fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
             .then(response => response.json())
             .then(result => {
-            console.log(result);
+            // console.log(result);
 
             let content_ASC = document.querySelector('#content_ASC');
             let content_ME = document.querySelector('#content_ME');
@@ -302,7 +324,7 @@
                         }else if(parseInt(result['data'][i].rank_of_week) > parseInt(result['data'][i].rank_last_week)){
                             rank_up = `<i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>`;
                         }else{
-                            rank_up = `<i class="fa-solid fa-rectangle-wide rankNORMAL"></i>`;
+                            rank_up = `<i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i>`;
                         }
 
                         let text_id_group = result['data'][i].id.toString();
