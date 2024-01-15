@@ -236,8 +236,8 @@
       @endif
 
     </div>
-    <p class="info-user mt-3 mb-0" data-toggle="modal" data-target="#exampleModalCenter"><b>{{ Auth::user()->name }}</b> </p>
-    <p class="info-user">Account : {{ Auth::user()->account }}</p>
+    <h5 class="info-user mt-3 mb-0" data-toggle="modal" data-target="#exampleModalCenter"><b>{{ Auth::user()->name }}</b> </h5>
+    <p class="text-secondary mt-1">Account : {{ Auth::user()->account }}</p>
 
     <div class="tab-content " id="pills-tabContent">
       <div class="tab-pane fade show active text-white" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
