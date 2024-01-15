@@ -112,6 +112,10 @@
 /*        margin-right: 15px;*/
                 width: 28%;
             }
+        .statusTeam {
+/*        margin: 0 5px 0 15px;*/
+            width: 100%;
+        }
     }
     @media screen and (min-device-width: 465px){
 
@@ -124,6 +128,10 @@
 /*        margin-right: 15px;*/
             width: 27.5%;
             }
+            .statusTeam {
+/*        margin: 0 5px 0 15px;*/
+            width: 30%;
+        }
     }
 
     .profileTeam {
@@ -190,7 +198,10 @@
 
     .statusTeam {
 /*        margin: 0 5px 0 15px;*/
-        width: 27.5%;
+        /* width: 100%; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .statusNumber {
@@ -346,12 +357,14 @@
                                     </div>
                                     <div class="score-my-team">
                                         <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
-                                        <span class="text-point"> PC</span>
+                                        <span class="text-point">PC</span>
 
                                     </div>
                                     <div class="statusTeam text-center">
-                                        `+rank_up+`
-                                        <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
+                                        <div> 
+                                            `+rank_up+`
+                                            <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
+                                        </div>
                                     </div>
                                 </div>
                             `;
@@ -377,8 +390,10 @@
 
                                     </div>
                                     <div class="statusTeam text-center">
-                                        `+rank_up+`
-                                        <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
+                                        <div>
+                                            `+rank_up+`
+                                            <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="collapseContent">
@@ -440,8 +455,10 @@
 
                                     </div>
                                     <div class="statusTeam text-center">
-                                        `+rank_up+`
-                                        <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
+                                        <div> 
+                                            `+rank_up+`
+                                            <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="collapseContent">

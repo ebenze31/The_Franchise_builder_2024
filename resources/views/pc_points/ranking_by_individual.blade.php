@@ -141,18 +141,23 @@
         text-overflow: ellipsis;
         width: 30vw;
     }
-    @media (max-width: 465px) {
+    @media screen and (max-device-width: 465px){
         .other-team {
             padding: 10px 10px 10px 18px;
         }
         .my-team {
             padding: 10px 10px 10px 18px;
         }.number-my-team {
-/*        margin-right: 10px;*/
-                width: 20%;
+/*        margin-right: 15px;*/
+                width: 28%;
             }
+        .statusTeam {
+/*        margin: 0 5px 0 15px;*/
+            width: 40%;
+        }
     }
-    @media (min-width: 465px) {
+    @media screen and (min-device-width: 465px){
+
         .other-team {
             padding: 10px 10px 10px 25px;
         }
@@ -162,6 +167,10 @@
 /*        margin-right: 15px;*/
             width: 27.5%;
             }
+            .statusTeam {
+/*        margin: 0 5px 0 15px;*/
+            width: 30%;
+        }
     }
     .menberInTeam {
         font-size: 10px;
@@ -189,7 +198,10 @@
 
     .statusTeam {
 /*        margin: 0 5px 0 15px;*/
-        width: 27.5%;
+        /* width: 27.5%; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .statusNumber {
@@ -334,8 +346,10 @@
 
                                 </div>
                                 <div class="statusTeam text-center">
-                                    `+rank_up+`
-                                    <p class="statusNumber ">`+result[i].rank_last_week+`</p>
+                                    <div class="mt-1">  
+                                        `+rank_up+`
+                                        <p class="statusNumber ">`+result[i].rank_last_week+`</p>
+                                    </div>
                                 </div>
                             </div>
                         `;
@@ -355,12 +369,15 @@
                                     </div>
                                     <div class="score-my-team">
                                         <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
-                                        <span class="text-point"> PC</span>
+                                        <span class="text-point">PC</span>
 
                                     </div>
                                     <div class="statusTeam text-center">
-                                        `+rank_up+`
-                                        <p class="statusNumber ">`+result[i].rank_last_week+`</p>
+                                        <div class="mt-1">
+                                            `+rank_up+`
+                                            <p class="statusNumber ">`+result[i].rank_last_week+`</p>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             `;
