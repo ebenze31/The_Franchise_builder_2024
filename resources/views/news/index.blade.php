@@ -70,7 +70,7 @@
             <a href="{{ url('/news/' . $item->id) }}" id="a_news_id_{{ $item->id }}_blade" class="d-none"></a>
             <div class="p-0 m-0" style="position: relative;" onclick="click_view_news('{{ Auth::user()->id }}' , '{{ $item->id }}' , 'blade');">                
                 @if(in_array($item->id, $arr_read_not_read))
-                    <span class="btn btn-sm btn-danger" style="position: absolute;right: 4%;top: 4%;z-index: 9999;font-size: 8px;">
+                    <span class="btn btn-sm btn-danger" style="position: absolute;right: 4%;top: 4%;z-index: 9999;font-size: 10px;">
                         New
                     </span>
                 @endif
