@@ -405,6 +405,8 @@ class Pc_pointsController extends Controller
 
         
             return $data_arr;
+        }else{
+            $data_arr['data'] = 'No' ;
         }
 
     }

@@ -632,7 +632,7 @@ line-height: normal;
                 .then(result => {
                     // console.log(result);
 
-                    if(result){
+                    if(result['data'] !== 'No'){
 
                         let originalNumber = result['data'][0].pc_point;
                         let formattedNumber = formatLargeNumber(originalNumber);
