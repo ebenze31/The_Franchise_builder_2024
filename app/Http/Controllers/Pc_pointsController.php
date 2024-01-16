@@ -300,11 +300,63 @@ class Pc_pointsController extends Controller
         //     ->orderBy('pc_point', 'desc')
         //     ->get();
 
+        // $data = DB::table('pc_points')
+        //         ->join('users', 'users.id', '=', 'pc_points.user_id')
+        //         ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
+        //         // ->where('pc_points.week' , $week)
+        //         ->where('pc_points.week', 'not like', 'old-%')
+        //         ->where('pc_points.group_id', $group_id)
+        //         ->orderBy(DB::raw('CAST(pc_points.pc_point AS SIGNED)'), 'DESC')
+        //         ->get();
+
+        // $sums = [];
+
+        // foreach ($data as $row) {
+        //     $user_id = $row->user_id;
+        //     $year = date('Y', strtotime($row->created_at));
+        //     $month = date('m', strtotime($row->created_at));
+
+        //     // ผลรวม pc_point ของแต่ละ user_id
+        //     if (!isset($sums[$user_id])) {
+        //         $sums[$user_id] = [
+        //             'user_id' => $user_id,
+        //             'user_name' => $row->user_name,
+        //             'user_photo' => $row->user_photo,
+        //             'total' => 0,
+        //             'yearly' => [],
+        //             'monthly' => [],
+        //         ];
+        //     }
+
+        //     $sums[$user_id]['total'] += $row->pc_point;
+
+        //     // ผลรวม pc_point ประจำปี
+        //     if (!isset($sums[$user_id]['yearly'][$year])) {
+        //         $sums[$user_id]['yearly'][$year] = 0;
+        //     }
+
+        //     $sums[$user_id]['yearly'][$year] += $row->pc_point;
+
+        //     // ผลรวม pc_point ประจำเดือน
+        //     if (!isset($sums[$user_id]['monthly'][$year])) {
+        //         $sums[$user_id]['monthly'][$year] = [];
+        //     }
+
+        //     if (!isset($sums[$user_id]['monthly'][$year][$month])) {
+        //         $sums[$user_id]['monthly'][$year][$month] = 0;
+        //     }
+
+        //     $sums[$user_id]['monthly'][$year][$month] += $row->pc_point;
+        // }
+
+        // usort($sums, function ($a, $b) {
+        //     return $b['total'] - $a['total'];
+        // });
+
         $data = DB::table('pc_points')
                 ->join('users', 'users.id', '=', 'pc_points.user_id')
                 ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
-                // ->where('pc_points.week' , $week)
-                ->where('pc_points.week', 'not like', 'old-%')
+                ->where('pc_points.week' , $week)
                 ->where('pc_points.group_id', $group_id)
                 ->orderBy(DB::raw('CAST(pc_points.pc_point AS SIGNED)'), 'DESC')
                 ->get();
@@ -313,8 +365,6 @@ class Pc_pointsController extends Controller
 
         foreach ($data as $row) {
             $user_id = $row->user_id;
-            $year = date('Y', strtotime($row->created_at));
-            $month = date('m', strtotime($row->created_at));
 
             // ผลรวม pc_point ของแต่ละ user_id
             if (!isset($sums[$user_id])) {
@@ -322,31 +372,11 @@ class Pc_pointsController extends Controller
                     'user_id' => $user_id,
                     'user_name' => $row->user_name,
                     'user_photo' => $row->user_photo,
-                    'total' => 0,
-                    'yearly' => [],
-                    'monthly' => [],
+                    'total' => $row->pc_point,
+                    'yearly' => $row->pc_point,
+                    'monthly' => $row->pc_point,
                 ];
             }
-
-            $sums[$user_id]['total'] += $row->pc_point;
-
-            // ผลรวม pc_point ประจำปี
-            if (!isset($sums[$user_id]['yearly'][$year])) {
-                $sums[$user_id]['yearly'][$year] = 0;
-            }
-
-            $sums[$user_id]['yearly'][$year] += $row->pc_point;
-
-            // ผลรวม pc_point ประจำเดือน
-            if (!isset($sums[$user_id]['monthly'][$year])) {
-                $sums[$user_id]['monthly'][$year] = [];
-            }
-
-            if (!isset($sums[$user_id]['monthly'][$year][$month])) {
-                $sums[$user_id]['monthly'][$year][$month] = 0;
-            }
-
-            $sums[$user_id]['monthly'][$year][$month] += $row->pc_point;
         }
 
         usort($sums, function ($a, $b) {

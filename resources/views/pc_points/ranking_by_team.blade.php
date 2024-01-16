@@ -748,10 +748,10 @@
                     // console.log("ปีปัจจุบัน:", currentYear);
                     // console.log("เดือนปัจจุบัน:", currentMonth);
 
-                    let monthlyValue = member_in_team[xz].monthly[currentYear][currentMonth];
+                    let monthlyValue = member_in_team[xz].monthly;
                     let monthly_formatted = monthlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
 
-                    let yearlyValue = member_in_team[xz].yearly[currentYear];
+                    let yearlyValue = member_in_team[xz].yearly;
                     let yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
 
                     let icon_me = ``;
@@ -817,10 +817,10 @@
                     // console.log("ปีปัจจุบัน:", currentYear);
                     // console.log("เดือนปัจจุบัน:", currentMonth);
 
-                    let monthlyValue = member_in_team[xz].monthly[currentYear][currentMonth];
+                    let monthlyValue = member_in_team[xz].monthly;
                     let monthly_formatted = monthlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
 
-                    let yearlyValue = member_in_team[xz].yearly[currentYear];
+                    let yearlyValue = member_in_team[xz].yearly;
                     let yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
 
                     let html_tbody_content_ME = `
