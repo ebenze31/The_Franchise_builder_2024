@@ -481,10 +481,11 @@
         .then(response => response.json())
         .then(result => {
             // console.log(result);
+            let arr_read_not_read = [];
 
             if(result.read_not_read){
 
-                let arr_read_not_read = result.read_not_read.split(',');
+                arr_read_not_read = result.read_not_read.split(',');
                 arr_read_not_read.sort(function(a, b) {
                     return b - a; // เปรียบเทียบให้เลขมากสุดมีค่าบวกสุด
                 });
