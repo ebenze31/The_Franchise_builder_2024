@@ -176,6 +176,15 @@
         font-style: normal;
         font-weight: 500;
         line-height: normal;
+    }#close_Pending{
+        position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translate(-50%, -50%);
+        z-index: 9999;
+    }.modal-header{
+        position: relative;
+        padding: 20px;
     }
 </style>
 <div class="w-100 d-noe">
@@ -400,8 +409,7 @@ line-height: normal;
         <div class="modal-content mx-4" style="border-radius: 10px;">
             <div class="modal-header modalHeaderrequest modal-report">
                 <div class="w-100 text-center">
-
-                    <p class="modal-request-title text-white text-center" style="text-indent: 60px;" id="exampleModalLongTitle">เเจ้งปัญหาที่ต้องการให้เราช่วย</p>
+                    <p class="modal-request-title text-white text-center py-3" id="exampleModalLongTitle">เเจ้งปัญหาที่ต้องการให้เราช่วย</p>
                 </div>
                 <button id="close_Pending" type="button" class="close btn" data-bs-dismiss="modal" aria-label="Close">
                     <img src="{{ url('/img/icon/closeBTN.png') }}"  class="mt-2 mb-2 imgCloseBTN">
