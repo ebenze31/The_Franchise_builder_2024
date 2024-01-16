@@ -406,12 +406,16 @@
                     fetch("{{ url('/') }}/api/check_user_join_activity"+'/'+"{{ Auth::user()->account }}"+ "/" + for_url )
                       .then(response => response.json())
                       .then(result => {
-                          console.log(result.check);
+                          // console.log(result.check);
 
                           // ผู้ใช้เคยเข้าร่วมกิจจกรรมนี้แล้ว
                           if(result.check == 'joined'){
                               create_modal_Activies('joined' , code , name);
-                          }else{
+                          }
+                          else if(result.check == 'For Team Ready'){
+                              create_modal_Activies('For_Team_Ready' , code , name);
+                          }
+                          else{
                               // ไม่เคยเข้าร่วมกิจจกรรมนี้
                               create_modal_Activies(name , code , null);
                           }
@@ -558,6 +562,25 @@
                 <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
                 <br>
                 <h4 class="mt-3 text-danger">คุณได้เข้าร่วมกิจกรรม (`+name_for_joined+`) เเล้ว !</h4>
+            `;
+
+            let html_footer = `
+                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
+                    Close
+                </button>
+            `;
+
+            document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+            document.querySelector('#modal_footer').innerHTML = html_footer;
+
+            document.querySelector('#btn_modal_check_activity').click();
+        }
+        else if(type == "For_Team_Ready"){
+            let html_modal = `
+                <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
+                <br>
+                <h4 class="mt-3 text-danger">ขออภัย! กิจกรรม `+name_for_joined+`</h4>
+                <p>สำหรับสมาชิกที่ทีมครบ 10 คนแล้วเท่านั้น</p>
             `;
 
             let html_footer = `

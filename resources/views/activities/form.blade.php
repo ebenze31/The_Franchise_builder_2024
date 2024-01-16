@@ -20,11 +20,21 @@
                 <input class="form-control" name="icon" type="file" id="icon" value="{{ isset($activity->icon) ? $activity->icon : ''}}" >
             </div>
 
-            <div class="col-12">
+            <div class="col-12 col-md-6 mt-3">
                 <label for="detail" class="form-label">
                     รายละเอียดกิจกรรม
                 </label>
                 <textarea class="form-control" id="detail" name="detail" rows="4" cols="50">{{ isset($activity->detail) ? $activity->detail : ''}}</textarea>
+            </div>
+
+            <div class="col-12 col-md-6 mt-3">
+                <label for="for" class="form-label">
+                    สำหรับ
+                </label>
+                <select name="for" id="for" class="form-select">
+                    <option selected value="all">ทั้งหมด</option>
+                    <option value="Team-Ready">ยืนยันการสร้างบ้านแล้ว</option>
+                </select>
             </div>
             
             <div class="col-12">

@@ -409,7 +409,11 @@
                                 // ผู้ใช้เคยเข้าร่วมกิจจกรรมนี้แล้ว
                                 if(result.check == 'joined'){
                                     create_modal('joined' , code , result.name_user);
-                                }else{
+                                }
+                                else if(result.check == 'For Team Ready'){
+                                    create_modal('For_Team_Ready' , code , result.name_user);
+                                }
+                                else{
                                     // ไม่เคยเข้าร่วมกิจจกรรมนี้
                                     if(name_Activity == "ยืนยันการชำระเงิน"){
                                         create_modal(name_Activity , code , null);
@@ -577,6 +581,27 @@
                     <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
                     <br>
                     <h4 class="mt-3 text-danger">คุณ (`+name_user+`) ได้เข้าร่วมกิจกรรมนี้เเล้ว !</h4>
+                `;
+
+                let html_footer = `
+                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
+                        Close
+                    </button>
+                `;
+
+                document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+                document.querySelector('#modal_footer').innerHTML = html_footer;
+
+                document.querySelector('#btn_modal_check_activity').click();
+            }
+            else if(type == "For_Team_Ready"){
+                let html_modal = `
+                    <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
+                    <br>
+                    <h4 class="mt-3 text-danger">ขออภัย! คุณ (`+name_user+`)</h4>
+                    <p>ทีมยังไม่ครบ 10 คน</p>
+                    <p>กิจกรรมนี้สำหรับสมาชิกที่ทีมครบ 10 คนแล้วเท่านั้น</p>
+
                 `;
 
                 let html_footer = `

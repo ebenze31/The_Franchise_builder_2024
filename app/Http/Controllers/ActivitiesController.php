@@ -238,18 +238,37 @@ class ActivitiesController extends Controller
 
         $data_Activity = Activity::where('name_Activities' , $name_Activity)->first();
         $Activity_id = $data_Activity->id;
+        $Activity_for = $data_Activity->for;
 
         $data_user = User::where('account' , $account)->first();
+        $user_group_status = $data_user->group_status;
         $list_activities = explode(",",$data_user->activities);
 
         $return = [];
         $return['check'] = 'No';
         $return['name_user'] = '';
 
-        if( in_array($Activity_id, $list_activities) ){
-            $return['check'] = 'joined' ;
-            $return['name_user'] = $data_user->name ;
+        if($Activity_for == 'Team-Ready'){
+
+            if( $user_group_status == 'ยืนยันการสร้างบ้านแล้ว' || $user_group_status == 'Team Ready' ){
+                if( in_array($Activity_id, $list_activities) ){
+                    $return['check'] = 'joined' ;
+                    $return['name_user'] = $data_user->name ;
+                }
+            }else{
+                $return['check'] = 'For Team Ready' ;
+            }
+
         }
+        else{
+
+            if( in_array($Activity_id, $list_activities) ){
+                $return['check'] = 'joined' ;
+                $return['name_user'] = $data_user->name ;
+            }
+
+        }
+
 
         return $return ;
 
