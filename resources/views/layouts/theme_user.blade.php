@@ -413,10 +413,10 @@
 
 <div class="modal fade" id="modal_alert_news" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999999;">
     <div class="modal-dialog modal-dialog-centered px-3">
-        <div class="modal-content " style="border-radius: 10px;">
+        <div class="modal-content " style="border-radius: 10px;padding-bottom:16px">
             <div class="modal-header pb-0 border-none px-1" style="border-bottom: none !important;">
                 <div class="w-100 text-center">
-                    <p style="color: #053063;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal; text-indent: 40px;" class="modal-request-title text-center" id="exampleModalLongTitle">News Update</p>
+                    <p style="color: #053063;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal; text-indent: 60px;" class="modal-request-title text-center" id="exampleModalLongTitle">News Update</p>
                 </div>
                 <button id="close_Pending" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
                     <!-- <img src="{{ url('/img/icon/closeBTN.png') }}"  class="mt-2 mb-2 imgCloseBTN"> -->
@@ -431,7 +431,6 @@
                     <div id="content_item" class="btn-group owl-carousel carousel_alert_news owl-theme" role="group" aria-label="First group">
                         
                         <!-- ITEM -->
-
                     </div>
                 </div>
                 <div id="content_of_a" class="d-none">

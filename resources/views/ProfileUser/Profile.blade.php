@@ -15,11 +15,11 @@
     .profile-header {
         background-color: rgb(255, 255, 255, .25);
         -webkit-border-radius:  0 0 40px 40px;    
-border-radius:  0 0 40px 40px; 
--moz-border-radius: 0 0 40px 40px;
--khtml-border-radius: 0 0 40px 40px;
+        border-radius:  0 0 40px 40px; 
+        -moz-border-radius: 0 0 40px 40px;
+        -khtml-border-radius: 0 0 40px 40px;
         position: relative;
-        padding-bottom: 50px;
+        padding-bottom: 5px;
     }
 
     .btn-edit-profile {
@@ -77,11 +77,18 @@ border-radius:  0 0 40px 40px;
 
     .textScore {
         color: #FCBF29;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
     }
 
     .text-rank {
         color: #FCBF29;
-        font-size: 30px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
     }
 
     .header-badges {
@@ -163,6 +170,12 @@ border-radius:  0 0 40px 40px;
         flex-wrap: wrap;
     }.badges-item.un-active img{
         filter: grayscale(100%);
+    }.textPC{
+        color: #FFF;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
     }
 </style>
 <div class="w-100 d-noe">
@@ -182,28 +195,28 @@ border-radius:  0 0 40px 40px;
             </div>
 
         </div>
-        <h4 class="text-center mb-0 mt-3 text-white">
+        <h4 style="color: #FFF;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;margin-top: 10px" class="text-center mb-0">
             {{Auth::user()->name}}
         </h4>
         <p class="text-center ">
-            <p class="text-center text-white" style="font-size: 15px;">ID : {{ Auth::user()->account }}</p>
+            <p class="text-center text-white" style="font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;">ID : {{ Auth::user()->account }}</p>
         </p>
         <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
         <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
         </a>
 
         <div id="div_pc_point" class="d-none">
-            <div class="d-flex justify-content-center align-items-center text-white h6 mt-3">
+            <div class="d-flex justify-content-center align-items-center text-white h6">
                 <span class="textPC"> PC : &nbsp;&nbsp;&nbsp;</span>
                 <span id="pc_of_me" class="textScore">24.4M</span>
             </div>
-            <div class="d-flex justify-content-around">
+            <div class="d-flex justify-content-around mt-3">
                 <div class="text-center">
-                    <p class="text-white">Ranking of Individual</p>
+                    <p class="text-white" style="color: #FFF;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">Ranking of Individual</p>
                     <h4 id="rank_of_me" class="text-rank"></h4>
                 </div>
                 <div class="text-center">
-                    <p class="text-white">Ranking of team</p>
+                    <p class="text-white" style="color: #FFF;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">Ranking of team</p>
                     <h4 id="rank_of_team" class="text-rank">as</h4>
                 </div>
             </div>
@@ -212,6 +225,7 @@ border-radius:  0 0 40px 40px;
 
     </div>
 </div>
+
 
 <div class="d-flex justify-content-between">
     <div>
@@ -387,7 +401,7 @@ line-height: normal;
             <div class="modal-header modalHeaderrequest modal-report">
                 <div class="w-100 text-center">
 
-                    <p class="modal-request-title text-white text-center" id="exampleModalLongTitle">เเจ้งปัญหาที่ต้องการให้เราช่วย</p>
+                    <p class="modal-request-title text-white text-center" style="text-indent: 60px;" id="exampleModalLongTitle">เเจ้งปัญหาที่ต้องการให้เราช่วย</p>
                 </div>
                 <button id="close_Pending" type="button" class="close btn" data-bs-dismiss="modal" aria-label="Close">
                     <img src="{{ url('/img/icon/closeBTN.png') }}"  class="mt-2 mb-2 imgCloseBTN">
@@ -399,7 +413,7 @@ line-height: normal;
                 <div class="col-12 w-100 mt-3">
                     <div class="input-group"> 
                         <span class="input-group-text " style="border-radius: 5px 0 0 5px;border: 1px solid #002449;background: #D9D9D9;"><i class="fa-solid fa-phone"></i></span>
-                        <input style="border-radius: 0 5px 5px 0 ;border: 1px solid #002449;background: #D9D9D9;" type="text" class="form-control border-start-0 user_phone" id="phone" name="phone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ของคุณ" value="{{ isset(Auth::user()->phone) ? Auth::user()->phone : ''}}" oninput="check_input();">
+                        <input style="border-radius: 0 5px 5px 0 ;border: 1px solid #002449;background: #D9D9D9;padding-left: 0px;" type="text" class="form-control border-start-0 user_phone" id="phone" name="phone" placeholder="กรุณากรอกหมายเลขโทรศัพท์ของคุณ" value="{{ isset(Auth::user()->phone) ? Auth::user()->phone : ''}}" oninput="check_input();">
                     </div>
                 </div>
                 <div class=" d-flex justify-content-center">
