@@ -388,7 +388,6 @@ class Pc_pointsController extends Controller
         if( !empty($check_week->week) ){
             $week = $check_week->week ;
 
-
             $data = DB::table('pc_points')
                 ->join('users', 'users.id', '=', 'pc_points.user_id')
                 ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
@@ -407,6 +406,8 @@ class Pc_pointsController extends Controller
             return $data_arr;
         }else{
             $data_arr['data'] = 'No' ;
+
+            return $data_arr ;
         }
 
     }
