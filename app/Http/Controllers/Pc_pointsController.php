@@ -304,7 +304,7 @@ class Pc_pointsController extends Controller
                 ->join('users', 'users.id', '=', 'pc_points.user_id')
                 ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
                 // ->where('pc_points.week' , $week)
-                ->where('week', 'not like', 'old-%')
+                ->where('pc_points.week', 'not like', 'old-%')
                 ->where('pc_points.group_id', $group_id)
                 ->orderBy(DB::raw('CAST(pc_points.pc_point AS SIGNED)'), 'DESC')
                 ->get();
@@ -372,6 +372,37 @@ class Pc_pointsController extends Controller
             ->first();
 
         return $check_last ;
+
+    }
+
+    function get_pc_point_of_me($user_id){
+
+        $data_user = User::where('id' , $user_id)->first();
+
+        $check_week = Pc_point::where('week', 'not like', 'old-%')
+            ->orderBy('week', 'desc')
+            ->first();
+
+        $week = $check_week->week ;
+
+        $data_arr = [] ;
+
+        $data = DB::table('pc_points')
+            ->join('users', 'users.id', '=', 'pc_points.user_id')
+            ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
+            ->where('pc_points.week' , $week)
+            ->where('pc_points.user_id' , $user_id)
+            ->orderBy(DB::raw('CAST(pc_points.rank_of_week AS SIGNED)'), 'ASC')
+            ->get();
+
+        $data_group = Group::where('id',$data_user->group_id)->first();
+        $rank_of_team = $data_group->rank_of_week ;
+
+        $data_arr['data'] = $data;
+        $data_arr['rank_of_team'] = $rank_of_team;
+
+    
+        return $data_arr;
 
     }
 }

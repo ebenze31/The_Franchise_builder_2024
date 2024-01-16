@@ -192,21 +192,24 @@ border-radius:  0 0 40px 40px;
         <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
         </a>
 
-        @if(Auth::user()->rank_of_week)
-            <div class="d-flex justify-content-center align-items-center text-white h6">
-                <span class="textPC"> PC :</span> <span class="textScore"> &nbsp;24.4M</span>
+        <div id="div_pc_point" class="d-none">
+            <div class="d-flex justify-content-center align-items-center text-white h6 mt-3">
+                <span class="textPC"> PC : &nbsp;&nbsp;&nbsp;</span>
+                <span id="pc_of_me" class="textScore">24.4M</span>
             </div>
             <div class="d-flex justify-content-around">
                 <div class="text-center">
                     <p class="text-white">Ranking of Individual</p>
-                    <h4 class="text-rank">as</h4>
+                    <h4 id="rank_of_me" class="text-rank"></h4>
                 </div>
                 <div class="text-center">
                     <p class="text-white">Ranking of team</p>
-                    <h4 class="text-rank">as</h4>
+                    <h4 id="rank_of_team" class="text-rank">as</h4>
                 </div>
             </div>
-        @endif
+        </div>
+
+
     </div>
 </div>
 
@@ -450,6 +453,8 @@ line-height: normal;
         get_data_badges("{{ Auth::user()->id }}");
 
         check_input();
+
+        get_pc_point_of_me();
     });
 
     var delay_time ;
@@ -616,5 +621,41 @@ line-height: normal;
         });
 
     }
+
+
+    function get_pc_point_of_me(){
+
+        if("{{ Auth::user()->group_id }}"){
+            // console.log(user_id);
+            fetch("{{ url('/') }}/api/get_pc_point_of_me" + "/" + "{{ Auth::user()->id }}")
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    if(result){
+
+                        let originalNumber = result['data'][0].pc_point;
+                        let formattedNumber = formatLargeNumber(originalNumber);
+
+                        document.querySelector('#pc_of_me').innerHTML = formattedNumber ;
+                        document.querySelector('#rank_of_me').innerHTML = result['data'][0].rank_of_week ;
+                        document.querySelector('#rank_of_team').innerHTML = result['rank_of_team'] ;
+
+                        document.querySelector('#div_pc_point').classList.remove('d-none');
+                    }
+
+            });
+        }
+
+    }
+
+    function formatLargeNumber(number) {
+        if (number >= 1e6) { // 1e6 = 1,000,000
+            return (number / 1e6).toFixed(2) + 'M';
+        } else {
+            return number.toLocaleString();
+        }
+    }
+
 </script>
 @endsection

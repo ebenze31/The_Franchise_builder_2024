@@ -53,6 +53,7 @@ Route::get('/get_data_rank/{type}', 'Pc_pointsController@get_data_rank');
 Route::get('/get_member_in_team/{group_id}/{week}', 'Pc_pointsController@get_member_in_team');
 Route::get('/get_users_by_id/{user_id}', 'Pc_pointsController@get_users_by_id');
 Route::get('/check_last_update_pc_point', 'Pc_pointsController@check_last_update_pc_point');
+Route::get('/get_pc_point_of_me/{user_id}', 'Pc_pointsController@get_pc_point_of_me');
 
 // NEWS
 Route::get('/check_alert_news/{user_id}', 'NewsController@check_alert_news');
