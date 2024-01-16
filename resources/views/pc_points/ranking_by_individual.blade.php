@@ -81,7 +81,7 @@
         border-radius: 10px; 
         -moz-border-radius:10px;
         -khtml-border-radius:10px;
-        background-color: #021B56;
+        background-color: #00368D;
         border: 1px solid #00E0FF;
 
         z-index: 9999 !important;

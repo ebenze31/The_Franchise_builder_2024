@@ -82,7 +82,7 @@
         border-radius: 10px; 
         -moz-border-radius:10px;
         -khtml-border-radius:10px;
-        background-color: #021B56;
+        background-color: #00368D;
         border: 1px solid #00E0FF;
         z-index: 9999 !important;
         position: relative;
@@ -322,7 +322,27 @@
     position: sticky;
     top: 0;
     z-index: 99999999;
+    }   
+    table {
+        border-collapse: separate; /* หรือใช้ 'border-collapse: collapse;' ตามที่เหมาะสม */
+        border-spacing: 0;
     }
+    td.my-rank {
+        border-top: 1px solid #00E0FF; /* ตัวอย่างเพื่อให้เห็นขอบ */
+        border-bottom: 1px solid #00E0FF; /* ตัวอย่างเพื่อให้เห็นขอบ */
+        margin: 0;
+        gap: 0;
+    }
+
+    td.my-rank:first-child {
+        border-left: 1px solid #00E0FF; /* ตัวอย่างเพื่อให้เห็นขอบ */
+        border-radius: 10px 0 0 10px;
+    }
+    td.my-rank:last-child {
+        border-right: 1px solid #00E0FF; /* ตัวอย่างเพื่อให้เห็นขอบ */
+        border-radius: 0 10px 10px 0;
+    }
+
 </style>
 
 <div id="div_data_all" ></div>
@@ -734,19 +754,24 @@
                     let yearlyValue = member_in_team[xz].yearly[currentYear];
                     let yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
 
+                    let icon_me = ``;
+                    if(member_in_team[xz].user_id == "{{ Auth::user()->id }}"){
+                        icon_me = `my-rank`;
+                    }
+
                     let html_tbody_content_ME = `
-                        <tr>
-                            <td class="text-center" style="position: relative;">
+                        <tr >
+                            <td class="${icon_me} text-center" style="position: relative;">
                                 `+parseInt(xz+1)+`
                             </td>
-                            <td class="d-flex align-items-center">
+                            <td class="${icon_me} d-flex align-items-center">
                                 <img src="{{ url('storage')}}/`+member_in_team[xz].user_photo+`" class="profile-img" alt="รูปภาพปก">
                                 <span class="ms-2 nameUserteam">`+member_in_team[xz].user_name+`</span>
                             </td>
-                            <td class="text-data-team text-center">
+                            <td class="${icon_me} text-data-team text-center">
                                 `+yearly_formatted+`
                             </td>
-                            <td class="text-data-team text-center">
+                            <td class=" ${icon_me} text-data-team text-center">
                                 `+monthly_formatted+`
                             </td>
                             <!-- <td class="text-data-team text-center">4</td> -->
