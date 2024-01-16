@@ -734,15 +734,10 @@
                     let yearlyValue = member_in_team[xz].yearly[currentYear];
                     let yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
 
-                    let icon_me = ``;
-                    if(member_in_team[xz].user_id == "{{ Auth::user()->id }}"){
-                        icon_me = `<i class="fa-solid fa-user-tie" style="color: #00FFF6;"></i>`;
-                    }
-
                     let html_tbody_content_ME = `
                         <tr>
                             <td class="text-center" style="position: relative;">
-                                `+parseInt(xz+1)+` <span style="position: absolute;right: -5%;">`+icon_me+`</span>
+                                `+parseInt(xz+1)+`
                             </td>
                             <td class="d-flex align-items-center">
                                 <img src="{{ url('storage')}}/`+member_in_team[xz].user_photo+`" class="profile-img" alt="รูปภาพปก">
