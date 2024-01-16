@@ -518,13 +518,33 @@
                                         <a href="{{ url('/news/`+data_news.id+`') }}" id="a_news_id_`+data_news.id+`_modal" class="d-none"></a>
                                     `;
                                     content_of_a.insertAdjacentHTML('beforeend', a_html); // แทรกล่างสุด
-                                    
+
+                                    // img
+                                    let html_photo_cover ;
+                                    if(data_news.photo_cover){
+                                        html_photo_cover = `{{ url('storage')}}/`+data_news.photo_cover ;
+                                    }else{
+                                        html_photo_cover = `{{ url('/img/other/news-post.png')}}` ;
+                                    }
+
+                                    // title
+                                    let html_title = `` ;
+                                    if(data_news.title){
+                                        html_title = data_news.title ;
+                                    }
+
+                                    // html_detail
+                                    let html_detail = `` ;
+                                    if(data_news.detail){
+                                        html_detail = data_news.detail ;
+                                    }
+
                                     let html = `
                                         <div class="item mb-2" onclick="click_view_news('{{ Auth::user()->id }}' , '`+data_news.id+`' , 'modal');">
-                                            <img src="{{ url('storage')}}/`+data_news.photo_cover+`" alt="" style="width: 100%;object-fit: cover;">
-                                            <p class="title-news">`+data_news.title+`</p>
+                                            <img src="`+html_photo_cover+`" alt="" style="width: 100%;object-fit: cover;">
+                                            <p class="title-news">`+html_title+`</p>
                                             <p class="detail-news">
-                                            `+data_news.detail+`
+                                            `+html_detail+`
                                             </p>
                                         </div>
                                         
