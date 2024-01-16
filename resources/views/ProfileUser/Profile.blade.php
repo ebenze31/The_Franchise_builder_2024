@@ -186,7 +186,7 @@ border-radius:  0 0 40px 40px;
             {{Auth::user()->name}}
         </h4>
         <p class="text-center ">
-            <p class="text-center text-white" style="font-size: 15px;">id : {{Auth::user()->id}}</p>
+            <p class="text-center text-white" style="font-size: 15px;">ID : {{ Auth::user()->account }}</p>
         </p>
         <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
         <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
