@@ -325,6 +325,8 @@
     }
 </style>
 
+<div id="div_data_all" ></div>
+
 <div class="d-flex justify-content-center mt-1">
     <div class="container row ">
         <div class="col-4 text-center sub-rank">
@@ -431,7 +433,7 @@
 
 </script>
 
-<div id="div_data_all" class="contentSection">
+<div class="contentSection">
   
     <!-- ของตัวเอง -->
     <div class="mb-4 d-" id="content_ME">

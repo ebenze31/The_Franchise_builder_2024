@@ -324,6 +324,9 @@
     z-index: 99999999;
     }
 </style>
+
+<div id="div_data_all"></div>
+
 <div class="d-flex justify-content-center mt-1">
     <div class="container row ">
         <div class="col-4 text-center sub-rank">
@@ -355,6 +358,7 @@
 @endphp
 
 <a id="click_to_div_data_all" href="#div_data_all" class="d-none"></a>
+
 
 <div class="nav-menu sticky" id="div_menu_view">
     <div class="btn-group owl-carousel owl-theme owl-nav-nemu" role="group" aria-label="First group">
@@ -430,7 +434,7 @@
 
 </script>
 
-<div id="div_data_all" class="contentSection">
+<div class="contentSection">
 
     <!-- ของตัวเอง -->
     <div class="mb-2 d-none" id="content_ME">
