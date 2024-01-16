@@ -214,9 +214,10 @@ margin-top: 30px;
     <p class="info-user mt-3 mb-0" data-toggle="modal" data-target="#exampleModalCenter">{{ Auth::user()->name }} </p>
     <!-- <p class="info-user">{{ Auth::user()->email }}</p> -->
     <div>
-      <button id="btn-edit-profile" class="btn btn-submit" type="submit">Next</button>
+      <button id="btn-edit-profile" class="btn btn-submit" type="submit">Upload</button>
     </div>
-  
+    
+    
     @else
     <div class=" d-flex justify-content-center w-100 mt-1 ">
       <div class="edit-first-profile" id="DivEditProfile">
@@ -253,7 +254,7 @@ margin-top: 30px;
   @if(request("type") == "first_profile")
   <input class="form-control d-none" name="photo" type="file" id="photo" typeEdit="first-profile" accept="image/*" onchange="checkimg(this)"required>
   @else
-  <input class="form-control d-none" name="photo" type="file" id="photo" typeEdit="edit-peofile" accept="image/*" onchange="checkimg(this)" >
+  <input class="form-control d-none" name="photo" type="file" id="photo" typeEdit="edit-peofile" accept="image/*" onchange="checkimg(this);checkBtn(this)" >
   @endif
 
 </form>
@@ -344,7 +345,15 @@ margin-top: 30px;
 
 
 <script>
+    function checkBtn(data) {
+      if (data.files && data.files[0]) {
+        document.querySelector('#btn-edit-profile').innerHTML = "Confirm";
+        
+      }else{
+        document.querySelector('#btn-edit-profile').innerHTML = "Upload";
 
+      }
+    }
   function checkimg(data) {
     let typeEdit = data.getAttribute('typeEdit');
     if (data.files && data.files[0]) {

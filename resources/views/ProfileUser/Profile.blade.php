@@ -169,11 +169,13 @@ border-radius:  0 0 40px 40px;
     <div class="profile-header w-100">
         <div class=" d-flex justify-content-center w-100">
             <div class="edit-profile" id="DivEditProfile">
-                @if( !empty(Auth::user()->photo) )
-                <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" class="user-new-img" alt="รูปภาพผู้ใช้">
-                @else
-                <img src="{{ url('/img/icon/profile.png') }}" class="user-new-img" alt="รูปภาพผู้ใช้">
-                @endif
+                <a href="{{url('/first_profile?type=edit_profile')}}">
+                    @if( !empty(Auth::user()->photo) )
+                    <img src="{{ url('storage')}}/{{ Auth::user()->photo }}" class="user-new-img" alt="รูปภาพผู้ใช้">
+                    @else
+                    <img src="{{ url('/img/icon/profile.png') }}" class="user-new-img" alt="รูปภาพผู้ใช้">
+                    @endif
+                </a>
                 <a href="{{url('/first_profile?type=edit_profile')}}" class="btn-edit-profile">
                     <img src="{{ url('/img/icon/edit-profile.png') }}" alt="รูปภาพผู้ใช้">
                 </a>
