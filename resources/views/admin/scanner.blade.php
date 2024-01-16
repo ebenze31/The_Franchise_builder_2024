@@ -598,7 +598,7 @@
                 let html_modal = `
                     <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
                     <br>
-                    <h4 class="mt-3 text-danger">ขออภัย! คุณ (`+name_user+`)</h4>
+                    <h4 class="mt-3 text-danger">ขออภัย! คุณ `+name_user+`</h4>
                     <p>ทีมยังไม่ครบ 10 คน</p>
                     <p>กิจกรรมนี้สำหรับสมาชิกที่ทีมครบ 10 คนแล้วเท่านั้น</p>
 

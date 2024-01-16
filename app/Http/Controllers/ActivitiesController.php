@@ -257,6 +257,7 @@ class ActivitiesController extends Controller
                 }
             }else{
                 $return['check'] = 'For Team Ready' ;
+                $return['name_user'] = $data_user->name ;
             }
 
         }
