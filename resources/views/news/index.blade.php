@@ -29,7 +29,6 @@
             font-size: 14px;
             margin-top: 10px;
             text-indent: 40px;
-            margin-bottom: 10px;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
@@ -39,7 +38,7 @@
         }.news-create{
             color: #07285A;
             text-align: end;
-            
+            margin-top: 10px;
         }.news-card{
             border-radius: 10px;
             background-color: #fff;
