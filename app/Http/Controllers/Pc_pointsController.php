@@ -383,10 +383,11 @@ class Pc_pointsController extends Controller
             ->orderBy('week', 'desc')
             ->first();
 
+        $data_arr = [] ;
+
         if( !empty($check_week->week) ){
             $week = $check_week->week ;
 
-            $data_arr = [] ;
 
             $data = DB::table('pc_points')
                 ->join('users', 'users.id', '=', 'pc_points.user_id')
