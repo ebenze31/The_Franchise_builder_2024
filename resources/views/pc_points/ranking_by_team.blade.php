@@ -368,13 +368,13 @@
             @endphp
             @if($i==$menu_row) 
                 <div class="item text-center py-2">
-                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeGroupsCount }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $activeGroupsCount }}');" style="font-size: 12px!important;">
+                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeGroupsCount }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $activeGroupsCount }}' , 'No');" style="font-size: 12px!important;">
                        ลำดับที่ {{ $start }} - {{ $activeGroupsCount }}
                     </button>
                 </div>
             @else
                 <div class="item text-center py-2">
-                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $end }}');" style="font-size: 12px!important;">
+                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $end }}' , 'No');" style="font-size: 12px!important;">
                        ลำดับที่ {{ $start }} - {{ $end }}
                     </button>
                 </div>
@@ -394,7 +394,7 @@
 
 <script>
     
-    function change_menu_view(type_get_data){
+    function change_menu_view(type_get_data , first){
 
         type_get_data = type_get_data.replace("-", "_");
 
@@ -423,7 +423,9 @@
             }
         }
 
-        document.querySelector('#click_to_div_data_all').click();
+        if(first == 'No'){
+            document.querySelector('#click_to_div_data_all').click();
+        }
 
     }
 
@@ -687,7 +689,7 @@
 
                     }
 
-                    change_menu_view('1-20');
+                    change_menu_view('1-20' , 'Yes');
 
                 }, 500);
             }

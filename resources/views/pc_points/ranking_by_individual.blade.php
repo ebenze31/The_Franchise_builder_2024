@@ -346,33 +346,91 @@
         </div>
     </div>
 </div>
+
+@php
+    $activeUserCount = App\User::where('role', 'Player')->count();
+    $menu_row = ceil($activeUserCount / 20) ;
+    $start = 1 ;
+    $end = 20 ;
+@endphp
+
+<a id="click_to_div_data_all" href="#div_data_all" class="d-none"></a>
+
 <div class="nav-menu sticky" id="div_menu_view">
-        <div class="btn-group owl-carousel owl-theme owl-nav-nemu" role="group" aria-label="First group">
+    <div class="btn-group owl-carousel owl-theme owl-nav-nemu" role="group" aria-label="First group">
+        @for ($i=1; $i <= $menu_row; $i++)
+
+            @php
+                $check_active = '';
+                if($start == 1){
+                    $check_active = 'btn-sort-group-active' ;
+                }
+            @endphp
+            @if($i==$menu_row) 
                 <div class="item text-center py-2">
-                    <button btn="menu_view" type="button" class="btn btn-sort-group text-center mt-1 btn-sort-group-active ">
-                       ลำดับที่ 1-20
+                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeUserCount }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $activeUserCount }}' ,'No');" style="font-size: 12px!important;">
+                       ลำดับที่ {{ $start }} - {{ $activeUserCount }}
                     </button>
                 </div>
+            @else
                 <div class="item text-center py-2">
-                    <button btn="menu_view" type="button" class="btn btn-sort-group text-center mt-1 " >
-                       ลำดับที่ 1-20
+                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $end }}' ,'No');" style="font-size: 12px!important;">
+                       ลำดับที่ {{ $start }} - {{ $end }}
                     </button>
                 </div>
-                <div class="item text-center py-2">
-                    <button btn="menu_view" type="button" class="btn btn-sort-group text-center mt-1 ">
-                       ลำดับที่ 1-20
-                    </button>
-                </div>
-                <div class="item text-center py-2">
-                    <button btn="menu_view" type="button" class="btn btn-sort-group text-center mt-1 ">
-                       ลำดับที่ 1-20
-                    </button>
-                </div>
-        </div>
-        <div class="owl-carousel__prev"><i class="fa-solid fa-caret-right fa-rotate-180"></i></div>
-        <div class="owl-carousel__next"><i class="fa-solid fa-caret-right"></i></div>
+            @endif
+
+            @php
+                $start = $start + 20 ;
+                $end = $end + 20 ;
+            @endphp
+
+        @endfor
     </div>
-<div class="contentSection">
+    <div class="owl-carousel__prev"><i class="fa-solid fa-caret-right fa-rotate-180"></i></div>
+    <div class="owl-carousel__next"><i class="fa-solid fa-caret-right"></i></div>
+</div>
+
+<script>
+    
+    function change_menu_view(type_get_data , first){
+
+        type_get_data = type_get_data.replace("-", "_");
+
+        let menu_view = document.querySelectorAll('[btn="menu_view"]');
+        menu_view.forEach(menu_view => {
+            menu_view.setAttribute('class', 'btn btn-sort-group mt-1');
+        });
+
+        document.querySelector('#btn_view_' + type_get_data).setAttribute('class', 'btn btn-sort-group-active');
+
+        let team_start = type_get_data.split('_')[0];
+        let team_end = type_get_data.split('_')[1];
+
+        let other_team = document.querySelectorAll('.other-team');
+        other_team.forEach(item => {
+            // console.log(item);
+            item.classList.add('d-none');
+        })
+
+        for (let i = parseInt(team_start); i <= parseInt(team_end); i++) {
+            // if (document.querySelector('#Team_' + i)) {
+            if (document.querySelector('div[count="div_'+i+'"]')) {
+                // document.querySelector('#Team_' + i).classList.remove('d-none');
+                document.querySelector('div[count="div_'+i+'"]').classList.remove('d-none');
+
+            }
+        }
+
+        if(first == 'No'){
+            document.querySelector('#click_to_div_data_all').click();
+        }
+
+    }
+
+</script>
+
+<div id="div_data_all" class="contentSection">
 
     <!-- ของตัวเอง -->
     <div class="mb-2 d-none" id="content_ME">
@@ -430,6 +488,8 @@
             if(result){
                 setTimeout(() => {
 
+                    let count_div = 1 ;
+
                     for (var i = 0; i < result.length; i++) {
 
                         let originalNumber = result[i].pc_point;
@@ -445,7 +505,7 @@
                         }
 
                         let html = `
-                            <div class="other-team">
+                            <div count="div_`+count_div+`" class="other-team">
                                 <div class="number-my-team">`+result[i].rank_of_week+`</div>
                                 <img src="{{ url('storage')}}/`+result[i].user_photo+`" class="profileTeam" alt="">
                                 <div class="detailTeam">
@@ -500,6 +560,8 @@
 
                         }
 
+                        count_div++ ;
+
                         if(i == 0 || i == 1 || i == 2){
 
                             let iii = i + 1 ;
@@ -509,6 +571,8 @@
                         }
 
                     }
+
+                    change_menu_view('1-20' , 'Yes');
 
                 }, 500);
             }
