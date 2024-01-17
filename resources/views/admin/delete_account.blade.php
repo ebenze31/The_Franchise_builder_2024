@@ -201,9 +201,9 @@
 
             </div>
 
-            <hr>
 
             <div id="div_loader_Excel" class="col-12 mt-5 d-none">
+                <hr>
                 <section class="loader">
                     <div class="slider" style="--i:0"></div>
                     <div class="slider" style="--i:1"></div>
@@ -224,6 +224,43 @@
                     </center>
                 </div>
             </div>
+
+            <div id="content_data_host" class="d-none">
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-12 mt-3 mb-2">
+                        <button id="btn_export_excel" class="btn float-end btn-dark mx-3 d-none" onclick="createExcel()">
+                            Export Excel
+                        </button>
+                    </div>
+                    <div class="col-12 mt-3 mb-2">
+                        <h3>สมาชิกที่เป็น Host</h3>
+                    </div>
+                </div>
+
+                <div class="table-responsive mt-3">
+                    <table class="table mb-0 align-middle" id="content_table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Photo</th>
+                                <th class="text-center">Account</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Phone</th>
+                                <th class="text-center">Group</th>
+                                <th class="text-center">Group Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="content_tbody">
+                            <!-- DATA USER -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </div>
@@ -257,7 +294,7 @@
                 let jsonData = XLSX.utils.sheet_to_json(sheet);
 
                 // ตรวจสอบข้อมูลในคอนโซล
-                console.log(jsonData);
+                // console.log(jsonData);
                 
                 // create_user
                 fetch("{{ url('/') }}/api/delete_user/excel", {
@@ -269,28 +306,79 @@
                 }).then(function (response){
                     return response.json();
                 }).then(function(data){
-                    console.log(data);
+                    // console.log(data);
 
-                    // if(data == "success"){
-                    //     // เคลียร์ input
-                    //     clearFileInput('excel');
+                    if(data){
+                        // เคลียร์ input
+                        clearFileInput('excel');
 
-                    //     document.querySelector('#text_load').innerHTML = 'กำลังสร้าง QR-Code..';
+                        document.querySelector('#div_loader_Excel').classList.add('d-none');
+                        document.querySelector('#text_load').innerHTML = 'กำลังประมวลผล..';
+                        document.querySelector('#div_success_Excel').classList.remove('d-none');
 
-                    //     fetch("{{ url('/') }}/api/qr_profile/")
-                    //         .then(response => response.text())
-                    //         .then(result => {
-                    //             // console.log(result);
+                        let content_tbody = document.querySelector('#content_tbody');
+                            content_tbody.innerHTML = '';
 
-                    //             if(result){
-                    //                 document.querySelector('#div_loader_Excel').classList.add('d-none');
-                    //                 document.querySelector('#text_load').innerHTML = 'กำลังประมวลผล..';
-                    //                 document.querySelector('#div_success_Excel').classList.remove('d-none');
+                        // console.log(data['count']);
 
-                    //             }
-                    //     });
-                        
-                    // }
+                        for (let i = 0; i < data['count']; i++) {
+
+                            // photo 
+                            let html_img = ''
+                            if(data[i].photo){
+                                html_img = `<img src="{{ url('storage')}}/`+data[i].photo+`" class="p-1" alt=""> 
+                                            <span class="d-none">{{ url('storage')}}/`+data[i].photo+`</span>`;
+                            }else{
+                                html_img = `<img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt=""> 
+                                            <span class="d-none">{{ url('/img/icon/profile.png') }}</span>`;
+                            }
+
+                            let html_group_status ;
+                            if(data[i].group_status == "Team Ready" || data[i].group_status == "ยืนยันการสร้างบ้านแล้ว"){
+                                html_group_status = `ทีมครบแล้ว`;
+                            }
+                            else if(data[i].group_status == "มีบ้านแล้ว"){
+                                html_group_status = `กำลังรอสมาชิก`;
+                            }
+
+                            let html = `
+                                <tr class="">
+                                    <td>
+                                        <center>
+                                            <div id="product_img_account_111" class="product-img bg-transparent border">
+                                                `+html_img+`
+                                            </div>
+                                        </center>
+                                    </td>
+                                    <td class="text-center">
+                                        `+data[i].account+`
+                                    </td>
+                                    <td class="text-center">
+                                        `+data[i].name+`
+                                    </td>
+                                    <td class="text-center">
+                                        `+data[i].email+`
+                                    </td>
+                                    <td class="text-center">
+                                        `+data[i].phone+`
+                                    </td>
+
+                                    <td class="text-center">
+                                        `+data[i].group_id+`
+                                    </td>
+                                    <td class="text-center">
+                                        `+html_group_status+`
+                                    </td>
+                                </tr>
+                            `;
+
+                            content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                        }
+
+                        document.querySelector('#btn_export_excel').classList.remove('d-none');
+                        document.querySelector('#content_data_host').classList.remove('d-none');
+
+                    }
 
                 }).catch(function(error){
                     // console.error(error);
@@ -324,4 +412,25 @@
 
 <!-- ใส่ลิงก์ไปยังไลบรารี XLSX -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+<!-- เพิ่ม jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.bootcss.com/html2pdf.js/0.9.1/html2pdf.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/table2excel@1.0.4/dist/table2excel.min.js'></script>
+
+<script>
+    
+function createExcel() {
+    let table2excel = new Table2Excel();
+    let currentDate = new Date();
+    let formattedDate = currentDate.toISOString().replace(/[:.]/g, "_"); // สร้างรูปแบบของวันที่ในรูปแบบที่ไม่มีเครื่องหมาย : และ .
+
+    // ตั้งชื่อไฟล์เป็น "รายชื่อสมาชิกทั้งหมด-2023-12-31T12_30_45.678Z.xlsx" (ตัวอย่าง)
+    let fileName = `รายชื่อ(ลบข้อมูลสมาชิก) Host-${formattedDate}.xlsx`;
+
+    table2excel.export(document.querySelector("#content_table"), fileName);
+};
+
+</script>
 @endsection

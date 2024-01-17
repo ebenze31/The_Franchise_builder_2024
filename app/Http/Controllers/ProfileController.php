@@ -647,6 +647,31 @@ class ProfileController extends Controller
 
             $return = "มีบ้านแล้ว";
 
+            // ถ้าเป็นบ้านที่ครบ 10 คนแล้ว
+            if($dataUser->group_status == "Team Ready" || $dataUser->group_status == "ยืนยันการสร้างบ้านแล้ว"){
+
+                DB::table('groups')
+                    ->where([ 
+                            ['id', $data_group->id],
+                        ])
+                    ->update([
+                            'status' => "กำลังรอ",
+                        ]);
+
+                $user_of_group = User::where('group_id', $data_group->id)->get();
+
+                foreach ($user_of_group as $usg) {
+                    DB::table('users')
+                        ->where([ 
+                                ['id', $usg->id],
+                            ])
+                        ->update([
+                                'group_status' => 'มีบ้านแล้ว',
+                            ]);
+                }
+
+            }
+
         }
 
         return 'success' ;
@@ -871,26 +896,37 @@ class ProfileController extends Controller
         $requestData = $request->all();
         $data_arr = [];
         $count = 0;
-        
+        $i = 0 ;
+
         foreach ($requestData as $item) {
             foreach ($item as $key => $value) {
 
                 if($key == "account"){
                     $check_user = User::where('account',$value)->first();
-                    $check_host = Group::where('host' , $check_user->id)->first();
 
-                    if( !empty($check_host->id) ){
-                        $count = $count + 1 ;
-                        $data_arr['host'][$value] = $check_user->id ;
-                    }else{
-                        $data_arr['member'][$value] = $check_user->id ;
+                    if( !empty($check_user->id) ){
+                        $check_host = Group::where('host' , $check_user->id)->first();
+
+                        if( !empty($check_host->id) ){
+                            $count = $count + 1 ;
+                            $data_arr['host'][$i] = $check_user ;
+                            $i = $i + 1 ;
+                        }else{
+                            $data_arr['member'][$value] = $check_user->id ;
+                        }
                     }
                 }
             }
 
         }
 
-        return $data_arr ;
+        foreach ($data_arr['member'] as $memberId => $value) {
+            $this->CF_cancel_player($value);
+        }
+
+        $data_arr['host']['count'] = count($data_arr['host']);
+
+        return $data_arr['host'] ;
         // return "มี HOST >> " . $count ;
 
     }
