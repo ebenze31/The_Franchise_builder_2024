@@ -876,7 +876,7 @@ class ProfileController extends Controller
             foreach ($item as $key => $value) {
 
                 if($key == "account"){
-                    $check_user = User::where('account',$key)->first();
+                    $check_user = User::where('account',$value)->first();
                     $check_host = Group::where('host' , $check_user->id)->first();
 
                     if( !empty($check_host->id) ){
