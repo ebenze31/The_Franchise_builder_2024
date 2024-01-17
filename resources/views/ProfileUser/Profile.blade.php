@@ -204,7 +204,20 @@
             </div>
 
         </div>
-        <h4 style="color: #FFF;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;margin-top: 10px" class="text-center mb-0">
+
+        @php
+            $text_name_group = '';
+            if( intval(Auth::user()->group_id) < 9 ){
+                $text_name_group = '0'.Auth::user()->group_id;
+            }else{
+                $text_name_group = Auth::user()->group_id;
+            }
+        @endphp
+        <div class="d-flex justify-content-center align-items-center text-white h6" style="margin-top: 15px;">
+            <span>Team : {{ $text_name_group }}</span>
+        </div>
+
+        <h4 style="color: #FFF;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;margin-top: 10px;" class="text-center mb-0">
             {{Auth::user()->name}}
         </h4>
         <p class="text-center ">
@@ -214,7 +227,7 @@
         <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
         </a>
 
-        <div id="div_pc_point" class="d-none">
+        <div id="div_pc_point" class="d-none mt-2">
             <div class="d-flex justify-content-center align-items-center text-white h6">
                 <span class="textPC"> PC : &nbsp;&nbsp;&nbsp;</span>
                 <span id="pc_of_me" class="textScore">24.4M</span>
