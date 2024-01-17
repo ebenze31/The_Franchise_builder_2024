@@ -351,7 +351,10 @@
 </div>
 
 @php
-    $activeUserCount = App\User::where('role', 'Player')->count();
+    $activeUserCount = App\User::where('group_status', 'ยืนยันการสร้างบ้านแล้ว')
+        ->orWhere('group_status', 'Team Ready')
+        ->count();
+
     $menu_row = ceil($activeUserCount / 20) ;
     $start = 1 ;
     $end = 20 ;
@@ -484,7 +487,7 @@
         fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
             .then(response => response.json())
             .then(result => {
-            console.log(result);
+            // console.log(result);
 
             let content_ASC = document.querySelector('#content_ASC');
             let content_ME = document.querySelector('#content_ME');
