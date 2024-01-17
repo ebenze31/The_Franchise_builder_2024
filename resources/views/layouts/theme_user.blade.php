@@ -167,7 +167,7 @@
 <div class="container ">
     <div class="row">
 
-        <div class="div-btn-back d-none">
+        <div class="div-btn-back d-">
             <!-- <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">
                <i class="fa-solid fa-chevron-left"></i>
             </button> -->
@@ -201,7 +201,7 @@
     $currentDate = date('Y-m-d H:i:s');
     @endphp
 
-    @if( 1 == 1 )
+    @if( 1 == 2 )
         <div id="navbar-botttom" class="mt-5">
                     
             <div class="row justify-content-around mx-2">
