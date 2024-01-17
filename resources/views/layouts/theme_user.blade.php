@@ -150,6 +150,16 @@
     .count-danger{
         background-color: red;
     }
+    #close_Pending{
+        position: absolute;
+        top: 60%;
+        right: -20px;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+    }.modal-header{
+        position: relative;
+        padding: 20px;
+    }
 </style>
 
 <body>
@@ -409,14 +419,14 @@
 
     
 <!-- modal_alert_news -->
-<button id="btn_modal_alert_news" class="d-none" data-toggle="modal" data-target="#modal_alert_news"></button>
+<button id="btn_modal_alert_news" class="d-ndone" data-toggle="modal" data-target="#modal_alert_news"></button>
 
 <div class="modal fade" id="modal_alert_news" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999999;">
     <div class="modal-dialog modal-dialog-centered px-3">
         <div class="modal-content " style="border-radius: 10px;padding-bottom:16px">
             <div class="modal-header pb-0 border-none px-1" style="border-bottom: none !important;">
                 <div class="w-100 text-center">
-                    <p style="color: #053063;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal; text-indent: 60px;" class="modal-request-title text-center" id="exampleModalLongTitle">News Update</p>
+                    <p style="color: #053063;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal" class="modal-request-title text-center" id="exampleModalLongTitle">News Update</p>
                 </div>
                 <button id="close_Pending" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
                     <!-- <img src="{{ url('/img/icon/closeBTN.png') }}"  class="mt-2 mb-2 imgCloseBTN"> -->
@@ -434,7 +444,7 @@
                     </div>
                 </div>
                 <div id="content_of_a" class="d-none">
-                    
+             
                 </div>
             </div>
         </div>
