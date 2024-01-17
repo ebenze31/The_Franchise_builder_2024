@@ -881,13 +881,17 @@ class ProfileController extends Controller
 
                     if( !empty($check_host->id) ){
                         $count = $count + 1 ;
+                        $data_arr['host'][$value] = $check_user->id ;
+                    }else{
+                        $data_arr['member'][$value] = $check_user->id ;
                     }
                 }
             }
 
         }
 
-        return "มี HOST >> " . $count ;
+        return $data_arr ;
+        // return "มี HOST >> " . $count ;
 
     }
 

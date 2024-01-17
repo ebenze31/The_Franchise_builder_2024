@@ -267,30 +267,30 @@
                         'Content-Type': 'application/json'
                     }
                 }).then(function (response){
-                    return response.text();
+                    return response.json();
                 }).then(function(data){
                     console.log(data);
 
-                    if(data == "success"){
-                        // เคลียร์ input
-                        clearFileInput('excel');
+                    // if(data == "success"){
+                    //     // เคลียร์ input
+                    //     clearFileInput('excel');
 
-                        document.querySelector('#text_load').innerHTML = 'กำลังสร้าง QR-Code..';
+                    //     document.querySelector('#text_load').innerHTML = 'กำลังสร้าง QR-Code..';
 
-                        fetch("{{ url('/') }}/api/qr_profile/")
-                            .then(response => response.text())
-                            .then(result => {
-                                // console.log(result);
+                    //     fetch("{{ url('/') }}/api/qr_profile/")
+                    //         .then(response => response.text())
+                    //         .then(result => {
+                    //             // console.log(result);
 
-                                if(result){
-                                    document.querySelector('#div_loader_Excel').classList.add('d-none');
-                                    document.querySelector('#text_load').innerHTML = 'กำลังประมวลผล..';
-                                    document.querySelector('#div_success_Excel').classList.remove('d-none');
+                    //             if(result){
+                    //                 document.querySelector('#div_loader_Excel').classList.add('d-none');
+                    //                 document.querySelector('#text_load').innerHTML = 'กำลังประมวลผล..';
+                    //                 document.querySelector('#div_success_Excel').classList.remove('d-none');
 
-                                }
-                        });
+                    //             }
+                    //     });
                         
-                    }
+                    // }
 
                 }).catch(function(error){
                     // console.error(error);
