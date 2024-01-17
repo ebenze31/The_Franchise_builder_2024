@@ -843,5 +843,23 @@ class ProfileController extends Controller
 
     }
 
+    function get_data_host(){
+
+        $data_group = Group::where('host' , '!=' , NULL)
+            ->select('name_group' , 'host' , 'status')
+            ->get();
+
+        $data_arr = [];
+
+        foreach ($data_group as $item) {
+            
+            $user_host = User::where('id' , $item->host)->first();
+            $data_arr[] = $user_host;
+            
+        }
+
+        return $data_arr ;
+    }
+
 
 }

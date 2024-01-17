@@ -28,6 +28,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test_qr', 'HomeController@test_qr');
 Route::get('/404', 'HomeController@index');
 
+Route::get('/export_host', function () {
+    return view('export_host');
+});
 
 // LOGIN
 Route::middleware(['auth',])->group(function () {
