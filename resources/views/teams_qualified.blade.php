@@ -202,11 +202,6 @@ line-height: normal;
             <!-- data -->
             <div  class="div_Team col-4 mt-2 mb-2 p-0" >
                 <div class="item-team" style="width: 100%;height: auto;">
-                    <img src="{{ url('/img/group_profile') . '/' . $class_team . '/id (' . Auth::user()->group_id . ').png' }}" style="width: 100%;border:#00E0FF 1px solid;  border-radius: 50px!important;-webkit-border-radius: 5px; -moz-border-radius: 5px;">
-                </div>
-            </div>
-            <div  class="div_Team col-4 mt-2 mb-2 p-0" >
-                <div class="item-team" style="width: 100%;height: auto;">
                     <img src="{{ url('/img/group_profile') . '/' . $class_team . '/id (' . Auth::user()->group_id . ').png' }}" style="width: 100%;border:#00E0FF 1px solid;  border-radius: 5px!important;-webkit-border-radius: 5px; -moz-border-radius: 5px;">
                 </div>
             </div>
@@ -237,8 +232,6 @@ line-height: normal;
         <div class="modal-content" style="  border-radius: 10px!important;-webkit-border-radius: 10px;-moz-border-radius: 10px;">
             <div class="team-section text-center">
                 <img src="{{ url('/img/icon/stars.png') }}" style="width:100%" ">
-                <img src="{{ url('/img/group_profile') . '/' . $class_team . '/id (' . Auth::user()->group_id . ').png' }}" class="img_team_qualified">
-
             </div>
             <div  class="modal-body text-center py-0">
                 <!-- content -->
@@ -252,9 +245,9 @@ line-height: normal;
             </div>
             <div  class="modal-footer d-flex justify-content-center">
                 <!-- BTN -->
-                <a href="{{ url('/groups') }}" type="button" class="btn btn-submit padding-btn">
+                <button  type="button" class="btn btn-submit padding-btn"  data-dismiss="modal">
                     Close
-                </a>
+                </button>
             </div>
         </div>
     </div>
