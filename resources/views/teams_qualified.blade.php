@@ -225,7 +225,7 @@ line-height: normal;
     </div>
 </div>
 
-<button  class="d-none" data-toggle="modal" data-target="#modal_team_qualified"></button>
+<button  class="d-nosne" data-toggle="modal" data-target="#modal_team_qualified"></button>
 
 <div class="modal fade" id="modal_team_qualified" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered px-3">
