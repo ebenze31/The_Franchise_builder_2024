@@ -25,7 +25,7 @@ class Activity extends Model
      *
      * @var array
      */
-    protected $fillable = ['name_Activities', 'detail', 'icon', 'member','qr_code','for'];
+    protected $fillable = ['name_Activities', 'detail', 'icon', 'member','qr_code','for','show_staff'];
 
     
 }

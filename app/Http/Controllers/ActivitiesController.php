@@ -274,4 +274,23 @@ class ActivitiesController extends Controller
         return $return ;
 
     }
+
+
+    function change_show_staff($id , $status){
+
+        if($status != "Yes"){
+            $status = NULL ;
+        }
+
+        DB::table('activities')
+            ->where([ 
+                    ['id', $id],
+                ])
+            ->update([
+                    'show_staff' => $status,
+                ]);
+
+        return 'success' ;
+
+    }
 }

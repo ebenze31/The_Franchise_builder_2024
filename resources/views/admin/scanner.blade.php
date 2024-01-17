@@ -253,7 +253,7 @@
   <div class="card qr-card text-center">
 
     @php
-        $Activity = App\Models\Activity::get();
+        $Activity = App\Models\Activity::where('show_staff' , 'Yes')->get();
     @endphp
     <div class="" style="position: relative;">
         <i style="position: absolute;top:50%; right:5%;" class="fa-solid fa-chevron-down fa-xl text-white"></i>
