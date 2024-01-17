@@ -46,6 +46,10 @@ Route::middleware(['auth',])->group(function () {
         return view('pc_points/ranking_by_team');
     });
 
+    Route::get('/teams_qualified', function () {
+        return view('teams_qualified');
+    });
+
 });
 
 // REGISTER AL TFB 2024
