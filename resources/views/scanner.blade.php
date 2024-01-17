@@ -579,8 +579,8 @@
             let html_modal = `
                 <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
                 <br>
-                <h4 class="mt-3 text-danger">ขออภัย! กิจกรรม `+name_for_joined+`</h4>
-                <p>สำหรับสมาชิกที่ทีมครบ 10 คนแล้วเท่านั้น</p>
+                <h4 class="mt-3 text-danger">ขออภัย คุณ `+"{{ Auth::user()->name }}"+`</h4>
+                <p>กิจกรรมนี้สงวนสิทธิ์สำหรับทีมที่มีสมาชิกครบแล้วเท่านั้น</p>
             `;
 
             let html_footer = `
