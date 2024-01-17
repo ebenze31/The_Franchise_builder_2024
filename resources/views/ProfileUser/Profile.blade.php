@@ -213,11 +213,11 @@
                 $text_name_group = Auth::user()->group_id;
             }
         @endphp
-        <div class="d-flex justify-content-center align-items-center text-white h6" style="margin-top: 15px;">
+        <div class="d-flex justify-content-center align-items-center text-white h6" style="margin-top: 10px;">
             <span>Team : {{ $text_name_group }}</span>
         </div>
 
-        <h4 style="color: #FFF;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;margin-top: 10px;" class="text-center mb-0">
+        <h4 style="color: #FFF;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;margin-top: -5px;" class="text-center mb-0">
             {{Auth::user()->name}}
         </h4>
         <p class="text-center ">
@@ -227,7 +227,7 @@
         <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
         </a>
 
-        <div id="div_pc_point" class="d-none mt-2">
+        <div id="div_pc_point" class="d-none mt-1">
             <div class="d-flex justify-content-center align-items-center text-white h6">
                 <span class="textPC"> PC : &nbsp;&nbsp;&nbsp;</span>
                 <span id="pc_of_me" class="textScore">24.4M</span>
