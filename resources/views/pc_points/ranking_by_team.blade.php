@@ -174,6 +174,7 @@
         display: flex;
         align-items: center;
         width: 100%;
+        font-size: 189px;
     }
 
     .collapseContent {
@@ -225,7 +226,7 @@
     }
 
     .collapseContent * {
-        font-size: 10px;
+        font-size: 13px;
         color: #fff;
     }
 
@@ -549,7 +550,6 @@
                                     <div class="detailTeam">
                                         <div>
                                             <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
-                                            <p class="menberInTeam">Member : `+count_member+`</p>
                                         </div>
                                     </div>
                                     <div class="score-my-team">
@@ -578,7 +578,6 @@
                                     <div class="detailTeam">
                                         <div>
                                             <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
-                                            <p class="menberInTeam">Member : `+count_member+`</p>
                                         </div>
                                     </div>
                                     <div class="score-my-team">
@@ -600,15 +599,15 @@
                                                 <table class="table mb-0 align-middle table-borderless">
                                                     <thead class="head-teble-data-my-team">
                                                         <tr>
-                                                            <th class="text-center">No.<p>&nbsp;</p>
+                                                            <th class="text-center mt-1">No.
                                                             </th>
-                                                            <th class="text-center">User<p>&nbsp;</p>
+                                                            <th class="text-center mt-1">User
                                                             </th>
-                                                            <th class="text-center">YTD-PC<p>&nbsp;</p>
+                                                            <th class="text-center mt-1">YTD-PC
                                                             </th>
-                                                            <th class="text-center">MTD-PC<p>&nbsp;</p>
+                                                            <th class="text-center mt-1">MTD-PC
                                                             </th>
-                                                            <!-- <th class="text-center d-flex align-items-top">MTD-Case<p>&nbsp;</p>
+                                                            <!-- <th class="text-center d-flex align-items-top">MTD-Case
                                                             </th>
                                                             <th class="text-center">
                                                                 <p>Active AG</p>
@@ -645,7 +644,6 @@
                                     <div class="detailTeam">
                                         <div>
                                             <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
-                                            <p class="menberInTeam">Member : `+count_member+`</p>
                                         </div>
                                     </div>
                                     <div class="score-my-team">
@@ -667,15 +665,15 @@
                                                 <table class="table mb-0 align-middle table-borderless">
                                                     <thead class="head-teble-data-my-team">
                                                         <tr>
-                                                            <th class="text-center">No.<p>&nbsp;</p>
+                                                            <th class="text-center" style>No.
                                                             </th>
-                                                            <th class="text-center">User<p>&nbsp;</p>
+                                                            <th class="text-center" style>User
                                                             </th>
-                                                            <th class="text-center">YTD-PC<p>&nbsp;</p>
+                                                            <th class="text-center" style>YTD-PC
                                                             </th>
-                                                            <th class="text-center">MTD-PC<p>&nbsp;</p>
+                                                            <th class="text-center" style>MTD-PC
                                                             </th>
-                                                            <!-- <th class="text-center d-flex align-items-top">MTD-Case<p>&nbsp;</p>
+                                                            <!-- <th class="text-center d-flex align-items-top">MTD-Case
                                                             </th>
                                                             <th class="text-center">
                                                                 <p>Active AG</p>

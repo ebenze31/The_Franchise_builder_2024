@@ -484,7 +484,7 @@
         fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
             .then(response => response.json())
             .then(result => {
-            // console.log(result);
+            console.log(result);
 
             let content_ASC = document.querySelector('#content_ASC');
             let content_ME = document.querySelector('#content_ME');
@@ -497,6 +497,13 @@
                     for (var i = 0; i < result.length; i++) {
 
                         let originalNumber = result[i].pc_point;
+                        let text_group_id = result[i].group_id;
+                        let html_group_id;
+                        if (parseInt(text_group_id) < 9) {
+                            html_group_id = "0" + text_group_id;
+                        }else{
+                            html_group_id = text_group_id;
+                        }
                         let formattedNumber = formatLargeNumber(originalNumber);
 
                         let rank_up ;
@@ -515,6 +522,7 @@
                                 <div class="detailTeam">
                                     <div>
                                         <p class="nameTeam">`+result[i].user_name+`</p>
+                                        <p class="menberInTeam">Team : ${html_group_id}</p>
                                     </div>
                                 </div>
                                 <div class="score-my-team">
@@ -542,6 +550,8 @@
                                     <div class="detailTeam">
                                         <div>
                                             <p class="nameTeam">`+result[i].user_name+`</p>
+                                            <p class="menberInTeam">Team : ${html_group_id}</p>
+
                                         </div>
                                     </div>
                                     <div class="score-my-team">
