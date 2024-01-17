@@ -419,7 +419,7 @@
 
     
 <!-- modal_alert_news -->
-<button id="btn_modal_alert_news" class="d-ndone" data-toggle="modal" data-target="#modal_alert_news"></button>
+<button id="btn_modal_alert_news" class="d-none" data-toggle="modal" data-target="#modal_alert_news"></button>
 
 <div class="modal fade" id="modal_alert_news" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999999;">
     <div class="modal-dialog modal-dialog-centered px-3">
