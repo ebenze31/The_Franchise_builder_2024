@@ -201,7 +201,7 @@
 
     .statusNumber {
         text-align: center;
-        font-size: 11px;
+        font-size: 12px;
     }
 
     .rankUP {
