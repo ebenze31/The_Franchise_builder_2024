@@ -264,8 +264,12 @@ class Pc_pointsController extends Controller
     function get_data_rank($type){
 
         // $check_week = Pc_point::orderBy('week', 'desc')->first();
+        // $check_week = Pc_point::where('week', 'not like', 'old-%')
+        //     ->orderBy('week', 'desc')
+        //     ->first();
+
         $check_week = Pc_point::where('week', 'not like', 'old-%')
-            ->orderBy('week', 'desc')
+            ->orderByRaw('CAST(SUBSTRING_INDEX(`week`, "-", -1) AS UNSIGNED) DESC')
             ->first();
 
         $week = $check_week->week ;
