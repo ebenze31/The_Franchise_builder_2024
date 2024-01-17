@@ -232,7 +232,7 @@
                 <span class="textPC"> PC : &nbsp;&nbsp;&nbsp;</span>
                 <span id="pc_of_me" class="textScore">24.4M</span>
             </div>
-            <div class="d-flex justify-content-around mt-3">
+            <div class="d-flex justify-content-around mt-0">
                 <div class="text-center">
                     <p class="text-white" style="color: #FFF;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">Ranking of Individual</p>
                     <h4 id="rank_of_me" class="text-rank"></h4>
