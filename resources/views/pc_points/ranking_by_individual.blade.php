@@ -135,7 +135,7 @@
     }
 
     .nameTeam {
-        font-size: 14px;
+        font-size: 18px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -201,6 +201,7 @@
 
     .statusNumber {
         text-align: center;
+        font-size: 11px;
     }
 
     .rankUP {

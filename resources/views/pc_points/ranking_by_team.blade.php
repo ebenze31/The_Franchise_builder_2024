@@ -158,7 +158,7 @@
     }
 
     .nameTeam {
-        font-size: 14px;
+        font-size: 18px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -174,7 +174,6 @@
         display: flex;
         align-items: center;
         width: 100%;
-        font-size: 189px;
     }
 
     .collapseContent {
@@ -202,7 +201,7 @@
 
     .statusNumber {
         text-align: center;
-        font-size: 14px;
+        font-size: 11px;
     }
 
     .rankUP {
@@ -372,7 +371,10 @@
 </div>
 
 @php
-    $activeGroupsCount = App\Models\Group::where('active', 'Yes')->count();
+    $activeGroupsCount = App\Models\Group::where('active', 'Yes')
+        ->where('status', 'ยืนยันเรียบร้อย')
+        ->count();
+
     $menu_row = ceil($activeGroupsCount / 20) ;
     $start = 1 ;
     $end = 20 ;
