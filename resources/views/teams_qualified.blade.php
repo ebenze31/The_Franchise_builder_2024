@@ -130,6 +130,8 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+    }#navbar-botttom{
+        display: none;
     }
 </style>
 
