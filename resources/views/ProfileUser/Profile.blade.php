@@ -672,11 +672,14 @@ line-height: normal;
     }
 
     function formatLargeNumber(number) {
-        if (number >= 1e6) { // 1e6 = 1,000,000
-            return (number / 1e6).toFixed(3).slice(0, -1) + 'M';
-        } else {
-            return number.toLocaleString();
-        }
+        // if (number >= 1e6) { // 1e6 = 1,000,000
+        //     return (number / 1e6).toFixed(3).slice(0, -1) + 'M';
+        // } else {
+        //     return number.toLocaleString();
+        // }
+
+        return number.toLocaleString();
+
     }
 
 </script>
