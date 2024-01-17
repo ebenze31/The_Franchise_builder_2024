@@ -80,6 +80,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
     Route::get('/dashboard', 'HomeController@dashboard');
     Route::get('/add_account', 'ProfileController@add_account');
+    Route::get('/delete_account', 'ProfileController@delete_account');
     Route::get('/account_all', 'ProfileController@account_all');
     Route::get('/view_cancel_join', 'ProfileController@view_cancel_join');
     Route::get('/account_reg_success', 'ProfileController@account_reg_success');

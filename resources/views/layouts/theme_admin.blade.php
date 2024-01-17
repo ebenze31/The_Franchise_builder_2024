@@ -138,6 +138,11 @@
                             </a>
                         </li>
                         <li>
+                            <a class="btn" onclick="pass_lock_menu('{{ url("/delete_account") }}');">
+                                <i class="fa-sharp fa-solid fa-delete-right"></i> ลบสมาชิก
+                            </a>
+                        </li>
+                        <li>
                             <a class="btn" href="{{ url('/account_all') }}">
                                 <i class="fa-solid fa-address-card"></i> รายชื่อสมาชิกทั้งหมด
                             </a>

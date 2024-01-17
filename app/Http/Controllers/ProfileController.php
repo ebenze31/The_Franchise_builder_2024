@@ -180,6 +180,10 @@ class ProfileController extends Controller
         return view('admin.add_account');
     }
 
+    function delete_account(){
+        return view('admin.delete_account');
+    }
+
     function create_user(Request $request)
     {
         $requestData = $request->all();
@@ -855,10 +859,36 @@ class ProfileController extends Controller
             
             $user_host = User::where('id' , $item->host)->first();
             $data_arr[] = $user_host;
-            
+
         }
 
         return $data_arr ;
+    }
+
+
+    function delete_user(Request $request)
+    {
+        $requestData = $request->all();
+        $data_arr = [];
+        $count = 0;
+        
+        foreach ($requestData as $item) {
+            foreach ($item as $key => $value) {
+
+                if($key == "account"){
+                    $check_user = User::where('account',$key)->first();
+                    $check_host = Group::where('host' , $check_user->id)->first();
+
+                    if( !empty($check_host->id) ){
+                        $count = $count + 1 ;
+                    }
+                }
+            }
+
+        }
+
+        return "มี HOST >> " . $count ;
+
     }
 
 
