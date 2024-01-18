@@ -211,6 +211,11 @@
                                 Read Excel
                             </button>
                         </div>
+                        @if( Auth::user()->role == 'Super-admin' )
+                            <button class="btn btn-info px-5" onclick="create_qr_AL()">
+                                create qr AL
+                            </button>
+                        @endif
                     </div>
                 </div>
 
@@ -521,6 +526,18 @@
             document.querySelector('#div_loader_Excel').classList.add('d-none');
             alert('กรุณาเลือกไฟล์ Excel');
         }
+    }
+
+    function create_qr_AL(){
+
+        console.log('กำลังประมวลผล..');
+        
+        fetch("{{ url('/') }}/api/qr_profile/")
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+        });
+
     }
 
     // CSV

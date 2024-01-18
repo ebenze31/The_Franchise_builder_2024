@@ -244,7 +244,13 @@ class ProfileController extends Controller
 
     function qr_profile(Request $request){
 
-        $user = User::get();
+        // $user = User::where('role' , 'AL')->get();
+
+        $yesterday = Carbon::yesterday()->toDateString();
+
+        $user = User::where('role', 'AL')
+            ->whereDate('created_at', '>', $yesterday)
+            ->get();
 
         foreach ($user as $item) {
             $url_for_scan = 'https://www.franchisebuilder2024.com' . "/for_scan" ;
