@@ -307,6 +307,7 @@
                 .then(result => {
                     // console.log(result);
 
+                    //  --- ก่อนวันที่ 24/01 --- //
                     if(result == "Account none"){
                         alert("ขออภัย ไม่พบ Account ของคุณ");
                     }
@@ -317,6 +318,21 @@
                     else{
                         $('#ModalTerms').modal('show');
                     }
+
+                    //  --- วันที่ 24/01 เป็นต้นไป --- //
+                    // if(result == "Account none"){
+                    //     alert("ขออภัย ไม่พบ Account ของคุณ");
+                    // }
+                    // else if(result == "No Team"){
+                    //     alert("ขออภัย คุณไม่สามารถเข้าร่วมกิจกรรมได้");
+                    // }
+                    // else if(result == "Yes"){
+                    //     document.querySelector('#btn_for_login').setAttribute('onclick' , 'to_login();');
+                    //     document.querySelector('#btn_for_login').click();
+                    // }
+                    // else{
+                    //     $('#ModalTerms').modal('show');
+                    // }
             });
         }
     }

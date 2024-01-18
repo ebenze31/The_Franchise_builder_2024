@@ -30,26 +30,28 @@ class HomeController extends Controller
 
         $data_user = Auth::user();
 
+        // return view('teams_qualified');
+
         if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin"){
             // return redirect("groups");
-            // $activeGroupsCount = Group::where('active', 'Yes')->count();
-            // return view('groups.index' , compact('activeGroupsCount'));
+            $activeGroupsCount = Group::where('active', 'Yes')->count();
+            return view('groups.index' , compact('activeGroupsCount'));
 
-            return view('pc_points/ranking_by_team');
+            // return view('pc_points/ranking_by_team');
         }
 
         else if(Auth::user()->role == "Staff"){
             // return redirect("groups");
-            // $activeGroupsCount = Group::where('active', 'Yes')->count();
-            // return view('groups.index' , compact('activeGroupsCount'));
+            $activeGroupsCount = Group::where('active', 'Yes')->count();
+            return view('groups.index' , compact('activeGroupsCount'));
 
-            return view('pc_points/ranking_by_team');
+            // return view('pc_points/ranking_by_team');
         }
 
         else if(Auth::user()->role == "Player"){
             $data_user = Auth::user();
 
-            return view('pc_points/ranking_by_team');
+            // return view('pc_points/ranking_by_team');
 
             // if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
             //     return redirect('groups');
