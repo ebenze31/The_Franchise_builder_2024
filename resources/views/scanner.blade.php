@@ -186,7 +186,9 @@ line-height: normal;
             letter-spacing:-1px !important; 
             -moz-letter-spacing:-1px !important;
             -khtml-letter-spacing:-1px !important;
-    }
+    }#readMoreButton {
+  display: none; /* ปุ่มจะถูกซ่อนไว้เริ่มต้น */
+}
 </style>
 
 <a id="a_to_account_scan" class="d-none"></a>
@@ -828,7 +830,7 @@ line-height: normal;
                           <p class="text-center mb-2" style="color: #128DFF;">`+type+`</p>
                           <p class="detail-event-2-line" id="detail-event">`+result.detail+`</p>
 
-                          <a class="see_more" onclick="document.querySelector('#detail-event').classList.toggle('detail-event-2-line'); document.querySelector('#detail-event').classList.toggle('detail-event-more');">ดูรายละเอียดเพิ่มเติม</a>
+                          <a class="see_more" id="readMoreButton" onclick="document.querySelector('#detail-event').classList.toggle('detail-event-2-line'); document.querySelector('#detail-event').classList.toggle('detail-event-more');">ดูรายละเอียดเพิ่มเติม</a>
                         </div>
                       `;
 
@@ -850,14 +852,27 @@ line-height: normal;
                       document.querySelector('#modal_footer').classList.remove('d-none');
 
                       document.querySelector('#btn_modal_check_activity').click();
-
+                      check_long_text();
                     }
               });
 
         }
 
     }
+    function check_long_text(params) {
+      let textElement = document.querySelector('.text-2-lines');
+      let readMoreButton = document.getElementById('readMoreButton');
 
+      if (textElement.scrollHeight > textElement.clientHeight) {
+        readMoreButton.style.display = 'block';
+      }
+
+      readMoreButton.addEventListener('click', function() {
+        textElement.style.webkitLineClamp = 'initial';
+        textElement.style.overflow = 'visible';
+        this.style.display = 'none';
+      });
+    }
     function cf_Activities(user_id , name_Activities){
 
       // console.log('cf_Activities');
