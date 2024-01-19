@@ -457,7 +457,30 @@ line-height: normal;
   <!-- Button join team 10 only staff -->
   staff scan
 </button>
+<style>
+  .text-team-10-staff{
+    color: #071027;
+text-align: center;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+  }.btn-submit {
+    border-radius: 5px;
+    width: auto;
+    font-size: 16px;
+    margin-top: 15px;
+    padding: 10px 40px;
 
+    background-color: #005CD3;
+    color: #fff;
+  } .btn-submit:hover {
+    border: 1px solid #00E0FF;
+    box-shadow: 0px 0px 15px 1px #00FBFF;
+    color: #fff;
+
+  }
+</style>
 <!-- modal team 10 only staff -->
 <div class="modal fade" id="modal_team_10_only_staff" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -476,7 +499,6 @@ line-height: normal;
           </p>
         </div>
         <div class="d-flex justify-content-evenly mb-2">
-
         <button type="button" class="btn btn-submit" style="padding: 5px 25px;"  data-dismiss="modal">
           Close
         </button>
