@@ -181,6 +181,11 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
+    }p{
+      -webkit-letter-spacing: -1px !important;  
+            letter-spacing:-1px !important; 
+            -moz-letter-spacing:-1px !important;
+            -khtml-letter-spacing:-1px !important;
     }
 </style>
 
@@ -734,14 +739,14 @@ line-height: normal;
                     <img src="{{ url('/img/icon/warn.png') }}" style="height: 120px;flex-shrink: 0;">
                 </div>
                 <div class="text-center">
-                    <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
+                    <p class=" mb-1 mt-4 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
                     <p style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">`+name_for_joined+`</p>
                     <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
                 </div>
             `;
 
             let html_footer = `
-                <button style="padding:5px 25px;" id="btn_close_modal" type="button" class="btn btn-submit" data-dismiss="modal" onclick="start_scanQRCode();">
+                <button style="padding:10px 30px;" id="btn_close_modal" type="button" class="btn btn-submit" data-dismiss="modal" onclick="start_scanQRCode();">
                     Close
                 </button>
             `;
@@ -764,7 +769,7 @@ line-height: normal;
                 <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
                   <img src="{{ url('/img/icon/cry.png') }}" style="width: 90px;height: 90px;flex-shrink: 0;">
                 </div>
-                <p style="color: #128DFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">
+                <p class="m-2" style="color: #128DFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">
                   ขออภัย !  
                 </p>
                 <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">
@@ -772,7 +777,7 @@ line-height: normal;
                   ทีมที่มีสมาชิกครบ 10 คนแล้่วเท่านั้น
                 </p>
                 <div class="d-flex justify-content-evenly mb-2">
-                  <button type="button" class="btn btn-submit" style="padding: 5px 25px;"  data-dismiss="modal" onclick="start_scanQRCode();">
+                  <button type="button" class="btn btn-submit" style="padding:10px 30px;"  data-dismiss="modal" onclick="start_scanQRCode();">
                     Close
                   </button>
                 </div>
@@ -817,7 +822,7 @@ line-height: normal;
                         </div>
                         <div class="text-center">
 
-                          <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">
+                          <p class=" mb-1 mt-4 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">
                           ยืนยันการเข้าร่วม
                           </p>
                           <p class="text-center mb-2" style="color: #128DFF;">`+type+`</p>
@@ -829,10 +834,10 @@ line-height: normal;
 
                       let html_footer = `
                           <div class="d-flex justify-content-evenly mb-2">
-                            <button id="btn_close_modal" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
+                            <button id="btn_close_modal" style="padding:10px 30px;" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
                               Cancle
                             </button>
-                            <button type="button" class="btn btn-submit" style="padding: 5px 25px;" data-dismiss="modal"  mt-4" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
+                            <button type="button" class="btn btn-submit" style="padding:10px 30px;" data-dismiss="modal"  mt-4" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
                             Join
                             </button>
                           </div>
