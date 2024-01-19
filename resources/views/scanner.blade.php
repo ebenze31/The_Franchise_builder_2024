@@ -560,7 +560,9 @@ line-height: normal;
                 }
             }else{
                 // console.log('สแกนใหม่');
-                start_scanQRCode();
+                setTimeout(() => {
+                  start_scanQRCode();
+                }, 1000);
             }
 
             return;
@@ -666,9 +668,10 @@ line-height: normal;
                     }else{
                         // console.log('สแกนใหม่');
                         alert('ไม่พบ QR Code');
-                        start_scanQRCode();
+                        setTimeout(() => {
+                          start_scanQRCode();
+                        }, 1000);
                     }
-                    return;
                 }else{
                     alert('ไม่พบ QR Code');
                 }
@@ -906,7 +909,9 @@ line-height: normal;
                     document.querySelector('#modalSuccess_name_activity').innerHTML = text_show ;
                     // modal success
                     document.querySelector('#btnmodalSuccess').click();
-                    start_scanQRCode();
+                    setTimeout(() => {
+                      start_scanQRCode();
+                    }, 1000);
                 }
         });
     }
@@ -934,7 +939,9 @@ line-height: normal;
                 document.querySelector('#modalSuccess_name_activity').innerHTML = "รับเสื้อ" ;
                 // modal success
                 document.querySelector('#btnmodalSuccess').click();
-                start_scanQRCode();
+                setTimeout(() => {
+                  start_scanQRCode();
+                }, 1000);
         });
     }
 </script>
