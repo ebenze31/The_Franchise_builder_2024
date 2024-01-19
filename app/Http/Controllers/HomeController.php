@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use QrCode;
 use App\User;
 use App\Models\Group;
+use App\Models\Activity;
 
 use Illuminate\Http\Request;
 
@@ -103,6 +104,26 @@ class HomeController extends Controller
         }
 
         return redirect('groups');
+    }
+
+    function for_Activities(Request $request)
+    {
+        // https://www.franchisebuilder2024.com/for_Activities?Activities=test_1
+        $requestData = $request->all();
+        $Activities = $request->get('Activities');
+
+        if( !empty($Activities) ){
+
+            $name_Activities = str_replace("_"," ",$Activities);
+
+            $data_Activities = Activity::where('name_Activities' , $name_Activities)->first();
+
+            if( !empty($data_Activities->id) ){
+                return redirect('/scanner'.'?Activities='.$Activities);
+            }else{
+                return redirect('/home');
+            }
+        }
     }
 
     public function dashboard()

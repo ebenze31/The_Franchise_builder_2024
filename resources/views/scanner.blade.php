@@ -372,6 +372,8 @@ line-height: normal;
 
         change_menu_bar('scan');
 
+        check_url();
+
         let check_time_cf_pay_slip = "{{ Auth::user()->time_cf_pay_slip }}" ;
         if(!check_time_cf_pay_slip){
           loop_check_time_cf_pay_slip = setInterval(function () {
@@ -390,6 +392,76 @@ line-height: normal;
         }
 
     });
+
+    function check_url(){
+
+      let full_url = "{{ url()->full() }}";
+      let url_0 = full_url.split("?Activities=")[0];
+      let url_1 = full_url.split("?Activities=")[1];
+          name_activity = decodeURIComponent(url_1);
+
+      let url = url_0 + "?Activities=" + name_activity ;
+      // console.log(url);
+
+      let code = [];
+      code['data'] = url ;
+      // console.log(code['data']);
+
+      if(code.data){
+
+      // console.log(code.data);
+      // https://www.franchisebuilder2024.com/for_Activities?Activities=วิ่ง_วิ่ง_วิ่ง
+      let type = code.data.split('=')[0];
+          type = type.split('?')[1];
+
+      let name = code.data.split('=')[1];
+
+        if(name){
+          name = name.replaceAll("_"," ");
+        }else{
+          document.querySelector('#btn_modal_worng_qrcode').click();
+        }
+
+      // console.log(type);
+      // console.log(name);
+
+      if(type == "Activities"){
+
+          let for_url = name.replaceAll(" " , "_");
+
+          fetch("{{ url('/') }}/api/check_user_join_activity"+'/'+"{{ Auth::user()->account }}"+ "/" + for_url )
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result.check);
+
+                // ผู้ใช้เคยเข้าร่วมกิจจกรรมนี้แล้ว
+                if(result.check == 'joined'){
+                    create_modal_Activies('joined' , code , name);
+                }
+                else if(result.check == 'For Team Ready'){
+                    create_modal_Activies('For_Team_Ready' , code , name);
+                }
+                else{
+                    // ไม่เคยเข้าร่วมกิจจกรรมนี้
+                    create_modal_Activies(name , code , null);
+                }
+
+                let newUrl = "{{ url('/scanner') }}";  // เปลี่ยนเป็น URL ที่คุณต้องการ
+                history.pushState(null, null, newUrl);
+          });
+      }
+      else if(type == "account"){
+          document.querySelector('#a_to_account_scan').setAttribute('href' , 'https://www.franchisebuilder2024.com/for_scan?account='+name);
+          document.querySelector('#a_to_account_scan').click();
+      }
+  }else{
+      // console.log('สแกนใหม่');
+      start_scanQRCode();
+  }
+
+  return;
+
+    }
 
     function myStop_check_time_cf_pay_slip() {
         clearInterval(loop_check_time_cf_pay_slip);
@@ -429,7 +501,7 @@ line-height: normal;
             if(code.data){
 
                 // console.log(code.data);
-
+                // https://www.franchisebuilder2024.com/for_Activities?Activities=test_1
                 let type = code.data.split('=')[0];
                     type = type.split('?')[1];
 
@@ -534,7 +606,7 @@ line-height: normal;
 
                   if(code.data){
 
-                      // console.log(code.data);
+                      console.log(code.data);
                       let type = code.data.split('=')[0];
                           type = type.split('?')[1];
 

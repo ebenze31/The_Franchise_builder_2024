@@ -38,7 +38,7 @@ Route::middleware(['auth',])->group(function () {
     Route::get('profile', 'ProfileController@show');
     Route::post('/edit_profile/{id}', 'ProfileController@edit_profile')->name('edit_profile');
     Route::get('/for_scan', 'HomeController@for_scan');
-
+    Route::get('/for_Activities', 'HomeController@for_Activities');
     Route::get('/ranking_by_individual', function () {
         return view('pc_points/ranking_by_individual');
     });
