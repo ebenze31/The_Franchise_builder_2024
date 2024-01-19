@@ -173,7 +173,8 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 text-decoration-line: underline;
-    }text-team-10-sraff{
+    }
+  .text-team-10-staff{
       color: #071027;
 text-align: center;
 font-size: 14px;
@@ -237,13 +238,21 @@ line-height: normal;
 <!-- Modal -->
 <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body p-5">
-            <center>
-                <img src="{{ url('/img/icon/success.png') }}" alt="" width="87" height="87">
-                <h6 class="" style="font-weight: bolder;margin:50px 0 50px 0 ">ยืนยันการเข้าร่วมกิจกรรมสำเร็จ !</h6>
-                <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal">Close</button>
-            </center>
+    <div class="modal-content mx-4">
+      <div class="modal-body">
+          <div class="d-flex justify-content-center " style="margin-bottom: 33px;">
+            <img src="{{ url('/img/icon/join_success.png') }}" style="width: 113px;height: 84px;flex-shrink: 0;">
+          </div>
+          <div class="text-center">
+            <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้ยืนยันการเข้าร่วมกิจกรรม</p>
+            <p id="modalSuccess_name_activity" style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;"></p>
+            <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
+          </div>
+          <div class="d-flex justify-content-evenly mb-2">
+            <button type="button" class="btn btn-submit" style="padding: 5px 25px;"  data-dismiss="modal">
+              Close
+            </button>
+          </div>
       </div>
     </div>
   </div>
@@ -351,193 +360,6 @@ line-height: normal;
   </div>
 </div>
 
-
-<!-- Button join event -->
-<button id="btn_modal_join_event" type="button" class="btn btn-primary d-nsone" data-toggle="modal" data-target="#modal_join_event">
-  <!-- Button join event -->
-  เข้าร่วม
-</button>
-
-<!-- modal join event -->
-<div class="modal fade" id="modal_join_event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content modal-border modal-success mx-5" style="border-radius: 10px;">
-      <div class="modal-body px-4 ">
-        <div class="d-flex justify-content-center text-center">
-          <img src="{{ url('/img/icon/asvp.png') }}" style="width: 120px;height: 120px;flex-shrink: 0;">
-        </div>
-        <div class="text-center">
-
-          <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">
-          ยืนยันการเข้าร่วม
-          </p>
-          <p class="text-center mb-2" style="color: #128DFF;">{spvp}</p>
-          <p class="detail-event-2-line" id="detail-event">{ยืนยันร่วมกิจกรรม วันที่ 24 ม.ค. 2567 เวลา 13.00 น. ณ โรงละครสยาม} {ยืนยันร่วมกิจกรรม วันที่ 24 ม.ค. 2567 เวลา 13.00 น. ณ โรงละครสยาม} {ยืนยันร่วมกิจกรรม วันที่ 24 ม.ค. 2567 เวลา 13.00 น. ณ โรงละครสยาม}</p>
-
-          <a class="see_more" onclick="document.querySelector('#detail-event').classList.toggle('detail-event-2-line'); document.querySelector('#detail-event').classList.toggle('detail-event-more');">ดูรายละเอียดเพิ่มเติม</a>
-        <div class="d-flex justify-content-evenly mb-2">
-        </div>
-          <button type="button" class="btn btn-cancle"  data-dismiss="modal">
-            Cancle
-          </button>
-          <button type="button" class="btn btn-submit" style="padding: 5px 25px;" data-dismiss="modal">
-            Join
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-<!-- Button join success -->
-<button id="btn_modal_join_event_success" type="button" class="btn btn-primary d-nsone" data-toggle="modal" data-target="#modal_join_event_success">
-  <!-- Button join event_success -->
-  ยืนยัน
-</button>
-
-<!-- modal join success -->
-<div class="modal fade" id="modal_join_event_success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content modal-border modal-success mx-5" style="border-radius: 10px;">
-      <div class="modal-body px-2" style="margin-top:15px;">
-        <div class="d-flex justify-content-center " style="margin-bottom: 33px;">
-          <img src="{{ url('/img/icon/join_success.png') }}" style="width: 113px;height: 84px;flex-shrink: 0;">
-        </div>
-        <div class="text-center">
-          <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้ยืนยันการเข้าร่วมกิจกรรม</p>
-          <p style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">{RSVP}</p>
-          <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
-
-        </div>
-        <div class="d-flex justify-content-evenly mb-2">
-
-        <button type="button" class="btn btn-submit" style="padding: 5px 25px;"  data-dismiss="modal">
-          Close
-        </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Button join agaian -->
-<button id="btn_modal_join_event_agaian" type="button" class="btn btn-primary d-nsone" data-toggle="modal" data-target="#modal_join_event_agaian">
-  <!-- Button join event_agaian -->
-  เข้าร่วมไปแล้ว
-</button>
-
-<!-- modal join agaian -->
-<div class="modal fade" id="modal_join_event_agaian" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content modal-border modal-success mx-5" style="border-radius: 10px;">
-      <div class="modal-body px-2" style="margin-top:15px;">
-        <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
-          <img src="{{ url('/img/icon/warn.png') }}" style="height: 120px;flex-shrink: 0;">
-        </div>
-        <div class="text-center">
-          <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
-          <p style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">{RSVP}</p>
-          <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
-
-        </div>
-        <div class="d-flex justify-content-evenly mb-2">
-
-        <button type="button" class="btn btn-submit" style="padding: 5px 25px;"  data-dismiss="modal">
-          Close
-        </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Button team 10 only staff -->
-<button id="btn_modal_team_10_only_staff" type="button" class="btn btn-primary d-nsone" data-toggle="modal" data-target="#modal_team_10_only_staff">
-  <!-- Button join team 10 only staff -->
-  staff scan
-</button>
-<style>
-  .text-team-10-staff{
-    color: #071027;
-text-align: center;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-  }.btn-submit {
-    border-radius: 5px;
-    width: auto;
-    font-size: 16px;
-    margin-top: 15px;
-    padding: 10px 40px;
-
-    background-color: #005CD3;
-    color: #fff;
-  } .btn-submit:hover {
-    border: 1px solid #00E0FF;
-    box-shadow: 0px 0px 15px 1px #00FBFF;
-    color: #fff;
-
-  }
-</style>
-<!-- modal team 10 only staff -->
-<div class="modal fade" id="modal_team_10_only_staff" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content modal-border modal-success mx-5" style="border-radius: 10px;">
-      <div class="modal-body px-2" style="margin-top:15px;">
-        <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
-          <img src="{{ url('/img/icon/risk.png') }}" style="width: 90px;height: 90px;flex-shrink: 0;">
-        </div>
-        <div class="text-center">
-
-          <p class="text-team-10-staff">ขออภัย !</p>
-          <p class="text-team-10-staff">คุณ <span id="" style="color: #128DFF;">{000001}</span></p>
-          <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">
-            กิจกรรมนี้สงวนสิทธิ์เฉพาะผู้เล่นที่อยู่ใน <br>
-            ทีมที่มีสมาชิกครบ 10 คนแล้่วเท่านั้น
-          </p>
-        </div>
-        <div class="d-flex justify-content-evenly mb-2">
-        <button type="button" class="btn btn-submit" style="padding: 5px 25px;"  data-dismiss="modal">
-          Close
-        </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Button team 10 only user -->
-<button id="btn_modal_team_10_only_user" type="button" class="btn btn-primary d-nsone" data-toggle="modal" data-target="#modal_team_10_only_user">
-  <!-- Button join team 10 only user -->
-  user scan
-</button>
-
-<!-- modal team 10 only user -->
-<div class="modal fade" id="modal_team_10_only_user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content modal-border modal-success mx-5" style="border-radius: 10px;">
-      <div class="modal-body px-2" style="margin-top:15px;">
-        <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
-          <img src="{{ url('/img/icon/cry.png') }}" style="width: 90px;height: 90px;flex-shrink: 0;">
-        </div>
-        <p style="color: #128DFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">
-        ขออภัย !  
-        </p>
-        <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">
-          กิจกรรมนี้สงวนสิทธิ์เฉพาะผู้เล่นที่อยู่ใน <br>
-          ทีมที่มีสมาชิกครบ 10 คนแล้่วเท่านั้น
-        </p>
-        <div class="d-flex justify-content-evenly mb-2">
-
-        <button type="button" class="btn btn-submit" style="padding: 5px 25px;"  data-dismiss="modal">
-          Close
-        </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 
@@ -824,43 +646,77 @@ line-height: normal;
 
             document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
             document.querySelector('#modal_footer').innerHTML = html_footer;
+            document.querySelector('#modal_footer').classList.remove('d-none');
 
             document.querySelector('#btn_modal_check_activity').click();
         }
         else if(type == "joined"){
+            // let html_modal = `
+            //     <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
+            //     <br>
+            //     <h4 class="mt-3 text-danger">คุณได้เข้าร่วมกิจกรรม (`+name_for_joined+`) เเล้ว !</h4>
+            // `;
+
             let html_modal = `
-                <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
-                <br>
-                <h4 class="mt-3 text-danger">คุณได้เข้าร่วมกิจกรรม (`+name_for_joined+`) เเล้ว !</h4>
+                <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
+                    <img src="{{ url('/img/icon/warn.png') }}" style="height: 120px;flex-shrink: 0;">
+                </div>
+                <div class="text-center">
+                    <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
+                    <p style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">`+name_for_joined+`</p>
+                    <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
+                </div>
             `;
 
             let html_footer = `
-                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
+                <button style="padding:5px 25px;" id="btn_close_modal" type="button" class="btn btn-submit" data-dismiss="modal" onclick="start_scanQRCode();">
                     Close
                 </button>
             `;
 
             document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
             document.querySelector('#modal_footer').innerHTML = html_footer;
+            document.querySelector('#modal_footer').classList.remove('d-none');
 
             document.querySelector('#btn_modal_check_activity').click();
         }
         else if(type == "For_Team_Ready"){
+            // let html_modal = `
+            //     <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
+            //     <br>
+            //     <h4 class="mt-3 text-danger">ขออภัย คุณ `+"{{ Auth::user()->name }}"+`</h4>
+            //     <p>กิจกรรมนี้สงวนสิทธิ์สำหรับทีมที่มีสมาชิกครบแล้วเท่านั้น</p>
+            // `;
+
             let html_modal = `
-                <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
-                <br>
-                <h4 class="mt-3 text-danger">ขออภัย คุณ `+"{{ Auth::user()->name }}"+`</h4>
-                <p>กิจกรรมนี้สงวนสิทธิ์สำหรับทีมที่มีสมาชิกครบแล้วเท่านั้น</p>
+                <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
+                  <img src="{{ url('/img/icon/cry.png') }}" style="width: 90px;height: 90px;flex-shrink: 0;">
+                </div>
+                <p style="color: #128DFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">
+                  ขออภัย !  
+                </p>
+                <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">
+                  กิจกรรมนี้สงวนสิทธิ์เฉพาะผู้เล่นที่อยู่ใน <br>
+                  ทีมที่มีสมาชิกครบ 10 คนแล้่วเท่านั้น
+                </p>
+                <div class="d-flex justify-content-evenly mb-2">
+                  <button type="button" class="btn btn-submit" style="padding: 5px 25px;"  data-dismiss="modal" onclick="start_scanQRCode();">
+                    Close
+                  </button>
+                </div>
             `;
 
-            let html_footer = `
-                <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
-                    Close
-                </button>
-            `;
+            // let html_footer = `
+            //     <button id="btn_close_modal" style="padding: 5px; 25px;" type="button" class="btn btn-submit" data-dismiss="modal" onclick="start_scanQRCode();">
+            //         Close
+            //     </button>
+            // `;
+
+            let html_footer = ``;
 
             document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
-            document.querySelector('#modal_footer').innerHTML = html_footer;
+            // document.querySelector('#modal_footer').innerHTML = html_footer;
+            document.querySelector('#modal_footer').classList.add('d-none');
 
             document.querySelector('#btn_modal_check_activity').click();
         }
@@ -876,19 +732,35 @@ line-height: normal;
 
                     if(result){
 
+                      // let html_modal = `
+                      //   <img src="{{ url('storage')}}/`+result.icon+`" style="width: 120px;height: 120px;flex-shrink: 0;">
+                      //    <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรม</h4>
+                      //   <h3 class="my-4" style="color: #000;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+type+`</h3>
+                      //   <br>
+                      // `;
+
                       let html_modal = `
-                        <img src="{{ url('storage')}}/`+result.icon+`" style="width: 120px;height: 120px;flex-shrink: 0;">
-                         <h4 class="mt-3" style="color: #000;font-size: 16px;font-style: normal;font-weight: 700;line-height: normal;">ยืนยันการเข้าร่วมกิจกรรม</h4>
-                        <h3 class="my-4" style="color: #000;font-size: 16px;font-style: normal;font-weight: 600;line-height: normal;">`+type+`</h3>
-                        <br>
+                        <div class="d-flex justify-content-center text-center">
+                          <img src="{{ url('storage')}}/`+result.icon+`" style="width: 120px;height: 120px;flex-shrink: 0;">
+                        </div>
+                        <div class="text-center">
+
+                          <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">
+                          ยืนยันการเข้าร่วม
+                          </p>
+                          <p class="text-center mb-2" style="color: #128DFF;">`+type+`</p>
+                          <p class="detail-event-2-line" id="detail-event">`+result.detail+`</p>
+
+                          <a class="see_more" onclick="document.querySelector('#detail-event').classList.toggle('detail-event-2-line'); document.querySelector('#detail-event').classList.toggle('detail-event-more');">ดูรายละเอียดเพิ่มเติม</a>
+                        </div>
                       `;
 
                       let html_footer = `
                           <div class="d-flex justify-content-evenly mb-2">
-                          <button id="btn_close_modal" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
-                            Cancle
-                          </button>
-                            <button type="button" class="btn btn-submit padding-btn style="padding: 5px 25px;" data-dismiss="modal"  mt-4" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
+                            <button id="btn_close_modal" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
+                              Cancle
+                            </button>
+                            <button type="button" class="btn btn-submit" style="padding: 5px 25px;" data-dismiss="modal"  mt-4" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
                             Join
                             </button>
                           </div>
@@ -898,6 +770,7 @@ line-height: normal;
 
                       document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
                       document.querySelector('#modal_footer').innerHTML = html_footer;
+                      document.querySelector('#modal_footer').classList.remove('d-none');
 
                       document.querySelector('#btn_modal_check_activity').click();
 
@@ -914,6 +787,7 @@ line-height: normal;
       // console.log(user_id);
       // console.log(name_Activities);
 
+        let text_show = name_Activities ;
         name_Activities = name_Activities.replaceAll(" ","_");
 
         fetch("{{ url('/') }}/api/cf_Activities" + "/" + user_id + "/" + name_Activities )
@@ -924,6 +798,7 @@ line-height: normal;
                 if(result){
                     document.querySelector('#btn_close_modal').click();
 
+                    document.querySelector('#modalSuccess_name_activity').innerHTML = text_show ;
                     // modal success
                     document.querySelector('#btnmodalSuccess').click();
                     start_scanQRCode();
@@ -950,7 +825,8 @@ line-height: normal;
                 // console.log(result);
                 // console.log(result);
                 document.querySelector('#btn_close_modal').click();
-
+                  
+                document.querySelector('#modalSuccess_name_activity').innerHTML = "รับเสื้อ" ;
                 // modal success
                 document.querySelector('#btnmodalSuccess').click();
                 start_scanQRCode();

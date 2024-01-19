@@ -184,9 +184,9 @@
 
 
     }.btn-submit{
+        padding: 5px 25px;
       border-radius: 5px;
       font-size: 16px;
-      padding: 5px 40px;
       background-color: #005CD3;
       color: #fff;
     }
@@ -196,6 +196,35 @@
       color: #fff;
 
     }
+    .btn-cancle {
+        border-radius: 5px;
+        width: auto;
+        font-size: 16px;
+        padding: 5px 15px;
+
+        background-color: #FF3838;
+        color: #fff;
+      }
+
+      .see_more{
+      color: #898989;
+
+        text-align: center;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-decoration-line: underline;
+    }
+      .text-team-10-staff{
+        color: #071027;
+        text-align: center;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin: 0px;
+      }
     
     .padding-btn{
         padding: 10px 30px !important;
@@ -310,13 +339,21 @@
 <!-- Modal -->
 <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body p-5">
-            <center>
-                <img src="{{ url('/img/icon/success.png') }}" alt="" width="87" height="87">
-                <h6 class="" style="font-weight: bolder;margin:50px 0 50px 0 ">ยืนยันการเข้าร่วมกิจกรรมสำเร็จ !</h6>
-                <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal">Close</button>
-            </center>
+    <div class="modal-content mx-5">
+      <div class="modal-body">
+        <div class="d-flex justify-content-center " style="margin-bottom: 33px;">
+            <img src="{{ url('/img/icon/join_success.png') }}" style="width: 113px;height: 84px;flex-shrink: 0;">
+          </div>
+          <div class="text-center">
+            <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้ยืนยันการเข้าร่วมกิจกรรม</p>
+            <p class="m-0" id="modalSuccess_name_activity" style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;"></p>
+            <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
+          </div>
+          <div class="d-flex justify-content-evenly mb-2">
+            <button type="button" class="btn btn-submit" style="padding: 5px 25px;"  data-dismiss="modal">
+              Close
+            </button>
+          </div>
       </div>
     </div>
   </div>
@@ -577,14 +614,28 @@
                 });
             }
             else if(type == "joined"){
+                // let html_modal = `
+                //     <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
+                //     <br>
+                //     <h4 class="mt-3 text-danger">คุณ (`+name_user+`) ได้เข้าร่วมกิจกรรมนี้เเล้ว !</h4>
+                // `;
+
+                let nameActivity = document.querySelector('#name_Activity').value ;
+
                 let html_modal = `
-                    <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
-                    <br>
-                    <h4 class="mt-3 text-danger">คุณ (`+name_user+`) ได้เข้าร่วมกิจกรรมนี้เเล้ว !</h4>
+                    <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
+                        <img src="{{ url('/img/icon/warn.png') }}" style="height: 120px;flex-shrink: 0;">
+                    </div>
+                    <div class="text-center">
+                        <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
+                        <p class="m-0" style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">`+nameActivity+`</p>
+                        <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
+
+                    </div>
                 `;
 
                 let html_footer = `
-                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
+                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-submit" data-dismiss="modal" onclick="start_scanQRCode();">
                         Close
                     </button>
                 `;
@@ -595,16 +646,31 @@
                 document.querySelector('#btn_modal_check_activity').click();
             }
             else if(type == "For_Team_Ready"){
-                let html_modal = `
-                    <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
-                    <br>
-                    <h4 class="mt-3 text-danger">ขออภัย คุณ `+name_user+`</h4>
-                    <p>กิจกรรมนี้สงวนสิทธิ์สำหรับทีมที่มีสมาชิกครบแล้วเท่านั้น</p>
+                // let html_modal = `
+                //     <img src="{{ url('/img/icon/sorry.png')}}" style="width: 100px;height:100px">
+                //     <br>
+                //     <h4 class="mt-3 text-danger">ขออภัย คุณ `+name_user+`</h4>
+                //     <p>กิจกรรมนี้สงวนสิทธิ์สำหรับทีมที่มีสมาชิกครบแล้วเท่านั้น</p>
 
+                // `;
+
+                let html_modal = `
+                    <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
+                      <img src="{{ url('/img/icon/risk.png') }}" style="width: 90px;height: 90px;flex-shrink: 0;">
+                    </div>
+                    <div class="text-center">
+
+                      <p class="text-team-10-staff m-0">ขออภัย !</p>
+                      <p class="text-team-10-staff">คุณ <span id="" style="color: #128DFF;">`+name_user+`</span></p>
+                      <p class="mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">
+                        กิจกรรมนี้สงวนสิทธิ์เฉพาะผู้เล่นที่อยู่ใน <br>
+                        ทีมที่มีสมาชิกครบ 10 คนแล้่วเท่านั้น
+                      </p>
+                    </div>
                 `;
 
                 let html_footer = `
-                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
+                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-submit" data-dismiss="modal" onclick="start_scanQRCode();">
                         Close
                     </button>
                 `;
@@ -627,24 +693,41 @@
                     fetch("{{ url('/') }}/api/get_activity" + "/" + for_url )
                         .then(response => response.json())
                         .then(data_activity => {
-                          // console.log.log(data_activity);
+                          console.log(data_activity);
 
                             if(data_activity){
+                                // let html_modal = `
+                                //     <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรม</h4>
+                                //     <h3>`+type+`</h3>
+                                //     <br>
+                                //     <img src="{{ url('storage')}}/`+data_activity.icon+`" style="width: 100px;height:100px">
+                                // `;
+
                                 let html_modal = `
-                                    <h4 class="mt-3">ยืนยันการเข้าร่วมกิจกรรม</h4>
-                                    <h3>`+type+`</h3>
-                                    <br>
-                                    <img src="{{ url('storage')}}/`+data_activity.icon+`" style="width: 100px;height:100px">
+                                    <div class="d-flex justify-content-center text-center">
+                                      <img src="{{ url('storage')}}/`+data_activity.icon+`" style="width: 120px;height: 120px;flex-shrink: 0;">
+                                    </div>
+                                    <div class="text-center">
+
+                                      <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">
+                                      ยืนยันการเข้าร่วม
+                                      </p>
+                                      <p class="text-center mb-2" style="color: #128DFF;">`+type+`</p>
+                                      <p class="detail-event-2-line m-0" id="detail-event">`+data_activity.detail+`</p>
+
+                                      <a class="see_more" onclick="document.querySelector('#detail-event').classList.toggle('detail-event-2-line'); document.querySelector('#detail-event').classList.toggle('detail-event-more');">ดูรายละเอียดเพิ่มเติม</a>
+                                    </div>
                                 `;
 
                                 let html_footer = `
-
-                                    <button type="button" class="btn btn-submit" onclick="cf_Activities('`+result.id+`' , '`+type+`')">
-                                        Confirm
-                                    </button>
-                                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-secondary" data-dismiss="modal" onclick="start_scanQRCode();">
-                                        Back
-                                    </button>
+                                    <div class="d-flex justify-content-evenly mb-2">
+                                        <button id="btn_close_modal" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
+                                            Cancle
+                                        </button>
+                                        <button type="button" class="btn btn-submit" onclick="cf_Activities('`+result.id+`' , '`+type+`')">
+                                            Join
+                                        </button>
+                                    </div>
                                 `;
 
                                 document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
@@ -666,6 +749,7 @@
       // console.log.log(user_id);
       // console.log.log(name_Activities);
         
+        let text_show = name_Activities ;
         name_Activities = name_Activities.replaceAll(" ","_");
 
         fetch("{{ url('/') }}/api/cf_Activities" + "/" + user_id + "/" + name_Activities )
@@ -676,6 +760,7 @@
                 if(result){
                     document.querySelector('#btn_close_modal').click();
 
+                    document.querySelector('#modalSuccess_name_activity').innerHTML = text_show ;
                     // modal success
                     document.querySelector('#btnmodalSuccess').click();
                     start_scanQRCode();
