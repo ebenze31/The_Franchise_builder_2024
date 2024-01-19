@@ -298,6 +298,7 @@ line-height: normal;
           Download
         </a>
       </div>
+
       <div class="tab-pane fade text-white mt-4" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         <div class="d-flex w-100 justify-content-center mb-5">
           <div class="box" style="--c:#000;--w:40px;--b:2px;--r:20px;">
@@ -613,7 +614,7 @@ line-height: normal;
 
                   if(code.data){
 
-                      console.log(code.data);
+                      // console.log(code.data);
                       let type = code.data.split('=')[0];
                           type = type.split('?')[1];
 
@@ -839,7 +840,7 @@ line-height: normal;
                             <button id="btn_close_modal" style="padding:10px 30px;" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
                               Cancle
                             </button>
-                            <button type="button" class="btn btn-submit" style="padding:10px 30px;" data-dismiss="modal"  mt-4" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
+                            <button type="button" class="btn btn-submit" style="padding:10px 40px;" data-dismiss="modal"  mt-4" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
                             Join
                             </button>
                           </div>
@@ -852,26 +853,30 @@ line-height: normal;
                       document.querySelector('#modal_footer').classList.remove('d-none');
 
                       document.querySelector('#btn_modal_check_activity').click();
-                      check_long_text();
+                      setTimeout(() => {
+                        check_long_text();
+                      }, 1000);
                     }
               });
 
         }
 
     }
-    function check_long_text(params) {
-      let textElement = document.querySelector('.text-2-lines');
-      let readMoreButton = document.getElementById('readMoreButton');
 
+    function check_long_text() {
+
+      let textElement = document.querySelector('.detail-event-2-line');
+      let readMoreButton = document.querySelector('#readMoreButton');
+
+      // เช็คความยาวของข้อความ
       if (textElement.scrollHeight > textElement.clientHeight) {
-        readMoreButton.style.display = 'block';
+        // ถ้ายาวเกิน 2 บรรทัดให้แสดงปุ่ม "ดูเพิ่มเติม"
+        readMoreButton.style.display = 'inline-block';
+      } else {
+        // ถ้าไม่ยาวเกิน 2 บรรทัดให้ซ่อนปุ่ม "ดูเพิ่มเติม"
+        readMoreButton.style.display = 'none';
       }
 
-      readMoreButton.addEventListener('click', function() {
-        textElement.style.webkitLineClamp = 'initial';
-        textElement.style.overflow = 'visible';
-        this.style.display = 'none';
-      });
     }
     function cf_Activities(user_id , name_Activities){
 
