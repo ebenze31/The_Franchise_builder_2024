@@ -33,7 +33,7 @@
                 </label>
                 <select name="for" id="for" class="form-select">
                     <option selected value="all">ทั้งหมด</option>
-                    <option value="Team-Ready">ยืนยันการสร้างบ้านแล้ว</option>
+                    <option value="Team-Ready">Team complete</option>
                 </select>
             </div>
             
