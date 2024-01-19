@@ -481,7 +481,6 @@ line-height: normal;
     const context = canvas.getContext('2d');
 
     function start_scanQRCode() {
-      setTimeout(() => {
         navigator.mediaDevices.getUserMedia({
             video: {
               facingMode: 'environment'
@@ -497,13 +496,12 @@ line-height: normal;
             }
             catch(err) {
               setTimeout(() => {
-                check_long_text();
+                start_scanQRCode();
               }, 1000);
             }
 
             scanQRCode();
         });
-      }, 1000);
     }
 
     function scanQRCode() {
@@ -562,8 +560,12 @@ line-height: normal;
                 }
             }else{
                 // console.log('สแกนใหม่');
-                start_scanQRCode();
+                setTimeout(() => {
+                  start_scanQRCode();
+                }, 1000);
             }
+
+            return;
         }else{
 
         }
@@ -666,7 +668,9 @@ line-height: normal;
                     }else{
                         // console.log('สแกนใหม่');
                         alert('ไม่พบ QR Code');
-                        start_scanQRCode();
+                        setTimeout(() => {
+                          start_scanQRCode();
+                        }, 1000);
                     }
                 }else{
                     alert('ไม่พบ QR Code');
@@ -905,7 +909,9 @@ line-height: normal;
                     document.querySelector('#modalSuccess_name_activity').innerHTML = text_show ;
                     // modal success
                     document.querySelector('#btnmodalSuccess').click();
-                    start_scanQRCode();
+                    setTimeout(() => {
+                      start_scanQRCode();
+                    }, 1000);
                 }
         });
     }
@@ -933,7 +939,9 @@ line-height: normal;
                 document.querySelector('#modalSuccess_name_activity').innerHTML = "รับเสื้อ" ;
                 // modal success
                 document.querySelector('#btnmodalSuccess').click();
-                start_scanQRCode();
+                setTimeout(() => {
+                  start_scanQRCode();
+                }, 1000);
         });
     }
 </script>
