@@ -333,6 +333,7 @@
                         <th class="text-center">Phone</th>
                         <th class="text-center">Time joined</th>
                         <th class="text-center">Team</th>
+                        <th class="text-center">Team Host</th>
                         <th class="text-center">Shirt Size</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">QR-code</th>
@@ -549,6 +550,9 @@
                                 <td id="td_team_of_`+result[i].id+`" class="text-center">
                                     `+text_group_id+`
                                 </td>
+                                <td id="td_team_host_`+result[i].id+`" class="text-center">
+                                    
+                                </td>
                                 <td id="td_shirt_size_of_`+result[i].id+`" class="text-center" style="font-size:13px;">
                                      `+text_shirt_size+`
                                 </td>
@@ -596,7 +600,7 @@
 
     function check_Team_and_Shirt_Size(arr_member){
 
-        // console.log('check_Team_and_Shirt_Size');
+        console.log('check_Team_and_Shirt_Size');
 
         fetch("{{ url('/') }}/api/check_Team_and_Shirt_Size", {
             method: 'post',
@@ -623,6 +627,12 @@
                             text_group_id = result[i].group_id ;
                         }
 
+                        let text_group_host = '-' ;
+                        if(result[i].user_host_name){
+                            text_group_host = result[i].user_host_name + " ("+result[i].user_host_account+")" ;
+                        }
+
+                        document.querySelector('#td_team_host_'+result[i].id).innerHTML = text_group_host;
                         document.querySelector('#td_team_of_'+result[i].id).innerHTML = text_group_id;
                         document.querySelector('#td_shirt_size_of_'+result[i].id).innerHTML = text_shirt_size;
                     }

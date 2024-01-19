@@ -338,10 +338,19 @@ class ProfileController extends Controller
 
         $arr_member = isset($requestData['arr_member']) ? $requestData['arr_member'] : [];
 
-        $data = User::where('role', "Player")
-            ->whereIn('id', $arr_member)
-            ->orderBy('time_cf_pay_slip', 'ASC')
-            ->get();
+        // $data = User::where('role', "Player")
+        //     ->whereIn('id', $arr_member)
+        //     ->orderBy('time_cf_pay_slip', 'ASC')
+        //     ->get();
+
+        $data = DB::table('groups')
+                ->join('users', 'users.group_id', '=', 'groups.id')
+                ->leftjoin('users as user_host', 'user_host.id', '=', 'groups.host')
+                ->select('users.*' , 'groups.host as host' , 'user_host.name as user_host_name' , 'user_host.account as user_host_account' )
+                ->where('users.role', "Player")
+                ->whereIn('users.id', $arr_member)
+                ->orderBy('users.time_cf_pay_slip', 'ASC')
+                ->get();
 
         return $data ;
 
