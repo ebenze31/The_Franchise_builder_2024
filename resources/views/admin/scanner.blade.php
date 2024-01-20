@@ -760,8 +760,6 @@
 
                 if(result){
                     document.querySelector('#btn_close_modal').click();
-
-                    document.querySelector('#modalSuccess_name_activity').innerHTML = text_show ;
                     // modal success
                     document.querySelector('#btnmodalSuccess').click();
                     start_scanQRCode();

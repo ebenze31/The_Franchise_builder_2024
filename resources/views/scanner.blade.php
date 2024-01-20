@@ -221,7 +221,7 @@ line-height: normal;
 <!-- Modal -->
 <div class="modal fade" id="modal_check_activity" tabindex="-1" aria-labelledby="Label_modal_check_activity" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content py-3 mx-4">
+        <div class="modal-content py-3 mx-5">
             <div class="modal-body">
                 <div class="row">
                     <div id="content_modal_check_activity" class="col-12 text-center">
@@ -851,9 +851,6 @@ line-height: normal;
                       document.querySelector('#modal_footer').classList.remove('d-none');
 
                       document.querySelector('#btn_modal_check_activity').click();
-                      setTimeout(() => {
-                        check_long_text();
-                      }, 1000);
                     }
               });
 
@@ -876,8 +873,6 @@ line-height: normal;
 
                 if(result){
                     document.querySelector('#btn_close_modal').click();
-
-                    document.querySelector('#modalSuccess_name_activity').innerHTML = text_show ;
                     // modal success
                     document.querySelector('#btnmodalSuccess').click();
                     setTimeout(() => {
@@ -906,8 +901,6 @@ line-height: normal;
                 // console.log(result);
                 // console.log(result);
                 document.querySelector('#btn_close_modal').click();
-                  
-                document.querySelector('#modalSuccess_name_activity').innerHTML = "รับเสื้อ" ;
                 // modal success
                 document.querySelector('#btnmodalSuccess').click();
                 setTimeout(() => {
