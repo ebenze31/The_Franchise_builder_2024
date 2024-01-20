@@ -201,8 +201,7 @@
         width: auto;
         font-size: 16px;
         padding: 5px 15px;
-
-        background-color: #FF3838;
+        background-color: #686666;
         color: #fff;
       }
 
@@ -620,22 +619,31 @@
                 //     <h4 class="mt-3 text-danger">คุณ (`+name_user+`) ได้เข้าร่วมกิจกรรมนี้เเล้ว !</h4>
                 // `;
 
+                // <div class="text-center">
+                //         <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
+                //         <p class="m-0" style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">`+nameActivity+`</p>
+                //         <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
+                //     </div>
+
                 let nameActivity = document.querySelector('#name_Activity').value ;
 
                 let html_modal = `
                     <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
-                        <img src="{{ url('/img/icon/warn.png') }}" style="height: 120px;flex-shrink: 0;">
+                        <img src="{{ url('/img/icon/happiness.png') }}" style="height: 120px;flex-shrink: 0;">
                     </div>
                     <div class="text-center">
-                        <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
-                        <p class="m-0" style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">`+nameActivity+`</p>
-                        <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
-
+                        <p class=" mb-1 mt-4 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
+                        <p style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">`+nameActivity+`</p>
+                        <p class=" mb-1 mt-2 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
                     </div>
                 `;
 
                 let html_footer = `
-                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-submit" data-dismiss="modal" onclick="start_scanQRCode();">
+                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
+                        Close
+                    </button>
+
+                    <button id="btn_close_modal" type="button" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
                         Close
                     </button>
                 `;
@@ -656,21 +664,22 @@
 
                 let html_modal = `
                     <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
-                      <img src="{{ url('/img/icon/risk.png') }}" style="width: 90px;height: 90px;flex-shrink: 0;">
+                      <img src="{{ url('/img/icon/sed.png') }}" style="width: 90px;height: 90px;flex-shrink: 0;">
                     </div>
                     <div class="text-center">
-
-                      <p class="text-team-10-staff m-0">ขออภัย !</p>
-                      <p class="text-team-10-staff">คุณ <span id="" style="color: #128DFF;">`+name_user+`</span></p>
-                      <p class="mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">
+                        <p class="m-2" style="color: #FF3838;text-align: center;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">
+                            ขออภัย `+"{{ Auth::user()->name }}"+`  
+                        </p>
+                        <p class="text-team-10-staff">คุณ <span id="" style="color: #128DFF;">`+name_user+`</span></p>
+                        <p class="mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">
                         กิจกรรมนี้สงวนสิทธิ์เฉพาะผู้เล่นที่อยู่ใน <br>
                         ทีมที่มีสมาชิกครบ 10 คนแล้่วเท่านั้น
-                      </p>
+                        </p>
                     </div>
                 `;
 
                 let html_footer = `
-                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-submit" data-dismiss="modal" onclick="start_scanQRCode();">
+                    <button id="btn_close_modal" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
                         Close
                     </button>
                 `;
@@ -721,11 +730,11 @@
 
                                 let html_footer = `
                                     <div class="d-flex justify-content-evenly mb-2">
+                                        <button type="button" class="btn btn-submit" style="padding: 5px 15px;" data-dismiss="modal"  onclick="cf_Activities('`+result.id+`' , '`+type+`')">
+                                        Confirm
+                                        </button>
                                         <button id="btn_close_modal" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
                                             Cancle
-                                        </button>
-                                        <button type="button" class="btn btn-submit" onclick="cf_Activities('`+result.id+`' , '`+type+`')">
-                                            Join
                                         </button>
                                     </div>
                                 `;

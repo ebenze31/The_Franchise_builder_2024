@@ -143,8 +143,7 @@
     font-size: 16px;
     margin-top: 15px;
     padding: 5px 15px;
-
-    background-color: #FF3838;
+    background-color: #686666;
     color: #fff;
   }
   .btn-submit:hover {
@@ -368,7 +367,38 @@ line-height: normal;
   </div>
 </div>
 
+<!-- Button join event -->
+<button id="btn_modal_join_event" type="button" class="btn btn-primary d-nsone" data-toggle="modal" data-target="#modal_join_event">
+  <!-- Button join event -->
+  เข้าร่วม
+</button>
 
+<!-- modal join event -->
+<div class="modal fade" id="modal_join_event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-border modal-success mx-5" style="border-radius: 10px;">
+      <div class="modal-body px-4 ">
+        <div class="text-center">
+          <p class=" mb-1 mt-2 text-center" style="color: #071027;text-align: center;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">
+          ยืนยันการเข้าร่วมกิจกรรม
+          </p>
+          <p class="text-center mb-2" style="color: #128DFF;text-align: center;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;">{spvp}</p>
+        </div>
+        <div class="d-flex justify-content-center text-center">
+          <img src="{{ url('/img/icon/asvp.png') }}" style="width: 120px;height: 120px;flex-shrink: 0;">
+        </div>
+        <div class="d-flex justify-content-evenly mb-2">
+          <button type="button" class="btn btn-submit" style="padding: 5px 15px;" data-dismiss="modal">
+            Confirm
+          </button>
+          <button type="button" class="btn btn-cancle"  data-dismiss="modal">
+            Cancle
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 
 <script>
@@ -750,17 +780,17 @@ line-height: normal;
 
             let html_modal = `
                 <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
-                    <img src="{{ url('/img/icon/warn.png') }}" style="height: 120px;flex-shrink: 0;">
+                    <img src="{{ url('/img/icon/happiness.png') }}" style="height: 120px;flex-shrink: 0;">
                 </div>
                 <div class="text-center">
-                    <p class=" mb-1 mt-4 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
+                    <p class=" mb-1 mt-4 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
                     <p style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">`+name_for_joined+`</p>
-                    <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
+                    <p class=" mb-1 mt-2 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
                 </div>
             `;
 
             let html_footer = `
-                <button style="padding:10px 30px;" id="btn_close_modal" type="button" class="btn btn-submit" data-dismiss="modal" onclick="start_scanQRCode();">
+                <button id="btn_close_modal" type="button" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
                     Close
                 </button>
             `;
@@ -781,17 +811,17 @@ line-height: normal;
 
             let html_modal = `
                 <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
-                  <img src="{{ url('/img/icon/cry.png') }}" style="width: 90px;height: 90px;flex-shrink: 0;">
+                  <img src="{{ url('/img/icon/sed.png') }}" style="width: 90px;height: 90px;flex-shrink: 0;">
                 </div>
-                <p class="m-2" style="color: #128DFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">
-                  ขออภัย !  
+                <p class="m-2" style="color: #FF3838;text-align: center;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">
+                  ขออภัย `+"{{ Auth::user()->name }}"+`  
                 </p>
                 <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">
                   กิจกรรมนี้สงวนสิทธิ์เฉพาะผู้เล่นที่อยู่ใน <br>
                   ทีมที่มีสมาชิกครบ 10 คนแล้่วเท่านั้น
                 </p>
                 <div class="d-flex justify-content-evenly mb-2">
-                  <button type="button" class="btn btn-submit" style="padding:10px 30px;"  data-dismiss="modal" onclick="start_scanQRCode();">
+                  <button type="button" class="btn btn-cancle"  data-dismiss="modal" onclick="start_scanQRCode();">
                     Close
                   </button>
                 </div>
@@ -840,19 +870,16 @@ line-height: normal;
                           ยืนยันการเข้าร่วม
                           </p>
                           <p class="text-center mb-2" style="color: #128DFF;">`+type+`</p>
-                          <p class="detail-event-2-line" id="detail-event">`+result.detail+`</p>
-
-                          <a class="see_more" id="readMoreButton" onclick="document.querySelector('#detail-event').classList.toggle('detail-event-2-line'); document.querySelector('#detail-event').classList.toggle('detail-event-more');">ดูรายละเอียดเพิ่มเติม</a>
                         </div>
                       `;
 
                       let html_footer = `
                           <div class="d-flex justify-content-evenly mb-2">
-                            <button id="btn_close_modal" style="padding:10px 30px;" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
-                              Cancle
+                            <button type="button" class="btn btn-submit" style="padding: 5px 15px;" data-dismiss="modal"   onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
+                            Confirm
                             </button>
-                            <button type="button" class="btn btn-submit" style="padding:10px 40px;" data-dismiss="modal"  mt-4" onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
-                            Join
+                            <button id="btn_close_modal" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
+                              Cancle
                             </button>
                           </div>
                       `;
@@ -871,22 +898,6 @@ line-height: normal;
               });
 
         }
-
-    }
-
-    function check_long_text() {
-
-      let textElement = document.querySelector('.detail-event-2-line');
-      let readMoreButton = document.querySelector('#readMoreButton');
-
-      // เช็คความยาวของข้อความ
-      if (textElement.scrollHeight > textElement.clientHeight) {
-        // ถ้ายาวเกิน 2 บรรทัดให้แสดงปุ่ม "ดูเพิ่มเติม"
-        readMoreButton.style.display = 'inline-block';
-      } else {
-        // ถ้าไม่ยาวเกิน 2 บรรทัดให้ซ่อนปุ่ม "ดูเพิ่มเติม"
-        readMoreButton.style.display = 'none';
-      }
 
     }
     function cf_Activities(user_id , name_Activities){
