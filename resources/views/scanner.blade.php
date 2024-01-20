@@ -779,7 +779,7 @@ line-height: normal;
 
             let html_modal = `
                 <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
-                  <img src="{{ url('/img/icon/sed.png') }}" style="width: 90px;height: 90px;flex-shrink: 0;">
+                  <img src="{{ url('/img/icon/sad.png') }}" style="width: 90px;height: 90px;flex-shrink: 0;">
                 </div>
                 <p class="m-2" style="color: #FF3838;text-align: center;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">
                   ขออภัย `+"{{ Auth::user()->name }}"+`  
