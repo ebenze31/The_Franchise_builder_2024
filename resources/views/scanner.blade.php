@@ -243,22 +243,14 @@ line-height: normal;
 
 <!-- Modal -->
 <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content mx-4">
-      <div class="modal-body">
-          <div class="d-flex justify-content-center " style="margin-bottom: 33px;">
-            <img src="{{ url('/img/icon/happiness.png') }}" style="width: 112px;height:112px;flex-shrink: 0;">
-          </div>
-          <div class="text-center">
-            <p class=" mb-1 mt-2 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้ยืนยันการเข้าร่วมกิจกรรม</p>
-            <p id="modalSuccess_name_activity" style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;"></p>
-            <p class=" mb-1 mt-2 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
-          </div>
-          <div class="d-flex justify-content-evenly mb-2">
-            <button type="button" class="btn btn-cancle" style="padding: 5px 25px;"  data-dismiss="modal">
-              Close
-            </button>
-          </div>
+  <div class="modal-dialog modal-dialog-centered mx-5" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-5">
+            <center>
+                <img src="{{ url('/img/icon/success.png') }}" alt="" width="87" height="87">
+                <h6 class="" style="font-weight: bolder;margin:30px 0 30px 0 ">ยืนยันการเข้าร่วมกิจกรรมสำเร็จ !</h6>
+                <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal">Close</button>
+            </center>
       </div>
     </div>
   </div>
