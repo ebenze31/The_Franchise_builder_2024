@@ -138,11 +138,13 @@
     color: #fff;
   }
   .btn-cancle {
+
     border-radius: 5px;
     width: auto;
     font-size: 16px;
-    margin-top: 5px;
-    padding: 5px 15px;
+    margin-top: 15px;
+    padding: 10px 40px;
+
     background-color: #686666;
     color: #fff;
   }
@@ -834,14 +836,14 @@ line-height: normal;
                       `;
 
                       let html_footer = `
-                          <div class="d-flex justify-content-evenly mb-2">
-                            <button type="button" style="width: 112px;" class="btn btn-submit" style="padding: 5px 15px;" data-dismiss="modal"   onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
+                      <div class="d-flex justify-content-evenly mb-2">
+                          <button type="button" style="width: 112px;"  class="btn btn-submit d-flex justify-content-center" style="padding: 5px 15px;" data-dismiss="modal"  onclick="cf_Activities('`+result.id+`' , '`+type+`')">
                             Confirm
-                            </button>
-                            <button id="btn_close_modal" style="width: 112px;" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
-                              Cancle
-                            </button>
-                          </div>
+                          </button>
+                          <button id="btn_close_modal" style="width: 112px; " type="button" class="btn btn-cancle d-flex justify-content-center align-items-center" data-dismiss="modal" onclick="start_scanQRCode();">
+                          Back
+                          </button>
+                      </div>
                       `;
 
                       
