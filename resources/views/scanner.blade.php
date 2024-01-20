@@ -141,7 +141,7 @@
     border-radius: 5px;
     width: auto;
     font-size: 16px;
-    margin-top: 15px;
+    margin-top: 5px;
     padding: 5px 15px;
     background-color: #686666;
     color: #fff;
@@ -248,7 +248,7 @@ line-height: normal;
       <div class="modal-body p-5">
             <center>
                 <img src="{{ url('/img/icon/success.png') }}" alt="" width="87" height="87">
-                <h6 class="" style="font-weight: bolder;margin:30px 0 30px 0 ">ยืนยันการเข้าร่วมกิจกรรมสำเร็จ !</h6>
+                <h6 class="" style="font-weight: bolder;margin:30px 0 10px 0 ">ยืนยันการเข้าร่วมกิจกรรมสำเร็จ !</h6>
                 <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal">Close</button>
             </center>
       </div>
@@ -745,7 +745,7 @@ line-height: normal;
                 <div class="text-center">
                     <p class=" mb-1 mt-4 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
                     <p style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">`+name_for_joined+`</p>
-                    <p class=" mb-1 mt-2 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
+                    <p class="mt-2 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
                 </div>
             `;
 
@@ -829,16 +829,16 @@ line-height: normal;
                           <p class=" mb-1 mt-4 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">
                           ยืนยันการเข้าร่วม
                           </p>
-                          <p class="text-center mb-2" style="color: #128DFF;">`+type+`</p>
+                          <p class="text-center mb-0" style="color: #128DFF;">`+type+`</p>
                         </div>
                       `;
 
                       let html_footer = `
                           <div class="d-flex justify-content-evenly mb-2">
-                            <button type="button" class="btn btn-submit" style="padding: 5px 15px;" data-dismiss="modal"   onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
+                            <button type="button" style="width: 112px;" class="btn btn-submit" style="padding: 5px 15px;" data-dismiss="modal"   onclick="cf_Activities('`+"{{ Auth::user()->id }}"+`' , '`+type+`')">
                             Confirm
                             </button>
-                            <button id="btn_close_modal" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
+                            <button id="btn_close_modal" style="width: 112px;" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
                               Cancle
                             </button>
                           </div>
