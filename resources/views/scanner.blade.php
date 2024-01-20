@@ -367,38 +367,6 @@ line-height: normal;
   </div>
 </div>
 
-<!-- Button join event -->
-<button id="btn_modal_join_event" type="button" class="btn btn-primary d-nsone" data-toggle="modal" data-target="#modal_join_event">
-  <!-- Button join event -->
-  เข้าร่วม
-</button>
-
-<!-- modal join event -->
-<div class="modal fade" id="modal_join_event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content modal-border modal-success mx-5" style="border-radius: 10px;">
-      <div class="modal-body px-4 ">
-        <div class="text-center">
-          <p class=" mb-1 mt-2 text-center" style="color: #071027;text-align: center;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">
-          ยืนยันการเข้าร่วมกิจกรรม
-          </p>
-          <p class="text-center mb-2" style="color: #128DFF;text-align: center;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;">{spvp}</p>
-        </div>
-        <div class="d-flex justify-content-center text-center">
-          <img src="{{ url('/img/icon/asvp.png') }}" style="width: 120px;height: 120px;flex-shrink: 0;">
-        </div>
-        <div class="d-flex justify-content-evenly mb-2">
-          <button type="button" class="btn btn-submit" style="padding: 5px 15px;" data-dismiss="modal">
-            Confirm
-          </button>
-          <button type="button" class="btn btn-cancle"  data-dismiss="modal">
-            Cancle
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
 
 <script>
