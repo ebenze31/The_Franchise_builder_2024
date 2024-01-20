@@ -713,7 +713,7 @@
                                       <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">
                                       ยืนยันการเข้าร่วม
                                       </p>
-                                      <p class="text-center mb-2" style="color: #128DFF;">`+type+`</p>
+                                      <p class="text-center mb-1" style="color: #128DFF;">`+type+`</p>
                                       <p class="detail-event-2-line m-0" id="detail-event">`+data_activity.detail+`</p>
 
                                       <a class="see_more" onclick="document.querySelector('#detail-event').classList.toggle('detail-event-2-line'); document.querySelector('#detail-event').classList.toggle('detail-event-more');">ดูรายละเอียดเพิ่มเติม</a>
