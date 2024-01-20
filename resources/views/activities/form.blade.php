@@ -35,9 +35,9 @@
                     $selected_all = "";
                     $selected_ready = "";
                     if(!empty($activity->for)){
-                        if($activity->for == "all"){
+                        if($activity->for == "all" || $activity->for == null){
                             $selected_all = "selected";
-                        }else{
+                        }elseif($activity->for == "Team-Ready"){
                             $selected_ready = "selected";
                         }
                     }else{
