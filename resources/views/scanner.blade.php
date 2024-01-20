@@ -247,15 +247,16 @@ line-height: normal;
     <div class="modal-content mx-4">
       <div class="modal-body">
           <div class="d-flex justify-content-center " style="margin-bottom: 33px;">
-            <img src="{{ url('/img/icon/join_success.png') }}" style="width: 113px;height: 84px;flex-shrink: 0;">
+            <img src="{{ url('/img/icon/happiness.png') }}" style="width: 112px;height:112px;flex-shrink: 0;">
           </div>
           <div class="text-center">
-            <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้ยืนยันการเข้าร่วมกิจกรรม</p>
+            <p class=" mb-1 mt-2 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้ยืนยันการเข้าร่วมกิจกรรม</p>
             <p id="modalSuccess_name_activity" style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;"></p>
-            <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
+            <p class=" mb-1 mt-2 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
           </div>
+
           <div class="d-flex justify-content-evenly mb-2">
-            <button type="button" class="btn btn-submit" style="padding: 5px 25px;"  data-dismiss="modal">
+            <button type="button" class="btn btn-cancle" style="padding: 5px 25px;"  data-dismiss="modal">
               Close
             </button>
           </div>
@@ -748,17 +749,17 @@ line-height: normal;
 
             let html_modal = `
                 <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
-                    <img src="{{ url('/img/icon/happiness.png') }}" style="height: 120px;flex-shrink: 0;">
+                    <img src="{{ url('/img/icon/warn.png') }}" style="height: 120px;flex-shrink: 0;">
                 </div>
                 <div class="text-center">
-                    <p class=" mb-1 mt-4 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
+                    <p class=" mb-1 mt-4 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
                     <p style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">`+name_for_joined+`</p>
-                    <p class=" mb-1 mt-2 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
+                    <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
                 </div>
             `;
 
             let html_footer = `
-                <button id="btn_close_modal" type="button" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
+                <button style="padding:10px 30px;" id="btn_close_modal" type="button" class="btn btn-submit" data-dismiss="modal" onclick="start_scanQRCode();">
                     Close
                 </button>
             `;
