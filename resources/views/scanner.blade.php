@@ -838,10 +838,10 @@ line-height: normal;
 
                       let html_footer = `
                       <div class="d-flex justify-content-evenly mb-2">
-                        <button type="button" style="width:80px;padding: 10px;"  class="btn btn-submit d-flex justify-content-center"  data-dismiss="modal"  onclick="cf_Activities('`+result.id+`' , '`+type+`')">
+                        <button type="button" style="width:90px;padding: 10px;"  class="btn btn-submit d-flex justify-content-center"  data-dismiss="modal"  onclick="cf_Activities('`+result.id+`' , '`+type+`')">
                             Confirm
                           </button>
-                          <button id="btn_close_modal" style="width:80px;padding: 10px; " type="button" class="btn btn-cancle d-flex justify-content-center align-items-center" data-dismiss="modal" onclick="start_scanQRCode();">
+                          <button id="btn_close_modal" style="width:90px;padding: 10px; " type="button" class="btn btn-cancle d-flex justify-content-center align-items-center" data-dismiss="modal" onclick="start_scanQRCode();">
                           Back
                           </button>
                       </div>
