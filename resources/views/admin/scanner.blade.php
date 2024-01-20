@@ -342,7 +342,7 @@
       <div class="modal-body p-5">
             <center>
                 <img src="{{ url('/img/icon/success.png') }}" alt="" width="87" height="87">
-                <h6 class="" style="font-weight: bolder;margin:50px 0 50px 0 ">ยืนยันการเข้าร่วมกิจกรรมสำเร็จ !</h6>
+                <h6 class="" style="font-weight: bolder;margin:50px 0 10px 0 ">ยืนยันการเข้าร่วมกิจกรรมสำเร็จ !</h6>
                 <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal">Close</button>
             </center>
       </div>
@@ -626,7 +626,7 @@
                     <div class="text-center">
                         <p class=" mb-1 mt-4 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">คุณได้เข้าร่วมกิจกรรม</p>
                         <p style="color: #128DFF;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">`+nameActivity+`</p>
-                        <p class=" mb-1 mt-2 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
+                        <p class=" mb-0 mt-2 text-center" style="color: #FF3838;font-size: 14px;font-style: normal;font-weight: bold;line-height: normal;">เรียบร้อยแล้ว!</p>
                     </div>
                 `;
 
@@ -722,10 +722,10 @@
 
                                 let html_footer = `
                                     <div class="d-flex justify-content-evenly mb-2">
-                                        <button type="button" class="btn btn-submit" style="padding: 5px 15px;" data-dismiss="modal"  onclick="cf_Activities('`+result.id+`' , '`+type+`')">
+                                        <button type="button"  style="width: 112px;" class="btn btn-submit" style="padding: 5px 15px;" data-dismiss="modal"  onclick="cf_Activities('`+result.id+`' , '`+type+`')">
                                         Confirm
                                         </button>
-                                        <button id="btn_close_modal" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
+                                        <button id="btn_close_modal"  style="width: 112px;" type="button padding-btn" class="btn btn-cancle" data-dismiss="modal" onclick="start_scanQRCode();">
                                             Cancle
                                         </button>
                                     </div>
