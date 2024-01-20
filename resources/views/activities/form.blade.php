@@ -31,9 +31,22 @@
                 <label for="for" class="form-label">
                     สำหรับ
                 </label>
+                @php
+                    $selected_all = "";
+                    $selected_ready = "";
+                    if(!empty($activity->for)){
+                        if($activity->for == "all"){
+                            $selected_all = "selected";
+                        }else{
+                            $selected_ready = "selected";
+                        }
+                    }else{
+                        $selected_all = "selected";
+                    }
+                @endphp
                 <select name="for" id="for" class="form-select">
-                    <option selected value="all">ทั้งหมด</option>
-                    <option value="Team-Ready">Team complete</option>
+                    <option value="all" {{$selected_all}} >ทั้งหมด</option>
+                    <option value="Team-Ready" {{$selected_ready}}>Team complete</option>
                 </select>
             </div>
             
