@@ -625,8 +625,9 @@
                         let text_group_id = '-' ;
                         let text_group_host = '-' ;
 
-                        if(result[i].group_status !== "กำลังขอเข้าร่วมบ้าน" || result[i].group_status !== "Host Reject"){
-
+                        if(result[i].group_status == "กำลังขอเข้าร่วมบ้าน" || result[i].group_status == "Host Reject"){
+                            // 
+                        }else{
                             if(result[i].group_id){
                                 text_group_id = result[i].group_id ;
                             }
