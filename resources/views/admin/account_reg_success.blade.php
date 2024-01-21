@@ -611,7 +611,7 @@
         }).then(function (response){
             return response.json();
         }).then(function(result){
-            // console.log(result);
+            console.log(result);
 
             setTimeout(() => {
                 if(result){
@@ -623,14 +623,19 @@
                         }
 
                         let text_group_id = '-' ;
-                        if(result[i].group_id){
-                            text_group_id = result[i].group_id ;
+                        let text_group_host = '-' ;
+
+                        if(result[i].group_status !== "กำลังขอเข้าร่วมบ้าน" || result[i].group_status !== "Host Reject"){
+
+                            if(result[i].group_id){
+                                text_group_id = result[i].group_id ;
+                            }
+
+                            if(result[i].user_host_name){
+                                text_group_host = result[i].user_host_name + " ("+result[i].user_host_account+")" ;
+                            }
                         }
 
-                        let text_group_host = '-' ;
-                        if(result[i].user_host_name){
-                            text_group_host = result[i].user_host_name + " ("+result[i].user_host_account+")" ;
-                        }
 
                         document.querySelector('#td_team_host_'+result[i].id).innerHTML = text_group_host;
                         document.querySelector('#td_team_of_'+result[i].id).innerHTML = text_group_id;
