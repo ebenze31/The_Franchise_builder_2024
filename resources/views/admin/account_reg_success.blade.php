@@ -600,7 +600,7 @@
 
     function check_Team_and_Shirt_Size(arr_member){
 
-        console.log('check_Team_and_Shirt_Size');
+        // console.log('check_Team_and_Shirt_Size');
 
         fetch("{{ url('/') }}/api/check_Team_and_Shirt_Size", {
             method: 'post',
@@ -611,7 +611,7 @@
         }).then(function (response){
             return response.json();
         }).then(function(result){
-            console.log(result);
+            // console.log(result);
 
             setTimeout(() => {
                 if(result){
