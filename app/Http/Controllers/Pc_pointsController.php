@@ -418,9 +418,9 @@ class Pc_pointsController extends Controller
     function get_pc_point_of_me($user_id){
 
         $data_user = User::where('id' , $user_id)->first();
-
+        
         $check_week = Pc_point::where('week', 'not like', 'old-%')
-            ->orderBy('week', 'desc')
+            ->orderByRaw('CAST(SUBSTRING_INDEX(`week`, "-", -1) AS UNSIGNED) DESC')
             ->first();
 
         $data_arr = [] ;
@@ -433,7 +433,7 @@ class Pc_pointsController extends Controller
                 ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
                 ->where('pc_points.week' , $week)
                 ->where('pc_points.user_id' , $user_id)
-                ->orderBy(DB::raw('CAST(pc_points.week AS SIGNED)'), 'DESC')
+                ->orderBy(DB::raw('CAST(pc_points.rank_of_week AS SIGNED)'), 'ASC')
                 ->get();
 
             $data_group = Group::where('id',$data_user->group_id)->first();
