@@ -580,12 +580,14 @@
 
                         count_div++ ;
 
-                        if(i == 0 || i == 1 || i == 2){
+                        if(result[i].week != "0"){
+                            if(i == 0 || i == 1 || i == 2){
 
-                            let iii = i + 1 ;
-                            document.querySelector('#img_rank_'+iii).setAttribute('src' , "{{ url('storage')}}/"+result[i].user_photo);
-                            document.querySelector('#name_rank_'+iii).innerHTML = result[i].user_name;
-                            document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
+                                let iii = i + 1 ;
+                                document.querySelector('#img_rank_'+iii).setAttribute('src' , "{{ url('storage')}}/"+result[i].user_photo);
+                                document.querySelector('#name_rank_'+iii).innerHTML = result[i].user_name;
+                                document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
+                            }
                         }
 
                     }

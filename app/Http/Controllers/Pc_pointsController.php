@@ -237,12 +237,18 @@ class Pc_pointsController extends Controller
             $update_rank_of_week = '';
             $update_rank_last_week = '';
 
-            if( !empty($data_groups->rank_of_week) ){
-                $update_rank_last_week = $data_groups->rank_of_week;
-                $update_rank_of_week = ($i + 1);
-            }else{
-                $update_rank_last_week = ($i + 1);
-                $update_rank_of_week = ($i + 1);
+            if($check_week == "0"){
+                $update_rank_of_week = 0;
+                $update_rank_last_week = 0;
+            }
+            else{
+                if( !empty($data_groups->rank_of_week) ){
+                    $update_rank_last_week = $data_groups->rank_of_week;
+                    $update_rank_of_week = ($i + 1);
+                }else{
+                    $update_rank_last_week = ($i + 1);
+                    $update_rank_of_week = ($i + 1);
+                }
             }
 
             DB::table('groups')

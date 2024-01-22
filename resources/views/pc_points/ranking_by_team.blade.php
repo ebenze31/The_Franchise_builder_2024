@@ -516,6 +516,7 @@
                 setTimeout(() => {
 
                     let week = result['week'];
+
                     let count_div = 1 ;
 
                     for (let i = 0; i < result['data'].length; i++) {
@@ -635,7 +636,6 @@
 
                         count_div++ ;
 
-
                         // ของตัวเอง
                         if(result['data'][i].id == "{{ Auth::user()->group_id }}"){
 
@@ -701,12 +701,14 @@
 
                         }
 
-                        if(i == 0 || i == 1 || i == 2){
+                        if(week != "0"){
+                            if(i == 0 || i == 1 || i == 2){
 
-                            let iii = i + 1 ;
-                            document.querySelector('#img_rank_'+iii).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
-                            document.querySelector('#name_rank_'+iii).innerHTML = "Team " + result['data'][i].name_group;
-                            document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
+                                let iii = i + 1 ;
+                                document.querySelector('#img_rank_'+iii).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
+                                document.querySelector('#name_rank_'+iii).innerHTML = "Team " + result['data'][i].name_group;
+                                document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
+                            }
                         }
 
                     }
@@ -721,6 +723,9 @@
 
     // สมาชิกในทีมของฉัน
     function create_html_member_in_team(group_id , week){
+
+        // console.log(week);
+        // console.log(typeof week);
 
         fetch("{{ url('/') }}/api/get_member_in_team" + "/" + group_id + "/" + week)
             .then(response => response.json())
@@ -748,11 +753,18 @@
                     // console.log("ปีปัจจุบัน:", currentYear);
                     // console.log("เดือนปัจจุบัน:", currentMonth);
 
-                    let monthlyValue = member_in_team[xz].monthly;
-                    let monthly_formatted = monthlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                    let monthlyValue = 0 ;
+                    let monthly_formatted = 0 ;
+                    let yearlyValue = 0 ;
+                    let yearly_formatted = 0 ;
 
-                    let yearlyValue = member_in_team[xz].yearly;
-                    let yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                    if(week != "0"){
+                        let monthlyValue = member_in_team[xz].monthly;
+                        let monthly_formatted = monthlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+
+                        let yearlyValue = member_in_team[xz].yearly;
+                        let yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                    }
 
                     let icon_me = ``;
                     if(member_in_team[xz].user_id == "{{ Auth::user()->id }}"){
@@ -791,6 +803,8 @@
     // สมาชิกในทีมของทุกทีม
     function create_html_all_member(group_id , week){
 
+        // console.log(week);
+        // console.log(typeof week);
         fetch("{{ url('/') }}/api/get_member_in_team" + "/" + group_id + "/" + week)
             .then(response => response.json())
             .then(member_in_team => {
@@ -817,11 +831,18 @@
                     // console.log("ปีปัจจุบัน:", currentYear);
                     // console.log("เดือนปัจจุบัน:", currentMonth);
 
-                    let monthlyValue = member_in_team[xz].monthly;
-                    let monthly_formatted = monthlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                    let monthlyValue = 0 ;
+                    let monthly_formatted = 0 ;
+                    let yearlyValue = 0 ;
+                    let yearly_formatted = 0 ;
 
-                    let yearlyValue = member_in_team[xz].yearly;
-                    let yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                    if(week != "0"){
+                        monthlyValue = member_in_team[xz].monthly;
+                        monthly_formatted = monthlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+
+                        yearlyValue = member_in_team[xz].yearly;
+                        yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                    }
 
                     let html_tbody_content_ME = `
                         <tr>
