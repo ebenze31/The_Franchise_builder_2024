@@ -133,25 +133,66 @@ line-height: normal;
     }#navbar-botttom{
         display: none;
     }
+
+    .btn-logout {
+        color: rgb(244, 244, 244, .7);
+        border: 1px solid rgb(244, 244, 244, .7);
+        -webkit-border-radius: 50px;    
+        border-radius: 50px; 
+        -moz-border-radius:50px;
+        -khtml-border-radius:50px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-logout i {
+        font-size: 15px;
+        margin-top: -12px;
+    }
 </style>
+
+@php
+    
+    $activeGroupsCount = App\Models\Group::where('active', 'Yes')->where('status' , 'ยืนยันเรียบร้อย')->count();
+    $menu_row = ceil($activeGroupsCount / 20) ;
+    $start = 1 ;
+    $end = 20 ;
+
+@endphp
 
 <div class="nav-menu" id="div_menu_view">
     <div class="btn-group owl-carousel carousel_all_team owl-theme" role="group" aria-label="First group">
+        @for ($i=1; $i <= $menu_row; $i++) @if($i==$menu_row) 
             <div class="item text-center">
-                <button btn="menu_view"  type="button" class="btn btn-sort-group text-center mt-1" >
-                    ลำดับที่ 1 - 20
+                <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeGroupsCount }}" type="button" class="btn btn-sort-group text-center mt-1" onclick="change_menu_view('{{ $start }}-{{ $activeGroupsCount }}');">
+                   ลำดับที่ {{ $start }} - {{ $activeGroupsCount }}
                 </button>
             </div>
+            @else
             <div class="item text-center">
-                <button btn="menu_view" type="button" class="btn btn-sort-group text-center mt-1" >
-                ลำดับที่ 21 - 40
+                <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-sort-group text-center mt-1" onclick="change_menu_view('{{ $start }}-{{ $end }}');">
+                ลำดับที่ {{ $start }} - {{ $end }}
                 </button>
             </div>
+            @endif
+            @php
+            $start = $start + 20 ;
+            $end = $end + 20 ;
+            @endphp
+        @endfor
     </div>
     <div class="owl-carousel__prev"><i class="fa-solid fa-caret-right fa-rotate-180"></i></div>
     <div class="owl-carousel__next"><i class="fa-solid fa-caret-right"></i></div>
 </div>
 
+@php
+    $data_user = Auth::user() ;
+    $My_group_id = $data_user->group_id ;
+    $MyGroup = App\Models\Group::where('id', $My_group_id)->first();
+@endphp
+
+@if(!empty($My_group_id))
 <div class="container">
     <p class="text-header-team">
         My team
@@ -162,24 +203,29 @@ line-height: normal;
     <div class="">
         <div class="row">
 
-            <div id="MyTeam_{{ Auth::user()->group_id }}" class="col-4 mt-0 mb-2 p-0" >
-                <div class="item-team" style="width: 100%;height: auto;">
-                    <div>
-                        <img src="{{ url('/img/group_profile') . '/success/id (1).png' }}" style="width: 100%;">
+            @if($MyGroup->status == "ยืนยันเรียบร้อย")
+                <div class="col-4 mt-0 mb-2 p-0" >
+                    <div class="item-team" style="width: 100%;height: auto;">
+                        <div>
+                            <img src="{{ url('/img/group_profile') . '/success/id ('.$MyGroup->id.').png' }}" style="width: 100%;">
+                        </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="col-4 mt-0 mb-2 p-0" >
+                    <div class="item-team" style="width: 100%;height: auto;">
+                        <div>
+                            <img class="not_qualified" src="{{ url('/img/group_profile') . '/success/id ('.$MyGroup->id.').png' }}" style="width: 100%;">
+                        </div>
+                    </div>
+                </div>
+            @endif
 
-            <div id="MyTeam_{{ Auth::user()->group_id }}" class="col-4 mt-0 mb-2 p-0" >
-                <div class="item-team" style="width: 100%;height: auto;">
-                    <div>
-                        <img class="not_qualified" src="{{ url('/img/group_profile') . '/success/id (1).png' }}" style="width: 100%;">
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>
+@endif
 
 <div class="container">
     <p class="text-header-team">
@@ -195,22 +241,23 @@ line-height: normal;
     </div>
 </div>
 
+<br>
 <div class="d-flex justify-content-center w-100">
     <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-        <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
+        <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> <span class="mx-2 my-1">logout</span>
     </a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf
     </form>
 </div>
 
-<button  class="d-nosne" data-toggle="modal" data-target="#modal_team_qualified"></button>
+<button id="btn_team_qualified"  class="d-none" data-toggle="modal" data-target="#modal_team_qualified"></button>
 
 <div class="modal fade" id="modal_team_qualified" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered px-3">
         <div class="modal-content" style="  border-radius: 10px!important;-webkit-border-radius: 10px;-moz-border-radius: 10px;">
             <div class="team-section text-center">
-                <img src="{{ url('/img/icon/stars.png') }}" style="width:100%" ">
+                <img src="{{ url('/img/icon/stars.png') }}" style="width:100%">
             </div>
             <div  class="modal-body text-center py-0">
                 <!-- content -->
@@ -257,6 +304,7 @@ line-height: normal;
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+        document.querySelector('#btn_team_qualified').click();
         get_data_groups('Completed');
     });
 
@@ -266,7 +314,7 @@ line-height: normal;
         fetch("{{ url('/') }}/api/get_data_groups/" + type_get_data)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 setTimeout(() => {
                     if (result) {
@@ -274,10 +322,12 @@ line-height: normal;
                         let content_groups = document.querySelector('#content_groups');
                         content_groups.innerHTML = '';
 
+                        let count_a = 1 ;
+
                         for (let i = 0; i < result.length; i++) {
 
                             let html = `
-                                <div  class="div_Team col-4 mt-2 mb-2 p-0" >
+                                <div count="a_`+count_a+`" class="div_Team col-4 mt-2 mb-2 p-0" >
                                     <div class="item-team" style="width: 100%;height: auto;">
                                         <img src="{{ url('/img/group_profile') . '/success/id (`+result[i].id+`).png' }}" style="width: 100%;border:#00E0FF 1px solid;  border-radius: 5px!important;-webkit-border-radius: 5px; -moz-border-radius: 5px;">
                                     </div>
@@ -286,6 +336,7 @@ line-height: normal;
 
                             content_groups.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
+                            count_a++ ;
                         }
 
                         change_menu_view('1-20');
@@ -298,6 +349,9 @@ line-height: normal;
     }
 
     function change_menu_view(type_get_data) {
+
+        // console.log("change_menu_view");
+        // console.log(type_get_data);
 
         type_get_data = type_get_data.replace("-", "_");
 
@@ -319,9 +373,9 @@ line-height: normal;
 
         for (let i = parseInt(team_start); i <= parseInt(team_end); i++) {
             // if (document.querySelector('#Team_' + i)) {
-            if (document.querySelector('a[count="a_'+i+'"]')) {
+            if (document.querySelector('div[count="a_'+i+'"]')) {
                 // document.querySelector('#Team_' + i).classList.remove('d-none');
-                document.querySelector('a[count="a_'+i+'"]').classList.remove('d-none');
+                document.querySelector('div[count="a_'+i+'"]').classList.remove('d-none');
 
             }
         }
