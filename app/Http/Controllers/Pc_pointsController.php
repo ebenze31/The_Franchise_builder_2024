@@ -433,7 +433,7 @@ class Pc_pointsController extends Controller
                 ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
                 ->where('pc_points.week' , $week)
                 ->where('pc_points.user_id' , $user_id)
-                ->orderBy(DB::raw('CAST(pc_points.rank_of_week AS SIGNED)'), 'ASC')
+                ->orderBy(DB::raw('CAST(pc_points.week AS SIGNED)'), 'ASC')
                 ->get();
 
             $data_group = Group::where('id',$data_user->group_id)->first();
