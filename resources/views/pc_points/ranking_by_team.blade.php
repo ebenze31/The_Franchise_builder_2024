@@ -759,11 +759,11 @@
                     let yearly_formatted = 0 ;
 
                     if(week != "0"){
-                        let monthlyValue = member_in_team[xz].monthly;
-                        let monthly_formatted = monthlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                        monthlyValue = member_in_team[xz].monthly;
+                        monthly_formatted = monthlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
 
-                        let yearlyValue = member_in_team[xz].yearly;
-                        let yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                        yearlyValue = member_in_team[xz].yearly;
+                        yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
                     }
 
                     let icon_me = ``;
