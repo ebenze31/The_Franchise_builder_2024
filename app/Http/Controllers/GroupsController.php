@@ -386,7 +386,10 @@ class GroupsController extends Controller
 
         if($type_get_data == "all"){
             $groups = Group::get();
-        }else{
+        }else if($type_get_data == "Completed"){
+            $groups = Group::where('status' , 'ยืนยันเรียบร้อย')->get();
+        }
+        else{
             $groups = Group::where('id' , $type_get_data)->first();
         }
 

@@ -161,20 +161,11 @@ line-height: normal;
 <div class="container-fluid">
     <div class="">
         <div class="row">
-            @php
-                $class_team = '';
-
-                if(Auth::user()->group_status == "มีบ้านแล้ว"){
-                    $class_team = 'warning' ;
-                }else if(Auth::user()->group_status == "ยืนยันการสร้างบ้านแล้ว"){
-                    $class_team = 'success' ;
-                }
-            @endphp
 
             <div id="MyTeam_{{ Auth::user()->group_id }}" class="col-4 mt-0 mb-2 p-0" >
                 <div class="item-team" style="width: 100%;height: auto;">
                     <div>
-                        <img src="{{ url('/img/group_profile') . '/' . $class_team . '/id (' . Auth::user()->group_id . ').png' }}" style="width: 100%;">
+                        <img src="{{ url('/img/group_profile') . '/success/id (1).png' }}" style="width: 100%;">
                     </div>
                 </div>
             </div>
@@ -182,7 +173,7 @@ line-height: normal;
             <div id="MyTeam_{{ Auth::user()->group_id }}" class="col-4 mt-0 mb-2 p-0" >
                 <div class="item-team" style="width: 100%;height: auto;">
                     <div>
-                        <img class="not_qualified" src="{{ url('/img/group_profile') . '/' . $class_team . '/id (' . Auth::user()->group_id . ').png' }}" style="width: 100%;">
+                        <img class="not_qualified" src="{{ url('/img/group_profile') . '/success/id (1).png' }}" style="width: 100%;">
                     </div>
                 </div>
             </div>
@@ -200,29 +191,17 @@ line-height: normal;
     <div class="">
         <div id="content_groups" class="row">
             <!-- data -->
-            <div  class="div_Team col-4 mt-2 mb-2 p-0" >
-                <div class="item-team" style="width: 100%;height: auto;">
-                    <img src="{{ url('/img/group_profile') . '/' . $class_team . '/id (' . Auth::user()->group_id . ').png' }}" style="width: 100%;border:#00E0FF 1px solid;  border-radius: 5px!important;-webkit-border-radius: 5px; -moz-border-radius: 5px;">
-                </div>
-            </div>
-            
-            <div  class="div_Team col-4 mt-2 mb-2 p-0" >
-                <div class="item-team" style="width: 100%;height: auto;">
-                    <img src="{{ url('/img/group_profile') . '/' . $class_team . '/id (' . Auth::user()->group_id . ').png' }}" style="width: 100%;border:#00E0FF 1px solid;  border-radius: 5px!important;-webkit-border-radius: 5px; -moz-border-radius: 5px;">
-                </div>
-            </div>
-            <div  class="div_Team col-4 mt-2 mb-2 p-0" >
-                <div class="item-team" style="width: 100%;height: auto;">
-                    <img src="{{ url('/img/group_profile') . '/' . $class_team . '/id (' . Auth::user()->group_id . ').png' }}" style="width: 100%;border:#00E0FF 1px solid;  border-radius: 5px!important;-webkit-border-radius: 5px; -moz-border-radius: 5px;">
-                </div>
-            </div>
-            <div  class="div_Team col-4 mt-2 mb-2 p-0" >
-                <div class="item-team" style="width: 100%;height: auto;">
-                    <img src="{{ url('/img/group_profile') . '/' . $class_team . '/id (' . Auth::user()->group_id . ').png' }}" style="width: 100%;border:#00E0FF 1px solid;  border-radius: 5px!important;-webkit-border-radius: 5px; -moz-border-radius: 5px;">
-                </div>
-            </div>
         </div>
     </div>
+</div>
+
+<div class="d-flex justify-content-center w-100">
+    <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+        <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
+    </a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
 </div>
 
 <button  class="d-nosne" data-toggle="modal" data-target="#modal_team_qualified"></button>
@@ -273,5 +252,80 @@ line-height: normal;
 
         $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
     })
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        get_data_groups('Completed');
+    });
+
+    function get_data_groups(type_get_data) {
+        // console.log(type_get_data);
+
+        fetch("{{ url('/') }}/api/get_data_groups/" + type_get_data)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                setTimeout(() => {
+                    if (result) {
+
+                        let content_groups = document.querySelector('#content_groups');
+                        content_groups.innerHTML = '';
+
+                        for (let i = 0; i < result.length; i++) {
+
+                            let html = `
+                                <div  class="div_Team col-4 mt-2 mb-2 p-0" >
+                                    <div class="item-team" style="width: 100%;height: auto;">
+                                        <img src="{{ url('/img/group_profile') . '/success/id (`+result[i].id+`).png' }}" style="width: 100%;border:#00E0FF 1px solid;  border-radius: 5px!important;-webkit-border-radius: 5px; -moz-border-radius: 5px;">
+                                    </div>
+                                </div>
+                            `;
+
+                            content_groups.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+                        }
+
+                        change_menu_view('1-20');
+
+                    }
+
+                }, 500);
+
+            });
+    }
+
+    function change_menu_view(type_get_data) {
+
+        type_get_data = type_get_data.replace("-", "_");
+
+        let menu_view = document.querySelectorAll('[btn="menu_view"]');
+        menu_view.forEach(menu_view => {
+            menu_view.setAttribute('class', 'btn btn-sort-group mt-1');
+        });
+
+        document.querySelector('#btn_view_' + type_get_data).setAttribute('class', 'btn btn-sort-group-active');
+
+        let team_start = type_get_data.split('_')[0];
+        let team_end = type_get_data.split('_')[1];
+
+        let div_Team = document.querySelectorAll('.div_Team');
+        div_Team.forEach(item => {
+            // console.log(item);
+            item.classList.add('d-none');
+        })
+
+        for (let i = parseInt(team_start); i <= parseInt(team_end); i++) {
+            // if (document.querySelector('#Team_' + i)) {
+            if (document.querySelector('a[count="a_'+i+'"]')) {
+                // document.querySelector('#Team_' + i).classList.remove('d-none');
+                document.querySelector('a[count="a_'+i+'"]').classList.remove('d-none');
+
+            }
+        }
+
+    }
 </script>
 @endsection
