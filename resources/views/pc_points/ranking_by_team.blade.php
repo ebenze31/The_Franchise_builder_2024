@@ -705,7 +705,7 @@
 
                             let iii = i + 1 ;
                             document.querySelector('#img_rank_'+iii).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
-                            document.querySelector('#name_rank_'+iii).innerHTML = result['data'][i].name_group;
+                            document.querySelector('#name_rank_'+iii).innerHTML = "Team " + result['data'][i].name_group;
                             document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
                         }
 
