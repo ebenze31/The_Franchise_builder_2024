@@ -25,7 +25,7 @@ class Pc_point extends Model
      *
      * @var array
      */
-    protected $fillable = ['week', 'pc_point', 'new_code', 'user_id', 'group_id' ,'rank_of_week','rank_last_week','csta','pers','ytd_pc','myd_pc'];
+    protected $fillable = ['week', 'pc_point', 'new_code', 'user_id', 'group_id' ,'rank_of_week','rank_last_week','csta','pers','ytd_pc','mtd_pc'];
 
     
 }

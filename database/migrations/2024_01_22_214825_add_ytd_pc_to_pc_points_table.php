@@ -15,7 +15,7 @@ class AddYtdPcToPcPointsTable extends Migration
     {
         Schema::table('pc_points', function (Blueprint $table) {
             $table->integer('ytd_pc')->nullable();
-            $table->integer('myd_pc')->nullable();
+            $table->integer('mtd_pc')->nullable();
         });
     }
 
