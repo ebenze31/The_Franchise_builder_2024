@@ -725,7 +725,7 @@
         fetch("{{ url('/') }}/api/get_member_in_team" + "/" + group_id + "/" + week)
             .then(response => response.json())
             .then(member_in_team => {
-                // console.log(member_in_team);
+                console.log(member_in_team);
 
                 let arr_sum_point = [];
                 let arr_of_week = {};
