@@ -241,8 +241,9 @@ line-height: normal;
     </div>
 </div>
 
-<!-- <br>
-<div class="d-flex justify-content-center w-100">
+<br>
+<br>
+<!-- <div class="d-flex justify-content-center w-100">
     <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
         <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> <span class="mx-2 my-1">logout</span>
     </a>
