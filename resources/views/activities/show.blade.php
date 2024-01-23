@@ -230,7 +230,11 @@
         // console.log(result);
 
         let view_user = document.querySelector('#view_user');
-            view_user.innerHTML = '';
+            view_user.innerHTML = `
+                <div class="d-flex justify-content-end w-100">
+                    <button id="btn_export_excel" class="btn float-end btn-dark mx-3 d-none" onclick="createExcel()">Export Excel</button>
+                </div>
+            `;
 
         for (let i = 0; i < result.length; i++) {
 
@@ -358,6 +362,8 @@
 
             content_tbody.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
         }
+
+        document.querySelector('#btn_export_excel').classList.remove('d-none');
 
     }
 
