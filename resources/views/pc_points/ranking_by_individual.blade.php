@@ -409,7 +409,7 @@
             background-color: rgb(0, 27, 87);
         }
     </style>
-  <div class="text-header-column" style="width: 100%;padding: 10px 10px 0px 12px;display: flex;">
+  <div class="text-header-column" style="width: 100%;padding: 10px 10px 10px 12px;display: flex;">
         <div class="text-center number-my-team" style="margin-left: 5px;">No.</div>
         <div style="min-width: 65px !important;max-width: 65px !important;"></div>
         <div class="w-100">Username</div>
