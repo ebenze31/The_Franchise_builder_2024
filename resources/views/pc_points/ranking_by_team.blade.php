@@ -112,7 +112,6 @@
 /*        margin-right: 15px;*/
             width: 85px
         }
-      
     }
     @media screen and (min-device-width: 465px){
 
@@ -427,10 +426,11 @@
             background-color: rgb(0, 27, 87);
         }
     </style>
-    <div class="text-header-column" style="width: 100%;padding: 10px;display: flex;">
-        <div class="text-center number-my-team">No.</div>
-        <div class="detailTeam">Username</div>
-        <div style="width: 150px;text-align: center;">YTD-PC</div>
+   <div class="text-header-column" style="width: 100%;padding: 10px 10px 0px 12px;display: flex;">
+        <div class="text-center number-my-team" style="margin-left: 5px;">No.</div>
+        <div style="min-width: 65px !important;max-width: 65px !important;"></div>
+        <div class="w-100">Username</div>
+        <div  style="width: 100px;">YTD-PC</div>
         <div style="width: 130px;">Last week</div>
     </div>
 </div>
