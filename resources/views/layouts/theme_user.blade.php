@@ -577,8 +577,6 @@
 
                     });
 
-                    document.querySelector('#btn_modal_alert_news').click();
-
                 }
             }, 500);
 
@@ -667,6 +665,8 @@
 
             $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
         })
+
+        document.querySelector('#btn_modal_alert_news').click();
     }
 </script>
 </body>
