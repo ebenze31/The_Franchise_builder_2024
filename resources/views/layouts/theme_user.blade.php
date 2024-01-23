@@ -584,7 +584,7 @@
 
             setTimeout(() => {
                 create_carousel();
-            }, 2500);
+            }, 3500);
         });
 
   }
