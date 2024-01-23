@@ -457,25 +457,25 @@ class ProfileController extends Controller
         if($data){
 
             //  --- ก่อนวันที่ 24/01 --- //
-            if( !empty($data->pdpa) ){
-                $return = "Yes" ;
-            }else{
-                $return ="No" ;
-            }
+            // if( !empty($data->pdpa) ){
+            //     $return = "Yes" ;
+            // }else{
+            //     $return ="No" ;
+            // }
 
             //  --- วันที่ 24/01 เป็นต้นไป --- //
-            // if( $data->role == 'Player' && ($data->group_status != 'Team Ready' || $data->group_status != 'ยืนยันการสร้างบ้านแล้ว') ){
-            //     $return = "No Team" ;
-            // }
-            // else if($data->role != 'AL'){
-            //     if( !empty($data->pdpa) ){
-            //         $return = "Yes" ;
-            //     }else{
-            //         $return ="No" ;
-            //     }
-            // }else{
-            //     $return = "No Team" ;
-            // }
+            if( $data->role == 'Player' && ($data->group_status != 'Team Ready' || $data->group_status != 'ยืนยันการสร้างบ้านแล้ว') ){
+                $return = "No Team" ;
+            }
+            else if($data->role != 'AL'){
+                if( !empty($data->pdpa) ){
+                    $return = "Yes" ;
+                }else{
+                    $return ="No" ;
+                }
+            }else{
+                $return = "No Team" ;
+            }
             
         }else{
             $return ="Account none" ;
