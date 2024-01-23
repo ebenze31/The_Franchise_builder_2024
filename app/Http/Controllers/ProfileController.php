@@ -472,7 +472,7 @@ class ProfileController extends Controller
                     $return = "Yes" ;
                 }else{
                     $return ="No" ;
-                }GoGo@hlab24builder
+                }
             }else{
                 $return = "No Team" ;
             }
