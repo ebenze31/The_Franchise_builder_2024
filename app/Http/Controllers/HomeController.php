@@ -31,7 +31,7 @@ class HomeController extends Controller
 
         $data_user = Auth::user();
 
-        // return view('teams_qualified');
+        return view('teams_qualified');
 
         if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin"){
             // return redirect("groups");
@@ -133,7 +133,8 @@ class HomeController extends Controller
 
     public function register_tfb2024(){
 
-        return view('register_tfb2024');
+        return view('teams_qualified');
+        // return view('register_tfb2024');
         
     }
 
@@ -141,7 +142,9 @@ class HomeController extends Controller
         return view('admin.scanner');
     }
     public function scanner(){
-        return view('scanner');
+
+        return view('teams_qualified');
+        // return view('scanner');
     }
 
     function test_qr(Request $request){

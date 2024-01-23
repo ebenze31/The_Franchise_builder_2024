@@ -25,6 +25,8 @@ class GroupsController extends Controller
     {
         $data_user = Auth::user();
 
+        return view('teams_qualified');
+
         // Admin
         if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin" || Auth::user()->role == "Staff"){
             $activeGroupsCount = Group::where('active', 'Yes')->count();
@@ -292,6 +294,8 @@ class GroupsController extends Controller
 
     function my_team($group_id)
     {
+        return view('teams_qualified');
+
         $data_user = Auth::user();
         $data_groups = Group::where('id' , $group_id)->first();
         $current_week = Pc_point::orderBy('week', 'desc')->select('week')->first();
@@ -338,6 +342,8 @@ class GroupsController extends Controller
 
     function preview_team($group_id){
 
+        return view('teams_qualified');
+        
         $data_user = Auth::user();
         $data_groups = Group::where('id' , $group_id)->first();
 

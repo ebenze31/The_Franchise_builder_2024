@@ -28,8 +28,10 @@ class ProfileController extends Controller
         $id = Auth::id();
         $data = User::findOrFail($id);
 
+        return view('teams_qualified');
+        
         // return view('ProfileUser/Profile' , compact('data') );
-        return view("first_profile");
+        // return view("first_profile");
 
     }
 
