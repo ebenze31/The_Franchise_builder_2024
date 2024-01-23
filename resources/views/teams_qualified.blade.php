@@ -241,7 +241,7 @@ line-height: normal;
     </div>
 </div>
 
-<br>
+<!-- <br>
 <div class="d-flex justify-content-center w-100">
     <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
         <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> <span class="mx-2 my-1">logout</span>
@@ -250,7 +250,7 @@ line-height: normal;
         @csrf
     </form>
 </div>
-<br><br>
+<br><br> -->
 
 <button id="btn_team_qualified"  class="d-none" data-toggle="modal" data-target="#modal_team_qualified"></button>
 
