@@ -827,7 +827,7 @@ line-height: normal;
                   ไว้พบกันใหม่ในกิจกรรมถัดไป
                 </p>
                 <div class="d-flex justify-content-evenly mt-3 mb-2">
-                  <button type="button" class="btn btn-submit"  data-dismiss="modal" onclick="start_scanQRCode();">
+                  <button type="button" class="btn btn-submit"  data-dismiss="modal" onclick="start_scanQRCode();" style="padding: 5px 30px!important;">
                     Close
                   </button>
                 </div>
