@@ -84,6 +84,7 @@ Route::get('/get_detail_activity/{id}', 'ActivitiesController@get_detail_activit
 Route::get('/get_activity/{name}', 'ActivitiesController@get_activity');
 Route::get('/check_user_join_activity/{account}/{name_Activity}', 'ActivitiesController@check_user_join_activity');
 Route::get('/change_show_staff/{id}/{status}', 'ActivitiesController@change_show_staff');
+Route::get('/change_active/{id}/{status}', 'ActivitiesController@change_active');
 
 // contact staffs
 Route::get('/get_contact_staffs', 'Contact_staffController@get_contact_staffs');

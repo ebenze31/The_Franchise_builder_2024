@@ -442,6 +442,9 @@ line-height: normal;
                 else if(result.check == 'For Team Ready'){
                     create_modal_Activies('For_Team_Ready' , code , name);
                 }
+                else if(result.check == 'Expire'){
+                    create_modal_Activies('Expire' , code , name);
+                }
                 else{
                     // ไม่เคยเข้าร่วมกิจจกรรมนี้
                     create_modal_Activies(name , code , null);
@@ -540,6 +543,9 @@ line-height: normal;
                           }
                           else if(result.check == 'For Team Ready'){
                               create_modal_Activies('For_Team_Ready' , code , name);
+                          }
+                          else if(result.check == 'Expire'){
+                              create_modal_Activies('Expire' , code , name);
                           }
                           else{
                               // ไม่เคยเข้าร่วมกิจจกรรมนี้
@@ -647,6 +653,9 @@ line-height: normal;
                                   }
                                   else if(result.check == 'For Team Ready'){
                                       create_modal_Activies('For_Team_Ready' , code , name);
+                                  }
+                                  else if(result.check == 'Expire'){
+                                      create_modal_Activies('Expire' , code , name);
                                   }
                                   else{
                                       // ไม่เคยเข้าร่วมกิจจกรรมนี้
@@ -795,6 +804,34 @@ line-height: normal;
             //         Close
             //     </button>
             // `;
+
+            let html_footer = ``;
+
+            document.querySelector('#content_modal_check_activity').innerHTML = html_modal;
+            // document.querySelector('#modal_footer').innerHTML = html_footer;
+            document.querySelector('#modal_footer').classList.add('d-none');
+
+            document.querySelector('#btn_modal_check_activity').click();
+        }
+        else if(type == "Expire"){
+
+            let html_modal = `
+                <div class="d-flex justify-content-center " style="margin-bottom: 20px;">
+                  <img src="{{ url('/img/icon/cry.png') }}" style="width: 90px;height: 90px;flex-shrink: 0;">
+                </div>
+                <p class="m-2" style="color: #128DFF;text-align: center;font-size: 16px;font-style: normal;font-weight: 400;line-height: normal;">
+                  ขออภัย !  
+                </p>
+                <p class=" mb-1 mt-2 text-center" style="color: #071027;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">
+                  กิจกรรมนี้ได้สิ้นสุดลงเเล้ว<br>
+                  ไว้พบกันใหม่ในกิจกรรมถัดไป
+                </p>
+                <div class="d-flex justify-content-evenly mb-2">
+                  <button type="button" class="btn btn-submit"  data-dismiss="modal" onclick="start_scanQRCode();">
+                    Close
+                  </button>
+                </div>
+            `;
 
             let html_footer = ``;
 

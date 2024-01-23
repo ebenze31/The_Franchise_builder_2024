@@ -63,6 +63,7 @@ class ActivitiesController extends Controller
                 ->store('uploads', 'public');
         }
 
+        $requestData['status'] = "Active";
         $requestData['qr_code'] = $this->create_qr_code($requestData);
 
         Activity::create($requestData);
@@ -297,6 +298,27 @@ class ActivitiesController extends Controller
                 ])
             ->update([
                     'show_staff' => $status,
+                ]);
+
+        return 'success' ;
+
+    }
+
+    function change_active($id , $status){
+
+        if($status != "Yes"){
+            $status = "Expire" ;
+        }
+        else if($status == "Yes"){
+            $status = "Active" ;
+        }
+
+        DB::table('activities')
+            ->where([ 
+                    ['id', $id],
+                ])
+            ->update([
+                    'status' => $status,
                 ]);
 
         return 'success' ;

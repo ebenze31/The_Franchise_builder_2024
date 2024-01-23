@@ -81,6 +81,76 @@
 
 </style>
 
+<!-- ICON ACTIVE -->
+<style>
+    .switch-holder {
+  display: flex;
+  padding: 5px 10px;
+  border-radius: 10px;
+  box-shadow: -8px -8px 15px rgba(255, 255, 255, .7),
+        10px 10px 10px rgba(0, 0, 0, .2),
+        inset 8px 8px 15px rgba(255, 255, 255, .7),
+        inset 10px 10px 10px rgba(0, 0, 0, .2);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.switch-label {
+  padding: 0 10px 0 10px
+}
+
+.switch-label i {
+  margin-right: 5px;
+}
+
+.switch-toggle {
+  height: 30px;
+}
+
+.switch-toggle input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  z-index: -2;
+}
+
+.switch-toggle input[type="checkbox"]+label {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 30px;
+  border-radius: 20px;
+  margin: 0;
+  cursor: pointer;
+  box-shadow: inset -8px -8px 15px rgba(255, 255, 255, .6),
+        inset 10px 10px 10px rgba(0, 0, 0, .25);
+}
+
+.switch-toggle input[type="checkbox"]+label::before {
+  position: absolute;
+  content: 'OFF';
+  font-size: 13px;
+  text-align: center;
+  line-height: 25px;
+  top: 3px;
+  left: 4px;
+  width: 45px;
+  height: 25px;
+  border-radius: 20px;
+  background-color: #eeeeee;
+  box-shadow: -3px -3px 5px rgba(255, 255, 255, .5),
+        3px 3px 5px rgba(0, 0, 0, .25);
+  transition: .3s ease-in-out;
+}
+
+.switch-toggle input[type="checkbox"]:checked+label::before {
+  left: 36%;
+  content: 'ON';
+  color: #fff;
+  background-color: #00b33c;
+  box-shadow: -3px -3px 5px rgba(255, 255, 255, .5),
+        3px 3px 5px #00b33c;
+}
+</style>
 
 <div class="container-fluid">
     <div class="row">
@@ -112,15 +182,29 @@
 
                             <div class="col-6 card radius-10 border shadow-none btn">
                                 <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div>
-                                            <h4 class="mb-0">{{ $item->name_Activities }}</h4>
-                                            <p class="mb-0 text-secondary"></p>
+
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ url('storage')}}/{{ $item->icon }}" style="width:60px;height: 60px;">
+                                            <h4 class="mb-0 mx-3">{{ $item->name_Activities }}</h4>
                                         </div>
-                                        <div class="widgets-icons ms-auto">
-                                            <img src="{{ url('storage')}}/{{ $item->icon }}" style="width:90%;">
+
+                                        @php
+                                            $check_active = '';
+                                            if($item->status == "Active"){
+                                                $check_active = 'checked';
+                                            }
+                                        @endphp
+                                        <div class="">
+                                            <div class="switch-holder">
+                                                <div class="switch-toggle">
+                                                    <input type="checkbox" id="active_{{ $item->id }}" {{ $check_active }} onclick="change_active('{{ $item->id }}')">
+                                                    <label for="active_{{ $item->id }}"></label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
                                     <hr>
                                     <div class="row">
                                         <div class="col-12 col-md-4 mt-2 mb-2">
@@ -202,6 +286,28 @@
                 .then(result => {
                 // console.log(result);
             });
+        }
+
+        function change_active(id){
+            // console.log(id);
+
+            let active = document.querySelector('#active_'+ id);
+
+            let status ;
+            if(active.checked){
+                status = "Yes";
+            }else{
+                status = "No";
+            }
+            
+            // console.log(status);
+
+            fetch("{{ url('/') }}/api/change_active" + "/" + id + "/" + status)
+                .then(response => response.text())
+                .then(result => {
+                // console.log(result);
+            });
+
         }
 
     </script>
