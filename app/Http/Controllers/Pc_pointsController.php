@@ -206,6 +206,14 @@ class Pc_pointsController extends Controller
             $data_groups = Group::where('id' , $group_pc[$i]['group_id'])->first();
             $rank_record_update = [] ;
 
+            $update_arr_rank = "";
+
+            if($check_week == "0"){
+                $update_arr_rank = 0;
+            }else{
+                $update_arr_rank = ($i + 1);
+            }
+
             if( empty($data_groups->rank_record) ){ // ไม่มีข้อมูล week ก่อน
 
                 $new_rank_record = [] ;
@@ -213,7 +221,7 @@ class Pc_pointsController extends Controller
                 $new_rank_record[$group_pc[$i]['week']] = [
                     'week' => $group_pc[$i]['week'],
                     'pc_point' => $group_pc[$i]['pc_point'],
-                    'rank' => ($i + 1),
+                    'rank' => $update_arr_rank,
                 ];
 
                 $rank_record_update = json_encode($new_rank_record);
@@ -225,7 +233,7 @@ class Pc_pointsController extends Controller
                 $old_arr[$group_pc[$i]['week']] = [
                     'week' => $group_pc[$i]['week'],
                     'pc_point' => $group_pc[$i]['pc_point'],
-                    'rank' => ($i + 1),
+                    'rank' => $update_arr_rank,
                 ];
 
                 // แปลง array ใหม่เป็น JSON
