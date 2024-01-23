@@ -667,7 +667,9 @@
         })
 
         document.querySelector('#btn_modal_alert_news').click();
-        document.querySelector('#content_item').classList.remove('d-none');
+        setTimeout(() => {
+            document.querySelector('#content_item').classList.remove('d-none');
+        }, 800);
     }
 </script>
 </body>
