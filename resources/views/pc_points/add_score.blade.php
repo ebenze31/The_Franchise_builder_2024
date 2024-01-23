@@ -342,8 +342,8 @@
                             <td>`+jsonData[i].rank_last_week+`</td>
                             <td>`+jsonData[i].csta+`</td>
                             <td>`+jsonData[i].pers+`</td>
-                            <td></td>
-                            <td></td>
+                            <td>`+jsonData[i].ytd_pc+`</td>
+                            <td>`+jsonData[i].mtd_pc+`</td>
                         </tr>
                     `;
 
