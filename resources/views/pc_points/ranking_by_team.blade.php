@@ -351,19 +351,19 @@
     <div class="container row ">
         <div class="col-4 text-center sub-rank">
             <p class="number-top-rank">No.2</p>
-            <img id="img_rank_2" src="{{ url('/img/icon/Frame 495.png') }}" class="sub-rank-img" alt="รูปภาพปก">
+            <img id="img_rank_2" src="{{ url('/img/icon/Frame 36594.png') }}" class="sub-rank-img" alt="รูปภาพปก">
             <p id="name_rank_2" class="number-team"></p>
             <p id="score_rank_2" class="score-team" style="color: #E7C517!important;"></p>
         </div>
         <div class="col-4 text-center">
             <p class="number-top-rank">No.1</p>
-            <img id="img_rank_1" src="{{ url('/img/icon/Frame 495.png') }}" class="main-rank-img" alt="รูปภาพปก">
+            <img id="img_rank_1" src="{{ url('/img/icon/Frame 36594.png') }}" class="main-rank-img" alt="รูปภาพปก">
             <p id="name_rank_1" class="number-team"></p>
             <p id="score_rank_1" class="score-team" style="color: #E7C517!important;"></p>
         </div>
         <div class="col-4 text-center sub-rank">
             <p class="number-top-rank">No.3</p>
-            <img id="img_rank_3" src="{{ url('/img/icon/Frame 495.png') }}" class="sub-rank-img" alt="รูปภาพปก">
+            <img id="img_rank_3" src="{{ url('/img/icon/Frame 36594.png') }}" class="sub-rank-img" alt="รูปภาพปก">
             <p id="name_rank_3" class="number-team"></p>
             <p id="score_rank_3" class="score-team" style="color: #E7C517!important;"></p>
         </div>
