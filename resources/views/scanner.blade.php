@@ -826,7 +826,7 @@ line-height: normal;
                   กิจกรรมนี้ได้สิ้นสุดลงเเล้ว<br>
                   ไว้พบกันใหม่ในกิจกรรมถัดไป
                 </p>
-                <div class="d-flex justify-content-evenly mb-2">
+                <div class="d-flex justify-content-evenly mt-3 mb-2">
                   <button type="button" class="btn btn-submit"  data-dismiss="modal" onclick="start_scanQRCode();">
                     Close
                   </button>
