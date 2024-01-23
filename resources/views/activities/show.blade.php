@@ -74,6 +74,25 @@
                                     </div>
                                 </div>
 
+                                <div class="table-responsive mt-4">
+                                    <table class="table mb-0 align-middle" id="content_table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Photo</th>
+                                                <th class="text-center">Account</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center">Email</th>
+                                                <th class="text-center">Phone</th>
+                                                <th class="text-center">Time joined</th>
+                                                <th class="text-center">Team</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="content_tbody">
+                                            <!-- DATA USER -->
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
                         </div>
 
@@ -305,6 +324,39 @@
             
 
             view_user.insertAdjacentHTML('beforeend', html_user);
+
+
+            // FOR EXPORT
+            let content_tbody = document.querySelector('#content_tbody');
+                // content_tbody.innerHTML = '';
+
+            let html = `
+                <tr>
+                    <td>
+                        <span class="d-none">{{ url('storage')}}/`+result[i].photo+`</span>
+                    </td>
+                    <td class="text-center">
+                        `+result[i].account+`
+                    </td>
+                    <td class="text-center">
+                        `+result[i].name+`
+                    </td>
+                    <td class="text-center">
+                        `+result[i].email+`
+                    </td>
+                    <td class="text-center">
+                        `+result[i].phone+`
+                    </td>
+                    <td class="text-center">
+                        `+result[i].time_join+`
+                    </td>
+                    <td class="text-center">
+                        `+html_name_group+`
+                    </td>
+                </tr>
+            `;
+
+            content_tbody.insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
         }
 
     }
@@ -333,5 +385,17 @@
         }
 
     }
+
+    function createExcel() {
+        let name_activities = "{{ $activity->name_Activities }}";
+        let table2excel = new Table2Excel();
+        let currentDate = new Date();
+        let formattedDate = currentDate.toISOString().replace(/[:.]/g, "_"); // สร้างรูปแบบของวันที่ในรูปแบบที่ไม่มีเครื่องหมาย : และ .
+
+        // ตั้งชื่อไฟล์เป็น "รายชื่อสมาชิกทั้งหมด-2023-12-31T12_30_45.678Z.xlsx" (ตัวอย่าง)
+        let fileName = `รายชื่อผู้เข้าร่วมกิจกรรม-${name_activities}-${formattedDate}.xlsx`;
+
+        table2excel.export(document.querySelector("#content_table"), fileName);
+    };
 </script>
 @endsection
