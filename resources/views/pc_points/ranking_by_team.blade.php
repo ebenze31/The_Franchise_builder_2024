@@ -498,7 +498,7 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        change_menu_bar('rank-team');
+        // change_menu_bar('rank-team');
         get_data_rank('team');
     });
 
