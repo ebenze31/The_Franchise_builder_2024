@@ -464,17 +464,40 @@ class ProfileController extends Controller
             // }
 
             //  --- วันที่ 24/01 เป็นต้นไป --- //
-            if( $data->role == 'Player' && ($data->group_status != 'Team Ready' || $data->group_status != 'ยืนยันการสร้างบ้านแล้ว') ){
+            // if( $data->role == 'Player' && ($data->group_status != 'Team Ready' || $data->group_status != 'ยืนยันการสร้างบ้านแล้ว') ){
+            //     $return = "No Team" ;
+            // }
+            // else if($data->role != 'AL'){
+            //     if( !empty($data->pdpa) ){
+            //         $return = "Yes" ;
+            //     }else{
+            //         $return ="No" ;
+            //     }
+            // }else{
+            //     $return = "No Team" ;
+            // }
+
+            if($data->role == 'AL'){
                 $return = "No Team" ;
             }
-            else if($data->role != 'AL'){
+            else if($data->role == 'Player'){
+
+                if($data->group_status == 'Team Ready' || $data->group_status == 'ยืนยันการสร้างบ้านแล้ว'){
+                    if( !empty($data->pdpa) ){
+                        $return = "Yes" ;
+                    }else{
+                        $return ="No" ;
+                    }
+                }else{
+                    $return = "No Team" ;
+                }
+
+            }else{
                 if( !empty($data->pdpa) ){
                     $return = "Yes" ;
                 }else{
                     $return ="No" ;
                 }
-            }else{
-                $return = "No Team" ;
             }
             
         }else{
