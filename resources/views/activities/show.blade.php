@@ -355,7 +355,7 @@
                         `+result[i].time_join+`
                     </td>
                     <td class="text-center">
-                        `+html_name_group+`
+                        `+name_group+`
                     </td>
                 </tr>
             `;
