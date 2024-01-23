@@ -363,40 +363,58 @@
 
 <a id="click_to_div_data_all" href="#div_data_all" class="d-none"></a>
 
+<div class=" sticky"  >
+    <div class="nav-menu" id="div_menu_view">
+        <div class="btn-group owl-carousel owl-theme owl-nav-nemu" role="group" aria-label="First group">
+            @for ($i=1; $i <= $menu_row; $i++)
 
-<div class="nav-menu sticky" id="div_menu_view">
-    <div class="btn-group owl-carousel owl-theme owl-nav-nemu" role="group" aria-label="First group">
-        @for ($i=1; $i <= $menu_row; $i++)
+                @php
+                    $check_active = '';
+                    if($start == 1){
+                        $check_active = 'btn-sort-group-active' ;
+                    }
+                @endphp
+                @if($i==$menu_row) 
+                    <div class="item text-center py-2">
+                        <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeUserCount }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $activeUserCount }}' ,'No');" style="font-size: 12px!important;">
+                        ลำดับที่ {{ $start }} - {{ $activeUserCount }}
+                        </button>
+                    </div>
+                @else
+                    <div class="item text-center py-2">
+                        <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $end }}' ,'No');" style="font-size: 12px!important;">
+                        ลำดับที่ {{ $start }} - {{ $end }}
+                        </button>
+                    </div>
+                @endif
 
-            @php
-                $check_active = '';
-                if($start == 1){
-                    $check_active = 'btn-sort-group-active' ;
-                }
-            @endphp
-            @if($i==$menu_row) 
-                <div class="item text-center py-2">
-                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeUserCount }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $activeUserCount }}' ,'No');" style="font-size: 12px!important;">
-                       ลำดับที่ {{ $start }} - {{ $activeUserCount }}
-                    </button>
-                </div>
-            @else
-                <div class="item text-center py-2">
-                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $end }}' ,'No');" style="font-size: 12px!important;">
-                       ลำดับที่ {{ $start }} - {{ $end }}
-                    </button>
-                </div>
-            @endif
+                @php
+                    $start = $start + 20 ;
+                    $end = $end + 20 ;
+                @endphp
 
-            @php
-                $start = $start + 20 ;
-                $end = $end + 20 ;
-            @endphp
-
-        @endfor
+            @endfor
+        </div>
+        <div class="owl-carousel__prev"><i class="fa-solid fa-caret-right fa-rotate-180"></i></div>
+        <div class="owl-carousel__next"><i class="fa-solid fa-caret-right"></i></div>
     </div>
-    <div class="owl-carousel__prev"><i class="fa-solid fa-caret-right fa-rotate-180"></i></div>
-    <div class="owl-carousel__next"><i class="fa-solid fa-caret-right"></i></div>
+
+    <style>
+        .text-header-column{
+            color: #00E0FF;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            background-color: rgb(0, 27, 87);
+        }
+    </style>
+    <div class="text-header-column" style="width: 100%;padding: 10px;display: flex;">
+        <div class="text-center number-my-team">No.</div>
+        <div class="detailTeam">Username</div>
+        <div style="width: 150px;text-align: center;">YTD-PC</div>
+        <div style="width: 130px;">Last week</div>
+    </div>
 </div>
 
 <script>
