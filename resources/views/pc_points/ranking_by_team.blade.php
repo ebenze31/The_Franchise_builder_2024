@@ -430,8 +430,8 @@
         <div class="text-center number-my-team" style="margin-left: 5px;">No.</div>
         <div style="min-width: 65px !important;max-width: 65px !important;"></div>
         <div class="w-100">Username</div>
-        <div  style="width: 100px;">YTD-PC</div>
-        <div style="width: 130px;">Last week</div>
+        <div  style="min-width: 65px !important;max-width: 65px !important;">YTD-PC</div>
+        <div style="min-width: 65px !important;max-width: 65px !important;">Last week</div>
     </div>
 </div>
 
