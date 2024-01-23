@@ -421,7 +421,7 @@
 <!-- modal_alert_news -->
 <button id="btn_modal_alert_news" class="d-none" data-toggle="modal" data-target="#modal_alert_news"></button>
 
-<div class="modal fade" id="modal_alert_news" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999999;">
+<div class="modal fade" id="modal_alert_news" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999999;" class="d-none">
     <div class="modal-dialog modal-dialog-centered px-3">
         <div class="modal-content " style="border-radius: 10px;padding-bottom:16px">
             <div class="modal-header pb-0 border-none px-1" style="border-bottom: none !important;">
@@ -438,7 +438,7 @@
             <div class="modal-body pt-1 pb-0">
                 <div id="modal_alert_news_content" class="text-center">
                     <!-- content -->
-                    <div id="content_item" class="btn-group owl-carousel carousel_alert_news owl-theme d-none" role="group" aria-label="First group">
+                    <div id="content_item" class="btn-group owl-carousel carousel_alert_news owl-theme" role="group" aria-label="First group">
                         
                         <!-- ITEM -->
                     </div>
@@ -668,8 +668,8 @@
 
         document.querySelector('#btn_modal_alert_news').click();
         setTimeout(() => {
-            document.querySelector('#content_item').classList.remove('d-none');
-        }, 800);
+            document.querySelector('#modal_alert_news').classList.remove('d-none');
+        }, 1000);
     }
 </script>
 </body>
