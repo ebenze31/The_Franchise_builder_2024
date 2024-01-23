@@ -288,22 +288,46 @@ class Pc_pointsController extends Controller
 
         $week = $check_week->week ;
 
-        if($type == 'individual'){
-            $data = DB::table('pc_points')
-                ->join('users', 'users.id', '=', 'pc_points.user_id')
-                ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
-                ->where('week' , $week)
-                ->orderBy(DB::raw('CAST(pc_points.rank_of_week AS SIGNED)'), 'ASC')
-                ->get();
-        }
-        else if($type == 'team'){
-            $data['data'] = DB::table('groups')
-                ->where('rank_of_week' , '!=' , null)
-                ->orderBy(DB::raw('CAST(rank_of_week AS SIGNED)'), 'ASC')
-                ->get();
+        if($week == "0"){
 
-            $data['week'] = $week;
+            if($type == 'individual'){
+                $data = DB::table('pc_points')
+                    ->join('users', 'users.id', '=', 'pc_points.user_id')
+                    ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
+                    ->where('week' , $week)
+                    ->orderBy(DB::raw('CAST(pc_points.group_id AS SIGNED)'), 'ASC')
+                    ->get();
+            }
+            else if($type == 'team'){
+                $data['data'] = DB::table('groups')
+                    ->where('rank_of_week' , '!=' , null)
+                    ->orderBy(DB::raw('CAST(id AS SIGNED)'), 'ASC')
+                    ->get();
+
+                $data['week'] = $week;
+            }
+
         }
+        else{
+
+            if($type == 'individual'){
+                $data = DB::table('pc_points')
+                    ->join('users', 'users.id', '=', 'pc_points.user_id')
+                    ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
+                    ->where('week' , $week)
+                    ->orderBy(DB::raw('CAST(pc_points.rank_of_week AS SIGNED)'), 'ASC')
+                    ->get();
+            }
+            else if($type == 'team'){
+                $data['data'] = DB::table('groups')
+                    ->where('rank_of_week' , '!=' , null)
+                    ->orderBy(DB::raw('CAST(rank_of_week AS SIGNED)'), 'ASC')
+                    ->get();
+
+                $data['week'] = $week;
+            }
+        }
+
 
         return $data ;
 
