@@ -438,7 +438,7 @@
             <div class="modal-body pt-1 pb-0">
                 <div id="modal_alert_news_content" class="text-center">
                     <!-- content -->
-                    <div id="content_item" class="btn-group owl-carousel carousel_alert_news owl-theme" role="group" aria-label="First group">
+                    <div id="content_item" class="btn-group owl-carousel carousel_alert_news owl-theme d-none" role="group" aria-label="First group">
                         
                         <!-- ITEM -->
                     </div>
@@ -667,6 +667,7 @@
         })
 
         document.querySelector('#btn_modal_alert_news').click();
+        document.querySelector('#content_item').classList.remove('d-none');
     }
 </script>
 </body>
