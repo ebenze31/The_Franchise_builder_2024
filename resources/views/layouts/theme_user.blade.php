@@ -412,7 +412,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         // change_menu_bar('rank');
-        check_alert_news();
+        // check_alert_news();
     });
 
   function change_menu_bar(menu){
