@@ -74,7 +74,7 @@
                                     </div>
                                 </div>
 
-                                <div class="table-responsive mt-4">
+                                <div class="table-responsive mt-4 d-none">
                                     <table class="table mb-0 align-middle" id="content_table">
                                         <thead>
                                             <tr>
@@ -404,4 +404,8 @@
         table2excel.export(document.querySelector("#content_table"), fileName);
     };
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src='https://cdn.jsdelivr.net/npm/table2excel@1.0.4/dist/table2excel.min.js'></script>
 @endsection
