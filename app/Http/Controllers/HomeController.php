@@ -143,8 +143,8 @@ class HomeController extends Controller
     }
     public function scanner(){
 
-        return view('teams_qualified');
-        // return view('scanner');
+        // return view('teams_qualified');
+        return view('scanner');
     }
 
     function test_qr(Request $request){

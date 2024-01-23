@@ -131,7 +131,7 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
     }#navbar-botttom{
-        display: none;
+/*        display: none;*/
     }
 
     .btn-logout {
@@ -250,6 +250,7 @@ line-height: normal;
         @csrf
     </form>
 </div>
+<br><br>
 
 <button id="btn_team_qualified"  class="d-none" data-toggle="modal" data-target="#modal_team_qualified"></button>
 
