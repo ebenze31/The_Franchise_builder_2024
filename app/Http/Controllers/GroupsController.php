@@ -25,7 +25,7 @@ class GroupsController extends Controller
     {
         $data_user = Auth::user();
 
-        return view('teams_qualified');
+        // return view('teams_qualified');
 
         // Admin
         if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin" || Auth::user()->role == "Staff"){
@@ -294,7 +294,7 @@ class GroupsController extends Controller
 
     function my_team($group_id)
     {
-        return view('teams_qualified');
+        // return view('teams_qualified');
 
         $data_user = Auth::user();
         $data_groups = Group::where('id' , $group_id)->first();
@@ -342,7 +342,7 @@ class GroupsController extends Controller
 
     function preview_team($group_id){
 
-        return view('teams_qualified');
+        // return view('teams_qualified');
         
         $data_user = Auth::user();
         $data_groups = Group::where('id' , $group_id)->first();

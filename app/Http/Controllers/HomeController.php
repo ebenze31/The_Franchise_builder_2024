@@ -31,7 +31,7 @@ class HomeController extends Controller
 
         $data_user = Auth::user();
 
-        return view('teams_qualified');
+        // return view('teams_qualified');
 
         if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin"){
             // return redirect("groups");
