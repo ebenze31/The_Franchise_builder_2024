@@ -343,7 +343,7 @@
                             <td>`+jsonData[i].csta+`</td>
                             <td>`+jsonData[i].pers+`</td>
                             <td>`+jsonData[i].ytd_pc+`</td>
-                            <td>`+jsonData[i].ytd_pc+`</td>
+                            <td>`+jsonData[i].mtd_pc+`</td>
                         </tr>
                     `;
 
