@@ -343,7 +343,7 @@
             <center>
                 <img src="{{ url('/img/icon/success.png') }}" alt="" width="87" height="87">
                 <h6 class="" style="font-weight: bolder;margin:50px 0 10px 0 ">ยืนยันการเข้าร่วมกิจกรรมสำเร็จ !</h6>
-                <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="start_scanQRCode();">Close</button>
             </center>
       </div>
     </div>
@@ -762,7 +762,7 @@
                     document.querySelector('#btn_close_modal').click();
                     // modal success
                     document.querySelector('#btnmodalSuccess').click();
-                    start_scanQRCode();
+                    // start_scanQRCode();
                 }
         });
     }
@@ -796,7 +796,7 @@
 
                 // modal success
                 document.querySelector('#btnmodalSuccess').click();
-                start_scanQRCode();
+                // start_scanQRCode();
                 
                 // document.querySelector('#alert_text').innerHTML = `
                 //    <i class="fa-solid fa-check text-success"></i> Success fully !
