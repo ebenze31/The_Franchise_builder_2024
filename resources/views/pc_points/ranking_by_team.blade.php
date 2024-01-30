@@ -363,7 +363,7 @@
 <div id="div_data_all" ></div>
 
 <!-- moda -->
-<button id="btn_mission_success" class="d-none" data-toggle="modal" data-target="#mission_success"></button>
+<button id="btn_mission_success" class="d-nsone" data-toggle="modal" data-target="#mission_success"></button>
 
 <div class="modal fade" style="z-index:999999999" id="mission_success" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered px-3">
