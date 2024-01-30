@@ -14,10 +14,10 @@ class AddMissionToPcPointsTable extends Migration
     public function up()
     {
         Schema::table('pc_points', function (Blueprint $table) {
-            $table->string('mission1')->nullable();
-            $table->string('mission3')->nullable();
-            $table->string('grandmission')->nullable();
-            $table->string('active_dream')->nullable();
+            $table->integer('mission1')->nullable();
+            $table->integer('mission3')->nullable();
+            $table->integer('grandmission')->nullable();
+            $table->integer('active_dream')->nullable();
             $table->string('team_rank_of_week')->nullable();
             $table->string('team_rank_last_week')->nullable();
         });
