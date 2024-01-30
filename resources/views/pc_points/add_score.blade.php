@@ -211,8 +211,12 @@
                                         <th scope="col">rank_last_week</th>
                                         <th scope="col">csta</th>
                                         <th scope="col">pers</th>
-                                        <th scope="col">YTD-PC</th>
-                                        <th scope="col">MTD-PC</th>
+                                        <th scope="col">mission 1</th>
+                                        <th scope="col">mission 3</th>
+                                        <th scope="col">grand mission</th>
+                                        <th scope="col">active_dream</th>
+                                        <th scope="col">team_rank_of_week</th>
+                                        <th scope="col">team_rank_last_week</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody_PreviewDATA">
@@ -342,8 +346,12 @@
                             <td>`+jsonData[i].rank_last_week+`</td>
                             <td>`+jsonData[i].csta+`</td>
                             <td>`+jsonData[i].pers+`</td>
-                            <td>`+jsonData[i].ytd_pc+`</td>
-                            <td>`+jsonData[i].mtd_pc+`</td>
+                            <td>`+jsonData[i].mission1+`</td>
+                            <td>`+jsonData[i].mission3+`</td>
+                            <td>`+jsonData[i].grandmission+`</td>
+                            <td>`+jsonData[i].active_dream+`</td>
+                            <td>`+jsonData[i].team_rank_of_week+`</td>
+                            <td>`+jsonData[i].team_rank_last_week+`</td>
                         </tr>
                     `;
 
