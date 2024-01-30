@@ -644,7 +644,22 @@ class GroupsController extends Controller
 
     function group_show_score($id){
 
-        $data_groups = User::where('group_id' , $id)->get();
+        // $data_groups = User::where('group_id' , $id)->get();
+
+        $check_week = Pc_point::where('week', 'not like', 'old-%')
+            ->orderByRaw('CAST(SUBSTRING_INDEX(`week`, "-", -1) AS UNSIGNED) DESC')
+            ->first();
+
+        $week = $check_week->week ;
+        
+        $data_groups = DB::table('users')
+            ->join('groups', 'users.group_id', '=', 'groups.id')
+            ->leftjoin('pc_points', 'pc_points.group_id', '=', 'users.group_id')
+            ->select('users.*' , 'groups.host as host')
+            ->where('users.group_id', $id)
+            ->where('pc_points.week', $week)
+            ->orderBy('pc_points.pc_points', 'ASC')
+            ->get();
 
         return view('groups.group_show_score' , compact('data_groups'));
 
