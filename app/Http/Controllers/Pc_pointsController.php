@@ -185,9 +185,9 @@ class Pc_pointsController extends Controller
                 $newArray = array(
                     'group_id' => $data_arr['group_id'],
                     'week' => $data_arr['week'],
-                    'pc_point' => $data_arr['pc_point']
-                    'team_rank_of_week' => $data_arr['team_rank_of_week']
-                    'team_rank_last_week' => $data_arr['team_rank_last_week']
+                    'pc_point' => $data_arr['pc_point'],
+                    'team_rank_of_week' => $data_arr['team_rank_of_week'],
+                    'team_rank_last_week' => $data_arr['team_rank_last_week'],
                 );
 
                 $group_pc[$data_arr['group_id']] = $newArray;
@@ -262,7 +262,7 @@ class Pc_pointsController extends Controller
                 if( !empty($data_groups->rank_of_week) ){
                     // $update_rank_last_week = $data_groups->rank_of_week;
                     // $update_rank_of_week = ($i + 1);
-                    
+
                     $update_rank_of_week = $group_pc[$i]['team_rank_of_week'];
                     $update_rank_last_week = $group_pc[$i]['team_rank_last_week'];
                 }else{
