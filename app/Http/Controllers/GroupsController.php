@@ -661,6 +661,11 @@ class GroupsController extends Controller
             ->orderBy('pc_points.pc_point', 'ASC')
             ->get();
 
+        echo "<pre>";
+        print_r($data_groups);
+        echo "<pre>";
+        exit();
+
         return view('groups.group_show_score' , compact('data_groups'));
 
     }
