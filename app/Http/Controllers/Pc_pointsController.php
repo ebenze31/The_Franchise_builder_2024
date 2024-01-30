@@ -186,6 +186,8 @@ class Pc_pointsController extends Controller
                     'group_id' => $data_arr['group_id'],
                     'week' => $data_arr['week'],
                     'pc_point' => $data_arr['pc_point']
+                    'team_rank_of_week' => $data_arr['team_rank_of_week']
+                    'team_rank_last_week' => $data_arr['team_rank_last_week']
                 );
 
                 $group_pc[$data_arr['group_id']] = $newArray;
@@ -197,22 +199,22 @@ class Pc_pointsController extends Controller
         }
 
         // จัดลำดับคะแนนกลุ่ม
-        usort($group_pc, function($a, $b) {
-            return $b['pc_point'] - $a['pc_point'];
-        });
+        // usort($group_pc, function($a, $b) {
+        //     return $b['pc_point'] - $a['pc_point'];
+        // });
 
         for ($i=0; $i < count($group_pc); $i++) { 
 
             $data_groups = Group::where('id' , $group_pc[$i]['group_id'])->first();
             $rank_record_update = [] ;
 
-            $update_arr_rank = "";
+            // $update_arr_rank = "";
 
-            if($check_week == "0"){
-                $update_arr_rank = 0;
-            }else{
-                $update_arr_rank = ($i + 1);
-            }
+            // if($check_week == "0"){
+            //     $update_arr_rank = 0;
+            // }else{
+            //     $update_arr_rank = ($i + 1);
+            // }
 
             if( empty($data_groups->rank_record) ){ // ไม่มีข้อมูล week ก่อน
 
@@ -221,7 +223,9 @@ class Pc_pointsController extends Controller
                 $new_rank_record[$group_pc[$i]['week']] = [
                     'week' => $group_pc[$i]['week'],
                     'pc_point' => $group_pc[$i]['pc_point'],
-                    'rank' => $update_arr_rank,
+                    // 'rank' => $update_arr_rank,
+                    'team_rank_of_week' => $group_pc[$i]['team_rank_of_week'],
+                    'team_rank_last_week' => $group_pc[$i]['team_rank_last_week'],
                 ];
 
                 $rank_record_update = json_encode($new_rank_record);
@@ -233,7 +237,9 @@ class Pc_pointsController extends Controller
                 $old_arr[$group_pc[$i]['week']] = [
                     'week' => $group_pc[$i]['week'],
                     'pc_point' => $group_pc[$i]['pc_point'],
-                    'rank' => $update_arr_rank,
+                    // 'rank' => $update_arr_rank,
+                    'team_rank_of_week' => $group_pc[$i]['team_rank_of_week'],
+                    'team_rank_last_week' => $group_pc[$i]['team_rank_last_week'],
                 ];
 
                 // แปลง array ใหม่เป็น JSON
@@ -250,12 +256,18 @@ class Pc_pointsController extends Controller
                 $update_rank_last_week = 0;
             }
             else{
+                'team_rank_of_week' => ,
+                'team_rank_last_week' => ,
+
                 if( !empty($data_groups->rank_of_week) ){
-                    $update_rank_last_week = $data_groups->rank_of_week;
-                    $update_rank_of_week = ($i + 1);
+                    // $update_rank_last_week = $data_groups->rank_of_week;
+                    // $update_rank_of_week = ($i + 1);
+                    
+                    $update_rank_of_week = $group_pc[$i]['team_rank_of_week'];
+                    $update_rank_last_week = $group_pc[$i]['team_rank_last_week'];
                 }else{
-                    $update_rank_last_week = ($i + 1);
-                    $update_rank_of_week = ($i + 1);
+                    $update_rank_of_week = $group_pc[$i]['team_rank_of_week'];
+                    $update_rank_last_week = $group_pc[$i]['team_rank_last_week'];
                 }
             }
 
