@@ -655,10 +655,10 @@ class GroupsController extends Controller
         $data_groups = DB::table('users')
             ->join('groups', 'users.group_id', '=', 'groups.id')
             ->leftjoin('pc_points', 'pc_points.group_id', '=', 'users.group_id')
-            ->select('users.*' , 'groups.host as host' , 'pc_points.pc_points as pc_points' , 'pc_points.active_dream as active_dream')
+            ->select('users.*' , 'groups.host as host' , 'pc_points.pc_point as pc_points' , 'pc_points.active_dream as active_dream')
             ->where('users.group_id', $id)
             ->where('pc_points.week', $week)
-            ->orderBy('pc_points.pc_points', 'ASC')
+            ->orderBy('pc_points.pc_point', 'ASC')
             ->get();
 
         return view('groups.group_show_score' , compact('data_groups'));
