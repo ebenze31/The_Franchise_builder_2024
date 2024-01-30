@@ -571,7 +571,7 @@
         fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
             .then(response => response.json())
             .then(result => {
-            // console.log(result);
+            console.log(result);
 
             let content_ASC = document.querySelector('#content_ASC');
             let content_ME = document.querySelector('#content_ME');
@@ -580,6 +580,8 @@
                 setTimeout(() => {
 
                     let week = result['week'];
+                    let as_of = result['as_of'];
+                    let datePart = as_of.substring(0, 10);
 
                     let count_div = 1 ;
 
@@ -748,7 +750,7 @@
                                                             </th>
                                                             <th class="text-center" style>
                                                                 <p>Mission 1</p>
-                                                                <small style="font-size: 7px;">As of  : ...</small>
+                                                                <small style="font-size: 7px;">As of  : `+datePart+`</small>
                                                             </th>
                                                             <!-- <th class="text-center d-flex align-items-top">MTD-Case
                                                             </th>

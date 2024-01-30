@@ -299,6 +299,7 @@ class Pc_pointsController extends Controller
             ->first();
 
         $week = $check_week->week ;
+        $as_of = $check_week->created_at ;
 
         if($week == "0"){
 
@@ -317,6 +318,7 @@ class Pc_pointsController extends Controller
                     ->get();
 
                 $data['week'] = $week;
+                $data['as_of'] = $as_of;
             }
 
         }
@@ -337,6 +339,7 @@ class Pc_pointsController extends Controller
                     ->get();
 
                 $data['week'] = $week;
+                $data['as_of'] = $as_of;
             }
         }
 
