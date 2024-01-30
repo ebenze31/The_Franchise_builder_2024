@@ -831,14 +831,14 @@
                     // console.log("ปีปัจจุบัน:", currentYear);
                     // console.log("เดือนปัจจุบัน:", currentMonth);
 
-                    let monthlyValue = 0 ;
-                    let monthly_formatted = 0 ;
+                    let mission1_Value = 0 ;
+                    let mission1_formatted = 0 ;
                     let yearlyValue = 0 ;
                     let yearly_formatted = 0 ;
 
                     if(week != "0"){
-                        monthlyValue = member_in_team[xz].monthly;
-                        monthly_formatted = monthlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                        mission1_Value = member_in_team[xz].mission1;
+                        mission1_formatted = mission1_Value.toLocaleString('en-UK', {maximumFractionDigits: 0});
 
                         yearlyValue = member_in_team[xz].yearly;
                         yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
@@ -862,7 +862,7 @@
                                 `+yearly_formatted+`
                             </td>
                             <td class=" ${icon_me} text-data-team text-center">
-                                `+monthly_formatted+`
+                                `+mission1_formatted+`
                             </td>
                             <!-- <td class="text-data-team text-center">4</td> -->
                             <!-- <td class="text-data-team text-center">2</td> -->

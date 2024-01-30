@@ -428,7 +428,8 @@ class Pc_pointsController extends Controller
                     'user_photo' => $row->user_photo,
                     'total' => $row->pc_point,
                     'yearly' => $row->pc_point,
-                    'monthly' => $row->mtd_pc,
+                    'mission1' => $row->mission1,
+                    'mission3' => $row->mission3,
                 ];
             }
         }
