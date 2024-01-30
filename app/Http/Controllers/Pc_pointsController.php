@@ -199,9 +199,9 @@ class Pc_pointsController extends Controller
         }
 
         // จัดลำดับคะแนนกลุ่ม
-        // usort($group_pc, function($a, $b) {
-        //     return $b['pc_point'] - $a['pc_point'];
-        // });
+        usort($group_pc, function($a, $b) {
+            return $b['pc_point'] - $a['pc_point'];
+        });
 
         for ($i=0; $i < count($group_pc); $i++) { 
 
