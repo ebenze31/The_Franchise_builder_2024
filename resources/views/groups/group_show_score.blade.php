@@ -183,7 +183,7 @@ height: 87px;
                         @endif
                     </div>
                     <div class="name-member">
-                        <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;">{{ $item->name }}</span>
+                        <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;">{{ $item->id }} {{ $item->name }}</span>
                         <div class="d-flex justify-content-start ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;">
                             <span style="color: #FCBF29;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;">
                                 PC : 
