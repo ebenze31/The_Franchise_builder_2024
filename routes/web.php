@@ -70,6 +70,7 @@ Route::middleware(['auth', 'role:Player,Super-admin,Admin'])->group(function () 
 
     Route::resource('pc_points', 'Pc_pointsController');
     Route::resource('groups', 'GroupsController');
+    Route::get('group_show_score/{id}', 'GroupsController@group_show_score');
     Route::get('/preview_team/{group_id}', 'GroupsController@preview_team');
     Route::get('/group_my_team/{group_id}', 'GroupsController@my_team');
     Route::get('/scanner', 'HomeController@scanner');

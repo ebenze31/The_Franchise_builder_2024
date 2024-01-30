@@ -642,5 +642,11 @@ class GroupsController extends Controller
         return  "success" ;
     }
 
+    function group_show_score($id){
 
+        $data_groups = User::where('group_id' , $id)->get();
+
+        return view('groups.group_show_score' , compact('data_groups'));
+
+    }
 }

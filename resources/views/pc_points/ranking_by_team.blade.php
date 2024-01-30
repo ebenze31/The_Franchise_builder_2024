@@ -341,10 +341,57 @@
         border-right: 1px solid #00E0FF; /* ตัวอย่างเพื่อให้เห็นขอบ */
         border-radius: 0 10px 10px 0;
     }
+    .btn-submit {
+    border-radius: 5px;
+    width: auto;
+    font-size: 16px;
+    margin-top: 15px;
+    padding: 8px 35px;
+    background-color: #005CD3;
+    color: #fff;
+  }
 
+  .btn-submit:hover {
+    border: 1px solid #00E0FF;
+    box-shadow: 0px 0px 15px 1px #00FBFF;
+    
+    color: #fff;
+
+  }
 </style>
 
 <div id="div_data_all" ></div>
+
+<!-- moda -->
+<button id="btn_mission_success" class="d-none" data-toggle="modal" data-target="#mission_success"></button>
+
+<div class="modal fade" style="z-index:999999999" id="mission_success" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered px-3">
+        <div class="modal-content " style="border-radius: 10px; margin: 0 40px;">
+            <div id="modal_body_content"  class="modal-body text-center pb-0">
+                <div class="px-3">
+                    <img src="{{ url('/img/icon/mission_success.png') }}"  class="mt-2 mb-2 w-100">
+                </div>
+                <p id="title_mission_success" class="mt-1" style="color: #1F1F1F;text-align: center;font-size: 14px;font-style: normal;font-weight: 600;line-height: normal;">
+                    <b>ยินดีด้วย <br>
+                    ทีมของคุณพิชิต Mission 1 <br>
+                    ได้สำเร็จ! ? <br>
+                    </b>
+                </p>
+                <p style="color: #005CD3;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;" class="mt-3 mb-0">และมีสมาชิกที่ได้ไปต่อ</p>
+                <p class="mt-0" style="color: #005CD3;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">
+                    <span id="">1</span>/10
+                </p>
+            </div>
+            <div class="d-flex justify-content-center mt-1 mb-3">
+                <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal">
+                    Close
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
 
 <div class="d-flex justify-content-center mt-1">
     <div class="container row ">
@@ -368,7 +415,6 @@
         </div>
     </div>
 </div>
-
 @php
     $activeGroupsCount = App\Models\Group::where('active', 'Yes')
         ->where('status', 'ยืนยันเรียบร้อย')
@@ -626,7 +672,7 @@
                                                             </th>
                                                             <th class="text-center mt-1">YTD-PC
                                                             </th>
-                                                            <th class="text-center mt-1">MTD-PC
+                                                            <th class="text-center mt-1">Mission 1
                                                             </th>
                                                             <!-- <th class="text-center d-flex align-items-top">MTD-Case
                                                             </th>
@@ -685,13 +731,24 @@
                                                 <table class="table mb-0 align-middle table-borderless">
                                                     <thead class="head-teble-data-my-team">
                                                         <tr>
-                                                            <th class="text-center" style>No.
+                                                            <th class="text-center" style>
+                                                                <p>No.</p><br>
+
+                                                                <p></p>
                                                             </th>
-                                                            <th class="text-center" style>User
+                                                            <th class="text-center" style>
+                                                                <p>User</p><br>
+
+                                                                <p></p>
                                                             </th>
-                                                            <th class="text-center" style>YTD-PC
+                                                            <th class="text-center" style>
+                                                                <p>YTD-PC</p><br>
+
+                                                                <p></p>
                                                             </th>
-                                                            <th class="text-center" style>MTD-PC
+                                                            <th class="text-center" style>
+                                                                <p>Mission 1</p>
+                                                                <small style="font-size: 7px;">As of  : ...</small>
                                                             </th>
                                                             <!-- <th class="text-center d-flex align-items-top">MTD-Case
                                                             </th>
@@ -705,6 +762,9 @@
                                                         <!-- ข้อมูลสมาชิก -->
                                                     </tbody>
                                                 </table>
+                                                
+                                                <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('group_show_score')}}/{{ Auth::user()->group_id }}">ดูรายละเอียดเพิ่มเติม</a>
+
                                             </div>
                                         </div>
                                     </div>
