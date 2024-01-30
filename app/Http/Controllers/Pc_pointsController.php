@@ -256,8 +256,6 @@ class Pc_pointsController extends Controller
                 $update_rank_last_week = 0;
             }
             else{
-                'team_rank_of_week' => ,
-                'team_rank_last_week' => ,
 
                 if( !empty($data_groups->rank_of_week) ){
                     // $update_rank_last_week = $data_groups->rank_of_week;
