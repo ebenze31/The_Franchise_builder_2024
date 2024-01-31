@@ -644,10 +644,11 @@ class GroupsController extends Controller
 
     function group_show_score($id){
 
+        $group_id = $id ;
         // $data_groups = User::where('group_id' , $id)->get();
 
         // return view('groups.group_show_score' , compact('data_groups'));
-        return view('groups.group_show_score');
+        return view('groups.group_show_score', compact('group_id'));
 
     }
 

@@ -126,19 +126,20 @@ height: 87px;
 <button id="btn_mission_success" class="d-nodne" style="margin-top: -500px;" data-toggle="modal" data-target="#mission_success"></button>
 
 <div class="d-flex header-team">
-    <img src="{{ url('/img/group_profile/profile/id (') . Auth::user()->group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
+    <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
     <div class="d-flex justify-content-between w-100" >
         <div class="detail-team"style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:73%">
             <h1 class="mb-0" style="color: #FFF;font-size: 24px;font-style: normal;font-weight: 400;line-height: normal;">
-                Team {{Auth::user()->group_id}}
+                Team {{ $group_id }}
             </h1>
             <!-- <p style="color: #FCBF29;font-family: Inter;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">
                 PC : xxxxxxx
             </p> -->
             <div>
                 <div>
-                    <span style="color: #FCBF29;font-family: Inter;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">PC : 88,888,888</span>
-                    <span>
+                    <span style="color: #FCBF29;font-family: Inter;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">PC : <span id="span_sum_score_team">88,888,888</span>
+                    </span>
+                    <span id="trophy_for_700K" class="d-none">
                         <img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px;height:16px;position: relative!important;left: 5px !important;">
                     </span>
                 </div>
@@ -159,7 +160,7 @@ height: 87px;
 </div>
 <div class="d-flex  justify-content-between w-100 pt-4" style="padding: 0 18px;">
     <div class="d-flex align-items-center">
-        <span style="color: #05ADD0;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">Members : </span><span style="color: #F4F4F4;font-size: 18px;font-style: normal;font-weight: 400;line-height: normal;margin-left: 5px;">Team {{Auth::user()->group_id}}</span>
+        <span style="color: #05ADD0;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">Members : </span><span style="color: #F4F4F4;font-size: 18px;font-style: normal;font-weight: 400;line-height: normal;margin-left: 5px;">Team {{ $group_id }}</span>
     </div>
     <div class="d-flex align-items-center float-end">
         <div>
@@ -217,9 +218,11 @@ height: 87px;
         get_data_group_show_score();
     });
 
+    var sum_score_of_team = 0 ;
+
     function get_data_group_show_score(){
 
-        fetch("{{ url('/') }}/api/get_data_group_show_score" + "/" + "{{ Auth::user()->group_id }}")
+        fetch("{{ url('/') }}/api/get_data_group_show_score" + "/" + "{{ $group_id }}")
             .then(response => response.json())
             .then(result => {
             console.log(result);
@@ -246,6 +249,8 @@ height: 87px;
                         <img src="{{ url('storage')}}/`+result['json'][i]['photo_user']+`" class="img-member">
                     `;
                 }
+
+                sum_score_of_team = sum_score_of_team + result['json'][i]['pc_point'] ;
 
                 let originalNumber = result['json'][i]['pc_point'];
                 let formattedNumber = formatLargeNumber(originalNumber);
@@ -295,6 +300,15 @@ height: 87px;
 
                 div_content_data.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
                 
+            }
+
+            let original_score_of_team = sum_score_of_team;
+            let format_score_of_team = formatLargeNumber(original_score_of_team);
+
+            document.querySelector('#span_sum_score_team').innerHTML = format_score_of_team;
+
+            if(sum_score_of_team > 700000){
+                document.querySelector('#trophy_for_700K').classList.remove('d-none');
             }
 
         });
