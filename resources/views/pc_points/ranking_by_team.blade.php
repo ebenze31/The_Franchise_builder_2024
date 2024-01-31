@@ -598,6 +598,12 @@
                         let originalNumber = pc_point;
                         let formattedNumber = formatLargeNumber(originalNumber);
 
+                        if (originalNumber > 700000) {
+                            img_trophy = ` <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt="">`;
+                        } else {
+                            img_trophy = ``;
+                        }
+
                         let rank_up ;
                         if( parseInt(result['data'][i].rank_of_week) < parseInt(result['data'][i].rank_last_week) ){
                             rank_up = `<i class="fa-solid fa-triangle rankUP"></i>`;
@@ -618,7 +624,7 @@
                                     <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
                                     <div class="detailTeam">
                                         <div>
-                                            <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
+                                            <p class="nameTeam">Team `+result['data'][i].name_group+`${img_trophy}</p>
                                         </div>
                                     </div>
                                     <div class="score-my-team">
@@ -646,7 +652,7 @@
                                     <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
                                     <div class="detailTeam">
                                         <div>
-                                            <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
+                                            <p class="nameTeam">Team `+result['data'][i].name_group+`${img_trophy}</p>
                                         </div>
                                     </div>
                                     <div class="score-my-team">
@@ -711,7 +717,7 @@
                                     <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
                                     <div class="detailTeam">
                                         <div>
-                                            <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
+                                            <p class="nameTeam">Team `+result['data'][i].name_group+`${img_trophy}</p>
                                         </div>
                                     </div>
                                     <div class="score-my-team">
