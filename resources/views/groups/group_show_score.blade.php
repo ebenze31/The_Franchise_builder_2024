@@ -239,6 +239,9 @@ height: 87px;
                     `;
                 }
 
+                let originalNumber = result['json'][i]['pc_point'];
+                let formattedNumber = formatLargeNumber(originalNumber);
+
                 let html = `
                     <div class="member-item col-4 mt-2 " style="margin-bottom: 42px;">
                         <div class="member-card-join">
@@ -254,7 +257,7 @@ height: 87px;
                                             PC : 
                                         </span>
                                         <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;"">
-                                        8,412,781
+                                        `+formattedNumber+`
                                         </span>
                                     </div>
                                     <div class="d-flex justify-content-start ps-2 mt-1" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;">
@@ -262,7 +265,7 @@ height: 87px;
                                         Active :
                                         </span>
                                         <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;"">
-                                        2
+                                        `+result['json'][i]['active_dream']+`
                                         </span>
                                     </div>
                                 </div>
@@ -276,6 +279,17 @@ height: 87px;
             }
 
         });
+
+    }
+
+    function formatLargeNumber(number) {
+        // if (number >= 1e6) { // 1e6 = 1,000,000
+        //     return (number / 1e6).toFixed(3).slice(0, -1) + 'M';
+        // } else {
+        //     return number.toLocaleString();
+        // }
+
+        return number.toLocaleString();
 
     }
 
