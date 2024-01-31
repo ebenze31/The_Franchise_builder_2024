@@ -700,7 +700,7 @@ class GroupsController extends Controller
         }
 
         $data['host'] = $host ;
-        $data['json'] = $updated_json_data ;
+        $data['json'] = $new_data_array ;
 
         return $data ;
 
