@@ -266,9 +266,9 @@ height: 87px;
                    amount_Active_dream = amount_Active_dream + 1 ; 
                 }
 
-                sum_score_of_team = sum_score_of_team + result['json'][i]['pc_point'] ;
+                sum_score_of_team = sum_score_of_team + result['json'][i]['mission1'] ;
 
-                let originalNumber = result['json'][i]['pc_point'];
+                let originalNumber = result['json'][i]['mission1'];
                 let formattedNumber = formatLargeNumber(originalNumber);
                 if (originalNumber > 50000) {
 
