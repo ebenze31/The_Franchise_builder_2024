@@ -655,6 +655,8 @@ class GroupsController extends Controller
 
         $data = [] ;
 
+        // $data_User = User::where('group_id' , $id)->get();
+        
         $check_week = Pc_point::where('week', 'not like', 'old-%')
             ->orderByRaw('CAST(SUBSTRING_INDEX(`week`, "-", -1) AS UNSIGNED) DESC')
             ->first();
@@ -663,9 +665,7 @@ class GroupsController extends Controller
 
         $data_groups = Group::where('id' , $id)->first();
         $host = $data_groups->host ;
-        $data['host'] = $host ;
 
-        $data_User = User::where('group_id' , $id)->get();
         $data_Pc_point = Pc_point::where('group_id' , $id)
             ->where('week' , $week)
             ->get();
@@ -681,10 +681,19 @@ class GroupsController extends Controller
         // แปลง associative array กลับเป็น JSON
         $new_json_data = json_encode($data_array);
 
+        for ($i=0; $i < count($new_json_data); $i++) { 
+            
+            $data_User = User::where('id' , $new_json_data[$i]['user_id'])->first();
 
-        $data['data'] = $data_User ;
+            $new_json_data[$i]['name_user'] = $data_User->name ;
+            $new_json_data[$i]['photo_user'] = $data_User->photo ;
 
-        return $new_json_data ;
+        }
+
+        $data['host'] = $host ;
+        $data['json'] = $new_json_data ;
+
+        return $data ;
 
     }
 }
