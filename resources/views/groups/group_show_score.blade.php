@@ -234,13 +234,14 @@ height: 87px;
     var sum_score_of_team = 0 ;
     var amount_member_50k = 0 ;
     var amount_Active_dream = 0 ;
+    var score_of_me = 0 ;
 
     function get_data_group_show_score(){
 
         fetch("{{ url('/') }}/api/get_data_group_show_score" + "/" + "{{ $group_id }}")
             .then(response => response.json())
             .then(result => {
-            // console.log(result);
+            console.log(result);
 
             let as_of = result['json'][0]['created_at'];
             let datePart = as_of.substring(0, 10);
@@ -280,6 +281,11 @@ height: 87px;
                 sum_score_of_team = sum_score_of_team + result['json'][i]['mission1'] ;
 
                 let originalNumber = result['json'][i]['mission1'];
+
+                // if("{{ Auth::user()->id }}" == ){
+                //     score_of_me = ;
+                // }
+
                 let formattedNumber = formatLargeNumber(originalNumber);
                 if (originalNumber > 50000) {
 
