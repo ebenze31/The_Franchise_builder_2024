@@ -861,12 +861,12 @@
                         mission1_Value = member_in_team[xz].mission1;
                         mission1_formatted = mission1_Value.toLocaleString('en-UK', {maximumFractionDigits: 0});
 
-                        if(mission1_Value > 50000){
-                            mission1_Value = mission1_Value + 1 ;
-                        }
-
                         yearlyValue = member_in_team[xz].yearly;
                         yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
+
+                        if(yearlyValue > 50000){
+                            amount_member_50 = amount_member_50 + 1 ;
+                        }
                     }
 
                     let icon_me = ``;
