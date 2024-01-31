@@ -151,7 +151,7 @@ height: 87px;
                 <div>
                     <div class="float-end mt-1">
                         <i class="fa-regular fa-user text-white me-2"></i>
-                        <span style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">05/10</span>
+                        <span style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;"><span id="span_amount_member_50k"></span>/10</span>
                     </div>
                 </div>
             </div>
@@ -167,7 +167,7 @@ height: 87px;
             <img src="{{ url('/img/icon/mission-1.png') }}" style="width: 140px;height: 18px;" alt="">
             <div>
                 <div class="float-end mt-1" style="color: #01B0F1;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">
-                    05/10
+                    <span id="span_amount_Active_dream"></span>/10
                 </div>
             </div>
         </div>
@@ -219,6 +219,8 @@ height: 87px;
     });
 
     var sum_score_of_team = 0 ;
+    var amount_member_50k = 0 ;
+    var amount_Active_dream = 0 ;
 
     function get_data_group_show_score(){
 
@@ -250,11 +252,18 @@ height: 87px;
                     `;
                 }
 
+                if(result['json'][i]['active_dream'] >= 2){
+                   amount_Active_dream = amount_Active_dream + 1 ; 
+                }
+
                 sum_score_of_team = sum_score_of_team + result['json'][i]['pc_point'] ;
 
                 let originalNumber = result['json'][i]['pc_point'];
                 let formattedNumber = formatLargeNumber(originalNumber);
                 if (originalNumber > 50000) {
+
+                    amount_member_50k = amount_member_50k + 1 ;
+
                     img_star = `<img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">`;
                 } else {
                     img_star = ``;
@@ -310,6 +319,18 @@ height: 87px;
             if(sum_score_of_team > 700000){
                 document.querySelector('#trophy_for_700K').classList.remove('d-none');
             }
+
+            if( amount_member_50k < 10 ){
+                amount_member_50k = "0"+amount_member_50k;
+            }
+
+            document.querySelector('#span_amount_member_50k').innerHTML = amount_member_50k ;
+
+            if( amount_Active_dream < 10 ){
+                amount_Active_dream = "0"+amount_Active_dream;
+            }
+
+            document.querySelector('#span_amount_Active_dream').innerHTML = amount_Active_dream ;
 
         });
 
