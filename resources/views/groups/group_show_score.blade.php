@@ -5,7 +5,7 @@
     .header-team {
         position: relative;
         margin-top: 55px;
-        padding: 15px;
+        padding: 5px 15px 15px 15px;
         background: rgb(7, 139, 166);
         background: linear-gradient(180deg, rgba(7, 139, 166, 1) 0%, rgba(40, 63, 136, 1) 51%, rgba(8, 49, 90, 1) 84%, rgba(11, 40, 70, 1) 100%);
         border-radius: 10px 0 0 0;
@@ -137,10 +137,13 @@ height: 87px;
             </p> -->
             <div>
                 <div>
-                    <span style="color: #FCBF29;font-family: Inter;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">PC : <span id="span_sum_score_team">88,888,888</span>
+                    <span style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">Mission#1PC : 
+                        <span id="trophy_for_700K" class="d-none"><img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
+                    
                     </span>
-                    <span id="trophy_for_700K" class="d-none">
-                        <img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px;height:16px;position: relative!important;left: 5px !important;">
+                    <p id="span_sum_score_team" style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">88,888,888</p>
+                    
+                        
                     </span>
                 </div>
             </div>
@@ -156,6 +159,9 @@ height: 87px;
                 </div>
             </div>
         </div>
+        <span style="position: absolute;bottom: 5px; right: 5px;color: #FFF;font-size: 7px;font-style: normal;font-weight: 500;line-height: normal;">
+            As of  : <span id="date_as_of"></span>
+        </span>
     </div>
 </div>
 <div class="d-flex  justify-content-between w-100 pt-4" style="padding: 0 18px;">
@@ -229,6 +235,10 @@ height: 87px;
             .then(result => {
             console.log(result);
 
+            let as_of = result['json'][0]['created_at'];
+            let datePart = as_of.substring(0, 10);
+            document.querySelector('#date_as_of').innerHTML = datePart ;
+
             let div_content_data = document.querySelector('#div_content_data');
                 div_content_data.innerHTML = '' ;
 
@@ -278,7 +288,7 @@ height: 87px;
                                 </div>
                                 
                                 <div class="name-member">
-                                    <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;">`+result['json'][i]['name_user']+`</span>
+                                    <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">`+result['json'][i]['name_user']+`</span>
                                    
                                     <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                                         <div>
