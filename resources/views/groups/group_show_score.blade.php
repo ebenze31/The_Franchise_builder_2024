@@ -130,7 +130,7 @@ height: 87px;
     </a>
 </div>
 
-<button id="btn_mission_success" class="d-nodne" style="margin-top: -500px;" data-toggle="modal" data-target="#mission_success"></button>
+<button id="btn_mission_success" class="d-none" style="margin-top: -500px;" data-toggle="modal" data-target="#mission_success"></button>
 
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
@@ -280,12 +280,12 @@ height: 87px;
 
                 sum_score_of_team = sum_score_of_team + result['json'][i]['mission1'] ;
 
+
+                if("{{ Auth::user()->id }}" == result['json'][i]['user_id']){
+                    score_of_me = result['json'][i]['mission1'];
+                }
+
                 let originalNumber = result['json'][i]['mission1'];
-
-                // if("{{ Auth::user()->id }}" == ){
-                //     score_of_me = ;
-                // }
-
                 let formattedNumber = formatLargeNumber(originalNumber);
                 if (originalNumber > 50000) {
 
@@ -359,7 +359,29 @@ height: 87px;
 
             document.querySelector('#span_amount_Active_dream').innerHTML = amount_Active_dream ;
 
+            check_alert_50k();
+
         });
+
+    }
+
+    function check_alert_50k(group_id){
+
+        if(score_of_me > 50000){
+
+            fetch("{{ url('/') }}/api/check_alert_50k" + "/" + "{{ Auth::user()->id }}")
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+
+                    if(result == "alert"){
+                        document.querySelector('#btn_mission_success').click();
+                    }
+
+            });
+
+        }
+
 
     }
 

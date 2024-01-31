@@ -737,4 +737,27 @@ class GroupsController extends Controller
         return $return ;
 
     }
+
+    function check_alert_50k($user_id){
+
+        $data_User = User::where('id' , $user_id)->first();
+
+        if($data_User->alert_50k != "Yes"){
+            $return = "alert" ;
+        }
+        else{
+            $return = "no" ;
+        }
+
+        DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'alert_50k' => 'Yes',
+                ]);
+
+        return $return ;
+
+    }
 }

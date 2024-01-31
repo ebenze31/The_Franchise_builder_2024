@@ -913,8 +913,8 @@
 
                 }
 
-                console.log(score_of_team);
-                console.log(amount_member_50k);
+                // console.log(score_of_team);
+                // console.log(amount_member_50k);
 
                 check_alert_700k(group_id);
 
@@ -1007,7 +1007,7 @@
             fetch("{{ url('/') }}/api/check_alert_700k" + "/" + group_id + "/" + score_of_team + "/" + amount_member_50k)
                 .then(response => response.text())
                 .then(result => {
-                    console.log(result);
+                    // console.log(result);
 
                     if(result == "alert"){
                         document.querySelector('#member_50k_success').innerHTML = amount_member_50k ;
@@ -1017,7 +1017,6 @@
             });
 
         }
-
 
     }
 
