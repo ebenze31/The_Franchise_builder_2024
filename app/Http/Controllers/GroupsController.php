@@ -676,7 +676,7 @@ class GroupsController extends Controller
 
         // ฟังก์ชันสำหรับเรียงลำดับข้อมูลตาม pc_point จากมากไปน้อย
         usort($data_array, function($a, $b) {
-            return $b['pc_point'] - $a['pc_point'];
+            return $b['mission1'] - $a['mission1'];
         });
 
         // แปลง associative array กลับเป็น JSON
