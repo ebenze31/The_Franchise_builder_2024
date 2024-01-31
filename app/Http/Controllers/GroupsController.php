@@ -706,4 +706,35 @@ class GroupsController extends Controller
         return $data ;
 
     }
+
+    function check_alert_700k($group_id , $score_of_team , $amount_member_50k){
+
+        $data_groups = Group::where('id' , $group_id)->first();
+
+        if( $data_groups->alert_700k != "Yes" ){
+            $return = "alert" ;
+        }
+        else if( $data_groups->alert_700k == "Yes" ){
+
+            if($data_groups->member_50k == $amount_member_50k){
+                $return = "no" ;
+            }
+            else{
+                $return = "alert" ;
+            }
+
+        }
+
+        DB::table('groups')
+            ->where([ 
+                    ['id', $group_id],
+                ])
+            ->update([
+                    'alert_700k' => 'Yes',
+                    'member_50k' => $amount_member_50k,
+                ]);
+
+        return $return ;
+
+    }
 }

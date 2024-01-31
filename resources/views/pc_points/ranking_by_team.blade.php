@@ -380,7 +380,7 @@
                 </p>
                 <p style="color: #005CD3;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;" class="mt-3 mb-0">และมีสมาชิกที่ได้ไปต่อ</p>
                 <p class="mt-0" style="color: #005CD3;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">
-                    <span id="">1</span>/10
+                    <span id="member_50k_success"></span>/10
                 </p>
             </div>
             <div class="d-flex justify-content-center mt-1 mb-3">
@@ -916,6 +916,8 @@
                 console.log(score_of_team);
                 console.log(amount_member_50k);
 
+                check_alert_700k(group_id);
+
         });
 
     }
@@ -992,6 +994,30 @@
 
 
         });
+
+    }
+
+    function check_alert_700k(group_id){
+
+        // score_of_team
+        // amount_member_50k
+
+        if(score_of_team > 700000){
+
+            fetch("{{ url('/') }}/api/check_alert_700k" + "/" + group_id + "/" + score_of_team + "/" + amount_member_50k)
+                .then(response => response.text())
+                .then(result => {
+                    console.log(result);
+
+                    if(result == "alert"){
+                        document.querySelector('#member_50k_success').innerHTML = amount_member_50k ;
+                        document.querySelector('#btn_mission_success').click();
+                    }
+
+            });
+
+        }
+
 
     }
 

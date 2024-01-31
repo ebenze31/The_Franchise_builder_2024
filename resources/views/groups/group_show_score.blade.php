@@ -240,7 +240,7 @@ height: 87px;
         fetch("{{ url('/') }}/api/get_data_group_show_score" + "/" + "{{ $group_id }}")
             .then(response => response.json())
             .then(result => {
-            console.log(result);
+            // console.log(result);
 
             let as_of = result['json'][0]['created_at'];
             let datePart = as_of.substring(0, 10);
