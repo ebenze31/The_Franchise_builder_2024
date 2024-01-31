@@ -589,8 +589,12 @@
                 setTimeout(() => {
 
                     let week = result['week'];
+
                     let as_of = result['as_of'];
-                    let datePart = as_of.substring(0, 10);
+                    let datePart = as_of.substring(0, 10); // 2024-01-31
+
+                    let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
+                    let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; // ประกอบวันที่ใหม่ในรูปแบบที่ต้องการ
 
                     let count_div = 1 ;
 
@@ -700,7 +704,7 @@
                                                             </th>
                                                             <th class="text-center" style>
                                                                 <p>Mission 1</p>
-                                                                <small style="font-size: 7px;">As of  : `+datePart+`</small>
+                                                                <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
                                                             </th>
                                                             <!-- <th class="text-center d-flex align-items-top">MTD-Case
                                                             </th>
@@ -780,7 +784,7 @@
                                                             </th>
                                                             <th class="text-center" style>
                                                                 <p>Mission 1</p>
-                                                                <small style="font-size: 7px;">As of  : `+datePart+`</small>
+                                                                <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
                                                             </th>
                                                             <!-- <th class="text-center d-flex align-items-top">MTD-Case
                                                             </th>

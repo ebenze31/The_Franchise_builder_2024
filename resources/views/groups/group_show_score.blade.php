@@ -237,7 +237,11 @@ height: 87px;
 
             let as_of = result['json'][0]['created_at'];
             let datePart = as_of.substring(0, 10);
-            document.querySelector('#date_as_of').innerHTML = datePart ;
+
+            let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
+            let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; // ประกอบวันที่ใหม่ในรูปแบบที่ต้องการ
+            
+            document.querySelector('#date_as_of').innerHTML = formattedDate ;
 
             let div_content_data = document.querySelector('#div_content_data');
                 div_content_data.innerHTML = '' ;
