@@ -573,7 +573,7 @@
     });
 
     var score_of_team = 0 ;
-    var amount_member_50 = 0 ;
+    var amount_member_50k = 0 ;
 
     function get_data_rank(type){
 
@@ -865,7 +865,7 @@
                         yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
 
                         if(yearlyValue > 50000){
-                            amount_member_50 = amount_member_50 + 1 ;
+                            amount_member_50k = amount_member_50k + 1 ;
                         }
                     }
 
@@ -899,7 +899,7 @@
                 }
 
                 console.log(score_of_team);
-                console.log(amount_member_50);
+                console.log(amount_member_50k);
 
         });
 
