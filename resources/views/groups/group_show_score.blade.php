@@ -165,7 +165,7 @@ height: 87px;
     </div>
 </div>
 <div class="d-flex  justify-content-between w-100 pt-4" style="padding: 0 18px;">
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center" style="margin-top:-18px;">
         <span style="color: #05ADD0;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">Members : </span><span style="color: #F4F4F4;font-size: 18px;font-style: normal;font-weight: 400;line-height: normal;margin-left: 5px;">Team {{ $group_id }}</span>
     </div>
     <div class="d-flex align-items-center float-end">
@@ -240,7 +240,7 @@ height: 87px;
 
             let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
             let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; // ประกอบวันที่ใหม่ในรูปแบบที่ต้องการ
-            
+
             document.querySelector('#date_as_of').innerHTML = formattedDate ;
 
             let div_content_data = document.querySelector('#div_content_data');
