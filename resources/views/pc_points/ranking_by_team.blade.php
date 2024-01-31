@@ -694,6 +694,8 @@
                                                         <!-- ข้อมูลสมาชิก -->
                                                     </tbody>
                                                 </table>
+
+                                                <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('group_show_score')}}/`+result['data'][i].id+`">ดูรายละเอียดเพิ่มเติม</a>
                                             </div>
                                         </div>
                                     </div>
@@ -771,7 +773,7 @@
                                                     </tbody>
                                                 </table>
                                                 
-                                                <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('group_show_score')}}/{{ Auth::user()->group_id }}">ดูรายละเอียดเพิ่มเติม</a>
+                                                <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('group_show_score')}}/`+result['data'][i].id+`">ดูรายละเอียดเพิ่มเติม</a>
 
                                             </div>
                                         </div>
@@ -919,7 +921,7 @@
 
                     let mission1_Value = 0 ;
                     let mission1_formatted = 0 ;
-                    
+
                     let yearlyValue = 0 ;
                     let yearly_formatted = 0 ;
 
