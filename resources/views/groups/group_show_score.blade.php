@@ -123,6 +123,13 @@ height: 87px;
 
   }
 </style>
+
+<div class="div-btn-back">
+    <a href="{{ url('/ranking_by_team') }}" class="btn btn-sm btn-back  mt-3" >
+       <i class="fa-solid fa-chevron-left"></i>
+    </a>
+</div>
+
 <button id="btn_mission_success" class="d-nodne" style="margin-top: -500px;" data-toggle="modal" data-target="#mission_success"></button>
 
 <div class="d-flex header-team">
@@ -170,7 +177,7 @@ height: 87px;
     </div>
     <div class="d-flex align-items-center float-end">
         <div>
-            <img src="{{ url('/img/icon/mission-1.png') }}" style="width: 140px;height: 18px;" alt="">
+            <img src="{{ url('/img/icon/mission-1.png') }}" style="width: 120px;height: 14px;" alt="">
             <div>
                 <div class="float-end mt-1" style="color: #01B0F1;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">
                     <span id="span_amount_Active_dream"></span>/10
