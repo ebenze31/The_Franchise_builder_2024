@@ -71,6 +71,7 @@ Route::get('/active_group/{amount}', 'GroupsController@active_group');
 Route::get('/get_data_groups/{type_get_data}', 'GroupsController@get_data_groups');
 Route::get('/user_join_team/{type}/{group_id}/{user_id}', 'GroupsController@user_join_team');
 Route::get('/change_group_status/{type}/{group_id}/{user_id}', 'GroupsController@change_group_status');
+Route::get('/get_data_group_show_score/{group_id}', 'GroupsController@get_data_group_show_score');
 
 Route::get('/get_data_my_team/{group_id}', 'GroupsController@get_data_my_team');
 Route::get('/CF_answer_request/{answer}/{member_id}/{group_id}', 'GroupsController@CF_answer_request');

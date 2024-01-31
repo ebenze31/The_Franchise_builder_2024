@@ -167,47 +167,10 @@ height: 87px;
 
 
 <div class="memberInRoom">
-    <div class="member-section ">
-        @foreach($data_groups as $item)
-        <div class="member-item col-4 mt-2 " style="margin-bottom: 42px;">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        @if( !empty($item->photo) )
-                        <img src="{{ url('storage')}}/{{ $item->photo }}" class="img-member">
-                        @else
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-                        @endif
-                    </div>
-                    <div class="name-member">
-                        <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;">{{ $item->id }} {{ $item->name }}</span>
-                        <div class="d-flex justify-content-start ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;">
-                            <span style="color: #FCBF29;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;">
-                                PC : 
-                            </span>
-                            <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;"">
-                            8,412,781
-                            </span>
-                        </div>
-                        <div class="d-flex justify-content-start ps-2 mt-1" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;">
-                            <span style="color: #FCBF29;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;">
-                            Active :
-                            </span>
-                            <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;"">
-                            2
-                            </span>
-                        </div>
-                    </div>
-                </div>
+    <div class="member-section" id="div_content_data">
 
-            </div>
-
-        </div>
+        <!-- DATA -->
    
-        @endforeach 
     </div>
 </div>
 
@@ -237,4 +200,84 @@ height: 87px;
         </div>
     </div>
 </div>
+
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        get_data_group_show_score();
+    });
+
+    function get_data_group_show_score(){
+
+        fetch("{{ url('/') }}/api/get_data_group_show_score" + "/" + "{{ Auth::user()->group_id }}")
+            .then(response => response.json())
+            .then(result => {
+            console.log(result);
+
+            let div_content_data = document.querySelector('#div_content_data');
+                div_content_data.innerHTML = '' ;
+
+            for (let i = 0; i < result['data_User'].length; i++) {
+
+                let for_host = ``;
+                if(result['host'] == result['data_User'][i]['id']){
+                    for_host = `
+                        <span class="btn host-member">
+                            <i class="fa-solid fa-key text-warning"></i>
+                        </span>
+                    `;
+                }
+
+                let img_profile = `
+                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
+                    `;
+                if(result['data_User'][i]['photo']){
+                    img_profile = `
+                        <img src="{{ url('storage')}}/`+result['data_User'][i]['photo']+`" class="img-member">
+                    `;
+                }
+
+                let html = `
+                    <div class="member-item col-4 mt-2 " style="margin-bottom: 42px;">
+                        <div class="member-card-join">
+                            `+for_host+`
+                            <div class="text-center">
+                                <div class="text-center">
+                                    `+img_profile+`
+                                </div>
+                                <div class="name-member">
+                                    <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;">`+result['data_User'][i]['name']+`</span>
+                                    <div class="d-flex justify-content-start ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;">
+                                        <span style="color: #FCBF29;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;">
+                                            PC : 
+                                        </span>
+                                        <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;"">
+                                        8,412,781
+                                        </span>
+                                    </div>
+                                    <div class="d-flex justify-content-start ps-2 mt-1" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;">
+                                        <span style="color: #FCBF29;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;">
+                                        Active :
+                                        </span>
+                                        <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;"">
+                                        2
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                div_content_data.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                
+            }
+
+        });
+
+    }
+
+</script>
 @endsection

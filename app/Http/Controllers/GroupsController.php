@@ -646,27 +646,45 @@ class GroupsController extends Controller
 
         // $data_groups = User::where('group_id' , $id)->get();
 
+        // return view('groups.group_show_score' , compact('data_groups'));
+        return view('groups.group_show_score');
+
+    }
+
+    function get_data_group_show_score($id){
+
+        $data = [] ;
+
         $check_week = Pc_point::where('week', 'not like', 'old-%')
             ->orderByRaw('CAST(SUBSTRING_INDEX(`week`, "-", -1) AS UNSIGNED) DESC')
             ->first();
 
         $week = $check_week->week ;
 
-        $data_groups = DB::table('users')
-            ->join('groups', 'users.group_id', '=', 'groups.id')
-            ->leftjoin('pc_points', 'pc_points.group_id', '=', 'users.group_id')
-            ->select('users.*' , 'groups.host as host' , 'pc_points.pc_point as pc_point' , 'pc_points.active_dream as active_dream')
-            ->where('users.group_id', $id)
-            ->where('pc_points.week', $week)
-            ->orderBy('pc_points.pc_point', 'ASC')
+        $data_groups = Group::where('id' , $id)->first();
+        $host = $data_groups->host ;
+        $data['host'] = $host ;
+
+        $data_User = User::where('group_id' , $id)->get();
+        $data_Pc_point = Pc_point::where('group_id' , $id)
+            ->where('week' , $week)
             ->get();
 
-        // echo "<pre>";
-        // print_r($data_groups);
-        // echo "<pre>";
-        // exit();
+        // แปลง JSON เป็น associative array
+        $data_array = json_decode($data_Pc_point, true);
 
-        return view('groups.group_show_score' , compact('data_groups'));
+        // ฟังก์ชันสำหรับเรียงลำดับข้อมูลตาม pc_point จากมากไปน้อย
+        usort($data_array, function($a, $b) {
+            return $b['pc_point'] - $a['pc_point'];
+        });
+
+        // แปลง associative array กลับเป็น JSON
+        $new_json_data = json_encode($data_array);
+
+
+        $data['data'] = $data_User ;
+
+        return $new_json_data ;
 
     }
 }
