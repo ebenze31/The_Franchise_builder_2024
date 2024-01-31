@@ -689,7 +689,9 @@
                                                             </th>
                                                             <th class="text-center mt-1">YTD-PC
                                                             </th>
-                                                            <th class="text-center mt-1">Mission 1
+                                                            <th class="text-center" style>
+                                                                <p>Mission 1</p>
+                                                                <small style="font-size: 7px;">As of  : `+datePart+`</small>
                                                             </th>
                                                             <!-- <th class="text-center d-flex align-items-top">MTD-Case
                                                             </th>
