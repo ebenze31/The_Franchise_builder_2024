@@ -572,6 +572,9 @@
         get_data_rank('team');
     });
 
+    var score_of_team = 0 ;
+    var amount_member_50 = 0 ;
+
     function get_data_rank(type){
 
         fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
@@ -600,6 +603,8 @@
 
                         let pc_point = pc_point_arr[week]['pc_point'] ;
                             // console.log(pc_point);
+
+                        score_of_team = pc_point ;
 
                         let originalNumber = pc_point;
                         let formattedNumber = formatLargeNumber(originalNumber);
@@ -856,6 +861,10 @@
                         mission1_Value = member_in_team[xz].mission1;
                         mission1_formatted = mission1_Value.toLocaleString('en-UK', {maximumFractionDigits: 0});
 
+                        if(mission1_Value > 50000){
+                            mission1_Value = mission1_Value + 1 ;
+                        }
+
                         yearlyValue = member_in_team[xz].yearly;
                         yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
                     }
@@ -889,6 +898,8 @@
 
                 }
 
+                console.log(score_of_team);
+                console.log(amount_member_50);
 
         });
 
