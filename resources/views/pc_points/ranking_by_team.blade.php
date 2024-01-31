@@ -604,8 +604,6 @@
                         let pc_point = pc_point_arr[week]['pc_point'] ;
                             // console.log(pc_point);
 
-                        score_of_team = pc_point ;
-
                         let originalNumber = pc_point;
                         let formattedNumber = formatLargeNumber(originalNumber);
 
@@ -723,6 +721,8 @@
 
                         // ของตัวเอง
                         if(result['data'][i].id == "{{ Auth::user()->group_id }}"){
+
+                            score_of_team = pc_point ;
 
                             let html_me = `
                                 <div class="my-team" data-toggle="collapse" href="#dataMyteam" role="button" aria-expanded="false" aria-controls="collapseExample">
