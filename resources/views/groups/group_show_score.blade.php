@@ -219,10 +219,10 @@ height: 87px;
             let div_content_data = document.querySelector('#div_content_data');
                 div_content_data.innerHTML = '' ;
 
-            for (let i = 0; i < result['data_User'].length; i++) {
+            for (let i = 0; i < result['json'].length; i++) {
 
                 let for_host = ``;
-                if(result['host'] == result['data_User'][i]['id']){
+                if(result['host'] == result['json'][i]['id']){
                     for_host = `
                         <span class="btn host-member">
                             <i class="fa-solid fa-key text-warning"></i>
@@ -233,9 +233,9 @@ height: 87px;
                 let img_profile = `
                         <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
                     `;
-                if(result['data_User'][i]['photo']){
+                if(result['json'][i]['photo_user']){
                     img_profile = `
-                        <img src="{{ url('storage')}}/`+result['data_User'][i]['photo']+`" class="img-member">
+                        <img src="{{ url('storage')}}/`+result['json'][i]['photo_user']+`" class="img-member">
                     `;
                 }
 
@@ -248,7 +248,7 @@ height: 87px;
                                     `+img_profile+`
                                 </div>
                                 <div class="name-member">
-                                    <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;">`+result['data_User'][i]['name']+`</span>
+                                    <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;">`+result['json'][i]['name_user']+`</span>
                                     <div class="d-flex justify-content-start ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;">
                                         <span style="color: #FCBF29;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;">
                                             PC : 
