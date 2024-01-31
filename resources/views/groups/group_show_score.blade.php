@@ -24,7 +24,7 @@
     }
 
     .header-team .detail-team {
-        text-indent: 140px;
+        text-indent: 120px;
         color: #fff;
         font-weight: lighter;
     }
@@ -127,14 +127,22 @@ height: 87px;
 
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . Auth::user()->group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
-    <div class="d-flex justify-content-between w-100">
-        <div class="detail-team">
+    <div class="d-flex justify-content-between w-100" >
+        <div class="detail-team"style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:73%">
             <h1 class="mb-0" style="color: #FFF;font-size: 24px;font-style: normal;font-weight: 400;line-height: normal;">
                 Team {{Auth::user()->group_id}}
             </h1>
-            <p style="color: #FCBF29;font-family: Inter;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">
+            <!-- <p style="color: #FCBF29;font-family: Inter;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">
                 PC : xxxxxxx
-            </p>
+            </p> -->
+            <div>
+                <div>
+                    <span style="color: #FCBF29;font-family: Inter;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">PC : 88,888,888</span>
+                    <span>
+                        <img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px;height:16px;position: relative!important;left: 5px !important;">
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="d-flex align-items-center float-end">
             <div>
@@ -241,7 +249,11 @@ height: 87px;
 
                 let originalNumber = result['json'][i]['pc_point'];
                 let formattedNumber = formatLargeNumber(originalNumber);
-
+                if (originalNumber > 50000) {
+                    img_star = `<img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">`;
+                } else {
+                    img_star = ``;
+                }
                 let html = `
                     <div class="member-item col-4 mt-2 " style="margin-bottom: 42px;">
                         <div class="member-card-join">
@@ -250,17 +262,24 @@ height: 87px;
                                 <div class="text-center">
                                     `+img_profile+`
                                 </div>
+                                
                                 <div class="name-member">
                                     <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;">`+result['json'][i]['name_user']+`</span>
-                                    <div class="d-flex justify-content-start ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;">
-                                        <span style="color: #FCBF29;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;">
-                                            PC : 
-                                        </span>
-                                        <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;"">
-                                        `+formattedNumber+`
-                                        </span>
+                                   
+                                    <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
+                                        <div>
+                                            <span style="color: #FCBF29;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;">
+                                                PC : 
+                                            </span>
+                                            <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;"">
+                                            `+formattedNumber+`
+                                            </span>
+                                        </div> 
+                                        <div class="me-1">
+                                            ${img_star}
+                                        </div>
                                     </div>
-                                    <div class="d-flex justify-content-start ps-2 mt-1" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;">
+                                    <div class="d-flex justify-content-start ps-2 mt-1" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                                         <span style="color: #FCBF29;font-size: 10px;font-style: normal;font-weight: 700;line-height: normal;">
                                         Active :
                                         </span>
