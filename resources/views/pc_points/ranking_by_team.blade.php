@@ -879,7 +879,7 @@
                         yearlyValue = member_in_team[xz].yearly;
                         yearly_formatted = yearlyValue.toLocaleString('en-UK', {maximumFractionDigits: 0});
 
-                        if(yearlyValue > 50000){
+                        if(mission1_Value > 50000){
                             amount_member_50k = amount_member_50k + 1 ;
                         }
                     }
