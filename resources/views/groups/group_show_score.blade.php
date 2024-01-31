@@ -222,7 +222,7 @@ height: 87px;
             for (let i = 0; i < result['json'].length; i++) {
 
                 let for_host = ``;
-                if(result['host'] == result['json'][i]['id']){
+                if(result['host'] == result['json'][i]['user_id']){
                     for_host = `
                         <span class="btn host-member">
                             <i class="fa-solid fa-key text-warning"></i>
