@@ -503,6 +503,12 @@
             item.classList.add('d-none');
         })
 
+        let collapse = document.querySelectorAll('.collapse');
+        collapse.forEach(item_collapse => {
+            // console.log(item_collapse);
+            item_collapse.classList.remove('show');
+        })
+
         for (let i = parseInt(team_start); i <= parseInt(team_end); i++) {
             // if (document.querySelector('#Team_' + i)) {
             if (document.querySelector('div[count="div_'+i+'"]')) {
