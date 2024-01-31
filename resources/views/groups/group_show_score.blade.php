@@ -137,7 +137,7 @@ height: 87px;
             </p> -->
             <div>
                 <div>
-                    <span style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">Mission#1PC : 
+                    <span style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">Mission #1PC 
                         <span id="trophy_for_700K" class="d-none"><img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
                     
                     </span>
@@ -288,7 +288,7 @@ height: 87px;
                                 </div>
                                 
                                 <div class="name-member">
-                                    <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">`+result['json'][i]['name_user']+`</span>
+                                    <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">`+result['json'][i]['name_user']+`</span>
                                    
                                     <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                                         <div>
