@@ -683,11 +683,20 @@
                                                 <table class="table mb-0 align-middle table-borderless">
                                                     <thead class="head-teble-data-my-team">
                                                         <tr>
-                                                            <th class="text-center mt-1">No.
+                                                            <th class="text-center" style>
+                                                                <p>No.</p><br>
+
+                                                                <p></p>
                                                             </th>
-                                                            <th class="text-center mt-1">User
+                                                            <th class="text-center" style>
+                                                                <p>User</p><br>
+
+                                                                <p></p>
                                                             </th>
-                                                            <th class="text-center mt-1">YTD-PC
+                                                            <th class="text-center" style>
+                                                                <p>YTD-PC</p><br>
+
+                                                                <p></p>
                                                             </th>
                                                             <th class="text-center" style>
                                                                 <p>Mission 1</p>
