@@ -16,8 +16,8 @@
     }
 
     .header-team img {
-        width: 114px;
-        height: 114px;
+        width: 100px;
+        height: 100px;
         position: absolute;
         bottom: 0;
         left: 15px;
@@ -80,7 +80,7 @@
         position: relative;
     }.member-card-join{
         background-color: #fff;
-        padding: 10px;
+        padding: 10px 5px;
         border-radius: 10px;
         position: relative;
     }.host-member{
@@ -121,7 +121,9 @@ height: 87px;
     
     color: #fff;
 
-  }
+  }#header-text-login {
+        width: 45% !important;
+    }
 </style>
 
 <div class="div-btn-back">
@@ -136,7 +138,7 @@ height: 87px;
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
     <div class="d-flex justify-content-between w-100" >
         <div class="detail-team"style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:73%">
-            <h1 class="mb-0" style="color: #FFF;font-size: 24px;font-style: normal;font-weight: 400;line-height: normal;">
+            <h1 class="mb-0" style="color: #FFF;font-size: 24px;font-style: normal;font-weight: 400;line-height: 1.5;">
                 Team {{ $group_id }}
             </h1>
             <!-- <p style="color: #FCBF29;font-family: Inter;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">
@@ -172,21 +174,21 @@ height: 87px;
     </div>
 </div>
 <div class="d-flex  justify-content-between w-100 pt-4" style="padding: 0 18px;">
-    <div class="d-flex align-items-center" style="margin-top:-18px;">
+    <div class="d-flex align-items-center" >
         <span style="color: #05ADD0;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">Members : </span><span style="color: #F4F4F4;font-size: 18px;font-style: normal;font-weight: 400;line-height: normal;margin-left: 5px;">Team {{ $group_id }}</span>
     </div>
     <div class="d-flex align-items-center float-end">
         <div>
             <img src="{{ url('/img/icon/mission-1.png') }}" style="width: 120px;height: 14px;" alt="">
-            <div>
-                <div class="float-end mt-1" style="color: #01B0F1;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">
-                    <span id="span_amount_Active_dream"></span>/10
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>
-
+<div style="padding: 0 18px;">
+    <div class="float-end mt-0" style="color: #fff;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">
+        <span id="span_amount_Active_dream"></span>/10
+    </div>
+</div>
 
 <div class="memberInRoom">
     <div class="member-section" id="div_content_data">
@@ -304,7 +306,7 @@ height: 87px;
                                     `+img_profile+`
                                 </div>
                                 
-                                <div class="name-member" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
+                                <div class="name-member w-100" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
                                     <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;">`+result['json'][i]['name_user']+`</span>
                                    
                                     <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
