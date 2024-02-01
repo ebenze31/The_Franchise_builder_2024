@@ -169,7 +169,7 @@ height: 87px;
                 </div>
             </div>
         </div>
-        <span style="position: absolute;bottom: 5px; right: 15px;color: #FFF;font-size: 7px;font-style: normal;font-weight: 500;line-height: normal;">
+        <span style="position: absolute;bottom: 5px; right: 15px;color: #FFF;font-size: 9px;font-style: normal;font-weight: 500;line-height: normal;">
             As of  : <span id="date_as_of"></span>
         </span>
     </div>

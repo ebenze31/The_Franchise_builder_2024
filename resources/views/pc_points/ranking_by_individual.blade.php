@@ -135,7 +135,7 @@
     }
 
     .nameTeam {
-        font-size: 18px;
+        font-size: 14px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -166,7 +166,7 @@
         }
     }
     .menberInTeam {
-        font-size: 10px;
+        /* font-size: 10px; */
         color: #52cbff;
     }
 
