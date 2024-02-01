@@ -173,7 +173,7 @@ height: 87px;
         </span>
     </div>
 </div>
-<div class="d-flex  justify-content-between w-100 pt-4" style="padding: 0 18px;">
+<div class="d-flex  justify-content-between w-100 pt-3" style="padding: 0 18px;">
     <div class="d-flex align-items-center" >
         <span style="color: #05ADD0;font-size: 20px;font-style: normal;font-weight: 600;line-height: normal;">Members : </span><span style="color: #F4F4F4;font-size: 18px;font-style: normal;font-weight: 400;line-height: normal;margin-left: 5px;">Team {{ $group_id }}</span>
     </div>
