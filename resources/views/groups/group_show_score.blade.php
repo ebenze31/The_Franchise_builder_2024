@@ -318,7 +318,7 @@ height: 87px;
                                     `+img_profile+`
                                 </div>
                                 
-                                <div class="name-member w-100" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
+                                <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
                                     <span class="mt-1" style="color:#102160;font-size: 10px;font-style: normal;line-height: normal;">`+result['json'][i]['name_user']+`</span>
                                    
                                     <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
