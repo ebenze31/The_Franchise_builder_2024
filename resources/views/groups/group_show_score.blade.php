@@ -2,6 +2,13 @@
 
 @section('content')
 <style>
+    *:not(i){
+        font-family: Sukhumvit !important;
+        letter-spacing: 0px !important;
+        line-height: 1.2em;
+        -webkit-letter-spacing: 0px !important; 
+        -moz-letter-spacing: 0px !important;
+    }
     .header-team {
         position: relative;
         margin-top: 55px;
