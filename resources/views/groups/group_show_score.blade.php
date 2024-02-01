@@ -191,7 +191,7 @@ height: 87px;
 </div>
 
 <div class="memberInRoom">
-    <div class="member-section" id="div_content_data">
+    <div class="member-section mt-4" id="div_content_data">
 
         <!-- DATA -->
    
