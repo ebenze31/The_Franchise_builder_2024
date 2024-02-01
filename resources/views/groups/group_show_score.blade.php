@@ -161,7 +161,7 @@ height: 87px;
             <div>
                 <p style="color: #fff;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;float:right;width: 100%;">Minimum PC 50K</p>
                 <div>
-                    <div class="float-end">
+                    <div class="float-end" style="margin-top:-1px">
                         <i class="fa-regular fa-user text-white me-2"></i>
                         <span style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;"><span id="span_amount_member_50k"></span>/10</span>
                     </div>
