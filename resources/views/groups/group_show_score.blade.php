@@ -5,9 +5,10 @@
     *:not(i){
         font-family: Sukhumvit !important;
         letter-spacing: 0px !important;
-        line-height: 1.2em;
-        -webkit-letter-spacing: 0px !important; 
-        -moz-letter-spacing: 0px !important;
+      -webkit-letter-spacing: 0px !important;  
+      letter-spacing:0px !important; 
+      -moz-letter-spacing:0px !important;
+      -khtml-letter-spacing:0px !important;
         word-spacing: 0rem !important;
         -webkit-word-spacing: 0rem !important;
         -moz-word-spacing: 0rem !important;

@@ -183,10 +183,11 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
     }p{
-      -webkit-letter-spacing: -1px !important;  
-            letter-spacing:-1px !important; 
-            -moz-letter-spacing:-1px !important;
-            -khtml-letter-spacing:-1px !important;
+      letter-spacing: 0px !important;
+      -webkit-letter-spacing: 0px !important;  
+      letter-spacing:0px !important; 
+      -moz-letter-spacing:0px !important;
+      -khtml-letter-spacing:0px !important;
     }#readMoreButton {
   display: none; /* ปุ่มจะถูกซ่อนไว้เริ่มต้น */
 }
