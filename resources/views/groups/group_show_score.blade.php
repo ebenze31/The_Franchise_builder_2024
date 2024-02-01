@@ -30,6 +30,7 @@
     }
 
     .content-section {
+        margin-top: -20px;
         padding: 0;
     }.memberInRoom{
         padding: 0px 10px 10px 15px;
@@ -41,7 +42,7 @@
 
   @media only screen and (max-width: 680px) {
         .member-item{
-            width: 30%;
+            width: 32%;
             height: 128px;
             margin: 0 2px;
         }
