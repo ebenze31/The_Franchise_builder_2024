@@ -224,7 +224,7 @@
             <p class="text-center text-white" style="font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;">ID : {{ Auth::user()->account }}</p>
         </p>
         <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
-        <img src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
+        <img class="me-2" src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
         </a>
 
         <div id="div_pc_point" class="d-none mt-1">
