@@ -318,7 +318,7 @@ height: 87px;
                                 </div>
                                 
                                 <div class="name-member w-100" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                                    <span style="color: #07285A;font-size: 10px;font-style: normal;font-weight: bolder !important;line-height: normal;">`+result['json'][i]['name_user']+`</span>
+                                    <span class="mt-1" style="color: #07285A;font-size: 10px;font-style: normal;line-height: normal;">`+result['json'][i]['name_user']+`</span>
                                    
                                     <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                                         <div>
