@@ -117,14 +117,12 @@
     .score-my-team {
         display: flex;
         align-items: center;
-
-        >.text-score {
-            color: #FFE500;
-            font-size: 16px;
-            margin: 0 5px 0 0;
-        }
     }
-
+    .score-my-team .text-score{
+        color: #FFE500;
+        font-size: 16px;
+        margin: 0 0px 0 0;
+    }
     .number-my-team {
 /*        margin-right: 15px;*/
         /* width: 20%; */
@@ -139,7 +137,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        width: 30vw;
+        width: 25vw;
     }
     @media screen and (max-device-width: 465px){
         .other-team {
