@@ -146,11 +146,11 @@ height: 87px;
             </p> -->
             <div>
                 <div>
-                    <span style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">Mission #1PC 
+                    <span style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission #1PC 
                         <span id="trophy_for_700K" class="d-none"><img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
                     
                     </span>
-                    <p id="span_sum_score_team" style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">88,888,888</p>
+                    <p id="span_sum_score_team" style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">88,888,888</p>
                     
                         
                     </span>
