@@ -80,7 +80,7 @@
         position: relative;
     }.member-card-join{
         background-color: #fff;
-        padding: 10px 5px;
+        padding: 10px;
         border-radius: 10px;
         position: relative;
     }.host-member{
