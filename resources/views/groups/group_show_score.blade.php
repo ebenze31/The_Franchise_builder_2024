@@ -159,7 +159,7 @@ height: 87px;
         </div>
         <div class="d-flex align-items-center float-end">
             <div>
-                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 500;line-height: normal;float:right;width: 100%;">Minimum PC 50K</p>
+                <p style="color: #fff;font-size: 14px;font-style: normal;font-weight: 500;line-height: normal;float:right;width: 100%;">Minimum PC 50K</p>
                 <div>
                     <div class="float-end mt-1">
                         <i class="fa-regular fa-user text-white me-2"></i>
