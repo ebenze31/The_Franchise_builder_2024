@@ -137,7 +137,7 @@ height: 87px;
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
     <div class="d-flex justify-content-between w-100" >
-        <div class="detail-team"style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width60%">
+        <div class="detail-team"style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:65%">
             <h1 class="mb-0" style="color: #FFF;font-size: 24px;font-style: normal;font-weight: 400;line-height: 1.5;">
                 Team {{ $group_id }}
             </h1>
