@@ -57,10 +57,16 @@ Route::middleware(['auth', 'role:AL'])->group(function () {
     Route::get('/register_tfb2024', 'HomeController@register_tfb2024');
 });
 
+
+// Staff
+Route::middleware(['auth', 'role:Staff,Player,Super-admin,Admin'])->group(function () {
+    Route::get('/admin_scanner', 'HomeController@admin_scanner');
+    Route::get('group_show_score/{id}', 'GroupsController@group_show_score');
+});
+
 // Staff
 Route::middleware(['auth', 'role:Staff,QR'])->group(function () {
     Route::get('/admin_scanner', 'HomeController@admin_scanner');
-    Route::get('group_show_score/{id}', 'GroupsController@group_show_score');
 });
 
 // Player
@@ -71,7 +77,7 @@ Route::middleware(['auth', 'role:Player,Super-admin,Admin'])->group(function () 
 
     Route::resource('pc_points', 'Pc_pointsController');
     Route::resource('groups', 'GroupsController');
-    Route::get('group_show_score/{id}', 'GroupsController@group_show_score');
+    // Route::get('group_show_score/{id}', 'GroupsController@group_show_score');
     Route::get('/preview_team/{group_id}', 'GroupsController@preview_team');
     Route::get('/group_my_team/{group_id}', 'GroupsController@my_team');
     Route::get('/scanner', 'HomeController@scanner');
