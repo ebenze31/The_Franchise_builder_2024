@@ -188,12 +188,14 @@ class Pc_pointsController extends Controller
                     'pc_point' => $data_arr['pc_point'],
                     'team_rank_of_week' => $data_arr['team_rank_of_week'],
                     'team_rank_last_week' => $data_arr['team_rank_last_week'],
+                    'mission1' => $data_arr['mission1'],
                 );
 
                 $group_pc[$data_arr['group_id']] = $newArray;
 
             }else{
                 $group_pc[$data_arr['group_id']]['pc_point'] = $group_pc[$data_arr['group_id']]['pc_point'] + $data_arr['pc_point'] ;
+                $group_pc[$data_arr['group_id']]['mission1'] = $group_pc[$data_arr['group_id']]['mission1'] + $data_arr['mission1'] ;
             }
 
         }
@@ -228,6 +230,7 @@ class Pc_pointsController extends Controller
                     // 'rank' => $update_arr_rank,
                     'team_rank_of_week' => $group_pc[$i]['team_rank_of_week'],
                     'team_rank_last_week' => $group_pc[$i]['team_rank_last_week'],
+                    'mission1' => $group_pc[$i]['mission1'],
                 ];
 
                 $rank_record_update = json_encode($new_rank_record);
@@ -242,6 +245,7 @@ class Pc_pointsController extends Controller
                     // 'rank' => $update_arr_rank,
                     'team_rank_of_week' => $group_pc[$i]['team_rank_of_week'],
                     'team_rank_last_week' => $group_pc[$i]['team_rank_last_week'],
+                    'mission1' => $group_pc[$i]['mission1'],
                 ];
 
                 // แปลง array ใหม่เป็น JSON

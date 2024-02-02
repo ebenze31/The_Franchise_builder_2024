@@ -572,7 +572,7 @@
         get_data_rank('team');
     });
 
-    var score_of_team = 0 ;
+    var score_mission1_of_team = 0 ;
     var amount_member_50k = 0 ;
 
     function get_data_rank(type){
@@ -606,12 +606,13 @@
                             pc_point_arr = JSON.parse(result['data'][i].rank_record);
 
                         let pc_point = pc_point_arr[week]['pc_point'] ;
+                        let mission1 = pc_point_arr[week]['mission1'] ;
                             // console.log(pc_point);
 
                         let originalNumber = pc_point;
                         let formattedNumber = formatLargeNumber(originalNumber);
 
-                        if (originalNumber > 700000) {
+                        if (mission1 > 700000) {
                             img_trophy = ` <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt="">`;
                         } else {
                             img_trophy = ``;
@@ -737,7 +738,7 @@
                         // ของตัวเอง
                         if(result['data'][i].id == "{{ Auth::user()->group_id }}"){
 
-                            score_of_team = pc_point ;
+                            score_mission1_of_team = mission1 ;
 
                             let html_me = `
                                 <div class="my-team" data-toggle="collapse" href="#dataMyteam" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -913,7 +914,7 @@
 
                 }
 
-                // console.log(score_of_team);
+                // console.log(score_mission1_of_team);
                 // console.log(amount_member_50k);
 
                 check_alert_700k(group_id);
@@ -999,12 +1000,12 @@
 
     function check_alert_700k(group_id){
 
-        // score_of_team
+        // score_mission1_of_team
         // amount_member_50k
 
-        if(score_of_team > 700000){
+        if(score_mission1_of_team > 700000){
 
-            fetch("{{ url('/') }}/api/check_alert_700k" + "/" + group_id + "/" + score_of_team + "/" + amount_member_50k)
+            fetch("{{ url('/') }}/api/check_alert_700k" + "/" + group_id + "/" + score_mission1_of_team + "/" + amount_member_50k)
                 .then(response => response.text())
                 .then(result => {
                     // console.log(result);
