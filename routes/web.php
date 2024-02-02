@@ -60,6 +60,7 @@ Route::middleware(['auth', 'role:AL'])->group(function () {
 // Staff
 Route::middleware(['auth', 'role:Staff,QR'])->group(function () {
     Route::get('/admin_scanner', 'HomeController@admin_scanner');
+    Route::get('group_show_score/{id}', 'GroupsController@group_show_score');
 });
 
 // Player
