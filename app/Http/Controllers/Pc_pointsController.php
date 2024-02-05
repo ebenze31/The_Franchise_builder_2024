@@ -442,7 +442,7 @@ class Pc_pointsController extends Controller
         }
 
         usort($sums, function ($a, $b) {
-            return $b['total'] - $a['total'];
+            return $b['mission1'] - $a['mission1'];
         });
 
 
