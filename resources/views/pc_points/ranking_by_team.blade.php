@@ -610,7 +610,8 @@
                             // console.log(pc_point);
 
                         let originalNumber = pc_point;
-                        let formattedNumber = formatLargeNumber(originalNumber);
+                        // let formattedNumber = formatLargeNumber(originalNumber);
+                        let formattedNumber = formatLargeNumber(mission1);
 
                         if (mission1 > 700000) {
                             img_trophy = ` <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt="">`;
