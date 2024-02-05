@@ -518,14 +518,19 @@
                     for (var i = 0; i < result.length; i++) {
 
                         let originalNumber = result[i].pc_point;
+                        let mission1_Number = result[i].mission1;
+
                         let text_group_id = result[i].group_id;
+
                         let html_group_id;
                         if (parseInt(text_group_id) < 9) {
                             html_group_id = "0" + text_group_id;
                         }else{
                             html_group_id = text_group_id;
                         }
-                        let formattedNumber = formatLargeNumber(originalNumber);
+                        
+                        // let formattedNumber = formatLargeNumber(originalNumber);
+                        let formattedNumber = formatLargeNumber(mission1_Number);
 
                         let rank_up ;
                         if( parseInt(result[i].rank_of_week) < parseInt(result[i].rank_last_week) ){
