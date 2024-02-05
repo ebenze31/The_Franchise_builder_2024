@@ -699,13 +699,13 @@
                                                                 <p></p>
                                                             </th>
                                                             <th class="text-center" style>
+                                                                <p>Mission 1</p>
+                                                                <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                            </th>
+                                                            <th class="text-center" style>
                                                                 <p>YTD-PC</p><br>
 
                                                                 <p></p>
-                                                            </th>
-                                                            <th class="text-center" style>
-                                                                <p>Mission 1</p>
-                                                                <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
                                                             </th>
                                                             <!-- <th class="text-center d-flex align-items-top">MTD-Case
                                                             </th>
@@ -779,13 +779,13 @@
                                                                 <p></p>
                                                             </th>
                                                             <th class="text-center" style>
+                                                                <p>Mission 1</p>
+                                                                <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                            </th>
+                                                            <th class="text-center" style>
                                                                 <p>YTD-PC</p><br>
 
                                                                 <p></p>
-                                                            </th>
-                                                            <th class="text-center" style>
-                                                                <p>Mission 1</p>
-                                                                <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
                                                             </th>
                                                             <!-- <th class="text-center d-flex align-items-top">MTD-Case
                                                             </th>
@@ -899,11 +899,11 @@
                                 <img src="{{ url('storage')}}/`+member_in_team[xz].user_photo+`" class="profile-img" alt="รูปภาพปก">
                                 <span class="ms-2 nameUserteam">`+member_in_team[xz].user_name+`</span>
                             </td>
-                            <td class="${icon_me} text-data-team text-center">
-                                `+yearly_formatted+`
-                            </td>
                             <td class=" ${icon_me} text-data-team text-center">
                                 `+mission1_formatted+`
+                            </td>
+                            <td class="${icon_me} text-data-team text-center">
+                                `+yearly_formatted+`
                             </td>
                             <!-- <td class="text-data-team text-center">4</td> -->
                             <!-- <td class="text-data-team text-center">2</td> -->
@@ -978,10 +978,10 @@
                                 <span class="ms-2 nameUserteam">`+member_in_team[xz].user_name+`</span>
                             </td>
                             <td class="text-data-team text-center">
-                                `+yearly_formatted+`
+                                `+mission1_formatted+`
                             </td>
                             <td class="text-data-team text-center">
-                                `+mission1_formatted+`
+                                `+yearly_formatted+`
                             </td>
                             <!-- <td class="text-data-team text-center">4</td> -->
                             <!-- <td class="text-data-team text-center">2</td> -->
