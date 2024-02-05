@@ -354,9 +354,9 @@
         ->orWhere('group_status', 'Team Ready')
         ->count();
 
-    $menu_row = ceil($activeUserCount / 20) ;
+    $menu_row = ceil($activeUserCount / 100) ;
     $start = 1 ;
-    $end = 20 ;
+    $end = 100 ;
 @endphp
 
 <a id="click_to_div_data_all" href="#div_data_all" class="d-none"></a>
@@ -387,8 +387,8 @@
                 @endif
 
                 @php
-                    $start = $start + 20 ;
-                    $end = $end + 20 ;
+                    $start = $start + 100 ;
+                    $end = $end + 100 ;
                 @endphp
 
             @endfor
@@ -609,7 +609,7 @@
 
                     }
 
-                    change_menu_view('1-20' , 'Yes');
+                    change_menu_view('1-100' , 'Yes');
 
                 }, 500);
             }
