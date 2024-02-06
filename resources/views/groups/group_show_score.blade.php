@@ -342,7 +342,7 @@ height: 87px;
                                             ${img_star}
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-start ps-2 mt-1" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
+                                    <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                                         <div>
                                             <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
                                                 Active : 
