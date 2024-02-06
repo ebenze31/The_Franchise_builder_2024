@@ -308,6 +308,15 @@ height: 87px;
                 } else {
                     img_star = ``;
                 }
+
+                let img_star_active_dream = ``;
+
+                if(result['json'][i]['active_dream'] > 50000){
+
+                    img_star_active_dream = `<img src="{{ url('/img/icon/star_active_dream.png') }}" style="width: 13px;height:13px;" class="img-member">`;
+
+                }
+
                 let html = `
                     <div class="member-item col-4 mt-2 " style="margin-bottom: 42px;">
                         <div class="member-card-join">
@@ -334,12 +343,17 @@ height: 87px;
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-start ps-2 mt-1" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                                        <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                        Active :
-                                        </span>
-                                        <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                        `+result['json'][i]['active_dream']+`
-                                        </span>
+                                        <div>
+                                            <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
+                                                Active : 
+                                            </span>
+                                            <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
+                                            `+result['json'][i]['active_dream']+`
+                                            </span>
+                                        </div> 
+                                        <div class="me-1">
+                                            ${img_star_active_dream}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
