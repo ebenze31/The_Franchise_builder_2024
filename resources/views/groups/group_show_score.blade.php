@@ -311,7 +311,7 @@ height: 87px;
 
                 let img_star_active_dream = ``;
 
-                if(result['json'][i]['active_dream'] > 50000){
+                if(result['json'][i]['active_dream'] >= 2){
 
                     img_star_active_dream = `<img src="{{ url('/img/icon/star_active_dream.png') }}" style="width: 13px;height:13px;" class="img-member">`;
 
