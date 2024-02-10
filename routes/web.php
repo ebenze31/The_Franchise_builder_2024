@@ -112,3 +112,15 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
 Route::resource('activities_log', 'Activities_logController');
 Route::resource('cancel_player', 'Cancel_playerController');
+
+Route::get('/end_mission_1', function () {
+    return view('pc_points/end_mission_1');
+});
+
+Route::get('/grand_mission', function () {
+    return view('pc_points/grand_mission');
+});
+
+Route::get('/mission_2', function () {
+    return view('pc_points/mission_2');
+});

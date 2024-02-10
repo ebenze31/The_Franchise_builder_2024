@@ -39,7 +39,7 @@
 
 <div class="modal fade" id="cancel_join" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered px-3">
-        <div class="modal-content" style="border-radius: 10px;">
+        <div class="modal-content" style="border-radius: 10px;">img_group_proficle_
             <div id="modal_body_content"  class="modal-body text-center">
                 <img src="{{ url('/img/icon/alert.png') }}" style="width:115px;height:115px;" class="mt-2 mb-2">
                 <p id="title_cancel_join" class="mt-4" style="font-size: 20px;color: red;">
