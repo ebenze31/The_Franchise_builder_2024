@@ -201,7 +201,7 @@
     $currentDate = date('Y-m-d H:i:s');
     @endphp
 
-    @if( 1 == 1 )
+    @if( 1 == 2 )
         <div id="navbar-botttom" class="mt-5">
                     
             <div class="row justify-content-around mx-2">
@@ -286,7 +286,7 @@
             </div>
 
         </div>
-    @elseif (1 == 2)
+    @elseif (1 == 1)
         <div id="navbar-botttom" class="mt-5" style="z-index: 9999999999999999;">
                     
             <div class="row justify-content-around mx-2">

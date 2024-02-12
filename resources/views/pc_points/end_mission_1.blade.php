@@ -190,7 +190,7 @@
 /*        margin: 0 5px 0 15px;*/
         /* width: 27.5%; */
         width: 120px;
-
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -433,6 +433,8 @@
                <a href="" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;font-weight: bolder;">
                 ทีมของฉัน
                </a>
+
+               <span style="position: absolute;top: 0; right: 0;background-color: #FF3A3A;color: #fff;width: 20px;height: 20px;display: flex;align-items: center;justify-content: center;-webkit-border-radius: 50%;border-radius: 50%;-moz-border-radius:50%;-khtml-border-radius:50%;">!</span>
             </div>
         </div>
     </div>
@@ -442,7 +444,7 @@
             <div class="number-my-team w-100">คุณยังไม่มีบ้าน</div>
             <div class="statusTeam text-center w-100 d-flex justify-content-end">
                <a href="" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;font-weight: bolder;">
-                หาบ้านใหม่
+                จัดทีมใหม่
                </a>
             </div>
         </div>

@@ -124,3 +124,7 @@ Route::get('/grand_mission', function () {
 Route::get('/mission_2', function () {
     return view('pc_points/mission_2');
 });
+
+Route::get('/mission_3', function () {
+    return view('pc_points/mission_3');
+});
