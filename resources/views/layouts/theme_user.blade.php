@@ -159,7 +159,12 @@
     }.modal-header{
         position: relative;
         padding: 20px;
-    }
+    }.letter-0{
+    -webkit-letter-spacing: -.8px !important;  
+    letter-spacing:-.8px !important; 
+    -moz-letter-spacing:-.8px !important;
+    -khtml-letter-spacing:-.8px !important;
+}
 </style>
 
 <body>
@@ -548,6 +553,46 @@
         </div>
     </div>
 </div>
+
+
+<button id="btn_modal_show_status_in_team" class="d-ndfone" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('perfect_team')">
+    perefct_team
+</button>
+<button id="btn_modal_show_status_in_team" class="d-ndfone" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('team_success')">
+   team_success
+</button><button id="btn_modal_show_status_in_team" class="d-ndfone" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('you_success')">
+   you_success
+</button><button id="btn_modal_show_status_in_team" class="d-ndfone" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('new_host')">
+   new_host
+</button><button id="btn_modal_show_status_in_team" class="d-ndfone" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('you_lost')">
+    you_lost
+</button>
+
+<div class="modal fade" style="z-index:999999999" id="show_status_in_team" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered px-3">
+        <div class="modal-content " style="border-radius: 10px; margin: 0 40px;">
+            <div id="modal_body_content"  class="modal-body text-center p-0 ">
+                <div class="p-0 m-0">
+                    <img src="{{ url('/img/icon/sorry2.png') }}" id="img_modal_show_status_in_team" class="mt-2 mb-0 w-100">
+                </div>     
+                <div id="text_show_status_in_team">
+
+                </div>        
+                <!-- <p style="color: #3055CD;font-size: 18px;font-style: normal;font-weight: 700;line-height: normal;" class="mt-0 mb-0">ขออภัย !</p>
+                <p class="mt-0" style="color: #3055CD;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">
+                เนื่องจาก PC ของคุณไม่ผ่าเกณฑ์ที่กำหนด
+                </p> -->
+            </div>
+            <div class="d-flex justify-content-center mt-1 mb-3">
+                <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal">
+                    Close
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
   
   var menu_rank = document.querySelector('#navbar-text-rank');
@@ -767,6 +812,73 @@
             $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
         })
 
+    }
+
+    function show_status_in_mission(status) {
+        img_show = document.querySelector('#img_modal_show_status_in_team');
+        text_show_status = document.querySelector('#text_show_status_in_team');
+
+
+        switch (status) {
+            case 'perfect_team':
+                img_show.src = "{{ url('img/icon')}}/" + status+'.png' ;
+                text_show_status.innerHTML = `
+                    <div class="p-2 pb-0" style="margin-top:-30px">
+                    <p class="mb-2 " style="color:#005CD3;font-size:14px;">ขอแสดงความยินดีทีมและสมาชิกทั้งหมด<br>ของทีมคุณได้ไปต่อ!</p>
+                    <p class="mb-0 " styl="color:#000;font-size:12px;font-whight:light;">เตรียมพบกับ missionใหม่วันที่ 4 มีนาคม 2024</p>
+                    </div>
+                `;
+            break;
+            case 'team_success':
+                img_show.src = "{{ url('img/icon')}}/" + status+'.png';
+                text_show_status.innerHTML = `
+                    <div class="p-4 pb-0" style="margin-top:-30px">
+                        <p class="mb-2 " style="color:#005CD3;font-size:14px;">ขอแสดงความยินดีคุณได้ไปต่อ!</p>
+                        <p class="mb-0 " styl="color:#000;font-size:12px;font-whight:light;">เนื่องจากสมาชิกบางท่านไม่ผ่านเกณฑ์หัวหน้าทีม
+                        <color style="color:#935F0B;">ต้องรวบรวมสมาชิกใหม่ให้ครบ 10 </color>
+                        ภายใน 
+                        <color style="color:#FF3838;">26 กพ. 2024 </color>
+                        เพื่อให้ทีมยังอยู่ในกิจกรรมต่อไป
+                        
+                        <color style="color:#935F0B;">และเตรียมพบกับ 
+                        <i>mission</i> ใหม่ วันที่ 4 มีนาคม 2024</color></p>
+                    </div>
+                `;
+            break;
+            case 'you_success':
+                img_show.src = "{{ url('img/icon')}}/" + status+'.png';
+                text_show_status.innerHTML = `
+                    <div class="p-4 pb-0" style="margin-top:-30px">
+                        <p class="mb-2 " style="color:#005CD3;font-size:14px;">ขอแสดงความยินดีคุณได้ไปต่อ!</p>
+                        <p class="mb-0 " styl="color:#000;font-size:12px;font-whight:light;">
+                            แต่เนื่องจากผลงานรวมของบ้านไม่ถึงเกณฑ์
+                            คุณมีเวลาถึงวันที่ <color style="color:#FF3838">26 ก.พ. 2024</color> เพื่อ<color style="color:#05ADD0">เลือกเข้าบ้านหลังใหม่</color>
+                            <color style="color:#935F0B ">และเตรียมพบกับ mission ใหม่ วันที่ 4 มีนาคม 2024</color>
+                        </p>
+                    </div>
+                `;
+            break;
+            case 'new_host':
+                img_show.src = "{{ url('img/icon')}}/" + status+'.png';
+                text_show_status.innerHTML = `
+                    <div class="p-3 pb-0" style="margin-top:-30px">
+                    <p class="mb-2 " style="color:#005CD3;font-size:14px;">คุณได้รับมอบหมายหน้าที่เป็นหัวหน้าทีม ! </p>
+                    <p class="mb-0 " styl="color:#000;font-size:12px;font-whight:light;">เนื่องจากหัวหน้าทีมของคุณไม่ผ่านเกณฑ์ <i>mission1</i> </p>
+                    </div>
+                `;
+            break;
+            case 'you_lost':
+                img_show.src = "{{ url('img/icon')}}/" + status+'.png';
+                text_show_status.innerHTML = `
+                    <div class="p-3 pb-0" style="margin-top:-30px">
+                    <p class="mb-0 " styl="color:#000;font-size:12px;font-whight:light;"><b>ขอแสดงความเสียใจคุณไม่ผ่านเกณฑ์เพื่อไปต่อใน 
+                    <i>Franchise Builder 2024</i> </b></p>
+                    </div>
+                `;
+            break;
+            default:
+            break;
+        }
     }
 </script>
 </body>

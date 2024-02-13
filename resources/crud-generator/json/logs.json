@@ -1,0 +1,15 @@
+{
+    "fields": [
+        {
+            "name": "log_content",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        },{
+            "name": "role",
+            "type": "string"
+        }
+    ]
+}

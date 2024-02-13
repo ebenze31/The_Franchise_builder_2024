@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Log;
 
 class LoginController extends Controller
 {
@@ -60,6 +62,15 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
+
+            $data_user = Auth::user();
+
+            Log::create([
+                "log_content"=> 'Login',
+                "user_id"=> $data_user->id,
+                "role"=> $data_user->role,
+            ]);
+           
             return redirect("home");
         }
 

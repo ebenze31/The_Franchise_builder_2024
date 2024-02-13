@@ -223,9 +223,10 @@
         <p class="text-center ">
             <p class="text-center text-white" style="font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;">ID : {{ Auth::user()->account }}</p>
         </p>
-        <a class="btn btn-logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
+        <a class="btn btn-logout" onclick="create_logs('logout')" style="position: absolute;top:10px;right: 20px;">
         <img class="me-2" src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
         </a>
+        <a class="d-none" href="{{ route('logout') }}" id="btn-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
 
         <div id="div_pc_point" class="d-none mt-1">
             <div class="d-flex justify-content-center align-items-center text-white h6">
@@ -694,6 +695,17 @@ line-height: normal;
         return number.toLocaleString();
 
     }
-
+    
+    function create_logs(log_content) {
+        let user_id = "{{ Auth::user()->id }}";
+        let role = "{{ Auth::user()->role }}";
+      
+        fetch(`{{ url('/') }}/api/create_logs?user_id=${user_id}&role=${role}&content=${log_content}`)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                document.querySelector('#btn-logout').click();
+            })
+    }
 </script>
 @endsection
