@@ -503,5 +503,202 @@ class Pc_pointsController extends Controller
         }
 
     }
+
+
+    // ------------------------
+
+    function mission_1_Team_no10(Request $request)
+    {
+        $requestData = $request->all();
+        $data_arr = [];
+        $group_arr = [];
+
+        foreach ($requestData as $item => $value) {
+
+            $data_arr[] =  $value;
+
+            // แปลงข้อมูลเป็น Collection
+            $collection = collect($data_arr);
+
+            // กลุ่มข้อมูลตาม group_id
+            $grouped = $collection->groupBy('group_id');
+
+            // สร้าง array ใหม่เพื่อเก็บข้อมูลที่กลุ่มตาม group_id
+            $result = [];
+            foreach ($grouped as $groupId => $items) {
+                $result[$groupId] = $items->pluck('account')->toArray();
+            }
+            
+        }
+
+        $check_week = Pc_point::where('week', 'not like', 'old-%')
+            ->orderByRaw('CAST(SUBSTRING_INDEX(`week`, "-", -1) AS UNSIGNED) DESC')
+            ->first();
+        $week = $check_week->week ;
+
+        // ใช้ foreach loop เพื่อผ่านค่า groupId ที่มีอยู่ใน $result
+        foreach ($result as $groupId => $accounts) {
+            
+            $user_out = User::where('group_id',$groupId)->get();
+
+            foreach ($user_out as $outout) {
+                DB::table('users')
+                ->where([ 
+                        ['id', $outout->id],
+                    ])
+                ->update([
+                        'group_id' => null,
+                        'group_status' => null,
+                    ]);
+            }
+
+            $check_score = Pc_point::where('week',$week)
+                ->where('group_id',$groupId)
+                ->orderBy('mission1' , 'DESC')
+                ->get();
+
+            $new_host = '';
+            $host = $check_score[0]['user_id'];
+
+            $arr_member = [];
+            foreach ($accounts as $account) {
+
+                $data_user = User::where('account',$account)->first();
+                $arr_member[] = $data_user->id;
+
+                DB::table('users')
+                ->where([ 
+                        ['id', $data_user->id],
+                    ])
+                ->update([
+                        'group_id' => $groupId,
+                        'group_status' => 'ยืนยันการสร้างบ้านแล้ว',
+                    ]);
+            }
+
+            $data_group = Group::where('id',$groupId)->first();
+            $old_host = $data_group->host ;
+
+            if (in_array($old_host, $arr_member)) {
+                $new_host = $old_host ;
+            }
+            else{
+                $new_host = $host ;
+            }
+
+            DB::table('groups')
+                ->where([ 
+                        ['id', $groupId],
+                    ])
+                ->update([
+                        'host' => $new_host,
+                        'member' => $arr_member,
+                    ]);
+        }
+
+        return "success" ;
+        // return $check_score ;
+
+    }
+
+    function mission_1_Team_out(Request $request)
+    {
+        $requestData = $request->all();
+        $data_arr = [];
+        
+        foreach ($requestData as $item) {
+            foreach ($item as $key => $value) {
+                if($key == "group_id"){
+                    $data_arr[] =  $value;
+                }
+            }
+        }
+
+        for ($i=0; $i < count($data_arr); $i++) { 
+            
+            $data_user = User::where('group_id' , $data_arr[$i])->get();
+
+            foreach ($data_user as $item) {
+                DB::table('users')
+                ->where([ 
+                        ['id', $item->id],
+                    ])
+                ->update([
+                        'group_id' => null,
+                        'group_status' => null,
+                    ]);
+            }
+
+            DB::table('groups')
+                ->where([ 
+                        ['id', $data_arr[$i]],
+                    ])
+                ->update([
+                        'host' => null,
+                        'member' => null,
+                        'status' => null,
+                        'rank_of_week' => null,
+                        'rank_last_week' => null,
+                        'rank_record' => null,
+                    ]);
+
+        }
+
+        return "success" ;
+        // return $data_arr ;
+
+    }
+
+    function mission_1_People_noTeam(Request $request)
+    {
+        $requestData = $request->all();
+        $data_arr = [];
+        
+        foreach ($requestData as $item) {
+            foreach ($item as $key => $value) {
+                // 
+            }
+        }
+
+        return "success" ;
+        // return $data_arr ;
+
+    }
+
+    function mission_1_People_out(Request $request)
+    {
+        $requestData = $request->all();
+        $data_arr = [];
+        
+        foreach ($requestData as $item) {
+            foreach ($item as $key => $value) {
+                if($key == "account"){
+                    $data_arr[] =  $value;
+                }
+            }
+        }
+
+        for ($i=0; $i < count($data_arr); $i++) { 
+            
+            $data_user = User::where('account' , $data_arr[$i])->get();
+
+            foreach ($data_user as $item) {
+                DB::table('users')
+                ->where([ 
+                        ['id', $item->id],
+                    ])
+                ->update([
+                        'status' => null,
+                        'role' => 'Player_OUT',
+                    ]);
+            }
+
+        }
+
+        return "success" ;
+        // return $data_arr ;
+
+    }
+
 }
 

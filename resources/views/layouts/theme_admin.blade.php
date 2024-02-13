@@ -283,6 +283,16 @@
                         </div>
                     </a>
                 </li>
+                <li class="">
+                    <a href="{{ url('/excel_end_mission1') }}" class="">
+                        <div class="parent-icon">
+                            <i class="fa-sharp fa-solid fa-octagon-exclamation"></i>
+                        </div>
+                        <div class="menu-title">
+                            End Mission 1
+                        </div>
+                    </a>
+                </li>
                 <hr>
                 <li class="">
                     <a href="{{ url('/groups') }}" class="">

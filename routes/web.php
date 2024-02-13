@@ -106,6 +106,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::get('/admin/scanner', 'HomeController@admin_scanner');
     Route::get('/user_get_shirt', 'HomeController@user_get_shirt');
     Route::resource('contact_staff', 'Contact_staffController');
+    Route::get('/excel_end_mission1', 'HomeController@excel_end_mission1');
 
 });
 

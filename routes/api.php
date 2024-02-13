@@ -99,3 +99,10 @@ Route::get('/change_finish/{id}/{check_Finish}', 'Contact_staffController@change
 // LINE
 Route::post('/send_Line_Notify', 'Contact_staffController@send_Line_Notify');
 
+// END MISSION 1
+Route::post('/mission_1_Team_no10', 'Pc_pointsController@mission_1_Team_no10');
+Route::post('/mission_1_Team_out', 'Pc_pointsController@mission_1_Team_out');
+Route::post('/mission_1_People_noTeam', 'Pc_pointsController@mission_1_People_noTeam');
+Route::post('/mission_1_People_out', 'Pc_pointsController@mission_1_People_out');
+
+

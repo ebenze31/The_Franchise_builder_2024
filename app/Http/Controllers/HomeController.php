@@ -167,4 +167,8 @@ class HomeController extends Controller
         return view('admin.user_get_shirt');
     }
 
+    function excel_end_mission1(){
+        return view('excel_end_mission1');
+    }
+
 }
