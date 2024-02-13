@@ -554,7 +554,18 @@
     function check_end_mission_1(){
 
         if("{{ Auth::user()->role }}" == "Player_OUT"){
-            // document.querySelector('#btn_modal_show_you_lost').click();
+            document.querySelector('#btn_modal_show_you_lost').click();
+            let seconds = 10;
+            let countdownTimer = setInterval(function() {
+                // console.log(seconds);
+                document.querySelector('#span_countdown_logout').innerHTML = seconds;
+                seconds--;
+                if (seconds < 0) {
+                    clearInterval(countdownTimer);
+                    // console.log("หมดเวลา!");
+                    document.querySelector('#btn_go_to_logout').click();
+                }
+            }, 1000); // 1000 milliseconds = 1 วินาที
         }
         else if("{{ Auth::user()->remark }}" == "new_host"){
             document.querySelector('#btn_modal_show_new_host').click();
@@ -676,8 +687,8 @@
                 `;
 
                 btn_footer = `
-                    <a type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="create_logs('logout')">
-                        Close
+                    <a id="btn_go_to_logout" type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="create_logs('logout')">
+                        Close (<span id="span_countdown_logout"></span>)
                     </a>
                     <a class="d-none" href="{{ route('logout') }}" id="btn-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
                     </a>
