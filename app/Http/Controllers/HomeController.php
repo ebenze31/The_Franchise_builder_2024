@@ -49,7 +49,7 @@ class HomeController extends Controller
             return view('pc_points/ranking_by_team');
         }
 
-        else if(Auth::user()->role == "Player"){
+        else if(Auth::user()->role == "Player" || Auth::user()->role == "Player_OUT"){
             $data_user = Auth::user();
 
             return view('pc_points/ranking_by_team');

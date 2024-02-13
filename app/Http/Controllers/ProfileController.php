@@ -482,15 +482,15 @@ class ProfileController extends Controller
             }
             else if($data->role == 'Player'){
 
-                if($data->group_status == 'Team Ready' || $data->group_status == 'ยืนยันการสร้างบ้านแล้ว'){
+                // if($data->group_status == 'Team Ready' || $data->group_status == 'ยืนยันการสร้างบ้านแล้ว'){
                     if( !empty($data->pdpa) ){
                         $return = "Yes" ;
                     }else{
                         $return ="No" ;
                     }
-                }else{
-                    $return = "No Team" ;
-                }
+                // }else{
+                    // $return = "No Team" ;
+                // }
 
             }else{
                 if( !empty($data->pdpa) ){

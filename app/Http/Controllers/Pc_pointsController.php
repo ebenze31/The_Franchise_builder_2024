@@ -560,11 +560,19 @@ class Pc_pointsController extends Controller
             $new_host = '';
             $host = $check_score[0]['user_id'];
 
+            $count_accounts = count($accounts);
+            $text_group_status = '';
+            if($count_accounts >= 10){
+                $text_group_status = 'ยืนยันการสร้างบ้านแล้ว' ;
+            }else{
+                $text_group_status = 'มีบ้านแล้ว' ;
+            }
+
             $arr_member = [];
             foreach ($accounts as $account) {
 
                 $data_user = User::where('account',$account)->first();
-                $arr_member[] = $data_user->id;
+                $arr_member[] = (string)$data_user->id ;
 
                 DB::table('users')
                 ->where([ 
@@ -572,18 +580,34 @@ class Pc_pointsController extends Controller
                     ])
                 ->update([
                         'group_id' => $groupId,
-                        'group_status' => 'ยืนยันการสร้างบ้านแล้ว',
+                        'group_status' => $text_group_status,
                     ]);
             }
 
             $data_group = Group::where('id',$groupId)->first();
             $old_host = $data_group->host ;
 
+
             if (in_array($old_host, $arr_member)) {
                 $new_host = $old_host ;
             }
             else{
                 $new_host = $host ;
+
+                DB::table('users')
+                ->where([ 
+                        ['id', $host],
+                    ])
+                ->update([
+                        'remark' => "new_host",
+                    ]);
+            }
+
+            $status_of_group = '';
+            if(count($arr_member) >= 10){
+                $status_of_group = 'ยืนยันเรียบร้อย';
+            }else{
+                $status_of_group = 'กำลังรอ';
             }
 
             DB::table('groups')
@@ -593,6 +617,7 @@ class Pc_pointsController extends Controller
                 ->update([
                         'host' => $new_host,
                         'member' => $arr_member,
+                        'status' => $status_of_group,
                     ]);
         }
 
@@ -697,6 +722,27 @@ class Pc_pointsController extends Controller
 
         return "success" ;
         // return $data_arr ;
+
+    }
+
+    function check_role_end_mission_1($user_id){
+
+        $data_user = User::where('id' , $user_id)->first();
+        $data_group = Group::where('id' , $data_user->group_id)->first();
+
+        $jsonText = $data_group->member;
+        $arrayData = json_decode($jsonText, true);
+
+        $return = '' ;
+
+        if(count($arrayData) >= 10){
+            $return = "perfect_team" ;
+        }
+        else{
+            $return = "team_success" ;
+        }
+
+        return $return ;
 
     }
 
