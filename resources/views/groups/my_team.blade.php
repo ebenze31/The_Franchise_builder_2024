@@ -228,7 +228,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header modalHeaderrequest">
-                <div class="w-100 text-center">
+                <div class="w-100 text-center py-2">
 
                     <p class="modal-request-title text-white text-center" id="exampleModalLongTitle">Pending requests</p>
                 </div>
