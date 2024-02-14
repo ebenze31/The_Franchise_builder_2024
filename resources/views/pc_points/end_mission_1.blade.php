@@ -346,56 +346,73 @@
         <div class="col-4 text-center sub-rank">
             <p class="number-top-rank">No.2</p>
             <img id="img_rank_2" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
-            <p id="name_rank_2" class="number-team">Team 1</p>
-            <p id="score_rank_2" class="score-team" style="color: #E7C517!important;">800</p>
+            <p id="name_rank_2" class="number-team"></p>
+            <p id="score_rank_2" class="score-team" style="color: #E7C517!important;"></p>
         </div>
         <div class="col-4 text-center">
             <p class="number-top-rank">No.1</p>
             <img id="img_rank_1" src="{{ url('/img/icon/profile.png') }}" class="main-rank-img" alt="รูปภาพปก">
-            <p id="name_rank_1" class="number-team">Team 1</p>
-            <p id="score_rank_1" class="score-team" style="color: #E7C517!important;">800</p>
+            <p id="name_rank_1" class="number-team"></p>
+            <p id="score_rank_1" class="score-team" style="color: #E7C517!important;"></p>
         </div>
         <div class="col-4 text-center sub-rank">
             <p class="number-top-rank">No.3</p>
             <img id="img_rank_3" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
-            <p id="name_rank_3" class="number-team">Team 1</p>
-            <p id="score_rank_3" class="score-team" style="color: #E7C517!important;">800</p>
+            <p id="name_rank_3" class="number-team"></p>
+            <p id="score_rank_3" class="score-team" style="color: #E7C517!important;"></p>
         </div>
     </div>
 </div>
+@php
+    $activeGroupsCount = App\Models\Group::where('active', 'Yes')
+        ->where('status', 'ยืนยันเรียบร้อย')
+        ->count();
+
+    $menu_row = ceil($activeGroupsCount / 20) ;
+    $start = 1 ;
+    $end = 20 ;
+@endphp
 
 <a id="click_to_div_data_all" href="#div_data_all" class="d-none"></a>
 
 <div class=" sticky"  >
-    <div class="nav-menu" id="div_menu_view">
-        <div class="btn-group owl-carousel owl-theme owl-nav-nemu" role="group" aria-label="First group">
-      
-            <div class="item text-center py-2">
-                <button btn="menu_view" type="button" class="btn btn-sort-group-active text-center mt-1"  style="font-size: 12px!important;">
-                ลำดับที่ 1 - 100
-                </button>
-            </div>
-            <div class="item text-center py-2">
-                <button btn="menu_view"  type="button" class="btn btn-sort-group text-center mt-1"  style="font-size: 12px!important;">
-                ลำดับที่ 100 - 200
-                </button>
-            </div>
-            <div class="item text-center py-2">
-                <button btn="menu_view"  type="button" class="btn btn-sort-group text-center mt-1"  style="font-size: 12px!important;">
-                ลำดับที่ 200 - 300
-                </button>
-            </div>
-            <div class="item text-center py-2">
-                <button btn="menu_view"  type="button" class="btn btn-sort-group text-center mt-1"  style="font-size: 12px!important;">
-                ลำดับที่ 300 - 100
-                </button>
-            </div>
-            
-        </div>
+    <div class="nav-menu"id="div_menu_view">
+    <div class="btn-group owl-carousel owl-theme owl-nav-nemu" role="group" aria-label="First group">
+        @for ($i=1; $i <= $menu_row; $i++)
+
+            @php
+                $check_active = '';
+                if($start == 1){
+                    $check_active = 'btn-sort-group-active' ;
+                }
+            @endphp
+            @if($i==$menu_row) 
+                <div class="item text-center py-2">
+                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeGroupsCount }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $activeGroupsCount }}' , 'No');" style="font-size: 12px!important;">
+                       ลำดับที่ {{ $start }} - {{ $activeGroupsCount }}
+                    </button>
+                </div>
+            @else
+                <div class="item text-center py-2">
+                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $end }}' , 'No');" style="font-size: 12px!important;">
+                       ลำดับที่ {{ $start }} - {{ $end }}
+                    </button>
+                </div>
+            @endif
+
+            @php
+                $start = $start + 20 ;
+                $end = $end + 20 ;
+            @endphp
+
+        @endfor
+        
+    </div>
+    @if($menu_row > 0)
         <div class="owl-carousel__prev"><i class="fa-solid fa-caret-right fa-rotate-180"></i></div>
         <div class="owl-carousel__next"><i class="fa-solid fa-caret-right"></i></div>
+    @endif
     </div>
-
     <style>
         .text-header-column{
             color: #00E0FF;
@@ -406,44 +423,70 @@
             background-color: rgb(0, 27, 87);
         }
     </style>
-  <div class="text-header-column" style="width: 100%;padding: 10px 10px 10px 12px;display: flex;">
+   <div class="text-header-column" style="width: 100%;padding: 10px 10px 10px 12px;display: flex;">
         <div class="text-center number-my-team" style="margin-left: 5px;">No.</div>
         <div style="min-width: 65px !important;max-width: 65px !important;"></div>
         <div class="w-100">Username</div>
-        <div  style="min-width: 65px !important;max-width: 65px !important;margin-right: 10px;  ">Mission 1</div>
+        <div  style="min-width: 65px !important;max-width: 65px !important;margin-right: 10px;">Mission 1</div>
         <div style="min-width: 65px !important;max-width: 65px !important;">Last week</div>
     </div>
 </div>
+
+<script>
+    
+    function change_menu_view(type_get_data , first){
+
+        @if($menu_row > 0)
+        type_get_data = type_get_data.replace("-", "_");
+
+        let menu_view = document.querySelectorAll('[btn="menu_view"]');
+        menu_view.forEach(menu_view => {
+            menu_view.setAttribute('class', 'btn btn-sort-group mt-1');
+        });
+
+        document.querySelector('#btn_view_' + type_get_data).setAttribute('class', 'btn btn-sort-group-active');
+
+        let team_start = type_get_data.split('_')[0];
+        let team_end = type_get_data.split('_')[1];
+
+        let other_team = document.querySelectorAll('.other-team');
+        other_team.forEach(item => {
+            // console.log(item);
+            item.classList.add('d-none');
+        })
+
+        let collapse = document.querySelectorAll('.collapse');
+        collapse.forEach(item_collapse => {
+            // console.log(item_collapse);
+            item_collapse.classList.remove('show');
+        })
+
+        for (let i = parseInt(team_start); i <= parseInt(team_end); i++) {
+            // if (document.querySelector('#Team_' + i)) {
+            if (document.querySelector('div[count="div_'+i+'"]')) {
+                // document.querySelector('#Team_' + i).classList.remove('d-none');
+                document.querySelector('div[count="div_'+i+'"]').classList.remove('d-none');
+
+            }
+        }
+
+        if(first == 'No'){
+            document.querySelector('#click_to_div_data_all').click();
+        }
+        @endif
+
+    }
+
+</script>
 
 <div class="contentSection">
 
     <!-- ของตัวเอง -->
     <div class="mb-2" id="content_ME">
         <div class="my-team">
-            <div class="number-my-team">1</div>
-            <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-            <div class="detailTeam">
-                <div>
-                    <p class="nameTeam">Team : 1</p>
-                    <p class="nameTeam">PC <span id="">10000000</span></p>
-                </div>
-            </div>
-           
+            <div class="number-my-team w-100">คุณไม่มีทีม</div>
             <div class="statusTeam text-center w-100 d-flex justify-content-end">
-               <a href="" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;font-weight: bolder;">
-                ทีมของฉัน
-               </a>
-
-               <span style="position: absolute;top: 0; right: 0;background-color: #FF3A3A;color: #fff;width: 20px;height: 20px;display: flex;align-items: center;justify-content: center;-webkit-border-radius: 50%;border-radius: 50%;-moz-border-radius:50%;-khtml-border-radius:50%;">!</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="mb-2" id="content_ME">
-        <div class="my-team">
-            <div class="number-my-team w-100">คุณยังไม่มีบ้าน</div>
-            <div class="statusTeam text-center w-100 d-flex justify-content-end">
-               <a href="" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;font-weight: bolder;">
+               <a href="{{ url('/groups') }}" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;font-weight: bolder;">
                 จัดทีมใหม่
                </a>
             </div>
@@ -453,31 +496,11 @@
     <!-- เรียงตามลำดับ -->
     <div id="content_ASC">
         <!--  -->
-        <div  class="other-team">
-            <div class="number-my-team">1</div>
-            <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-            <div class="detailTeam">
-                <div>
-                    <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                </div>
-            </div>
-            <div class="score-my-team">
-                <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                <span class="text-point"> PC</span>
-
-            </div>
-            <div class="statusTeam text-center">
-                <div>
-                    <i class="fa-solid fa-triangle rankUP"></i>
-                    <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                    <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                    <p class="statusNumber ">3</p>
-                </div>
-            </div>
-        </div>
     </div>
 
 </div>
+
+
 <!-- moda -->
 <button id="btn_mission_success" class="d-none" data-toggle="modal" data-target="#mission_success">
     sorry na
@@ -721,6 +744,243 @@
 
         $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
     })
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        change_menu_bar('rank-team');
+        get_data_rank('team');
+        check_end_mission_1();
+    });
+
+    var score_mission1_of_team = 0 ;
+    var amount_member_50k = 0 ;
+
+    function get_data_rank(type){
+
+        fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
+            .then(response => response.json())
+            .then(result => {
+            // console.log(result);
+
+            let content_ASC = document.querySelector('#content_ASC');
+            let content_ME = document.querySelector('#content_ME');
+
+            if(result){
+                setTimeout(() => {
+
+                    let week = result['week'];
+
+                    let as_of = result['as_of'];
+                    let datePart = as_of.substring(0, 10); // 2024-01-31
+
+                    let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
+                    let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; // ประกอบวันที่ใหม่ในรูปแบบที่ต้องการ
+
+                    let count_div = 1 ;
+
+                    for (let i = 0; i < result['data'].length; i++) {
+
+                        let count_member = JSON.parse(result['data'][i].member).length;
+
+                        let pc_point_arr = [];
+                            pc_point_arr = JSON.parse(result['data'][i].rank_record);
+
+                        let pc_point = pc_point_arr[week]['pc_point'] ;
+                        let mission1 = pc_point_arr[week]['mission1'] ;
+                            // console.log(pc_point);
+
+                        let originalNumber = pc_point;
+                        // let formattedNumber = formatLargeNumber(originalNumber);
+                        let formattedNumber = formatLargeNumber(mission1);
+
+                        if (mission1 > 700000) {
+                            img_trophy = ` <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt="">`;
+                        } else {
+                            img_trophy = ``;
+                        }
+
+                        let rank_up ;
+                        if( parseInt(result['data'][i].rank_of_week) < parseInt(result['data'][i].rank_last_week) ){
+                            rank_up = `<i class="fa-solid fa-triangle rankUP"></i>`;
+                        }else if(parseInt(result['data'][i].rank_of_week) > parseInt(result['data'][i].rank_last_week)){
+                            rank_up = `<i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>`;
+                        }else{
+                            rank_up = `<i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i>`;
+                        }
+
+                        let text_id_group = result['data'][i].id.toString();
+                        let html ;
+
+                        if("{{ Auth::user()->role }}" == "Player" || "{{ Auth::user()->role }}" == "QR"){
+
+                            html = `
+                                <div count="div_`+count_div+`" class="other-team">
+                                    <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
+                                    <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
+                                    <div class="detailTeam">
+                                        <div>
+                                            <p class="nameTeam">Team `+result['data'][i].name_group+`${img_trophy}</p>
+                                        </div>
+                                    </div>
+                                    <div class="score-my-team">
+                                        <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                        <span class="text-point"> PC</span>
+
+                                    </div>
+                                    <div class="statusTeam text-center">
+                                        <div> 
+                                            `+rank_up+`
+                                            <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+
+                            content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                            
+                        }
+                        else{
+
+                            html = `
+                                <div count="div_`+count_div+`" class="other-team" data-toggle="collapse" href="#data_team_id_`+text_id_group+`" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
+                                    <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
+                                    <div class="detailTeam">
+                                        <div>
+                                            <p class="nameTeam">Team `+result['data'][i].name_group+`${img_trophy}</p>
+                                        </div>
+                                    </div>
+                                    <div class="score-my-team">
+                                        <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                        <span class="text-point"> PC</span>
+
+                                    </div>
+                                    <div class="statusTeam text-center">
+                                        <div>
+                                            `+rank_up+`
+                                            <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="collapseContent">
+                                    <div class="collapse p-0" id="data_team_id_`+text_id_group+`">
+                                        <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                                            <div class="table-responsive">
+                                                <table class="table mb-0 align-middle table-borderless">
+                                                    <thead class="head-teble-data-my-team">
+                                                        <tr>
+                                                            <th class="text-center" style>
+                                                                <p>No.</p><br>
+
+                                                                <p></p>
+                                                            </th>
+                                                            <th class="text-center" style>
+                                                                <p>User</p><br>
+
+                                                                <p></p>
+                                                            </th>
+                                                            <th class="text-center" style>
+                                                                <p>Mission 1</p>
+                                                                <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                            </th>
+                                                            <th class="text-center" style>
+                                                                <p>YTD-PC</p><br>
+
+                                                                <p></p>
+                                                            </th>
+                                                            <!-- <th class="text-center d-flex align-items-top">MTD-Case
+                                                            </th>
+                                                            <th class="text-center">
+                                                                <p>Active AG</p>
+                                                                <small style="font-size: 7px;">(include self)</small>
+                                                            </th> -->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbody_content_id_`+text_id_group+`">
+                                                        <!-- ข้อมูลสมาชิก -->
+                                                    </tbody>
+                                                </table>
+
+                                                <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('group_show_score')}}/`+result['data'][i].id+`">ดูรายละเอียดเพิ่มเติม</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+
+                            content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                        }
+
+                        count_div++ ;
+
+                        // ของตัวเอง
+                        if(result['data'][i].id == "{{ Auth::user()->group_id }}"){
+
+                            let html_me = ``;
+
+                            if("{{ Auth::user()->role }}" == "Player" && "{{ Auth::user()->group_id }}"){
+                                html_me = `
+                                    <div class="my-team">
+                                        <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
+                                        <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
+                                        <div class="detailTeam">
+                                            <div>
+                                                <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
+                                                <p class="nameTeam" style="color: #E7C517!important;">
+                                                    PC <span id="">`+formattedNumber+`</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="statusTeam text-center w-100 d-flex justify-content-end">
+                                           <a href="{{ url('/group_my_team') . "/" . Auth::user()->group_id }}" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;font-weight: bolder;">
+                                            My team
+                                           </a>
+
+                                           <span style="position: absolute;top: 0; right: 0;background-color: #FF3A3A;color: #fff;width: 20px;height: 20px;display: flex;align-items: center;justify-content: center;-webkit-border-radius: 50%;border-radius: 50%;-moz-border-radius:50%;-khtml-border-radius:50%;">!</span>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+
+                            document.querySelector('#content_ME').classList.remove('d-none');
+                            content_ME.innerHTML = '' ;
+                            content_ME.insertAdjacentHTML('beforeend', html_me); // แทรกล่างสุด
+
+                        }
+
+                        if(week != "0"){
+                            if(i == 0 || i == 1 || i == 2){
+
+                                let iii = i + 1 ;
+                                document.querySelector('#img_rank_'+iii).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
+                                document.querySelector('#name_rank_'+iii).innerHTML = "Team " + result['data'][i].name_group;
+                                document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
+                            }
+                        }
+
+                    }
+
+                    change_menu_view('1-20' , 'Yes');
+
+                }, 500);
+            }
+        });
+
+    }
+
+    function formatLargeNumber(number) {
+        // if (number >= 1e6) { // 1e6 = 1,000,000
+        //     return (number / 1e6).toFixed(3).slice(0, -1) + 'M';
+        // } else {
+        //     return number.toLocaleString();
+        // }
+
+        return number.toLocaleString();
+
+    }
 </script>
 
 @endsection
