@@ -693,7 +693,7 @@
 
                 btn_footer = `
                     <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal">
-                        Close
+                        OK
                     </a>
                 `;
 
