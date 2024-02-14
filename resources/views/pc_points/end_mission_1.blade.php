@@ -573,10 +573,6 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 
 <script>
-     document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START");
-        change_menu_bar('mission-1');
-    });
     function check_end_mission_1(){
 
         if("{{ Auth::user()->role }}" == "Player_OUT"){
@@ -752,7 +748,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        change_menu_bar('rank-team');
+        change_menu_bar('mission-1');
         first_get_data_rank('team');
         get_data_rank('end_mission_1');
         check_end_mission_1();
