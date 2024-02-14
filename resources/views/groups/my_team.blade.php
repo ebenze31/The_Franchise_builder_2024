@@ -490,7 +490,7 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        change_menu_bar('team');
+        // change_menu_bar('team');
 
         @if( $data_groups->host == Auth::user()->id )
             func_check_request_join();
