@@ -721,7 +721,7 @@
                                                     </tbody>
                                                 </table>
 
-                                                <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('group_show_score')}}/`+result['data'][i].id+`">ดูรายละเอียดเพิ่มเติม</a>
+                                                <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('group_show_score')}}/`+result['data'][i].id+`" onclick="return create_logs('คลิ๊กเพื่อดู mission');">ดูรายละเอียดเพิ่มเติม</a>
                                             </div>
                                         </div>
                                     </div>

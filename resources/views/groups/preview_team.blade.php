@@ -286,7 +286,7 @@
             @else
                 @for ($i = 0; $i < 10; $i++) 
                     @if($i == 0)
-                        <div id="Team_no" class="member-item mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');">
+                        <div id="Team_no" class="member-item mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');return create_logs('Be the host');">
                             <div class="member-card h-100" style="width: 100%;height: auto;">
                                 <div class="text-center w-100">
                                     <i class="fa-solid fa-user-plus"></i>
@@ -298,7 +298,7 @@
                             </div>
                         </div>
                     @else
-                        <div id="Team_no" class="member-item mt-2 mb-2">
+                        <div id="Team_no" class="member-item mt-2 mb-2" onclick="return create_logs('Join as member');">
                             <div class="disable-card h-100" >
                                 <div class="text-center">
                                     <i class="fa-solid fa-user-plus"></i>
@@ -437,9 +437,9 @@
                     @else
 
                         @if($group_status == 'กำลังขอเข้าร่วมบ้าน')
-                        <div id="Team_no" class="member-item col-4 mt-2 mb-2" >
+                        <div id="Team_no" class="member-item col-4 mt-2 mb-2" onclick="return create_logs('Join our team');">
                         @else
-                        <div id="Team_no" class="member-item col-4 mt-2 mb-2" onclick="open_modal_join_team('member','{{ $data_groups->id }}');">
+                        <div id="Team_no" class="member-item col-4 mt-2 mb-2" onclick="open_modal_join_team('member','{{ $data_groups->id }}');return create_logs('Join our team');">
                         @endif
                             <div class="member-card h-100" style="width: 100%;height: auto;">
                                 <div class="text-center">
@@ -489,7 +489,7 @@
                     
                     @if( empty($data_groups->member) )
                         @for ($i = 0; $i < 10; $i++) 
-                        <div id="Team_no" class=" col-4 mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');">
+                        <div id="Team_no" class=" col-4 mt-2 mb-2" onclick="open_modal_join_team('host','{{ $data_groups->id }}');return create_logs('Join our team');">
                             <div class="bg-secondary text-center" style="width: 95%;height: auto;">
                                 <i class="fa-solid fa-user-plus"></i>
                                 <p>Join our team</p>
@@ -596,9 +596,9 @@
 
                             @for ($i = 0; $i < $add_div; $i++) 
                                 @if($group_status == 'กำลังขอเข้าร่วมบ้าน')
-                                <div id="Team_no" class=" col-4 mt-2 mb-2" >
+                                <div id="Team_no" class=" col-4 mt-2 mb-2" onclick="return create_logs('Join our team');" >
                                 @else
-                                <div id="Team_no" class=" col-4 mt-2 mb-2" onclick="open_modal_join_team('member','{{ $data_groups->id }}');">
+                                <div id="Team_no" class=" col-4 mt-2 mb-2" onclick="open_modal_join_team('member','{{ $data_groups->id }}');return create_logs('Join our team');">
                                 @endif
                                     <div class="bg-secondary text-center" style="width: 95%;height: auto;">
                                         <i class="fa-solid fa-user-plus"></i>
