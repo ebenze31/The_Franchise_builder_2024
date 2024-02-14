@@ -206,6 +206,15 @@
     }
 </style>
 
+<div class="div-btn-back d-">
+    <!-- <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">
+       <i class="fa-solid fa-chevron-left"></i>
+    </button> -->
+    <a href="{{ url('/end_mission_1') }}" class="btn btn-sm btn-back  mt-3" >
+       <i class="fa-solid fa-chevron-left"></i>
+    </a>
+</div>
+
 <div id="alert_success" class="div_alert" role="alert">
     <span id="alert_text">
         <!--  -->
