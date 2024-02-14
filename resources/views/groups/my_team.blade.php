@@ -291,7 +291,7 @@
             <span style="font-size:12px;">(My team)</span>
         </h1>
         @if( !empty($data_groups->rank_of_week) )
-            <p style="font-size: 14px;color: yellow;">PC : <span>xxxx</span></p>
+            <p style="font-size: 14px;color: yellow;">PC : <span></span></p>
         @endif
     </div>
 </div>
