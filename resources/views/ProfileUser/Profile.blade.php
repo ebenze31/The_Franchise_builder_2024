@@ -226,7 +226,7 @@
         <a class="btn btn-logout" onclick="create_logs('logout')" style="position: absolute;top:10px;right: 20px;">
         <img class="me-2" src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
         </a>
-        <a class="d-none" href="{{ route('logout') }}" id="btn-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">
+        <a class="d-none" href="{{ route('logout') }}" id="btn-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;"></a>
 
         <div id="div_pc_point" class="d-none mt-1">
             <div class="d-flex justify-content-center align-items-center text-white h6">
@@ -413,7 +413,7 @@ line-height: normal;
         box-shadow: none !important;
     }
 </style>
-<button id="btn_contact_staff" class="btn btn-service" data-bs-toggle="modal" data-bs-target="#modal_contact_staff">               
+<button id="btn_contact_staff" class="btn btn-service" data-bs-toggle="modal" data-bs-target="#modal_contact_staff" onclick="return create_logs('contact_staff');">               
     <img src="{{ url('/img/icon/customer-service.png') }}"  class="mt-2 mb-2 img-service">
     <p class="text-contact">Contact staff</p>
 </button>
@@ -548,7 +548,7 @@ line-height: normal;
 
 
                         let html_badges = `
-                            <div class="col-4 badges-item `+class_show_badges+`" activity="`+result['data_badges'][i].name_Activities+`" onclick="open_badges(this)">
+                            <div class="col-4 badges-item `+class_show_badges+`" activity="`+result['data_badges'][i].name_Activities+`" onclick="open_badges(this);return create_logs('badges `+result['data_badges'][i].name_Activities+`')">
                                 <img src="{{ url('storage')}}/`+result['data_badges'][i].icon+`"width="100%">
                                 <div class="d-none detail">
                                     `+result['data_badges'][i].detail+`
@@ -696,16 +696,16 @@ line-height: normal;
 
     }
     
-    function create_logs(log_content) {
-        let user_id = "{{ Auth::user()->id }}";
-        let role = "{{ Auth::user()->role }}";
+    // function create_logs(log_content) {
+    //     let user_id = "{{ Auth::user()->id }}";
+    //     let role = "{{ Auth::user()->role }}";
       
-        fetch(`{{ url('/') }}/api/create_logs?user_id=${user_id}&role=${role}&content=${log_content}`)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                document.querySelector('#btn-logout').click();
-            })
-    }
+    //     fetch(`{{ url('/') }}/api/create_logs?user_id=${user_id}&role=${role}&content=${log_content}`)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             // console.log(result);
+    //             document.querySelector('#btn-logout').click();
+    //         })
+    // }
 </script>
 @endsection

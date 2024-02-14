@@ -503,8 +503,11 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 
-
 <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+           // console.log("START");
+           change_menu_bar('grand');
+       });
     $(document).ready(function() {
         const owl = $('.owl-nav-nemu')
         owl.owlCarousel({

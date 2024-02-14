@@ -573,7 +573,10 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 
 <script>
-    
+     document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        change_menu_bar('mission-1');
+    });
     function check_end_mission_1(){
 
         if("{{ Auth::user()->role }}" == "Player_OUT"){
