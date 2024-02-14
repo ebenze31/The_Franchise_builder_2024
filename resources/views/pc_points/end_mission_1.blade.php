@@ -709,7 +709,7 @@
                 `;
 
                 btn_footer = `
-                    <a id="btn_go_to_logout" type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="create_logs('logout')">
+                    <a id="btn_go_to_logout" type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="create_logs('Log out')">
                         Close (<span id="span_countdown_logout"></span>)
                     </a>
                     <a class="d-none" href="{{ route('logout') }}" id="btn-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;">

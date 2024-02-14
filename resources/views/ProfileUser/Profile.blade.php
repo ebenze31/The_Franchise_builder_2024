@@ -223,7 +223,7 @@
         <p class="text-center ">
             <p class="text-center text-white" style="font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;">ID : {{ Auth::user()->account }}</p>
         </p>
-        <a class="btn btn-logout" onclick="create_logs('logout')" style="position: absolute;top:10px;right: 20px;">
+        <a class="btn btn-logout" onclick="create_logs('Log out')" style="position: absolute;top:10px;right: 20px;">
         <img class="me-2" src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
         </a>
         <a class="d-none" href="{{ route('logout') }}" id="btn-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;"></a>
@@ -413,7 +413,7 @@ line-height: normal;
         box-shadow: none !important;
     }
 </style>
-<button id="btn_contact_staff" class="btn btn-service" data-bs-toggle="modal" data-bs-target="#modal_contact_staff" onclick="return create_logs('contact_staff');">               
+<button id="btn_contact_staff" class="btn btn-service" data-bs-toggle="modal" data-bs-target="#modal_contact_staff" onclick="return create_logs('Contact staff');">               
     <img src="{{ url('/img/icon/customer-service.png') }}"  class="mt-2 mb-2 img-service">
     <p class="text-contact">Contact staff</p>
 </button>
