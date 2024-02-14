@@ -919,8 +919,15 @@
                         if(result['data'][i].id == "{{ Auth::user()->group_id }}"){
 
                             let html_me = ``;
+                            let html_request_join = ``;
 
-                            if("{{ Auth::user()->role }}" == "Player" && "{{ Auth::user()->group_id }}"){
+                            if(result['data'][i].host == "{{ Auth::user()->id }}" && result['data'][i].request_join){
+                                html_request_join = `
+                                    <span style="position: absolute;top: 0; right: 0;background-color: #FF3A3A;color: #fff;width: 20px;height: 20px;display: flex;align-items: center;justify-content: center;-webkit-border-radius: 50%;border-radius: 50%;-moz-border-radius:50%;-khtml-border-radius:50%;">!</span>
+                                `;
+                            }
+
+                            if("{{ Auth::user()->group_status }}" == "มีบ้านแล้ว" || "{{ Auth::user()->group_status }}" == "ยืนยันการสร้างบ้านแล้ว"){
                                 html_me = `
                                     <div class="my-team">
                                         <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
@@ -939,10 +946,32 @@
                                             My team
                                            </a>
 
-                                           <span style="position: absolute;top: 0; right: 0;background-color: #FF3A3A;color: #fff;width: 20px;height: 20px;display: flex;align-items: center;justify-content: center;-webkit-border-radius: 50%;border-radius: 50%;-moz-border-radius:50%;-khtml-border-radius:50%;">!</span>
+                                           `+html_request_join+`
                                         </div>
                                     </div>
                                 `;
+                            }
+                            else if("{{ Auth::user()->group_status }}" == "กำลังขอเข้าร่วมบ้าน" || "{{ Auth::user()->group_status }}" == "Host Accept" || "{{ Auth::user()->group_status }}" == "Host Reject" || "{{ Auth::user()->group_status }}" == "Team Ready"){
+
+                                html_me = `
+                                    <div class="my-team">
+                                        <div class="detailTeam">
+                                            <div>
+                                                <p>ตรวจสอบสถานะการขอเข้าร่วม</p>
+                                                <p class="nameTeam">
+                                                    Team : `+result['data'][i].name_group+`
+                                                </p>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="statusTeam text-center w-100 d-flex justify-content-end">
+                                           <a href="{{ url('/preview_team') . "/" . Auth::user()->group_id }}" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;font-weight: bolder;">
+                                                สถานะของคุณ
+                                           </a>
+                                        </div>
+                                    </div>
+                                `;
+
                             }
 
                             document.querySelector('#content_ME').classList.remove('d-none');
