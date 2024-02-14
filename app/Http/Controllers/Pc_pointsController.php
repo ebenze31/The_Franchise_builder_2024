@@ -345,6 +345,14 @@ class Pc_pointsController extends Controller
                 $data['week'] = $week;
                 $data['as_of'] = $as_of;
             }
+            else if($type == 'end_mission_1'){
+                $data['data'] = DB::table('groups')
+                    ->orderBy(DB::raw('CAST(rank_of_week AS SIGNED)'), 'ASC')
+                    ->get();
+
+                $data['week'] = $week;
+                $data['as_of'] = $as_of;
+            }
         }
 
 

@@ -750,12 +750,77 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         change_menu_bar('rank-team');
-        get_data_rank('team');
+        first_get_data_rank('team');
+        get_data_rank('end_mission_1');
         check_end_mission_1();
     });
 
     var score_mission1_of_team = 0 ;
     var amount_member_50k = 0 ;
+
+    function first_get_data_rank(type){
+
+        fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
+            .then(response => response.json())
+            .then(result => {
+            // console.log(result);
+
+            if(result){
+                setTimeout(() => {
+
+                    let week = result['week'];
+
+                    let as_of = result['as_of'];
+                    let datePart = as_of.substring(0, 10); // 2024-01-31
+
+                    let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
+                    let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; // ประกอบวันที่ใหม่ในรูปแบบที่ต้องการ
+
+                    let count_div = 1 ;
+
+                    for (let i = 0; i < result['data'].length; i++) {
+
+                        let count_member = 0;
+
+                        let pc_point_arr = [];
+
+                        let pc_point ;
+                        let mission1 ;
+                        if(result['data'][i].rank_of_week){
+                            count_member = JSON.parse(result['data'][i].member).length;
+                            pc_point_arr = JSON.parse(result['data'][i].rank_record);
+                            pc_point = pc_point_arr[week]['pc_point'] ;
+                            mission1 = pc_point_arr[week]['mission1'] ;
+                        }
+                        else{
+                            pc_point = 0 ;
+                            mission1 = 0 ;
+                        }
+
+                        // console.log(pc_point);
+                        
+                        let text_id_group = result['data'][i].id.toString();
+                        let originalNumber = pc_point;
+                        // let formattedNumber = formatLargeNumber(originalNumber);
+                        let formattedNumber = formatLargeNumber(mission1);
+
+                        if(week != "0"){
+                            if(i == 0 || i == 1 || i == 2){
+
+                                let iii = i + 1 ;
+                                document.querySelector('#img_rank_'+iii).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
+                                document.querySelector('#name_rank_'+iii).innerHTML = "Team " + result['data'][i].name_group;
+                                document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
+                            }
+                        }
+
+                    }
+
+                }, 500);
+            }
+        });
+
+    }
 
     function get_data_rank(type){
 
@@ -782,13 +847,23 @@
 
                     for (let i = 0; i < result['data'].length; i++) {
 
-                        let count_member = JSON.parse(result['data'][i].member).length;
+                        let count_member = 0;
 
                         let pc_point_arr = [];
-                            pc_point_arr = JSON.parse(result['data'][i].rank_record);
 
-                        let pc_point = pc_point_arr[week]['pc_point'] ;
-                        let mission1 = pc_point_arr[week]['mission1'] ;
+                        let pc_point ;
+                        let mission1 ;
+                        if(result['data'][i].rank_of_week){
+                            count_member = JSON.parse(result['data'][i].member).length;
+                            pc_point_arr = JSON.parse(result['data'][i].rank_record);
+                            pc_point = pc_point_arr[week]['pc_point'] ;
+                            mission1 = pc_point_arr[week]['mission1'] ;
+                        }
+                        else{
+                            pc_point = 0 ;
+                            mission1 = 0 ;
+                        }
+
                             // console.log(pc_point);
 
                         let originalNumber = pc_point;
@@ -838,7 +913,9 @@
                                 </div>
                             `;
 
-                            content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                            if(result['data'][i].rank_of_week){
+                                content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                            }
                             
                         }
                         else{
@@ -910,7 +987,9 @@
                                 </div>
                             `;
 
-                            content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                            if(result['data'][i].rank_of_week){
+                                content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                            }
                         }
 
                         count_div++ ;
@@ -978,16 +1057,6 @@
                             content_ME.innerHTML = '' ;
                             content_ME.insertAdjacentHTML('beforeend', html_me); // แทรกล่างสุด
 
-                        }
-
-                        if(week != "0"){
-                            if(i == 0 || i == 1 || i == 2){
-
-                                let iii = i + 1 ;
-                                document.querySelector('#img_rank_'+iii).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
-                                document.querySelector('#name_rank_'+iii).innerHTML = "Team " + result['data'][i].name_group;
-                                document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
-                            }
                         }
 
                     }

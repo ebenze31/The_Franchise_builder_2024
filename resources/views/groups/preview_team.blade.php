@@ -190,6 +190,14 @@
         margin-top: 10px;
     }
 </style>
+<div class="div-btn-back d-">
+    <!-- <button type="button" class="btn btn-sm btn-back  mt-3" onclick="goBack();">
+       <i class="fa-solid fa-chevron-left"></i>
+    </button> -->
+    <a href="{{ url('/end_mission_1') }}" class="btn btn-sm btn-back  mt-3" >
+       <i class="fa-solid fa-chevron-left"></i>
+    </a>
+</div>
 <!-- modal_join_team -->
 <button id="btn_modal_join_team" class="d-none" data-toggle="modal" data-target="#modal_join_team"></button>
 
