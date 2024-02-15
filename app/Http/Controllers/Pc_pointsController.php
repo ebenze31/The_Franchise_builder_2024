@@ -740,7 +740,7 @@ class Pc_pointsController extends Controller
 
         $return = 'no' ;
 
-        if( !empty($data_user) ){
+        if( !empty($data_user->group_id) ){
             $data_group = Group::where('id' , $data_user->group_id)->first();
             $jsonText = $data_group->member;
             $arrayData = json_decode($jsonText, true);
