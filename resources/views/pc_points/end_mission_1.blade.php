@@ -444,7 +444,9 @@
             menu_view.setAttribute('class', 'btn btn-sort-group mt-1');
         });
 
-        document.querySelector('#btn_view_' + type_get_data).setAttribute('class', 'btn btn-sort-group-active');
+        if(document.querySelector('#btn_view_' + type_get_data)){
+            document.querySelector('#btn_view_' + type_get_data).setAttribute('class', 'btn btn-sort-group-active');
+        }
 
         let team_start = type_get_data.split('_')[0];
         let team_end = type_get_data.split('_')[1];
