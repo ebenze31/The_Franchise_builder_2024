@@ -200,6 +200,10 @@
     }.imgCloseBTN{
         width: 25px;
         height: 25px;
+        position: absolute;
+        top: -60%;
+        right: 5px;
+        transform: translate(-50%, -50%);
     }.warn-text{
         letter-spacing: 0px;
         font-size: 16px;
@@ -228,13 +232,12 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header modalHeaderrequest">
-                <div class="w-100 text-center py-2">
+                <div class="w-100 text-center py-3">
 
                     <p class="modal-request-title text-white text-center" id="exampleModalLongTitle">Pending requests</p>
                 </div>
                 <button id="close_Pending" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
                     <img src="{{ url('/img/icon/closeBTN.png') }}"  class="mt-2 mb-2 imgCloseBTN">
-
                 </button>
             </div>
             <div class="modal-body">
@@ -291,13 +294,13 @@
             <span style="font-size:12px;">(My team)</span>
         </h1>
         @if( !empty($data_groups->rank_of_week) )
-            <p style="font-size: 14px;color: yellow;">PC : <span></span></p>
+            <!-- <p style="font-size: 14px;color: yellow;">PC : <span></span></p> -->
         @endif
     </div>
 </div>
 
 <div class="memberInRoom">
-    <div class="d-flex justify-content-between px-4 align-items-center">
+    <div class="d-flex justify-content-between px-4 mt-2 align-items-center">
         @if($data_groups->host == Auth::user()->id)
             <div>
                 <span class="text-mamber h4">Members</span>  <span class="text-white">: Team {{ $group_id }}</span>
