@@ -350,8 +350,9 @@
 </div>
 
 @php
-    $activeUserCount = App\User::where('group_status', 'ยืนยันการสร้างบ้านแล้ว')
-        ->orWhere('group_status', 'Team Ready')
+    //$activeUserCount = App\User::where('group_status', 'ยืนยันการสร้างบ้านแล้ว')->orWhere('group_status', 'Team Ready')->count();
+
+    $activeUserCount = App\User::where('role', 'Player')
         ->count();
 
     $menu_row = ceil($activeUserCount / 100) ;
