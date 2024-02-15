@@ -674,6 +674,7 @@ class Pc_pointsController extends Controller
                         'rank_of_week' => null,
                         'rank_last_week' => null,
                         'rank_record' => null,
+                        'active' => null,
                     ]);
 
         }
