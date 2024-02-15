@@ -614,7 +614,7 @@
                     // console.log(data);
             });
         }
-        else if("{{ Auth::user()->role }}" == "Player" && !"{{ Auth::user()->group_id }}"){
+        else if("{{ Auth::user()->role }}" == "Player" && !"{{ Auth::user()->group_id }}" && "{{ Auth::user()->remark }}" != 'end_mission_1'){
             document.querySelector('#btn_modal_show_you_success').click();
             fetch("{{ url('/') }}/api/change_remark_user" + "/" + "{{ Auth::user()->id }}")
                 .then(response => response.text())
