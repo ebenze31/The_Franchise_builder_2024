@@ -435,6 +435,7 @@ class GroupsController extends Controller
             ->update([
                     'group_id' => $group_id,
                     'group_status' => "มีบ้านแล้ว",
+                    'remark' => 'end_mission_1',
                 ]);
 
         }else{
