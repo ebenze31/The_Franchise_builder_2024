@@ -482,16 +482,29 @@
 <div class="contentSection">
 
     <!-- ของตัวเอง -->
-    <div class="mb-2" id="content_ME">
-        <div class="my-team">
-            <div class="number-my-team w-100">คุณไม่มีทีม</div>
-            <div class="statusTeam text-center w-100 d-flex justify-content-end">
-               <a href="{{ url('/groups') }}" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;font-weight: bolder;">
-                จัดทีมใหม่
-               </a>
+    @if(Auth::user()->role == "Super-admin" || Auth::user()->role == "Admin" || Auth::user()->role == "Staff")
+        <div class="mb-2" id="content_ME">
+            <div class="my-team">
+                <div class="number-my-team w-100">{{ Auth::user()->role }}</div>
+                <div class="statusTeam text-center w-100 d-flex justify-content-end">
+                   <a href="{{ url('/groups') }}" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;font-weight: bolder;">
+                    รวมทีมทั้งหมด
+                   </a>
+                </div>
             </div>
         </div>
-    </div>
+    @else
+        <div class="mb-2" id="content_ME">
+            <div class="my-team">
+                <div class="number-my-team w-100">คุณไม่มีทีม</div>
+                <div class="statusTeam text-center w-100 d-flex justify-content-end">
+                   <a href="{{ url('/groups') }}" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;font-weight: bolder;">
+                    จัดทีมใหม่
+                   </a>
+                </div>
+            </div>
+        </div>
+    @endif
 
     <!-- เรียงตามลำดับ -->
     <div id="content_ASC">
