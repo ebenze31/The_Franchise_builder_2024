@@ -736,7 +736,7 @@ class Pc_pointsController extends Controller
 
     function check_role_end_mission_1($user_id){
 
-        $data_user = User::where('id' , $user_id)->first();
+        $data_user = User::where('id' , $user_id)->where('remark', != , 'perfect_team')->first();
         $data_group = Group::where('id' , $data_user->group_id)->first();
 
         $jsonText = $data_group->member;
@@ -746,6 +746,14 @@ class Pc_pointsController extends Controller
 
         if(count($arrayData) >= 10){
             $return = "perfect_team" ;
+
+            DB::table('users')
+                ->where([ 
+                        ['id', $user_id],
+                    ])
+                ->update([
+                        'remark' => 'perfect_team',
+                    ]);
         }
         else{
             $return = "team_success" ;
