@@ -105,5 +105,6 @@ Route::post('/mission_1_Team_out', 'Pc_pointsController@mission_1_Team_out');
 Route::post('/mission_1_People_noTeam', 'Pc_pointsController@mission_1_People_noTeam');
 Route::post('/mission_1_People_out', 'Pc_pointsController@mission_1_People_out');
 Route::get('/check_role_end_mission_1/{id}', 'Pc_pointsController@check_role_end_mission_1');
+Route::get('/change_remark_user/{id}', 'Pc_pointsController@change_remark_user');
 
 Route::get('/create_logs', 'LogsController@create_logs');

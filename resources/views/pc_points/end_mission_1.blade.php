@@ -604,9 +604,19 @@
         }
         else if("{{ Auth::user()->remark }}" == "new_host"){
             document.querySelector('#btn_modal_show_new_host').click();
+            fetch("{{ url('/') }}/api/change_remark_user" + "/" + "{{ Auth::user()->id }}")
+                .then(response => response.text())
+                .then(data => {
+                    // console.log(data);
+            });
         }
         else if("{{ Auth::user()->role }}" == "Player" && !"{{ Auth::user()->group_id }}"){
             document.querySelector('#btn_modal_show_you_success').click();
+            fetch("{{ url('/') }}/api/change_remark_user" + "/" + "{{ Auth::user()->id }}")
+                .then(response => response.text())
+                .then(data => {
+                    // console.log(data);
+            });
         }
         else{
             fetch("{{ url('/') }}/api/check_role_end_mission_1" + "/" + "{{ Auth::user()->id }}")

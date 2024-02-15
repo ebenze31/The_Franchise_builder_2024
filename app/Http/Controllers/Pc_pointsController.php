@@ -746,20 +746,34 @@ class Pc_pointsController extends Controller
 
         if(count($arrayData) >= 10){
             $return = "perfect_team" ;
-
-            DB::table('users')
-                ->where([ 
-                        ['id', $user_id],
-                    ])
-                ->update([
-                        'remark' => 'end_mission_1',
-                    ]);
         }
         else{
             $return = "team_success" ;
         }
 
+        DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'remark' => 'end_mission_1',
+                ]);
+
         return $return ;
+
+    }
+
+    function change_remark_user($user_id){
+
+        DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'remark' => 'end_mission_1',
+                ]);
+
+        return "success" ;
 
     }
 
