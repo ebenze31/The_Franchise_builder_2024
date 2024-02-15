@@ -408,7 +408,7 @@
         @endfor
         
     </div>
-    @if($menu_row > 0)
+    @if($menu_row > 1)
         <div class="owl-carousel__prev"><i class="fa-solid fa-caret-right fa-rotate-180"></i></div>
         <div class="owl-carousel__next"><i class="fa-solid fa-caret-right"></i></div>
     @endif
