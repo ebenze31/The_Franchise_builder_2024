@@ -867,11 +867,10 @@
                     let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
                     let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; // ประกอบวันที่ใหม่ในรูปแบบที่ต้องการ
 
-                    let count_div = 0 ;
+                    let count_div = 1 ;
 
                     for (let i = 0; i < result['data'].length; i++) {
 
-                        count_div = count_div + 1 ;
                         let count_member = 0;
 
                         let pc_point_arr = [];
@@ -939,6 +938,7 @@
                             `;
 
                             if(result['data'][i].rank_of_week){
+                                count_div = count_div + 1 ;
                                 content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
                             }
                             
@@ -1013,6 +1013,7 @@
                             `;
 
                             if(result['data'][i].rank_of_week){
+                                count_div = count_div + 1 ;
                                 content_ASC.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
                             }
                         }
