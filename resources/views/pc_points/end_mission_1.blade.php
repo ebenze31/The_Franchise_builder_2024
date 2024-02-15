@@ -817,7 +817,7 @@
                                     <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
                                     <div class="detailTeam">
                                         <div>
-                                            <p class="nameTeam">Team `+result['data'][i].name_group+`${img_trophy}</p>
+                                            <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
                                         </div>
                                     </div>
                                     <div class="score-my-team">
@@ -848,7 +848,7 @@
                                     <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
                                     <div class="detailTeam">
                                         <div>
-                                            <p class="nameTeam">Team `+result['data'][i].name_group+`${img_trophy}</p>
+                                            <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
                                         </div>
                                     </div>
                                     <div class="score-my-team">
