@@ -776,7 +776,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         change_menu_bar('rank-team');
-        first_get_data_rank('team');
+        // first_get_data_rank('team');
         get_data_rank('end_mission_1');
         check_end_mission_1();
     });
