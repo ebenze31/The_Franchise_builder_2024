@@ -813,7 +813,7 @@
 
                             html = `
                                 <div count="div_`+count_div+`" class="other-team">
-                                    <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
+                                    <div class="number-my-team">0</div>
                                     <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
                                     <div class="detailTeam">
                                         <div>
@@ -821,14 +821,14 @@
                                         </div>
                                     </div>
                                     <div class="score-my-team">
-                                        <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                        <span class="text-score" style="color: #E7C517!important;">0</span>
                                         <span class="text-point"> PC</span>
 
                                     </div>
                                     <div class="statusTeam text-center">
                                         <div> 
-                                            `+rank_up+`
-                                            <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
+                                            <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i>
+                                            <p class="statusNumber ">-</p>
                                         </div>
                                     </div>
                                 </div>
@@ -844,7 +844,7 @@
 
                             html = `
                                 <div count="div_`+count_div+`" class="other-team" data-toggle="collapse" href="#data_team_id_`+text_id_group+`" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
+                                    <div class="number-my-team">0</div>
                                     <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
                                     <div class="detailTeam">
                                         <div>
@@ -852,58 +852,14 @@
                                         </div>
                                     </div>
                                     <div class="score-my-team">
-                                        <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                        <span class="text-score" style="color: #E7C517!important;">0</span>
                                         <span class="text-point"> PC</span>
 
                                     </div>
                                     <div class="statusTeam text-center">
                                         <div>
-                                            `+rank_up+`
-                                            <p class="statusNumber ">`+result['data'][i].rank_last_week+`</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="collapseContent">
-                                    <div class="collapse p-0" id="data_team_id_`+text_id_group+`">
-                                        <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
-                                            <div class="table-responsive">
-                                                <table class="table mb-0 align-middle table-borderless">
-                                                    <thead class="head-teble-data-my-team">
-                                                        <tr>
-                                                            <th class="text-center" style>
-                                                                <p>No.</p><br>
-
-                                                                <p></p>
-                                                            </th>
-                                                            <th class="text-center" style>
-                                                                <p>User</p><br>
-
-                                                                <p></p>
-                                                            </th>
-                                                            <th class="text-center" style>
-                                                                <p>Mission 1</p>
-                                                                <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
-                                                            </th>
-                                                            <th class="text-center" style>
-                                                                <p>YTD-PC</p><br>
-
-                                                                <p></p>
-                                                            </th>
-                                                            <!-- <th class="text-center d-flex align-items-top">MTD-Case
-                                                            </th>
-                                                            <th class="text-center">
-                                                                <p>Active AG</p>
-                                                                <small style="font-size: 7px;">(include self)</small>
-                                                            </th> -->
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="tbody_content_id_`+text_id_group+`">
-                                                        <!-- ข้อมูลสมาชิก -->
-                                                    </tbody>
-                                                </table>
-
-                                                <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('group_show_score')}}/`+result['data'][i].id+`">ดูรายละเอียดเพิ่มเติม</a>
-                                            </div>
+                                            <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i>
+                                            <p class="statusNumber ">-</p>
                                         </div>
                                     </div>
                                 </div>
@@ -930,7 +886,7 @@
                             if("{{ Auth::user()->group_status }}" == "มีบ้านแล้ว" || "{{ Auth::user()->group_status }}" == "ยืนยันการสร้างบ้านแล้ว"){
                                 html_me = `
                                     <div class="my-team">
-                                        <div class="number-my-team">`+result['data'][i].rank_of_week+`</div>
+                                        <div class="number-my-team">0</div>
                                         <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
                                         <div class="detailTeam">
                                             <div>
