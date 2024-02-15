@@ -739,25 +739,28 @@ class Pc_pointsController extends Controller
         $data_user = User::where('id' , $user_id)->where('remark', null)->first();
         $data_group = Group::where('id' , $data_user->group_id)->first();
 
-        $jsonText = $data_group->member;
-        $arrayData = json_decode($jsonText, true);
-
         $return = 'no' ;
 
-        if(count($arrayData) >= 10){
-            $return = "perfect_team" ;
-        }
-        else{
-            $return = "team_success" ;
-        }
+        if( !empty($data_user) ){
+            $jsonText = $data_group->member;
+            $arrayData = json_decode($jsonText, true);
 
-        DB::table('users')
-            ->where([ 
-                    ['id', $user_id],
-                ])
-            ->update([
-                    'remark' => 'end_mission_1',
-                ]);
+
+            if(count($arrayData) >= 10){
+                $return = "perfect_team" ;
+            }
+            else{
+                $return = "team_success" ;
+            }
+
+            DB::table('users')
+                ->where([ 
+                        ['id', $user_id],
+                    ])
+                ->update([
+                        'remark' => 'end_mission_1',
+                    ]);
+        }
 
         return $return ;
 
