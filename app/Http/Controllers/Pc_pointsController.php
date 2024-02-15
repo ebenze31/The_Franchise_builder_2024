@@ -742,7 +742,7 @@ class Pc_pointsController extends Controller
         $jsonText = $data_group->member;
         $arrayData = json_decode($jsonText, true);
 
-        $return = '' ;
+        $return = 'no' ;
 
         if(count($arrayData) >= 10){
             $return = "perfect_team" ;
