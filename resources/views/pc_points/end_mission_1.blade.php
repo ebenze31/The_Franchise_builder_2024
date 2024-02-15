@@ -365,7 +365,7 @@
 </div>
 @php
     $activeGroupsCount = App\Models\Group::where('active', 'Yes')
-        ->where('status', '!=', null)
+        ->where('rank_of_week', '!=', null)
         ->count();
 
     $menu_row = ceil($activeGroupsCount / 20) ;
