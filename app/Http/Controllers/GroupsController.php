@@ -539,6 +539,7 @@ class GroupsController extends Controller
                 ->update([
                         'group_status' => 'Host Accept',
                         'time_request_join' => null,
+                        'remark' => 'end_mission_1',
                     ]);
 
             // เพิ่ม $member_id_to_add เข้าไปใน $list_member

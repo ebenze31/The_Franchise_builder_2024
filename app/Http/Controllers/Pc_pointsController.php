@@ -736,7 +736,7 @@ class Pc_pointsController extends Controller
 
     function check_role_end_mission_1($user_id){
 
-        $data_user = User::where('id' , $user_id)->where('remark', != , 'perfect_team')->first();
+        $data_user = User::where('id' , $user_id)->where('remark', != , 'end_mission_1')->first();
         $data_group = Group::where('id' , $data_user->group_id)->first();
 
         $jsonText = $data_group->member;
@@ -752,7 +752,7 @@ class Pc_pointsController extends Controller
                         ['id', $user_id],
                     ])
                 ->update([
-                        'remark' => 'perfect_team',
+                        'remark' => 'end_mission_1',
                     ]);
         }
         else{
