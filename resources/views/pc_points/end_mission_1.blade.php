@@ -378,6 +378,7 @@
 <div class=" sticky"  >
     <div class="nav-menu"id="div_menu_view">
     <div class="btn-group owl-carousel owl-theme owl-nav-nemu" role="group" aria-label="First group">
+        @if($menu_row > 1)
         @for ($i=1; $i <= $menu_row; $i++)
 
             @php
@@ -406,6 +407,7 @@
             @endphp
 
         @endfor
+        @endif
         
     </div>
     @if($menu_row > 1)
