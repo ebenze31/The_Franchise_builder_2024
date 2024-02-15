@@ -164,6 +164,12 @@
     letter-spacing:-.8px !important; 
     -moz-letter-spacing:-.8px !important;
     -khtml-letter-spacing:-.8px !important;
+}.modal.fade.show {
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px)!important;
+    -moz-backdrop-filter: blur(5px) !important;
+    -khtml-backdrop-filter: blur(5px) !important;
+ 
 }
 </style>
 

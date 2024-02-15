@@ -561,7 +561,7 @@
 
 <div class="modal fade" style="z-index:999999999" id="show_status_in_team" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered px-3">
-        <div class="modal-content " style="border-radius: 10px; margin: 0 40px;">
+        <div class="modal-content " style="border-radius: 10px; margin: 0 20px;">
             <div id="modal_body_content"  class="modal-body text-center p-0 ">
                 <div class="p-0 m-0">
                     <img src="{{ url('/img/icon/sorry2.png') }}" id="img_modal_show_status_in_team" class="mt-2 mb-0 w-100">
