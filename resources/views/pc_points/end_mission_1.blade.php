@@ -1045,7 +1045,7 @@
                                         </div>
                                        
                                         <div class="statusTeam text-center w-100 d-flex justify-content-end">
-                                           <a href="{{ url('/group_my_team') . "/" . Auth::user()->group_id }}" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;font-weight: bolder;">
+                                           <a href="{{ url('/group_my_team') . "/" . Auth::user()->group_id }}" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;">
                                             My team
                                            </a>
 
