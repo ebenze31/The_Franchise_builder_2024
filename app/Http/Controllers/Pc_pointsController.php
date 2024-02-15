@@ -753,15 +753,16 @@ class Pc_pointsController extends Controller
                 $return = "team_success" ;
             }
 
-            DB::table('users')
-                ->where([ 
-                        ['id', $user_id],
-                    ])
-                ->update([
-                        'remark' => 'end_mission_1',
-                    ]);
         }
 
+        DB::table('users')
+            ->where([ 
+                    ['id', $user_id],
+                ])
+            ->update([
+                    'remark' => 'end_mission_1',
+                ]);
+            
         return $return ;
 
     }
