@@ -818,7 +818,6 @@
                                     <div class="detailTeam">
                                         <div>
                                             <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
-                                            <p class="">(อยากเฟี้ยวก็ทำคะแนนให้ถึง)</p>
                                         </div>
                                     </div>
                                     <div class="score-my-team">
@@ -850,7 +849,6 @@
                                     <div class="detailTeam">
                                         <div>
                                             <p class="nameTeam">Team `+result['data'][i].name_group+`</p>
-                                            <p class="">(อยากเฟี้ยวก็ทำคะแนนให้ถึง)</p>
                                         </div>
                                     </div>
                                     <div class="score-my-team">
