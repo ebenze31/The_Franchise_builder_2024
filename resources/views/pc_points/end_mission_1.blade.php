@@ -365,7 +365,7 @@
 </div>
 @php
     $activeGroupsCount = App\Models\Group::where('active', 'Yes')
-        ->where('status', 'ยืนยันเรียบร้อย')
+        ->where('status', '!=', null)
         ->count();
 
     $menu_row = ceil($activeGroupsCount / 20) ;
