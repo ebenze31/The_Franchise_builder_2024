@@ -802,8 +802,6 @@
                     let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
                     let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; // ประกอบวันที่ใหม่ในรูปแบบที่ต้องการ
 
-                    let count_div = 1 ;
-
                     for (let i = 0; i < result['data'].length; i++) {
 
                         let count_member = 0;
