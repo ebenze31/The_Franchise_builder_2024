@@ -50,6 +50,22 @@ Route::middleware(['auth',])->group(function () {
         return view('teams_qualified');
     });
 
+    Route::get('/end_mission_1', function () {
+        return view('pc_points/end_mission_1');
+    });
+
+    Route::get('/grand_mission', function () {
+        return view('pc_points/grand_mission');
+    });
+
+    Route::get('/mission_2', function () {
+        return view('pc_points/mission_2');
+    });
+
+    Route::get('/mission_3', function () {
+        return view('pc_points/mission_3');
+    });
+
 });
 
 // REGISTER AL TFB 2024
@@ -113,19 +129,3 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
 Route::resource('activities_log', 'Activities_logController');
 Route::resource('cancel_player', 'Cancel_playerController');
-
-Route::get('/end_mission_1', function () {
-    return view('pc_points/end_mission_1');
-});
-
-Route::get('/grand_mission', function () {
-    return view('pc_points/grand_mission');
-});
-
-Route::get('/mission_2', function () {
-    return view('pc_points/mission_2');
-});
-
-Route::get('/mission_3', function () {
-    return view('pc_points/mission_3');
-});

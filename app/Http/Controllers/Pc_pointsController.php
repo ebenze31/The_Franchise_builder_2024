@@ -348,7 +348,7 @@ class Pc_pointsController extends Controller
             else if($type == 'end_mission_1'){
                 $data['data'] = DB::table('groups')
                     ->where('member' , '!=' , null)
-                    ->orderBy(DB::raw('CAST(rank_of_week AS SIGNED)'), 'ASC')
+                    ->orderBy(DB::raw('CAST(id AS SIGNED)'), 'ASC')
                     ->get();
 
                 $data['week'] = $week;
@@ -762,7 +762,7 @@ class Pc_pointsController extends Controller
             ->update([
                     'remark' => 'end_mission_1',
                 ]);
-            
+
         return $return ;
 
     }

@@ -340,29 +340,6 @@
 </style>
 
 <div id="div_data_all"></div>
-
-<div class="d-flex justify-content-center mt-1">
-    <div class="container row ">
-        <div class="col-4 text-center sub-rank">
-            <p class="number-top-rank">No.2</p>
-            <img id="img_rank_2" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
-            <p id="name_rank_2" class="number-team"></p>
-            <p id="score_rank_2" class="score-team" style="color: #E7C517!important;"></p>
-        </div>
-        <div class="col-4 text-center">
-            <p class="number-top-rank">No.1</p>
-            <img id="img_rank_1" src="{{ url('/img/icon/profile.png') }}" class="main-rank-img" alt="รูปภาพปก">
-            <p id="name_rank_1" class="number-team"></p>
-            <p id="score_rank_1" class="score-team" style="color: #E7C517!important;"></p>
-        </div>
-        <div class="col-4 text-center sub-rank">
-            <p class="number-top-rank">No.3</p>
-            <img id="img_rank_3" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
-            <p id="name_rank_3" class="number-team"></p>
-            <p id="score_rank_3" class="score-team" style="color: #E7C517!important;"></p>
-        </div>
-    </div>
-</div>
 @php
     $activeGroupsCount = App\Models\Group::where('active', 'Yes')
         ->where('rank_of_week', '!=', null)
@@ -414,23 +391,6 @@
         <div class="owl-carousel__prev"><i class="fa-solid fa-caret-right fa-rotate-180"></i></div>
         <div class="owl-carousel__next"><i class="fa-solid fa-caret-right"></i></div>
     @endif
-    </div>
-    <style>
-        .text-header-column{
-            color: #00E0FF;
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            background-color: rgb(0, 27, 87);
-        }
-    </style>
-   <div class="text-header-column" style="width: 100%;padding: 10px 10px 10px 12px;display: flex;">
-        <div class="text-center number-my-team" style="margin-left: 5px;">No.</div>
-        <div style="min-width: 65px !important;max-width: 65px !important;"></div>
-        <div class="w-100">Username</div>
-        <div  style="min-width: 65px !important;max-width: 65px !important;margin-right: 10px;">Mission 1</div>
-        <div style="min-width: 65px !important;max-width: 65px !important;">Last week</div>
     </div>
 </div>
 
@@ -776,75 +736,12 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         change_menu_bar('rank-team');
-        first_get_data_rank('team');
         get_data_rank('end_mission_1');
         check_end_mission_1();
     });
 
     var score_mission1_of_team = 0 ;
     var amount_member_50k = 0 ;
-
-    function first_get_data_rank(type){
-
-        fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
-            .then(response => response.json())
-            .then(result => {
-            // console.log(result);
-
-            if(result){
-                setTimeout(() => {
-
-                    let week = result['week'];
-
-                    let as_of = result['as_of'];
-                    let datePart = as_of.substring(0, 10); // 2024-01-31
-
-                    let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
-                    let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; // ประกอบวันที่ใหม่ในรูปแบบที่ต้องการ
-
-                    for (let i = 0; i < result['data'].length; i++) {
-
-                        let count_member = 0;
-
-                        let pc_point_arr = [];
-
-                        let pc_point ;
-                        let mission1 ;
-                        if(result['data'][i].rank_of_week){
-                            count_member = JSON.parse(result['data'][i].member).length;
-                            pc_point_arr = JSON.parse(result['data'][i].rank_record);
-                            pc_point = pc_point_arr[week]['pc_point'] ;
-                            mission1 = pc_point_arr[week]['mission1'] ;
-                        }
-                        else{
-                            pc_point = 0 ;
-                            mission1 = 0 ;
-                        }
-
-                        // console.log(pc_point);
-                        
-                        let text_id_group = result['data'][i].id.toString();
-                        let originalNumber = pc_point;
-                        // let formattedNumber = formatLargeNumber(originalNumber);
-                        let formattedNumber = formatLargeNumber(mission1);
-
-                        if(week != "0"){
-                            if(i == 0 || i == 1 || i == 2){
-
-                                let iii = i + 1 ;
-                                document.querySelector('#img_rank_'+iii).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
-                                document.querySelector('#name_rank_'+iii).innerHTML = "Team " + result['data'][i].name_group;
-                                document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
-                            }
-                        }
-
-                    }
-
-                }, 500);
-            }
-        });
-
-    }
 
     function get_data_rank(type){
 
