@@ -436,7 +436,7 @@
     
     function change_menu_view(type_get_data , first){
 
-        @if($menu_row > 0)
+        @if($menu_row > 1)
         type_get_data = type_get_data.replace("-", "_");
 
         let menu_view = document.querySelectorAll('[btn="menu_view"]');
