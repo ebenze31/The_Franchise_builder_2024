@@ -233,8 +233,9 @@
         <div class="modal-content">
             <div class="modal-header modalHeaderrequest">
                 <div class="w-100 text-center py-3">
-
-                    <p class="modal-request-title text-white text-center" id="exampleModalLongTitle">Pending requests</p>
+                    <p class="modal-request-title text-white text-center" id="exampleModalLongTitle" style="font-size:20px;">
+                        Pending requests
+                    </p>
                 </div>
                 <button id="close_Pending" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
                     <img src="{{ url('/img/icon/closeBTN.png') }}"  class="mt-2 mb-2 imgCloseBTN">
@@ -258,10 +259,10 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header modalHeaderrequest">
-                <div class="w-100 text-center">
-                    <h5 class="modal-title text-center text-white" id="Label_cf">
+                <div class="w-100 text-center py-3">
+                    <p class="modal-title text-center text-white" id="Label_cf" style="font-size:20px;">
                         Request to join
-                    </h5>
+                    </p>
                 </div>
                 <button id="close_Pending" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
                     <img src="{{ url('/img/icon/closeBTN.png') }}"  class="mt-2 mb-2 imgCloseBTN">
@@ -556,9 +557,10 @@
                         fetch("{{ url('/') }}/api/get_data_user" + '/' + memberId)
                             .then(response => response.json())
                             .then(users => {
-                                // console.log(memberId +" >> "+ users.time_request_join);
+                                // console.log(users[0]);
+                                // console.log(memberId +" >> "+ users[0].time_request_join);
 
-                                let timeRequestJoin = users.time_request_join;
+                                let timeRequestJoin = users[0].time_request_join;
 
                                 // สร้าง Date object จากเวลาที่กำหนด
                                 let specifiedTime = new Date(timeRequestJoin);
@@ -582,20 +584,23 @@
                                     textTime = "เวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงได้ผ่านไปแล้ว";
                                 }
 
+                                let format_mission1 = users[0].mission1.toLocaleString();
+
                                 html_modal = `
                                     <div class="customers-list-item d-flex align-items-center p-2 cursor-pointer">
                                         <div class="">
-                                            <img src="{{ url('storage')}}/`+users.photo+`" class="rounded-circle" width="50" height="50" alt="">
+                                            <img src="{{ url('storage')}}/`+users[0].photo+`" class="rounded-circle" width="50" height="50" alt="">
                                         </div>
                                         <div class="ms-2 d-flex align-items-center">
                                             <div> 
-                                                <h6 class="mb-0 text-start" style="font-size: 16px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width:80px">`+users.name+`</h6>
+                                                <h6 class="mb-0 text-start" style="font-size: 16px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width:80px">`+users[0].name+`</h6>
                                                 <p class="mb-0 text-count-down text-start"  style="font-size: 12px;">`+textTime+`</p>
+                                                <p class="mb-0 text-count-down text-start"  style="font-size: 11px;color:#fdbe21!important;">PC M#1 : `+format_mission1+`</p>
                                             </div>
                                         </div>
                                         <div class="list-inline d-flex customers-contacts ms-auto">
-                                            <span class="btn btn-sm btn-accept list-inline-item" onclick="answer_request('Accept', '{{ $group_id }}','`+users.id+`' , '`+users.name+`' , '`+users.photo+`','`+countdown+`')">Accept</span>
-                                            <span class="btn btn-sm btn-danger list-inline-item" onclick="answer_request('Reject', '{{ $group_id }}','`+users.id+`' , '`+users.name+`' , '`+users.photo+`','`+countdown+`')">Reject</span>
+                                            <span class="btn btn-sm btn-accept list-inline-item" onclick="answer_request('Accept', '{{ $group_id }}','`+users[0].id+`' , '`+users[0].name+`' , '`+users[0].photo+`','`+countdown+`','`+format_mission1+`')">Accept</span>
+                                            <span class="btn btn-sm btn-danger list-inline-item" onclick="answer_request('Reject', '{{ $group_id }}','`+users[0].id+`' , '`+users[0].name+`' , '`+users[0].photo+`','`+countdown+`','`+format_mission1+`')">Reject</span>
                                         </div>
                                     </div>
                                 `;
@@ -614,7 +619,7 @@
 
     }
 
-    function answer_request(answer , group_id , member_id , member_name , member_photo ,Countdown)
+    function answer_request(answer , group_id , member_id , member_name , member_photo ,Countdown,format_mission1)
     {
         document.querySelector('#close_Pending').click();
 
@@ -635,7 +640,10 @@
                 <img src="{{ url('storage')}}/`+member_photo+`" style="width:115px;height:115px;border-radius:50%" class="mt-2 mb-2">
                 <p style="color:#07285A; font-size:12px" class="warn-text">คุณต้องการตอบรับคำขอเข้าร่วมทีมของ</p>
                 <h4 class="mt-2 mb-2" style="color:#002449;font-weight:bold;">`+member_name+`</h4>
-                <div  style="color:#005CD3  ;">
+                <div style="color:#feb90f ;">
+                    <p>PC M#1 : `+format_mission1+`</p>
+                </div>
+                <div class="mt-1" style="color:#005CD3 ;">
                     <p>`+Countdown+`</p>
                 </div>
             `;
@@ -656,7 +664,10 @@
                 <img src="{{ url('storage')}}/`+member_photo+`" style="width:115px;height:115px;border-radius:50%" class="mt-2 mb-2">
                 <p style="color:#07285A; font-size:12px" class="warn-text">คุณต้องการปฎิเสธคำขอเข้าร่วมทีมของ</p>
                 <h4 class="mt-2 mb-2" style="color:#002449;font-weight:bold;">`+member_name+`</h4>
-                <div  style="color:#005CD3  ;">
+                <div style="color:#feb90f ;">
+                    <p>PC M#1 : `+format_mission1+`</p>
+                </div>
+                <div class="mt-1" style="color:#005CD3 ;">
                     <p>`+Countdown+`</p>
                 </div>
             `;
@@ -767,9 +778,9 @@
 
                             setTimeout(() => {
                                 html = `
-                                    <button style="font-size:9px;" class="float-end btn btn-sm btn-warning position-relative" onclick="open_modal_request_join();">
-                                        Pending requests
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    <button style="font-size:11px;" class="float-end btn btn-sm btn-warning position-relative" onclick="open_modal_request_join();">
+                                        <b style="color:#273c54;">Pending requests</b>
+                                        <span style="position: absolute;top: -12px; right: -10px;background-color: #FF3A3A;color: #fff;width: 20px;height: 20px;display: flex;align-items: center;justify-content: center;-webkit-border-radius: 50%;border-radius: 50%;-moz-border-radius:50%;-khtml-border-radius:50%;">
                                             `+list_request_join.length+`
                                         </span>
                                         <p class="text-count-down">

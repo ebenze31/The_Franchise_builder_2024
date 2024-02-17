@@ -366,13 +366,13 @@
             @endphp
             @if($i==$menu_row) 
                 <div class="item text-center py-2">
-                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeGroupsCount }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $activeGroupsCount }}' , 'No');" style="font-size: 12px!important;">
+                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeGroupsCount }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $activeGroupsCount }}' , 'No');" style="font-size: 13px!important;">
                        ลำดับที่ {{ $start }} - {{ $activeGroupsCount }}
                     </button>
                 </div>
             @else
                 <div class="item text-center py-2">
-                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $end }}' , 'No');" style="font-size: 12px!important;">
+                    <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $end }}' , 'No');" style="font-size: 13px!important;">
                        ลำดับที่ {{ $start }} - {{ $end }}
                     </button>
                 </div>
@@ -507,19 +507,19 @@
 
 
 
-<button id="btn_modal_show_perefct_team" class="d-none" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('perfect_team')">
+<button id="btn_modal_show_perefct_team" class="d-" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('perfect_team')">
     perefct_team
 </button>
-<button id="btn_modal_show_team_success" class="d-none" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('team_success')">
+<button id="btn_modal_show_team_success" class="d-" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('team_success')">
    team_success
 </button>
-<button id="btn_modal_show_you_success" class="d-none" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('you_success')">
+<button id="btn_modal_show_you_success" class="d-" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('you_success')">
    you_success
 </button>
-<button id="btn_modal_show_new_host" class="d-none" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('new_host')">
+<button id="btn_modal_show_new_host" class="d-" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('new_host')">
    new_host
 </button>
-<button id="btn_modal_show_you_lost" class="d-none" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('you_lost')">
+<button id="btn_modal_show_you_lost" class="d-" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('you_lost')">
     you_lost
 </button>
 
@@ -629,14 +629,12 @@
                 text_show_status.innerHTML = `
                     <div class="p-4 pb-0" style="margin-top:-30px">
                         <p class="mb-2 " style="color:#005CD3;font-size:14px;">ขอแสดงความยินดีคุณได้ไปต่อ!</p>
-                        <p class="mb-0 " styl="color:#000;font-size:12px;font-whight:light;">เนื่องจากสมาชิกบางท่านไม่ผ่านเกณฑ์หัวหน้าทีม
+                        <p class="mb-0 " styl="color:#000000;font-size:12px;font-whight:light;">เนื่องจากสมาชิกบางท่านไม่ผ่านเกณฑ์หัวหน้าทีม
                         <color style="color:#935F0B;">ต้องรวบรวมสมาชิกใหม่ให้ครบ 10 </color>
                         ภายใน 
                         <color style="color:#FF3838;">26 กพ. 2024 </color>
-                        เพื่อให้ทีมยังอยู่ในกิจกรรมต่อไป
-                        
-                        <color style="color:#935F0B;">และเตรียมพบกับ 
-                        <i>mission</i> ใหม่ วันที่ 4 มีนาคม 2024</color></p>
+                        เพื่อให้ทีมยังอยู่ในกิจกรรมต่อไปและเตรียมพบกับ 
+                        <i>mission</i> ใหม่ วันที่ 4 มีนาคม 2024</p>
                     </div>
                 `;
 
@@ -653,10 +651,10 @@
                 text_show_status.innerHTML = `
                     <div class="p-4 pb-0" style="margin-top:-30px">
                         <p class="mb-2 " style="color:#005CD3;font-size:14px;">ขอแสดงความยินดีคุณได้ไปต่อ!</p>
-                        <p class="mb-0 " styl="color:#000;font-size:12px;font-whight:light;">
-                            แต่เนื่องจากผลงานรวมของบ้านไม่ถึงเกณฑ์
-                            คุณมีเวลาถึงวันที่ <color style="color:#FF3838">26 ก.พ. 2024</color> เพื่อ<color style="color:#05ADD0">เลือกเข้าบ้านหลังใหม่</color>
-                            <color style="color:#935F0B ">และเตรียมพบกับ mission ใหม่ วันที่ 4 มีนาคม 2024</color>
+                        <p class="mb-0 " styl="font-size:12px;font-whight:light;">
+                            <color style="color:#000000 ">แต่เนื่องจากผลงานรวมของบ้านไม่ถึงเกณฑ์
+                            คุณมีเวลาถึงวันที่</color> <color style="color:#FF3838">26 ก.พ. 2024</color> เพื่อ<color style="color:#935F0B">เลือกเข้าบ้านหลังใหม่</color>
+                            <color style="color:#000000 ">และเตรียมพบกับ <i>mission</i> ใหม่ วันที่ 4 มีนาคม 2024</color>
                         </p>
                     </div>
                 `;

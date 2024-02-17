@@ -15,6 +15,7 @@ use App\Models\Activity;
 use Illuminate\Support\Carbon;
 use App\Models\Group;
 use App\Models\Cancel_player;
+use App\Models\Pc_point;
 
 class ProfileController extends Controller
 {
@@ -358,7 +359,21 @@ class ProfileController extends Controller
 
     function get_data_user($user_id){
 
-        $data_user = User::where('id', $user_id)->first();
+        // $data_user = User::where('id', $user_id)->first();
+
+        $check_week = Pc_point::where('week', 'not like', 'old-%')
+            ->orderByRaw('CAST(SUBSTRING_INDEX(`week`, "-", -1) AS UNSIGNED) DESC')
+            ->first();
+
+        $week = $check_week->week ;
+
+        $data_user = DB::table('users')
+            ->join('pc_points', 'pc_points.user_id', '=', 'users.id')
+            ->select('users.*' , 'pc_points.week as week' , 'pc_points.mission1 as mission1')
+            ->where('users.id', $user_id)
+            ->where('pc_points.week', $week)
+            ->where('pc_points.user_id', $user_id)
+            ->get();
 
         return $data_user ;
     }
