@@ -652,9 +652,9 @@
                     <div class="p-4 pb-0" style="margin-top:-30px">
                         <p class="mb-2 " style="color:#005CD3;font-size:14px;">ขอแสดงความยินดีคุณได้ไปต่อ!</p>
                         <p class="mb-0 " styl="font-size:12px;font-whight:light;">
-                            <color style="color:#000000 ">แต่เนื่องจากผลงานรวมของบ้านไม่ถึงเกณฑ์
-                            คุณมีเวลาถึงวันที่</color> <color style="color:#FF3838">26 ก.พ. 2024</color> เพื่อ<color style="color:#935F0B">เลือกเข้าบ้านหลังใหม่</color>
-                            <color style="color:#000000 ">และเตรียมพบกับ <i>mission</i> ใหม่ วันที่ 4 มีนาคม 2024</color>
+                            <span style="color:#000000 ">แต่เนื่องจากผลงานรวมของบ้านไม่ถึงเกณฑ์
+                            คุณมีเวลาถึงวันที่</span> <span style="color:#FF3838">26 ก.พ. 2024</span> <span style="color:#000000 ">เพื่อ</span><span style="color:#935F0B">เลือกเข้าบ้านหลังใหม่</span>
+                            <span style="color:#000000 ">และเตรียมพบกับ <i>mission</i> ใหม่ วันที่ 4 มีนาคม 2024</span>
                         </p>
                     </div>
                 `;
