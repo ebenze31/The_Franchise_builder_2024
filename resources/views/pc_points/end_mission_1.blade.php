@@ -507,19 +507,19 @@
 
 
 
-<button id="btn_modal_show_perefct_team" class="d-" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('perfect_team')">
+<button id="btn_modal_show_perefct_team" class="d-none" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('perfect_team')">
     perefct_team
 </button>
-<button id="btn_modal_show_team_success" class="d-" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('team_success')">
+<button id="btn_modal_show_team_success" class="d-none" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('team_success')">
    team_success
 </button>
-<button id="btn_modal_show_you_success" class="d-" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('you_success')">
+<button id="btn_modal_show_you_success" class="d-none" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('you_success')">
    you_success
 </button>
-<button id="btn_modal_show_new_host" class="d-" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('new_host')">
+<button id="btn_modal_show_new_host" class="d-none" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('new_host')">
    new_host
 </button>
-<button id="btn_modal_show_you_lost" class="d-" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('you_lost')">
+<button id="btn_modal_show_you_lost" class="d-none" data-toggle="modal" data-target="#show_status_in_team" onclick="show_status_in_mission('you_lost')">
     you_lost
 </button>
 
