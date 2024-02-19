@@ -341,7 +341,9 @@
 
 
 @if(Auth::user()->role == "Player_OUT")
-  <h1>Hello world</h1>
+    <center>
+        <img src="https://i.pinimg.com/originals/76/e3/fe/76e3fe1ba33cd81924d7f26f3efc35d4.gif">
+    </center>
 @else
 
 <div id="div_data_all"></div>
