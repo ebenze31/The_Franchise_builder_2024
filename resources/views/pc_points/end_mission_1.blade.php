@@ -340,7 +340,7 @@
 </style>
 
 
-@if(Auth::user()->role" == "Player_OUT")
+@if(Auth::user()->role == "Player_OUT")
   <h1>Hello world</h1>
 @else
 
