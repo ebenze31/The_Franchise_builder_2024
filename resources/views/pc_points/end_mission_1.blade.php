@@ -463,7 +463,7 @@
                 <div class="number-my-team w-100">คุณไม่มีทีม</div>
                 <div class="statusTeam text-center w-100 d-flex justify-content-end">
                    <a href="{{ url('/groups') }}" class="btn px-3" style="background-color: #FCBF29;color:#07285A;font-size: 15px;font-weight: bolder;">
-                    จัดทีมใหม่
+                    เข้าทีมใหม่
                    </a>
                 </div>
             </div>
