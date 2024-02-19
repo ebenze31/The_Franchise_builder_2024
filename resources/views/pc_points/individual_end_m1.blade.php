@@ -332,9 +332,9 @@
     $activeUserCount = App\User::where('role', 'Player')
         ->count();
 
-    $menu_row = ceil($activeUserCount / 100) ;
+    $menu_row = ceil($activeUserCount / 80) ;
     $start = 1 ;
-    $end = 100 ;
+    $end = 80 ;
 @endphp
 
 <a id="click_to_div_data_all" href="#div_data_all" class="d-none"></a>
@@ -353,20 +353,20 @@
                 @if($i==$menu_row) 
                     <div class="item text-center py-2">
                         <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeUserCount }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $activeUserCount }}' ,'No');" style="font-size: 12px!important;">
-                        ลำดับที่ {{ $start }} - {{ $activeUserCount }}
+                        ลำดับ {{ $start }} - {{ $activeUserCount }}
                         </button>
                     </div>
                 @else
                     <div class="item text-center py-2">
                         <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $end }}' ,'No');" style="font-size: 12px!important;">
-                        ลำดับที่ {{ $start }} - {{ $end }}
+                        ลำดับ {{ $start }} - {{ $end }}
                         </button>
                     </div>
                 @endif
 
                 @php
-                    $start = $start + 100 ;
-                    $end = $end + 100 ;
+                    $start = $start + 80 ;
+                    $end = $end + 80 ;
                 @endphp
 
             @endfor
@@ -565,7 +565,7 @@
 
                     }
 
-                    change_menu_view('1-100' , 'Yes');
+                    change_menu_view('1-80' , 'Yes');
 
                 }, 500);
             }

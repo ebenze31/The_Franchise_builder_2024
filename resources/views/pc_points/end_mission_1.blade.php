@@ -367,13 +367,13 @@
             @if($i==$menu_row) 
                 <div class="item text-center py-2">
                     <button btn="menu_view" id="btn_view_{{ $start }}_{{ $activeGroupsCount }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $activeGroupsCount }}' , 'No');" style="font-size: 13px!important;">
-                       ลำดับที่ {{ $start }} - {{ $activeGroupsCount }}
+                       ลำดับ {{ $start }} - {{ $activeGroupsCount }}
                     </button>
                 </div>
             @else
                 <div class="item text-center py-2">
                     <button btn="menu_view" id="btn_view_{{ $start }}_{{ $end }}" type="button" class="btn btn-sort-group text-center mt-1 {{ $check_active }}" onclick="change_menu_view('{{ $start }}-{{ $end }}' , 'No');" style="font-size: 13px!important;">
-                       ลำดับที่ {{ $start }} - {{ $end }}
+                       ลำดับ {{ $start }} - {{ $end }}
                     </button>
                 </div>
             @endif
@@ -631,7 +631,7 @@
                         <p class="mb-2" style="color:#005CD3;font-size:14px;">ขอแสดงความยินดีคุณได้ไปต่อ!</p>
                         <p class="mb-0" styl="font-size:12px;font-whight:light;"><color style="color:#000000;">เนื่องจากสมาชิกบางท่านไม่ผ่านเกณฑ์หัวหน้าทีม</color>
                         <color style="color:#935F0B;">ต้องรวบรวมสมาชิกใหม่ให้ครบ 10 </color>
-                        <color style="color:#000000;">ภายใน </color>
+                        <color style="color:#000000;"> ภายใน </color>
                         <color style="color:#FF3838;">26 กพ. 2024 </color>
                         <color style="color:#000000;">เพื่อให้ทีมยังอยู่ในกิจกรรมต่อไปและเตรียมพบกับ 
                         <i>mission</i> ใหม่ วันที่ 4 มีนาคม 2024</color></p>
