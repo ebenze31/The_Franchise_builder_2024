@@ -689,17 +689,17 @@
 
                     });
 
-                    // if("{{ Auth::user()->role }}" != "Player_OUT"){
-                    //     setTimeout(() => {
-                    //         document.querySelector('#btn_modal_alert_news').click();
-                    //     }, 4000);
-                    // }
+                    if("{{ Auth::user()->role }}" != "Player_OUT"){
+                        setTimeout(() => {
+                            document.querySelector('#btn_modal_alert_news').click();
+                        }, 3500);
+                    }
                 }
             }, 500);
 
             setTimeout(() => {
-                create_carousel();
-            }, 5000);
+                // create_carousel();
+            }, 3500);
         });
 
   }
@@ -720,10 +720,6 @@
         $('.owl-carousel__next').click(() => owl.trigger('next.owl.carousel'))
 
         $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
-
-        if("{{ Auth::user()->role }}" != "Player_OUT"){
-            document.querySelector('#btn_modal_alert_news').click();
-        }
 
     }
 
