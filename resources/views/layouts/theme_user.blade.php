@@ -682,12 +682,12 @@
                     }, 400);
 
                     // UPDATE alert_news == NULL
-                    // fetch("{{ url('/') }}/api/null_alert_news" + "/" + user_id )
-                    //     .then(response => response.text())
-                    //     .then(data_null => {
-                    //         // console.log(data_null);
+                    fetch("{{ url('/') }}/api/null_alert_news" + "/" + user_id )
+                        .then(response => response.text())
+                        .then(data_null => {
+                            // console.log(data_null);
 
-                    // });
+                    });
                     
                 }
             }, 500);
@@ -695,7 +695,7 @@
             if("{{ Auth::user()->role }}" != "Player_OUT"){
                 setTimeout(() => {
                     create_carousel();
-                }, 4500);
+                }, 3700);
 
                 setTimeout(() => {
                     document.querySelector('#btn_modal_alert_news').click();
