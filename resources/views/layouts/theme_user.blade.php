@@ -689,9 +689,11 @@
 
                     });
 
-                    setTimeout(() => {
-                        document.querySelector('#btn_modal_alert_news').click();
-                    }, 3500);
+                    if("{{ Auth::user()->role }}" != "Player_OUT"){
+                        setTimeout(() => {
+                            document.querySelector('#btn_modal_alert_news').click();
+                        }, 3500);
+                    }
                 }
             }, 500);
 
