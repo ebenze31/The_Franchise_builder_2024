@@ -682,30 +682,29 @@
                     }, 400);
 
                     // UPDATE alert_news == NULL
-                    fetch("{{ url('/') }}/api/null_alert_news" + "/" + user_id )
-                        .then(response => response.text())
-                        .then(data_null => {
-                            // console.log(data_null);
+                    // fetch("{{ url('/') }}/api/null_alert_news" + "/" + user_id )
+                    //     .then(response => response.text())
+                    //     .then(data_null => {
+                    //         // console.log(data_null);
 
-                    });
-
-                    if("{{ Auth::user()->role }}" != "Player_OUT"){
-                        setTimeout(() => {
-                            document.querySelector('#btn_modal_alert_news').click();
-                        }, 3500);
-                    }
+                    // });
+                    
                 }
-            }, 500);
+            }, 1000);
 
-            setTimeout(() => {
-                // create_carousel();
-            }, 3500);
+            if("{{ Auth::user()->role }}" != "Player_OUT"){
+                setTimeout(() => {
+                    create_carousel();
+                    document.querySelector('#btn_modal_alert_news').click();
+                }, 5000);
+            }
+
         });
 
   }
 
   function create_carousel(){
-    
+
         const owl = $('.carousel_alert_news')
         owl.owlCarousel({
             loop: false,
