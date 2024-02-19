@@ -699,28 +699,27 @@
 
             setTimeout(() => {
                 create_carousel();
-            }, 4000);
+            }, 5000);
         });
 
   }
 
   function create_carousel(){
-        $(document).ready(function() {
-            const owl = $('.carousel_alert_news')
-            owl.owlCarousel({
-                loop: false,
-                margin: 5,
-                nav: false,
-                items: 1,
-                dots: true
-            });
+    
+        const owl = $('.carousel_alert_news')
+        owl.owlCarousel({
+            loop: false,
+            margin: 5,
+            nav: false,
+            items: 1,
+            dots: true
+        });
 
-            // Custom Nav
+        // Custom Nav
 
-            $('.owl-carousel__next').click(() => owl.trigger('next.owl.carousel'))
+        $('.owl-carousel__next').click(() => owl.trigger('next.owl.carousel'))
 
-            $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
-        })
+        $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
 
         if("{{ Auth::user()->role }}" != "Player_OUT"){
             document.querySelector('#btn_modal_alert_news').click();
