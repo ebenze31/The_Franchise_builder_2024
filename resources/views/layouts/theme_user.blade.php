@@ -573,7 +573,9 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         // change_menu_bar('rank');
-        check_alert_news();
+
+        // หลัง 26/02 เปิดอันนี้ด้วย
+        // check_alert_news();
     });
 
   function change_menu_bar(menu){

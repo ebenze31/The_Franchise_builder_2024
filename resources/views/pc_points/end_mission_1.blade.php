@@ -622,7 +622,7 @@
                 `;
 
                 btn_footer = `
-                    <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal">
+                    <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="check_alert_news();">
                         Close
                     </a>
                 `;
@@ -644,7 +644,7 @@
                 `;
 
                 btn_footer = `
-                    <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal">
+                    <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="check_alert_news();">
                         Close
                     </a>
                 `;
@@ -665,7 +665,7 @@
                 `;
 
                 btn_footer = `
-                    <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal">
+                    <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="check_alert_news();">
                         Close
                     </a>
                 `;
@@ -682,7 +682,7 @@
                 `;
 
                 btn_footer = `
-                    <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal">
+                    <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="check_alert_news();">
                         OK
                     </a>
                 `;
