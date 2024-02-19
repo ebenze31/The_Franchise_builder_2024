@@ -336,6 +336,14 @@ class Pc_pointsController extends Controller
                     ->orderBy(DB::raw('CAST(pc_points.rank_of_week AS SIGNED)'), 'ASC')
                     ->get();
             }
+            else if($type == 'individual_end_m2'){
+                $data = DB::table('pc_points')
+                    ->join('users', 'users.id', '=', 'pc_points.user_id')
+                    ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
+                    ->where('week' , $week)
+                    ->orderBy('users.name', 'ASC')
+                    ->get();
+            }
             else if($type == 'team'){
                 $data['data'] = DB::table('groups')
                     ->where('rank_of_week' , '!=' , null)

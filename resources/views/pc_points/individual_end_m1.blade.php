@@ -326,29 +326,6 @@
 
 <div id="div_data_all"></div>
 
-<div class="d-flex justify-content-center mt-1">
-    <div class="container row ">
-        <div class="col-4 text-center sub-rank">
-            <p class="number-top-rank">No.2</p>
-            <img id="img_rank_2" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
-            <p id="name_rank_2" class="number-team"></p>
-            <p id="score_rank_2" class="score-team" style="color: #E7C517!important;"></p>
-        </div>
-        <div class="col-4 text-center">
-            <p class="number-top-rank">No.1</p>
-            <img id="img_rank_1" src="{{ url('/img/icon/profile.png') }}" class="main-rank-img" alt="รูปภาพปก">
-            <p id="name_rank_1" class="number-team"></p>
-            <p id="score_rank_1" class="score-team" style="color: #E7C517!important;"></p>
-        </div>
-        <div class="col-4 text-center sub-rank">
-            <p class="number-top-rank">No.3</p>
-            <img id="img_rank_3" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก">
-            <p id="name_rank_3" class="number-team"></p>
-            <p id="score_rank_3" class="score-team" style="color: #E7C517!important;"></p>
-        </div>
-    </div>
-</div>
-
 @php
     //$activeUserCount = App\User::where('group_status', 'ยืนยันการสร้างบ้านแล้ว')->orWhere('group_status', 'Team Ready')->count();
 
@@ -397,25 +374,18 @@
         <div class="owl-carousel__prev"><i class="fa-solid fa-caret-right fa-rotate-180"></i></div>
         <div class="owl-carousel__next"><i class="fa-solid fa-caret-right"></i></div>
     </div>
-
-    <style>
-        .text-header-column{
-            color: #00E0FF;
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            background-color: rgb(0, 27, 87);
-        }
-    </style>
-    <div class="text-header-column" style="width: 100%;padding: 10px 10px 10px 12px;display: flex;">
-        <div class="text-center number-my-team" style="margin-left: 5px;">No.</div>
-        <div style="min-width: 65px !important;max-width: 65px !important;"></div>
-        <div class="w-100">Username</div>
-        <div  style="min-width: 65px !important;max-width: 65px !important;margin-right: 10px;  ">Mission 1</div>
-        <div style="min-width: 65px !important;max-width: 65px !important;">Last week</div>
-    </div>
 </div>
+
+<style>
+    .text-header-column{
+        color: #00E0FF;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        background-color: rgb(0, 27, 87);
+    }
+</style>
 
 <script>
     
@@ -498,7 +468,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         change_menu_bar('rank-individual');
-        get_data_rank('individual');
+        get_data_rank('individual_end_m2');
     });
 
     function get_data_rank(type){
@@ -533,34 +503,26 @@
                         // let formattedNumber = formatLargeNumber(originalNumber);
                         let formattedNumber = formatLargeNumber(mission1_Number);
 
-                        let rank_up ;
-                        if( parseInt(result[i].rank_of_week) < parseInt(result[i].rank_last_week) ){
-                            rank_up = `<i class="fa-solid fa-triangle rankUP"></i>`;
-                        }else if(parseInt(result[i].rank_of_week) > parseInt(result[i].rank_last_week)){
-                            rank_up = `<i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>`;
-                        }else{
-                            rank_up = `<i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i>`;
-                        }
+                        let rank_up = `<i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i>`;
 
                         let html = `
                             <div count="div_`+count_div+`" class="other-team">
-                                <div class="number-my-team">`+result[i].rank_of_week+`</div>
+                                <div class="number-my-team">0</div>
                                 <img src="{{ url('storage')}}/`+result[i].user_photo+`" class="profileTeam" alt="">
                                 <div class="detailTeam">
                                     <div>
                                         <p class="nameTeam">`+result[i].user_name+`</p>
-                                        <p class="menberInTeam">Team : ${html_group_id}</p>
                                     </div>
                                 </div>
                                 <div class="score-my-team">
-                                    <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                    <span class="text-score" style="color: #E7C517!important;">0</span>
                                     <span class="text-point"> PC</span>
 
                                 </div>
                                 <div class="statusTeam text-center">
                                     <div class="mt-1">  
                                         `+rank_up+`
-                                        <p class="statusNumber ">`+result[i].rank_last_week+`</p>
+                                        <p class="statusNumber ">0</p>
                                     </div>
                                 </div>
                             </div>
@@ -572,24 +534,22 @@
                             // ของตัวเอง
                             let html_me = `
                                 <div class="my-team">
-                                    <div class="number-my-team">`+result[i].rank_of_week+`</div>
+                                    <div class="number-my-team">0</div>
                                     <img src="{{ url('storage')}}/`+result[i].user_photo+`" class="profileTeam" alt="">
                                     <div class="detailTeam">
                                         <div>
                                             <p class="nameTeam">`+result[i].user_name+`</p>
-                                            <p class="menberInTeam">Team : ${html_group_id}</p>
-
                                         </div>
                                     </div>
                                     <div class="score-my-team">
-                                        <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                        <span class="text-score" style="color: #E7C517!important;">0</span>
                                         <span class="text-point"> PC</span>
 
                                     </div>
                                     <div class="statusTeam text-center">
                                         <div class="mt-1">
                                             `+rank_up+`
-                                            <p class="statusNumber ">`+result[i].rank_last_week+`</p>
+                                            <p class="statusNumber ">0</p>
                                         </div>
                                         
                                     </div>
@@ -602,16 +562,6 @@
                         }
 
                         count_div++ ;
-
-                        if(result[i].week != "0"){
-                            if(i == 0 || i == 1 || i == 2){
-
-                                let iii = i + 1 ;
-                                document.querySelector('#img_rank_'+iii).setAttribute('src' , "{{ url('storage')}}/"+result[i].user_photo);
-                                document.querySelector('#name_rank_'+iii).innerHTML = result[i].user_name;
-                                document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
-                            }
-                        }
 
                     }
 
