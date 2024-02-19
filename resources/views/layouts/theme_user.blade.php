@@ -699,9 +699,9 @@
             //         create_carousel();
             //     }, 2700);
 
-            //     setTimeout(() => {
-            //         document.querySelector('#btn_modal_alert_news').click();
-            //     }, 2500);
+                setTimeout(() => {
+                    document.querySelector('#btn_modal_alert_news').click();
+                }, 2500);
             // }
 
         });
