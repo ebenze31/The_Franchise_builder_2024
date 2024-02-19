@@ -695,7 +695,7 @@
             if("{{ Auth::user()->role }}" != "Player_OUT"){
                 setTimeout(() => {
                     create_carousel();
-                }, 3700);
+                }, 4500);
 
                 setTimeout(() => {
                     document.querySelector('#btn_modal_alert_news').click();
