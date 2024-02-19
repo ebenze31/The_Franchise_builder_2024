@@ -695,7 +695,8 @@
             if("{{ Auth::user()->role }}" != "Player_OUT"){
                 setTimeout(() => {
                     create_carousel();
-                }, 3000);
+                    document.querySelector('#modal_alert_news').classList.remove('d-none');
+                }, 3500);
 
                 setTimeout(() => {
                     document.querySelector('#btn_modal_alert_news').click();
@@ -723,7 +724,6 @@
 
         $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
 
-        document.querySelector('#modal_alert_news').classList.remove('d-none');
     }
 
   function create_noti_news(amount){
