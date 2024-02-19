@@ -695,11 +695,11 @@
             if("{{ Auth::user()->role }}" != "Player_OUT"){
                 setTimeout(() => {
                     create_carousel();
-                }, 5000);
+                }, 7000);
 
                 setTimeout(() => {
                     document.querySelector('#btn_modal_alert_news').click();
-                }, 7000);
+                }, 5000);
             }
 
         });
