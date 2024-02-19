@@ -532,7 +532,7 @@
 <!-- modal_alert_news -->
 <button id="btn_modal_alert_news" class="d-none" data-toggle="modal" data-target="#modal_alert_news"></button>
 
-<div class="modal " id="modal_alert_news" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999999;">
+<div class="modal fade" id="modal_alert_news" tabindex="-2" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999999;">
     <div class="modal-dialog modal-dialog-centered px-3">
         <div class="modal-content " style="border-radius: 10px;padding-bottom:16px">
             <div class="modal-header pb-0 border-none px-1" style="border-bottom: none !important;">
