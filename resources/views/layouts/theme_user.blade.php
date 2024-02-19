@@ -693,7 +693,7 @@
 
                     if("{{ Auth::user()->role }}" != "Player_OUT"){
                         setTimeout(() => {
-                            create_carousel();
+                            // create_carousel();
                         }, 1700);
 
                         setTimeout(() => {
