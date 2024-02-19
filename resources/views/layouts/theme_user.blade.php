@@ -688,19 +688,20 @@
                             // console.log(data_null);
 
                     });
+
+                    if("{{ Auth::user()->role }}" != "Player_OUT"){
+                        setTimeout(() => {
+                            create_carousel();
+                        }, 3700);
+
+                        setTimeout(() => {
+                            document.querySelector('#btn_modal_alert_news').click();
+                        }, 3500);
+                    }
                     
                 }
             }, 500);
 
-            if("{{ Auth::user()->role }}" != "Player_OUT"){
-                setTimeout(() => {
-                    create_carousel();
-                }, 3700);
-
-                setTimeout(() => {
-                    document.querySelector('#btn_modal_alert_news').click();
-                }, 3500);
-            }
 
         });
 
