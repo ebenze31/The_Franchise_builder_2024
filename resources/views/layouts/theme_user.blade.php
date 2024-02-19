@@ -692,6 +692,7 @@
                 }
             }, 1000);
 
+                    create_carousel();
             if("{{ Auth::user()->role }}" != "Player_OUT"){
                 setTimeout(() => {
                     create_carousel();
