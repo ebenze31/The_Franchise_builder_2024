@@ -699,7 +699,7 @@
 
             setTimeout(() => {
                 create_carousel();
-            }, 3500);
+            }, 4000);
         });
 
   }
