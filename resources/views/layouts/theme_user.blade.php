@@ -677,8 +677,6 @@
                                         content_item.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
                                     }
 
-                                    create_carousel();
-
                             });
                         }
                     }, 400);
@@ -694,15 +692,15 @@
                 }
             }, 500);
 
-            // if("{{ Auth::user()->role }}" != "Player_OUT"){
-            //     setTimeout(() => {
-            //         create_carousel();
-            //     }, 2700);
+            if("{{ Auth::user()->role }}" != "Player_OUT"){
+                setTimeout(() => {
+                    create_carousel();
+                }, 2700);
 
                 setTimeout(() => {
                     document.querySelector('#btn_modal_alert_news').click();
                 }, 2500);
-            // }
+            }
 
         });
 
