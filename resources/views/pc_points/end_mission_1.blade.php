@@ -598,6 +598,8 @@
                     }
                     else if(data == "team_success"){
                         document.querySelector('#btn_modal_show_team_success').click();
+                    }else{
+                        check_alert_news();
                     }
 
             });
