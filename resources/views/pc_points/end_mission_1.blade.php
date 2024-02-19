@@ -342,7 +342,7 @@
 
 @if(Auth::user()->role == "Player_OUT")
     <center>
-        <img src="https://i.pinimg.com/originals/76/e3/fe/76e3fe1ba33cd81924d7f26f3efc35d4.gif">
+        <img src="https://i.pinimg.com/originals/76/e3/fe/76e3fe1ba33cd81924d7f26f3efc35d4.gif" style="width:60%;">
     </center>
 @else
 
