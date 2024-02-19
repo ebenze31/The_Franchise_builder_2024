@@ -339,6 +339,11 @@
     }
 </style>
 
+
+@if(Auth::user()->role" == "Player_OUT")
+  <h1>Hello world</h1>
+@else
+
 <div id="div_data_all"></div>
 @php
     $activeGroupsCount = App\Models\Group::where('active', 'Yes')
@@ -476,7 +481,7 @@
     </div>
 
 </div>
-
+@endif
 
 <!-- moda -->
 <button id="btn_mission_success" class="d-none" data-toggle="modal" data-target="#mission_success">
