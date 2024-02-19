@@ -624,7 +624,10 @@
                 `;
 
                 btn_footer = `
-                    <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="check_alert_news();">
+                    <a type="button" class="btn btn-submit padding-btn" onclick="check_alert_news();document.querySelector('#closs_modal_show_status').click();">
+                        Close
+                    </a>
+                    <a id="closs_modal_show_status"class="d-none" data-dismiss="modal">
                         Close
                     </a>
                 `;
@@ -646,7 +649,10 @@
                 `;
 
                 btn_footer = `
-                    <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="check_alert_news();">
+                    <a type="button" class="btn btn-submit padding-btn" onclick="check_alert_news();document.querySelector('#closs_modal_show_status').click();">
+                        Close
+                    </a>
+                    <a id="closs_modal_show_status"class="d-none" data-dismiss="modal">
                         Close
                     </a>
                 `;
@@ -667,7 +673,10 @@
                 `;
 
                 btn_footer = `
-                    <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="check_alert_news();">
+                    <a type="button" class="btn btn-submit padding-btn" onclick="check_alert_news();document.querySelector('#closs_modal_show_status').click();">
+                        Close
+                    </a>
+                    <a id="closs_modal_show_status"class="d-none" data-dismiss="modal">
                         Close
                     </a>
                 `;
@@ -684,7 +693,10 @@
                 `;
 
                 btn_footer = `
-                    <a  type="button" class="btn btn-submit padding-btn" data-dismiss="modal" onclick="check_alert_news();">
+                    <a type="button" class="btn btn-submit padding-btn" onclick="check_alert_news();document.querySelector('#closs_modal_show_status').click();">
+                        OK
+                    </a>
+                    <a id="closs_modal_show_status"class="d-none" data-dismiss="modal">
                         OK
                     </a>
                 `;
