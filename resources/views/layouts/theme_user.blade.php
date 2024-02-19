@@ -690,16 +690,16 @@
                     // });
                     
                 }
-            }, 1000);
+            }, 500);
 
             if("{{ Auth::user()->role }}" != "Player_OUT"){
                 setTimeout(() => {
                     create_carousel();
-                }, 7000);
+                }, 3000);
 
                 setTimeout(() => {
                     document.querySelector('#btn_modal_alert_news').click();
-                }, 5000);
+                }, 2500);
             }
 
         });
