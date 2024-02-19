@@ -692,17 +692,37 @@
                     if("{{ Auth::user()->role }}" != "Player_OUT"){
                         setTimeout(() => {
                             document.querySelector('#btn_modal_alert_news').click();
-                        }, 5000);
+                        }, 3500);
                     }
                 }
             }, 500);
 
             setTimeout(() => {
                 create_carousel();
-            }, 3500);
+            }, 5000);
         });
 
   }
+
+  function create_carousel(){
+        $(document).ready(function() {
+            const owl = $('.carousel_alert_news')
+            owl.owlCarousel({
+                loop: false,
+                margin: 5,
+                nav: false,
+                items: 1,
+                dots: true
+            });
+
+            // Custom Nav
+
+            $('.owl-carousel__next').click(() => owl.trigger('next.owl.carousel'))
+
+            $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
+        })
+
+    }
 
   function create_noti_news(amount){
 
@@ -764,26 +784,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 <script>
-
-    function create_carousel(){
-        $(document).ready(function() {
-            const owl = $('.carousel_alert_news')
-            owl.owlCarousel({
-                loop: false,
-                margin: 5,
-                nav: false,
-                items: 1,
-                dots: true
-            });
-
-            // Custom Nav
-
-            $('.owl-carousel__next').click(() => owl.trigger('next.owl.carousel'))
-
-            $('.owl-carousel__prev').click(() => owl.trigger('prev.owl.carousel'))
-        })
-
-    }
 
     function create_logs(log_content) {
         let user_id = "{{ Auth::user()->id }}";
