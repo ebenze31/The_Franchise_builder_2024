@@ -42,6 +42,7 @@ Route::middleware(['auth',])->group(function () {
     
     Route::get('/ranking_by_individual', function () {
         // return view('pc_points/ranking_by_individual');
+        // return view('pc_points/individual');
         return view('pc_points/individual_end_m1');
     });
     Route::get('/ranking_by_team', function () {
