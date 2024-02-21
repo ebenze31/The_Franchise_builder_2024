@@ -173,14 +173,24 @@ height: 87px;
         padding: 5px 5px 0 5px;
     }
     .item-team .img_team{
-        border: 2px solid #00E0FF;
+        /* border: 2px solid #00E0FF; */
         border-radius: 5px !important;
             -webkit-border-radius: 5px; 
         -moz-border-radius: 5px;
     }
-    .team_new_code_success{
-        border: 2px solid #FFD233 !important;
+    .team_color_0{
+        border: 2px solid #FF0000 !important;
+        background-color: #FF0000;
+    }
 
+    .team_color_1{
+        border: 2px solid #FFD233 !important;
+        background-color: #FFD233;
+    }
+
+    .team_color_2{
+        border: 2px solid #04F80D !important;
+        background-color: #04F80D;
     }
     .progress{
         height: 23px; 
@@ -199,12 +209,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         margin-right: 5px;
         background: rgba(0,255,255,1);
     }
-    .progressbar_primary{
-        background-color: #00E0FF !important;
-    }
-    .progressbar_success{
-        background-color: #FFC40E !important;
-    }
+  
 </style>
 
 
@@ -820,10 +825,10 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         <div class="member-section mt-0" id="div_content_data">
                 <a id="" class="member-item div_Team mt-0"  href="">
                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="img_team">
+                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_0 img_team">
                         <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
                             <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
-                                <div class=" progressbar_primary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class=" team_color_0" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
                                     <span id="team_new_code">1</span>/25
                                 </div>
@@ -833,21 +838,39 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                 </a>
                 <a id="" class="member-item div_Team mt-0"  href="">
                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_new_code_success img_team">
-                        <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -12px;">
+                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_1 img_team">
+                        <!-- <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -12px;"> -->
 
                         <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
                             <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
-                                <div class=" progressbar_success"  role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class=" team_color_1"  role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
-                                    <span id="team_new_code">1</span>/25
+                                    <span id="team_new_code">12</span>/25
                                 </div>
                             </div>
                         </div>
                     </div>
                 </a>
 
-                
+                <a id="" class="member-item div_Team mt-0"  href="">
+                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
+                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_2 img_team">
+                        <!-- shield -->
+                        <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
+
+                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
+                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
+                                <div class=" team_color_2"  role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
+                                    <span id="team_new_code">25</span>/25
+                                </div>
+                                
+                            </div>
+                            <!-- trophy -->
+                            <img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px; position: absolute;top: -1px;right: 3px;">
+                        </div>
+                    </div>
+                </a>
         </div>
     </div>
     <div class="w-100 d-flex justify-content-center my-4">
