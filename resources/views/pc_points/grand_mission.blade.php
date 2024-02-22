@@ -928,7 +928,7 @@ background-color: #1A3041 !important;
                 <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1.5M</span>
             </div>
 
-            <div  class="other-team color-1-5" data-toggle="collapse" href="#data_other_id_3" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <div  class="other-team color-1-5m" data-toggle="collapse" href="#data_other_id_3" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="number-my-team">1</div>
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
 
