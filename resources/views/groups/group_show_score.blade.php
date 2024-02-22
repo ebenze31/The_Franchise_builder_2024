@@ -300,7 +300,7 @@ height: 87px;
 
                 let originalNumber = result['json'][i]['mission1'];
                 let formattedNumber = formatLargeNumber(originalNumber);
-                if (originalNumber > 50000) {
+                if (originalNumber >= 50000) {
 
                     amount_member_50k = amount_member_50k + 1 ;
 
@@ -394,7 +394,7 @@ height: 87px;
 
     function check_alert_50k(group_id){
 
-        if(score_of_me > 50000){
+        if(score_of_me >= 50000){
 
             fetch("{{ url('/') }}/api/check_alert_50k" + "/" + "{{ Auth::user()->id }}")
                 .then(response => response.text())
