@@ -41,13 +41,13 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/for_Activities', 'HomeController@for_Activities');
     
     Route::get('/ranking_by_individual', function () {
-        return view('pc_points/ranking_by_individual');
+        // return view('pc_points/ranking_by_individual');
         // return view('pc_points/individual');
-        // return view('pc_points/individual_end_m1');
+        return view('pc_points/individual_end_m1');
     });
     Route::get('/ranking_by_team', function () {
-        return view('pc_points/ranking_by_team');
-        // return view('pc_points/end_mission_1');
+        // return view('pc_points/ranking_by_team');
+        return view('pc_points/end_mission_1');
     });
 
     Route::get('/teams_qualified', function () {
