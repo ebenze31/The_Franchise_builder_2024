@@ -111,6 +111,7 @@
         height: 50px;
         border: #fff 1px solid;
         margin-right: 15px;
+        object-fit: cover;
     }
 
     .score-my-team {
@@ -238,6 +239,7 @@
         border-radius: 50%; 
         -moz-border-radius:50%;
         -khtml-border-radius:50%;
+        object-fit: cover !important;
     }
 
     .nameUserteam {
@@ -551,6 +553,20 @@ z-index: 9999999;
         border: #FCBF29 2px solid;
     }
 }
+.color-2m{
+background-color: #23577F !important;
+}
+.color-1-5m{
+    background-color: #2B618A !important;
+
+}
+.color-1m{
+background-color: #2B4961 !important;
+
+}.color-500k{
+background-color: #1A3041 !important;
+
+}
 </style>
 
 <div id="div_data_all"></div>
@@ -696,9 +712,10 @@ z-index: 9999999;
 
         <!-- ของตัวเอง -->
         <div class="mb-2" id="content_ME">
-            <div class="my-team">
-            <div class="number-my-team">1</div>
+            <div  class="my-team" data-toggle="collapse" href="#data_team_id_1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <div class="number-my-team">1</div>
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
+
                 <div class="detailTeam">
                     <div>
                         <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
@@ -712,16 +729,74 @@ z-index: 9999999;
                 <div class="statusTeam text-center">
                     <div>
                         <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
                         <p class="statusNumber ">3</p>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="collapseContent">
+                <div class="collapse p-0" id="data_team_id_1">
+                    <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                        <div class="table-responsive">
+                            <table class="table mb-0 align-middle table-borderless">
+                                <thead class="head-teble-data-my-team">
+                                    <tr>
+                                        <th class="text-center" style>
+                                            <p>No.</p>
+                                        </th>
+                                        <th class="text-center" style>
+                                            <p>User</p>
+                                        </th>
+                                        <th class="text-center" style>
+                                            <p>PC</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_content_id_`+text_id_group+`">
+                                    <!-- ข้อมูลสมาชิก -->
+                                    <td class="${icon_me} text-center" style="position: relative;">
+                                        1
+                                    </td>
+                                    <td class="${icon_me} d-flex align-items-center">
+                                        <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profile-img" alt="รูปภาพปก">
+                                        <span class="ms-2 nameUserteam">{{Auth::user()->name}}</span>
+                                    </td>
+                                    <td class=" ${icon_me} text-data-team text-center">
+                                        `+mission1_formatted+`
+                                    </td>
+                                </tbody>
+                            </table>
 
+                            <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('grand_mission_my_team')}}" );">ดูรายละเอียดเพิ่มเติม</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <!-- เรียงตามลำดับ -->
         <div id="content_ASC">
+
+            <!-- เส้นทั้งหมด -->
+            <div class="d-flex align-items-center mt-2">
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">2M</span>
+                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">2M</span>
+            </div>
+            <div class="d-flex align-items-center mt-2">
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1.5M</span>
+                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1.5M</span>
+            </div>
+
+            <div class="d-flex align-items-center mt-2">
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1M</span>
+                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1M</span>
+            </div>
+
+            <div class="d-flex align-items-center mt-2">
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">500k</span>
+                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">500k</span>
+            </div>
             <!--  -->
             <div  class="other-team">
                 <div class="number-my-team">1</div>
@@ -745,8 +820,13 @@ z-index: 9999999;
                     </div>
                 </div>
             </div>
-
-            <div  class="other-team">
+            <div class="d-flex align-items-center mt-2">
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">2M</span>
+                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">2M</span>
+            </div>
+           
+            <div  class="other-team color-2m">
                 <div class="number-my-team">1</div>
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
                 <div class="detailTeam">
@@ -768,8 +848,14 @@ z-index: 9999999;
                     </div>
                 </div>
             </div>
+            <div class="d-flex align-items-center mt-2">
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1.5M</span>
+                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1.5M</span>
+            </div>
 
-            <div  class="other-team">
+           
+            <div  class="other-team color-1-5m">
                 <div class="number-my-team">1</div>
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
                 <div class="detailTeam">
@@ -791,8 +877,14 @@ z-index: 9999999;
                     </div>
                 </div>
             </div>
+            <div class="d-flex align-items-center mt-2">
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1M</span>
+                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1M</span>
+            </div>
 
-            <div  class="other-team">
+           
+            <div  class="other-team color-1m">
                 <div class="number-my-team">1</div>
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
                 <div class="detailTeam">
@@ -814,8 +906,13 @@ z-index: 9999999;
                     </div>
                 </div>
             </div>
-
-            <div  class="other-team">
+            <div class="d-flex align-items-center mt-2">
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">500k</span>
+                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
+                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">500k</span>
+            </div>
+            
+            <div  class="other-team color-500k">
                 <div class="number-my-team">1</div>
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
                 <div class="detailTeam">
@@ -837,412 +934,6 @@ z-index: 9999999;
                     </div>
                 </div>
             </div>
-
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div  class="other-team">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
     </div>
