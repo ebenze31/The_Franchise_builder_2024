@@ -213,13 +213,6 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 </style>
 
 
-<div class="w-100 d-flex justify-content-center mt-4 my-3">
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-sort-data active">PC</button>
-        <button type="button" class="btn btn-sort-data">New code</button>
-    </div>
-</div>
-
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . Auth::user()->group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
     <div class="d-flex justify-content-between w-100" >

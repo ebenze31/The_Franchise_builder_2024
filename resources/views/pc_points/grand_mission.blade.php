@@ -798,9 +798,10 @@ background-color: #1A3041 !important;
                 <span style="color: #021B56;font-size: 14px;font-weight:bolder;">500k</span>
             </div>
             <!--  -->
-            <div  class="other-team">
+            <div  class="other-team" data-toggle="collapse" href="#data_other_id_1" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="number-my-team">1</div>
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
+
                 <div class="detailTeam">
                     <div>
                         <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
@@ -814,9 +815,45 @@ background-color: #1A3041 !important;
                 <div class="statusTeam text-center">
                     <div>
                         <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
                         <p class="statusNumber ">3</p>
+                    </div>
+                </div>
+            </div>
+            <div class="collapseContent">
+                <div class="collapse p-0" id="data_other_id_1">
+                    <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                        <div class="table-responsive">
+                            <table class="table mb-0 align-middle table-borderless">
+                                <thead class="head-teble-data-my-team">
+                                    <tr>
+                                        <th class="text-center" style>
+                                            <p>No.</p>
+                                        </th>
+                                        <th class="text-center" style>
+                                            <p>User</p>
+                                        </th>
+                                        <th class="text-center" style>
+                                            <p>PC</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_content_id_`+text_id_group+`">
+                                    <!-- ข้อมูลสมาชิก -->
+                                    <td class="${icon_me} text-center" style="position: relative;">
+                                        1
+                                    </td>
+                                    <td class="${icon_me} d-flex align-items-center">
+                                        <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profile-img" alt="รูปภาพปก">
+                                        <span class="ms-2 nameUserteam">{{Auth::user()->name}}</span>
+                                    </td>
+                                    <td class=" ${icon_me} text-data-team text-center">
+                                        `+mission1_formatted+`
+                                    </td>
+                                </tbody>
+                            </table>
+
+                            <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('grand_mission_my_team')}}" );">ดูรายละเอียดเพิ่มเติม</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -826,9 +863,10 @@ background-color: #1A3041 !important;
                 <span style="color: #021B56;font-size: 14px;font-weight:bolder;">2M</span>
             </div>
            
-            <div  class="other-team color-2m">
+            <div  class="other-team color-2m" data-toggle="collapse" href="#data_other_id_2" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="number-my-team">1</div>
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
+
                 <div class="detailTeam">
                     <div>
                         <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
@@ -842,9 +880,45 @@ background-color: #1A3041 !important;
                 <div class="statusTeam text-center">
                     <div>
                         <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
                         <p class="statusNumber ">3</p>
+                    </div>
+                </div>
+            </div>
+            <div class="collapseContent">
+                <div class="collapse p-0" id="data_other_id_2">
+                    <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                        <div class="table-responsive">
+                            <table class="table mb-0 align-middle table-borderless">
+                                <thead class="head-teble-data-my-team">
+                                    <tr>
+                                        <th class="text-center" style>
+                                            <p>No.</p>
+                                        </th>
+                                        <th class="text-center" style>
+                                            <p>User</p>
+                                        </th>
+                                        <th class="text-center" style>
+                                            <p>PC</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_content_id_`+text_id_group+`">
+                                    <!-- ข้อมูลสมาชิก -->
+                                    <td class="${icon_me} text-center" style="position: relative;">
+                                        1
+                                    </td>
+                                    <td class="${icon_me} d-flex align-items-center">
+                                        <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profile-img" alt="รูปภาพปก">
+                                        <span class="ms-2 nameUserteam">{{Auth::user()->name}}</span>
+                                    </td>
+                                    <td class=" ${icon_me} text-data-team text-center">
+                                        `+mission1_formatted+`
+                                    </td>
+                                </tbody>
+                            </table>
+
+                            <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('grand_mission_my_team')}}" );">ดูรายละเอียดเพิ่มเติม</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -854,10 +928,10 @@ background-color: #1A3041 !important;
                 <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1.5M</span>
             </div>
 
-           
-            <div  class="other-team color-1-5m">
+            <div  class="other-team color-1-5" data-toggle="collapse" href="#data_other_id_3" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="number-my-team">1</div>
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
+
                 <div class="detailTeam">
                     <div>
                         <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
@@ -871,9 +945,45 @@ background-color: #1A3041 !important;
                 <div class="statusTeam text-center">
                     <div>
                         <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
                         <p class="statusNumber ">3</p>
+                    </div>
+                </div>
+            </div>
+            <div class="collapseContent">
+                <div class="collapse p-0" id="data_other_id_3">
+                    <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                        <div class="table-responsive">
+                            <table class="table mb-0 align-middle table-borderless">
+                                <thead class="head-teble-data-my-team">
+                                    <tr>
+                                        <th class="text-center" style>
+                                            <p>No.</p>
+                                        </th>
+                                        <th class="text-center" style>
+                                            <p>User</p>
+                                        </th>
+                                        <th class="text-center" style>
+                                            <p>PC</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_content_id_`+text_id_group+`">
+                                    <!-- ข้อมูลสมาชิก -->
+                                    <td class="${icon_me} text-center" style="position: relative;">
+                                        1
+                                    </td>
+                                    <td class="${icon_me} d-flex align-items-center">
+                                        <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profile-img" alt="รูปภาพปก">
+                                        <span class="ms-2 nameUserteam">{{Auth::user()->name}}</span>
+                                    </td>
+                                    <td class=" ${icon_me} text-data-team text-center">
+                                        `+mission1_formatted+`
+                                    </td>
+                                </tbody>
+                            </table>
+
+                            <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('grand_mission_my_team')}}" );">ดูรายละเอียดเพิ่มเติม</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -884,9 +994,10 @@ background-color: #1A3041 !important;
             </div>
 
            
-            <div  class="other-team color-1m">
+            <div  class="other-team color-1m" data-toggle="collapse" href="#data_other_id_4" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="number-my-team">1</div>
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
+
                 <div class="detailTeam">
                     <div>
                         <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
@@ -900,9 +1011,45 @@ background-color: #1A3041 !important;
                 <div class="statusTeam text-center">
                     <div>
                         <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
                         <p class="statusNumber ">3</p>
+                    </div>
+                </div>
+            </div>
+            <div class="collapseContent">
+                <div class="collapse p-0" id="data_other_id_4">
+                    <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                        <div class="table-responsive">
+                            <table class="table mb-0 align-middle table-borderless">
+                                <thead class="head-teble-data-my-team">
+                                    <tr>
+                                        <th class="text-center" style>
+                                            <p>No.</p>
+                                        </th>
+                                        <th class="text-center" style>
+                                            <p>User</p>
+                                        </th>
+                                        <th class="text-center" style>
+                                            <p>PC</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_content_id_`+text_id_group+`">
+                                    <!-- ข้อมูลสมาชิก -->
+                                    <td class="${icon_me} text-center" style="position: relative;">
+                                        1
+                                    </td>
+                                    <td class="${icon_me} d-flex align-items-center">
+                                        <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profile-img" alt="รูปภาพปก">
+                                        <span class="ms-2 nameUserteam">{{Auth::user()->name}}</span>
+                                    </td>
+                                    <td class=" ${icon_me} text-data-team text-center">
+                                        `+mission1_formatted+`
+                                    </td>
+                                </tbody>
+                            </table>
+
+                            <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('grand_mission_my_team')}}" );">ดูรายละเอียดเพิ่มเติม</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -912,9 +1059,10 @@ background-color: #1A3041 !important;
                 <span style="color: #021B56;font-size: 14px;font-weight:bolder;">500k</span>
             </div>
             
-            <div  class="other-team color-500k">
+            <div  class="other-team color-500k" data-toggle="collapse" href="#data_other_id_5" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="number-my-team">1</div>
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
+
                 <div class="detailTeam">
                     <div>
                         <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
@@ -928,9 +1076,45 @@ background-color: #1A3041 !important;
                 <div class="statusTeam text-center">
                     <div>
                         <i class="fa-solid fa-triangle rankUP"></i>
-                        <!-- <i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>
-                        <i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i> -->
                         <p class="statusNumber ">3</p>
+                    </div>
+                </div>
+            </div>
+            <div class="collapseContent">
+                <div class="collapse p-0" id="data_other_id_5">
+                    <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                        <div class="table-responsive">
+                            <table class="table mb-0 align-middle table-borderless">
+                                <thead class="head-teble-data-my-team">
+                                    <tr>
+                                        <th class="text-center" style>
+                                            <p>No.</p>
+                                        </th>
+                                        <th class="text-center" style>
+                                            <p>User</p>
+                                        </th>
+                                        <th class="text-center" style>
+                                            <p>PC</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_content_id_`+text_id_group+`">
+                                    <!-- ข้อมูลสมาชิก -->
+                                    <td class="${icon_me} text-center" style="position: relative;">
+                                        1
+                                    </td>
+                                    <td class="${icon_me} d-flex align-items-center">
+                                        <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profile-img" alt="รูปภาพปก">
+                                        <span class="ms-2 nameUserteam">{{Auth::user()->name}}</span>
+                                    </td>
+                                    <td class=" ${icon_me} text-data-team text-center">
+                                        `+mission1_formatted+`
+                                    </td>
+                                </tbody>
+                            </table>
+
+                            <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('grand_mission_my_team')}}" );">ดูรายละเอียดเพิ่มเติม</a>
+                        </div>
                     </div>
                 </div>
             </div>
