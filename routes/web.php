@@ -46,8 +46,8 @@ Route::middleware(['auth',])->group(function () {
         return view('pc_points/individual_end_m1');
     });
     Route::get('/ranking_by_team', function () {
-        // return view('pc_points/ranking_by_team');
-        return view('pc_points/end_mission_1');
+        return view('pc_points/ranking_by_team');
+        // return view('pc_points/end_mission_1');
     });
 
     Route::get('/teams_qualified', function () {
