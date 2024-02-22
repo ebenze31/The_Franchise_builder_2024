@@ -718,7 +718,7 @@ background-color: #1A3041 !important;
 
                 <div class="detailTeam">
                     <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
+                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
                     </div>
                 </div>
                 <div class="score-my-team">
@@ -803,7 +803,7 @@ background-color: #1A3041 !important;
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
                 <div class="detailTeam">
                     <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
+                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
                     </div>
                 </div>
                 <div class="score-my-team">
@@ -831,7 +831,7 @@ background-color: #1A3041 !important;
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
                 <div class="detailTeam">
                     <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
+                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
                     </div>
                 </div>
                 <div class="score-my-team">
@@ -860,7 +860,7 @@ background-color: #1A3041 !important;
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
                 <div class="detailTeam">
                     <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
+                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
                     </div>
                 </div>
                 <div class="score-my-team">
@@ -889,7 +889,7 @@ background-color: #1A3041 !important;
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
                 <div class="detailTeam">
                     <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
+                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
                     </div>
                 </div>
                 <div class="score-my-team">
@@ -917,7 +917,7 @@ background-color: #1A3041 !important;
                 <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
                 <div class="detailTeam">
                     <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
+                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
                     </div>
                 </div>
                 <div class="score-my-team">
