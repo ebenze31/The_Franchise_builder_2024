@@ -85,7 +85,7 @@
                     @endif
 
                     @if(!empty($item->detail))
-                    <p class="news-detail">{{ $item->detail }}</p>
+                    <p class="news-detail">{!! str_replace("<br>", "", $item->detail) !!}</p>
                     @endif
                     <p class="float-end news-create">{{ date("d/m/Y" , strtotime($item->created_at)) }} </p>
                 </div>

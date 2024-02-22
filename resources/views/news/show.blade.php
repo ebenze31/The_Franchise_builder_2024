@@ -80,7 +80,7 @@
                         <br>
                         @endif
                         @if(!empty($news->detail))
-                        <p class="news-detail">{{$news->detail}}</p>
+                        <p class="news-detail">{!! $news->detail !!}</p>
                         @endif
 
                         <!-- <div class="divvideo"> -->

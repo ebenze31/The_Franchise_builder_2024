@@ -47,7 +47,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-9  mt-2 mb-2 text-start ">
-                                                <span class="float-start">{{ $item->detail }}</span>
+                                                <span class="float-start">{!! str_replace("<br>", "", $item->detail) !!}</span>
                                             </div>
                                             <div class="col-12 mt-2 mb-2">
                                                 <div class="float-end">
