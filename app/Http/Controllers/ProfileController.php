@@ -378,6 +378,13 @@ class ProfileController extends Controller
         return $data_user ;
     }
 
+    function get_data_user_for_view_group($user_id){
+
+        $data_user = User::where('id', $user_id)->first();
+
+        return $data_user ;
+    }
+
     function get_data_me($user_id){
 
         $data_user = User::where('id', $user_id)->first();

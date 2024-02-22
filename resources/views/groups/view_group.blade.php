@@ -418,7 +418,7 @@
 
                                 let loop_member ;
                                 for (let zx = 0; zx < count_member; zx++) {
-                                    fetch("{{ url('/') }}/api/get_data_user" + "/" + member_arr[zx])
+                                    fetch("{{ url('/') }}/api/get_data_user_for_view_group" + "/" + member_arr[zx])
                                         .then(response => response.json())
                                         .then(user => {
                                             // console.log(user);
@@ -511,7 +511,7 @@
                                         
                                         let loop_request_join ;
                                         for (let zx = 0; zx < count_request_join; zx++) {
-                                            fetch("{{ url('/') }}/api/get_data_user" + "/" + request_join_arr[zx])
+                                            fetch("{{ url('/') }}/api/get_data_user_for_view_group" + "/" + request_join_arr[zx])
                                                 .then(response => response.json())
                                                 .then(user => {
                                                     // console.log(user);

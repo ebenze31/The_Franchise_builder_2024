@@ -234,7 +234,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                 <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission 25 Newcode</p>
                     
                 <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">25   Newcode</span> 
-                <span id="trophy_for_700K" class="d-nne"><img src="{{ url('/img/icon/trophy.png') }}" style="margin-top: -2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
+                <span id="trophy_for_700K" class="d-nne"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: -2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
 
             </div>
         </div>
@@ -887,7 +887,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
     let text_0 = document.getElementById('text_progress_0');
     let text_15 = document.getElementById('text_progress_15');
     let text_25 = document.getElementById('text_progress_25');
-    if (value >= 1 && value <= 25) {
+    if (value >= 0 && value <= 25) {
         // คำนวณเป็นเปอร์เซ็นต์
         let percentage = (value / 25) * 100;
 
@@ -901,7 +901,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             textprogressBar.innerHTML = value;
         // return percentage;
 
-        if (value >= 1 && value <= 14) {
+        if (value >= 0 && value <= 14) {
             text_0.style.color = '#FFD233'
             text_15.style.color = '#646D73'
             text_25.style.color = '#646D73'
