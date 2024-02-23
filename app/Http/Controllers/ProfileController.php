@@ -385,6 +385,33 @@ class ProfileController extends Controller
         return $data_user ;
     }
 
+    function get_data_user_mission_2($group_id){
+
+        $data_arr = [];
+        $data_groups = Group::where('id' , $group_id)->first();
+        $host = $data_groups->host ;
+        // $data_user = User::where('group_id', $group_id)->get();
+
+        $check_week = Pc_point::where('week', 'not like', 'old-%')
+            ->orderByRaw('CAST(SUBSTRING_INDEX(`week`, "-", -1) AS UNSIGNED) DESC')
+            ->first();
+
+        $week = $check_week->week ;
+
+        $data_user = DB::table('users')
+            ->join('pc_points', 'pc_points.user_id', '=', 'users.id')
+            ->select('users.*' , 'pc_points.week as week' , 'pc_points.pc_point as pc_point', 'pc_points.new_code as new_code', 'pc_points.created_at as as_of')
+            ->where('pc_points.week', $week)
+            ->where('pc_points.group_id', $group_id)
+            ->orderBy(DB::raw('CAST(pc_points.new_code AS SIGNED)'), 'DESC')
+            ->get();
+
+        $data_arr['data'] = $data_user;
+        $data_arr['host'] = $host;
+
+        return $data_arr ;
+    }
+
     function get_data_me($user_id){
 
         $data_user = User::where('id', $user_id)->first();

@@ -109,3 +109,6 @@ Route::get('/check_role_end_mission_1/{id}', 'Pc_pointsController@check_role_end
 Route::get('/change_remark_user/{id}', 'Pc_pointsController@change_remark_user');
 
 Route::get('/create_logs', 'LogsController@create_logs');
+
+// Mission 2
+Route::get('/get_data_user_mission_2/{group_id}', 'ProfileController@get_data_user_mission_2');

@@ -72,6 +72,11 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/grand_mission_my_team', function () {
         return view('pc_points/grand_mission_my_team');
     });
+
+    Route::resource('groups', 'GroupsController');
+    Route::get('/preview_team/{group_id}', 'GroupsController@preview_team');
+    Route::get('/group_my_team/{group_id}', 'GroupsController@my_team');
+
 });
 
 // REGISTER AL TFB 2024
@@ -98,10 +103,10 @@ Route::middleware(['auth', 'role:Player,Super-admin,Admin'])->group(function () 
     Route::get('news/{id}', 'NewsController@show');
 
     Route::resource('pc_points', 'Pc_pointsController');
-    Route::resource('groups', 'GroupsController');
+    // Route::resource('groups', 'GroupsController');
     // Route::get('group_show_score/{id}', 'GroupsController@group_show_score');
-    Route::get('/preview_team/{group_id}', 'GroupsController@preview_team');
-    Route::get('/group_my_team/{group_id}', 'GroupsController@my_team');
+    // Route::get('/preview_team/{group_id}', 'GroupsController@preview_team');
+    // Route::get('/group_my_team/{group_id}', 'GroupsController@my_team');
     Route::get('/scanner', 'HomeController@scanner');
 });
 

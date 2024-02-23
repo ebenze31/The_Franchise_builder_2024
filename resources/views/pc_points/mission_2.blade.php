@@ -207,7 +207,9 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         width: 15px;
         height: 23px;
         margin-right: 5px;
+        border-radius: 0 50% 50% 0;
         background: rgba(0,255,255,1);
+/*        background: #0A102E;*/
     }
   
 </style>
@@ -220,6 +222,8 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
     </div>
 </div>
 
+<!-- Content Team -->
+@if(Auth::user()->role == "Player")
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . Auth::user()->group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
     <div class="d-flex justify-content-between w-100" >
@@ -233,8 +237,8 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             <div>
                 <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission 25 Newcode</p>
                     
-                <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">25   Newcode</span> 
-                <span id="trophy_for_700K" class="d-nne"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: -2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
+                <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;"><span id="sum_Newcode_team">0</span>   Newcode</span> 
+                <span id="trophy_for_25_Newcode" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
 
             </div>
         </div>
@@ -256,7 +260,8 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         
     </div>
 </div>
-<input type="text" name="" placeholder="กรอกเลขสิ" class="form-control" id="" oninput="convertToPercentage(this.value)">
+
+<input type="text" name="input_sum_Newcode_team" class="form-control d-none" id="input_sum_Newcode_team" oninput="convertToPercentage(this.value)" placeholder="กรอกเลขสิ">
 <div class="d-flex" >
     <div class="p-3" style="width: calc(100%);">
         <div class="w-100 d-flex justify-content-between px-2 mb-2">
@@ -274,8 +279,8 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             <span style="color: #fff;" id="text_progress_0">                
                 0
             </span>
-            <span style="color: #fff;" id="text_progress_15">
-                15
+            <span style="color: #fff;" id="text_progress_13">
+                13
             </span>
             <span style="color: #fff;" id="text_progress_25">        
                 25
@@ -283,12 +288,12 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         </div>  
         <div style="border-radius: 50px;position: relative;">
             <div class="progress mb-3" style="background-color: #0A102E; border: #03ABCE solid 1px;">
-                <div  class="progress-bar bg-success" role="progressbar" id="progressBar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="30" style="width: 50%;height: 23px;"></div>
+                <div  class="progress-bar bg-success" role="progressbar" id="progressBar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 23px;"></div>
                 <div class="text-white" id="rocket_progressBar" style="transition: all .5s ease-in-out;position: relative;z-index: 999999999999999;">
                     <!-- <p id="textprogressBar">15</p> -->
                     <span class="img-rocket"></span>
-                    <img src="{{ url('/img/icon/rocket.png') }}"  style="height:23px;position: relative;">
-                    <span id="textprogressBar" style="position: absolute;  top: 50%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;">30</span>
+                    <img src="{{ url('/img/icon/rocket.png') }}"  style="height:23px;position: relative;right: 0%;">
+                    <!-- <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;">0</span> -->
                 </div>
             </div>
         </div>
@@ -297,515 +302,12 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 </div>
 
 <div class="memberInRoom d-flex justify-content-center text-center px-1">
-    <div class="member-section mt-0" id="div_content_data">
+    <div class="member-section mt-0" id="div_data_member_my_team">
         <!-- DATA -->
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
     </div>
 </div>
+<!-- End Content Team -->
+@endif
 
 <div class="mt-3" style="position: relative;;overflow: hidden;padding-top: 20px; border-radius: 35px 35px 0 0 !important;-webkit-border-radius: 35px 35px 0 0;-moz-border-radius: 35px 35px 0 0; background: linear-gradient(180deg, rgba(255,255,255,.62) 0%, rgba(0,224,255,0.5) 50%, rgba(0,72,156,0.25) 100%);">
     <div class="text-center mb-3">
@@ -822,7 +324,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         </p>
     </div>
     <div class="memberInRoom d-flex justify-content-center text-center px-1">
-        <div class="member-section mt-0" id="div_content_data">
+        <div class="member-section mt-0" id="">
                 <a id="" class="member-item div_Team mt-0"  href="">
                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
                         <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_0 img_team">
@@ -882,30 +384,162 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
 
 <script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        get_data_user_mission_2();
+    });
+
+    function get_data_user_mission_2(){
+
+        fetch("{{ url('/') }}/api/get_data_user_mission_2" + "/" + "{{ Auth::user()->group_id }}")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                let sum_Newcode_team = 0 ;
+                let formattedDate ;
+
+                if(result){
+
+                    let div_data_member_my_team = document.querySelector('#div_data_member_my_team');
+                        div_data_member_my_team.innerHTML = '' ;
+
+                    let as_of = result['data'][0]['as_of'];
+                    let datePart = as_of.substring(0, 10); // 2024-01-31
+
+                    let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
+                        formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; 
+
+                    for (var i = 0; i < result['data'].length; i++) {
+                    
+                        let html_host = `` ;
+                        if(result['data'][i].id == result['host']){
+                            html_host = `
+                                <span class="btn host-member">
+                                    <i class="fa-solid fa-key text-warning"></i>
+                                </span>
+                            `;
+                        }
+
+                        let pc_point = result['data'][i].pc_point.toLocaleString();
+                        let new_code = result['data'][i].new_code.toLocaleString();
+
+                        sum_Newcode_team = sum_Newcode_team + result['data'][i].new_code;
+
+                        let img_star = ``;
+                        if(result['data'][i].new_code >= 2){
+                            img_star = `
+                                <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
+                            `;
+                        }
+
+                        let html = `
+                            <div class="member-item col-4 ">
+                                <div class="member-card-join">
+                                    `+html_host+`
+                                    <div class="text-center">
+                                        <div class="text-center">
+                                            <img src="{{ url('storage')}}/`+result['data'][i].photo+`"" style="width: 100%;height: auto;" class="img-member">
+
+                                        </div>
+                                        
+                                        <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
+                                            <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">`+result['data'][i].name+`</span>
+                                            <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
+                                                <div >
+                                                    <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
+                                                        PC : 
+                                                    </span>
+                                                    <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
+                                                    `+pc_point+`
+                                                    </span>
+                                                </div> 
+                                            </div>
+                                            <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
+                                                <div>
+                                                    <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
+                                                        New code : 
+                                                    </span>
+                                                    <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
+                                                    `+new_code+`
+                                                    </span>
+                                                </div> 
+                                                <div class="me-1">
+                                                `+img_star+`
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        div_data_member_my_team.insertAdjacentHTML('beforeend', html);
+                    }
+
+                    document.querySelector('#date_as_of').innerHTML = formattedDate ;
+                    document.querySelector('#sum_Newcode_team').innerHTML = sum_Newcode_team ;
+                    convertToPercentage(sum_Newcode_team);
+
+                }
+
+            });
+
+    }
+
+</script>
+
+<script>
    function convertToPercentage(value) {
     // ตรวจสอบว่าค่าที่รับเข้ามาอยู่ในช่วง 1-30 หรือไม่
     let text_0 = document.getElementById('text_progress_0');
-    let text_15 = document.getElementById('text_progress_15');
+    let text_15 = document.getElementById('text_progress_13');
     let text_25 = document.getElementById('text_progress_25');
-    if (value >= 0 && value <= 25) {
+
+    // if (value >= 0 && value <= 25) {
+    if (value >= 0) {
+
+        let value_bar = 0 ;
+        if(value >= 25){
+            value_bar = 25 ;
+        }
+        else if(value == 13){
+            value_bar = value - 1 ;
+        }
+        else if(value == 1){
+            value_bar = value - 0.8 ;
+        }
+        else if(value == 2){
+            value_bar = value - 1.5 ;
+        }
+        else if(value != 0){
+            value_bar = value - 2 ;
+        }
+
         // คำนวณเป็นเปอร์เซ็นต์
-        let percentage = (value / 25) * 100;
+        if(value_bar < 0){
+            value_bar = 0 ;
+        }
+
+        let percentage = (value_bar / 25) * 100;
 
         // console.log(percentage);
 
         let progressBar = document.getElementById('progressBar');
             progressBar.style.width = percentage + '%';
-        let textprogressBar = document.getElementById('textprogressBar');
+        // let textprogressBar = document.getElementById('textprogressBar');
             // let rocket_progressBar = document.getElementById('rocket_progressBar');
             // rocket_progressBar  .style.left = percentage + '%';
-            textprogressBar.innerHTML = value;
+            // textprogressBar.innerHTML = value;
         // return percentage;
 
-        if (value >= 0 && value <= 14) {
+        if (value >= 0 && value <= 12) {
             text_0.style.color = '#FFD233'
             text_15.style.color = '#646D73'
             text_25.style.color = '#646D73'
-        }else if(value >= 15 && value <= 24){
+        }else if(value >= 13 && value <= 24){
             text_0.style.color = '#FFD233'
             text_15.style.color = '#FFD233'
             text_25.style.color = '#646D73'
@@ -916,7 +550,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         }
     } else {
         // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
-        return "กรุณาใส่ค่าระหว่าง 1 ถึง 30 เท่านั้น";
+        return "กรุณาใส่ค่าระหว่าง 0 ถึง 25 เท่านั้น";
     }
 }
 
