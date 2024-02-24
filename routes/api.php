@@ -112,3 +112,6 @@ Route::get('/create_logs', 'LogsController@create_logs');
 
 // Mission 2
 Route::get('/get_data_user_mission_2/{group_id}', 'ProfileController@get_data_user_mission_2');
+Route::get('/create_tabel_for_export', 'ActivitiesController@create_tabel_for_export');
+Route::get('/insert_data_activities', 'ActivitiesController@insert_data_activities');
+Route::get('/export_to_excelc', 'ActivitiesController@export_to_excelc');

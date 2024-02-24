@@ -324,4 +324,33 @@ class ActivitiesController extends Controller
         return 'success' ;
 
     }
+
+    function create_tabel_for_export(Request $request){
+
+        $data = DB::table('activities')
+        ->select('id')
+        ->get();
+
+        return response()->json($data);
+    }
+
+    function insert_data_activities(Request $request){
+
+        $data = DB::table('activities')
+        ->join('activities_logs', 'activities.id', '=', 'activities_logs.id_Activities')
+        ->join('users' , 'activities_logs.user_id', '=', 'users.id')
+        ->select('activities.id as activities_id','activities.name_Activities' ,'users.name' ,'users.account','users.phone' ,'users.email','activities_logs.created_at as time_join' ,'users.group_id')
+        ->get();
+
+        return response()->json($data);
+    }
+
+    function export_to_excelc(Request $request){
+
+        $data = DB::table('activities')
+        ->select('id','name_Activities')
+        ->get();
+
+        return response()->json($data);
+    }
 }

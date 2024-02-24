@@ -73,83 +73,83 @@
     });
 
     function exportToExcel() {
-  // สร้าง workbook
-  const workbook = new ExcelJS.Workbook();
+      // สร้าง workbook
+      const workbook = new ExcelJS.Workbook();
 
-  // สร้าง worksheet
-  const worksheet1 = workbook.addWorksheet('Sheet1');
-  const worksheet2 = workbook.addWorksheet('Sheet2');
-  const worksheet3 = workbook.addWorksheet('Sheet3');
+      // สร้าง worksheet
+      const worksheet1 = workbook.addWorksheet('Sheet1');
+      const worksheet2 = workbook.addWorksheet('Sheet2');
+      const worksheet3 = workbook.addWorksheet('Sheet3');
 
-  // ดึงข้อมูลจากตารางแรก
-  const table1Rows = document.querySelectorAll('#table1 tbody tr');
-  const table1Header = document.querySelectorAll('#table1 thead tr th');
+      // ดึงข้อมูลจากตารางแรก
+      const table1Rows = document.querySelectorAll('#table1 tbody tr');
+      const table1Header = document.querySelectorAll('#table1 thead tr th');
 
-  // เพิ่ม thead ลงใน worksheet
-  const header1Data = [];
-  table1Header.forEach(cell => {
-    header1Data.push(cell.textContent);
-  });
-  worksheet1.addRow(header1Data);
+      // เพิ่ม thead ลงใน worksheet
+      const header1Data = [];
+      table1Header.forEach(cell => {
+        header1Data.push(cell.textContent);
+      });
+      worksheet1.addRow(header1Data);
 
-  // เพิ่มข้อมูลจาก tbody ลงใน worksheet
-  table1Rows.forEach(row => {
-    const rowData = [];
-    row.querySelectorAll('td').forEach(cell => {
-      rowData.push(cell.textContent);
+      // เพิ่มข้อมูลจาก tbody ลงใน worksheet
+      table1Rows.forEach(row => {
+        const rowData = [];
+        row.querySelectorAll('td').forEach(cell => {
+          rowData.push(cell.textContent);
+        });
+        worksheet1.addRow(rowData);
+      });
+
+      // ดึงข้อมูลจากตารางที่สอง
+      const table2Rows = document.querySelectorAll('#table2 tbody tr');
+      const table2Header = document.querySelectorAll('#table2 thead tr th');
+
+      // เพิ่ม thead ลงใน worksheet
+      const header2Data = [];
+      table2Header.forEach(cell => {
+        header2Data.push(cell.textContent);
+      });
+      worksheet2.addRow(header2Data);
+
+    // เพิ่มข้อมูลจาก tbody ลงใน worksheet
+    table2Rows.forEach(row => {
+      const rowData = [];
+      row.querySelectorAll('td').forEach(cell => {
+        rowData.push(cell.textContent);
+      });
+      worksheet2.addRow(rowData);
     });
-    worksheet1.addRow(rowData);
-  });
+    // ดึงข้อมูลจากตารางที่สอง
+    const table3Rows = document.querySelectorAll('#table3 tbody tr');
+      const table3Header = document.querySelectorAll('#table3 thead tr th');
 
-  // ดึงข้อมูลจากตารางที่สอง
-  const table2Rows = document.querySelectorAll('#table2 tbody tr');
-  const table2Header = document.querySelectorAll('#table2 thead tr th');
+      // เพิ่ม thead ลงใน worksheet
+      const header3Data = [];
+      table3Header.forEach(cell => {
+        header3Data.push(cell.textContent);
+      });
+      worksheet3.addRow(header3Data);
 
-  // เพิ่ม thead ลงใน worksheet
-  const header2Data = [];
-  table2Header.forEach(cell => {
-    header2Data.push(cell.textContent);
-  });
-  worksheet2.addRow(header2Data);
+      // เพิ่มข้อมูลจาก tbody ลงใน worksheet
+      table3Rows.forEach(row => {
+        const rowData = [];
+        row.querySelectorAll('td').forEach(cell => {
+          rowData.push(cell.textContent);
+        });
+        worksheet3.addRow(rowData);
+      });
 
-  // เพิ่มข้อมูลจาก tbody ลงใน worksheet
-  table2Rows.forEach(row => {
-    const rowData = [];
-    row.querySelectorAll('td').forEach(cell => {
-      rowData.push(cell.textContent);
-    });
-    worksheet2.addRow(rowData);
-  });
-// ดึงข้อมูลจากตารางที่สอง
-const table3Rows = document.querySelectorAll('#table3 tbody tr');
-  const table3Header = document.querySelectorAll('#table3 thead tr th');
-
-  // เพิ่ม thead ลงใน worksheet
-  const header3Data = [];
-  table3Header.forEach(cell => {
-    header3Data.push(cell.textContent);
-  });
-  worksheet3.addRow(header3Data);
-
-  // เพิ่มข้อมูลจาก tbody ลงใน worksheet
-  table3Rows.forEach(row => {
-    const rowData = [];
-    row.querySelectorAll('td').forEach(cell => {
-      rowData.push(cell.textContent);
-    });
-    worksheet3.addRow(rowData);
-  });
-
-  // บันทึกไฟล์ Excel
-  workbook.xlsx.writeBuffer()
-    .then(buffer => {
-      const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-      saveAs(blob, 'output.xlsx');
-    })
-    .catch(error => {
-      console.log('Error writing Excel file:', error);
-    });
-}
+      // บันทึกไฟล์ Excel
+      workbook.xlsx.writeBuffer()
+        .then(buffer => {
+          const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+          saveAs(blob, 'output.xlsx');
+        })
+        .catch(error => {
+          console.log('Error writing Excel file:', error);
+        });
+    }
 
   </script>
 
