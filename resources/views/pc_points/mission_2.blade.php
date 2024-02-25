@@ -561,7 +561,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 </script>
 
 <script>
-   function convertToPercentage(value) {
+    function convertToPercentage(value) {
     // ตรวจสอบว่าค่าที่รับเข้ามาอยู่ในช่วง 1-30 หรือไม่
     let text_0 = document.getElementById('text_progress_0');
     let text_15 = document.getElementById('text_progress_13');
@@ -621,7 +621,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
         return "กรุณาใส่ค่าระหว่าง 0 ถึง 25 เท่านั้น";
     }
-}
+    }
 
 </script>
 @endsection

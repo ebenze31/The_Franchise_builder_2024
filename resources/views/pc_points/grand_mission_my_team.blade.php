@@ -249,7 +249,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         
     </div>
 </div>
-<input type="text" name="" placeholder="กรอกเลขสิ" class="form-control" id="" oninput="convertToPercentage(this.value)">
+<input type="text" name="" placeholder="กรอกเลขสิ" class="form-control d-none" id="" oninput="convertToPercentage(this.value)">
 <div class="d-flex" >
     <div class="p-3" style="width: calc(100%);">
         <div class="w-100 d-flex justify-content-between px-2 mb-2">
@@ -267,8 +267,8 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             <span style="color: #fff;" id="text_progress_0">                
                 0
             </span>
-            <span style="color: #fff;" id="text_progress_15">
-                15
+            <span style="color: #fff;" id="text_progress_13">
+                13
             </span>
             <span style="color: #fff;" id="text_progress_25">        
                 25
@@ -276,12 +276,12 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         </div>  
         <div style="border-radius: 50px;position: relative;">
             <div class="progress mb-3" style="background-color: #0A102E; border: #03ABCE solid 1px;">
-                <div  class="progress-bar bg-success" role="progressbar" id="progressBar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="30" style="width: 50%;height: 23px;"></div>
+                <div  class="progress-bar bg-success" role="progressbar" id="progressBar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 23px;"></div>
                 <div class="text-white" id="rocket_progressBar" style="transition: all .5s ease-in-out;position: relative;z-index: 999999999999999;">
                     <!-- <p id="textprogressBar">15</p> -->
                     <span class="img-rocket"></span>
-                    <img src="{{ url('/img/icon/rocket.png') }}"  style="height:23px;position: relative;">
-                    <span id="textprogressBar" style="position: absolute;  top: 50%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;">30</span>
+                    <img src="{{ url('/img/icon/rocket.png') }}"  style="height:23px;position: relative;right: 0%;">
+                    <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;">0</span>
                 </div>
             </div>
         </div>
@@ -292,47 +292,6 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 <div class="memberInRoom d-flex justify-content-center text-center px-1">
     <div class="member-section mt-0" id="div_content_data">
         <!-- DATA -->
-        <!-- <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                111111111
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
 </div>
 <script>
@@ -350,6 +309,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                 console.log(result);
 
                 let sum_grandmission = 0 ;
+                let sum_Newcode_team = 0 ;
                 let formattedDate ;
 
                 if(result){
@@ -377,9 +337,10 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                         let grandmission = result['data'][i].grandmission.toLocaleString();
                         let new_code = result['data'][i].new_code.toLocaleString();
 
-                        sum_grandmission = sum_grandmission + result['data'][i].new_code;
+                        sum_grandmission = sum_grandmission + result['data'][i].grandmission;
+                        sum_Newcode_team = sum_Newcode_team + result['data'][i].new_code;
 
-                        if (sum_grandmission >= 25) {
+                        if (sum_grandmission >= 2000000) {
                             document.querySelector('#trophy_for_2m').classList.remove('d-none');
                         } else {
                             document.querySelector('#trophy_for_2m').classList.add('d-none');
@@ -437,8 +398,8 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                     }
 
                     document.querySelector('#date_as_of').innerHTML = formattedDate ;
-                    document.querySelector('#span_sum_score_team').innerHTML = sum_grandmission ;
-                    convertToPercentage(sum_grandmission);
+                    document.querySelector('#span_sum_score_team').innerHTML = sum_grandmission.toLocaleString() ;
+                    convertToPercentage(sum_Newcode_team);
 
                 }
 
@@ -450,43 +411,67 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
 
 <script>
-   function convertToPercentage(value) {
-    // ตรวจสอบว่าค่าที่รับเข้ามาอยู่ในช่วง 1-30 หรือไม่
-    let text_0 = document.getElementById('text_progress_0');
-    let text_15 = document.getElementById('text_progress_15');
-    let text_25 = document.getElementById('text_progress_25');
-    if (value >= 1 && value <= 25) {
-        // คำนวณเป็นเปอร์เซ็นต์
-        let percentage = (value / 25) * 100;
+    function convertToPercentage(value) {
+        // ตรวจสอบว่าค่าที่รับเข้ามาอยู่ในช่วง 1-30 หรือไม่
+        let text_0 = document.getElementById('text_progress_0');
+        let text_15 = document.getElementById('text_progress_13');
+        let text_25 = document.getElementById('text_progress_25');
 
-        // console.log(percentage);
+        // if (value >= 0 && value <= 25) {
+        if (value >= 0) {
 
-        let progressBar = document.getElementById('progressBar');
-            progressBar.style.width = percentage + '%';
-        let textprogressBar = document.getElementById('textprogressBar');
-            // let rocket_progressBar = document.getElementById('rocket_progressBar');
-            // rocket_progressBar  .style.left = percentage + '%';
-            textprogressBar.innerHTML = value;
-        // return percentage;
+            let value_bar = 0 ;
+            if(value >= 25){
+                value_bar = 25 ;
+            }
+            else if(value == 13){
+                value_bar = value - 1 ;
+            }
+            else if(value == 1){
+                value_bar = value - 0.8 ;
+            }
+            else if(value == 2){
+                value_bar = value - 1.5 ;
+            }
+            else if(value != 0){
+                value_bar = value - 2 ;
+            }
 
-        if (value >= 1 && value <= 14) {
-            text_0.style.color = '#FFD233'
-            text_15.style.color = '#646D73'
-            text_25.style.color = '#646D73'
-        }else if(value >= 15 && value <= 24){
-            text_0.style.color = '#FFD233'
-            text_15.style.color = '#FFD233'
-            text_25.style.color = '#646D73'
-        }else{
-            text_0.style.color = '#FFD233'
-            text_15.style.color = '#FFD233'
-            text_25.style.color = '#FFD233'
+            // คำนวณเป็นเปอร์เซ็นต์
+            if(value_bar < 0){
+                value_bar = 0 ;
+            }
+
+            let percentage = (value_bar / 25) * 100;
+
+            // console.log(percentage);
+
+            let progressBar = document.getElementById('progressBar');
+                progressBar.style.width = percentage + '%';
+            let textprogressBar = document.getElementById('textprogressBar');
+                textprogressBar.innerHTML = value;
+                // let rocket_progressBar = document.getElementById('rocket_progressBar');
+                // rocket_progressBar  .style.left = percentage + '%';
+            // return percentage;
+
+            if (value >= 0 && value <= 12) {
+                text_0.style.color = '#FFD233'
+                text_15.style.color = '#646D73'
+                text_25.style.color = '#646D73'
+            }else if(value >= 13 && value <= 24){
+                text_0.style.color = '#FFD233'
+                text_15.style.color = '#FFD233'
+                text_25.style.color = '#646D73'
+            }else{
+                text_0.style.color = '#FFD233'
+                text_15.style.color = '#FFD233'
+                text_25.style.color = '#FFD233'
+            }
+        } else {
+            // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
+            return "กรุณาใส่ค่าระหว่าง 0 ถึง 25 เท่านั้น";
         }
-    } else {
-        // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
-        return "กรุณาใส่ค่าระหว่าง 1 ถึง 30 เท่านั้น";
     }
-}
 
 </script>
 @endsection
