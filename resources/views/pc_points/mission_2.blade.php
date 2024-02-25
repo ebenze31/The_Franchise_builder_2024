@@ -211,7 +211,16 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         background: rgba(0,255,255,1);
 /*        background: #0A102E;*/
     }
-  
+    .img-rocket-25-score::before{
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 100% !important;
+        height: 23px;
+        margin-right: 5px;
+        border-radius: 0 !important;
+        background: rgba(0,255,255,1);
+    }
 </style>
 
 
@@ -260,7 +269,6 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         
     </div>
 </div>
-
 <input type="text" name="input_sum_Newcode_team" class="form-control d-none" id="input_sum_Newcode_team" oninput="convertToPercentage(this.value)" placeholder="กรอกเลขสิ">
 <div class="d-flex" >
     <div class="p-3" style="width: calc(100%);">
@@ -570,22 +578,31 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
     // if (value >= 0 && value <= 25) {
     if (value >= 0) {
-
+        
         let value_bar = 0 ;
         if(value >= 25){
             value_bar = 25 ;
+            document.querySelector('.img-rocket').classList.add('img-rocket-25-score');
         }
         else if(value == 13){
             value_bar = value - 1 ;
+            document.querySelector('.img-rocket').classList.remove('img-rocket-25-score');
+
         }
         else if(value == 1){
             value_bar = value - 0.8 ;
+            document.querySelector('.img-rocket').classList.remove('img-rocket-25-score');
+
         }
         else if(value == 2){
             value_bar = value - 1.5 ;
+            document.querySelector('.img-rocket').classList.remove('img-rocket-25-score');
+
         }
         else if(value != 0){
             value_bar = value - 2 ;
+            document.querySelector('.img-rocket').classList.remove('img-rocket-25-score');
+
         }
 
         // คำนวณเป็นเปอร์เซ็นต์
