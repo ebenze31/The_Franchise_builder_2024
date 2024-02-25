@@ -347,7 +347,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             get_data_user_mission_2();  
         }
         get_data_all_team_m2();
-        change_menu_bar('mission_2');
+        change_menu_bar('mission-1');
     });
 
     function get_data_user_mission_2(){
