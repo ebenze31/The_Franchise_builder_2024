@@ -209,7 +209,16 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         margin-right: 5px;
         background: rgba(0,255,255,1);
     }
-  
+    .img-rocket-25-score::before{
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 100% !important;
+        height: 23px;
+        margin-right: 5px;
+        border-radius: 0 !important;
+        background: rgba(0,255,255,1);
+    }
 </style>
 
 
@@ -411,66 +420,75 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
 
 <script>
-    function convertToPercentage(value) {
-        // ตรวจสอบว่าค่าที่รับเข้ามาอยู่ในช่วง 1-30 หรือไม่
-        let text_0 = document.getElementById('text_progress_0');
-        let text_15 = document.getElementById('text_progress_13');
-        let text_25 = document.getElementById('text_progress_25');
+   function convertToPercentage(value) {
+    // ตรวจสอบว่าค่าที่รับเข้ามาอยู่ในช่วง 1-30 หรือไม่
+    let text_0 = document.getElementById('text_progress_0');
+    let text_15 = document.getElementById('text_progress_13');
+    let text_25 = document.getElementById('text_progress_25');
 
-        // if (value >= 0 && value <= 25) {
-        if (value >= 0) {
-
-            let value_bar = 0 ;
-            if(value >= 25){
-                value_bar = 25 ;
-            }
-            else if(value == 13){
-                value_bar = value - 1 ;
-            }
-            else if(value == 1){
-                value_bar = value - 0.8 ;
-            }
-            else if(value == 2){
-                value_bar = value - 1.5 ;
-            }
-            else if(value != 0){
-                value_bar = value - 2 ;
-            }
-
-            // คำนวณเป็นเปอร์เซ็นต์
-            if(value_bar < 0){
-                value_bar = 0 ;
-            }
-
-            let percentage = (value_bar / 25) * 100;
-
-            // console.log(percentage);
-
-            let progressBar = document.getElementById('progressBar');
-                progressBar.style.width = percentage + '%';
-            let textprogressBar = document.getElementById('textprogressBar');
-                textprogressBar.innerHTML = value;
-                // let rocket_progressBar = document.getElementById('rocket_progressBar');
-                // rocket_progressBar  .style.left = percentage + '%';
-            // return percentage;
-
-            if (value >= 0 && value <= 12) {
-                text_0.style.color = '#FFD233'
-                text_15.style.color = '#646D73'
-                text_25.style.color = '#646D73'
-            }else if(value >= 13 && value <= 24){
-                text_0.style.color = '#FFD233'
-                text_15.style.color = '#FFD233'
-                text_25.style.color = '#646D73'
-            }else{
-                text_0.style.color = '#FFD233'
-                text_15.style.color = '#FFD233'
-                text_25.style.color = '#FFD233'
-            }
-        } else {
-            // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
-            return "กรุณาใส่ค่าระหว่าง 0 ถึง 25 เท่านั้น";
+    // if (value >= 0 && value <= 25) {
+    if (value >= 0) {
+        
+        let value_bar = 0 ;
+        if(value >= 25){
+            value_bar = 25 ;
+            document.querySelector('.img-rocket').classList.add('img-rocket-25-score');
         }
+        else if(value == 13){
+            value_bar = value - 1 ;
+            document.querySelector('.img-rocket').classList.remove('img-rocket-25-score');
+
+        }
+        else if(value == 1){
+            value_bar = value - 0.8 ;
+            document.querySelector('.img-rocket').classList.remove('img-rocket-25-score');
+
+        }
+        else if(value == 2){
+            value_bar = value - 1.5 ;
+            document.querySelector('.img-rocket').classList.remove('img-rocket-25-score');
+
+        }
+        else if(value != 0){
+            value_bar = value - 2 ;
+            document.querySelector('.img-rocket').classList.remove('img-rocket-25-score');
+
+        }
+
+        // คำนวณเป็นเปอร์เซ็นต์
+        if(value_bar < 0){
+            value_bar = 0 ;
+        }
+
+        let percentage = (value_bar / 25) * 100;
+
+        // console.log(percentage);
+
+        let progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+        let textprogressBar = document.getElementById('textprogressBar');
+            textprogressBar.innerHTML = value;
+            // let rocket_progressBar = document.getElementById('rocket_progressBar');
+            // rocket_progressBar  .style.left = percentage + '%';
+        // return percentage;
+
+        if (value >= 0 && value <= 12) {
+            text_0.style.color = '#FFD233'
+            text_15.style.color = '#646D73'
+            text_25.style.color = '#646D73'
+        }else if(value >= 13 && value <= 24){
+            text_0.style.color = '#FFD233'
+            text_15.style.color = '#FFD233'
+            text_25.style.color = '#646D73'
+        }else{
+            text_0.style.color = '#FFD233'
+            text_15.style.color = '#FFD233'
+            text_25.style.color = '#FFD233'
+        }
+    } else {
+        // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
+        return "กรุณาใส่ค่าระหว่าง 0 ถึง 25 เท่านั้น";
+    }
     }
 
 </script>
