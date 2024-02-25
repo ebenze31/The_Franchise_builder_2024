@@ -343,7 +343,9 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        get_data_user_mission_2();
+        if("{{ Auth::user()->group_id }}"){
+            get_data_user_mission_2();  
+        }
         get_data_all_team_m2();
     });
 
@@ -407,7 +409,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                                         </div>
                                         
                                         <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                                            <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">`+result['data'][i].id+` / `+result['data'][i].name+`</span>
+                                            <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">`+result['data'][i].name+`</span>
                                             <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                                                 <div >
                                                     <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">

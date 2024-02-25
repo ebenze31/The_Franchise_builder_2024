@@ -226,8 +226,8 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             <div>
                 <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Grand mission PC</p>
                     
-                <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">PC :2,488,000</span> 
-                <span id="trophy_for_700K" class="d-nne"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: -2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
+                <span style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">PC : <span id="span_sum_score_team"></span></span> 
+                <span id="trophy_for_2m" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: -2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
 
             </div>
         </div>
@@ -236,7 +236,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             <div>
                 
             <span style="position: absolute;bottom: 5px; right: 15px;color: #FFF;font-size: 9px;font-style: normal;font-weight: 500;line-height: normal;">
-                Data As of <br><span id="date_as_of"> 02/04/2024</span>
+                Data As of <br><span id="date_as_of"></span>
             </span>
                 <!-- <div>
                     <div class="float-end" style="margin-top:-1px">
@@ -292,7 +292,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 <div class="memberInRoom d-flex justify-content-center text-center px-1">
     <div class="member-section mt-0" id="div_content_data">
         <!-- DATA -->
-        <div class="member-item col-4 ">
+        <!-- <div class="member-item col-4 ">
             <div class="member-card-join">
                 <span class="btn host-member">
                     <i class="fa-solid fa-key text-warning"></i>
@@ -332,9 +332,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                     </div>
                 </div>
             </div>
-        </div>
-
-
+        </div> -->
     </div>
 </div>
 <script>
@@ -351,13 +349,13 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             .then(result => {
                 console.log(result);
 
-                let sum_Newcode_team = 0 ;
+                let sum_grandmission = 0 ;
                 let formattedDate ;
 
                 if(result){
 
-                    let div_data_member_my_team = document.querySelector('#div_data_member_my_team');
-                        div_data_member_my_team.innerHTML = '' ;
+                    let div_content_data = document.querySelector('#div_content_data');
+                        div_content_data.innerHTML = '' ;
 
                     let as_of = result['data'][0]['as_of'];
                     let datePart = as_of.substring(0, 10); // 2024-01-31
@@ -376,15 +374,15 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                             `;
                         }
 
-                        let pc_point = result['data'][i].pc_point.toLocaleString();
+                        let grandmission = result['data'][i].grandmission.toLocaleString();
                         let new_code = result['data'][i].new_code.toLocaleString();
 
-                        sum_Newcode_team = sum_Newcode_team + result['data'][i].new_code;
+                        sum_grandmission = sum_grandmission + result['data'][i].new_code;
 
-                        if (sum_Newcode_team >= 25) {
-                            document.querySelector('#trophy_for_25_Newcode').classList.remove('d-none');
+                        if (sum_grandmission >= 25) {
+                            document.querySelector('#trophy_for_2m').classList.remove('d-none');
                         } else {
-                            document.querySelector('#trophy_for_25_Newcode').classList.add('d-none');
+                            document.querySelector('#trophy_for_2m').classList.add('d-none');
                         }
 
                         let img_star = ``;
@@ -404,14 +402,14 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                                         </div>
                                         
                                         <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                                            <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">`+result['data'][i].id+` / `+result['data'][i].name+`</span>
+                                            <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">`+result['data'][i].name+`</span>
                                             <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                                                 <div >
                                                     <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
                                                         PC : 
                                                     </span>
                                                     <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                                    `+pc_point+`
+                                                    `+grandmission+`
                                                     </span>
                                                 </div> 
                                             </div>
@@ -435,12 +433,12 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                             </div>
                         `;
 
-                        div_data_member_my_team.insertAdjacentHTML('beforeend', html);
+                        div_content_data.insertAdjacentHTML('beforeend', html);
                     }
 
                     document.querySelector('#date_as_of').innerHTML = formattedDate ;
-                    document.querySelector('#sum_Newcode_team').innerHTML = sum_Newcode_team ;
-                    convertToPercentage(sum_Newcode_team);
+                    document.querySelector('#span_sum_score_team').innerHTML = sum_grandmission ;
+                    convertToPercentage(sum_grandmission);
 
                 }
 

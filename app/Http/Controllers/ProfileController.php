@@ -400,7 +400,7 @@ class ProfileController extends Controller
 
         $data_user = DB::table('users')
             ->join('pc_points', 'pc_points.user_id', '=', 'users.id')
-            ->select('users.*' , 'pc_points.week as week' , 'pc_points.pc_point as pc_point', 'pc_points.new_code as new_code', 'pc_points.created_at as as_of')
+            ->select('users.*' , 'pc_points.week as week' , 'pc_points.pc_point as pc_point', 'pc_points.new_code as new_code', 'pc_points.created_at as as_of' , 'pc_points.grandmission as grandmission')
             ->where('pc_points.week', $week)
             ->where('pc_points.group_id', $group_id)
             ->orderByRaw('CAST(pc_points.new_code AS SIGNED) DESC, pc_points.pc_point DESC')
