@@ -320,7 +320,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             <img src="{{ url('/img/icon/Vector 543.png') }}" style="width: 120px;margin-top: -10px;">
         </div>
         <p style="color: #0A1330;font-weight: bolder;font-size: 16px;">
-            <span id="count_team_m2_success"></span>/<span id="count_all_team_m2"></span>
+            <span id="count_team_m2_success">0</span>/<span id="count_all_team_m2">0</span>
         </p>
     </div>
 
