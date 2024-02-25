@@ -91,6 +91,11 @@ Route::get('/check_user_join_activity/{account}/{name_Activity}', 'ActivitiesCon
 Route::get('/change_show_staff/{id}/{status}', 'ActivitiesController@change_show_staff');
 Route::get('/change_active/{id}/{status}', 'ActivitiesController@change_active');
 
+// Export activities
+Route::get('/create_tabel_for_export', 'ActivitiesController@create_tabel_for_export');
+Route::get('/insert_data_activities', 'ActivitiesController@insert_data_activities');
+Route::get('/export_to_excelc', 'ActivitiesController@export_to_excelc');
+
 // contact staffs
 Route::get('/get_contact_staffs', 'Contact_staffController@get_contact_staffs');
 Route::get('/change_approve/{id}/{check_Approve}', 'Contact_staffController@change_approve');
@@ -112,6 +117,8 @@ Route::get('/create_logs', 'LogsController@create_logs');
 
 // Mission 2
 Route::get('/get_data_user_mission_2/{group_id}', 'ProfileController@get_data_user_mission_2');
-Route::get('/create_tabel_for_export', 'ActivitiesController@create_tabel_for_export');
-Route::get('/insert_data_activities', 'ActivitiesController@insert_data_activities');
-Route::get('/export_to_excelc', 'ActivitiesController@export_to_excelc');
+Route::get('/get_data_all_team_m2', 'ProfileController@get_data_all_team_m2');
+
+// grand_mission
+Route::get('/get_data_user_grand_mission/{data_sort}', 'ProfileController@get_data_user_grand_mission');
+Route::get('/get_member_in_team_for_grand_mission/{group_id}/{week}/{type}', 'Pc_pointsController@get_member_in_team_for_grand_mission');

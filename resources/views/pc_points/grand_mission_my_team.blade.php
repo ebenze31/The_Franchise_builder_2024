@@ -214,11 +214,11 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
 
 <div class="d-flex header-team">
-    <img src="{{ url('/img/group_profile/profile/id (') . Auth::user()->group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
+    <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
     <div class="d-flex justify-content-between w-100" >
         <div class="detail-team"style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:63%">
             <h1 class="mb-0" style="color: #FFF;font-size: 24px;font-style: normal;font-weight: 400;line-height: 1.5;">
-                Team {{ Auth::user()->group_id }}
+                Team {{ $group_id }}
             </h1>
             <!-- <p style="color: #FCBF29;font-family: Inter;font-size: 12px;font-style: normal;font-weight: 700;line-height: normal;">
                 PC : xxxxxxx
@@ -337,7 +337,118 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
     </div>
 </div>
+<script>
 
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        get_data_user_mission_2()
+    });
+
+    function get_data_user_mission_2(){
+
+        fetch("{{ url('/') }}/api/get_data_user_mission_2" + "/" + "{{ $group_id }}")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                let sum_Newcode_team = 0 ;
+                let formattedDate ;
+
+                if(result){
+
+                    let div_data_member_my_team = document.querySelector('#div_data_member_my_team');
+                        div_data_member_my_team.innerHTML = '' ;
+
+                    let as_of = result['data'][0]['as_of'];
+                    let datePart = as_of.substring(0, 10); // 2024-01-31
+
+                    let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
+                        formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; 
+
+                    for (var i = 0; i < result['data'].length; i++) {
+                    
+                        let html_host = `` ;
+                        if(result['data'][i].id == result['host']){
+                            html_host = `
+                                <span class="btn host-member">
+                                    <i class="fa-solid fa-key text-warning"></i>
+                                </span>
+                            `;
+                        }
+
+                        let pc_point = result['data'][i].pc_point.toLocaleString();
+                        let new_code = result['data'][i].new_code.toLocaleString();
+
+                        sum_Newcode_team = sum_Newcode_team + result['data'][i].new_code;
+
+                        if (sum_Newcode_team >= 25) {
+                            document.querySelector('#trophy_for_25_Newcode').classList.remove('d-none');
+                        } else {
+                            document.querySelector('#trophy_for_25_Newcode').classList.add('d-none');
+                        }
+
+                        let img_star = ``;
+                        if(result['data'][i].new_code >= 2){
+                            img_star = `
+                                <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
+                            `;
+                        }
+
+                        let html = `
+                            <div class="member-item col-4 ">
+                                <div class="member-card-join">
+                                    `+html_host+`
+                                    <div class="text-center">
+                                        <div class="text-center">
+                                            <img src="{{ url('storage')}}/`+result['data'][i].photo+`"" style="width: 100%;height: auto;" class="img-member">
+                                        </div>
+                                        
+                                        <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
+                                            <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">`+result['data'][i].id+` / `+result['data'][i].name+`</span>
+                                            <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
+                                                <div >
+                                                    <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
+                                                        PC : 
+                                                    </span>
+                                                    <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
+                                                    `+pc_point+`
+                                                    </span>
+                                                </div> 
+                                            </div>
+                                            <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
+                                                <div>
+                                                    <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
+                                                        New code : 
+                                                    </span>
+                                                    <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
+                                                    `+new_code+`
+                                                    </span>
+                                                </div> 
+                                                <div class="me-1">
+                                                `+img_star+`
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        div_data_member_my_team.insertAdjacentHTML('beforeend', html);
+                    }
+
+                    document.querySelector('#date_as_of').innerHTML = formattedDate ;
+                    document.querySelector('#sum_Newcode_team').innerHTML = sum_Newcode_team ;
+                    convertToPercentage(sum_Newcode_team);
+
+                }
+
+            });
+
+    }
+
+</script>
 
 
 <script>

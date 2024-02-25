@@ -25,6 +25,6 @@ class Pc_point extends Model
      *
      * @var array
      */
-    protected $fillable = ['week', 'pc_point', 'new_code', 'user_id', 'group_id' ,'rank_of_week','rank_last_week','csta','pers','ytd_pc','mtd_pc','mission1','mission3','grandmission','active_dream','team_rank_of_week','team_rank_last_week'];
+    protected $fillable = ['week', 'pc_point', 'new_code', 'user_id', 'group_id' ,'rank_of_week','rank_last_week','csta','pers','ytd_pc','mtd_pc','mission1','mission3','grandmission','active_dream','team_rank_of_week','team_rank_last_week','pc_grand_of_gweek','pc_grand_last_gweek','nc_grand_of_gweek','nc_grand_last_gweek','pc_grand_of_week_individual','pc_grand_last_week_individual','nc_grand_of_week_individual','nc_grand_last_week_individual','sum_newcode_team'];
     
 }

@@ -403,13 +403,64 @@ class ProfileController extends Controller
             ->select('users.*' , 'pc_points.week as week' , 'pc_points.pc_point as pc_point', 'pc_points.new_code as new_code', 'pc_points.created_at as as_of')
             ->where('pc_points.week', $week)
             ->where('pc_points.group_id', $group_id)
-            ->orderBy(DB::raw('CAST(pc_points.new_code AS SIGNED)'), 'DESC')
+            ->orderByRaw('CAST(pc_points.new_code AS SIGNED) DESC, pc_points.pc_point DESC')
+            // ->orderBy(DB::raw('CAST(pc_points.new_code AS SIGNED)'), 'DESC')
+            // ->orderBy(DB::raw('CAST(pc_points.user_id AS SIGNED)'), 'DESC')
             ->get();
 
         $data_arr['data'] = $data_user;
         $data_arr['host'] = $host;
 
         return $data_arr ;
+    }
+
+    function get_data_user_grand_mission($data_sort){
+
+        $check_week = Pc_point::where('week', 'not like', 'old-%')
+            ->orderByRaw('CAST(SUBSTRING_INDEX(`week`, "-", -1) AS UNSIGNED) DESC')
+            ->first();
+
+        $week = $check_week->week ;
+        $as_of = $check_week->created_at ;
+
+        if($data_sort == "pc"){
+            $data['data'] = DB::table('groups')
+                ->where('pc_grand_of_gweek' , '!=' , null)
+                ->orderBy(DB::raw('CAST(pc_grand_of_gweek AS SIGNED)'), 'ASC')
+                ->get();
+        }
+        else if($data_sort == "nc"){
+            $data['data'] = DB::table('groups')
+                ->where('nc_grand_of_gweek' , '!=' , null)
+                ->orderBy(DB::raw('CAST(nc_grand_of_gweek AS SIGNED)'), 'ASC')
+                ->get();
+        }
+
+        $data['week'] = $week;
+        $data['as_of'] = $as_of;
+
+        return $data ;
+
+    }
+
+    function get_data_all_team_m2(){
+
+        $check_week = Pc_point::where('week', 'not like', 'old-%')
+            ->orderByRaw('CAST(SUBSTRING_INDEX(`week`, "-", -1) AS UNSIGNED) DESC')
+            ->first();
+
+        $week = $check_week->week ;
+        $as_of = $check_week->created_at ;
+
+        $data['data'] = DB::table('groups')
+            ->where('nc_grand_of_gweek' , '!=' , null)
+            // ->orderBy(DB::raw('CAST(nc_grand_of_gweek AS SIGNED)'), 'ASC')
+            ->orderByRaw('CAST(nc_grand_of_gweek AS SIGNED) ASC, rank_of_week ASC')
+            ->get();
+
+        $data['week'] = $week;
+
+        return $data ;
     }
 
     function get_data_me($user_id){

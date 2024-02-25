@@ -293,7 +293,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                     <!-- <p id="textprogressBar">15</p> -->
                     <span class="img-rocket"></span>
                     <img src="{{ url('/img/icon/rocket.png') }}"  style="height:23px;position: relative;right: 0%;">
-                    <!-- <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;">0</span> -->
+                    <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;">0</span>
                 </div>
             </div>
         </div>
@@ -320,61 +320,17 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             <img src="{{ url('/img/icon/Vector 543.png') }}" style="width: 120px;margin-top: -10px;">
         </div>
         <p style="color: #0A1330;font-weight: bolder;font-size: 16px;">
-            <span id="">40</span>/<span id="">81</span>
+            <span id="count_team_m2_success">40</span>/<span id="count_all_team_m2">81</span>
         </p>
     </div>
+
+    <!-- content_all_team_m2 -->
     <div class="memberInRoom d-flex justify-content-center text-center px-1">
-        <div class="member-section mt-0" id="">
-                <a id="" class="member-item div_Team mt-0"  href="">
-                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_0 img_team">
-                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
-                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
-                                <div class=" team_color_0" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
-                                    <span id="team_new_code">1</span>/25
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a id="" class="member-item div_Team mt-0"  href="">
-                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_1 img_team">
-                        <!-- <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -12px;"> -->
-
-                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
-                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
-                                <div class=" team_color_1"  role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
-                                    <span id="team_new_code">12</span>/25
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a id="" class="member-item div_Team mt-0"  href="">
-                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_2 img_team">
-                        <!-- shield -->
-                        <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
-
-                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
-                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
-                                <div class=" team_color_2"  role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
-                                    <span id="team_new_code">25</span>/25
-                                </div>
-                                
-                            </div>
-                            <!-- trophy -->
-                            <img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px; position: absolute;top: -1px;right: 3px;">
-                        </div>
-                    </div>
-                </a>
+        <div class="member-section mt-0" id="content_all_team_m2">
+            <!-- data -->
         </div>
     </div>
+
     <div class="w-100 d-flex justify-content-center my-4">
         <a href="#" class="px-4 py-2" style="font-size: 14px;background-color: #DDF3FF;color: #0A0E2C;border-radius: 50px !important;-webkit-border-radius: 50px;-moz-border-radius: 50px;">Back to my team</a>
     </div>
@@ -388,6 +344,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         get_data_user_mission_2();
+        get_data_all_team_m2();
     });
 
     function get_data_user_mission_2(){
@@ -395,7 +352,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         fetch("{{ url('/') }}/api/get_data_user_mission_2" + "/" + "{{ Auth::user()->group_id }}")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let sum_Newcode_team = 0 ;
                 let formattedDate ;
@@ -427,6 +384,12 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
                         sum_Newcode_team = sum_Newcode_team + result['data'][i].new_code;
 
+                        if (sum_Newcode_team >= 25) {
+                            document.querySelector('#trophy_for_25_Newcode').classList.remove('d-none');
+                        } else {
+                            document.querySelector('#trophy_for_25_Newcode').classList.add('d-none');
+                        }
+
                         let img_star = ``;
                         if(result['data'][i].new_code >= 2){
                             img_star = `
@@ -441,11 +404,10 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                                     <div class="text-center">
                                         <div class="text-center">
                                             <img src="{{ url('storage')}}/`+result['data'][i].photo+`"" style="width: 100%;height: auto;" class="img-member">
-
                                         </div>
                                         
                                         <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                                            <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">`+result['data'][i].name+`</span>
+                                            <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">`+result['data'][i].id+` / `+result['data'][i].name+`</span>
                                             <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                                                 <div >
                                                     <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
@@ -489,6 +451,111 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
     }
 
+    function get_data_all_team_m2(){
+        console.log('get_data_all_team_m2');
+        
+        fetch("{{ url('/') }}/api/get_data_all_team_m2")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                let week = result['week'];
+
+                if(result){
+
+                    let content_all_team_m2 = document.querySelector('#content_all_team_m2');
+                        content_all_team_m2.innerHTML = '';
+
+                    for (let i = 0; i < result['data'].length; i++) {
+
+                        let text_id_group = result['data'][i].id.toString();
+
+                        let result_data_arr = [];
+                            result_data_arr = JSON.parse(result['data'][i].rank_record);
+
+                        let pc_point = result_data_arr[week]['pc_point'] ;
+                        let new_code = result_data_arr[week]['new_code'] ;
+
+                        // console.log("id >> " + result['data'][i]['id']);
+                        // console.log("new_code >> " + new_code);
+                        // console.log("pc_point >> " + pc_point);
+
+                        let html_all_team_m2 ;
+                        let percentage ;
+
+                        if(new_code >= 25){
+                            html_all_team_m2 = `
+                                <div id="" class="member-item div_Team mt-0">
+                                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
+                                        <img src="{{ url('/img/group_profile/success/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_2 img_team">
+                                        <!-- shield -->
+                                        <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
+
+                                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
+                                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
+                                                <div class=" team_color_2"  role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
+                                                    <span id="">`+new_code+`</span>/25
+                                                </div>
+                                                
+                                            </div>
+                                            <!-- trophy -->
+                                            <img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px; position: absolute;top: -1px;right: 3px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                        else if(new_code >= 13 && new_code < 25){
+
+                            percentage = (new_code / 25) * 100;
+
+                            html_all_team_m2 = `
+                                <div id="" class="member-item div_Team mt-0">
+                                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
+                                        <img src="{{ url('/img/group_profile/warning/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_1 img_team">
+                                        <!-- <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -12px;"> -->
+
+                                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
+                                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
+                                                <div class=" team_color_1"  role="progressbar" style="width: `+percentage+`%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
+                                                    <span id="">`+new_code+`</span>/25
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                        else if(new_code <= 12){
+
+                            percentage = (new_code / 25) * 100;
+
+                            html_all_team_m2 = `
+                                <div id="" class="member-item div_Team mt-0">
+                                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
+                                        <img src="{{ url('/img/group_profile/secondary/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_0 img_team">
+                                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
+                                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
+                                                <div class=" team_color_0" role="progressbar" style="width: `+percentage+`%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
+                                                    <span id="">`+new_code+`</span>/25
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        }
+
+                        content_all_team_m2.insertAdjacentHTML('beforeend', html_all_team_m2);
+
+                    }
+                }
+        });
+    }
+
 </script>
 
 <script>
@@ -529,10 +596,10 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
         let progressBar = document.getElementById('progressBar');
             progressBar.style.width = percentage + '%';
-        // let textprogressBar = document.getElementById('textprogressBar');
+        let textprogressBar = document.getElementById('textprogressBar');
+            textprogressBar.innerHTML = value;
             // let rocket_progressBar = document.getElementById('rocket_progressBar');
             // rocket_progressBar  .style.left = percentage + '%';
-            // textprogressBar.innerHTML = value;
         // return percentage;
 
         if (value >= 0 && value <= 12) {

@@ -188,7 +188,13 @@ class Pc_pointsController extends Controller
                     'pc_point' => $data_arr['pc_point'],
                     'team_rank_of_week' => $data_arr['team_rank_of_week'],
                     'team_rank_last_week' => $data_arr['team_rank_last_week'],
+                    'pc_grand_of_gweek' => $data_arr['pc_grand_of_gweek'],
+                    'pc_grand_last_gweek' => $data_arr['pc_grand_last_gweek'],
+                    'nc_grand_of_gweek' => $data_arr['nc_grand_of_gweek'],
+                    'nc_grand_last_gweek' => $data_arr['nc_grand_last_gweek'],
                     'mission1' => $data_arr['mission1'],
+                    'new_code' => $data_arr['new_code'],
+                    'grandmission' => $data_arr['grandmission'],
                 );
 
                 $group_pc[$data_arr['group_id']] = $newArray;
@@ -196,6 +202,9 @@ class Pc_pointsController extends Controller
             }else{
                 $group_pc[$data_arr['group_id']]['pc_point'] = $group_pc[$data_arr['group_id']]['pc_point'] + $data_arr['pc_point'] ;
                 $group_pc[$data_arr['group_id']]['mission1'] = $group_pc[$data_arr['group_id']]['mission1'] + $data_arr['mission1'] ;
+                $group_pc[$data_arr['group_id']]['new_code'] = $group_pc[$data_arr['group_id']]['new_code'] + $data_arr['new_code'] ;
+                $group_pc[$data_arr['group_id']]['grandmission'] = $group_pc[$data_arr['group_id']]['grandmission'] + $data_arr['grandmission'] ;
+
             }
 
         }
@@ -230,7 +239,13 @@ class Pc_pointsController extends Controller
                     // 'rank' => $update_arr_rank,
                     'team_rank_of_week' => $group_pc[$i]['team_rank_of_week'],
                     'team_rank_last_week' => $group_pc[$i]['team_rank_last_week'],
+                    'pc_grand_of_gweek' => $group_pc[$i]['pc_grand_of_gweek'],
+                    'pc_grand_last_gweek' => $group_pc[$i]['pc_grand_last_gweek'],
+                    'nc_grand_of_gweek' => $group_pc[$i]['nc_grand_of_gweek'],
+                    'nc_grand_last_gweek' => $group_pc[$i]['nc_grand_last_gweek'],
                     'mission1' => $group_pc[$i]['mission1'],
+                    'new_code' => $group_pc[$i]['new_code'],
+                    'grandmission' => $group_pc[$i]['grandmission'],
                 ];
 
                 $rank_record_update = json_encode($new_rank_record);
@@ -245,7 +260,13 @@ class Pc_pointsController extends Controller
                     // 'rank' => $update_arr_rank,
                     'team_rank_of_week' => $group_pc[$i]['team_rank_of_week'],
                     'team_rank_last_week' => $group_pc[$i]['team_rank_last_week'],
+                    'pc_grand_of_gweek' => $group_pc[$i]['pc_grand_of_gweek'],
+                    'pc_grand_last_gweek' => $group_pc[$i]['pc_grand_last_gweek'],
+                    'nc_grand_of_gweek' => $group_pc[$i]['nc_grand_of_gweek'],
+                    'nc_grand_last_gweek' => $group_pc[$i]['nc_grand_last_gweek'],
                     'mission1' => $group_pc[$i]['mission1'],
+                    'new_code' => $group_pc[$i]['new_code'],
+                    'grandmission' => $group_pc[$i]['grandmission'],
                 ];
 
                 // แปลง array ใหม่เป็น JSON
@@ -269,9 +290,17 @@ class Pc_pointsController extends Controller
 
                     $update_rank_of_week = $group_pc[$i]['team_rank_of_week'];
                     $update_rank_last_week = $group_pc[$i]['team_rank_last_week'];
+                    $update_pc_grand_of_gweek = $group_pc[$i]['pc_grand_of_gweek'];
+                    $update_pc_grand_last_gweek = $group_pc[$i]['pc_grand_last_gweek'];
+                    $update_nc_grand_of_gweek = $group_pc[$i]['nc_grand_of_gweek'];
+                    $update_nc_grand_last_gweek = $group_pc[$i]['nc_grand_last_gweek'];
                 }else{
                     $update_rank_of_week = $group_pc[$i]['team_rank_of_week'];
                     $update_rank_last_week = $group_pc[$i]['team_rank_last_week'];
+                    $update_pc_grand_of_gweek = $group_pc[$i]['pc_grand_of_gweek'];
+                    $update_pc_grand_last_gweek = $group_pc[$i]['pc_grand_last_gweek'];
+                    $update_nc_grand_of_gweek = $group_pc[$i]['nc_grand_of_gweek'];
+                    $update_nc_grand_last_gweek = $group_pc[$i]['nc_grand_last_gweek'];
                 }
             }
 
@@ -283,6 +312,10 @@ class Pc_pointsController extends Controller
                         'rank_record' => $rank_record_update,
                         'rank_of_week' => $update_rank_of_week,
                         'rank_last_week' => $update_rank_last_week,
+                        'pc_grand_of_gweek' => $update_pc_grand_of_gweek,
+                        'pc_grand_last_gweek' => $update_pc_grand_last_gweek,
+                        'nc_grand_of_gweek' => $update_nc_grand_of_gweek,
+                        'nc_grand_last_gweek' => $update_nc_grand_last_gweek,
                     ]);
 
         }
@@ -463,6 +496,49 @@ class Pc_pointsController extends Controller
         });
 
 
+        return $sums;
+    }
+
+    function get_member_in_team_for_grand_mission($group_id , $week , $type){
+
+        $data = DB::table('pc_points')
+                ->join('users', 'users.id', '=', 'pc_points.user_id')
+                ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
+                ->where('pc_points.week' , $week)
+                ->where('pc_points.group_id', $group_id)
+                ->orderBy(DB::raw('CAST(pc_points.pc_point AS SIGNED)'), 'DESC')
+                ->get();
+
+        $sums = [];
+
+        foreach ($data as $row) {
+            $user_id = $row->user_id;
+
+            // ผลรวม pc_point ของแต่ละ user_id
+            if (!isset($sums[$user_id])) {
+                $sums[$user_id] = [
+                    'user_id' => $user_id,
+                    'user_name' => $row->user_name,
+                    'user_photo' => $row->user_photo,
+                    'total' => $row->pc_point,
+                    'yearly' => $row->pc_point,
+                    'grandmission' => $row->grandmission,
+                    'new_code' => $row->new_code,
+                ];
+            }
+        }
+
+        if($type == 'pc'){
+            usort($sums, function ($a, $b) {
+                return $b['grandmission'] - $a['grandmission'];
+            });
+        }
+        else if($type == 'nc'){
+            usort($sums, function ($a, $b) {
+                return $b['new_code'] - $a['new_code'];
+            });
+        }
+        
         return $sums;
     }
 

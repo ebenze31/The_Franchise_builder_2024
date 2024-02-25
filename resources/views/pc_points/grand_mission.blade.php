@@ -243,7 +243,7 @@
     }
 
     .nameUserteam {
-        max-width: 60px;
+        max-width: 150px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -381,7 +381,8 @@ z-index: 9999999;
     border-radius: 50px; 
     -moz-border-radius:50px;
     -khtml-border-radius:50px;
-    width: 68px;
+    width: 110px;
+    padding: 2px;
     border: #67CFFF 1px solid;
     font-weight: bolder;
     margin: auto;
@@ -398,7 +399,7 @@ z-index: 9999999;
 
     .ranker-1{
         position: absolute;
-        top: 11%; left: 20%;
+        top: -20%; left: 20%;
         transform: translate(-50%, -50%);
         text-align: center;
         
@@ -413,7 +414,7 @@ z-index: 9999999;
 
     .ranker-3{
         position: absolute;
-        top: 50%; left: 76%;
+        top: 65%; left: 78%;
         transform: translate(-50%, -50%);
         text-align: center;
     }
@@ -428,7 +429,7 @@ z-index: 9999999;
 
     .ranker-1{
         position: absolute;
-        top: 11%; 
+        top: -20%; 
         left: 23%;
         transform: translate(-50%, -50%);
         text-align: center;
@@ -444,8 +445,7 @@ z-index: 9999999;
 
     .ranker-3{
         position: absolute;
-        top: 50%; 
-        left: 79%;
+        top: 65%; left: 78%;
         transform: translate(-50%, -50%);
         text-align: center;
     }
@@ -461,7 +461,7 @@ z-index: 9999999;
 
     .ranker-1{
         position: absolute;
-        top: 11%; 
+        top: -20%; 
         left: 23%;
         transform: translate(-50%, -50%);
         text-align: center;
@@ -477,8 +477,7 @@ z-index: 9999999;
 
     .ranker-3{
         position: absolute;
-        top: 55%; 
-        left: 79%;
+        top: 65%; left: 78%;
         transform: translate(-50%, -50%);
         text-align: center;
     }
@@ -512,7 +511,7 @@ z-index: 9999999;
 
     .ranker-1{
         position: absolute;
-        top: 11%; 
+        top: -20%; 
         left: 23%;
         transform: translate(-50%, -50%);
         text-align: center;
@@ -528,8 +527,7 @@ z-index: 9999999;
 
     .ranker-3{
         position: absolute;
-        top: 55%; 
-        left: 79%;
+        top: 65%; left: 78%;
         transform: translate(-50%, -50%);
         text-align: center;
     }
@@ -553,6 +551,9 @@ z-index: 9999999;
         border: #FCBF29 2px solid;
     }
 }
+.color-2m-up{
+background-color: #163C96 !important;
+}
 .color-2m{
 background-color: #23577F !important;
 }
@@ -567,13 +568,37 @@ background-color: #2B4961 !important;
 background-color: #1A3041 !important;
 
 }
+
+table {
+    border-collapse: separate; /* หรือใช้ 'border-collapse: collapse;' ตามที่เหมาะสม */
+    border-spacing: 0;
+}
+td.my-rank {
+    border-top: 1px solid #00E0FF; /* ตัวอย่างเพื่อให้เห็นขอบ */
+    border-bottom: 1px solid #00E0FF; /* ตัวอย่างเพื่อให้เห็นขอบ */
+    margin: 0;
+    gap: 0;
+}
+
+td.my-rank:first-child {
+    border-left: 1px solid #00E0FF; /* ตัวอย่างเพื่อให้เห็นขอบ */
+    border-radius: 10px 0 0 10px;
+}
+td.my-rank:last-child {
+    border-right: 1px solid #00E0FF; /* ตัวอย่างเพื่อให้เห็นขอบ */
+    border-radius: 0 10px 10px 0;
+}
 </style>
 
 <div id="div_data_all"></div>
 <div class="w-100 d-flex justify-content-center my-3">
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-sort-data active">PC</button>
-        <button type="button" class="btn btn-sort-data">New code</button>
+        <a id="btn_sort_pc" href="{{ url('/grand_mission') }}?Sort=pc" class="btn btn-sort-data active">
+            PC
+        </a>
+        <a id="btn_sort_nc" href="{{ url('/grand_mission') }}?Sort=nc" class="btn btn-sort-data">
+            New code
+        </a>
     </div>
 </div>
 <div class="container p-0 m-0" >
@@ -602,28 +627,28 @@ background-color: #1A3041 !important;
         <div class="image-container">
             <img src="{{ url('/img/icon/mountain.png') }}" style="width: 100%;" alt=""> 
             <div class="ranker-1">
-                <img id="img_rank_1" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก" style="width: 83px;height: 83px;border: #FCBF29 2px solid;">
-                <div id="name_rank_1" class="point-ranker">
-                    <span>60 NC</span>
-                    <img id="img_rank_2" src="{{ url('/img/icon/rank-1.png') }}" alt="รูปภาพปก" style="width: 27px;position: absolute; right: -18px;top:-8px">
+                <img id="img_rank_1" src="{{ url('/img/icon/Frame 36594.png') }}" class="sub-rank-img" alt="รูปภาพปก" style="width: 83px;height: 83px;border: #FCBF29 2px solid;">
+                <div class="point-ranker">
+                    <span id="score_rank_1"></span>
+                    <img src="{{ url('/img/icon/rank-1.png') }}" alt="รูปภาพปก" style="width: 27px;position: absolute; right: -18px;top:-8px">
                 </div>
 
             </div>
 
             <div class="ranker-2">
-                <img id="img_rank_2" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก" style="width: 66px;height: 66px;border: #FCBF29 2px solid;">
-                <div id="name_rank_2" class="point-ranker">
-                    <span>52 NC</span>
-                    <img id="img_rank_2" src="{{ url('/img/icon/rank-2.png') }}" alt="รูปภาพปก" style="width: 27px;position: absolute; right: -18px;top:-8px">
+                <img id="img_rank_2" src="{{ url('/img/icon/Frame 36594.png') }}" class="sub-rank-img" alt="รูปภาพปก" style="width: 66px;height: 66px;border: #FCBF29 2px solid;">
+                <div class="point-ranker">
+                    <span id="score_rank_2"></span>
+                    <img src="{{ url('/img/icon/rank-2.png') }}" alt="รูปภาพปก" style="width: 27px;position: absolute; right: -18px;top:-8px">
                 </div>
             </div>
 
 
             <div class="ranker-3">
-                <img id="img_rank_3" src="{{ url('/img/icon/profile.png') }}" class="sub-rank-img" alt="รูปภาพปก" style="width: 53px;height: 53px;border: #FCBF29 2px solid;">
+                <img id="img_rank_3" src="{{ url('/img/icon/Frame 36594.png') }}" class="sub-rank-img" alt="รูปภาพปก" style="width: 53px;height: 53px;border: #FCBF29 2px solid;">
                 <div class="point-ranker">
-                    <span>51 NC</span>
-                    <img id="img_rank_2" src="{{ url('/img/icon/rank-3.png') }}" alt="รูปภาพปก" style="width: 27px;position: absolute; right: -18px;top:-8px">
+                    <span id="score_rank_3"></span>
+                    <img src="{{ url('/img/icon/rank-3.png') }}" alt="รูปภาพปก" style="width: 27px;position: absolute; right: -18px;top:-8px">
                 </div>
             </div>
         </div>
@@ -658,9 +683,9 @@ background-color: #1A3041 !important;
 <a id="click_to_div_data_all" href="#div_data_all" class="d-none"></a>
 
 <div class="bottom-section">
-    <div class=" sticky"  >
+    <div class="sticky"  >
         <img src="{{ url('/img/icon/Vector 426.png') }}" style="width: 100%;z-index: -1;" alt=""> 
-        <div class="nav-menu" id="div_menu_view">
+        <div class="nav-menu d-none" id="div_menu_view">
             <div class="btn-group owl-carousel owl-theme owl-nav-nemu" role="group" aria-label="First group">
         
                 <div class="item text-center py-2">
@@ -711,413 +736,13 @@ background-color: #1A3041 !important;
     <div class="contentSection p-2">
 
         <!-- ของตัวเอง -->
-        <div class="mb-2" id="content_ME">
-            <div  class="my-team" data-toggle="collapse" href="#data_team_id_1" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div class="collapseContent">
-                <div class="collapse p-0" id="data_team_id_1">
-                    <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
-                        <div class="table-responsive">
-                            <table class="table mb-0 align-middle table-borderless">
-                                <thead class="head-teble-data-my-team">
-                                    <tr>
-                                        <th class="text-center" style>
-                                            <p>No.</p>
-                                        </th>
-                                        <th class="text-center" style>
-                                            <p>User</p>
-                                        </th>
-                                        <th class="text-center" style>
-                                            <p>PC</p>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody_content_id_`+text_id_group+`">
-                                    <!-- ข้อมูลสมาชิก -->
-                                    <td class="${icon_me} text-center" style="position: relative;">
-                                        1
-                                    </td>
-                                    <td class="${icon_me} d-flex align-items-center">
-                                        <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profile-img" alt="รูปภาพปก">
-                                        <span class="ms-2 nameUserteam">{{Auth::user()->name}}</span>
-                                    </td>
-                                    <td class=" ${icon_me} text-data-team text-center">
-                                        `+mission1_formatted+`
-                                    </td>
-                                </tbody>
-                            </table>
-
-                            <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('grand_mission_my_team')}}" );">ดูรายละเอียดเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="mb-4" id="content_ME">
+            <!--  -->
+        </div>
+        <br>
         <!-- เรียงตามลำดับ -->
         <div id="content_ASC">
-
-            <!-- เส้นทั้งหมด -->
-            <div class="d-flex align-items-center mt-2">
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">2M</span>
-                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">2M</span>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1.5M</span>
-                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1.5M</span>
-            </div>
-
-            <div class="d-flex align-items-center mt-2">
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1M</span>
-                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1M</span>
-            </div>
-
-            <div class="d-flex align-items-center mt-2">
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">500k</span>
-                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">500k</span>
-            </div>
             <!--  -->
-            <div  class="other-team" data-toggle="collapse" href="#data_other_id_1" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div class="collapseContent">
-                <div class="collapse p-0" id="data_other_id_1">
-                    <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
-                        <div class="table-responsive">
-                            <table class="table mb-0 align-middle table-borderless">
-                                <thead class="head-teble-data-my-team">
-                                    <tr>
-                                        <th class="text-center" style>
-                                            <p>No.</p>
-                                        </th>
-                                        <th class="text-center" style>
-                                            <p>User</p>
-                                        </th>
-                                        <th class="text-center" style>
-                                            <p>PC</p>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody_content_id_`+text_id_group+`">
-                                    <!-- ข้อมูลสมาชิก -->
-                                    <td class="${icon_me} text-center" style="position: relative;">
-                                        1
-                                    </td>
-                                    <td class="${icon_me} d-flex align-items-center">
-                                        <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profile-img" alt="รูปภาพปก">
-                                        <span class="ms-2 nameUserteam">{{Auth::user()->name}}</span>
-                                    </td>
-                                    <td class=" ${icon_me} text-data-team text-center">
-                                        `+mission1_formatted+`
-                                    </td>
-                                </tbody>
-                            </table>
-
-                            <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('grand_mission_my_team')}}" );">ดูรายละเอียดเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">2M</span>
-                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">2M</span>
-            </div>
-           
-            <div  class="other-team color-2m" data-toggle="collapse" href="#data_other_id_2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div class="collapseContent">
-                <div class="collapse p-0" id="data_other_id_2">
-                    <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
-                        <div class="table-responsive">
-                            <table class="table mb-0 align-middle table-borderless">
-                                <thead class="head-teble-data-my-team">
-                                    <tr>
-                                        <th class="text-center" style>
-                                            <p>No.</p>
-                                        </th>
-                                        <th class="text-center" style>
-                                            <p>User</p>
-                                        </th>
-                                        <th class="text-center" style>
-                                            <p>PC</p>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody_content_id_`+text_id_group+`">
-                                    <!-- ข้อมูลสมาชิก -->
-                                    <td class="${icon_me} text-center" style="position: relative;">
-                                        1
-                                    </td>
-                                    <td class="${icon_me} d-flex align-items-center">
-                                        <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profile-img" alt="รูปภาพปก">
-                                        <span class="ms-2 nameUserteam">{{Auth::user()->name}}</span>
-                                    </td>
-                                    <td class=" ${icon_me} text-data-team text-center">
-                                        `+mission1_formatted+`
-                                    </td>
-                                </tbody>
-                            </table>
-
-                            <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('grand_mission_my_team')}}" );">ดูรายละเอียดเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1.5M</span>
-                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1.5M</span>
-            </div>
-
-            <div  class="other-team color-1-5m" data-toggle="collapse" href="#data_other_id_3" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div class="collapseContent">
-                <div class="collapse p-0" id="data_other_id_3">
-                    <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
-                        <div class="table-responsive">
-                            <table class="table mb-0 align-middle table-borderless">
-                                <thead class="head-teble-data-my-team">
-                                    <tr>
-                                        <th class="text-center" style>
-                                            <p>No.</p>
-                                        </th>
-                                        <th class="text-center" style>
-                                            <p>User</p>
-                                        </th>
-                                        <th class="text-center" style>
-                                            <p>PC</p>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody_content_id_`+text_id_group+`">
-                                    <!-- ข้อมูลสมาชิก -->
-                                    <td class="${icon_me} text-center" style="position: relative;">
-                                        1
-                                    </td>
-                                    <td class="${icon_me} d-flex align-items-center">
-                                        <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profile-img" alt="รูปภาพปก">
-                                        <span class="ms-2 nameUserteam">{{Auth::user()->name}}</span>
-                                    </td>
-                                    <td class=" ${icon_me} text-data-team text-center">
-                                        `+mission1_formatted+`
-                                    </td>
-                                </tbody>
-                            </table>
-
-                            <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('grand_mission_my_team')}}" );">ดูรายละเอียดเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1M</span>
-                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">1M</span>
-            </div>
-
-           
-            <div  class="other-team color-1m" data-toggle="collapse" href="#data_other_id_4" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div class="collapseContent">
-                <div class="collapse p-0" id="data_other_id_4">
-                    <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
-                        <div class="table-responsive">
-                            <table class="table mb-0 align-middle table-borderless">
-                                <thead class="head-teble-data-my-team">
-                                    <tr>
-                                        <th class="text-center" style>
-                                            <p>No.</p>
-                                        </th>
-                                        <th class="text-center" style>
-                                            <p>User</p>
-                                        </th>
-                                        <th class="text-center" style>
-                                            <p>PC</p>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody_content_id_`+text_id_group+`">
-                                    <!-- ข้อมูลสมาชิก -->
-                                    <td class="${icon_me} text-center" style="position: relative;">
-                                        1
-                                    </td>
-                                    <td class="${icon_me} d-flex align-items-center">
-                                        <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profile-img" alt="รูปภาพปก">
-                                        <span class="ms-2 nameUserteam">{{Auth::user()->name}}</span>
-                                    </td>
-                                    <td class=" ${icon_me} text-data-team text-center">
-                                        `+mission1_formatted+`
-                                    </td>
-                                </tbody>
-                            </table>
-
-                            <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('grand_mission_my_team')}}" );">ดูรายละเอียดเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">500k</span>
-                <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
-                <span style="color: #021B56;font-size: 14px;font-weight:bolder;">500k</span>
-            </div>
-            
-            <div  class="other-team color-500k" data-toggle="collapse" href="#data_other_id_5" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <div class="number-my-team">1</div>
-                <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profileTeam" alt="">
-
-                <div class="detailTeam">
-                    <div>
-                        <p class="nameTeam">Team 1 <img class="ms-2" src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt=""></p>
-                    </div>
-                </div>
-                <div class="score-my-team">
-                    <span class="text-score" style="color: #E7C517!important;">1000000</span>
-                    <span class="text-point"> PC</span>
-
-                </div>
-                <div class="statusTeam text-center">
-                    <div>
-                        <i class="fa-solid fa-triangle rankUP"></i>
-                        <p class="statusNumber ">3</p>
-                    </div>
-                </div>
-            </div>
-            <div class="collapseContent">
-                <div class="collapse p-0" id="data_other_id_5">
-                    <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
-                        <div class="table-responsive">
-                            <table class="table mb-0 align-middle table-borderless">
-                                <thead class="head-teble-data-my-team">
-                                    <tr>
-                                        <th class="text-center" style>
-                                            <p>No.</p>
-                                        </th>
-                                        <th class="text-center" style>
-                                            <p>User</p>
-                                        </th>
-                                        <th class="text-center" style>
-                                            <p>PC</p>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody_content_id_`+text_id_group+`">
-                                    <!-- ข้อมูลสมาชิก -->
-                                    <td class="${icon_me} text-center" style="position: relative;">
-                                        1
-                                    </td>
-                                    <td class="${icon_me} d-flex align-items-center">
-                                        <img src="{{ url('storage')}}/{{Auth::user()->photo}}" class="profile-img" alt="รูปภาพปก">
-                                        <span class="ms-2 nameUserteam">{{Auth::user()->name}}</span>
-                                    </td>
-                                    <td class=" ${icon_me} text-data-team text-center">
-                                        `+mission1_formatted+`
-                                    </td>
-                                </tbody>
-                            </table>
-
-                            <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('grand_mission_my_team')}}" );">ดูรายละเอียดเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>
@@ -1133,10 +758,781 @@ background-color: #1A3041 !important;
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 
 <script>
+
+    var sort = "{{ url()->full() }}";
+        sort = sort.split("?Sort=");
+
+    var data_sort ;
+
+    if(sort[1]){
+        data_sort = sort[1] ;
+
+        if(data_sort == 'pc'){
+            document.querySelector('#btn_sort_pc').classList.add('active');
+            document.querySelector('#btn_sort_nc').classList.remove('active');
+        }else if(data_sort == 'nc'){
+            document.querySelector('#btn_sort_pc').classList.remove('active');
+            document.querySelector('#btn_sort_nc').classList.add('active');
+        }
+
+    }else{
+        data_sort = "pc" ;
+    }
+
     document.addEventListener('DOMContentLoaded', (event) => {
-           // console.log("START");
-           change_menu_bar('grand');
-       });
+        // console.log("START");
+        // change_menu_bar('grand');
+        get_data_user_grand_mission(data_sort);
+
+        // console.log(data_sort);
+    });
+
+    function get_data_user_grand_mission(data_sort){
+
+        fetch("{{ url('/') }}/api/get_data_user_grand_mission" + "/" + data_sort)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                if(result){
+
+                    let class_of_score ;
+                    let check_line_2m = 'no';
+                    let check_line_1_5m = 'no';
+                    let check_line_1m = 'no';
+                    let check_line_500k = 'no';
+
+                    let week = result['week'];
+                    let as_of = result['as_of'];
+                    let datePart = as_of.substring(0, 10); // 2024-01-31
+
+                    let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
+                    let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; // ประกอบวันที่ใหม่ในรูปแบบที่ต้องการ
+
+                    let content_ASC = document.querySelector('#content_ASC');
+                        content_ASC.innerHTML = '';
+
+
+                    if(data_sort == 'pc'){
+
+                        // เส้นทั้งหมด
+                        let line_2m = `<div class="d-flex align-items-center mt-2">
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">2M</span>
+                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">2M</span>
+                        </div>`;
+
+                        let line_1_5m = `<div class="d-flex align-items-center mt-2">
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">1.5M</span>
+                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">1.5M</span>
+                        </div>`;
+
+                        let line_1m = `<div class="d-flex align-items-center mt-2">
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">1M</span>
+                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">1M</span>
+                        </div>`;
+
+                        let line_500k = `<div class="d-flex align-items-center mt-2">
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">500k</span>
+                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">500k</span>
+                        </div>`;
+                        // จบ เส้นทั้งหมด
+
+                        document.querySelector('#score_rank_1').innerHTML = "00 PC";
+                        document.querySelector('#score_rank_2').innerHTML = "00 PC";
+                        document.querySelector('#score_rank_3').innerHTML = "00 PC";
+
+                        for (let i = 0; i < result['data'].length; i++) {
+
+                            let text_id_group = result['data'][i].id.toString();
+
+                            let grandmission_arr = [];
+                                grandmission_arr = JSON.parse(result['data'][i].rank_record);
+                            let grandmission = grandmission_arr[week]['grandmission'] ;
+                            let pc_grand_of_gweek = grandmission_arr[week]['pc_grand_of_gweek'] ;
+                            let pc_grand_last_gweek = grandmission_arr[week]['pc_grand_last_gweek'] ;
+                            let formattedNumber = grandmission.toLocaleString();
+
+                            if (grandmission >= 2000000) {
+                                img_trophy = ` <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt="">`;
+                            } else {
+                                img_trophy = ``;
+                            }
+
+                            let draw_line = ``;
+                            if(grandmission > 2000000){
+                                class_of_score = 'color-2m-up' ;
+                            }
+                            else if(grandmission < 2000000 && check_line_2m == 'no'){
+                                draw_line = line_2m;
+                                class_of_score = 'color-2m';
+                                check_line_2m = 'yes';
+                            }
+                            else if(grandmission < 1500000 && check_line_1_5m == 'no'){
+                                draw_line = line_1_5m;
+                                class_of_score = 'color-1-5m';
+                                check_line_1_5m = 'yes';
+                            }
+                            else if(grandmission < 1000000 && check_line_1m == 'no'){
+                                draw_line = line_1m;
+                                class_of_score = 'color-1m';
+                                check_line_1m = 'yes';
+                            }
+                            else if(grandmission < 500000 && check_line_500k == 'no'){
+                                draw_line = line_500k;
+                                class_of_score = 'color-500k';
+                                check_line_500k = 'yes';
+                            }
+
+                            content_ASC.insertAdjacentHTML('beforeend', draw_line);
+
+                            let rank_up ;
+                            if( parseInt(pc_grand_of_gweek) < parseInt(pc_grand_last_gweek) ){
+                                rank_up = `<i class="fa-solid fa-triangle rankUP"></i>`;
+                            }else if(parseInt(pc_grand_of_gweek) > parseInt(pc_grand_last_gweek)){
+                                rank_up = `<i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>`;
+                            }else{
+                                rank_up = `<i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i>`;
+                            }
+
+                            // ทีมทั้งหมด
+                            let html_other_team ;
+
+                            if("{{ Auth::user()->role }}" == "Player" || "{{ Auth::user()->role }}" == "QR"){
+                                html_other_team = `
+                                    <div class="other-team `+class_of_score+`" data-toggle="collapse" href="#data_other_id_`+result['data'][i]['id']+`" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <div class="number-my-team">`+pc_grand_of_gweek+`</div>
+                                        <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
+
+                                        <div class="detailTeam">
+                                            <div>
+                                                <p class="nameTeam">Team `+result['data'][i]['name_group']+`${img_trophy}</p>
+                                            </div>
+                                        </div>
+                                        <div class="score-my-team">
+                                            <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                            <span class="text-point"> PC</span>
+
+                                        </div>
+                                        <div class="statusTeam text-center">
+                                            <div>
+                                                `+rank_up+`
+                                                <p class="statusNumber ">`+pc_grand_last_gweek+`</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+
+                                content_ASC.insertAdjacentHTML('beforeend', html_other_team);
+                            }
+                            else{
+                                html_other_team = `
+                                    <div class="other-team `+class_of_score+`" data-toggle="collapse" href="#data_other_id_`+result['data'][i]['id']+`" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <div class="number-my-team">`+pc_grand_of_gweek+`</div>
+                                        <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
+
+                                        <div class="detailTeam">
+                                            <div>
+                                                <p class="nameTeam">Team `+result['data'][i]['name_group']+`${img_trophy}</p>
+                                            </div>
+                                        </div>
+                                        <div class="score-my-team">
+                                            <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                            <span class="text-point"> PC</span>
+
+                                        </div>
+                                        <div class="statusTeam text-center">
+                                            <div>
+                                                `+rank_up+`
+                                                <p class="statusNumber ">`+pc_grand_last_gweek+`</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="collapseContent">
+                                        <div class="collapse p-0" id="data_other_id_`+result['data'][i]['id']+`">
+                                            <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                                                <div class="table-responsive">
+                                                    <table class="table mb-0 align-middle table-borderless">
+                                                        <thead class="head-teble-data-my-team">
+                                                            <tr>
+                                                                <th class="text-center" style>
+                                                                    <p>No.</p>
+                                                                </th>
+                                                                <th class="text-center" style>
+                                                                    <p>User</p>
+                                                                </th>
+                                                                <th class="text-center" style>
+                                                                    <p>PC</p>
+                                                                    <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbody_content_id_`+text_id_group+`">
+                                                            <!-- ข้อมูลสมาชิก -->
+                                                        </tbody>
+                                                    </table>
+
+                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );">ดูรายละเอียดเพิ่มเติม</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+
+                                content_ASC.insertAdjacentHTML('beforeend', html_other_team);
+
+                                // สมาชิกในทีมของทุกทีม
+                                create_html_all_member(result['data'][i]['id'] , week , 'pc');
+                            }
+                            
+                            // ของตัวเอง
+                            if(result['data'][i]['id'] == "{{ Auth::user()->group_id }}"){
+
+                                let content_ME = document.querySelector('#content_ME');
+                                    content_ME.innerHTML = '';
+
+                                let html_of_me = `
+                                    <div class="my-team" data-toggle="collapse" href="#data_team_id_`+result['data'][i]['id']+`" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <div class="number-my-team">`+pc_grand_of_gweek+`</div>
+                                        <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam">
+
+                                        <div class="detailTeam">
+                                            <div>
+                                                <p class="nameTeam">Team `+result['data'][i]['name_group']+`${img_trophy}</p>
+                                            </div>
+                                        </div>
+                                        <div class="score-my-team">
+                                            <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                            <span class="text-point"> PC</span>
+
+                                        </div>
+                                        <div class="statusTeam text-center">
+                                            <div>
+                                                `+rank_up+`
+                                                <p class="statusNumber ">`+pc_grand_last_gweek+`</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="collapseContent">
+                                        <div class="collapse p-0" id="data_team_id_`+result['data'][i]['id']+`">
+                                            <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                                                <div class="table-responsive">
+                                                    <table class="table mb-0 align-middle table-borderless">
+                                                        <thead class="head-teble-data-my-team">
+                                                            <tr>
+                                                                <th class="text-center" style>
+                                                                    <p>No.</p>
+                                                                </th>
+                                                                <th class="text-center" style>
+                                                                    <p>User</p>
+                                                                </th>
+                                                                <th class="text-center" style>
+                                                                    <p>PC</p>
+                                                                    <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                    </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbody_content_ME">
+                                                            <!-- ข้อมูลสมาชิก -->
+                                                        </tbody>
+                                                    </table>
+
+                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );">ดูรายละเอียดเพิ่มเติม</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+
+                                document.querySelector('#content_ME').classList.remove('d-none');
+                                content_ME.insertAdjacentHTML('beforeend', html_of_me);
+
+                                // สมาชิกในทีมของฉัน
+                                create_html_member_in_team(result['data'][i]['id'] , week , 'pc');
+
+                            }
+
+                            if(week != "0"){
+                                if(i == 0 || i == 1 || i == 2){
+                                
+                                    let pc_Number = grandmission.toLocaleString();
+
+                                    let iii = i + 1 ;
+                                    document.querySelector('#img_rank_'+iii).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
+                                    document.querySelector('#score_rank_'+iii).innerHTML = pc_Number + " PC";
+                                }
+                            }
+
+                        }
+                    }
+                    else if(data_sort == 'nc'){
+
+                        // เส้นทั้งหมด
+                        let line_2m = `<div class="d-flex align-items-center mt-2">
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">25NC</span>
+                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">25NC</span>
+                        </div>`;
+
+                        let line_1_5m = `<div class="d-flex align-items-center mt-2">
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">20NC</span>
+                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">20NC</span>
+                        </div>`;
+
+                        let line_1m = `<div class="d-flex align-items-center mt-2">
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">15NC</span>
+                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">15NC</span>
+                        </div>`;
+
+                        let line_500k = `<div class="d-flex align-items-center mt-2">
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">10NC</span>
+                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">10NC</span>
+                        </div>`;
+                        // จบ เส้นทั้งหมด
+                        document.querySelector('#score_rank_1').innerHTML = "0 NC";
+                        document.querySelector('#score_rank_2').innerHTML = "0 NC";
+                        document.querySelector('#score_rank_3').innerHTML = "0 NC";
+
+                        for (let i = 0; i < result['data'].length; i++) {
+
+                            let text_id_group = result['data'][i].id.toString();
+
+                            let new_code_arr = [];
+                                new_code_arr = JSON.parse(result['data'][i].rank_record);
+                            let new_code = new_code_arr[week]['new_code'] ;
+                            let nc_grand_of_gweek = new_code_arr[week]['nc_grand_of_gweek'] ;
+                            let nc_grand_last_gweek = new_code_arr[week]['nc_grand_last_gweek'] ;
+                            let formattedNumber = new_code.toLocaleString();
+
+                            if (new_code >= 25) {
+                                img_trophy = ` <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt="">`;
+                            } else {
+                                img_trophy = ``;
+                            }
+
+                            let draw_line = ``;
+                            if(new_code > 25){
+                                class_of_score = 'color-2m-up' ;
+                            }
+                            else if(new_code < 25 && check_line_2m == 'no'){
+                                draw_line = line_2m;
+                                class_of_score = 'color-2m';
+                                check_line_2m = 'yes';
+                            }
+                            else if(new_code < 20 && check_line_1_5m == 'no'){
+                                draw_line = line_1_5m;
+                                class_of_score = 'color-1-5m';
+                                check_line_1_5m = 'yes';
+                            }
+                            else if(new_code < 15 && check_line_1m == 'no'){
+                                draw_line = line_1m;
+                                class_of_score = 'color-1m';
+                                check_line_1m = 'yes';
+                            }
+                            else if(new_code < 10 && check_line_500k == 'no'){
+                                draw_line = line_500k;
+                                class_of_score = 'color-500k';
+                                check_line_500k = 'yes';
+                            }
+
+                            content_ASC.insertAdjacentHTML('beforeend', draw_line);
+
+                            let rank_up ;
+                            if( parseInt(nc_grand_of_gweek) < parseInt(nc_grand_last_gweek) ){
+                                rank_up = `<i class="fa-solid fa-triangle rankUP"></i>`;
+                            }else if(parseInt(nc_grand_of_gweek) > parseInt(nc_grand_last_gweek)){
+                                rank_up = `<i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>`;
+                            }else{
+                                rank_up = `<i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i>`;
+                            }
+
+                            // ทีมทั้งหมด
+                            let html_other_team ;
+
+                            if("{{ Auth::user()->role }}" == "Player" || "{{ Auth::user()->role }}" == "QR"){
+                                html_other_team = `
+                                    <div class="other-team `+class_of_score+`" data-toggle="collapse" href="#data_other_id_`+result['data'][i]['id']+`" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <div class="number-my-team">`+nc_grand_of_gweek+`</div>
+                                        <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
+
+                                        <div class="detailTeam">
+                                            <div>
+                                                <p class="nameTeam">Team `+result['data'][i]['name_group']+`${img_trophy}</p>
+                                            </div>
+                                        </div>
+                                        <div class="score-my-team">
+                                            <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                            <span class="text-point"> PC</span>
+
+                                        </div>
+                                        <div class="statusTeam text-center">
+                                            <div>
+                                                `+rank_up+`
+                                                <p class="statusNumber ">`+nc_grand_last_gweek+`</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+
+                                content_ASC.insertAdjacentHTML('beforeend', html_other_team);
+                            }
+                            else{
+                                html_other_team = `
+                                    <div class="other-team `+class_of_score+`" data-toggle="collapse" href="#data_other_id_`+result['data'][i]['id']+`" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <div class="number-my-team">`+nc_grand_of_gweek+`</div>
+                                        <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
+
+                                        <div class="detailTeam">
+                                            <div>
+                                                <p class="nameTeam">Team `+result['data'][i]['name_group']+`${img_trophy}</p>
+                                            </div>
+                                        </div>
+                                        <div class="score-my-team">
+                                            <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                            <span class="text-point"> NC</span>
+
+                                        </div>
+                                        <div class="statusTeam text-center">
+                                            <div>
+                                                `+rank_up+`
+                                                <p class="statusNumber ">`+nc_grand_last_gweek+`</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="collapseContent">
+                                        <div class="collapse p-0" id="data_other_id_`+result['data'][i]['id']+`">
+                                            <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                                                <div class="table-responsive">
+                                                    <table class="table mb-0 align-middle table-borderless">
+                                                        <thead class="head-teble-data-my-team">
+                                                            <tr>
+                                                                <th class="text-center" style>
+                                                                    <p>No.</p>
+                                                                </th>
+                                                                <th class="text-center" style>
+                                                                    <p>User</p>
+                                                                </th>
+                                                                <th class="text-center" style>
+                                                                    <p>NC</p>
+                                                                    <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbody_content_id_`+text_id_group+`">
+                                                            <!-- ข้อมูลสมาชิก -->
+                                                        </tbody>
+                                                    </table>
+
+                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );">ดูรายละเอียดเพิ่มเติม</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+
+                                content_ASC.insertAdjacentHTML('beforeend', html_other_team);
+
+                                // สมาชิกในทีมของทุกทีม
+                                create_html_all_member(result['data'][i]['id'] , week , 'nc');
+                            }
+                            
+                            // ของตัวเอง
+                            if(result['data'][i]['id'] == "{{ Auth::user()->group_id }}"){
+
+                                let content_ME = document.querySelector('#content_ME');
+                                    content_ME.innerHTML = '';
+
+                                let html_of_me = `
+                                    <div class="my-team" data-toggle="collapse" href="#data_team_id_`+result['data'][i]['id']+`" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <div class="number-my-team">`+nc_grand_of_gweek+`</div>
+                                        <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam">
+
+                                        <div class="detailTeam">
+                                            <div>
+                                                <p class="nameTeam">Team `+result['data'][i]['name_group']+`${img_trophy}</p>
+                                            </div>
+                                        </div>
+                                        <div class="score-my-team">
+                                            <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                            <span class="text-point"> NC</span>
+
+                                        </div>
+                                        <div class="statusTeam text-center">
+                                            <div>
+                                                `+rank_up+`
+                                                <p class="statusNumber ">`+nc_grand_last_gweek+`</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="collapseContent">
+                                        <div class="collapse p-0" id="data_team_id_`+result['data'][i]['id']+`">
+                                            <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                                                <div class="table-responsive">
+                                                    <table class="table mb-0 align-middle table-borderless">
+                                                        <thead class="head-teble-data-my-team">
+                                                            <tr>
+                                                                <th class="text-center" style>
+                                                                    <p>No.</p>
+                                                                </th>
+                                                                <th class="text-center" style>
+                                                                    <p>User</p>
+                                                                </th>
+                                                                <th class="text-center" style>
+                                                                    <p>NC</p>
+                                                                    <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                    </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbody_content_ME">
+                                                            <!-- ข้อมูลสมาชิก -->
+                                                        </tbody>
+                                                    </table>
+
+                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );">ดูรายละเอียดเพิ่มเติม</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+
+                                document.querySelector('#content_ME').classList.remove('d-none');
+                                content_ME.insertAdjacentHTML('beforeend', html_of_me);
+
+                                // สมาชิกในทีมของฉัน
+                                create_html_member_in_team(result['data'][i]['id'] , week , 'nc');
+
+                            }
+
+                            if(week != "0"){
+                                if(i == 0 || i == 1 || i == 2){
+                                
+                                    let nc_Number = new_code.toLocaleString();
+
+                                    let iii = i + 1 ;
+                                    document.querySelector('#img_rank_'+iii).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
+                                    document.querySelector('#score_rank_'+iii).innerHTML = nc_Number + " NC";
+                                }
+                            }
+
+                        }
+
+                    }
+
+                }
+
+        });
+
+    }
+
+    // เรียกอีกครั้ง สมาชิกในทีมของฉัน
+    function re_create_html_member_in_team(group_id , week , type){
+        console.log('เรียกใหม่ >> ' + group_id);
+        create_html_member_in_team(group_id , week , type);
+    }
+
+    // สมาชิกในทีมของฉัน
+    function create_html_member_in_team(group_id , week , type){
+
+        // console.log(week);
+        // console.log(typeof week);
+
+        fetch("{{ url('/') }}/api/get_member_in_team_for_grand_mission" + "/" + group_id + "/" + week + "/" + type)
+            .then(response => response.json())
+            .then(member_in_team => {
+                // console.log(member_in_team);
+
+                let arr_sum_point = [];
+                let arr_of_week = {};
+                let sum_point_of_year = 0 ;
+                let sum_point_of_month = 0 ;
+
+                for (let xz = 0; xz < member_in_team.length; xz++) {
+
+                    // let text_id_user = member_in_team[xz].user_id.toString();
+                    if(type == 'pc'){
+
+                        let grandmission_Value = 0 ;
+                        let grandmission_formatted = 0 ;
+
+                        if(week != "0"){
+                            grandmission_Value = member_in_team[xz].grandmission;
+                            grandmission_formatted = grandmission_Value.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                        }
+
+                        let icon_me = ``;
+                        if(member_in_team[xz].user_id == "{{ Auth::user()->id }}"){
+                            icon_me = `my-rank`;
+                        }
+
+                        let html_tbody_content_ME = `
+                            <tr >
+                                <td class="${icon_me} text-center" style="position: relative;">
+                                    `+parseInt(xz+1)+`
+                                </td>
+                                <td class="${icon_me} d-flex align-items-center">
+                                    <img src="{{ url('storage')}}/`+member_in_team[xz].user_photo+`" class="profile-img" alt="รูปภาพปก">
+                                    <span class="ms-2 nameUserteam">`+member_in_team[xz].user_name+`</span>
+                                </td>
+                                <td class=" ${icon_me} text-data-team text-center">
+                                    `+grandmission_formatted+`
+                                </td>
+                            </tr>
+                        `;
+                        let tbody_content_ME = document.querySelector('#tbody_content_ME');
+                        tbody_content_ME.insertAdjacentHTML('beforeend', html_tbody_content_ME); // แทรกล่างสุด
+                    }
+                    else if(type == 'nc'){
+                        let new_code_Value = 0 ;
+                        let new_code_formatted = 0 ;
+
+                        if(week != "0"){
+                            new_code_Value = member_in_team[xz].new_code;
+                            new_code_formatted = new_code_Value.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                        }
+
+                        let icon_me = ``;
+                        if(member_in_team[xz].user_id == "{{ Auth::user()->id }}"){
+                            icon_me = `my-rank`;
+                        }
+
+                        let html_tbody_content_ME = `
+                            <tr >
+                                <td class="${icon_me} text-center" style="position: relative;">
+                                    `+parseInt(xz+1)+`
+                                </td>
+                                <td class="${icon_me} d-flex align-items-center">
+                                    <img src="{{ url('storage')}}/`+member_in_team[xz].user_photo+`" class="profile-img" alt="รูปภาพปก">
+                                    <span class="ms-2 nameUserteam">`+member_in_team[xz].user_name+`</span>
+                                </td>
+                                <td class=" ${icon_me} text-data-team text-center">
+                                    `+new_code_formatted+`
+                                </td>
+                            </tr>
+                        `;
+                        let tbody_content_ME = document.querySelector('#tbody_content_ME');
+                        tbody_content_ME.insertAdjacentHTML('beforeend', html_tbody_content_ME); // แทรกล่างสุด
+                    }
+
+                }
+
+        })
+        .catch(error => {
+            // จัดการกับข้อผิดพลาดที่เกิดขึ้นที่นี่
+            // console.log('error');
+            // console.error('There was a problem with the fetch operation:', error);
+            setTimeout(() => {
+                re_create_html_member_in_team(group_id , week , type);
+            }, 1000);
+        });
+
+    }
+
+    // เรียกอีกครั้ง สมาชิกในทีมของทุกทีม
+    function re_create_html_all_member(group_id , week , type){
+        console.log('เรียกใหม่ >> ' + group_id);
+        create_html_all_member(group_id , week , type)
+    }
+
+    // สมาชิกในทีมของทุกทีม
+    function create_html_all_member(group_id , week , type){
+
+        // console.log(typeof week);
+        fetch("{{ url('/') }}/api/get_member_in_team_for_grand_mission" + "/" + group_id + "/" + week + "/" + type)
+            .then(response => response.json())
+            .then(member_in_team => {
+                // console.log(group_id);
+                // console.log(member_in_team);
+
+                let arr_sum_point = [];
+                let arr_of_week = {};
+                let sum_point_of_year = 0 ;
+                let sum_point_of_month = 0 ;
+
+                for (let xz = 0; xz < member_in_team.length; xz++) {
+
+                    // let text_id_user = member_in_team[xz].user_id.toString();
+
+                    if(type == 'pc'){
+
+                        let grandmission_Value = 0 ;
+                        let grandmission_formatted = 0 ;
+
+                        if(week != "0"){
+                            grandmission_Value = member_in_team[xz].grandmission;
+                            grandmission_formatted = grandmission_Value.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                        }
+
+                        let html_tbody_content_ME = `
+                            <tr>
+                                <td class="text-center">
+                                    `+parseInt(xz+1)+`
+                                </td>
+                                <td class="d-flex align-items-center">
+                                    <img src="{{ url('storage')}}/`+member_in_team[xz].user_photo+`" class="profile-img" alt="รูปภาพปก">
+                                    <span class="ms-2 nameUserteam">`+member_in_team[xz].user_name+`</span>
+                                </td>
+                                <td class="text-data-team text-center">
+                                    `+grandmission_formatted+`
+                                </td>
+                            </tr>
+                        `;
+
+                        let tbody_content = document.querySelector('#tbody_content_id_'+group_id);
+                        tbody_content.insertAdjacentHTML('beforeend', html_tbody_content_ME); // แทรกล่างสุด
+                    }
+                    else if(type == 'nc'){
+
+                        let new_code_Value = 0 ;
+                        let new_code_formatted = 0 ;
+
+                        if(week != "0"){
+                            new_code_Value = member_in_team[xz].new_code;
+                            new_code_formatted = new_code_Value.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                        }
+
+                        let html_tbody_content_ME = `
+                            <tr>
+                                <td class="text-center">
+                                    `+parseInt(xz+1)+`
+                                </td>
+                                <td class="d-flex align-items-center">
+                                    <img src="{{ url('storage')}}/`+member_in_team[xz].user_photo+`" class="profile-img" alt="รูปภาพปก">
+                                    <span class="ms-2 nameUserteam">`+member_in_team[xz].user_name+`</span>
+                                </td>
+                                <td class="text-data-team text-center">
+                                    `+new_code_formatted+`
+                                </td>
+                            </tr>
+                        `;
+
+                        let tbody_content = document.querySelector('#tbody_content_id_'+group_id);
+                        tbody_content.insertAdjacentHTML('beforeend', html_tbody_content_ME); // แทรกล่างสุด
+
+                    }
+
+                }
+        })
+        .catch(error => {
+            // จัดการกับข้อผิดพลาดที่เกิดขึ้นที่นี่
+            // console.log('error');
+            // console.error('There was a problem with the fetch operation:', error);
+            setTimeout(() => {
+                re_create_html_all_member(group_id , week , type);
+            }, 1000);
+        });
+
+    }
+
+</script>
+
+
+<script>
     $(document).ready(function() {
         const owl = $('.owl-nav-nemu')
         owl.owlCarousel({

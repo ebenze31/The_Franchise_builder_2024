@@ -69,9 +69,8 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/mission_3', function () {
         return view('pc_points/mission_3');
     });
-    Route::get('/grand_mission_my_team', function () {
-        return view('pc_points/grand_mission_my_team');
-    });
+    
+    Route::get('/grand_mission_my_team/{group_id}', 'GroupsController@grand_mission_my_team');
 
     Route::resource('groups', 'GroupsController');
     Route::get('/preview_team/{group_id}', 'GroupsController@preview_team');
