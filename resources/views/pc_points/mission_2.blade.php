@@ -471,8 +471,11 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                 // console.log(result);
 
                 let week = result['week'];
+                let team_m2_success = 0;
 
                 if(result){
+
+                    document.querySelector('#count_all_team_m2').innerHTML = result['data'].length ;
 
                     let content_all_team_m2 = document.querySelector('#content_all_team_m2');
                         content_all_team_m2.innerHTML = '';
@@ -495,6 +498,9 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                         let percentage ;
 
                         if(new_code >= 25){
+
+                            team_m2_success = team_m2_success + 1;
+
                             html_all_team_m2 = `
                                 <div id="" class="member-item div_Team mt-0">
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
@@ -563,6 +569,8 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                         content_all_team_m2.insertAdjacentHTML('beforeend', html_all_team_m2);
 
                     }
+
+                    document.querySelector('#count_team_m2_success').innerHTML = team_m2_success ;
                 }
         });
     }
