@@ -347,6 +347,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             get_data_user_mission_2();  
         }
         get_data_all_team_m2();
+        change_menu_bar('mission_2');
     });
 
     function get_data_user_mission_2(){
@@ -454,12 +455,12 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
     }
 
     function get_data_all_team_m2(){
-        console.log('get_data_all_team_m2');
+        // console.log('get_data_all_team_m2');
         
         fetch("{{ url('/') }}/api/get_data_all_team_m2")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let week = result['week'];
 
@@ -537,7 +538,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                             html_all_team_m2 = `
                                 <div id="" class="member-item div_Team mt-0">
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                                        <img src="{{ url('/img/group_profile/secondary/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_0 img_team">
+                                        <img src="{{ url('/img/group_profile/danger/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_0 img_team">
                                         <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
                                             <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
                                                 <div class=" team_color_0" role="progressbar" style="width: `+percentage+`%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>

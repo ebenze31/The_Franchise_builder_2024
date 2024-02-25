@@ -322,7 +322,50 @@
     top: 0;
     z-index: 99999999;
     }
+
+    .btn-sort-data{
+        /* padding: 6px 20px ; */
+        width: 100px;
+        background-color: rgb(0, 155, 176 , .61);
+        border: 1px solid #00E0FF;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .btn-sort-data:hover{
+        color: #055683;
+        border: 1px solid #00E0FF;
+        background-color: #00E0FF;
+        font-weight: bold;
+    }
+    .btn-sort-data.active{
+        color: #055683;
+        border: 1px solid #00E0FF;
+        background-color: #00E0FF;
+        font-weight: bold;
+    }
+
+    .btn-sort-data.not-open{
+        color: #365F91;
+        width: 110px;
+
+        border: 1px solid #365F91;
+        background-color: #091636;
+        font-size: 14px;
+        font-weight: bold;
+    }
 </style>
+
+<div class="w-100 d-flex justify-content-center my-3">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a id="btn_sort_pc" href="{{ url('/individual') }}?Sort=pc" class="btn btn-sort-data active">
+            PC
+        </a>
+        <a id="btn_sort_nc" href="{{ url('/individual') }}?Sort=nc" class="btn btn-sort-data">
+            New code
+        </a>
+    </div>
+</div>
 
 <div id="div_data_all"></div>
 
@@ -412,7 +455,7 @@
         <div class="text-center number-my-team" style="margin-left: 5px;">No.</div>
         <div style="min-width: 65px !important;max-width: 65px !important;"></div>
         <div class="w-100">Username</div>
-        <div  style="min-width: 65px !important;max-width: 65px !important;margin-right: 10px;  ">Mission 1</div>
+        <div id="head_type_Sort" style="min-width: 65px !important;max-width: 65px !important;margin-right: 10px;"></div>
         <div style="min-width: 65px !important;max-width: 65px !important;">Last week</div>
     </div>
 </div>
@@ -495,10 +538,37 @@
 
 <script>
 
+    var sort = "{{ url()->full() }}";
+        sort = sort.split("?Sort=");
+
+    var data_sort ;
+    var type_Sort ;
+
+    if(sort[1]){
+        data_sort = sort[1] ;
+
+        if(data_sort == 'pc'){
+            type_Sort = "PC";
+            document.querySelector('#btn_sort_pc').classList.add('active');
+            document.querySelector('#btn_sort_nc').classList.remove('active');
+            document.querySelector('#head_type_Sort').innerHTML = 'PC';
+        }else if(data_sort == 'nc'){
+            type_Sort = "NC";
+            document.querySelector('#btn_sort_pc').classList.remove('active');
+            document.querySelector('#btn_sort_nc').classList.add('active');
+            document.querySelector('#head_type_Sort').innerHTML = 'NC';
+        }
+
+    }else{
+        document.querySelector('#head_type_Sort').innerHTML = 'PC';
+        data_sort = "pc" ;
+        type_Sort = "PC";
+    }
+
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         change_menu_bar('rank-individual');
-        get_data_rank('individual');
+        get_data_rank('individual_'+data_sort);
     });
 
     function get_data_rank(type){
@@ -506,7 +576,7 @@
         fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
             .then(response => response.json())
             .then(result => {
-            // console.log(result);
+            console.log(result);
 
             let content_ASC = document.querySelector('#content_ASC');
             let content_ME = document.querySelector('#content_ME');
@@ -520,6 +590,8 @@
 
                         let originalNumber = result[i].pc_point;
                         let mission1_Number = result[i].mission1;
+                        let grandmission = result[i].grandmission;
+                        let new_code = result[i].new_code;
 
                         let text_group_id = result[i].group_id;
 
@@ -532,11 +604,27 @@
                         
                         // let formattedNumber = formatLargeNumber(originalNumber);
                         let formattedNumber = formatLargeNumber(mission1_Number);
+                        let formatt_grandmission = formatLargeNumber(grandmission);
+                        let formatt_new_code = formatLargeNumber(new_code);
+
+                        let show_score = ``;
+                        let rank_of_week = ``;
+                        let rank_last_week = ``;
+
+                        if(data_sort == 'pc'){
+                            show_score = formatt_grandmission;
+                            rank_of_week = result[i].pc_grand_of_week_individual ;
+                            rank_last_week = result[i].pc_grand_last_week_individual ;
+                        }else if(data_sort == 'nc'){
+                            show_score = formatt_new_code;
+                            rank_of_week = result[i].nc_grand_of_week_individual ;
+                            rank_last_week = result[i].nc_grand_last_week_individual ;
+                        }
 
                         let rank_up ;
-                        if( parseInt(result[i].rank_of_week) < parseInt(result[i].rank_last_week) ){
+                        if( parseInt(rank_of_week) < parseInt(rank_last_week) ){
                             rank_up = `<i class="fa-solid fa-triangle rankUP"></i>`;
-                        }else if(parseInt(result[i].rank_of_week) > parseInt(result[i].rank_last_week)){
+                        }else if(parseInt(rank_of_week) > parseInt(rank_last_week)){
                             rank_up = `<i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>`;
                         }else{
                             rank_up = `<i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i>`;
@@ -544,7 +632,7 @@
 
                         let html = `
                             <div count="div_`+count_div+`" class="other-team">
-                                <div class="number-my-team">`+result[i].rank_of_week+`</div>
+                                <div class="number-my-team">`+rank_of_week+`</div>
                                 <img src="{{ url('storage')}}/`+result[i].user_photo+`" class="profileTeam" alt="">
                                 <div class="detailTeam">
                                     <div>
@@ -553,14 +641,14 @@
                                     </div>
                                 </div>
                                 <div class="score-my-team">
-                                    <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
-                                    <span class="text-point"> PC</span>
+                                    <span class="text-score" style="color: #E7C517!important;">`+show_score+`</span>
+                                    <span class="text-point"> `+type_Sort+`</span>
 
                                 </div>
                                 <div class="statusTeam text-center">
                                     <div class="mt-1">  
                                         `+rank_up+`
-                                        <p class="statusNumber ">`+result[i].rank_last_week+`</p>
+                                        <p class="statusNumber ">`+rank_last_week+`</p>
                                     </div>
                                 </div>
                             </div>
@@ -583,7 +671,7 @@
                                     </div>
                                     <div class="score-my-team">
                                         <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
-                                        <span class="text-point"> PC</span>
+                                        <span class="text-point"> `+type_Sort+`</span>
 
                                     </div>
                                     <div class="statusTeam text-center">

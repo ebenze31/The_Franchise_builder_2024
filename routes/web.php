@@ -45,6 +45,11 @@ Route::middleware(['auth',])->group(function () {
         // return view('pc_points/individual');
         return view('pc_points/individual_end_m1');
     });
+
+    Route::get('/individual', function () {
+        return view('pc_points/individual');
+    });
+
     Route::get('/ranking_by_team', function () {
         // return view('pc_points/ranking_by_team');
         return view('pc_points/end_mission_1');
@@ -69,7 +74,7 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/mission_3', function () {
         return view('pc_points/mission_3');
     });
-    
+
     Route::get('/grand_mission_my_team/{group_id}', 'GroupsController@grand_mission_my_team');
 
     Route::resource('groups', 'GroupsController');

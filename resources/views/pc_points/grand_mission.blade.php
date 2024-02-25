@@ -781,7 +781,7 @@ td.my-rank:last-child {
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        // change_menu_bar('grand');
+        change_menu_bar('grand');
         get_data_user_grand_mission(data_sort);
 
         // console.log(data_sort);
