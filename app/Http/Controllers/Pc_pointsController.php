@@ -382,7 +382,7 @@ class Pc_pointsController extends Controller
                     ->join('users', 'users.id', '=', 'pc_points.user_id')
                     ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
                     ->where('week' , $week)
-                    ->orderBy(DB::raw('CAST(pc_points.rank_of_week AS SIGNED)'), 'ASC')
+                    ->orderBy(DB::raw('CAST(pc_points.pc_grand_of_week_individual AS SIGNED)'), 'ASC')
                     ->get();
             }
             else if($type == 'individual_nc'){
@@ -390,7 +390,7 @@ class Pc_pointsController extends Controller
                     ->join('users', 'users.id', '=', 'pc_points.user_id')
                     ->select('pc_points.*' , 'users.name as user_name', 'users.photo as user_photo')
                     ->where('week' , $week)
-                    ->orderBy(DB::raw('CAST(pc_points.new_code AS SIGNED)'), 'ASC')
+                    ->orderBy(DB::raw('CAST(pc_points.nc_grand_of_week_individual AS SIGNED)'), 'ASC')
                     ->get();
             }
             else if($type == 'team'){

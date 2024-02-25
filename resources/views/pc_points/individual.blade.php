@@ -573,10 +573,12 @@
 
     function get_data_rank(type){
 
+        // console.log(type);
+
         fetch("{{ url('/') }}/api/get_data_rank" + "/" + type)
             .then(response => response.json())
             .then(result => {
-            console.log(result);
+            // console.log(result);
 
             let content_ASC = document.querySelector('#content_ASC');
             let content_ME = document.querySelector('#content_ME');
@@ -660,7 +662,7 @@
                             // ของตัวเอง
                             let html_me = `
                                 <div class="my-team">
-                                    <div class="number-my-team">`+result[i].rank_of_week+`</div>
+                                    <div class="number-my-team">`+rank_of_week+`</div>
                                     <img src="{{ url('storage')}}/`+result[i].user_photo+`" class="profileTeam" alt="">
                                     <div class="detailTeam">
                                         <div>
@@ -670,14 +672,14 @@
                                         </div>
                                     </div>
                                     <div class="score-my-team">
-                                        <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                        <span class="text-score" style="color: #E7C517!important;">`+show_score+`</span>
                                         <span class="text-point"> `+type_Sort+`</span>
 
                                     </div>
                                     <div class="statusTeam text-center">
                                         <div class="mt-1">
                                             `+rank_up+`
-                                            <p class="statusNumber ">`+result[i].rank_last_week+`</p>
+                                            <p class="statusNumber ">`+rank_last_week+`</p>
                                         </div>
                                         
                                     </div>
@@ -697,7 +699,7 @@
                                 let iii = i + 1 ;
                                 document.querySelector('#img_rank_'+iii).setAttribute('src' , "{{ url('storage')}}/"+result[i].user_photo);
                                 document.querySelector('#name_rank_'+iii).innerHTML = result[i].user_name;
-                                document.querySelector('#score_rank_'+iii).innerHTML = formattedNumber;
+                                document.querySelector('#score_rank_'+iii).innerHTML = show_score;
                             }
                         }
 
