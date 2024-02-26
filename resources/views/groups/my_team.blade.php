@@ -558,9 +558,9 @@
                             .then(response => response.json())
                             .then(users => {
                                 console.log(users);
-                                console.log(memberId +" >> "+ users[0].time_request_join);
+                                console.log(memberId +" >> "+ user.time_request_join);
 
-                                let timeRequestJoin = users[0].time_request_join;
+                                let timeRequestJoin = user.time_request_join;
 
                                 // สร้าง Date object จากเวลาที่กำหนด
                                 let specifiedTime = new Date(timeRequestJoin);
@@ -584,23 +584,23 @@
                                     textTime = "เวลาที่กำหนดหลังจากเพิ่ม 24 ชั่วโมงได้ผ่านไปแล้ว";
                                 }
 
-                                let format_mission1 = users[0].mission1.toLocaleString();
+                                let format_mission1 = user.mission1.toLocaleString();
 
                                 html_modal = `
                                     <div class="customers-list-item d-flex align-items-center p-2 cursor-pointer">
                                         <div class="">
-                                            <img src="{{ url('storage')}}/`+users[0].photo+`" class="rounded-circle" width="50" height="50" alt="">
+                                            <img src="{{ url('storage')}}/`+user.photo+`" class="rounded-circle" width="50" height="50" alt="">
                                         </div>
                                         <div class="ms-2 d-flex align-items-center">
                                             <div> 
-                                                <h6 class="mb-0 text-start" style="font-size: 16px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width:80px">`+users[0].name+`</h6>
+                                                <h6 class="mb-0 text-start" style="font-size: 16px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width:80px">`+user.name+`</h6>
                                                 <p class="mb-0 text-count-down text-start"  style="font-size: 12px;">`+textTime+`</p>
                                                 <p class="mb-0 text-count-down text-start"  style="font-size: 11px;color:#fdbe21!important;">PC M#1 : `+format_mission1+`</p>
                                             </div>
                                         </div>
                                         <div class="list-inline d-flex customers-contacts ms-auto">
-                                            <span class="btn btn-sm btn-accept list-inline-item" onclick="answer_request('Accept', '{{ $group_id }}','`+users[0].id+`' , '`+users[0].name+`' , '`+users[0].photo+`','`+countdown+`','`+format_mission1+`')">Accept</span>
-                                            <span class="btn btn-sm btn-danger list-inline-item" onclick="answer_request('Reject', '{{ $group_id }}','`+users[0].id+`' , '`+users[0].name+`' , '`+users[0].photo+`','`+countdown+`','`+format_mission1+`')">Reject</span>
+                                            <span class="btn btn-sm btn-accept list-inline-item" onclick="answer_request('Accept', '{{ $group_id }}','`+user.id+`' , '`+user.name+`' , '`+user.photo+`','`+countdown+`','`+format_mission1+`')">Accept</span>
+                                            <span class="btn btn-sm btn-danger list-inline-item" onclick="answer_request('Reject', '{{ $group_id }}','`+user.id+`' , '`+user.name+`' , '`+user.photo+`','`+countdown+`','`+format_mission1+`')">Reject</span>
                                         </div>
                                     </div>
                                 `;
