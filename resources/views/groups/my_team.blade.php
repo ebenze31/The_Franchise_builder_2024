@@ -545,7 +545,7 @@
         fetch("{{ url('/') }}/api/check_request_join" + '/' + "{{ $group_id }}")
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if(result){
 
@@ -557,9 +557,9 @@
                         fetch("{{ url('/') }}/api/get_data_user" + '/' + memberId)
                             .then(response => response.json())
                             .then(users => {
-                                console.log(users[0]);
-                                console.log(memberId +" >> "+ users[0].time_request_join);
-                                
+                                // console.log(users[0]);
+                                // console.log(memberId +" >> "+ users[0].time_request_join);
+
                                 let timeRequestJoin = users[0].time_request_join;
 
                                 // สร้าง Date object จากเวลาที่กำหนด
@@ -736,7 +736,7 @@
                             for (let i = 0; i < list_request_join.length; i++) {
                                 let memberId = list_request_join[i];
 
-                                console.log(memberId);
+                                // console.log(memberId);
 
                                 fetch("{{ url('/') }}/api/get_time_request_join" + '/' + memberId)
                                     .then(response => response.text())
