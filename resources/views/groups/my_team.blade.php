@@ -742,6 +742,7 @@
                                     .then(response => response.text())
                                     .then(time_request_join => {
                                         console.log(memberId +" >> "+ time_request_join);
+                                        console.log(typeof time_request_join);
 
                                         let timeRequestJoin = time_request_join;
 
