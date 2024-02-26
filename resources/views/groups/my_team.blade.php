@@ -545,7 +545,7 @@
         fetch("{{ url('/') }}/api/check_request_join" + '/' + "{{ $group_id }}")
             .then(response => response.text())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 if(result){
 
@@ -558,7 +558,7 @@
                             .then(response => response.json())
                             .then(users => {
                                 console.log(users[0]);
-                                // console.log(memberId +" >> "+ users[0].time_request_join);
+                                console.log(memberId +" >> "+ users[0].time_request_join);
 
                                 let timeRequestJoin = users[0].time_request_join;
 
