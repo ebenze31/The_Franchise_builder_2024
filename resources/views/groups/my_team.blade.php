@@ -559,7 +559,7 @@
                         fetch("{{ url('/') }}/api/get_data_user" + '/' + memberId)
                             .then(response => response.json())
                             .then(users => {
-                                console.log(users[0]);
+                                console.log(users);
                                 console.log(memberId +" >> "+ users[0].time_request_join);
 
                                 let timeRequestJoin = users[0].time_request_join;
