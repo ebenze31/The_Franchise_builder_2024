@@ -560,7 +560,13 @@
                                 console.log(users[0]);
                                 console.log(memberId +" >> "+ users[0].time_request_join);
 
-                                let timeRequestJoin = users[0].time_request_join;
+                                let timeRequestJoin ;
+                                if(users[0].time_request_join){
+                                    timeRequestJoin = users[0].time_request_join;
+                                }
+                                else{
+                                    timeRequestJoin = result;
+                                }
 
                                 // สร้าง Date object จากเวลาที่กำหนด
                                 let specifiedTime = new Date(timeRequestJoin);
