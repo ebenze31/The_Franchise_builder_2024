@@ -554,9 +554,7 @@
                     for (let i = 0; i < list_request_join.length; i++) {
                         let memberId = list_request_join[i];
 
-                        console.log(memberId);
-
-                        fetch("{{ url('/') }}/api/get_data_user" + '/' + memberId)
+                        fetch("{{ url('/') }}/api/get_data_user_time_request_join" + '/' + memberId)
                             .then(response => response.json())
                             .then(users => {
                                 console.log(users);

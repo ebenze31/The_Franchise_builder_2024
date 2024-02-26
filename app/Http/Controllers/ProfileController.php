@@ -357,6 +357,13 @@ class ProfileController extends Controller
 
     }
 
+    function get_data_user_time_request_join($user_id){
+
+        $data_user = User::where('id', $user_id)->first();
+
+        return $data_user ;
+    }
+
     function get_data_user($user_id){
 
         // $data_user = User::where('id', $user_id)->first();
