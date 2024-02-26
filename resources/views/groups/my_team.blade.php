@@ -557,7 +557,7 @@
                         fetch("{{ url('/') }}/api/get_data_user" + '/' + memberId)
                             .then(response => response.json())
                             .then(users => {
-                                // console.log(users[0]);
+                                console.log(users[0]);
                                 // console.log(memberId +" >> "+ users[0].time_request_join);
 
                                 let timeRequestJoin = users[0].time_request_join;
@@ -741,8 +741,7 @@
                                 fetch("{{ url('/') }}/api/get_time_request_join" + '/' + memberId)
                                     .then(response => response.text())
                                     .then(time_request_join => {
-                                        console.log(memberId +" >> "+ time_request_join);
-                                        console.log(typeof time_request_join);
+                                        // console.log(memberId +" >> "+ time_request_join);
 
                                         let timeRequestJoin = time_request_join;
 
