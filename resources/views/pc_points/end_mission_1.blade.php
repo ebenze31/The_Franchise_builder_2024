@@ -924,7 +924,7 @@
                                     </div>
                                 `;
                             }
-                            else if("{{ Auth::user()->group_status }}" == "กำลังขอเข้าร่วมบ้าน" || "{{ Auth::user()->group_status }}" == "Host Accept" || "{{ Auth::user()->group_status }}" == "Host Reject" || "{{ Auth::user()->group_status }}" == "Team Ready"){
+                            else if("{{ Auth::user()->group_status }}" == "กำลังขอเข้าร่วมบ้าน" || "{{ Auth::user()->group_status }}" == "Host Accept" || "{{ Auth::user()->group_status }}" == "Host Reject" || "{{ Auth::user()->group_status }}" == "Team Ready" || "{{ Auth::user()->group_status }}" == "Time out"){
 
                                 html_me = `
                                     <div class="my-team">
