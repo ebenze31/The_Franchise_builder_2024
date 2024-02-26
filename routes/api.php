@@ -39,7 +39,6 @@ Route::get('/keep_name_Activity/{name_Activity}/{user_id}', 'ProfileController@k
 Route::get('/cf_shirt_size/{account}/{Title_value}', 'ProfileController@cf_shirt_size');
 Route::get('/get_time_request_join/{user_id}', 'ProfileController@get_time_request_join');
 Route::get('/get_data_user/{user_id}', 'ProfileController@get_data_user');
-Route::get('/get_data_user_time_request_join/{user_id}', 'ProfileController@get_data_user_time_request_join');
 Route::get('/get_data_user_for_view_group/{user_id}', 'ProfileController@get_data_user_for_view_group');
 Route::get('/get_data_me/{user_id}', 'ProfileController@get_data_me');
 Route::get('/get_data_badges/{user_id}', 'ProfileController@get_data_badges');
