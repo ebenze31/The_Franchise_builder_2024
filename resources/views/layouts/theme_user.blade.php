@@ -578,7 +578,7 @@
         // change_menu_bar('rank');
 
         // หลัง 26/02 เปิดอันนี้ด้วย
-        // check_alert_news();
+        check_alert_news();
     });
 
   function change_menu_bar(menu){
