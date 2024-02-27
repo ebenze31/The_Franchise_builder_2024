@@ -413,7 +413,8 @@ line-height: normal;
         box-shadow: none !important;
     }
 </style>
-<button id="btn_contact_staff" class="btn btn-service" data-bs-toggle="modal" data-bs-target="#modal_contact_staff" onclick="return create_logs('Contact staff');">               
+
+<button id="btn_contact_staff" class="btn btn-service" data-bs-toggle="modal" data-bs-target="#modal_contact_staff">               
     <img src="{{ url('/img/icon/customer-service.png') }}"  class="mt-2 mb-2 img-service">
     <p class="text-contact">Contact staff</p>
 </button>
@@ -439,7 +440,7 @@ line-height: normal;
                     </div>
                 </div>
                 <div class=" d-flex justify-content-center">
-                    <button id="btn_Send" type="button" class="btn btn-disabled padding-btn" onclick="submit_qa();" disabled>
+                    <button id="btn_Send" type="button" class="btn btn-disabled padding-btn" onclick="return create_logs('Contact staff');submit_qa();" disabled>
                         Send
                     </button>
 
