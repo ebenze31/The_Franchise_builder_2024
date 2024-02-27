@@ -140,12 +140,13 @@ height: 87px;
     }
 
     .btn-sort-data{
-        /* padding: 6px 20px ; */
+        padding: 10px 0px ;
         width: 120px;
         background-color: rgb(0, 155, 176 , .61);
         border: 1px solid #00E0FF;
         color: #fff;
         font-weight: bold;
+        font-size: 18px;
     }
 
     .btn-sort-data:hover{
@@ -227,7 +228,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 <div class="w-100 d-flex justify-content-center mt-4 my-3">
     <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-sort-data active">Mission 2</button>
-        <button type="button" class="btn btn-sort-data not-open" style="width: 150px;">coming soon</button>
+        <button type="button" class="btn btn-sort-data not-open" style="width: 150px;font-size: 18px;">coming soon</button>
     </div>
 </div>
 

@@ -67,7 +67,7 @@
         border-radius: 0px; 
         -moz-border-radius:0px;
         -khtml-border-radius:0px;
-        /* padding: 10px; */
+        padding: 10px 15px;
         color: #fff;
         z-index: -5;
         overflow: auto;
@@ -335,12 +335,13 @@
 
     }
     .btn-sort-data{
-        /* padding: 6px 20px ; */
+        padding: 10px 0px ;
         width: 120px;
         background-color: rgb(0, 155, 176 , .61);
         border: 1px solid #00E0FF;
         color: #fff;
         font-weight: bold;
+        font-size: 18px;
     }
 
     .btn-sort-data:hover{
@@ -733,7 +734,7 @@ td.my-rank:last-child {
         </div> -->
     </div>
 
-    <div class="contentSection p-2">
+    <div class="contentSection">
 
         <!-- ของตัวเอง -->
         @if(Auth::user()->role == "Player")
