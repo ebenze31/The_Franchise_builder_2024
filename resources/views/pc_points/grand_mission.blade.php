@@ -400,7 +400,7 @@ z-index: 9999999;
 
     .ranker-1{
         position: absolute;
-        top: -20%; left: 20%;
+        top: -15%; left: 20%;
         transform: translate(-50%, -50%);
         text-align: center;
         
@@ -415,7 +415,7 @@ z-index: 9999999;
 
     .ranker-3{
         position: absolute;
-        top: 65%; left: 78%;
+        top: 55%; left: 78%;
         transform: translate(-50%, -50%);
         text-align: center;
     }
@@ -430,7 +430,7 @@ z-index: 9999999;
 
     .ranker-1{
         position: absolute;
-        top: -20%; 
+        top: -10%; 
         left: 23%;
         transform: translate(-50%, -50%);
         text-align: center;
@@ -462,7 +462,7 @@ z-index: 9999999;
 
     .ranker-1{
         position: absolute;
-        top: -20%; 
+        top: -10%; 
         left: 23%;
         transform: translate(-50%, -50%);
         text-align: center;
@@ -630,25 +630,25 @@ td.my-rank:last-child {
             <div class="ranker-1">
                 <img id="img_rank_1" src="{{ url('/img/icon/Frame 36594.png') }}" class="sub-rank-img" alt="รูปภาพปก" style="width: 83px;height: 83px;border: #FCBF29 2px solid;">
                 <div class="point-ranker">
-                    <span id="score_rank_1"></span>
+                    <span id="score_rank_1" style="font-size: 12px;"></span>
                     <img src="{{ url('/img/icon/rank-1.png') }}" alt="รูปภาพปก" style="width: 27px;position: absolute; right: -18px;top:-8px">
                 </div>
 
             </div>
 
             <div class="ranker-2">
-                <img id="img_rank_2" src="{{ url('/img/icon/Frame 36594.png') }}" class="sub-rank-img" alt="รูปภาพปก" style="width: 66px;height: 66px;border: #FCBF29 2px solid;">
+                <img id="img_rank_2" src="{{ url('/img/icon/Frame 36594.png') }}" class="sub-rank-img" alt="รูปภาพปก" style="width: 78px;height: 78px;border: #FCBF29 2px solid;">
                 <div class="point-ranker">
-                    <span id="score_rank_2"></span>
+                    <span id="score_rank_2" style="font-size: 12px;"></span>
                     <img src="{{ url('/img/icon/rank-2.png') }}" alt="รูปภาพปก" style="width: 27px;position: absolute; right: -18px;top:-8px">
                 </div>
             </div>
 
 
             <div class="ranker-3">
-                <img id="img_rank_3" src="{{ url('/img/icon/Frame 36594.png') }}" class="sub-rank-img" alt="รูปภาพปก" style="width: 53px;height: 53px;border: #FCBF29 2px solid;">
+                <img id="img_rank_3" src="{{ url('/img/icon/Frame 36594.png') }}" class="sub-rank-img" alt="รูปภาพปก" style="width: 73px;height: 73px;border: #FCBF29 2px solid;">
                 <div class="point-ranker">
-                    <span id="score_rank_3"></span>
+                    <span id="score_rank_3" style="font-size: 12px;"></span>
                     <img src="{{ url('/img/icon/rank-3.png') }}" alt="รูปภาพปก" style="width: 27px;position: absolute; right: -18px;top:-8px">
                 </div>
             </div>
