@@ -736,7 +736,9 @@ td.my-rank:last-child {
     <div class="contentSection p-2">
 
         <!-- ของตัวเอง -->
-        <p class="mb-2 mt-3" style="font-size: 17px;font-weight: bold;margin-left: 20px; color:#07285A">My  Team</p>
+        @if(Auth::user()->role != "Player" || Auth::user()->role != "QR")
+            <p class="mb-2 mt-3" style="font-size: 17px;font-weight: bold;margin-left: 20px; color:#07285A">My  Team</p>
+        @endif
         <div class="mb-4" id="content_ME">
             <!--  -->
         </div>
