@@ -336,7 +336,7 @@
     }
     .btn-sort-data{
         /* padding: 6px 20px ; */
-        width: 100px;
+        width: 120px;
         background-color: rgb(0, 155, 176 , .61);
         border: 1px solid #00E0FF;
         color: #fff;
@@ -511,7 +511,7 @@ z-index: 9999999;
 
     .ranker-1{
         position: absolute;
-        top: -20%; 
+        top: 0%; 
         left: 23%;
         transform: translate(-50%, -50%);
         text-align: center;
@@ -623,7 +623,7 @@ td.my-rank:last-child {
 
 <div class="d-flex justify-content-center" style="margin-top: 80px;">
 
-    <div class="container" style="position: relative;">
+    <div class="container p-0" style="position: relative;">
         <div class="image-container">
             <img src="{{ url('/img/icon/mountain.png') }}" style="width: 100%;" alt=""> 
             <div class="ranker-1">
@@ -736,11 +736,13 @@ td.my-rank:last-child {
     <div class="contentSection p-2">
 
         <!-- ของตัวเอง -->
+        <p style="font-size: 17px;font-weight: bold;margin-left: 20px; color:#07285A">My  Team</p>
         <div class="mb-4" id="content_ME">
             <!--  -->
         </div>
         <br>
         <!-- เรียงตามลำดับ -->
+        <p style="font-size: 17px;font-weight: bold;margin-left: 20px; color:#07285A">All  Team</p>
         <div id="content_ASC">
             <!--  -->
         </div>
@@ -1072,27 +1074,27 @@ td.my-rank:last-child {
 
                         // เส้นทั้งหมด
                         let line_2m = `<div class="d-flex align-items-center mt-2">
-                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">25NC</span>
-                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
-                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">25NC</span>
+                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">25NC</span>
+                            <span class="w-100 m-2" style="border-top: #db2d2e 2px dashed;"></span>
+                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">25NC</span>
                         </div>`;
 
                         let line_1_5m = `<div class="d-flex align-items-center mt-2">
-                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">20NC</span>
-                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
-                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">20NC</span>
+                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">20NC</span>
+                            <span class="w-100 m-2" style="border-top: #db2d2e 2px dashed;"></span>
+                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">20NC</span>
                         </div>`;
 
                         let line_1m = `<div class="d-flex align-items-center mt-2">
-                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">15NC</span>
-                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
-                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">15NC</span>
+                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">15NC</span>
+                            <span class="w-100 m-2" style="border-top: #db2d2e 2px dashed;"></span>
+                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">15NC</span>
                         </div>`;
 
                         let line_500k = `<div class="d-flex align-items-center mt-2">
-                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">10NC</span>
-                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
-                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">10NC</span>
+                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">10NC</span>
+                            <span class="w-100 m-2" style="border-top: #db2d2e 2px dashed;"></span>
+                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">10NC</span>
                         </div>`;
                         // จบ เส้นทั้งหมด
                         document.querySelector('#score_rank_1').innerHTML = "0 NC";

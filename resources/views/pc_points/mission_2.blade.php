@@ -252,12 +252,12 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             </div>
         </div>
 
-        <div class="d-flex align-items-top float-end pe-1">
+        <div class="d-flex align-items-top float-end pe-1 text-center">
             <div>
-                <p style="margin-top: 10px;color: #fff;font-size: 12px;font-style: normal;font-weight: 500;line-height: normal;float:right;width: 100%;">Period : 1 Mar - 31 May</p>
-                <p style="color: #FFF;font-size: 9px;font-style: normal;font-weight: 500;line-height: normal;text-align: end;">
-                        As of  : <span id="date_as_of"></span>
-                    </p>
+                
+            <span style="position: absolute;bottom: 15px; right: 15px;color: #FFF;font-size: 9px;font-style: normal;font-weight: 500;line-height: normal;">
+                Data As of <span id="date_as_of"></span>
+            </span>
                 <!-- <div>
                     <div class="float-end" style="margin-top:-1px">
                         <i class="fa-regular fa-user text-white me-2"></i>
@@ -301,7 +301,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                     <!-- <p id="textprogressBar">15</p> -->
                     <span class="img-rocket"></span>
                     <img src="{{ url('/img/icon/rocket.png') }}"  style="height:23px;position: relative;right: 0%;">
-                    <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;">0</span>
+                    <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;color: #FFD233;">0</span>
                 </div>
             </div>
         </div>
@@ -343,7 +343,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         <a href="#" class="px-4 py-2" style="font-size: 14px;background-color: #DDF3FF;color: #0A0E2C;border-radius: 50px !important;-webkit-border-radius: 50px;-moz-border-radius: 50px;">Back to my team</a>
     </div>
     
-    <img src="{{ url('/img/icon/ice-cliff3.png') }}" style="position: absolute;bottom: 0;left: 0;height: 312px;z-index: -1;">
+    <img src="{{ url('/img/icon/ice-cliff3.png') }}" style="position: absolute;top: 150px;left: 0;height: 312px;z-index: -1;">
 </div>
 
 

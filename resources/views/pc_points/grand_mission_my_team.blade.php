@@ -244,8 +244,8 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         <div class="d-flex align-items-top float-end pe-1 text-center">
             <div>
                 
-            <span style="position: absolute;bottom: 5px; right: 15px;color: #FFF;font-size: 9px;font-style: normal;font-weight: 500;line-height: normal;">
-                Data As of <br><span id="date_as_of"></span>
+            <span style="position: absolute;bottom: 15px; right: 15px;color: #FFF;font-size: 9px;font-style: normal;font-weight: 500;line-height: normal;">
+                Data As of <span id="date_as_of"></span>
             </span>
                 <!-- <div>
                     <div class="float-end" style="margin-top:-1px">
@@ -290,7 +290,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                     <!-- <p id="textprogressBar">15</p> -->
                     <span class="img-rocket"></span>
                     <img src="{{ url('/img/icon/rocket.png') }}"  style="height:23px;position: relative;right: 0%;">
-                    <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;">0</span>
+                    <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;color: #FFD233;">0</span>
                 </div>
             </div>
         </div>
