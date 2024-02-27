@@ -141,7 +141,7 @@ height: 87px;
 
     .btn-sort-data{
         /* padding: 6px 20px ; */
-        width: 100px;
+        width: 120px;
         background-color: rgb(0, 155, 176 , .61);
         border: 1px solid #00E0FF;
         color: #fff;
