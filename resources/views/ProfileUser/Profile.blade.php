@@ -622,40 +622,40 @@ line-height: normal;
     function submit_qa(){
 
         // console.log("submit_qa");
-        // let question = document.querySelector('#question');
-        // let phone = document.querySelector('#phone');
+        let question = document.querySelector('#question');
+        let phone = document.querySelector('#phone');
 
-        // document.querySelector('#btn_Send').disabled = true ;
-        // document.querySelector('#btn_Send').classList.remove('btn-submit');
-        // document.querySelector('#btn_Send').classList.add('btn-disabled');
+        document.querySelector('#btn_Send').disabled = true ;
+        document.querySelector('#btn_Send').classList.remove('btn-submit');
+        document.querySelector('#btn_Send').classList.add('btn-disabled');
 
-        // let data_arr = [] ;
+        let data_arr = [] ;
 
-        // data_arr = {
-        //     "user_id" : "{{ Auth::user()->id }}",
-        //     "phone" : phone.value,
-        //     "question" : question.value,
-        // };
+        data_arr = {
+            "user_id" : "{{ Auth::user()->id }}",
+            "phone" : phone.value,
+            "question" : question.value,
+        };
 
-        // fetch("{{ url('/') }}/api/send_Line_Notify", {
-        //     method: 'post',
-        //     body: JSON.stringify(data_arr),
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // }).then(function (response){
-        //     return response.text();
-        // }).then(function(data){
-        //     // console.log(data);
-        //     if(data){
-        //         document.querySelector('#close_modal_Send').click();
-        //         setTimeout(() => {
-        //             document.querySelector('#btn_Send_success').click();
-        //         }, 800);
-        //     }
-        // }).catch(function(error){
-        //     // console.error(error);
-        // });
+        fetch("{{ url('/') }}/api/send_Line_Notify", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            // console.log(data);
+            if(data){
+                document.querySelector('#close_modal_Send').click();
+                setTimeout(() => {
+                    document.querySelector('#btn_Send_success').click();
+                }, 800);
+            }
+        }).catch(function(error){
+            // console.error(error);
+        });
 
     }
 
