@@ -227,7 +227,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 <div class="w-100 d-flex justify-content-center mt-4 my-3">
     <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-sort-data active">Mission 2</button>
-        <button type="button" class="btn btn-sort-data not-open">coming soon</button>
+        <button type="button" class="btn btn-sort-data not-open" style="width: 150px;">coming soon</button>
     </div>
 </div>
 
