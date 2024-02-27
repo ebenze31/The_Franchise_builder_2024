@@ -370,7 +370,7 @@
 
 <div id="div_data_all"></div>
 
-<div class="d-flex justify-content-center mt-1">
+<div class="d-flex justify-content-center " style="margin-top: 35px;">
     <div class="container row ">
         <div class="col-4 text-center sub-rank">
             <p class="number-top-rank">No.2</p>
