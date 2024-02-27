@@ -1132,25 +1132,25 @@ td.my-rank:last-child {
                                 // draw_line = line_2m;
                                 class_of_score = 'color-2m';
                                 check_line_2m = 'yes';
-                                draw_line = draw_line_lux(i , '2M');
+                                draw_line = draw_line_lux(i , '25NC');
                             }
                             else if(new_code < 20 && check_line_1_5m == 'no'){
                                 // draw_line = line_1_5m;
                                 class_of_score = 'color-1-5m';
                                 check_line_1_5m = 'yes';
-                                draw_line = draw_line_lux(i , '1.5M');
+                                draw_line = draw_line_lux(i , '20NC');
                             }
                             else if(new_code < 15 && check_line_1m == 'no'){
                                 // draw_line = line_1m;
                                 class_of_score = 'color-1m';
                                 check_line_1m = 'yes';
-                                draw_line = draw_line_lux(i , '1M');
+                                draw_line = draw_line_lux(i , '15NC');
                             }
                             else if(new_code < 10 && check_line_500k == 'no'){
                                 // draw_line = line_500k;
                                 class_of_score = 'color-500k';
                                 check_line_500k = 'yes';
-                                draw_line = draw_line_lux(i , '500K');
+                                draw_line = draw_line_lux(i , '10NC');
                             }
 
                             content_ASC.insertAdjacentHTML('beforeend', draw_line);
