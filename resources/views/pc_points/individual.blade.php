@@ -358,7 +358,7 @@
 </style>
 
 <div class="w-100 d-flex justify-content-center my-3">
-    <div class="btn-group" role="group" aria-label="Basic example">
+    <div class="btn-group" role="group" aria-label="Basic example" style="scale: 0.8;">
         <a id="btn_sort_pc" href="{{ url('/individual') }}?Sort=pc" class="btn btn-sort-data active">
             PC
         </a>
