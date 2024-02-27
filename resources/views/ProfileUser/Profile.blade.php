@@ -235,12 +235,12 @@
             </div>
             <div class="d-flex justify-content-around mt-0">
                 <div class="text-center">
-                    <p class="text-white" style="color: #FFF;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">Ranking of Individual</p>
+                    <p class="text-white" style="color: #FFF;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">New code</p>
                     <h4 id="rank_of_me" class="text-rank"></h4>
                 </div>
                 <div class="text-center">
-                    <p class="text-white" style="color: #FFF;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">Ranking of team</p>
-                    <h4 id="rank_of_team" class="text-rank">as</h4>
+                    <p class="text-white" style="color: #FFF;font-size: 14px;font-style: normal;font-weight: 400;line-height: normal;">Grand mission</p>
+                    <h4 id="rank_of_team" class="text-rank"></h4>
                 </div>
             </div>
         </div>
@@ -674,8 +674,8 @@ line-height: normal;
                         let formattedNumber = formatLargeNumber(originalNumber);
 
                         document.querySelector('#pc_of_me').innerHTML = formattedNumber ;
-                        document.querySelector('#rank_of_me').innerHTML = result['data'][0].rank_of_week ;
-                        document.querySelector('#rank_of_team').innerHTML = result['rank_of_team'] ;
+                        document.querySelector('#rank_of_me').innerHTML = result['data'][0].new_code ;
+                        document.querySelector('#rank_of_team').innerHTML = result['data'][0].grandmission.toLocaleString() ;
 
                         document.querySelector('#div_pc_point').classList.remove('d-none');
                     }
