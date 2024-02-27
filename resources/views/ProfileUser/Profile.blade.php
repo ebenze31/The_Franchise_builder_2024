@@ -440,7 +440,7 @@ line-height: normal;
                     </div>
                 </div>
                 <div class=" d-flex justify-content-center">
-                    <button id="btn_Send" type="button" class="btn btn-disabled padding-btn" onclick="return create_logs('Contact staff');submit_qa();" disabled>
+                    <button id="btn_Send" type="button" class="btn btn-disabled padding-btn" onclick="return create_logs('010_Contact staff button');submit_qa();" disabled>
                         Send
                     </button>
 
