@@ -738,10 +738,10 @@ td.my-rank:last-child {
         <!-- ของตัวเอง -->
         @if(Auth::user()->role == "Player")
             <p class="mb-2 mt-3" style="font-size: 17px;font-weight: bold;margin-left: 20px; color:#07285A">My  Team</p>
+            <div class="mb-4" id="content_ME">
+                <!--  -->
+            </div>
         @endif
-        <div class="mb-4" id="content_ME">
-            <!--  -->
-        </div>
         <br>
         <!-- เรียงตามลำดับ -->
         <p style="font-size: 17px;font-weight: bold;margin-left: 20px; color:#07285A">All  Team</p>
