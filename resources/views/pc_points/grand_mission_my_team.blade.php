@@ -473,17 +473,17 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         // return percentage;
 
         if (value >= 0 && value <= 12) {
-            text_0.style.color = '#FFD233'
+            text_0.style.color = '#07285A'
             text_15.style.color = '#646D73'
             text_25.style.color = '#646D73'
         }else if(value >= 13 && value <= 24){
-            text_0.style.color = '#FFD233'
-            text_15.style.color = '#FFD233'
+            text_0.style.color = '#07285A'
+            text_15.style.color = '#07285A'
             text_25.style.color = '#646D73'
         }else{
-            text_0.style.color = '#FFD233'
-            text_15.style.color = '#FFD233'
-            text_25.style.color = '#FFD233'
+            text_0.style.color = '#07285A'
+            text_15.style.color = '#07285A'
+            text_25.style.color = '#07285A'
         }
     } else {
         // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
