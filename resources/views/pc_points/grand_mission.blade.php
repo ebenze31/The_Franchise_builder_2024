@@ -736,7 +736,7 @@ td.my-rank:last-child {
     <div class="contentSection p-2">
 
         <!-- ของตัวเอง -->
-        <p style="font-size: 17px;font-weight: bold;margin-left: 20px; color:#07285A">My  Team</p>
+        <p class="mb-2 mt-3" style="font-size: 17px;font-weight: bold;margin-left: 20px; color:#07285A">My  Team</p>
         <div class="mb-4" id="content_ME">
             <!--  -->
         </div>
@@ -869,24 +869,28 @@ td.my-rank:last-child {
                                 class_of_score = 'color-2m-up' ;
                             }
                             else if(grandmission < 2000000 && check_line_2m == 'no'){
-                                draw_line = line_2m;
+                                // draw_line = line_2m;
                                 class_of_score = 'color-2m';
                                 check_line_2m = 'yes';
+                                draw_line = draw_line_lux(i , '2M');
                             }
                             else if(grandmission < 1500000 && check_line_1_5m == 'no'){
-                                draw_line = line_1_5m;
+                                // draw_line = line_1_5m;
                                 class_of_score = 'color-1-5m';
                                 check_line_1_5m = 'yes';
+                                draw_line = draw_line_lux(i , '1.5M');
                             }
                             else if(grandmission < 1000000 && check_line_1m == 'no'){
-                                draw_line = line_1m;
+                                // draw_line = line_1m;
                                 class_of_score = 'color-1m';
                                 check_line_1m = 'yes';
+                                draw_line = draw_line_lux(i , '1M');
                             }
                             else if(grandmission < 500000 && check_line_500k == 'no'){
-                                draw_line = line_500k;
+                                // draw_line = line_500k;
                                 class_of_score = 'color-500k';
                                 check_line_500k = 'yes';
+                                draw_line = draw_line_lux(i , '500K');
                             }
 
                             content_ASC.insertAdjacentHTML('beforeend', draw_line);
@@ -1074,27 +1078,27 @@ td.my-rank:last-child {
 
                         // เส้นทั้งหมด
                         let line_2m = `<div class="d-flex align-items-center mt-2">
-                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">25NC</span>
-                            <span class="w-100 m-2" style="border-top: #db2d2e 2px dashed;"></span>
-                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">25NC</span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">25NC</span>
+                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">25NC</span>
                         </div>`;
 
                         let line_1_5m = `<div class="d-flex align-items-center mt-2">
-                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">20NC</span>
-                            <span class="w-100 m-2" style="border-top: #db2d2e 2px dashed;"></span>
-                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">20NC</span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">20NC</span>
+                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">20NC</span>
                         </div>`;
 
                         let line_1m = `<div class="d-flex align-items-center mt-2">
-                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">15NC</span>
-                            <span class="w-100 m-2" style="border-top: #db2d2e 2px dashed;"></span>
-                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">15NC</span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">15NC</span>
+                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">15NC</span>
                         </div>`;
 
                         let line_500k = `<div class="d-flex align-items-center mt-2">
-                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">10NC</span>
-                            <span class="w-100 m-2" style="border-top: #db2d2e 2px dashed;"></span>
-                            <span style="color: #db2d2e;font-size: 14px;font-weight:bolder;">10NC</span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">10NC</span>
+                            <span class="w-100 m-2" style="border-top: #00E0FF 2px dashed;"></span>
+                            <span style="color: #00E0FF;font-size: 14px;font-weight:bolder;">10NC</span>
                         </div>`;
                         // จบ เส้นทั้งหมด
                         document.querySelector('#score_rank_1').innerHTML = "0 NC";
@@ -1123,24 +1127,28 @@ td.my-rank:last-child {
                                 class_of_score = 'color-2m-up' ;
                             }
                             else if(new_code < 25 && check_line_2m == 'no'){
-                                draw_line = line_2m;
+                                // draw_line = line_2m;
                                 class_of_score = 'color-2m';
                                 check_line_2m = 'yes';
+                                draw_line = draw_line_lux(i , '2M');
                             }
                             else if(new_code < 20 && check_line_1_5m == 'no'){
-                                draw_line = line_1_5m;
+                                // draw_line = line_1_5m;
                                 class_of_score = 'color-1-5m';
                                 check_line_1_5m = 'yes';
+                                draw_line = draw_line_lux(i , '1.5M');
                             }
                             else if(new_code < 15 && check_line_1m == 'no'){
-                                draw_line = line_1m;
+                                // draw_line = line_1m;
                                 class_of_score = 'color-1m';
                                 check_line_1m = 'yes';
+                                draw_line = draw_line_lux(i , '1M');
                             }
                             else if(new_code < 10 && check_line_500k == 'no'){
-                                draw_line = line_500k;
+                                // draw_line = line_500k;
                                 class_of_score = 'color-500k';
                                 check_line_500k = 'yes';
+                                draw_line = draw_line_lux(i , '500K');
                             }
 
                             content_ASC.insertAdjacentHTML('beforeend', draw_line);
@@ -1330,6 +1338,30 @@ td.my-rank:last-child {
 
         });
 
+    }
+
+    function draw_line_lux(amount , line_no){
+        let line ;
+        if( amount <= 32){
+            line = `
+                <div class="d-flex align-items-center mt-2">
+                    <span style="color: #021B56;font-size: 14px;font-weight:bolder;">`+line_no+`</span>
+                    <span class="w-100 m-2" style="border-top: #021B56 2px dashed;"></span>
+                    <span style="color: #021B56;font-size: 14px;font-weight:bolder;">`+line_no+`</span>
+                </div>
+            `;
+        }
+        else{
+            line = `
+                <div class="d-flex align-items-center mt-2">
+                    <span style="color: #ffffff;font-size: 14px;font-weight:bolder;">`+line_no+`</span>
+                    <span class="w-100 m-2" style="border-top: #ffffff 2px dashed;"></span>
+                    <span style="color: #ffffff;font-size: 14px;font-weight:bolder;">`+line_no+`</span>
+                </div>
+            `;
+        }
+
+        return line;
     }
 
     // เรียกอีกครั้ง สมาชิกในทีมของฉัน
