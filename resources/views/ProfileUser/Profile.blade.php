@@ -223,7 +223,7 @@
         <p class="text-center ">
             <p class="text-center text-white" style="font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;">ID : {{ Auth::user()->account }}</p>
         </p>
-        <a class="btn btn-logout" onclick="create_logs('Log out')" style="position: absolute;top:10px;right: 20px;">
+        <a class="btn btn-logout" onclick="create_logs('000_Log out page')" style="position: absolute;top:10px;right: 20px;">
         <img class="me-2" src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
         </a>
         <a class="d-none" href="{{ route('logout') }}" id="btn-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;"></a>
@@ -549,7 +549,7 @@ line-height: normal;
 
 
                         let html_badges = `
-                            <div class="col-4 badges-item `+class_show_badges+`" activity="`+result['data_badges'][i].name_Activities+`" onclick="open_badges(this);return create_logs('badges `+result['data_badges'][i].name_Activities+`')">
+                            <div class="col-4 badges-item `+class_show_badges+`" activity="`+result['data_badges'][i].name_Activities+`" onclick="open_badges(this);return create_logs('badges_`+result['data_badges'][i].name_Activities+`')">
                                 <img src="{{ url('storage')}}/`+result['data_badges'][i].icon+`"width="100%">
                                 <div class="d-none detail">
                                     `+result['data_badges'][i].detail+`

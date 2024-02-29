@@ -66,7 +66,7 @@ class LoginController extends Controller
             $data_user = Auth::user();
 
             Log::create([
-                "log_content"=> 'Log in',
+                "log_content"=> ' 001_Log in page',
                 "user_id"=> $data_user->id,
                 "role"=> $data_user->role,
             ]);

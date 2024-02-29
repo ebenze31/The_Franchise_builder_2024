@@ -594,10 +594,10 @@ td.my-rank:last-child {
 <div id="div_data_all"></div>
 <div class="w-100 d-flex justify-content-center my-3">
     <div class="btn-group" role="group" aria-label="Basic example" style="scale: .8;">
-        <a id="btn_sort_pc" href="{{ url('/grand_mission') }}?Sort=pc" class="btn btn-sort-data active">
+        <a id="btn_sort_pc" href="{{ url('/grand_mission') }}?Sort=pc" class="btn btn-sort-data active" onclick="return create_logs('041_Grand Mission - PC (toggle)');">
             PC
         </a>
-        <a id="btn_sort_nc" href="{{ url('/grand_mission') }}?Sort=nc" class="btn btn-sort-data">
+        <a id="btn_sort_nc" href="{{ url('/grand_mission') }}?Sort=nc" class="btn btn-sort-data" onclick="return create_logs('042_Grand Mission - New Code (toggle)');">
             New code
         </a>
     </div>
@@ -984,7 +984,7 @@ td.my-rank:last-child {
                                                         </tbody>
                                                     </table>
 
-                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );">ดูรายละเอียดเพิ่มเติม</a>
+                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );" onclick="return create_logs('080_Granmission (my team)');">ดูรายละเอียดเพิ่มเติม</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1049,7 +1049,7 @@ td.my-rank:last-child {
                                                         </tbody>
                                                     </table>
 
-                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );">ดูรายละเอียดเพิ่มเติม</a>
+                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );" onclick="return create_logs('080_Granmission (my team)');">ดูรายละเอียดเพิ่มเติม</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1242,7 +1242,7 @@ td.my-rank:last-child {
                                                         </tbody>
                                                     </table>
 
-                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );">ดูรายละเอียดเพิ่มเติม</a>
+                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );" onclick="return create_logs('080_Granmission (my team)');">ดูรายละเอียดเพิ่มเติม</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1307,7 +1307,7 @@ td.my-rank:last-child {
                                                         </tbody>
                                                     </table>
 
-                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );">ดูรายละเอียดเพิ่มเติม</a>
+                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );" onclick="return create_logs('080_Granmission (my team)');">ดูรายละเอียดเพิ่มเติม</a>
                                                 </div>
                                             </div>
                                         </div>

@@ -265,10 +265,10 @@ line-height: normal;
     <div class="d-flex justify-content-center w-100">
       <ul class="nav nav-pills mb-3 d-flex justify-content-center w-100" id=" pills-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active btn-qr-code" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" onclick="stopScanQRCode();return create_logs('My QR code');">My QR code</a>
+          <a class="nav-link active btn-qr-code" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" onclick="stopScanQRCode();return create_logs('061_My QR code');">My QR code</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn-scan-code" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" onclick="start_scanQRCode();return create_logs('Scan QR code');">scan QR code</a>
+          <a class="nav-link btn-scan-code" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" onclick="start_scanQRCode();return create_logs('062_Scan QR');">scan QR code</a>
         </li>
       </ul>
     </div>
