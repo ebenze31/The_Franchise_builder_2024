@@ -39,6 +39,8 @@ Route::middleware(['auth',])->group(function () {
     Route::post('/edit_profile/{id}', 'ProfileController@edit_profile')->name('edit_profile');
     Route::get('/for_scan', 'HomeController@for_scan');
     Route::get('/for_Activities', 'HomeController@for_Activities');
+    Route::get('news/index', 'NewsController@index');
+    Route::get('news/{id}', 'NewsController@show');
     
     Route::get('/ranking_by_individual', function () {
         // return view('pc_points/ranking_by_individual');
@@ -103,8 +105,8 @@ Route::middleware(['auth', 'role:Staff,QR'])->group(function () {
 // Player
 Route::middleware(['auth', 'role:Player,Super-admin,Admin'])->group(function () {
     // Route::resource('news', 'NewsController')->except(['edit','view']);
-    Route::get('news/index', 'NewsController@index');
-    Route::get('news/{id}', 'NewsController@show');
+    // Route::get('news/index', 'NewsController@index');
+    // Route::get('news/{id}', 'NewsController@show');
 
     Route::resource('pc_points', 'Pc_pointsController');
     // Route::resource('groups', 'GroupsController');
