@@ -43,18 +43,23 @@
 <div class="row">
 
 <div class="col-12 col-md-6">
-  <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}} col-12">
+  <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}} col-12 mb-3 mt-3">
       <label for="title" class="control-label">{{ 'Title' }}</label>
       <input class="form-control" name="title" type="text" id="title" value="{{ isset($news->title) ? $news->title : ''}}" >
       {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
   </div>
-  <div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}} col-12">
+  <div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}} col-12 mb-3">
       <label for="detail" class="control-label">{{ 'Detail' }}</label>
       <input class="form-control" name="detail" type="text" id="detail" value="{{ isset($news->detail) ? $news->detail : ''}}" >
       {!! $errors->first('detail', '<p class="help-block">:message</p>') !!}
   </div>
-  <div class="form-group {{ $errors->has('link') ? 'has-error' : ''}} col-12">
-    <label for="link" class="control-label">{{ 'Link' }}</label>
+  <div class="form-group {{ $errors->has('link_content') ? 'has-error' : ''}} col-12 mb-3">
+      <label for="link_content" class="control-label">{{ 'Link content' }}</label>
+      <input class="form-control" name="link_content" type="text" id="link_content" value="{{ isset($news->link_content) ? $news->link_content : ''}}" >
+      {!! $errors->first('link_content', '<p class="help-block">:message</p>') !!}
+  </div>
+  <div class="form-group {{ $errors->has('link') ? 'has-error' : ''}} col-12 mb-3">
+    <label for="link" class="control-label">{{ 'Link video' }}</label>
     <input class="form-control"  onchange="extractYouTubeID(this.value)" value=""> 
     {!! $errors->first('link', '<p class="help-block">:message</p>') !!}
   </div>
@@ -69,7 +74,7 @@
   </div>
 </div>
 <div class="col-md-6 col-12">
-  <div class="form-group {{ $errors->has('photo_cover') ? 'has-error' : ''}} col-12">
+  <div class="form-group {{ $errors->has('photo_cover') ? 'has-error' : ''}} col-12 mt-3">
       <label for="photo_cover" class="control-label">{{ 'Photo Cover' }}</label>
       <input class="form-control d-none" name="photo_cover" type="file" id="photo_cover" value="{{ isset($news->photo_cover) ? $news->photo_cover : ''}}" accept="image/*" onchange="previewImage(this)">
       <!-- <img id="preview_photo_cover" src="{{ url('/') }}" alt="ภาพพรีวิว" class="mt-5 d-none" style="max-width:100%; max-height:250px;"> -->
@@ -98,7 +103,7 @@
       </div>  
       {!! $errors->first('photo_cover', '<p class="help-block">:message</p>') !!}
   </div>
-  <div class="form-group {{ $errors->has('photo_content') ? 'has-error' : ''}} col-12">
+  <div class="form-group {{ $errors->has('photo_content') ? 'has-error' : ''}} col-12 mt-3">
       <label for="photo_content" class="control-label">{{ 'Photo Content' }}</label>
       <input class="form-control  d-none" name="photo_content" type="file" id="photo_content" value="{{ isset($news->photo_content) ? $news->photo_content : ''}}"  accept="image/*" onchange="previewImage(this)">
       <!-- <label for="photo_content" class="control-label"><img src="{{ url('img/icon/upload.png') }}" alt="" style="width: 100%;"></label> -->

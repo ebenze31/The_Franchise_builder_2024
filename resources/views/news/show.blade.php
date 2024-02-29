@@ -97,6 +97,14 @@
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $news->link }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>
                         @endif
+
+                        @if(!empty($news->link_content))
+                        <div class="float-end mt-4">
+                            <a href="{{ $news->link_content }}" style="width: 100px;background-color:#002449 !important;" class="btn btn-sm btn-primary p-1" target="bank">
+                                ไปยัง..
+                            </a>
+                        </div>
+                        @endif
                         <!-- <a href="{{ url('/news') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <a href="{{ url('/news/' . $news->id . '/edit') }}" title="Edit News"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
