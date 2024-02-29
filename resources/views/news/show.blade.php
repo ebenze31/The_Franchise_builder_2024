@@ -82,10 +82,9 @@
 
                         @if(!empty($news->link_content))
                         <div class="px-4">
-                            <p style="font-size: 16px;font-weight: bold;text-indent: 15px;color: #07285A;-webkit-letter-spacing: -1px !important; letter-spacing:-1px !important; -moz-letter-spacing:-1px !important;-khtml-letter-spacing:-1px !important;" class="mt-2">
+                            <p style="font-size: 16px;font-weight: bold;color: #07285A;-webkit-letter-spacing: -1px !important; letter-spacing:-1px !important; -moz-letter-spacing:-1px !important;-khtml-letter-spacing:-1px !important;" class="mt-2 mb-1">
                                 {{$news->title_link_content}}
                             </p>
-                            <br>
                             <a href="{{ $news->link_content }}" target="bank">
                                 <b>{{ $news->link_content }}</b>
                             </a>
