@@ -53,6 +53,11 @@
       <input class="form-control" name="detail" type="text" id="detail" value="{{ isset($news->detail) ? $news->detail : ''}}" >
       {!! $errors->first('detail', '<p class="help-block">:message</p>') !!}
   </div>
+  <div class="form-group {{ $errors->has('title_link_content') ? 'has-error' : ''}} col-12 mb-3">
+      <label for="title_link_content" class="control-label">{{ 'Title link content' }}</label>
+      <input class="form-control" name="title_link_content" type="text" id="title_link_content" value="{{ isset($news->title_link_content) ? $news->title_link_content : ''}}" >
+      {!! $errors->first('title_link_content', '<p class="help-block">:message</p>') !!}
+  </div>
   <div class="form-group {{ $errors->has('link_content') ? 'has-error' : ''}} col-12 mb-3">
       <label for="link_content" class="control-label">{{ 'Link content' }}</label>
       <input class="form-control" name="link_content" type="text" id="link_content" value="{{ isset($news->link_content) ? $news->link_content : ''}}" >

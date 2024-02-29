@@ -79,6 +79,21 @@
                         </p>
                         <br>
                         @endif
+
+                        @if(!empty($news->link_content))
+                        <div class="px-4">
+                            <p style="font-size: 16px;font-weight: bold;text-indent: 15px;color: #07285A;-webkit-letter-spacing: -1px !important; letter-spacing:-1px !important; -moz-letter-spacing:-1px !important;-khtml-letter-spacing:-1px !important;" class="mt-2">
+                                {{$news->title_link_content}}
+                            </p>
+                            <br>
+                            <a href="{{ $news->link_content }}" target="bank">
+                                <b>{{ $news->link_content }}</b>
+                            </a>
+                            <br>
+                            <br>
+                        </div>
+                        @endif
+
                         @if(!empty($news->detail))
                         <p class="news-detail">{!! $news->detail !!}</p>
                         @endif
@@ -98,13 +113,6 @@
                         </div>
                         @endif
 
-                        @if(!empty($news->link_content))
-                        <div class="float-end mt-4">
-                            <a href="{{ $news->link_content }}" style="width: 100px;background-color:#002449 !important;" class="btn btn-sm btn-primary p-1" target="bank">
-                                ไปยัง..
-                            </a>
-                        </div>
-                        @endif
                         <!-- <a href="{{ url('/news') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <a href="{{ url('/news/' . $news->id . '/edit') }}" title="Edit News"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
