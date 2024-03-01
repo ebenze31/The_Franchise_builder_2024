@@ -668,6 +668,7 @@
                                     let html_detail = `` ;
                                     if(data_news.detail){
                                         html_detail = data_news.detail ;
+                                        html_detail = html_detail.replaceAll("<br>","");
                                     }
 
                                     let html = `
