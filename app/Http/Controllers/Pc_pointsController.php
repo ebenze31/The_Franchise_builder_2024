@@ -192,9 +192,13 @@ class Pc_pointsController extends Controller
                     'pc_grand_last_gweek' => $data_arr['pc_grand_last_gweek'],
                     'nc_grand_of_gweek' => $data_arr['nc_grand_of_gweek'],
                     'nc_grand_last_gweek' => $data_arr['nc_grand_last_gweek'],
+                    'aa_grand_of_week' => $data_arr['aa_grand_of_week'],
+                    'aa_grand_last_week' => $data_arr['aa_grand_last_week'],
                     'mission1' => $data_arr['mission1'],
                     'new_code' => $data_arr['new_code'],
                     'grandmission' => $data_arr['grandmission'],
+                    'active_dream' => $data_arr['active_dream'],
+                    'csta' => $data_arr['csta'],
                 );
 
                 $group_pc[$data_arr['group_id']] = $newArray;
@@ -204,6 +208,7 @@ class Pc_pointsController extends Controller
                 $group_pc[$data_arr['group_id']]['mission1'] = $group_pc[$data_arr['group_id']]['mission1'] + $data_arr['mission1'] ;
                 $group_pc[$data_arr['group_id']]['new_code'] = $group_pc[$data_arr['group_id']]['new_code'] + $data_arr['new_code'] ;
                 $group_pc[$data_arr['group_id']]['grandmission'] = $group_pc[$data_arr['group_id']]['grandmission'] + $data_arr['grandmission'] ;
+                $group_pc[$data_arr['group_id']]['active_dream'] = $group_pc[$data_arr['group_id']]['active_dream'] + $data_arr['active_dream'] ;
 
             }
 
@@ -243,9 +248,13 @@ class Pc_pointsController extends Controller
                     'pc_grand_last_gweek' => $group_pc[$i]['pc_grand_last_gweek'],
                     'nc_grand_of_gweek' => $group_pc[$i]['nc_grand_of_gweek'],
                     'nc_grand_last_gweek' => $group_pc[$i]['nc_grand_last_gweek'],
+                    'aa_grand_of_week' => $group_pc[$i]['aa_grand_of_week'],
+                    'aa_grand_last_week' => $group_pc[$i]['aa_grand_last_week'],
                     'mission1' => $group_pc[$i]['mission1'],
                     'new_code' => $group_pc[$i]['new_code'],
                     'grandmission' => $group_pc[$i]['grandmission'],
+                    'active_dream' => $group_pc[$i]['active_dream'],
+                    'csta' => $group_pc[$i]['csta'],
                 ];
 
                 $rank_record_update = json_encode($new_rank_record);
@@ -264,9 +273,13 @@ class Pc_pointsController extends Controller
                     'pc_grand_last_gweek' => $group_pc[$i]['pc_grand_last_gweek'],
                     'nc_grand_of_gweek' => $group_pc[$i]['nc_grand_of_gweek'],
                     'nc_grand_last_gweek' => $group_pc[$i]['nc_grand_last_gweek'],
+                    'aa_grand_of_week' => $group_pc[$i]['aa_grand_of_week'],
+                    'aa_grand_last_week' => $group_pc[$i]['aa_grand_last_week'],
                     'mission1' => $group_pc[$i]['mission1'],
                     'new_code' => $group_pc[$i]['new_code'],
                     'grandmission' => $group_pc[$i]['grandmission'],
+                    'active_dream' => $group_pc[$i]['active_dream'],
+                    'csta' => $group_pc[$i]['csta'],
                 ];
 
                 // แปลง array ใหม่เป็น JSON
@@ -294,6 +307,8 @@ class Pc_pointsController extends Controller
                     $update_pc_grand_last_gweek = $group_pc[$i]['pc_grand_last_gweek'];
                     $update_nc_grand_of_gweek = $group_pc[$i]['nc_grand_of_gweek'];
                     $update_nc_grand_last_gweek = $group_pc[$i]['nc_grand_last_gweek'];
+                    $update_aa_grand_of_week = $group_pc[$i]['aa_grand_of_week'];
+                    $update_aa_grand_last_week = $group_pc[$i]['aa_grand_last_week'];
                 }else{
                     $update_rank_of_week = $group_pc[$i]['team_rank_of_week'];
                     $update_rank_last_week = $group_pc[$i]['team_rank_last_week'];
@@ -301,6 +316,8 @@ class Pc_pointsController extends Controller
                     $update_pc_grand_last_gweek = $group_pc[$i]['pc_grand_last_gweek'];
                     $update_nc_grand_of_gweek = $group_pc[$i]['nc_grand_of_gweek'];
                     $update_nc_grand_last_gweek = $group_pc[$i]['nc_grand_last_gweek'];
+                    $update_aa_grand_of_week = $group_pc[$i]['aa_grand_of_week'];
+                    $update_aa_grand_last_week = $group_pc[$i]['aa_grand_last_week'];
                 }
             }
 
@@ -316,6 +333,8 @@ class Pc_pointsController extends Controller
                         'pc_grand_last_gweek' => $update_pc_grand_last_gweek,
                         'nc_grand_of_gweek' => $update_nc_grand_of_gweek,
                         'nc_grand_last_gweek' => $update_nc_grand_last_gweek,
+                        'aa_grand_of_week' => $update_aa_grand_of_week,
+                        'aa_grand_last_week' => $update_aa_grand_last_week,
                     ]);
 
         }

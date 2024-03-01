@@ -224,6 +224,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
     }
 </style>
 
+
 <!-- Content Team -->
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
@@ -314,7 +315,6 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         get_data_user_mission_2();  
-        get_data_all_team_m2();
         change_menu_bar('mission-1');
     });
 
@@ -337,7 +337,12 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                     let datePart = as_of.substring(0, 10); // 2024-01-31
 
                     let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
-                        formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; 
+                    let show_day = parseInt(parts[2] - 1) ;
+                        if(show_day < 10){
+                            show_day = "0"+show_day ;
+                        }
+
+                        formattedDate = show_day + '/' + parts[1] + '/' + parts[0]; 
 
                     for (var i = 0; i < result['data'].length; i++) {
                     
@@ -351,6 +356,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                         }
 
                         let pc_point = result['data'][i].pc_point.toLocaleString();
+                        let grandmission = result['data'][i].grandmission.toLocaleString();
                         let new_code = result['data'][i].new_code.toLocaleString();
 
                         sum_Newcode_team = sum_Newcode_team + result['data'][i].new_code;
@@ -385,7 +391,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                                                         PC : 
                                                     </span>
                                                     <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                                    `+pc_point+`
+                                                    `+grandmission+`
                                                     </span>
                                                 </div> 
                                             </div>
@@ -421,8 +427,6 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             });
 
     }
-
-
 </script>
 
 <script>

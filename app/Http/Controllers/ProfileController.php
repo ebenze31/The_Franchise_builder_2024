@@ -410,7 +410,7 @@ class ProfileController extends Controller
             ->select('users.*' , 'pc_points.week as week' , 'pc_points.pc_point as pc_point', 'pc_points.new_code as new_code', 'pc_points.created_at as as_of' , 'pc_points.grandmission as grandmission')
             ->where('pc_points.week', $week)
             ->where('pc_points.group_id', $group_id)
-            ->orderByRaw('CAST(pc_points.new_code AS SIGNED) DESC, pc_points.pc_point DESC')
+            ->orderByRaw('CAST(pc_points.new_code AS SIGNED) DESC, pc_points.grandmission DESC')
             // ->orderBy(DB::raw('CAST(pc_points.new_code AS SIGNED)'), 'DESC')
             // ->orderBy(DB::raw('CAST(pc_points.user_id AS SIGNED)'), 'DESC')
             ->get();
@@ -462,7 +462,7 @@ class ProfileController extends Controller
         $data['data'] = DB::table('groups')
             ->where('nc_grand_of_gweek' , '!=' , null)
             // ->orderBy(DB::raw('CAST(nc_grand_of_gweek AS SIGNED)'), 'ASC')
-            ->orderByRaw('CAST(nc_grand_of_gweek AS SIGNED) ASC, rank_of_week ASC')
+            ->orderByRaw('CAST(nc_grand_of_gweek AS SIGNED) ASC, pc_grand_of_gweek ASC')
             ->get();
 
         $data['week'] = $week;

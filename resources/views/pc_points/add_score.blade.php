@@ -217,6 +217,19 @@
                                         <th scope="col">active_dream</th>
                                         <th scope="col">team_rank_of_week</th>
                                         <th scope="col">team_rank_last_week</th>
+                                        <th scope="col">pc_grand_of_gweek</th>
+                                        <th scope="col">pc_grand_last_gweek</th>
+                                        <th scope="col">nc_grand_of_gweek</th>
+                                        <th scope="col">nc_grand_last_gweek</th>
+                                        <th scope="col">pc_grand_of_week_individual</th>
+                                        <th scope="col">pc_grand_last_week_individual</th>
+                                        <th scope="col">nc_grand_of_week_individual</th>
+                                        <th scope="col">nc_grand_last_week_individual</th>
+                                        <th scope="col">sum_newcode_team</th>
+                                        <th scope="col">aa_grand_of_week</th>
+                                        <th scope="col">aa_grand_last_week</th>
+                                        <th scope="col">aa_grand_of_week_individual</th>
+                                        <th scope="col">aa_grand_last_week_individual</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody_PreviewDATA">
@@ -352,6 +365,19 @@
                             <td>`+jsonData[i].active_dream+`</td>
                             <td>`+jsonData[i].team_rank_of_week+`</td>
                             <td>`+jsonData[i].team_rank_last_week+`</td>
+                            <td>`+jsonData[i].pc_grand_of_gweek+`</td>
+                            <td>`+jsonData[i].pc_grand_last_gweek+`</td>
+                            <td>`+jsonData[i].nc_grand_of_gweek+`</td>
+                            <td>`+jsonData[i].nc_grand_last_gweek+`</td>
+                            <td>`+jsonData[i].pc_grand_of_week_individual+`</td>
+                            <td>`+jsonData[i].pc_grand_last_week_individual+`</td>
+                            <td>`+jsonData[i].nc_grand_of_week_individual+`</td>
+                            <td>`+jsonData[i].nc_grand_last_week_individual+`</td>
+                            <td>`+jsonData[i].sum_newcode_team+`</td>
+                            <td>`+jsonData[i].aa_grand_of_week+`</td>
+                            <td>`+jsonData[i].aa_grand_last_week+`</td>
+                            <td>`+jsonData[i].aa_grand_of_week_individual+`</td>
+                            <td>`+jsonData[i].aa_grand_last_week_individual+`</td>
                         </tr>
                     `;
 

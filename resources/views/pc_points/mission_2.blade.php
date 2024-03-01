@@ -378,7 +378,12 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                     let datePart = as_of.substring(0, 10); // 2024-01-31
 
                     let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
-                        formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; 
+                    let show_day = parseInt(parts[2] - 1) ;
+                        if(show_day < 10){
+                            show_day = "0"+show_day ;
+                        }
+
+                        formattedDate = show_day + '/' + parts[1] + '/' + parts[0]; 
 
                     for (var i = 0; i < result['data'].length; i++) {
                     
@@ -392,6 +397,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                         }
 
                         let pc_point = result['data'][i].pc_point.toLocaleString();
+                        let grandmission = result['data'][i].grandmission.toLocaleString();
                         let new_code = result['data'][i].new_code.toLocaleString();
 
                         sum_Newcode_team = sum_Newcode_team + result['data'][i].new_code;
@@ -426,7 +432,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                                                         PC : 
                                                     </span>
                                                     <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                                    `+pc_point+`
+                                                    `+grandmission+`
                                                     </span>
                                                 </div> 
                                             </div>
@@ -490,6 +496,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
                         let pc_point = result_data_arr[week]['pc_point'] ;
                         let new_code = result_data_arr[week]['new_code'] ;
+                        let csta = result_data_arr[week]['csta'] ;
 
                         // console.log("id >> " + result['data'][i]['id']);
                         // console.log("new_code >> " + new_code);
@@ -498,12 +505,21 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                         let html_all_team_m2 ;
                         let percentage ;
 
-                        if(new_code >= 25){
+                        let tag_a_1 = `` ;
+                        let tag_a_2 = `` ;
+
+                        if ("{{ Auth::user()->role }}" !== "Player") {
+                            tag_a_1 = `<a href="{{ url('/view_team_mission2') }}/`+result['data'][i].id+`">`;
+                            tag_a_2 = `</a>`;
+                        }
+
+                        if(csta == "G"){
 
                             team_m2_success = team_m2_success + 1;
 
                             html_all_team_m2 = `
                                 <div id="" class="member-item div_Team mt-0">
+                                `+tag_a_1+`
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
                                         <img src="{{ url('/img/group_profile/success/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_2 img_team">
                                         <!-- shield -->
@@ -521,15 +537,17 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                                             <img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px; position: absolute;top: -1px;right: 3px;">
                                         </div>
                                     </div>
+                                `+tag_a_2+`
                                 </div>
                             `;
                         }
-                        else if(new_code >= 13 && new_code < 25){
+                        else if(csta == "Y"){
 
                             percentage = (new_code / 25) * 100;
 
                             html_all_team_m2 = `
                                 <div id="" class="member-item div_Team mt-0">
+                                `+tag_a_1+`
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
                                         <img src="{{ url('/img/group_profile/warning/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_1 img_team">
                                         <!-- <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -12px;"> -->
@@ -543,15 +561,17 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                                             </div>
                                         </div>
                                     </div>
+                                `+tag_a_2+`
                                 </div>
                             `;
                         }
-                        else if(new_code <= 12){
+                        else if(csta == "R"){
 
                             percentage = (new_code / 25) * 100;
 
                             html_all_team_m2 = `
                                 <div id="" class="member-item div_Team mt-0">
+                                `+tag_a_1+`
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
                                         <img src="{{ url('/img/group_profile/danger/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_0 img_team">
                                         <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
@@ -563,6 +583,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                                             </div>
                                         </div>
                                     </div>
+                                `+tag_a_2+`
                                 </div>
                             `;
                         }
