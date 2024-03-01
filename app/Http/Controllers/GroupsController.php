@@ -766,4 +766,9 @@ class GroupsController extends Controller
     function grand_mission_my_team($group_id){
         return view('pc_points/grand_mission_my_team', compact('group_id'));
     }
+
+    function view_team_mission2($group_id){
+        
+        return view('groups/view_team_mission2', compact('group_id'));
+    }
 }

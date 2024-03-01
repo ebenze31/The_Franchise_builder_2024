@@ -331,6 +331,9 @@
         color: #fff;
         font-weight: bold;
         font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items:center ;
     }
 
     .btn-sort-data:hover{
@@ -361,6 +364,12 @@
     <div class="btn-group" role="group" aria-label="Basic example" style="scale: 0.8;">
         <a id="btn_sort_pc" href="{{ url('/individual') }}?Sort=pc" class="btn btn-sort-data active" onclick="return create_logs('021_Individual - PC (toggle)');">
             PC
+        </a>
+        <a id="btn_sort_aa" href="" class="btn btn-sort-data" onclick="return create_logs('023_Active Agent - AA (toggle)');">
+            <div>
+                 <p style="font-size: 12px;" class="mb-0">Active Agent</p>
+                <p style="font-size: 10px;" class="mb-0">(AA)</p>
+            </div>
         </a>
         <a id="btn_sort_nc" href="{{ url('/individual') }}?Sort=nc" class="btn btn-sort-data" onclick="return create_logs('022_Individual - NC (toggle)');">
             New code

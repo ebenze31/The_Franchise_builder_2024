@@ -122,3 +122,5 @@ Route::get('/get_data_all_team_m2', 'ProfileController@get_data_all_team_m2');
 // grand_mission
 Route::get('/get_data_user_grand_mission/{data_sort}', 'ProfileController@get_data_user_grand_mission');
 Route::get('/get_member_in_team_for_grand_mission/{group_id}/{week}/{type}', 'Pc_pointsController@get_member_in_team_for_grand_mission');
+
+Route::get('/getdata_view_team_mission2/{group_id}', 'GroupsController@getdata_view_team_mission2');

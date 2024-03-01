@@ -332,7 +332,7 @@
         box-shadow: 0px 0px 15px 1px #00FBFF;
         
         color: #fff;
-
+        
     }
     .btn-sort-data{
         padding: 10px 0px ;
@@ -342,6 +342,9 @@
         color: #fff;
         font-weight: bold;
         font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items:center ;
     }
 
     .btn-sort-data:hover{
@@ -594,11 +597,14 @@ td.my-rank:last-child {
 <div id="div_data_all"></div>
 <div class="w-100 d-flex justify-content-center my-3">
     <div class="btn-group" role="group" aria-label="Basic example" style="scale: .8;">
-        <a id="btn_sort_pc" href="{{ url('/grand_mission') }}?Sort=pc" class="btn btn-sort-data active" onclick="return create_logs('041_Grand Mission - PC (toggle)');">
-            PC
+        <a id="btn_sort_pc" href="{{ url('/grand_mission') }}?Sort=pc"  class="btn btn-sort-data active" onclick="return create_logs('041_Grand Mission - PC (toggle)');">
+            <p style="font-size: 18px;margin-top: 4px;" class="mb-0">PC</p>
         </a>
-        <a id="btn_sort_nc" href="{{ url('/grand_mission') }}?Sort=nc" class="btn btn-sort-data" onclick="return create_logs('042_Grand Mission - New Code (toggle)');">
-            New code
+        <a id="btn_sort_nc" href="{{ url('/grand_mission') }}?Sort=nc"  class="btn btn-sort-data" onclick="return create_logs('042_Grand Mission - New Code (toggle)');">
+            <div>
+                 <p style="font-size: 12px;" class="mb-0">Active Agent</p>
+                <p style="font-size: 10px;" class="mb-0">(AA)</p>
+            </div>
         </a>
     </div>
 </div>

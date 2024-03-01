@@ -140,12 +140,13 @@ height: 87px;
     }
 
     .btn-sort-data{
-        /* padding: 6px 20px ; */
-        width: 100px;
+        padding: 10px 0px ;
+        width: 140px;
         background-color: rgb(0, 155, 176 , .61);
         border: 1px solid #00E0FF;
         color: #fff;
         font-weight: bold;
+        font-size: 18px;
     }
 
     .btn-sort-data:hover{
@@ -207,9 +208,11 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         width: 15px;
         height: 23px;
         margin-right: 5px;
+        border-radius: 0 50% 50% 0;
         background: rgba(0,255,255,1);
+/*        background: #0A102E;*/
     }
-    .img-rocket-120-score::before{
+    .img-rocket-25-score::before{
         content: "";
         display: inline-block;
         position: absolute;
@@ -221,7 +224,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
     }
 </style>
 
-
+<!-- Content Team -->
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . $group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
     <div class="d-flex justify-content-between w-100" >
@@ -233,10 +236,10 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                 PC : xxxxxxx
             </p> -->
             <div>
-                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Grand mission PC</p>
+                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission 25 Newcode</p>
                     
-                <span style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">PC : <span id="span_sum_score_team"></span></span> 
-                <span id="trophy_for_2m" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: -2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
+                <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;"><span id="sum_Newcode_team">0</span>   Newcode</span> 
+                <span id="trophy_for_25_Newcode" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
 
             </div>
         </div>
@@ -258,7 +261,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         
     </div>
 </div>
-<input type="text" name="" placeholder="กรอกเลขสิ" class="form-control d-none" id="" oninput="convertToPercentage(this.value)">
+<input type="text" name="input_sum_Newcode_team" class="form-control d-none" id="input_sum_Newcode_team" oninput="convertToPercentage(this.value)" placeholder="กรอกเลขสิ">
 <div class="d-flex" >
     <div class="p-3" style="width: calc(100%);">
         <div class="w-100 d-flex justify-content-between px-2 mb-2">
@@ -266,7 +269,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                 <img src="{{ url('/img/icon/trophy-sliver.png') }}" style="width: 16px;height:16px;">
             </div>
             <div>
-                <p style="color: #FFD233;">Active agent</p>
+                <p style="color: #FFD233;">New code my team</p>
             </div>
             <div>        
                 <img src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 16px;height:16px;">
@@ -276,11 +279,11 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             <span style="color: #fff;" id="text_progress_0">                
                 0
             </span>
-            <span style="color: #fff;" id="text_progress_60">
-                60
+            <span style="color: #fff;" id="text_progress_13">
+                13
             </span>
-            <span style="color: #fff;" id="text_progress_120">        
-                120
+            <span style="color: #fff;" id="text_progress_25">        
+                25
             </span>
         </div>  
         <div style="border-radius: 50px;position: relative;">
@@ -299,15 +302,20 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 </div>
 
 <div class="memberInRoom d-flex justify-content-center text-center px-1">
-    <div class="member-section mt-0" id="div_content_data">
+    <div class="member-section mt-0" id="div_data_member_my_team">
         <!-- DATA -->
     </div>
 </div>
+<!-- End Content Team -->
+
+
 <script>
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        get_data_user_mission_2()
+        get_data_user_mission_2();  
+        get_data_all_team_m2();
+        change_menu_bar('mission-1');
     });
 
     function get_data_user_mission_2(){
@@ -315,16 +323,15 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         fetch("{{ url('/') }}/api/get_data_user_mission_2" + "/" + "{{ $group_id }}")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
-                let sum_grandmission = 0 ;
                 let sum_Newcode_team = 0 ;
                 let formattedDate ;
 
                 if(result){
 
-                    let div_content_data = document.querySelector('#div_content_data');
-                        div_content_data.innerHTML = '' ;
+                    let div_data_member_my_team = document.querySelector('#div_data_member_my_team');
+                        div_data_member_my_team.innerHTML = '' ;
 
                     let as_of = result['data'][0]['as_of'];
                     let datePart = as_of.substring(0, 10); // 2024-01-31
@@ -343,16 +350,15 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                             `;
                         }
 
-                        let grandmission = result['data'][i].grandmission.toLocaleString();
+                        let pc_point = result['data'][i].pc_point.toLocaleString();
                         let new_code = result['data'][i].new_code.toLocaleString();
 
-                        sum_grandmission = sum_grandmission + result['data'][i].grandmission;
                         sum_Newcode_team = sum_Newcode_team + result['data'][i].new_code;
 
-                        if (sum_grandmission >= 2000000) {
-                            document.querySelector('#trophy_for_2m').classList.remove('d-none');
+                        if (sum_Newcode_team >= 25) {
+                            document.querySelector('#trophy_for_25_Newcode').classList.remove('d-none');
                         } else {
-                            document.querySelector('#trophy_for_2m').classList.add('d-none');
+                            document.querySelector('#trophy_for_25_Newcode').classList.add('d-none');
                         }
 
                         let img_star = ``;
@@ -379,7 +385,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                                                         PC : 
                                                     </span>
                                                     <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                                    `+grandmission+`
+                                                    `+pc_point+`
                                                     </span>
                                                 </div> 
                                             </div>
@@ -403,11 +409,11 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                             </div>
                         `;
 
-                        div_content_data.insertAdjacentHTML('beforeend', html);
+                        div_data_member_my_team.insertAdjacentHTML('beforeend', html);
                     }
 
                     document.querySelector('#date_as_of').innerHTML = formattedDate ;
-                    document.querySelector('#span_sum_score_team').innerHTML = sum_grandmission.toLocaleString() ;
+                    document.querySelector('#sum_Newcode_team').innerHTML = sum_Newcode_team ;
                     convertToPercentage(sum_Newcode_team);
 
                 }
@@ -416,42 +422,42 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
     }
 
+
 </script>
 
-
 <script>
-   function convertToPercentage(value) {
+    function convertToPercentage(value) {
     // ตรวจสอบว่าค่าที่รับเข้ามาอยู่ในช่วง 1-30 หรือไม่
     let text_0 = document.getElementById('text_progress_0');
-    let text_60 = document.getElementById('text_progress_60');
-    let text_120 = document.getElementById('text_progress_120');
+    let text_15 = document.getElementById('text_progress_13');
+    let text_25 = document.getElementById('text_progress_25');
 
     // if (value >= 0 && value <= 25) {
     if (value >= 0) {
         
         let value_bar = 0 ;
-        if(value >= 120){
-            value_bar = 120 ;
-            document.querySelector('.img-rocket').classList.add('img-rocket-120-score');
+        if(value >= 25){
+            value_bar = 25 ;
+            document.querySelector('.img-rocket').classList.add('img-rocket-25-score');
         }
-        else if(value == 60){
+        else if(value == 13){
             value_bar = value - 1 ;
-            document.querySelector('.img-rocket').classList.remove('img-rocket-120-score');
+            document.querySelector('.img-rocket').classList.remove('img-rocket-25-score');
 
         }
         else if(value == 1){
             value_bar = value - 0.8 ;
-            document.querySelector('.img-rocket').classList.remove('img-rocket-120-score');
+            document.querySelector('.img-rocket').classList.remove('img-rocket-25-score');
 
         }
         else if(value == 2){
             value_bar = value - 1.5 ;
-            document.querySelector('.img-rocket').classList.remove('img-rocket-120-score');
-            
+            document.querySelector('.img-rocket').classList.remove('img-rocket-25-score');
+
         }
         else if(value != 0){
             value_bar = value - 2 ;
-            document.querySelector('.img-rocket').classList.remove('img-rocket-120-score');
+            document.querySelector('.img-rocket').classList.remove('img-rocket-25-score');
 
         }
 
@@ -460,7 +466,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             value_bar = 0 ;
         }
 
-        let percentage = (value_bar / 120) * 100;
+        let percentage = (value_bar / 25) * 100;
 
         // console.log(percentage);
 
@@ -472,18 +478,18 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             // rocket_progressBar  .style.left = percentage + '%';
         // return percentage;
 
-        if (value >= 0 && value <= 60) {
+        if (value >= 0 && value <= 12) {
             text_0.style.color = '#07285A'
-            text_60.style.color = '#646D73'
-            text_120.style.color = '#646D73'
-        }else if(value >= 60 && value <= 120){
+            text_15.style.color = '#646D73'
+            text_25.style.color = '#646D73'
+        }else if(value >= 13 && value <= 24){
             text_0.style.color = '#07285A'
-            text_60.style.color = '#07285A'
-            text_120.style.color = '#646D73'
+            text_15.style.color = '#07285A'
+            text_25.style.color = '#646D73'
         }else{
             text_0.style.color = '#07285A'
-            text_60.style.color = '#07285A'
-            text_120.style.color = '#07285A'
+            text_15.style.color = '#07285A'
+            text_25.style.color = '#07285A'
         }
     } else {
         // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
