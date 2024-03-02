@@ -365,7 +365,7 @@
         <a id="btn_sort_pc" href="{{ url('/individual') }}?Sort=pc" class="btn btn-sort-data active" onclick="return create_logs('021_Individual - PC (toggle)');">
             PC
         </a>
-        <a id="btn_sort_aa" href="" class="btn btn-sort-data" onclick="return create_logs('023_Active Agent - AA (toggle)');">
+        <a id="btn_sort_aa" href="{{ url('/individual') }}?Sort=aa" class="btn btn-sort-data" onclick="return create_logs('023_Active Agent - AA (toggle)');">
             <div>
                  <p style="font-size: 12px;" class="mb-0">Active Agent</p>
                 <p style="font-size: 10px;" class="mb-0">(AA)</p>
@@ -560,13 +560,21 @@
         if(data_sort == 'pc'){
             type_Sort = "PC";
             document.querySelector('#btn_sort_pc').classList.add('active');
+            document.querySelector('#btn_sort_aa').classList.remove('active');
             document.querySelector('#btn_sort_nc').classList.remove('active');
             document.querySelector('#head_type_Sort').innerHTML = 'PC';
         }else if(data_sort == 'nc'){
             type_Sort = "NC";
-            document.querySelector('#btn_sort_pc').classList.remove('active');
             document.querySelector('#btn_sort_nc').classList.add('active');
+            document.querySelector('#btn_sort_pc').classList.remove('active');
+            document.querySelector('#btn_sort_aa').classList.remove('active');
             document.querySelector('#head_type_Sort').innerHTML = 'NC';
+        }else if(data_sort == 'aa'){
+            type_Sort = "AA";
+            document.querySelector('#btn_sort_pc').classList.remove('active');
+            document.querySelector('#btn_sort_nc').classList.remove('active');
+            document.querySelector('#btn_sort_aa').classList.add('active');
+            document.querySelector('#head_type_Sort').innerHTML = 'AA';
         }
 
     }else{
@@ -604,6 +612,7 @@
                         let mission1_Number = result[i].mission1;
                         let grandmission = result[i].grandmission;
                         let new_code = result[i].new_code;
+                        let active_dream = result[i].active_dream;
 
                         let text_group_id = result[i].group_id;
 
@@ -618,6 +627,7 @@
                         let formattedNumber = formatLargeNumber(mission1_Number);
                         let formatt_grandmission = formatLargeNumber(grandmission);
                         let formatt_new_code = formatLargeNumber(new_code);
+                        let formatt_active_dream = formatLargeNumber(active_dream);
 
                         let show_score = ``;
                         let rank_of_week = ``;
@@ -627,10 +637,16 @@
                             show_score = formatt_grandmission;
                             rank_of_week = result[i].pc_grand_of_week_individual ;
                             rank_last_week = result[i].pc_grand_last_week_individual ;
-                        }else if(data_sort == 'nc'){
+                        }
+                        else if(data_sort == 'nc'){
                             show_score = formatt_new_code;
                             rank_of_week = result[i].nc_grand_of_week_individual ;
                             rank_last_week = result[i].nc_grand_last_week_individual ;
+                        }
+                        else if(data_sort == 'aa'){
+                            show_score = formatt_active_dream;
+                            rank_of_week = result[i].aa_grand_of_week_individual ;
+                            rank_last_week = result[i].aa_grand_last_week_individual ;
                         }
 
                         let rank_up ;
