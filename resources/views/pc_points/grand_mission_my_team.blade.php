@@ -315,22 +315,41 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         fetch("{{ url('/') }}/api/get_data_user_mission_2" + "/" + "{{ $group_id }}")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let sum_grandmission = 0 ;
                 let sum_Newcode_team = 0 ;
-                let formattedDate ;
+                let sum_active_dream_team = 0 ;
 
                 if(result){
 
                     let div_content_data = document.querySelector('#div_content_data');
                         div_content_data.innerHTML = '' ;
 
-                    let as_of = result['data'][0]['as_of'];
-                    let datePart = as_of.substring(0, 10); // 2024-01-31
+                    // let as_of = result['data'][0]['as_of'];
+                    // let datePart = as_of.substring(0, 10); // 2024-01-31
 
-                    let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
-                        formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; 
+                    // let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
+                    // let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; 
+
+                    let as_of = result['data'][0]['as_of']; // เป็นวันที่ในรูปแบบ 'YYYY-MM-DD'
+                    let dateObject = new Date(as_of);
+                    dateObject.setDate(dateObject.getDate() - 1);
+
+                    let day = dateObject.getDate();
+                    let month = dateObject.getMonth() + 1;
+                    let year = dateObject.getFullYear();
+
+                    // ทำการเพิ่ม leading zero ถ้าจำเป็น
+                    if (day < 10) {
+                        day = '0' + day;
+                    }
+                    if (month < 10) {
+                        month = '0' + month;
+                    }
+
+                    let formattedDate = day + '/' + month + '/' + year;
+                    // console.log(formattedDate); // แสดงผลลัพธ์ 'DD/MM/YYYY'
 
                     for (var i = 0; i < result['data'].length; i++) {
                     
@@ -344,22 +363,24 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                         }
 
                         let grandmission = result['data'][i].grandmission.toLocaleString();
-                        let new_code = result['data'][i].new_code.toLocaleString();
+                        // let new_code = result['data'][i].new_code.toLocaleString();
+                        let active_dream = result['data'][i].active_dream.toLocaleString();
 
                         sum_grandmission = sum_grandmission + result['data'][i].grandmission;
-                        sum_Newcode_team = sum_Newcode_team + result['data'][i].new_code;
+                        sum_active_dream_team = sum_active_dream_team + result['data'][i].active_dream;
 
                         if (sum_grandmission >= 2000000) {
-                            document.querySelector('#trophy_for_2m').classList.remove('d-none');
+                            // document.querySelector('#trophy_for_2m').classList.remove('d-none');
                         } else {
                             document.querySelector('#trophy_for_2m').classList.add('d-none');
                         }
 
                         let img_star = ``;
-                        if(result['data'][i].new_code >= 2){
-                            img_star = `
-                                <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            `;
+                        if(result['data'][i].active_dream >= 2){
+                            // img_star = `
+                            //     <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
+                            // `;
+                            img_star = ``;
                         }
 
                         let html = `
@@ -386,10 +407,10 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                                             <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                                                 <div>
                                                     <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                                        New code : 
+                                                        AA : 
                                                     </span>
                                                     <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                                    `+new_code+`
+                                                    `+active_dream+`
                                                     </span>
                                                 </div> 
                                                 <div class="me-1">
@@ -408,7 +429,8 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
                     document.querySelector('#date_as_of').innerHTML = formattedDate ;
                     document.querySelector('#span_sum_score_team').innerHTML = sum_grandmission.toLocaleString() ;
-                    convertToPercentage(sum_Newcode_team);
+                    // convertToPercentage(sum_Newcode_team);
+                    convertToPercentage(sum_active_dream_team);
 
                 }
 
@@ -435,22 +457,12 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
             document.querySelector('.img-rocket').classList.add('img-rocket-120-score');
         }
         else if(value == 60){
-            value_bar = value - 1 ;
+            value_bar = value - 8 ;
             document.querySelector('.img-rocket').classList.remove('img-rocket-120-score');
 
-        }
-        else if(value == 1){
-            value_bar = value - 0.8 ;
-            document.querySelector('.img-rocket').classList.remove('img-rocket-120-score');
-
-        }
-        else if(value == 2){
-            value_bar = value - 1.5 ;
-            document.querySelector('.img-rocket').classList.remove('img-rocket-120-score');
-            
         }
         else if(value != 0){
-            value_bar = value - 2 ;
+            value_bar = value - 8 ;
             document.querySelector('.img-rocket').classList.remove('img-rocket-120-score');
 
         }

@@ -326,23 +326,36 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                 // console.log(result);
 
                 let sum_Newcode_team = 0 ;
-                let formattedDate ;
 
                 if(result){
 
                     let div_data_member_my_team = document.querySelector('#div_data_member_my_team');
                         div_data_member_my_team.innerHTML = '' ;
 
-                    let as_of = result['data'][0]['as_of'];
-                    let datePart = as_of.substring(0, 10); // 2024-01-31
+                    // let as_of = result['data'][0]['as_of'];
+                    // let datePart = as_of.substring(0, 10); // 2024-01-31
 
-                    let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
-                    let show_day = parseInt(parts[2] - 1) ;
-                        if(show_day < 10){
-                            show_day = "0"+show_day ;
-                        }
+                    // let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
+                    // let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; 
 
-                        formattedDate = show_day + '/' + parts[1] + '/' + parts[0]; 
+                    let as_of = result['data'][0]['as_of']; // เป็นวันที่ในรูปแบบ 'YYYY-MM-DD'
+                    let dateObject = new Date(as_of);
+                    dateObject.setDate(dateObject.getDate() - 1);
+
+                    let day = dateObject.getDate();
+                    let month = dateObject.getMonth() + 1;
+                    let year = dateObject.getFullYear();
+
+                    // ทำการเพิ่ม leading zero ถ้าจำเป็น
+                    if (day < 10) {
+                        day = '0' + day;
+                    }
+                    if (month < 10) {
+                        month = '0' + month;
+                    }
+
+                    let formattedDate = day + '/' + month + '/' + year;
+                    // console.log(formattedDate); // แสดงผลลัพธ์ 'DD/MM/YYYY'
 
                     for (var i = 0; i < result['data'].length; i++) {
                     

@@ -600,7 +600,10 @@ td.my-rank:last-child {
         <a id="btn_sort_pc" href="{{ url('/grand_mission') }}?Sort=pc"  class="btn btn-sort-data active" onclick="return create_logs('041_Grand Mission - PC (toggle)');">
             <p style="font-size: 18px;margin-top: 4px;" class="mb-0">PC</p>
         </a>
-        <a id="btn_sort_nc" href="{{ url('/grand_mission') }}?Sort=nc"  class="btn btn-sort-data" onclick="return create_logs('042_Grand Mission - New Code (toggle)');">
+        <a id="btn_sort_nc" href="{{ url('/grand_mission') }}?Sort=nc"  class="btn btn-sort-data d-none" onclick="return create_logs('042_Grand Mission - New Code (toggle)');">
+            <p style="font-size: 18px;margin-top: 4px;" class="mb-0">New Code</p>
+        </a>
+        <a id="btn_sort_aa" href="{{ url('/grand_mission') }}?Sort=aa"  class="btn btn-sort-data" >
             <div>
                  <p style="font-size: 12px;" class="mb-0">Active Agent</p>
                 <p style="font-size: 10px;" class="mb-0">(AA)</p>
@@ -781,9 +784,15 @@ td.my-rank:last-child {
         if(data_sort == 'pc'){
             document.querySelector('#btn_sort_pc').classList.add('active');
             document.querySelector('#btn_sort_nc').classList.remove('active');
+            document.querySelector('#btn_sort_aa').classList.remove('active');
         }else if(data_sort == 'nc'){
-            document.querySelector('#btn_sort_pc').classList.remove('active');
             document.querySelector('#btn_sort_nc').classList.add('active');
+            document.querySelector('#btn_sort_pc').classList.remove('active');
+            document.querySelector('#btn_sort_aa').classList.remove('active');
+        }else if(data_sort == 'aa'){
+            document.querySelector('#btn_sort_aa').classList.add('active');
+            document.querySelector('#btn_sort_nc').classList.remove('active');
+            document.querySelector('#btn_sort_pc').classList.remove('active');
         }
 
     }else{
@@ -812,13 +821,33 @@ td.my-rank:last-child {
                     let check_line_1_5m = 'no';
                     let check_line_1m = 'no';
                     let check_line_500k = 'no';
+                    let rank_of_no = 1 ;
 
                     let week = result['week'];
-                    let as_of = result['as_of'];
-                    let datePart = as_of.substring(0, 10); // 2024-01-31
+                    // let as_of = result['as_of'];
+                    // let datePart = as_of.substring(0, 10); // 2024-01-31
 
-                    let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
-                    let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; // ประกอบวันที่ใหม่ในรูปแบบที่ต้องการ
+                    // let parts = datePart.split('-'); // แยกวันที่เป็นส่วนย่อย
+                    // let formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0]; 
+
+                    let as_of = result['as_of']; // เป็นวันที่ในรูปแบบ 'YYYY-MM-DD'
+                    let dateObject = new Date(as_of);
+                    dateObject.setDate(dateObject.getDate() - 1);
+
+                    let day = dateObject.getDate();
+                    let month = dateObject.getMonth() + 1;
+                    let year = dateObject.getFullYear();
+
+                    // ทำการเพิ่ม leading zero ถ้าจำเป็น
+                    if (day < 10) {
+                        day = '0' + day;
+                    }
+                    if (month < 10) {
+                        month = '0' + month;
+                    }
+
+                    let formattedDate = day + '/' + month + '/' + year;
+                    // console.log(formattedDate); // แสดงผลลัพธ์ 'DD/MM/YYYY'
 
                     let content_ASC = document.querySelector('#content_ASC');
                         content_ASC.innerHTML = '';
@@ -868,7 +897,8 @@ td.my-rank:last-child {
                             let formattedNumber = grandmission.toLocaleString();
 
                             if (grandmission >= 2000000) {
-                                img_trophy = ` <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt="">`;
+                                // img_trophy = ` <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt="">`;
+                                img_trophy = ``;
                             } else {
                                 img_trophy = ``;
                             }
@@ -1075,9 +1105,11 @@ td.my-rank:last-child {
                                 
                                     let pc_Number = grandmission.toLocaleString();
 
-                                    let iii = i + 1 ;
-                                    document.querySelector('#img_rank_'+iii).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
-                                    document.querySelector('#score_rank_'+iii).innerHTML = pc_Number + " PC";
+                                    if(grandmission >= 2000000){
+                                        document.querySelector('#img_rank_'+rank_of_no).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
+                                        document.querySelector('#score_rank_'+rank_of_no).innerHTML = pc_Number + " PC";
+                                        rank_of_no = rank_of_no + 1 ;
+                                    }
                                 }
                             }
 
@@ -1126,7 +1158,8 @@ td.my-rank:last-child {
                             let formattedNumber = new_code.toLocaleString();
 
                             if (new_code >= 25) {
-                                img_trophy = ` <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt="">`;
+                                // img_trophy = ` <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt="">`;
+                                img_trophy = ``;
                             } else {
                                 img_trophy = ``;
                             }
@@ -1342,6 +1375,231 @@ td.my-rank:last-child {
                         }
 
                     }
+                    else if(data_sort == 'aa'){
+
+                        document.querySelector('#score_rank_1').innerHTML = "0 AA";
+                        document.querySelector('#score_rank_2').innerHTML = "0 AA";
+                        document.querySelector('#score_rank_3').innerHTML = "0 AA";
+
+                        for (let i = 0; i < result['data'].length; i++) {
+
+                            let text_id_group = result['data'][i].id.toString();
+
+                            let active_dream_arr = [];
+                                active_dream_arr = JSON.parse(result['data'][i].rank_record);
+                            let active_dream = active_dream_arr[week]['active_dream'] ;
+                            let aa_grand_of_week = active_dream_arr[week]['aa_grand_of_week'] ;
+                            let aa_grand_last_week = active_dream_arr[week]['aa_grand_last_week'] ;
+                            let formattedNumber = active_dream.toLocaleString();
+
+                            if (active_dream >= 90) {
+                                // img_trophy = ` <img class="ms-2" src="{{ url('/img/icon/trophy.png') }}" style="width: 21px;height: 21px;flex-shrink: 0;" alt="">`;
+                                img_trophy = ``;
+                            } else {
+                                img_trophy = ``;
+                            }
+
+                            let draw_line = ``;
+                            if(active_dream > 90){
+                                class_of_score = 'color-2m-up' ;
+                            }
+                            else if(active_dream < 90 && check_line_2m == 'no'){
+                                // draw_line = line_2m;
+                                class_of_score = 'color-2m';
+                                check_line_2m = 'yes';
+                                draw_line = draw_line_lux(i , '90AA');
+                            }
+                            else if(active_dream < 60 && check_line_1m == 'no'){
+                                // draw_line = line_1m;
+                                class_of_score = 'color-1m';
+                                check_line_1m = 'yes';
+                                draw_line = draw_line_lux(i , '60AA');
+                            }
+
+                            content_ASC.insertAdjacentHTML('beforeend', draw_line);
+
+                            let rank_up ;
+                            if( parseInt(aa_grand_of_week) < parseInt(aa_grand_last_week) ){
+                                rank_up = `<i class="fa-solid fa-triangle rankUP"></i>`;
+                            }else if(parseInt(aa_grand_of_week) > parseInt(aa_grand_last_week)){
+                                rank_up = `<i class="fa-solid fa-triangle fa-flip-vertical rankDOWN"></i>`;
+                            }else{
+                                rank_up = `<i class="fa-solid fa-hyphen fa-2xl rankNORMAL"></i>`;
+                            }
+
+                            // ทีมทั้งหมด
+                            let html_other_team ;
+
+                            if("{{ Auth::user()->role }}" == "Player" || "{{ Auth::user()->role }}" == "QR"){
+                                html_other_team = `
+                                    <div class="other-team `+class_of_score+`" data-toggle="collapse" href="#data_other_id_`+result['data'][i]['id']+`" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <div class="number-my-team">`+aa_grand_of_week+`</div>
+                                        <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
+
+                                        <div class="detailTeam">
+                                            <div>
+                                                <p class="nameTeam">Team `+result['data'][i]['name_group']+`${img_trophy}</p>
+                                            </div>
+                                        </div>
+                                        <div class="score-my-team">
+                                            <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                            <span class="text-point"> AA</span>
+
+                                        </div>
+                                        <div class="statusTeam text-center">
+                                            <div>
+                                                `+rank_up+`
+                                                <p class="statusNumber ">`+aa_grand_last_week+`</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+
+                                content_ASC.insertAdjacentHTML('beforeend', html_other_team);
+                            }
+                            else{
+                                html_other_team = `
+                                    <div class="other-team `+class_of_score+`" data-toggle="collapse" href="#data_other_id_`+result['data'][i]['id']+`" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <div class="number-my-team">`+aa_grand_of_week+`</div>
+                                        <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam" alt="">
+
+                                        <div class="detailTeam">
+                                            <div>
+                                                <p class="nameTeam">Team `+result['data'][i]['name_group']+`${img_trophy}</p>
+                                            </div>
+                                        </div>
+                                        <div class="score-my-team">
+                                            <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                            <span class="text-point"> AA</span>
+
+                                        </div>
+                                        <div class="statusTeam text-center">
+                                            <div>
+                                                `+rank_up+`
+                                                <p class="statusNumber ">`+aa_grand_last_week+`</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="collapseContent">
+                                        <div class="collapse p-0" id="data_other_id_`+result['data'][i]['id']+`">
+                                            <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                                                <div class="table-responsive">
+                                                    <table class="table mb-0 align-middle table-borderless">
+                                                        <thead class="head-teble-data-my-team">
+                                                            <tr>
+                                                                <th class="text-center" style>
+                                                                    <p>No.</p>
+                                                                </th>
+                                                                <th class="text-center" style>
+                                                                    <p>User</p>
+                                                                </th>
+                                                                <th class="text-center" style>
+                                                                    <p>Active Agent (AA)</p>
+                                                                    <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbody_content_id_`+text_id_group+`">
+                                                            <!-- ข้อมูลสมาชิก -->
+                                                        </tbody>
+                                                    </table>
+
+                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );" onclick="return create_logs('080_Granmission (my team)');">ดูรายละเอียดเพิ่มเติม</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+
+                                content_ASC.insertAdjacentHTML('beforeend', html_other_team);
+
+                                // สมาชิกในทีมของทุกทีม
+                                create_html_all_member(result['data'][i]['id'] , week , 'aa');
+                            }
+                            
+                            // ของตัวเอง
+                            if(result['data'][i]['id'] == "{{ Auth::user()->group_id }}"){
+
+                                let content_ME = document.querySelector('#content_ME');
+                                    content_ME.innerHTML = '';
+
+                                let html_of_me = `
+                                    <div class="my-team" data-toggle="collapse" href="#data_team_id_`+result['data'][i]['id']+`" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <div class="number-my-team">`+aa_grand_of_week+`</div>
+                                        <img src="{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}" class="profileTeam">
+
+                                        <div class="detailTeam">
+                                            <div>
+                                                <p class="nameTeam">Team `+result['data'][i]['name_group']+`${img_trophy}</p>
+                                            </div>
+                                        </div>
+                                        <div class="score-my-team">
+                                            <span class="text-score" style="color: #E7C517!important;">`+formattedNumber+`</span>
+                                            <span class="text-point"> AA</span>
+
+                                        </div>
+                                        <div class="statusTeam text-center">
+                                            <div>
+                                                `+rank_up+`
+                                                <p class="statusNumber ">`+aa_grand_last_week+`</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="collapseContent">
+                                        <div class="collapse p-0" id="data_team_id_`+result['data'][i]['id']+`">
+                                            <div class="dataTeam" style="padding: 12px 8px 8px 8px;">
+                                                <div class="table-responsive">
+                                                    <table class="table mb-0 align-middle table-borderless">
+                                                        <thead class="head-teble-data-my-team">
+                                                            <tr>
+                                                                <th class="text-center" style>
+                                                                    <p>No.</p>
+                                                                </th>
+                                                                <th class="text-center" style>
+                                                                    <p>User</p>
+                                                                </th>
+                                                                <th class="text-center" style>
+                                                                    <p>Active Agent (AA)</p>
+                                                                    <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                    </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbody_content_ME">
+                                                            <!-- ข้อมูลสมาชิก -->
+                                                        </tbody>
+                                                    </table>
+
+                                                    <a style="float:right;margin:10px 10px 5px 0px;color: #FFF;font-size: 10px;font-style: normal;font-weight: 500;line-height: normal;text-decoration-line: underline;" href="{{ url('/grand_mission_my_team')}}/`+text_id_group+`" );" onclick="return create_logs('080_Granmission (my team)');">ดูรายละเอียดเพิ่มเติม</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+
+                                document.querySelector('#content_ME').classList.remove('d-none');
+                                content_ME.insertAdjacentHTML('beforeend', html_of_me);
+
+                                // สมาชิกในทีมของฉัน
+                                create_html_member_in_team(result['data'][i]['id'] , week , 'aa');
+
+                            }
+
+                            if(week != "0"){
+                                if(i == 0 || i == 1 || i == 2){
+                                
+                                    let aa_Number = active_dream.toLocaleString();
+
+                                    if(active_dream >= 90){
+                                        document.querySelector('#img_rank_'+rank_of_no).setAttribute('src' , `{{ url('/img/group_profile/profile/id (`+text_id_group+`).png') }}`);
+                                        document.querySelector('#score_rank_'+rank_of_no).innerHTML = aa_Number + " AA";
+                                        rank_of_no = rank_of_no + 1 ;
+                                    }
+                                }
+                            }
+
+                        }
+
+                    }
 
                 }
 
@@ -1461,6 +1719,37 @@ td.my-rank:last-child {
                         let tbody_content_ME = document.querySelector('#tbody_content_ME');
                         tbody_content_ME.insertAdjacentHTML('beforeend', html_tbody_content_ME); // แทรกล่างสุด
                     }
+                    else if(type == 'aa'){
+                        let active_dream_Value = 0 ;
+                        let active_dream_formatted = 0 ;
+
+                        if(week != "0"){
+                            active_dream_Value = member_in_team[xz].active_dream;
+                            active_dream_formatted = active_dream_Value.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                        }
+
+                        let icon_me = ``;
+                        if(member_in_team[xz].user_id == "{{ Auth::user()->id }}"){
+                            icon_me = `my-rank`;
+                        }
+
+                        let html_tbody_content_ME = `
+                            <tr >
+                                <td class="${icon_me} text-center" style="position: relative;">
+                                    `+parseInt(xz+1)+`
+                                </td>
+                                <td class="${icon_me} d-flex align-items-center">
+                                    <img src="{{ url('storage')}}/`+member_in_team[xz].user_photo+`" class="profile-img" alt="รูปภาพปก">
+                                    <span class="ms-2 nameUserteam">`+member_in_team[xz].user_name+`</span>
+                                </td>
+                                <td class=" ${icon_me} text-data-team text-center">
+                                    `+active_dream_formatted+`
+                                </td>
+                            </tr>
+                        `;
+                        let tbody_content_ME = document.querySelector('#tbody_content_ME');
+                        tbody_content_ME.insertAdjacentHTML('beforeend', html_tbody_content_ME); // แทรกล่างสุด
+                    }
 
                 }
 
@@ -1550,6 +1839,35 @@ td.my-rank:last-child {
                                 </td>
                                 <td class="text-data-team text-center">
                                     `+new_code_formatted+`
+                                </td>
+                            </tr>
+                        `;
+
+                        let tbody_content = document.querySelector('#tbody_content_id_'+group_id);
+                        tbody_content.insertAdjacentHTML('beforeend', html_tbody_content_ME); // แทรกล่างสุด
+
+                    }
+                    else if(type == 'aa'){
+
+                        let active_dream_Value = 0 ;
+                        let active_dream_formatted = 0 ;
+
+                        if(week != "0"){
+                            active_dream_Value = member_in_team[xz].active_dream;
+                            active_dream_formatted = active_dream_Value.toLocaleString('en-UK', {maximumFractionDigits: 0});
+                        }
+
+                        let html_tbody_content_ME = `
+                            <tr>
+                                <td class="text-center">
+                                    `+parseInt(xz+1)+`
+                                </td>
+                                <td class="d-flex align-items-center">
+                                    <img src="{{ url('storage')}}/`+member_in_team[xz].user_photo+`" class="profile-img" alt="รูปภาพปก">
+                                    <span class="ms-2 nameUserteam">`+member_in_team[xz].user_name+`</span>
+                                </td>
+                                <td class="text-data-team text-center">
+                                    `+active_dream_formatted+`
                                 </td>
                             </tr>
                         `;

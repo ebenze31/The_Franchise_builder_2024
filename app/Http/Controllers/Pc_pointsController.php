@@ -567,6 +567,7 @@ class Pc_pointsController extends Controller
                     'yearly' => $row->pc_point,
                     'grandmission' => $row->grandmission,
                     'new_code' => $row->new_code,
+                    'active_dream' => $row->active_dream,
                 ];
             }
         }
@@ -579,6 +580,11 @@ class Pc_pointsController extends Controller
         else if($type == 'nc'){
             usort($sums, function ($a, $b) {
                 return $b['new_code'] - $a['new_code'];
+            });
+        }
+        else if($type == 'aa'){
+            usort($sums, function ($a, $b) {
+                return $b['active_dream'] - $a['active_dream'];
             });
         }
         
