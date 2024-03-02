@@ -353,4 +353,53 @@ class ActivitiesController extends Controller
 
         return response()->json($data);
     }
+
+    function give_badge(){
+        return view('activities.give_badge');
+    }
+
+    function search_name_badge(){
+
+        $data = Activity::get();
+
+        return $data ;
+    }
+
+    function search_account_api($type){
+
+        if($type == 'all'){
+
+            $data_account = DB::table('users')
+                ->where('role' , 'Player')
+                ->where('group_id' , "!=" , null)
+                ->select('account')
+                ->get();
+
+        }
+        else{
+
+            $data_account = DB::table('users')
+                ->where('role' , 'Player')
+                ->where('group_id' , $type)
+                ->select('account')
+                ->get();
+
+        }
+
+        return $data_account ;
+    }
+
+    function search_account_for_give_badge(Request $request)
+    {
+        $requestData = $request->all();
+
+        $filteredCharacters = $requestData; 
+
+        $data = DB::table('users')
+            ->whereIn('account', $filteredCharacters)
+            ->get();
+
+        return $data;
+
+    }
 }

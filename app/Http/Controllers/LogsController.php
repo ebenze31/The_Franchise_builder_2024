@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Log;
 use Illuminate\Http\Request;
@@ -131,6 +132,24 @@ class LogsController extends Controller
             "role"=>$requestData['role'],
         ]);
         return response()->json('ok');
+
+    }
+
+    function log_web(){
+        return view('log_web');
+    }
+
+    function get_data_log_web(){
+        
+        // $logs = Log::get();
+
+        $logs = DB::table('logs')
+                ->join('users', 'users.id', '=', 'logs.user_id')
+                ->select('users.*' , 'logs.created_at as log_create', 'logs.log_content as log_content')
+                ->orderBy(DB::raw('CAST(logs.id AS SIGNED)'), 'DESC')
+                ->get();
+
+        return $logs ;
 
     }
 }

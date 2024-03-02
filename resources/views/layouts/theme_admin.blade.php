@@ -271,6 +271,11 @@
                                 <i class="fa-solid fa-calendar-days"></i> กิจกรรมทั้งหมด
                             </a>
                         </li>
+                        <li>
+                            <a class="btn" onclick="pass_lock_menu('{{ url("/give_badge") }}');">
+                                <i class="fa-brands fa-slack"></i> Give badge
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="">
@@ -280,6 +285,16 @@
                         </div>
                         <div class="menu-title">
                             FAQ
+                        </div>
+                    </a>
+                </li>
+                <li class="">
+                    <a onclick="pass_lock_menu('{{ url("/log_web") }}');" class="">
+                        <div class="parent-icon">
+                            <i class="fa-solid fa-arrow-pointer"></i>
+                        </div>
+                        <div class="menu-title">
+                            Log
                         </div>
                     </a>
                 </li>

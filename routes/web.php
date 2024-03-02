@@ -121,6 +121,7 @@ Route::middleware(['auth', 'role:Player,Super-admin,Admin'])->group(function () 
 Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
 
     Route::get('/dashboard', 'HomeController@dashboard');
+    Route::get('/log_web', 'LogsController@log_web');
     Route::get('/add_account', 'ProfileController@add_account');
     Route::get('/delete_account', 'ProfileController@delete_account');
     Route::get('/account_all', 'ProfileController@account_all');
@@ -142,6 +143,7 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::resource('contact_staff', 'Contact_staffController');
     Route::get('/excel_end_mission1', 'HomeController@excel_end_mission1');
     Route::resource('logs', 'LogsController');
+    Route::get('/give_badge', 'ActivitiesController@give_badge');
 });
 
 
