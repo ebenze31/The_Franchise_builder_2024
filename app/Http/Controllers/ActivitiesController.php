@@ -402,4 +402,72 @@ class ActivitiesController extends Controller
         return $data;
 
     }
+
+    function give_badge_to_user(Request $request , $id_Activities)
+    {
+        $requestData = $request->all();
+
+        $account = $requestData;
+
+        $count_add = 0 ;
+
+        for ($i=0; $i < count($account); $i++) { 
+            $user = User::where('account', $account[$i])->first();
+            if (!empty($user)) {
+                // ตรวจสอบว่าผู้ใช้นี้มี id_Activities อยู่แล้วหรือไม่
+                $hasActivity = User::where('id', $user->id)
+                   ->where('activities', 'LIKE', "%$id_Activities%")
+                   ->first();
+
+                if (!empty($hasActivity)) {
+                    // ผู้ใช้นี้มีกิจกรรมที่มี $id_Activities
+                    // $re_to = "ผู้ใช้นี้มีกิจกรรมที่มี >> " . $id_Activities;
+                } else {
+                    // ผู้ใช้นี้ไม่มีกิจกรรมที่มี $id_Activities
+                    // $re_to = "ผู้ใช้นี้ไม่มีกิจกรรมที่มี >> " . $id_Activities;
+                    if (!empty($user->activities)) {
+                        $update_activities = $user->activities . "," . $id_Activities ;
+                    }else{
+                        $update_activities = $id_Activities ;
+                    }
+
+                    $count_add = $count_add + 1 ;
+
+                    DB::table('users')
+                        ->where([ 
+                                ['id', $user->id],
+                            ])
+                        ->update([
+                                'activities' => $update_activities,
+                            ]);
+
+                    $arr_create_log = [];
+                    $arr_create_log['id_Activities'] = $id_Activities;
+                    $arr_create_log['user_id'] = $user->id;
+                    
+                    Activities_log::create($arr_create_log);
+
+                }
+            }
+        }
+
+        $dataActivities = Activity::where('id' , $id_Activities)->first();
+        $update_member = 0;
+
+        if( !empty($dataActivities->member) ){
+            $update_member = intval($dataActivities->member) + $count_add ;
+        }else{
+            $update_member = $count_add ;
+        }
+
+        DB::table('activities')
+            ->where([ 
+                    ['id', $id_Activities],
+                ])
+            ->update([
+                    'member' => $update_member,
+                ]);
+
+        return "success";
+    }
 }

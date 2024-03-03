@@ -280,10 +280,33 @@
                 </div>
             </div>
             <div class="col-12 col-md-12 mt-5">
-                <button class="btn btn-info float-end" style="width:20%;">
+                <button class="btn btn-info float-end" style="width:20%;" onclick="give_badge_to_user();">
                     ยืนยันการมอบ Badge
                 </button>
             </div>
+
+            <div id="div_loader_Excel" class="col-12 mt-5 d-none">
+                <section class="loader">
+                    <div class="slider" style="--i:0"></div>
+                    <div class="slider" style="--i:1"></div>
+                    <div class="slider" style="--i:2"></div>
+                    <div class="slider" style="--i:3"></div>
+                    <div class="slider" style="--i:4"></div>
+                    <span class="text-success" style="margin-top: 25px;">กำลังประมวลผล..</span>
+                </section>
+            </div>
+            <div  class="loading-container" class="col-12 mt-5">
+                <div id="div_success_Excel" class="contrainerCheckmark d-none">
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                    </svg>
+                    <center>
+                        <h5 class="mt-3">เสร็จสิ้น</h5>
+                    </center>
+                </div>
+            </div>
+
         </div>
         
 
@@ -464,6 +487,8 @@
 
     function processText() {
 
+        document.querySelector('#div_loader_Excel').classList.add('d-none');
+        document.querySelector('#div_success_Excel').classList.add('d-none');
         document.querySelector('#result').classList.remove('d-none');
         document.getElementById('result').innerText = "กำลังค้นหา..";
 
@@ -543,13 +568,55 @@
 
                     content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
                 }
-                console.log(filteredCharacters);
+
+                document.querySelector('#result').classList.add('d-none');
+                document.getElementById('result').innerText = "";
+                // console.log(filteredCharacters);
             }, 500);
             }
 
         }).catch(function(error){
             // console.error(error);
         });
+    }
+
+    function give_badge_to_user(){
+
+        let arr_data = [];
+        let select_badge = document.querySelector('#select_badge');
+            // console.log(select_badge.value);
+        // console.log(filteredCharacters);
+
+        fetch("{{ url('/') }}/api/give_badge_to_user/"+select_badge.value, {
+            method: 'post',
+            body: JSON.stringify(filteredCharacters),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            // console.log(data);
+
+            if(data == "success"){
+
+                document.querySelector('#div_loader_Excel').classList.add('d-none');
+                document.querySelector('#div_success_Excel').classList.remove('d-none');
+
+                document.querySelector('#select_player_by_team').classList.remove('btn-success');
+                document.querySelector('#select_player_by_team').classList.add('btn-outline-secondary');
+                document.querySelector('#select_all_player').classList.add('btn-outline-secondary');
+                document.querySelector('#select_all_player').classList.remove('btn-success');
+
+                document.querySelector('#input_player_by_team').readOnly  = true ;
+                document.querySelector('#input_player_by_team').value  = '' ;
+                document.querySelector('#inputText').value = '' ;
+            }
+
+        }).catch(function(error){
+            // console.error(error);
+        });
+
     }
 
 </script>

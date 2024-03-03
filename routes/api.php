@@ -93,6 +93,7 @@ Route::get('/change_active/{id}/{status}', 'ActivitiesController@change_active')
 Route::get('/search_name_badge', 'ActivitiesController@search_name_badge');
 Route::get('/search_account_api/{type}', 'ActivitiesController@search_account_api');
 Route::post('/search_account_for_give_badge', 'ActivitiesController@search_account_for_give_badge');
+Route::post('/give_badge_to_user/{id_Activities}', 'ActivitiesController@give_badge_to_user');
 
 // Export activities
 Route::get('/create_tabel_for_export', 'ActivitiesController@create_tabel_for_export');
