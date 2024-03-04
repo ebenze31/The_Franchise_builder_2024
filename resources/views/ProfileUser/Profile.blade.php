@@ -648,7 +648,7 @@ line-height: normal;
         }).then(function(data){
             // console.log(data);
             if(data){
-                create_logs('010_Contact staff button');
+                // create_logs('010_Contact staff button');
                 document.querySelector('#close_modal_Send').click();
                 setTimeout(() => {
                     document.querySelector('#btn_Send_success').click();
