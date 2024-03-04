@@ -365,7 +365,7 @@
         <a id="btn_sort_pc" href="{{ url('/individual') }}?Sort=pc" class="btn btn-sort-data active" onclick="return create_logs('021_Individual - PC (toggle)');">
             PC
         </a>
-        <a id="btn_sort_aa" href="{{ url('/individual') }}?Sort=aa" class="btn btn-sort-data" onclick="return create_logs('023_Active Agent - AA (toggle)');">
+        <a id="btn_sort_aa" href="{{ url('/individual') }}?Sort=aa" class="btn btn-sort-data" onclick="return create_logs('023_Individual - Active agent (toggle)');">
             <div>
                  <p style="font-size: 12px;" class="mb-0">Active Agent</p>
                 <p style="font-size: 10px;" class="mb-0">(AA)</p>

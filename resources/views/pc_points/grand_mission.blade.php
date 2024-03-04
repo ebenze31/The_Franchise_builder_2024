@@ -603,7 +603,7 @@ td.my-rank:last-child {
         <a id="btn_sort_nc" href="{{ url('/grand_mission') }}?Sort=nc"  class="btn btn-sort-data d-none" onclick="return create_logs('042_Grand Mission - New Code (toggle)');">
             <p style="font-size: 18px;margin-top: 4px;" class="mb-0">New Code</p>
         </a>
-        <a id="btn_sort_aa" href="{{ url('/grand_mission') }}?Sort=aa"  class="btn btn-sort-data" >
+        <a id="btn_sort_aa" href="{{ url('/grand_mission') }}?Sort=aa"  class="btn btn-sort-data" onclick="return create_logs('042_Grand Mission - Active agent (toggle)');">
             <div>
                  <p style="font-size: 12px;" class="mb-0">Active Agent</p>
                 <p style="font-size: 10px;" class="mb-0">(AA)</p>
