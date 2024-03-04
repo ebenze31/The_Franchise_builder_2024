@@ -522,7 +522,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                         let tag_a_2 = `` ;
 
                         if ("{{ Auth::user()->role }}" !== "Player") {
-                            tag_a_1 = `<a href="{{ url('/view_team_mission2') }}/`+result['data'][i].id+`" onclick="return create_logs('Mission2 team _`+result['data'][i].id+`');">`;
+                            tag_a_1 = `<a href="{{ url('/view_team_mission2') }}/`+result['data'][i].id+`" onclick="return create_logs('Mission2 team_`+result['data'][i].id+`');">`;
                             tag_a_2 = `</a>`;
                         }
 
