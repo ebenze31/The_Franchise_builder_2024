@@ -307,12 +307,12 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        get_data_user_mission_2()
+        get_data_user_grand_mission_my_team()
     });
 
-    function get_data_user_mission_2(){
+    function get_data_user_grand_mission_my_team(){
 
-        fetch("{{ url('/') }}/api/get_data_user_mission_2" + "/" + "{{ $group_id }}")
+        fetch("{{ url('/') }}/api/get_data_user_grand_mission_my_team" + "/" + "{{ $group_id }}")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
