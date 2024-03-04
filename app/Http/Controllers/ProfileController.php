@@ -410,7 +410,7 @@ class ProfileController extends Controller
             ->select('users.*' , 'pc_points.week as week' , 'pc_points.pc_point as pc_point', 'pc_points.new_code as new_code', 'pc_points.created_at as as_of' , 'pc_points.grandmission as grandmission' , 'pc_points.active_dream as active_dream')
             ->where('pc_points.week', $week)
             ->where('pc_points.group_id', $group_id)
-            ->orderByRaw('CAST(pc_points.new_code AS SIGNED) DESC, pc_points.grandmission DESC')
+            ->orderByRaw('CAST(pc_points.active_dream AS SIGNED) DESC, pc_points.grandmission DESC')
             // ->orderBy(DB::raw('CAST(pc_points.new_code AS SIGNED)'), 'DESC')
             // ->orderBy(DB::raw('CAST(pc_points.user_id AS SIGNED)'), 'DESC')
             ->get();
