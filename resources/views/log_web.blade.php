@@ -212,7 +212,7 @@
             <table class="table mb-0 align-middle" id="content_table">
                 <thead>
                     <tr>
-                        <th class="text-center">Photo</th>
+                        <!-- <th class="text-center">Photo</th> -->
                         <th class="text-center">Account</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Date Time</th>
@@ -259,24 +259,25 @@
                         for (let i = 0; i < result.length; i++) {
 
                             // photo 
-                            let html_img = ''
-                            if(result[i].photo){
-                                html_img = `<img src="{{ url('storage')}}/`+result[i].photo+`" class="p-1" alt=""> 
-                                            <span class="d-none">{{ url('storage')}}/`+result[i].photo+`</span>`;
-                            }else{
-                                html_img = `<img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt=""> 
-                                            <span class="d-none">{{ url('/img/icon/profile.png') }}</span>`;
-                            }
+                            // let html_img = ''
+                            // if(result[i].photo){
+                            //     html_img = `<img src="{{ url('storage')}}/`+result[i].photo+`" class="p-1" alt=""> 
+                            //                 <span class="d-none">{{ url('storage')}}/`+result[i].photo+`</span>`;
+                            // }else{
+                            //     html_img = `<img src="{{ url('/img/icon/profile.png') }}" class="p-1" alt=""> 
+                            //                 <span class="d-none">{{ url('/img/icon/profile.png') }}</span>`;
+                            // }
+
+                            // <td>
+                            //     <center>
+                            //         <div id="product_img_account_111" class="product-img bg-transparent border">
+                            //             `+html_img+`
+                            //         </div>
+                            //     </center>
+                            // </td>
 
                             let html = `
                                 <tr class="">
-                                    <td>
-                                        <center>
-                                            <div id="product_img_account_111" class="product-img bg-transparent border">
-                                                `+html_img+`
-                                            </div>
-                                        </center>
-                                    </td>
                                     <td class="text-center">
                                         `+result[i].account+`
                                     </td>
