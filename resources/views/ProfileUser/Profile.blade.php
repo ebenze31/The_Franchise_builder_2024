@@ -448,14 +448,15 @@ line-height: normal;
                         close
                     </button>
 
-                    <button id="btn_Send_success" type="button" class="btn btn-submit padding-btn d-none" data-toggle="modal" data-target="#modal_contact_success">
-                        test ส่งเสร็จ
-                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<button id="btn_Send_success" type="button" class="btn btn-submit padding-btn d-none" data-toggle="modal" data-target="#modal_contact_success">
+    test ส่งเสร็จ
+</button>
 
 <div class="modal fade" id="modal_contact_success" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -621,7 +622,7 @@ line-height: normal;
 
     function submit_qa(){
 
-        console.log("submit_qa");
+        // console.log("submit_qa");
         let question = document.querySelector('#question');
         let phone = document.querySelector('#phone');
 
@@ -648,11 +649,12 @@ line-height: normal;
         }).then(function(data){
             // console.log(data);
             if(data){
-                // create_logs('010_Contact staff button');
-                document.querySelector('#close_modal_Send').click();
-                setTimeout(() => {
+                create_logs('010_Contact staff button');
+                // setTimeout(() => {
+                    document.querySelector('#close_Pending').click();
                     document.querySelector('#btn_Send_success').click();
-                }, 800);
+                // }, 800);
+
             }
         }).catch(function(error){
             // console.error(error);
