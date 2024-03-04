@@ -39,7 +39,8 @@ class HomeController extends Controller
             // return view('groups.index' , compact('activeGroupsCount'));
 
             // return view('pc_points/ranking_by_team');
-            return view('pc_points/end_mission_1');
+            // return view('pc_points/end_mission_1');
+            return view('pc_points/mission_2');
         }
 
         else if(Auth::user()->role == "Staff"){
@@ -48,14 +49,17 @@ class HomeController extends Controller
             // return view('groups.index' , compact('activeGroupsCount'));
 
             // return view('pc_points/ranking_by_team');
-            return view('pc_points/end_mission_1');
+            // return view('pc_points/end_mission_1');
+            return view('pc_points/mission_2');
         }
 
-        else if(Auth::user()->role == "Player" || Auth::user()->role == "Player_OUT"){
+        // else if(Auth::user()->role == "Player" || Auth::user()->role == "Player_OUT"){
+        else if(Auth::user()->role == "Player"){
             $data_user = Auth::user();
 
             // return view('pc_points/ranking_by_team');
-            return view('pc_points/end_mission_1');
+            // return view('pc_points/end_mission_1');
+            return view('pc_points/mission_2');
 
             // if( empty($data_user->group_id) && !empty($data_user->time_cf_pay_slip) ){
             //     return redirect('groups');
