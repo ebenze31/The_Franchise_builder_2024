@@ -440,7 +440,7 @@ line-height: normal;
                     </div>
                 </div>
                 <div class=" d-flex justify-content-center">
-                    <button id="btn_Send" type="button" class="btn btn-disabled padding-btn" onclick="return create_logs('010_Contact staff button');submit_qa();" disabled>
+                    <button id="btn_Send" type="button" class="btn btn-disabled padding-btn" onclick="submit_qa();" disabled>
                         Send
                     </button>
 
@@ -648,6 +648,7 @@ line-height: normal;
         }).then(function(data){
             // console.log(data);
             if(data){
+                return create_logs('010_Contact staff button');
                 document.querySelector('#close_modal_Send').click();
                 setTimeout(() => {
                     document.querySelector('#btn_Send_success').click();
