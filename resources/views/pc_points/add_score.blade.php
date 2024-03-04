@@ -194,42 +194,41 @@
                             </div>
                         </div>
 
-                        <div id="div_PreviewDATA" class="col-12 mt-4 mb-2 d-none">
-
+                        <div id="div_PreviewDATA" class="col-12 mt-4 mb-2 d-none"style="height: 80vh; overflow-y: scroll;">
                             <hr>
                             <h4 class="text-info">Preview DATA</h4>
 
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">account</th>
-                                        <th scope="col">group_id</th>
-                                        <th scope="col">week</th>
-                                        <th scope="col">pc_point</th>
-                                        <th scope="col">new_code</th>
-                                        <th scope="col">rank_of_week</th>
-                                        <th scope="col">rank_last_week</th>
-                                        <th scope="col">csta</th>
-                                        <th scope="col">pers</th>
-                                        <th scope="col">mission 1</th>
-                                        <th scope="col">mission 3</th>
-                                        <th scope="col">grand mission</th>
-                                        <th scope="col">active_dream</th>
-                                        <th scope="col">team_rank_of_week</th>
-                                        <th scope="col">team_rank_last_week</th>
-                                        <th scope="col">pc_grand_of_gweek</th>
-                                        <th scope="col">pc_grand_last_gweek</th>
-                                        <th scope="col">nc_grand_of_gweek</th>
-                                        <th scope="col">nc_grand_last_gweek</th>
-                                        <th scope="col">pc_grand_of_week_individual</th>
-                                        <th scope="col">pc_grand_last_week_individual</th>
-                                        <th scope="col">nc_grand_of_week_individual</th>
-                                        <th scope="col">nc_grand_last_week_individual</th>
-                                        <th scope="col">sum_newcode_team</th>
-                                        <th scope="col">aa_grand_of_week</th>
-                                        <th scope="col">aa_grand_last_week</th>
-                                        <th scope="col">aa_grand_of_week_individual</th>
-                                        <th scope="col">aa_grand_last_week_individual</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">account</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">group_id</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">week</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">pc_point</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">new_code</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">rank_of_week</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">rank_last_week</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">csta</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">pers</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">mission 1</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">mission 3</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">grand mission</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">active_dream</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">team_rank_of_week</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">team_rank_last_week</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">pc_grand_of_gweek</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">pc_grand_last_gweek</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">nc_grand_of_gweek</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">nc_grand_last_gweek</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">pc_grand_of_week_individual</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">pc_grand_last_week_individual</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">nc_grand_of_week_individual</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">nc_grand_last_week_individual</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">sum_newcode_team</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">aa_grand_of_week</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">aa_grand_last_week</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">aa_grand_of_week_individual</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">aa_grand_last_week_individual</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody_PreviewDATA">
