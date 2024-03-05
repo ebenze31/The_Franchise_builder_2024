@@ -605,8 +605,8 @@ td.my-rank:last-child {
         </a>
         <a id="btn_sort_aa" href="{{ url('/grand_mission') }}?Sort=aa"  class="btn btn-sort-data" onclick="return create_logs('042_Grand Mission - Active agent (toggle)');">
             <div>
-                 <p style="font-size: 12px;" class="mb-0">Active Agent</p>
-                <p style="font-size: 10px;" class="mb-0">(AA)</p>
+                 <p style="font-size: 14px;" class="mb-0">Active Agent</p>
+                <p style="font-size: 12px;" class="mb-0">(AA)</p>
             </div>
         </a>
     </div>
