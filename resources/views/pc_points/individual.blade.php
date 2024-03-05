@@ -362,8 +362,9 @@
 
 <div class="w-100 d-flex justify-content-center my-3">
     <div class="btn-group" role="group" aria-label="Basic example" style="scale: 0.8;">
-        <a id="btn_sort_pc" href="{{ url('/individual') }}?Sort=pc" class="btn btn-sort-data active" onclick="return create_logs('021_Individual - PC (toggle)');">
-            PC
+        <a  id="btn_sort_pc" href="{{ url('/individual') }}?Sort=pc" class="btn btn-sort-data active" onclick="return create_logs('021_Individual - PC (toggle)');">
+        <p style="font-size: 18px;margin-top: 4px;" class="mb-0">PC</p>
+
         </a>
         <a id="btn_sort_aa" href="{{ url('/individual') }}?Sort=aa" class="btn btn-sort-data" onclick="return create_logs('023_Individual - Active agent (toggle)');">
             <div>
