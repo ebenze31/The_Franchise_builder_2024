@@ -1004,14 +1004,22 @@ td.my-rank:last-child {
                                                         <thead class="head-teble-data-my-team">
                                                             <tr>
                                                                 <th class="text-center" style>
-                                                                    <p>No.</p>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <p>No.</p>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="text-center" style>
-                                                                    <p>User</p>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <p>User</p>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="text-center" style>
-                                                                    <p>PC</p>
-                                                                    <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <div>
+                                                                            <p>PC</p>
+                                                                            <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                        </div>
+                                                                    </div>
                                                                 </th>
                                                             </tr>
                                                         </thead>
@@ -1069,15 +1077,23 @@ td.my-rank:last-child {
                                                         <thead class="head-teble-data-my-team">
                                                             <tr>
                                                                 <th class="text-center" style>
-                                                                    <p>No.</p>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <p>No.</p>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="text-center" style>
-                                                                    <p>User</p>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <p>User</p>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="text-center" style>
-                                                                    <p>PC</p>
-                                                                    <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
-                                                                    </th>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <div>
+                                                                            <p>PC</p>
+                                                                            <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                        </div>
+                                                                    </div>
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbody_content_ME">
@@ -1265,14 +1281,22 @@ td.my-rank:last-child {
                                                         <thead class="head-teble-data-my-team">
                                                             <tr>
                                                                 <th class="text-center" style>
-                                                                    <p>No.</p>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <p>No.</p>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="text-center" style>
-                                                                    <p>User</p>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <p>User</p>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="text-center" style>
-                                                                    <p>NC</p>
-                                                                    <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <div>
+                                                                            <p>NC</p>
+                                                                            <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                        </div>
+                                                                    </div>
                                                                 </th>
                                                             </tr>
                                                         </thead>
@@ -1330,15 +1354,23 @@ td.my-rank:last-child {
                                                         <thead class="head-teble-data-my-team">
                                                             <tr>
                                                                 <th class="text-center" style>
-                                                                    <p>No.</p>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <p>No.</p>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="text-center" style>
-                                                                    <p>User</p>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <p>User</p>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="text-center" style>
-                                                                    <p>NC</p>
-                                                                    <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
-                                                                    </th>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <div>
+                                                                            <p>NC</p>
+                                                                            <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                        </div>
+                                                                    </div>
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbody_content_ME">
@@ -1488,14 +1520,22 @@ td.my-rank:last-child {
                                                         <thead class="head-teble-data-my-team">
                                                             <tr>
                                                                 <th class="text-center" style>
-                                                                    <p>No.</p>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <p>No.</p>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="text-center" style>
-                                                                    <p>User</p>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <p>User</p>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="text-center" style>
-                                                                    <p>Active Agent (AA)</p>
-                                                                    <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <div>
+                                                                            <p>Active Agent (AA)</p>
+                                                                            <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                        </div>
+                                                                    </div>
                                                                 </th>
                                                             </tr>
                                                         </thead>
@@ -1553,15 +1593,23 @@ td.my-rank:last-child {
                                                         <thead class="head-teble-data-my-team">
                                                             <tr>
                                                                 <th class="text-center" style>
-                                                                    <p>No.</p>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <p>No.</p>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="text-center" style>
-                                                                    <p>User</p>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <p>User</p>
+                                                                    </div>
                                                                 </th>
                                                                 <th class="text-center" style>
-                                                                    <p>Active Agent (AA)</p>
-                                                                    <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
-                                                                    </th>
+                                                                    <div class="text-center justify-content-center d-flex align-items-center" style="height:24px">
+                                                                        <div>
+                                                                            <p>Active Agent (AA)</p>
+                                                                            <small style="font-size: 7px;">As of  : `+formattedDate+`</small>
+                                                                        </div>
+                                                                    </div>
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbody_content_ME">
