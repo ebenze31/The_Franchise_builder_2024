@@ -540,7 +540,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
                                         <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
                                             <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
-                                                <div class=" team_color_2"  role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class=" team_color_2"  role="progressbar" style="width: 100%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
                                                     <span id="">`+new_code+`</span>/25
                                                 </div>
@@ -567,7 +567,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 
                                         <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
                                             <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
-                                                <div class=" team_color_1"  role="progressbar" style="width: `+percentage+`%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class=" team_color_1"  role="progressbar" style="width: `+percentage+`%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
                                                     <span id="">`+new_code+`</span>/25
                                                 </div>
@@ -589,7 +589,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                                         <img src="{{ url('/img/group_profile/danger/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_0 img_team">
                                         <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
                                             <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
-                                                <div class=" team_color_0" role="progressbar" style="width: `+percentage+`%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class=" team_color_0" role="progressbar" style="width: `+percentage+`%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                 <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
                                                     <span id="">`+new_code+`</span>/25
                                                 </div>
