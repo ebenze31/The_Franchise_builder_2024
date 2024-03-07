@@ -186,6 +186,31 @@
         position: relative;
         padding: 20px;
     }
+    .fix-border-right-top-section:after {
+        border-right: 1px solid #fff;
+        content: "";
+        position: absolute;
+        top: -6px;
+        left: 14.5%;
+        right: -4.5px;
+        bottom: 0;
+        z-index: 1;
+        height: 160%;
+
+    }
+    
+    .fix-border-right-bottom-section:after {
+        border-right: 1px solid #fff;
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: 14.5%;
+        right: -4.5px;
+        bottom: 0;
+        z-index: 1;
+        height: 130%;
+
+    }
 </style>
 <div class="w-100 d-noe">
     <div class="profile-header w-100">
@@ -230,7 +255,7 @@
 
 
         <div id="div_my_point" class="card-body d-none">
-                <table class="table table-sm mb-0">
+                <table class="table table-sm mb-0" style="position: relative;">
                 <thead >
                     <tr style="background-color: #D9D9D9;margin-top: 50px;">
                         <th style="
@@ -243,23 +268,25 @@
                          border-bottom: none !important; 
                          -moz-border-bottom: none !important; 
                          -khtml-border-bottom: none !important; 
-                         border-right: 1px solid #fff; 
                          color: #07285A;
                          font-weight: bold;
                          font-size: 14px;" class="text-center">
-                            Grand mission
+                         <div style="position: relative;" class="fix-border-right-top-section">
+                         Grand mission
+                         </div>
                         </th>
                         <th style="
                         border-top: 10px solid transparent;
                         border-bottom: none !important; 
-                        border-right: 1px solid #fff; 
                         color: #07285A;
                         font-weight: bold;
                         font-size: 14px;
                         -moz-border-top: 10px solid transparent;
                         -khtml-border-top: 10px solid transparent;
                         " class="text-center">
+                        <div style="position: relative;" class="fix-border-right-top-section">
                             Active agent
+                        </div>
                         </th>
                         <th style="
                         border-top: 10px solid transparent;
@@ -271,7 +298,6 @@
                         font-weight: bold;
                         font-size: 14px; -moz-border-bottom: none !important; 
                          -khtml-border-bottom: none !important;" 
-                        
                         class="text-center">
                             New code
                         </th>
@@ -279,7 +305,8 @@
                 </thead>
                 <tbody>
                     <tr style="background-color: #07285A;">
-                        <th style="
+                        <td style="
+                        
                         border-bottom: 10px solid transparent;
                         -moz-border-bottom:  10px solid transparent;
                          -khtml-border-bottom:  10px solid transparent;
@@ -289,16 +316,23 @@
                         color:#FCBF29;
                         font-size: 22px;
                         font-weight: bolder; 
-                        border-right: 1px solid #fff;" 
-                        class="text-center" id="my_point_grand">
-                        </th>
+                        " 
+                        class="text-center" >
+                        <div id="my_point_grand" class="fix-border-right-bottom-section" style="position: relative;">
+                        
+                        </div>
+                        </td>
                         <td style="
                         border-bottom: 10px solid transparent;
                         -moz-border-bottom:  10px solid transparent;
                          -khtml-border-bottom:  10px solid transparent;
                          color:#FCBF29;font-size: 22px;
                          font-weight: bolder;
-                          border-right: 1px solid #fff;" class="text-center" id="my_point_aa"></td>
+                          " class="text-center">
+                          <div id="my_point_aa" class="fix-border-right-bottom-section" style="position: relative;">
+                          
+                        </div>
+                        </td>
                         <td style="
                         border-bottom: 10px solid transparent;
                         -moz-border-bottom:  10px solid transparent;
