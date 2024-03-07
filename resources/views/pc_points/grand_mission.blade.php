@@ -905,26 +905,32 @@ td.my-rank:last-child {
 
                             if( grandmission != 0){
                                 let draw_line = ``;
-                                if(grandmission > 2000000){
+                                if(grandmission >= 2000000){
                                     class_of_score = 'color-2m-up' ;
                                 }
-                                else if(grandmission < 2000000 && check_line_2m == 'no'){
-                                    // draw_line = line_2m;
-                                    class_of_score = 'color-2m';
-                                    check_line_2m = 'yes';
-                                    draw_line = draw_line_lux(i , '2M');
+                                else if(grandmission < 2000000 && grandmission >= 1500000){
+                                    if(check_line_2m == 'no'){
+                                        // draw_line = line_2m;
+                                        class_of_score = 'color-2m';
+                                        check_line_2m = 'yes';
+                                        draw_line = draw_line_lux(i , '2M');
+                                    }
                                 }
-                                else if(grandmission < 1500000 && check_line_1_5m == 'no'){
-                                    // draw_line = line_1_5m;
-                                    class_of_score = 'color-1-5m';
-                                    check_line_1_5m = 'yes';
-                                    draw_line = draw_line_lux(i , '1.5M');
+                                else if(grandmission < 1500000 && grandmission >= 1000000){
+                                    if(check_line_1_5m == 'no'){
+                                        // draw_line = line_1_5m;
+                                        class_of_score = 'color-1-5m';
+                                        check_line_1_5m = 'yes';
+                                        draw_line = draw_line_lux(i , '1.5M');
+                                    }
                                 }
-                                else if(grandmission < 1000000 && check_line_1m == 'no'){
-                                    // draw_line = line_1m;
-                                    class_of_score = 'color-1m';
-                                    check_line_1m = 'yes';
-                                    draw_line = draw_line_lux(i , '1M');
+                                else if(grandmission < 1000000 && grandmission >= 500000){
+                                    if(check_line_1m == 'no'){
+                                        // draw_line = line_1m;
+                                        class_of_score = 'color-1m';
+                                        check_line_1m = 'yes';
+                                        draw_line = draw_line_lux(i , '1M');
+                                    }
                                 }
                                 else if(grandmission < 500000 && check_line_500k == 'no'){
                                     // draw_line = line_500k;
@@ -1184,7 +1190,7 @@ td.my-rank:last-child {
 
                             if( new_code != 0){
                                 let draw_line = ``;
-                                if(new_code > 25){
+                                if(new_code >= 25){
                                     class_of_score = 'color-2m-up' ;
                                 }
                                 else if(new_code < 25 && check_line_2m == 'no'){
@@ -1437,7 +1443,7 @@ td.my-rank:last-child {
 
                             if( active_dream != 0){
                                 let draw_line = ``;
-                                if(active_dream > 90){
+                                if(active_dream >= 90){
                                     class_of_score = 'color-2m-up' ;
                                 }
                                 else if(active_dream < 90 && check_line_2m == 'no'){
