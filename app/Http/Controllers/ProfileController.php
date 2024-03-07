@@ -497,7 +497,7 @@ class ProfileController extends Controller
         $data['data'] = DB::table('groups')
             ->where('nc_grand_of_gweek' , '!=' , null)
             // ->orderBy(DB::raw('CAST(nc_grand_of_gweek AS SIGNED)'), 'ASC')
-            ->orderByRaw('CAST(nc_grand_of_gweek AS SIGNED) ASC, pc_grand_of_gweek ASC')
+            ->orderByRaw('CAST(nc_grand_of_gweek AS SIGNED) ASC, pc_grand_of_gweek ASC, id ASC')
             ->get();
 
         $data['week'] = $week;
