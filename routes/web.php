@@ -144,6 +144,10 @@ Route::middleware(['auth', 'role:Super-admin,Admin'])->group(function () {
     Route::get('/excel_end_mission1', 'HomeController@excel_end_mission1');
     Route::resource('logs', 'LogsController');
     Route::get('/give_badge', 'ActivitiesController@give_badge');
+
+    // activities 2 log
+    Route::get('activities_2_log', 'ActivitiesController@activities_2_log');
+
 });
 
 

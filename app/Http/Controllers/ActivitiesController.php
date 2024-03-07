@@ -11,6 +11,7 @@ use App\Models\Activity;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ActivitiesController extends Controller
 {
@@ -469,5 +470,33 @@ class ActivitiesController extends Controller
                 ]);
 
         return "success";
+    }
+
+    function activities_2_log(){
+
+        echo "<h2>Activities 2 log</h2>";
+        echo "<hr>";
+
+        $user_have = User::where('activities', 'LIKE', "%2%")->get();
+
+        echo "รวม : " . count($user_have) . " คน";
+        echo "<br><br>";
+
+        foreach ($user_have as $item) {
+            echo "Account : " . $item->account . " -- " . "Name : " . $item->name;
+            echo "<br>";
+
+            $arr_create_log = [];
+            $arr_create_log['id_Activities'] = '2';
+            $arr_create_log['user_id'] = $item->id;
+
+            Activities_log::create($arr_create_log);
+
+        }
+
+        echo "<h1 style='color:#23A400 ;'>Success<h1>";
+
+        exit();
+
     }
 }
