@@ -1446,11 +1446,13 @@ td.my-rank:last-child {
                                 if(active_dream >= 90){
                                     class_of_score = 'color-2m-up' ;
                                 }
-                                else if(active_dream < 90 && check_line_2m == 'no'){
-                                    // draw_line = line_2m;
-                                    class_of_score = 'color-2m';
-                                    check_line_2m = 'yes';
-                                    draw_line = draw_line_lux(i , '90AA');
+                                else if(active_dream < 90 && active_dream >= 60){
+                                    if(check_line_2m == 'no'){
+                                        // draw_line = line_2m;
+                                        class_of_score = 'color-2m';
+                                        check_line_2m = 'yes';
+                                        draw_line = draw_line_lux(i , '90AA');
+                                    }
                                 }
                                 else if(active_dream < 60 && check_line_1m == 'no'){
                                     // draw_line = line_1m;
