@@ -507,7 +507,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                         let result_data_arr = [];
                             result_data_arr = JSON.parse(result['data'][i].rank_record);
 
-                        let pc_point = result_data_arr[week]['pc_point'] ;
+                        // let pc_point = result_data_arr[week]['pc_point'] ;
                         let new_code = result_data_arr[week]['new_code'] ;
                         let csta = result_data_arr[week]['csta'] ;
 
