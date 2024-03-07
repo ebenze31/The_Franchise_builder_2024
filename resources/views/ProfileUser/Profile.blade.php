@@ -272,7 +272,7 @@
                          font-weight: bold;
                          font-size: 14px;" class="text-center">
                          <div style="position: relative;" class="fix-border-right-top-section">
-                         Grand mission
+                         PC
                          </div>
                         </th>
                         <th style="
