@@ -230,25 +230,85 @@
 
 
         <div id="div_my_point" class="card-body d-none">
-            <table class="table table-sm mb-0">
+                <table class="table table-sm mb-0">
                 <thead >
                     <tr style="background-color: #D9D9D9;margin-top: 50px;">
-                        <th style="border-top: 10px solid transparent;border-radius: 10px 0 0 0; -moz-border-radius:10px 0 0 0;-khtml-border-radius:10px 0 0 0;border-bottom: none !important; border-right: 1px solid #fff; color: #07285A;font-weight: bold;font-size: 14px;" class="text-center">
+                        <th style="
+                        border-radius: 10px 0 0 0;
+                        -moz-border-radius:10px 0 0 0;
+                        -khtml-border-radius:10px 0 0 0;
+                        border-top: 10px solid transparent;
+                        -moz-border-top: 10px solid transparent;
+                        -khtml-border-top: 10px solid transparent;
+                         border-bottom: none !important; 
+                         -moz-border-bottom: none !important; 
+                         -khtml-border-bottom: none !important; 
+                         border-right: 1px solid #fff; 
+                         color: #07285A;
+                         font-weight: bold;
+                         font-size: 14px;" class="text-center">
                             Grand mission
                         </th>
-                        <th style="border-top: 10px solid transparent;border-bottom: none !important; border-right: 1px solid #fff; color: #07285A;font-weight: bold;font-size: 14px;" class="text-center">
+                        <th style="
+                        border-top: 10px solid transparent;
+                        border-bottom: none !important; 
+                        border-right: 1px solid #fff; 
+                        color: #07285A;
+                        font-weight: bold;
+                        font-size: 14px;
+                        -moz-border-top: 10px solid transparent;
+                        -khtml-border-top: 10px solid transparent;
+                        " class="text-center">
                             Active agent
                         </th>
-                        <th style="border-top: 10px solid transparent;border-radius:  0 10px 0 0;-moz-border-radius:10px 0 0 0;-khtml-border-radius:10px 0 0 0;border-bottom: none !important;  color: #07285A;font-weight: bold;font-size: 14px;" class="text-center">
+                        <th style="
+                        border-top: 10px solid transparent;
+                        border-radius:  0 10px 0 0;
+                        -moz-border-radius:10px 0 0 0;
+                        -khtml-border-radius:10px 0 0 0;
+                        border-bottom: none !important;  
+                        color: #07285A;
+                        font-weight: bold;
+                        font-size: 14px; -moz-border-bottom: none !important; 
+                         -khtml-border-bottom: none !important;" 
+                        
+                        class="text-center">
                             New code
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr style="background-color: #07285A;">
-                        <th style="border-bottom: 10px solid transparent;-moz-border-radius: 0 0  0 25px;-khtml-border-radius: 0 0  0 25px;border-radius:  0 0  0 25px;color:#FCBF29;font-size: 22px;font-weight: bolder; border-right: 1px solid #fff;" class="text-center" id="my_point_grand"></th>
-                        <td style="border-bottom: 10px solid transparent; color:#FCBF29;font-size: 22px;font-weight: bolder; border-right: 1px solid #fff;" class="text-center" id="my_point_aa"></td>
-                        <td style="border-bottom: 10px solid transparent;-moz-border-radius: 0 0  0 25px;-khtml-border-radius: 0 0  0 25px;border-radius:  0 0 25px 0;color:#FCBF29;font-size: 22px;font-weight: bolder; " class="text-center" id="my_point_nc"></td>
+                        <th style="
+                        border-bottom: 10px solid transparent;
+                        -moz-border-bottom:  10px solid transparent;
+                         -khtml-border-bottom:  10px solid transparent;
+                        -moz-border-radius: 0 0  0 25px;
+                        -khtml-border-radius: 0 0  0 25px;
+                        border-radius:  0 0  0 25px;
+                        color:#FCBF29;
+                        font-size: 22px;
+                        font-weight: bolder; 
+                        border-right: 1px solid #fff;" 
+                        class="text-center" id="my_point_grand">
+                        </th>
+                        <td style="
+                        border-bottom: 10px solid transparent;
+                        -moz-border-bottom:  10px solid transparent;
+                         -khtml-border-bottom:  10px solid transparent;
+                         color:#FCBF29;font-size: 22px;
+                         font-weight: bolder;
+                          border-right: 1px solid #fff;" class="text-center" id="my_point_aa"></td>
+                        <td style="
+                        border-bottom: 10px solid transparent;
+                        -moz-border-bottom:  10px solid transparent;
+                         -khtml-border-bottom:  10px solid transparent;
+                        -moz-border-radius: 0 0  0 25px;
+                        -khtml-border-radius: 0 0  0 25px;
+                        border-radius:  0 0 25px 0;
+                        color:#FCBF29;
+                        font-size: 22px;
+                        font-weight: bolder; " class="text-center" id="my_point_nc"></td>
                     </tr>
                 </tbody>
             </table>
@@ -734,6 +794,10 @@ line-height: normal;
                         document.querySelector('#pc_of_me').innerHTML = formattedNumber ;
                         document.querySelector('#rank_of_me').innerHTML = result['data'][0].new_code ;
                         document.querySelector('#rank_of_team').innerHTML = result['data'][0].grandmission.toLocaleString() ;
+
+                        document.querySelector('#my_point_grand').innerHTML = result['data'][0].grandmission.toLocaleString();
+                        document.querySelector('#my_point_aa').innerHTML = result['data'][0].active_dream.toLocaleString();
+                        document.querySelector('#my_point_nc').innerHTML = result['data'][0].new_code.toLocaleString();
 
                         document.querySelector('#my_point_grand').innerHTML = result['data'][0].grandmission.toLocaleString();
                         document.querySelector('#my_point_aa').innerHTML = result['data'][0].active_dream.toLocaleString();
