@@ -903,36 +903,38 @@ td.my-rank:last-child {
                                 img_trophy = ``;
                             }
 
-                            let draw_line = ``;
-                            if(grandmission > 2000000){
-                                class_of_score = 'color-2m-up' ;
-                            }
-                            else if(grandmission < 2000000 && check_line_2m == 'no'){
-                                // draw_line = line_2m;
-                                class_of_score = 'color-2m';
-                                check_line_2m = 'yes';
-                                draw_line = draw_line_lux(i , '2M');
-                            }
-                            else if(grandmission < 1500000 && check_line_1_5m == 'no'){
-                                // draw_line = line_1_5m;
-                                class_of_score = 'color-1-5m';
-                                check_line_1_5m = 'yes';
-                                draw_line = draw_line_lux(i , '1.5M');
-                            }
-                            else if(grandmission < 1000000 && check_line_1m == 'no'){
-                                // draw_line = line_1m;
-                                class_of_score = 'color-1m';
-                                check_line_1m = 'yes';
-                                draw_line = draw_line_lux(i , '1M');
-                            }
-                            else if(grandmission < 500000 && check_line_500k == 'no'){
-                                // draw_line = line_500k;
-                                class_of_score = 'color-500k';
-                                check_line_500k = 'yes';
-                                draw_line = draw_line_lux(i , '500K');
-                            }
+                            if( grandmission != 0){
+                                let draw_line = ``;
+                                if(grandmission > 2000000){
+                                    class_of_score = 'color-2m-up' ;
+                                }
+                                else if(grandmission < 2000000 && check_line_2m == 'no'){
+                                    // draw_line = line_2m;
+                                    class_of_score = 'color-2m';
+                                    check_line_2m = 'yes';
+                                    draw_line = draw_line_lux(i , '2M');
+                                }
+                                else if(grandmission < 1500000 && check_line_1_5m == 'no'){
+                                    // draw_line = line_1_5m;
+                                    class_of_score = 'color-1-5m';
+                                    check_line_1_5m = 'yes';
+                                    draw_line = draw_line_lux(i , '1.5M');
+                                }
+                                else if(grandmission < 1000000 && check_line_1m == 'no'){
+                                    // draw_line = line_1m;
+                                    class_of_score = 'color-1m';
+                                    check_line_1m = 'yes';
+                                    draw_line = draw_line_lux(i , '1M');
+                                }
+                                else if(grandmission < 500000 && check_line_500k == 'no'){
+                                    // draw_line = line_500k;
+                                    class_of_score = 'color-500k';
+                                    check_line_500k = 'yes';
+                                    draw_line = draw_line_lux(i , '500K');
+                                }
 
-                            content_ASC.insertAdjacentHTML('beforeend', draw_line);
+                                content_ASC.insertAdjacentHTML('beforeend', draw_line);
+                            }
 
                             let rank_up ;
                             if( parseInt(pc_grand_of_gweek) < parseInt(pc_grand_last_gweek) ){
@@ -1180,36 +1182,38 @@ td.my-rank:last-child {
                                 img_trophy = ``;
                             }
 
-                            let draw_line = ``;
-                            if(new_code > 25){
-                                class_of_score = 'color-2m-up' ;
-                            }
-                            else if(new_code < 25 && check_line_2m == 'no'){
-                                // draw_line = line_2m;
-                                class_of_score = 'color-2m';
-                                check_line_2m = 'yes';
-                                draw_line = draw_line_lux(i , '25NC');
-                            }
-                            else if(new_code < 20 && check_line_1_5m == 'no'){
-                                // draw_line = line_1_5m;
-                                class_of_score = 'color-1-5m';
-                                check_line_1_5m = 'yes';
-                                draw_line = draw_line_lux(i , '20NC');
-                            }
-                            else if(new_code < 15 && check_line_1m == 'no'){
-                                // draw_line = line_1m;
-                                class_of_score = 'color-1m';
-                                check_line_1m = 'yes';
-                                draw_line = draw_line_lux(i , '15NC');
-                            }
-                            else if(new_code < 10 && check_line_500k == 'no'){
-                                // draw_line = line_500k;
-                                class_of_score = 'color-500k';
-                                check_line_500k = 'yes';
-                                draw_line = draw_line_lux(i , '10NC');
-                            }
+                            if( new_code != 0){
+                                let draw_line = ``;
+                                if(new_code > 25){
+                                    class_of_score = 'color-2m-up' ;
+                                }
+                                else if(new_code < 25 && check_line_2m == 'no'){
+                                    // draw_line = line_2m;
+                                    class_of_score = 'color-2m';
+                                    check_line_2m = 'yes';
+                                    draw_line = draw_line_lux(i , '25NC');
+                                }
+                                else if(new_code < 20 && check_line_1_5m == 'no'){
+                                    // draw_line = line_1_5m;
+                                    class_of_score = 'color-1-5m';
+                                    check_line_1_5m = 'yes';
+                                    draw_line = draw_line_lux(i , '20NC');
+                                }
+                                else if(new_code < 15 && check_line_1m == 'no'){
+                                    // draw_line = line_1m;
+                                    class_of_score = 'color-1m';
+                                    check_line_1m = 'yes';
+                                    draw_line = draw_line_lux(i , '15NC');
+                                }
+                                else if(new_code < 10 && check_line_500k == 'no'){
+                                    // draw_line = line_500k;
+                                    class_of_score = 'color-500k';
+                                    check_line_500k = 'yes';
+                                    draw_line = draw_line_lux(i , '10NC');
+                                }
 
-                            content_ASC.insertAdjacentHTML('beforeend', draw_line);
+                                content_ASC.insertAdjacentHTML('beforeend', draw_line);
+                            }
 
                             let rank_up ;
                             if( parseInt(nc_grand_of_gweek) < parseInt(nc_grand_last_gweek) ){
@@ -1431,24 +1435,26 @@ td.my-rank:last-child {
                                 img_trophy = ``;
                             }
 
-                            let draw_line = ``;
-                            if(active_dream > 90){
-                                class_of_score = 'color-2m-up' ;
-                            }
-                            else if(active_dream < 90 && check_line_2m == 'no'){
-                                // draw_line = line_2m;
-                                class_of_score = 'color-2m';
-                                check_line_2m = 'yes';
-                                draw_line = draw_line_lux(i , '90AA');
-                            }
-                            else if(active_dream < 60 && check_line_1m == 'no'){
-                                // draw_line = line_1m;
-                                class_of_score = 'color-1m';
-                                check_line_1m = 'yes';
-                                draw_line = draw_line_lux(i , '60AA');
-                            }
+                            if( active_dream != 0){
+                                let draw_line = ``;
+                                if(active_dream > 90){
+                                    class_of_score = 'color-2m-up' ;
+                                }
+                                else if(active_dream < 90 && check_line_2m == 'no'){
+                                    // draw_line = line_2m;
+                                    class_of_score = 'color-2m';
+                                    check_line_2m = 'yes';
+                                    draw_line = draw_line_lux(i , '90AA');
+                                }
+                                else if(active_dream < 60 && check_line_1m == 'no'){
+                                    // draw_line = line_1m;
+                                    class_of_score = 'color-1m';
+                                    check_line_1m = 'yes';
+                                    draw_line = draw_line_lux(i , '60AA');
+                                }
 
-                            content_ASC.insertAdjacentHTML('beforeend', draw_line);
+                                content_ASC.insertAdjacentHTML('beforeend', draw_line);
+                            }
 
                             let rank_up ;
                             if( parseInt(aa_grand_of_week) < parseInt(aa_grand_last_week) ){
