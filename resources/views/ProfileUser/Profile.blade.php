@@ -227,7 +227,9 @@
         <img class="me-2" src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
         </a>
         <a class="d-none" href="{{ route('logout') }}" id="btn-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;"></a>
-        <div class="card-body">
+
+
+        <div id="div_my_point" class="card-body d-none">
             <table class="table table-sm mb-0">
                 <thead >
                     <tr style="background-color: #D9D9D9;margin-top: 50px;">
@@ -244,9 +246,9 @@
                 </thead>
                 <tbody>
                     <tr style="background-color: #07285A;">
-                        <th style="border-bottom: 10px solid transparent;-moz-border-radius: 0 0  0 25px;-khtml-border-radius: 0 0  0 25px;border-radius:  0 0  0 25px;color:#FCBF29;font-size: 22px;font-weight: bolder; border-right: 1px solid #fff;" class="text-center">03</th>
-                        <td style="border-bottom: 10px solid transparent; color:#FCBF29;font-size: 22px;font-weight: bolder; border-right: 1px solid #fff;" class="text-center">02</td>
-                        <td style="border-bottom: 10px solid transparent;-moz-border-radius: 0 0  0 25px;-khtml-border-radius: 0 0  0 25px;border-radius:  0 0 25px 0;color:#FCBF29;font-size: 22px;font-weight: bolder; " class="text-center">815,315</td>
+                        <th style="border-bottom: 10px solid transparent;-moz-border-radius: 0 0  0 25px;-khtml-border-radius: 0 0  0 25px;border-radius:  0 0  0 25px;color:#FCBF29;font-size: 22px;font-weight: bolder; border-right: 1px solid #fff;" class="text-center" id="my_point_grand"></th>
+                        <td style="border-bottom: 10px solid transparent; color:#FCBF29;font-size: 22px;font-weight: bolder; border-right: 1px solid #fff;" class="text-center" id="my_point_aa"></td>
+                        <td style="border-bottom: 10px solid transparent;-moz-border-radius: 0 0  0 25px;-khtml-border-radius: 0 0  0 25px;border-radius:  0 0 25px 0;color:#FCBF29;font-size: 22px;font-weight: bolder; " class="text-center" id="my_point_nc"></td>
                     </tr>
                 </tbody>
             </table>
@@ -733,7 +735,12 @@ line-height: normal;
                         document.querySelector('#rank_of_me').innerHTML = result['data'][0].new_code ;
                         document.querySelector('#rank_of_team').innerHTML = result['data'][0].grandmission.toLocaleString() ;
 
-                        document.querySelector('#div_pc_point').classList.remove('d-none');
+                        document.querySelector('#my_point_grand').innerHTML = result['data'][0].grandmission.toLocaleString();
+                        document.querySelector('#my_point_aa').innerHTML = result['data'][0].active_dream.toLocaleString();
+                        document.querySelector('#my_point_nc').innerHTML = result['data'][0].new_code.toLocaleString();
+
+                        // document.querySelector('#div_pc_point').classList.remove('d-none');
+                        document.querySelector('#div_my_point').classList.remove('d-none');
                     }
 
             });
