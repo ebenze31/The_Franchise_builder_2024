@@ -19,7 +19,7 @@
         -moz-border-radius: 0 0 40px 40px;
         -khtml-border-radius: 0 0 40px 40px;
         position: relative;
-        padding-bottom: 5px;
+        /* padding-bottom: 5px; */
     }
 
     .btn-edit-profile {
@@ -227,6 +227,58 @@
         <img class="me-2" src="{{ url('/img/icon/Logo-logout.png') }}" alt="" width="15" height="15"> &nbsp;logout
         </a>
         <a class="d-none" href="{{ route('logout') }}" id="btn-logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="position: absolute;top:10px;right: 20px;"></a>
+        <div class="card-body">
+            <table class="table table-sm mb-0">
+                <thead >
+                    <tr style="background-color: #D9D9D9;margin-top: 50px;">
+                        <th style="border-top: 10px solid transparent;border-radius: 10px 0 0 0; -moz-border-radius:10px 0 0 0;-khtml-border-radius:10px 0 0 0;border-bottom: none !important; border-right: 1px solid #fff; color: #07285A;font-weight: bold;font-size: 14px;" class="text-center">
+                            Grand mission
+                        </th>
+                        <th style="border-top: 10px solid transparent;border-bottom: none !important; border-right: 1px solid #fff; color: #07285A;font-weight: bold;font-size: 14px;" class="text-center">
+                            Active agent
+                        </th>
+                        <th style="border-top: 10px solid transparent;border-radius:  0 10px 0 0;-moz-border-radius:10px 0 0 0;-khtml-border-radius:10px 0 0 0;border-bottom: none !important;  color: #07285A;font-weight: bold;font-size: 14px;" class="text-center">
+                            New code
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #07285A;">
+                        <th style="border-bottom: 10px solid transparent;-moz-border-radius: 0 0  0 25px;-khtml-border-radius: 0 0  0 25px;border-radius:  0 0  0 25px;color:#FCBF29;font-size: 22px;font-weight: bolder; border-right: 1px solid #fff;" class="text-center">03</th>
+                        <td style="border-bottom: 10px solid transparent; color:#FCBF29;font-size: 22px;font-weight: bolder; border-right: 1px solid #fff;" class="text-center">02</td>
+                        <td style="border-bottom: 10px solid transparent;-moz-border-radius: 0 0  0 25px;-khtml-border-radius: 0 0  0 25px;border-radius:  0 0 25px 0;color:#FCBF29;font-size: 22px;font-weight: bolder; " class="text-center">815,315</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+<!-- 
+        <div class="w-100  px-4 pb-2">
+            <div class=" d-flex justify-content-evenly py-2" style="border-radius: 10px 10px 25px 25px;">
+                <div class="text-center">
+                    <div class="d-block">
+                        <p style="color: #07285A;font-weight: bold;font-size: 14px;">Grand mission</p>
+                    </div>
+                    <div class="d-block">
+                        <p id="" style="color:#FCBF29;font-size: 22px;font-weight: bolder;margin-top: 10px;">111</p>
+                    </div>
+                </div>      
+                <div style="border-left: #fff 1px solid;"></div>  
+                <div class="text-center">
+                   <div class="d-block" style="color: #07285A;font-weight: bold;font-size: 14px;">Active agent</div>
+                   <div class="d-block">
+                        <p id="" style="color:#FCBF29;font-size: 22px;font-weight: bolder;margin-top: 10px;">111</p>
+                   </div>
+                </div>     
+                <div style="border-left: #fff 1px solid;"></div>   
+                <div class="text-center">
+                    <div class="d-block" style="color: #07285A;font-weight: bold;font-size: 14px;">New code</div>
+                    <div class="d-block">
+                        <p id="" style="color:#FCBF29;font-size: 22px;font-weight: bolder;margin-top: 10px;">111</p>
+                    </div>
+                </div>    
+            </div>
+        </div> -->
 
         <div id="div_pc_point" class="d-none mt-1">
             <div class="d-flex justify-content-center align-items-center text-white h6">
