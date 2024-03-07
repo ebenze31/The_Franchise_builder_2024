@@ -258,7 +258,7 @@
                 <table class="table table-sm mb-0" style="position: relative;">
                 <thead >
                     <tr style="background-color: #D9D9D9;margin-top: 50px;">
-                        <th style="
+                        <th style="width:33%;
                         border-radius: 10px 0 0 0;
                         -moz-border-radius:10px 0 0 0;
                         -khtml-border-radius:10px 0 0 0;
@@ -275,7 +275,7 @@
                          PC
                          </div>
                         </th>
-                        <th style="
+                        <th style="width:33%;
                         border-top: 10px solid transparent;
                         border-bottom: none !important; 
                         color: #07285A;
@@ -288,7 +288,7 @@
                             Active agent
                         </div>
                         </th>
-                        <th style="
+                        <th style="width:33%;
                         border-top: 10px solid transparent;
                         border-radius:  0 10px 0 0;
                         -moz-border-radius:10px 0 0 0;
