@@ -323,7 +323,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
         <div>
 
             <p style="color: #0A1330;font-weight: bolder;font-size: 18px;margin-bottom: 0;">
-                SUCCESS TEAM
+                Team Achievement
             </p>
             
             <img src="{{ url('/img/icon/Vector 543.png') }}" style="width: 120px;margin-top: -10px;">
