@@ -112,11 +112,10 @@
                 infoEmpty: "ผลรวม _TOTAL_ รายการ",
                 infoFiltered: "(จาก _MAX_ รายการ)",
             },
-            columnDefs: [{
-                type: 'date-th', // กำหนดชนิดของข้อมูลให้เป็นวันที่ในรูปแบบ "วัน เดือน ปี"
-                targets: 2 // กำหนดให้ชนิดของข้อมูลวันที่ในคอลัมน์ที่ 2
-            }],
-            order: [[2, 'desc']], // เรียงลำดับจากวันที่มากที่สุดไปยังน้อยที่สุด
+            order: [[2, 'desc']], // เรียงจากคอลัมน์ที่ 3 (index 2) ซึ่งเป็นวันที่ ให้เรียงลำดับจากมากไปน้อย (วันที่มากที่สุดไปน้อยที่สุด)
+            columnDefs: [
+                { type: 'date-eu', targets: 2 } // กำหนดประเภทของข้อมูลเป็นวันที่ในรูปแบบ "วัน เดือน ปี"
+            ],
             initComplete: function(settings, json) {
                 var footer = $("#content_table tfoot tr");
                 $("#content_table thead").append(footer);
