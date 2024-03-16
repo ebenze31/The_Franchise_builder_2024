@@ -412,7 +412,14 @@
     <script src="{{asset('theme_admin/js/bootstrap.bundle.min.js')}}"></script>
     <!--plugins-->
     <!-- <script src="{{asset('theme_admin/js/jquery.min.js')}}"></script> -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    @php
+        $full_url = url()->full() ;
+    @endphp
+
+    @if( $full_url != url("/log_web") )
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    @endif
+    
     <script src="{{asset('theme_admin/plugins/simplebar/js/simplebar.min.js')}}"></script>
     <script src="{{asset('theme_admin/plugins/metismenu/js/metisMenu.min.js')}}"></script>
     <script src="{{asset('theme_admin/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
