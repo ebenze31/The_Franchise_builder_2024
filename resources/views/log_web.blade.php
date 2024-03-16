@@ -146,7 +146,12 @@
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',
+                    }) + ' ' + createdAtDate.toLocaleTimeString('th-TH', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit'
                     });
+
                     // console.log(result[i].id);
                     data.push([
                         result[i].account ? result[i].account : "--",
