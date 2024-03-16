@@ -130,9 +130,9 @@
         fetch("{{ url('/') }}/api/get_data_log_web")
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
                 for (let i = 0; i < result.length; i++) {
-                    // console.log(result[i].id);
+                    console.log(result[i].id);
 
                     let html = `
                         <tr class="">
