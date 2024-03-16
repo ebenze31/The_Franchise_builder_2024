@@ -114,7 +114,7 @@
             },
             order: [[2, 'desc']], // เรียงจากคอลัมน์ที่ 3 (index 2) ซึ่งเป็นวันที่ ให้เรียงลำดับจากมากไปน้อย (วันที่มากที่สุดไปน้อยที่สุด)
             columnDefs: [
-                { type: 'date-eu', targets: 2 } // กำหนดประเภทของข้อมูลเป็นวันที่ในรูปแบบ "วัน เดือน ปี"
+                { type: 'date', targets: 2 } // กำหนดประเภทของข้อมูลเป็นวันที่ในรูปแบบ "วัน เดือน ปี"
             ],
             initComplete: function(settings, json) {
                 var footer = $("#content_table tfoot tr");
