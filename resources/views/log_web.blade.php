@@ -135,17 +135,11 @@
 
                 for (let i = 0; i < result.length; i++) {
                     // console.log(result[i].id);
-                    let createdAtDate = new Date(result[i].log_create);
 
-                    let log_create = createdAtDate.toLocaleDateString('th-TH', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                    });
                     table.row.add([
                         result[i].account ? result[i].account : "--",
                         result[i].name ? result[i].name : "--",
-                        log_create,
+                        result[i].log_create ? result[i].log_create : "--",
                         result[i].log_content ? result[i].log_content : "--",
                         result[i].role ? result[i].role : "--",
                     ]).draw(false);
