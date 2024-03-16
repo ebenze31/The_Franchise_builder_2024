@@ -133,12 +133,22 @@
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
+
+
                 for (let i = 0; i < result.length; i++) {
+
+                    let createdAtDate = new Date(result[i].log_create);
+
+                    let log_create = createdAtDate.toLocaleDateString('th-TH', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                    });
                     // console.log(result[i].id);
                     data.push([
                         result[i].account ? result[i].account : "--",
                         result[i].name ? result[i].name : "--",
-                        result[i].log_create ? result[i].log_create : "--",
+                        log_create,
                         result[i].log_content ? result[i].log_content : "--",
                         result[i].role ? result[i].role : "--",
                     ]);
