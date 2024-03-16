@@ -143,6 +143,9 @@
                     ]);
                 }
 
+                console.log(data);
+
+
                 table.rows.add(data).draw(false);
             });
     }

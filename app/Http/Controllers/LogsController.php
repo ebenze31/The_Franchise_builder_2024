@@ -146,7 +146,7 @@ class LogsController extends Controller
         $logs = DB::table('logs')
                 ->join('users', 'users.id', '=', 'logs.user_id')
                 ->select('users.*' , 'logs.created_at as log_create', 'logs.log_content as log_content')
-                ->orderBy(DB::raw('CAST(logs.id AS SIGNED)'), 'ASC')
+                ->orderBy(DB::raw('CAST(logs.id AS SIGNED)'), 'DESC')
                 ->get();
 
         return $logs ;
