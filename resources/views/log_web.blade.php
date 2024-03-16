@@ -13,6 +13,14 @@
 <!-- partial:index.partial.html -->
 <!-- <a class="btn btn-success" style="float:left;margin-right:20px;" href="https://codepen.io/collection/XKgNLN/" target="_blank">Other examples on Codepen</a> -->
 <style>
+    #content_table_filter{
+        display: none;
+    }
+    .dt-buttons{
+        display: flex;
+        justify-content: end;
+        margin-bottom: -15px;
+    }
 .card {
 	position: relative;
 	display: flex;
@@ -32,11 +40,11 @@
     <table id="content_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 	<thead>
 		<tr>
-			<th>Order</th>
-			<th>Description</th>
-			<th>Deadline</th>
-			<th>Status</th>
-			<th>Amount</th>
+			<th class="text-center">Account</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Date Time</th>
+            <th class="text-center">Log content</th>
+            <th class="text-center">Role</th>
 		</tr>
 	</thead>
 	<tbody id="content_tbody">
@@ -44,11 +52,11 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<th>Order</th>
-			<th>Description</th>
-			<th>Deadline</th>
-			<th>Status</th>
-			<th>Amount</th>
+			<th class="text-center">Account</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Date Time</th>
+            <th class="text-center">Log content</th>
+            <th class="text-center">Role</th>
 		</tr>
 	</tfoot>
 </table>
@@ -99,7 +107,11 @@
                 extend: "excelHtml5",
                 text: "Export Excel" // เปลี่ยนข้อความในปุ่มที่นี่
             }, ],
-            
+            language: {
+                info: "ผลรวม _TOTAL_ รายการ",   
+                infoEmpty: "ผลรวม _TOTAL_ รายการ",
+                infoFiltered: "(จาก _MAX_ รายการ)",
+            },
             initComplete: function(settings, json) {
                 var footer = $("#content_table tfoot tr");
                 $("#content_table thead").append(footer);
@@ -123,11 +135,17 @@
 
                 for (let i = 0; i < result.length; i++) {
                     // console.log(result[i].id);
+                    let createdAtDate = new Date(result[i].log_create);
 
+                    let log_create = createdAtDate.toLocaleDateString('th-TH', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                    });
                     table.row.add([
                         result[i].account ? result[i].account : "--",
                         result[i].name ? result[i].name : "--",
-                        result[i].log_create ? result[i].log_create : "--",
+                        log_create,
                         result[i].log_content ? result[i].log_content : "--",
                         result[i].role ? result[i].role : "--",
                     ]).draw(false);
