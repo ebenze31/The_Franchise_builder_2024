@@ -155,13 +155,13 @@
                     `;
 
                     content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
-                    table.row.add([
-                        result[i].account ? result[i].account : "--",
-                        result[i].name ? result[i].name : "--",
-                        result[i].log_create ? result[i].log_create : "--",
-                        result[i].log_content ? result[i].log_content : "--",
-                        result[i].role ? result[i].role : "--",
-                    ]).draw(false);
+                    // table.row.add([
+                    //     result[i].account ? result[i].account : "--",
+                    //     result[i].name ? result[i].name : "--",
+                    //     result[i].log_create ? result[i].log_create : "--",
+                    //     result[i].log_content ? result[i].log_content : "--",
+                    //     result[i].role ? result[i].role : "--",
+                    // ]).draw(false);
                 }
             });
     }
