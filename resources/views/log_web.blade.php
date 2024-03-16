@@ -126,43 +126,24 @@
         });
 
         var content_table = $('#content_table').DataTable();
-
+        const data = [];
+        
         fetch("{{ url('/') }}/api/get_data_log_web")
             .then(response => response.json())
             .then(result => {
                 console.log(result);
                 for (let i = 0; i < result.length; i++) {
                     console.log(result[i].id);
-
-                    let html = `
-                        <tr class="">
-                            <td class="text-center">
-                                `+result[i].account+`
-                            </td>
-                            <td class="text-center">
-                                `+result[i].name+`
-                            </td>
-                            <td class="text-center">
-                                `+result[i].log_create+`
-                            </td>
-                            <td class="text-center">
-                                `+result[i].log_content+`
-                            </td>
-                            <td class="text-center">
-                                `+result[i].role+`
-                            </td>
-                        </tr>
-                    `;
-
-                    content_tbody.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
-                    // table.row.add([
-                    //     result[i].account ? result[i].account : "--",
-                    //     result[i].name ? result[i].name : "--",
-                    //     result[i].log_create ? result[i].log_create : "--",
-                    //     result[i].log_content ? result[i].log_content : "--",
-                    //     result[i].role ? result[i].role : "--",
-                    // ]).draw(false);
+                    data.push([
+                        result[i].account ? result[i].account : "--",
+                        result[i].name ? result[i].name : "--",
+                        result[i].log_create ? result[i].log_create : "--",
+                        result[i].log_content ? result[i].log_content : "--",
+                        result[i].role ? result[i].role : "--",
+                    ]);
                 }
+
+                table.rows.add(data).draw(false);
             });
     }
 </script>
