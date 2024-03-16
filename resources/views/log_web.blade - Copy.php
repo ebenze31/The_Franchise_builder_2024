@@ -190,8 +190,6 @@
 
 </style>
 
-<link href="{{ asset('/theme_admin/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
-
 <div class="card">
     <div class="card-body">
 
@@ -237,11 +235,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
 <script src='https://cdn.jsdelivr.net/npm/table2excel@1.0.4/dist/table2excel.min.js'></script>
 
-<script src="{{ asset('/theme_admin/plugins/notifications/js/notification-custom-script.js') }}"></script>
-
-<script src="{{ asset('/theme_admin/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('/theme_admin/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
-
 <script>
 
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -250,38 +243,6 @@
     });
 
     function get_data_log_web(){
-
-        document.title = "ข้อมูลการขอความช่วยเหลือ";
-        // Create search inputs in footer
-        $("#content_table tfoot th").each(function() {
-            var title = $(this).text();
-            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-        // DataTable initialisation
-        var table = $("#content_table").DataTable({
-            dom: '<"dt-buttons"Bf><"clear">lirtp',
-            paging: true,
-            autoWidth: true,
-            lengthChange: false,
-            bDestroy: true,
-            buttons: [{
-                extend: "excelHtml5",
-                text: "Export Excel" // เปลี่ยนข้อความในปุ่มที่นี่
-            }, ],
-            initComplete: function(settings, json) {
-                var footer = $("#content_table tfoot tr");
-                $("#content_table thead").append(footer);
-            }
-        });
-
-        // Apply the search
-        $("#content_table thead").on("keyup", "input", function() {
-            table.column($(this).parent().index())
-                .search(this.value)
-                .draw();
-        });
-
-        var content_table = $('#content_table').DataTable();
 
         fetch("{{ url('/') }}/api/get_data_log_web")
             .then(response => response.json())
