@@ -112,6 +112,7 @@
                 infoEmpty: "ผลรวม _TOTAL_ รายการ",
                 infoFiltered: "(จาก _MAX_ รายการ)",
             },
+            order: [[2, 'desc']],
             initComplete: function(settings, json) {
                 var footer = $("#content_table tfoot tr");
                 $("#content_table thead").append(footer);
@@ -142,9 +143,6 @@
                         result[i].role ? result[i].role : "--",
                     ]);
                 }
-
-                console.log(data);
-
 
                 table.rows.add(data).draw(false);
             });
