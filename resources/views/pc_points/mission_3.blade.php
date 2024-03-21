@@ -49,13 +49,19 @@
     width: 100%;
   }
 
+  .member-section {
+    width: 100%;
+  }
+  .member-item{
+            margin: 10px 2px;
+            
+        }
   @media only screen and (max-width: 680px) {
         .member-item{
             width: 32%;
-            height: 128px;
-            margin: 0 2px;
-            /* margin-bottom: 10px !important; */
-
+            margin: 10px 2px;
+            /* margin-bottom: 75px !important; */
+            
         }
          
         .member-section{
@@ -66,34 +72,10 @@
             width: 100%;
         }
     }
-    @media only screen and (min-width: 359px) and (max-width: 435px){
-        .member-item{
-            margin-top: 10px !important;
-        }
-    }
-
-    @media only screen and (min-width: 435px) and (max-width: 480px){
-        .member-item{
-            margin-top: 30px !important;
-        }
-    }
-
-    @media only screen and (min-width: 480px) and (max-width: 535px){
-        .member-item{
-            margin-top: 40px !important;
-        }
-    }
-
-    @media only screen and (min-width: 535px) and (max-width: 680px){
-        .member-item{
-            margin-top: 50px !important;
-        }
-    }
+   
     @media only screen and (min-width: 680px) {
         .member-item{
             width: 150px;
-            height: 128px;
-            margin: 50px 10px;
         }
          
         .member-section{
@@ -105,7 +87,6 @@
             width: 100%;
         }
     }
-   
     .member-card{
         background-color: #fff;
         padding: 10px;
@@ -191,19 +172,52 @@ height: 87px;
     }.item-team{
         padding: 5px 5px 0 5px;
     }
-    .item-team img{
-        border: 1px solid #00E0FF;
+    .item-team .img_team{
+        /* border: 2px solid #00E0FF; */
         border-radius: 5px !important;
             -webkit-border-radius: 5px; 
         -moz-border-radius: 5px;
+    }.progress{
+        height: 23px; 
+        border-radius: 50px !important;
+        -webkit-border-radius: 50px; 
+        -moz-border-radius: 50px;
+    }.img-rocket::before{
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 15px;
+        height: 23px;
+        margin-right: 5px;
+        border-radius: 0 50% 50% 0;
+        background: rgba(0,255,255,1);
+/*        background: #0A102E;*/
+    }.progress-bar{
+        transition: all .5s ease-in-out;
+    } .team_color_0{
+        border: 2px solid #FF0000 !important;
+        border-radius: 50px;
+        background-color: #FF0000;
+    }
+
+    .team_color_1{
+        border: 2px solid #FFD233 !important;
+        border-radius: 50px;
+        background-color: #FFD233;
+    }
+
+    .team_color_2{
+        border: 2px solid #04F80D !important;
+        background-color: #04F80D;
+        border-radius: 50px;
     }
 </style>
 
 
 <div class="w-100 d-flex justify-content-center mt-4 my-3">
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-sort-data">Mission 2</button>
-        <button type="button" class="btn btn-sort-data active">Mission 3</button>
+    <div class="btn-group" role="group" aria-label="Basic example" style="scale: .8;">
+        <a type="button" class="btn btn-sort-data " onclick="return create_logs('031_Mission2 (toggle)');">Mission 2</a>
+        <a type="button" class="btn btn-sort-data active"  onclick="return create_logs('032_Mission3 (toggle)');">Mission 3</a>
     </div>
 </div>
 
@@ -218,17 +232,15 @@ height: 87px;
                 PC : xxxxxxx
             </p> -->
             <div>
-                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission 3</p>
+                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission <span id=""></span> pc</p>
                     
-                <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">< 500,000 PC</span> 
-                <span id="trophy_for_700K" class="d-nne"><img src="{{ url('/img/icon/trophy.png') }}" style="margin-top: -2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
-
+                <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;line-height: 1;"><span id="">0</span>   pc</span> 
+                <span id="trophy" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
             </div>
         </div>
 
         <div class="d-flex align-items-top float-end">
             <div>
-                <p style="margin-top: 10px;color: #fff;font-size: 12px;font-style: normal;font-weight: 500;line-height: normal;float:right;width: 100%;">Period : 1 Apr - 30 Apr</p>
                 <!-- <div>
                     <div class="float-end" style="margin-top:-1px">
                         <i class="fa-regular fa-user text-white me-2"></i>
@@ -242,26 +254,62 @@ height: 87px;
         </span>
     </div>
 </div>
-<input type="text" name="" placeholder="กรอกเลขสิ" class="form-control" id="" oninput="convertToPercentage(this.value)">
-<div class="d-flex">
-    <div class="p-3" style="width: calc(100% - 34px);">
+<input type="text" name="input_sum_PC" class="form-control d-nobne" id="input_sum_PC" oninput="percentagePcMission3(this.value)" placeholder="กรอกเลขสิ">
+<div class="d-flex" >
+    <div class="p-3" style="width: calc(100%);">
+        <div class="w-100 d-flex justify-content-between px-2 mb-2">
+            <div>                
+                <img src="{{ url('/img/icon/trophy-sliver.png') }}" style="width: 16px;height:16px;">
+            </div>
+            <div>
+                <p style="color: #FFD233;">PC mission 3</p>
+            </div>
+            <div>        
+                <img src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 16px;height:16px;">
+            </div>
+        </div>
+        <div class="w-100 d-flex justify-content-end px-2" style="margin-bottom:-21px;position: relative;z-index: 99999999;">
+            <span style="color: #646D73;" id="text_progress_25">        
+                17m
+            </span>
+        </div>  
         <div style="border-radius: 50px;position: relative;">
-            <div class="progress mb-3" style="height:7px;">
-                <div  class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" id="progressBar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="30" style="width: 50%;"></div>
-                <p class="text-white" id="textprogressBar" style="transition: all .5s ease-in-out;position: absolute;z-index: 999999999999999;margin-left: -8px;bottom: -20px;left:  50%;">15</p>
+            <div class="progress" style="background-color: #0A102E; border: #03ABCE solid 1px;">
+                <div  class="progress-bar" role="progressbar" id="progressBarM3" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #03ABCE;border-radius: 50px;"></div>
             </div>
         </div>
     </div>
-    <div class="" style="width: 34px;padding-top: 12px;">
-
-        <img src="{{ url('/img/icon/trophy.png') }}" style="margin-top: -2px;width: 16px;height:16px;position: relative!important;left: 5px !important;position: absolute;">
+</div>
+<input type="text" name="input_sum_Active_Agent" class="form-control dv-none" id="input_sum_Active_Agent" oninput="percentageActiveAgent(this.value)" placeholder="กรอกเลขสิ">
+<div class="d-flex" >
+    <div class="p-3" style="width: calc(100%);">
+        <div class="w-100 d-flex justify-content-between px-2 mb-2">
+            <div>                
+                <img src="{{ url('/img/icon/trophy-sliver.png') }}" style="width: 16px;height:16px;">
+            </div>
+            <div>
+                <p style="color: #FFD233;">Active Agent</p>
+            </div>
+            <div>        
+                <img src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 16px;height:16px;">
+            </div>
+        </div>
+        <div class="w-100 d-flex justify-content-end px-2" style="margin-bottom:-21px;position: relative;z-index: 99999999;">
+            <span style="color: #646D73;" id="text_progress_25">        
+                25
+            </span>
+        </div>  
+        <div style="border-radius: 50px;position: relative;">
+            <div class="progress mb-3" style="background-color: #0A102E; border: #FCBF29 solid 1px;">
+                <div  class="progress-bar" role="progressbar" id="progressBarAA" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #FCBF29;border-radius: 50px;"></div>
+            </div>
+        </div>
     </div>
 </div>
-
 <div class="memberInRoom d-flex justify-content-center text-center px-1">
     <div class="member-section mt-0" id="div_content_data">
         <!-- DATA -->
-        <div class="member-item col-4 " style="margin-bottom: 42px;">
+        <div class="member-item col-4 ">
             <div class="member-card-join">
                 <span class="btn host-member">
                     <i class="fa-solid fa-key text-warning"></i>
@@ -269,23 +317,32 @@ height: 87px;
                 <div class="text-center">
                     <div class="text-center">
                         <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
                     </div>
                     
                     <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        
+                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">{{Auth::user()->name}}</span>
+                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
+                            <div >
+                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
+                                    PC : 
+                                </span>
+                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
+                                `+grandmission+`
+                                </span>
+                            </div> 
+                        </div>
                         <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                             <div>
                                 <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
+                                    AA : 
                                 </span>
                                 <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
+                                25
                                 </span>
                             </div> 
                             <div class="me-1">
                             <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
+
                             </div>
                         </div>
                         
@@ -293,30 +350,40 @@ height: 87px;
                 </div>
             </div>
         </div>
-
-        <div class="member-item col-4 " style="margin-bottom: 42px;">
+        <div class="member-item col-4 ">
             <div class="member-card-join">
-                
+                <span class="btn host-member">
+                    <i class="fa-solid fa-key text-warning"></i>
+                </span>
                 <div class="text-center">
                     <div class="text-center">
                         <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
                     </div>
                     
                     <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        
+                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">{{Auth::user()->name}}</span>
+                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
+                            <div >
+                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
+                                    PC : 
+                                </span>
+                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
+                                `+grandmission+`
+                                </span>
+                            </div> 
+                        </div>
                         <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                             <div>
                                 <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
+                                    AA : 
                                 </span>
                                 <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
+                                25
                                 </span>
                             </div> 
                             <div class="me-1">
                             <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
+
                             </div>
                         </div>
                         
@@ -324,30 +391,40 @@ height: 87px;
                 </div>
             </div>
         </div>
-
-        <div class="member-item col-4 " style="margin-bottom: 42px;">
+        <div class="member-item col-4 ">
             <div class="member-card-join">
-                
+                <span class="btn host-member">
+                    <i class="fa-solid fa-key text-warning"></i>
+                </span>
                 <div class="text-center">
                     <div class="text-center">
                         <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
                     </div>
                     
                     <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        
+                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">{{Auth::user()->name}}</span>
+                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
+                            <div >
+                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
+                                    PC : 
+                                </span>
+                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
+                                `+grandmission+`
+                                </span>
+                            </div> 
+                        </div>
                         <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                             <div>
                                 <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
+                                    AA : 
                                 </span>
                                 <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
+                                25
                                 </span>
                             </div> 
                             <div class="me-1">
                             <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
+
                             </div>
                         </div>
                         
@@ -355,217 +432,40 @@ height: 87px;
                 </div>
             </div>
         </div>
-
-
-        <div class="member-item col-4 " style="margin-bottom: 42px;">
+        <div class="member-item col-4 ">
             <div class="member-card-join">
-                
+                <span class="btn host-member">
+                    <i class="fa-solid fa-key text-warning"></i>
+                </span>
                 <div class="text-center">
                     <div class="text-center">
                         <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
                     </div>
                     
                     <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
+                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">{{Auth::user()->name}}</span>
+                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
+                            <div >
                                 <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
+                                    PC : 
                                 </span>
                                 <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
+                                `+grandmission+`
                                 </span>
                             </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
                         </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 " style="margin-bottom: 42px;">
-            <div class="member-card-join">
-                
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        
                         <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
                             <div>
                                 <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
+                                    AA : 
                                 </span>
                                 <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
+                                25
                                 </span>
                             </div> 
                             <div class="me-1">
                             <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="member-item col-4 " style="margin-bottom: 42px;">
-            <div class="member-card-join">
-                
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 " style="margin-bottom: 42px;">
-            <div class="member-card-join">
-                
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 " style="margin-bottom: 42px;">
-            <div class="member-card-join">
-                
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 " style="margin-bottom: 42px;">
-            <div class="member-card-join">
-                
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="member-item col-4 " style="margin-bottom: 42px;">
-            <div class="member-card-join">
-                
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">User 1</span>
-                        
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    New code : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                11
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
                             </div>
                         </div>
                         
@@ -575,146 +475,130 @@ height: 87px;
         </div>
     </div>
 </div>
+<div class="mt-3" style="position: relative;;overflow: hidden;padding-top: 20px; border-radius: 35px 35px 0 0 !important;-webkit-border-radius: 35px 35px 0 0;-moz-border-radius: 35px 35px 0 0; background: linear-gradient(180deg, rgba(255,255,255,.62) 0%, rgba(0,224,255,0.5) 50%, rgba(0,72,156,0.25) 100%);">
+    <div class="text-center mb-3">
+        <div>
 
-<div class="text-center mt-5 mb-3">
-    <h6 style="color: #FCBF29;font-weight: bold;">SUCCESS TEAM</h6>
-    <h4 style="color: #00F0FF;font-weight: bolder;">
-        <span id="">40</span>/<span id="">81</span>
-    </h4>
-</div>
-<div class="memberInRoom d-flex justify-content-center text-center px-1 mb-5">
-    <div class="member-section mt-0" id="div_content_data">
-            <a id="" class="member-item div_Team mt-0"  href="">
-                <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                    <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;">
-                    <div style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999999999999999;width: 93%;">
-                        <div class="progress mb-3" style="height:7px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-
-            </a>
-
-            <a id="" class="member-item div_Team mt-0" href="">
-                <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                    <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;">
-                    <div style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999999999999999;width: 93%;">
-                        <div class="progress mb-3" style="height:7px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a id="" class="member-item div_Team mt-0" href="">
-                <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                    <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;">
-                    <div style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999999999999999;width: 93%;">
-                        <div class="progress mb-3" style="height:7px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a id="" class="member-item div_Team mt-0" href="">
-                <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                    <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;">
-                    <div style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999999999999999;width: 93%;">
-                        <div class="progress mb-3" style="height:7px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a id="" class="member-item div_Team mt-0" href="">
-                <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                    <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;">
-                    <div style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999999999999999;width: 93%;">
-                        <div class="progress mb-3" style="height:7px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a id="" class="member-item div_Team mt-0" href="">
-                <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                    <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;">
-                    <div style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999999999999999;width: 93%;">
-                        <div class="progress mb-3" style="height:7px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a id="" class="member-item div_Team mt-0" href="">
-                <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                    <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;">
-                    <div style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999999999999999;width: 93%;">
-                        <div class="progress mb-3" style="height:7px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a id="" class="member-item div_Team mt-0" href="">
-                <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                    <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;">
-                    <div style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999999999999999;width: 93%;">
-                        <div class="progress mb-3" style="height:7px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a id="" class="member-item div_Team mt-0" href="">
-                <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                    <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;">
-                    <div style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999999999999999;width: 93%;">
-                        <div class="progress mb-3" style="height:7px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a id="" class="member-item div_Team mt-0" href="">
-                <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                    <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;">
-                    <div style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999999999999999;width: 93%;">
-                        <div class="progress mb-3" style="height:7px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+            <p style="color: #0A1330;font-weight: bolder;font-size: 18px;margin-bottom: 0;">
+                SUCCESS TEAM
+            </p>
+            
+            <img src="{{ url('/img/icon/Vector 543.png') }}" style="width: 120px;margin-top: -10px;">
+        </div>
+        <p style="color: #0A1330;font-weight: bolder;font-size: 16px;">
+            <span id="count_team_m2_success">0</span>/<span id="count_all_team_m2">0</span>
+        </p>
     </div>
+
+    <!-- content_all_team_m2 -->
+    <div class="memberInRoom d-flex justify-content-center text-center px-1">
+        <div class="member-section mt-0" id="content_all_team_m2">
+            <!-- data -->
+            <div id="" class="member-item div_Team mt-0">
+                <a href="{{ url('/view_team_mission2') }}/`+result['data'][i].id+`">
+                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
+                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_0 img_team">
+                        <!-- shield -->
+                        <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
+
+                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
+                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
+                                <div class=" team_color_0"  role="progressbar" style="width: 50%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
+                                    <span id="">1</span>/25
+                                </div>
+                                
+                            </div>
+                            <!-- trophy -->
+                            <img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px; position: absolute;top: -1px;right: 3px;">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div id="" class="member-item div_Team mt-0">
+                <a href="{{ url('/view_team_mission2') }}/`+result['data'][i].id+`">
+                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
+                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_1 img_team">
+                        <!-- shield -->
+                        <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
+
+                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
+                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
+                                <div class=" team_color_1"  role="progressbar" style="width: 50%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
+                                    <span id="">1</span>/25
+                                </div>
+                                
+                            </div>
+                            <!-- trophy -->
+                            <img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px; position: absolute;top: -1px;right: 3px;border: none !important;">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div id="" class="member-item div_Team mt-0">
+                <a href="{{ url('/view_team_mission2') }}/`+result['data'][i].id+`">
+                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
+                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_2 img_team">
+                        <!-- shield -->
+                        <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
+
+                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
+                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
+                                <div class=" team_color_2"  role="progressbar" style="width: 50%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
+                                    <span id="">1</span>/25
+                                </div>
+                                
+                            </div>
+                            <!-- trophy -->
+                            <img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px; position: absolute;top: -1px;right: 3px;">
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-100 d-flex justify-content-center my-4">
+        <a href="#" class="px-4 py-2" style="font-size: 14px;background-color: #DDF3FF;color: #0A0E2C;border-radius: 50px !important;-webkit-border-radius: 50px;-moz-border-radius: 50px;">Back to my team</a>
+    </div>
+    
+    <img src="{{ url('/img/icon/ice-cliff3.png') }}" style="position: absolute;top: 150px;left: 0;height: 312px;z-index: -1;">
 </div>
 
 <script>
-   function convertToPercentage(value) {
+   function percentagePcMission3(value) {
     // ตรวจสอบว่าค่าที่รับเข้ามาอยู่ในช่วง 1-30 หรือไม่
-    if (value >= 1 && value <= 30) {
+    if (value >= 0) {
         // คำนวณเป็นเปอร์เซ็นต์
-        let percentage = (value / 30) * 100;
+        let percentage = (value / 17000000) * 100;
 
         // console.log(percentage);
 
-        let progressBar = document.getElementById('progressBar');
-            progressBar.style.width = percentage + '%';
-        let textprogressBar = document.getElementById('textprogressBar');
-            textprogressBar.style.left = percentage + '%';
-            textprogressBar.innerHTML = value;
+        let progressBarM3 = document.getElementById('progressBarM3');
+            progressBarM3.style.width = percentage + '%';
         // return percentage;
     } else {
         // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
         return "กรุณาใส่ค่าระหว่าง 1 ถึง 30 เท่านั้น";
     }
 }
+function percentageActiveAgent(value) {
+    // ตรวจสอบว่าค่าที่รับเข้ามาอยู่ในช่วง 1-30 หรือไม่
+    if (value >= 0) {
+        // คำนวณเป็นเปอร์เซ็นต์
+        let percentage = (value / 25) * 100;
 
+        // console.log(percentage);
+
+        let progressBar = document.getElementById('progressBarAA');
+            progressBar.style.width = percentage + '%';
+        // return percentage;
+    } else {
+        // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
+        return "กรุณาใส่ค่าระหว่าง 1 ถึง 30 เท่านั้น";
+    }
+}
 </script>
 @endsection
