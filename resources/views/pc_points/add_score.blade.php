@@ -229,6 +229,10 @@
                                         <th style='position: sticky; top: -1px;background: #fff' scope="col">aa_grand_last_week</th>
                                         <th style='position: sticky; top: -1px;background: #fff' scope="col">aa_grand_of_week_individual</th>
                                         <th style='position: sticky; top: -1px;background: #fff' scope="col">aa_grand_last_week_individual</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">csta_mission3</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">active_mission3</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">m3_rank_of_week</th>
+                                        <th style='position: sticky; top: -1px;background: #fff' scope="col">m3_rank_last_week</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody_PreviewDATA">
@@ -377,6 +381,11 @@
                             <td>`+jsonData[i].aa_grand_last_week+`</td>
                             <td>`+jsonData[i].aa_grand_of_week_individual+`</td>
                             <td>`+jsonData[i].aa_grand_last_week_individual+`</td>
+
+                            <td>`+jsonData[i].csta_mission3+`</td>
+                            <td>`+jsonData[i].active_mission3+`</td>
+                            <td>`+jsonData[i].m3_rank_of_week+`</td>
+                            <td>`+jsonData[i].m3_rank_last_week+`</td>
                         </tr>
                     `;
 

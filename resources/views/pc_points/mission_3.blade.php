@@ -216,11 +216,13 @@ height: 87px;
 
 <div class="w-100 d-flex justify-content-center mt-4 my-3">
     <div class="btn-group" role="group" aria-label="Basic example" style="scale: .8;">
-        <a type="button" class="btn btn-sort-data " onclick="return create_logs('031_Mission2 (toggle)');">Mission 2</a>
-        <a type="button" class="btn btn-sort-data active"  onclick="return create_logs('032_Mission3 (toggle)');">Mission 3</a>
+        <a type="button" href="{{ url('/mission_2') }}" class="btn btn-sort-data " onclick="return create_logs('031_Mission2 (toggle)');">Mission 2</a>
+        <a type="button" href="{{ url('/mission_3') }}" class="btn btn-sort-data active"  onclick="return create_logs('032_Mission3 (toggle)');">Mission 3</a>
     </div>
 </div>
 
+<!-- Content Team -->
+@if(Auth::user()->role == "Player")
 <div class="d-flex header-team">
     <img src="{{ url('/img/group_profile/profile/id (') . Auth::user()->group_id . ').png' }}" width="114" height="114" class="mt-2 mb-2 img-header-team">
     <div class="d-flex justify-content-between w-100" >
@@ -254,7 +256,9 @@ height: 87px;
         </span>
     </div>
 </div>
-<input type="text" name="input_sum_PC" class="form-control d-nobne" id="input_sum_PC" oninput="percentagePcMission3(this.value)" placeholder="กรอกเลขสิ">
+@endif
+
+<input type="text" name="input_sum_PC" class="form-control d-none" id="input_sum_PC" oninput="percentagePcMission3(this.value)" placeholder="กรอกเลขสิ">
 <div class="d-flex" >
     <div class="p-3" style="width: calc(100%);">
         <div class="w-100 d-flex justify-content-between px-2 mb-2">
@@ -280,7 +284,7 @@ height: 87px;
         </div>
     </div>
 </div>
-<input type="text" name="input_sum_Active_Agent" class="form-control dv-none" id="input_sum_Active_Agent" oninput="percentageActiveAgent(this.value)" placeholder="กรอกเลขสิ">
+<input type="text" name="input_sum_Active_Agent" class="form-control d-none" id="input_sum_Active_Agent" oninput="percentageActiveAgent(this.value)" placeholder="กรอกเลขสิ">
 <div class="d-flex" >
     <div class="p-3" style="width: calc(100%);">
         <div class="w-100 d-flex justify-content-between px-2 mb-2">
@@ -309,129 +313,6 @@ height: 87px;
 <div class="memberInRoom d-flex justify-content-center text-center px-1">
     <div class="member-section mt-0" id="div_content_data">
         <!-- DATA -->
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">{{Auth::user()->name}}</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                `+grandmission+`
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    AA : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                25
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">{{Auth::user()->name}}</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                `+grandmission+`
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    AA : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                25
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="member-item col-4 ">
-            <div class="member-card-join">
-                <span class="btn host-member">
-                    <i class="fa-solid fa-key text-warning"></i>
-                </span>
-                <div class="text-center">
-                    <div class="text-center">
-                        <img src="{{ url('/img/icon/profile.png') }}" style="width: 100%;height: auto;" class="img-member">
-                    </div>
-                    
-                    <div class="name-member w-100 mt-1" style="white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:95%">
-                        <span class="mt-1" style="color:#102160;font-size: 12px;font-style: normal;line-height: normal;">{{Auth::user()->name}}</span>
-                        <div class=" mb-1 d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div >
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    PC : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                `+grandmission+`
-                                </span>
-                            </div> 
-                        </div>
-                        <div class="d-flex justify-content-between ps-2" style="border-radius: 5px;background:#102160;-webkit-border-radius: 5px;-moz-border-radius: 5px;white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;width:100%">
-                            <div>
-                                <span style="color: #FCBF29;font-size: 10px;font-style: normal;line-height: normal;">
-                                    AA : 
-                                </span>
-                                <span style="margin-left: 2.5px;color: #fff;font-size: 10px;font-style: normal;line-height: normal;"">
-                                25
-                                </span>
-                            </div> 
-                            <div class="me-1">
-                            <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
-
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="member-item col-4 ">
             <div class="member-card-join">
                 <span class="btn host-member">
