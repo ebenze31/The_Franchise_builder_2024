@@ -123,6 +123,9 @@ Route::get('/create_logs', 'LogsController@create_logs');
 Route::get('/get_data_user_mission_2/{group_id}', 'ProfileController@get_data_user_mission_2');
 Route::get('/get_data_all_team_m2', 'ProfileController@get_data_all_team_m2');
 
+// Mission 3
+Route::get('/get_data_all_team_m3', 'ProfileController@get_data_all_team_m3');
+
 // grand_mission
 Route::get('/get_data_user_grand_mission_my_team/{group_id}', 'ProfileController@get_data_user_grand_mission_my_team');
 Route::get('/get_data_user_grand_mission/{data_sort}', 'ProfileController@get_data_user_grand_mission');

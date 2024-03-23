@@ -508,6 +508,25 @@ class ProfileController extends Controller
         return $data ;
     }
 
+    function get_data_all_team_m3(){
+
+        $check_week = Pc_point::where('week', 'not like', 'old-%')
+            ->orderByRaw('CAST(SUBSTRING_INDEX(`week`, "-", -1) AS UNSIGNED) DESC')
+            ->first();
+
+        $week = $check_week->week ;
+        $as_of = $check_week->created_at ;
+
+        $data['data'] = DB::table('groups')
+            ->where('m3_rank_of_week' , '!=' , null)
+            ->orderByRaw('CAST(m3_rank_of_week AS SIGNED) ASC, id ASC')
+            ->get();
+
+        $data['week'] = $week;
+
+        return $data ;
+    }
+
     function get_data_me($user_id){
 
         $data_user = User::where('id', $user_id)->first();

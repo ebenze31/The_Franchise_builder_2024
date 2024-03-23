@@ -256,7 +256,6 @@ height: 87px;
         </span>
     </div>
 </div>
-@endif
 
 <input type="text" name="input_sum_PC" class="form-control d-none" id="input_sum_PC" oninput="percentagePcMission3(this.value)" placeholder="กรอกเลขสิ">
 <div class="d-flex" >
@@ -356,6 +355,8 @@ height: 87px;
         </div>
     </div>
 </div>
+@endif
+
 <div class="mt-3" style="position: relative;;overflow: hidden;padding-top: 20px; border-radius: 35px 35px 0 0 !important;-webkit-border-radius: 35px 35px 0 0;-moz-border-radius: 35px 35px 0 0; background: linear-gradient(180deg, rgba(255,255,255,.62) 0%, rgba(0,224,255,0.5) 50%, rgba(0,72,156,0.25) 100%);">
     <div class="text-center mb-3">
         <div>
@@ -367,18 +368,18 @@ height: 87px;
             <img src="{{ url('/img/icon/Vector 543.png') }}" style="width: 120px;margin-top: -10px;">
         </div>
         <p style="color: #0A1330;font-weight: bolder;font-size: 16px;">
-            <span id="count_team_m2_success">0</span>/<span id="count_all_team_m2">0</span>
+            <span id="count_team_m3_success">0</span>/<span id="count_all_team_m3">0</span>
         </p>
     </div>
 
-    <!-- content_all_team_m2 -->
+    <!-- content_all_team_m3 -->
     <div class="memberInRoom d-flex justify-content-center text-center px-1">
-        <div class="member-section mt-0" id="content_all_team_m2">
+        <div class="member-section mt-0" id="content_all_team_m3">
             <!-- data -->
             <div id="" class="member-item div_Team mt-0">
                 <a href="{{ url('/view_team_mission2') }}/`+result['data'][i].id+`">
                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_0 img_team">
+                        <img src="{{ url('/img/group_profile_m3/success/id (1).png') }}" style="width: 100%;" class="team_color_0 img_team">
                         <!-- shield -->
                         <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
 
@@ -399,7 +400,7 @@ height: 87px;
             <div id="" class="member-item div_Team mt-0">
                 <a href="{{ url('/view_team_mission2') }}/`+result['data'][i].id+`">
                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_1 img_team">
+                        <img src="{{ url('/img/group_profile_m3/success/id (1).png') }}" style="width: 100%;" class="team_color_1 img_team">
                         <!-- shield -->
                         <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
 
@@ -420,7 +421,7 @@ height: 87px;
             <div id="" class="member-item div_Team mt-0">
                 <a href="{{ url('/view_team_mission2') }}/`+result['data'][i].id+`">
                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                        <img src="{{ url('/img/group_profile/success/id (1).png') }}" style="width: 100%;" class="team_color_2 img_team">
+                        <img src="{{ url('/img/group_profile_m3/success/id (1).png') }}" style="width: 100%;" class="team_color_2 img_team">
                         <!-- shield -->
                         <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
 
@@ -447,6 +448,142 @@ height: 87px;
     
     <img src="{{ url('/img/icon/ice-cliff3.png') }}" style="position: absolute;top: 150px;left: 0;height: 312px;z-index: -1;">
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        if("{{ Auth::user()->group_id }}"){
+            // get_data_user_mission_2();  
+        }
+        get_data_all_team_m3();
+        change_menu_bar('mission-1');
+    });
+
+    function get_data_all_team_m3(){
+        // console.log('get_data_all_team_m2');
+        
+        fetch("{{ url('/') }}/api/get_data_all_team_m3")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                let week = result['week'];
+                let team_m3_success = 0;
+
+                if(result){
+
+                    document.querySelector('#count_all_team_m3').innerHTML = result['data'].length ;
+
+                    let content_all_team_m3 = document.querySelector('#content_all_team_m3');
+                        content_all_team_m3.innerHTML = '';
+
+                    for (let i = 0; i < result['data'].length; i++) {
+
+                        let text_id_group = result['data'][i].id.toString();
+
+                        let result_data_arr = [];
+                            result_data_arr = JSON.parse(result['data'][i].rank_record);
+
+                        // let pc_point = result_data_arr[week]['pc_point'] ;
+                        let mission3 = result_data_arr[week]['mission3'] ;
+                        let active_mission3 = result_data_arr[week]['active_mission3'] ;
+                        let csta_mission3 = result_data_arr[week]['csta_mission3'] ;
+
+                        let html_all_team_m3 ;
+                        let percentage ;
+
+                        let tag_a_1 = `` ;
+                        let tag_a_2 = `` ;
+
+                        if ("{{ Auth::user()->role }}" !== "Player") {
+                            tag_a_1 = `<a href="{{ url('/view_team_mission3') }}/`+result['data'][i].id+`" onclick="return create_logs('Mission3 team_`+result['data'][i].id+`');">`;
+                            tag_a_2 = `</a>`;
+                        }
+
+                        if(csta_mission3 == "G"){
+
+                            team_m3_success = team_m3_success + 1;
+
+                            html_all_team_m3 = `
+                                <div id="" class="member-item div_Team mt-0">
+                                `+tag_a_1+`
+                                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
+                                        <img src="{{ url('/img/group_profile_m3/success/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_2 img_team">
+                                        <!-- shield -->
+                                        <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
+
+                                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
+                                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
+                                                <div class=" team_color_2"  role="progressbar" style="width: 100%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
+                                                    <span id="">`+active_mission3+`</span>/25
+                                                </div>
+                                                
+                                            </div>
+                                            <!-- trophy -->
+                                            <img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px; position: absolute;top: -1px;right: 3px;">
+                                        </div>
+                                    </div>
+                                `+tag_a_2+`
+                                </div>
+                            `;
+                        }
+                        else if(csta_mission3 == "Y"){
+
+                            percentage = (active_mission3 / 25) * 100;
+
+                            html_all_team_m3 = `
+                                <div id="" class="member-item div_Team mt-0">
+                                `+tag_a_1+`
+                                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
+                                        <img src="{{ url('/img/group_profile_m3/warning/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_1 img_team">
+                                        <!-- <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -12px;"> -->
+
+                                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
+                                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
+                                                <div class=" team_color_1"  role="progressbar" style="width: `+percentage+`%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
+                                                    <span id="">`+active_mission3+`</span>/25
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `+tag_a_2+`
+                                </div>
+                            `;
+                        }
+                        else if(csta_mission3 == "R"){
+
+                            percentage = (active_mission3 / 25) * 100;
+
+                            html_all_team_m3 = `
+                                <div id="" class="member-item div_Team mt-0">
+                                `+tag_a_1+`
+                                    <div class="item-team" style="width: 100%;height: auto;position: relative;">
+                                        <img src="{{ url('/img/group_profile_m3/danger/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_0 img_team">
+                                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
+                                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
+                                                <div class=" team_color_0" role="progressbar" style="width: `+percentage+`%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
+                                                    <span id="">`+active_mission3+`</span>/25
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `+tag_a_2+`
+                                </div>
+                            `;
+                        }
+
+                        content_all_team_m3.insertAdjacentHTML('beforeend', html_all_team_m3);
+
+                    }
+
+                    document.querySelector('#count_team_m3_success').innerHTML = team_m3_success ;
+                }
+        });
+    }
+</script>
 
 <script>
    function percentagePcMission3(value) {
