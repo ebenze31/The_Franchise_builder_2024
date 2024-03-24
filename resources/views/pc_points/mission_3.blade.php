@@ -341,7 +341,7 @@ height: 87px;
                 Team Achievement
             </p>
             
-            <img src="{{ url('/img/icon/Vector 543.png') }}" style="width: 120px;margin-top: -10px;">
+            <img src="{{ url('/img/icon/Vector 543.png') }}" style="width: 145px;margin-top: -5px;">
         </div>
         <p style="color: #0A1330;font-weight: bolder;font-size: 16px;">
             <span id="count_team_m3_success">0</span>/<span id="count_all_team_m3">0</span>
