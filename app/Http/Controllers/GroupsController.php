@@ -771,4 +771,9 @@ class GroupsController extends Controller
         
         return view('groups/view_team_mission2', compact('group_id'));
     }
+
+    function view_team_mission3($group_id){
+        
+        return view('groups/view_team_mission3', compact('group_id'));
+    }
 }

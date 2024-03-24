@@ -124,6 +124,7 @@ Route::get('/get_data_user_mission_2/{group_id}', 'ProfileController@get_data_us
 Route::get('/get_data_all_team_m2', 'ProfileController@get_data_all_team_m2');
 
 // Mission 3
+Route::get('/get_data_user_mission_3/{group_id}', 'ProfileController@get_data_user_mission_3');
 Route::get('/get_data_all_team_m3', 'ProfileController@get_data_all_team_m3');
 
 // grand_mission
