@@ -251,7 +251,7 @@ height: 87px;
             </p> -->
             <div>
                 
-                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission : <span id="sum_PCM3_team">0</span> PC <span id="trophy_for_17m_pc" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span></p>
+                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission 3 PC : <span id="sum_PCM3_team">0</span> PC <span id="trophy_for_17m_pc" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span></p>
                 <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;line-height: 1;font-weight: 700;">Active agent : <span id="sum_AAM3_team">0</span> AA</span> 
                
             </div>
