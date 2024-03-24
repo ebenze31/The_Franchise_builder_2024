@@ -280,7 +280,7 @@ height: 87px;
             <span style="color: #646D73;" id="text_progressPC_first">                
                 0
             </span>
-            <span style="color: #646D73;" id="text_progressPC_center">
+            <span style="color: #646D73;margin-left:18px;" id="text_progressPC_center">
                 8.5m
             </span>
             <span style="color: #646D73;" id="text_progressPC_end">        
@@ -312,7 +312,7 @@ height: 87px;
             <span style="color: #646D73;" id="text_progressAA_first">                
                 0
             </span>
-            <span style="color: #646D73;" id="text_progressAA_center">
+            <span style="color: #646D73;margin-left:7px;"" id="text_progressAA_center">
                 13
             </span>
             <span style="color: #646D73;" id="text_progressAA_end">        
