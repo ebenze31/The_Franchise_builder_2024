@@ -187,7 +187,7 @@ height: 87px;
         border-radius: 50px !important;
         -webkit-border-radius: 50px; 
         -moz-border-radius: 50px;
-    }.img-rocket::before{
+    }.img-rocket_PC::before{
         content: "";
         display: inline-block;
         position: absolute;
@@ -195,7 +195,18 @@ height: 87px;
         height: 23px;
         margin-right: 5px;
         border-radius: 0 50% 50% 0;
-        background: rgba(0,255,255,1);
+        background: #03ABCE;
+/*        background: #0A102E;*/
+    }
+    .img-rocket_AA::before{
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 15px;
+        height: 23px;
+        margin-right: 5px;
+        border-radius: 0 50% 50% 0;
+        background: #FCBF29;
 /*        background: #0A102E;*/
     }.progress-bar{
         transition: all .5s ease-in-out;
@@ -230,10 +241,10 @@ height: 87px;
                 PC : xxxxxxx
             </p> -->
             <div>
-                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission 1,700,000 PC </p>
-                    
-                <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;line-height: 1;"><span id="sum_PCM3_team">0</span> PC</span> 
-                <span id="trophy_for_17m_pc" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span>
+                
+                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission 3 PC : <span id="sum_PCM3_team">0</span> PC <span id="trophy_for_17m_pc" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span></p>
+                <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;line-height: 1;font-weight: 700;">Active agent : <span id="sum_AAM3_team">0</span> AA</span> 
+               
             </div>
         </div>
 
@@ -272,15 +283,21 @@ height: 87px;
                 0
             </span>
             <span style="color: #646D73;margin-left:18px;" id="text_progressPC_center">
-                
+                8.5m
             </span>
             <span style="color: #646D73;" id="text_progressPC_end">        
                 17m
             </span>
         </div> 
         <div style="border-radius: 50px;position: relative;">
-            <div class="progress" style="background-color: #0A102E; border: #03ABCE solid 1px;">
-                <div  class="progress-bar" role="progressbar" id="progressBarM3" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #03ABCE;border-radius: 50px;"></div>
+            <div class="progress mb-3" style="background-color: #0A102E; border: #03ABCE solid 1px;">
+                <div  class="progress-bar" role="progressbar" id="progressBarM3" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #03ABCE;"></div>
+                <div class="text-white" id="rocket_progressBar" style="transition: all .5s ease-in-out;position: relative;z-index: 999999999999999;margin-top: -1px;margin-left: -36px;">
+                    <!-- <p id="textprogressBar">15</p> -->
+                    <span class="img-rocket_PC"></span>
+                    <img src="{{ url('/img/icon/rocket-1.png') }}"  style="height:23px;position: relative;right: 0%;">
+                    <!-- <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;color: #03ABCE;">0</span> -->
+                </div>
             </div>
         </div>
     </div>
@@ -304,7 +321,7 @@ height: 87px;
                 0
             </span>
             <span style="color: #646D73;margin-left:7px;" id="text_progressAA_center">
-                
+                13
             </span>
             <span style="color: #646D73;" id="text_progressAA_end">        
                 25
@@ -312,7 +329,13 @@ height: 87px;
         </div>  
         <div style="border-radius: 50px;position: relative;">
             <div class="progress mb-3" style="background-color: #0A102E; border: #FCBF29 solid 1px;">
-                <div  class="progress-bar" role="progressbar" id="progressBarAA" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #FCBF29;border-radius: 50px;"></div>
+            <div  class="progress-bar" role="progressbar" id="progressBarAA" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #FCBF29;"></div>
+                <div class="text-white" id="rocket_progressBar" style="transition: all .5s ease-in-out;position: relative;z-index: 999999999999999;margin-top: -1px;margin-left: -36px;">
+                    <!-- <p id="textprogressBar">15</p> -->
+                    <span class="img-rocket_AA"></span>
+                    <img src="{{ url('/img/icon/rocket-2.png') }}"  style="height:23px;position: relative;right: 0%;">
+                    <!-- <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;color: #FFD233;">0</span> -->
+                </div>
             </div>
         </div>
     </div>
@@ -453,14 +476,17 @@ height: 87px;
                     percentageActiveAgent(sum_AAM3_team);
 
                     sum_PCM3_team = sum_PCM3_team.toLocaleString();
+                    sum_AAM3_team = sum_AAM3_team.toLocaleString();
                     document.querySelector('#date_as_of').innerHTML = formattedDate ;
                     document.querySelector('#sum_PCM3_team').innerHTML = sum_PCM3_team ;
+                    document.querySelector('#sum_AAM3_team').innerHTML = sum_AAM3_team ;
 
                 }
 
             });
 
     }
+
 </script>
 
 <script>
@@ -470,7 +496,11 @@ height: 87px;
         // คำนวณเป็นเปอร์เซ็นต์
         let percentage = (value / 17000000) * 100;
 
-        // console.log(percentage);
+        console.log(percentage);
+
+        if(percentage < 12 && percentage != 0){
+            percentage = 12;
+        }
 
         let progressBarM3 = document.getElementById('progressBarM3');
             progressBarM3.style.width = percentage + '%';
@@ -490,16 +520,16 @@ height: 87px;
             }
 
             // ตรวจสอบหาหน่วยที่เหมาะสม
-            let units = ['k', 'M', 'B', 'T'];
-            let unitIndex = Math.floor(Math.log10(value) / 3);
-            let unitName = units[unitIndex - 1];
+            // let units = ['k', 'M', 'B', 'T'];
+            // let unitIndex = Math.floor(Math.log10(value) / 3);
+            // let unitName = units[unitIndex - 1];
 
-            // แปลงค่าเล็กที่สุดของหน่วยเป็นล้าน (M) และแสดงในรูปแบบที่ต้องการ
-            let formattedValue = (value / Math.pow(1000, unitIndex)).toFixed(1) + ' ' + unitName;
+            // // แปลงค่าเล็กที่สุดของหน่วยเป็นล้าน (M) และแสดงในรูปแบบที่ต้องการ
+            // let formattedValue = (value / Math.pow(1000, unitIndex)).toFixed(1) + ' ' + unitName;
 
-            // console.log(formattedValue); // 0.8 M
+            // // console.log(formattedValue); // 0.8 M
 
-            document.querySelector('#text_progressPC_center').innerHTML = formattedValue ;
+            // document.querySelector('#text_progressPC_center').innerHTML = formattedValue ;
 
             // if (percentage >= 100) {
             //     progressBarM3.innerHTML = '100%';
@@ -518,8 +548,10 @@ function percentageActiveAgent(value) {
         // คำนวณเป็นเปอร์เซ็นต์
         let percentage = (value / 25) * 100;
 
-        // console.log(percentage);
-
+        console.log(percentage);
+        if(percentage < 12 && percentage != 0){
+            percentage = 12;
+        }
         let progressBar = document.getElementById('progressBarAA');
             progressBar.style.width = percentage + '%';
 
@@ -530,15 +562,15 @@ function percentageActiveAgent(value) {
                 document.getElementById('text_progressAA_end').style.color = '#646D73';
             } else if (percentage > 50 && percentage <= 99) {
                 document.getElementById('text_progressAA_first').style.color = '#fff';
-                document.getElementById('text_progressAA_center').style.color = '#fff';
+                document.getElementById('text_progressAA_center').style.color = '#091636';
                 document.getElementById('text_progressAA_end').style.color = '#646D73';
             } else {
                 document.getElementById('text_progressAA_first').style.color = '#fff';
-                document.getElementById('text_progressAA_center').style.color = '#fff';
+                document.getElementById('text_progressAA_center').style.color = '#091636';
                 document.getElementById('text_progressAA_end').style.color = '#fff';
             }
 
-            document.querySelector('#text_progressAA_center').innerHTML = value.toLocaleString();
+            // document.querySelector('#text_progressAA_center').innerHTML = value.toLocaleString();
             // if (percentage >= 100) {
             //     progressBar.innerHTML = '100%';
             // } else {
