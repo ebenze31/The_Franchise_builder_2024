@@ -338,7 +338,7 @@ height: 87px;
         <div>
 
             <p style="color: #0A1330;font-weight: bolder;font-size: 18px;margin-bottom: 0;">
-                SUCCESS TEAM
+                Team Achievement
             </p>
             
             <img src="{{ url('/img/icon/Vector 543.png') }}" style="width: 120px;margin-top: -10px;">
