@@ -251,8 +251,8 @@ height: 87px;
             </p> -->
             <div>
                 
-                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission : <span id="sum_PCM3_team"></span> PC <span id="trophy_for_17m_pc" class="d-"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span></p>
-                <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;line-height: 1;font-weight: 700;">Active agent : <span id="">0</span> AA</span> 
+                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission : <span id="sum_PCM3_team">0</span> PC <span id="trophy_for_17m_pc" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span></p>
+                <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;line-height: 1;font-weight: 700;">Active agent : <span id="sum_AAM3_team">0</span> AA</span> 
                
             </div>
         </div>
@@ -453,11 +453,11 @@ height: 87px;
                         sum_PCM3_team = sum_PCM3_team + result['data'][i].mission3;
                         sum_AAM3_team = parseInt(sum_AAM3_team) + parseInt(result['data'][i].active_mission3);
 
-                        // if (sum_PCM3_team >= 1700000) {
-                        //     document.querySelector('#trophy_for_17m_pc').classList.remove('d-none');
-                        // } else {
-                        //     document.querySelector('#trophy_for_17m_pc').classList.add('d-none');
-                        // }
+                        if (sum_PCM3_team >= 1700000) {
+                            document.querySelector('#trophy_for_17m_pc').classList.remove('d-none');
+                        } else {
+                            document.querySelector('#trophy_for_17m_pc').classList.add('d-none');
+                        }
 
                         let img_star = ``;
                         if(result['data'][i].active_mission3 >= 2){
@@ -516,8 +516,10 @@ height: 87px;
                     percentageActiveAgent(sum_AAM3_team);
 
                     sum_PCM3_team = sum_PCM3_team.toLocaleString();
+                    sum_AAM3_team = sum_AAM3_team.toLocaleString();
                     document.querySelector('#date_as_of').innerHTML = formattedDate ;
                     document.querySelector('#sum_PCM3_team').innerHTML = sum_PCM3_team ;
+                    document.querySelector('#sum_AAM3_team').innerHTML = sum_AAM3_team ;
 
                 }
 
