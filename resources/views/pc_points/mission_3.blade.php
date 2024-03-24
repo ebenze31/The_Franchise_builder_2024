@@ -251,7 +251,7 @@ height: 87px;
             </p> -->
             <div>
                 
-                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission : <span id="sum_PCM3_team"></span> PC <span id="trophy_for_17m_pc" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span></p>
+                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission : <span id="sum_PCM3_team"></span> PC <span id="trophy_for_17m_pc" class="d-"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span></p>
                 <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;line-height: 1;font-weight: 700;">Active agent : <span id="">0</span> AA</span> 
                
             </div>
@@ -292,7 +292,7 @@ height: 87px;
                 0
             </span>
             <span style="color: #646D73;margin-left:18px;" id="text_progressPC_center">
-                
+                8.5m
             </span>
             <span style="color: #646D73;" id="text_progressPC_end">        
                 17m
@@ -330,7 +330,7 @@ height: 87px;
                 0
             </span>
             <span style="color: #646D73;margin-left:7px;" id="text_progressAA_center">
-                
+                13
             </span>
             <span style="color: #646D73;" id="text_progressAA_end">        
                 25
@@ -453,11 +453,11 @@ height: 87px;
                         sum_PCM3_team = sum_PCM3_team + result['data'][i].mission3;
                         sum_AAM3_team = parseInt(sum_AAM3_team) + parseInt(result['data'][i].active_mission3);
 
-                        if (sum_PCM3_team >= 1700000) {
-                            document.querySelector('#trophy_for_17m_pc').classList.remove('d-none');
-                        } else {
-                            document.querySelector('#trophy_for_17m_pc').classList.add('d-none');
-                        }
+                        // if (sum_PCM3_team >= 1700000) {
+                        //     document.querySelector('#trophy_for_17m_pc').classList.remove('d-none');
+                        // } else {
+                        //     document.querySelector('#trophy_for_17m_pc').classList.add('d-none');
+                        // }
 
                         let img_star = ``;
                         if(result['data'][i].active_mission3 >= 2){
@@ -678,16 +678,16 @@ height: 87px;
             }
 
             // ตรวจสอบหาหน่วยที่เหมาะสม
-            let units = ['k', 'M', 'B', 'T'];
-            let unitIndex = Math.floor(Math.log10(value) / 3);
-            let unitName = units[unitIndex - 1];
+            // let units = ['k', 'M', 'B', 'T'];
+            // let unitIndex = Math.floor(Math.log10(value) / 3);
+            // let unitName = units[unitIndex - 1];
 
-            // แปลงค่าเล็กที่สุดของหน่วยเป็นล้าน (M) และแสดงในรูปแบบที่ต้องการ
-            let formattedValue = (value / Math.pow(1000, unitIndex)).toFixed(1) + ' ' + unitName;
+            // // แปลงค่าเล็กที่สุดของหน่วยเป็นล้าน (M) และแสดงในรูปแบบที่ต้องการ
+            // let formattedValue = (value / Math.pow(1000, unitIndex)).toFixed(1) + ' ' + unitName;
 
-            // console.log(formattedValue); // 0.8 M
+            // // console.log(formattedValue); // 0.8 M
 
-            document.querySelector('#text_progressPC_center').innerHTML = formattedValue ;
+            // document.querySelector('#text_progressPC_center').innerHTML = formattedValue ;
 
             // if (percentage >= 100) {
             //     progressBarM3.innerHTML = '100%';
@@ -718,15 +718,15 @@ function percentageActiveAgent(value) {
                 document.getElementById('text_progressAA_end').style.color = '#646D73';
             } else if (percentage > 50 && percentage <= 99) {
                 document.getElementById('text_progressAA_first').style.color = '#fff';
-                document.getElementById('text_progressAA_center').style.color = '#fff';
+                document.getElementById('text_progressAA_center').style.color = '#091636';
                 document.getElementById('text_progressAA_end').style.color = '#646D73';
             } else {
                 document.getElementById('text_progressAA_first').style.color = '#fff';
-                document.getElementById('text_progressAA_center').style.color = '#fff';
+                document.getElementById('text_progressAA_center').style.color = '#091636';
                 document.getElementById('text_progressAA_end').style.color = '#fff';
             }
 
-            document.querySelector('#text_progressAA_center').innerHTML = value.toLocaleString();
+            // document.querySelector('#text_progressAA_center').innerHTML = value.toLocaleString();
             // if (percentage >= 100) {
             //     progressBar.innerHTML = '100%';
             // } else {
