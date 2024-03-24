@@ -187,7 +187,7 @@ height: 87px;
         border-radius: 50px !important;
         -webkit-border-radius: 50px; 
         -moz-border-radius: 50px;
-    }.img-rocket::before{
+    }.img-rocket_PC::before{
         content: "";
         display: inline-block;
         position: absolute;
@@ -195,7 +195,18 @@ height: 87px;
         height: 23px;
         margin-right: 5px;
         border-radius: 0 50% 50% 0;
-        background: rgba(0,255,255,1);
+        background: #03ABCE;
+/*        background: #0A102E;*/
+    }
+    .img-rocket_AA::before{
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 15px;
+        height: 23px;
+        margin-right: 5px;
+        border-radius: 0 50% 50% 0;
+        background: #FCBF29;
 /*        background: #0A102E;*/
     }.progress-bar{
         transition: all .5s ease-in-out;
@@ -288,8 +299,14 @@ height: 87px;
             </span>
         </div> 
         <div style="border-radius: 50px;position: relative;">
-            <div class="progress" style="background-color: #0A102E; border: #03ABCE solid 1px;">
-                <div  class="progress-bar" role="progressbar" id="progressBarM3" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #03ABCE;border-radius: 50px;"></div>
+            <div class="progress mb-3" style="background-color: #0A102E; border: #03ABCE solid 1px;">
+                <div  class="progress-bar" role="progressbar" id="progressBarM3" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #03ABCE;"></div>
+                <div class="text-white" id="rocket_progressBar" style="transition: all .5s ease-in-out;position: relative;z-index: 999999999999999;margin-top: -1px;">
+                    <!-- <p id="textprogressBar">15</p> -->
+                    <span class="img-rocket_PC"></span>
+                    <img src="{{ url('/img/icon/rocket.png') }}"  style="height:23px;position: relative;right: 0%;">
+                    <!-- <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;color: #03ABCE;">0</span> -->
+                </div>
             </div>
         </div>
     </div>
@@ -321,7 +338,13 @@ height: 87px;
         </div>  
         <div style="border-radius: 50px;position: relative;">
             <div class="progress mb-3" style="background-color: #0A102E; border: #FCBF29 solid 1px;">
-                <div  class="progress-bar" role="progressbar" id="progressBarAA" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #FCBF29;border-radius: 50px;"></div>
+            <div  class="progress-bar" role="progressbar" id="progressBarAA" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #FCBF29;"></div>
+                <div class="text-white" id="rocket_progressBar" style="transition: all .5s ease-in-out;position: relative;z-index: 999999999999999;margin-top: -1px;">
+                    <!-- <p id="textprogressBar">15</p> -->
+                    <span class="img-rocket_AA"></span>
+                    <img src="{{ url('/img/icon/rocket.png') }}"  style="height:23px;position: relative;right: 0%;">
+                    <!-- <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;color: #FFD233;">0</span> -->
+                </div>
             </div>
         </div>
     </div>
