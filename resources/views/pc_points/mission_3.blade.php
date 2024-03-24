@@ -281,7 +281,7 @@ height: 87px;
                 0
             </span>
             <span style="color: #646D73;margin-left:18px;" id="text_progressPC_center">
-                8.5m
+                
             </span>
             <span style="color: #646D73;" id="text_progressPC_end">        
                 17m
@@ -312,8 +312,8 @@ height: 87px;
             <span style="color: #646D73;" id="text_progressAA_first">                
                 0
             </span>
-            <span style="color: #646D73;margin-left:7px;"" id="text_progressAA_center">
-                13
+            <span style="color: #646D73;margin-left:7px;" id="text_progressAA_center">
+                
             </span>
             <span style="color: #646D73;" id="text_progressAA_end">        
                 25
@@ -653,6 +653,19 @@ height: 87px;
                 document.getElementById('text_progressPC_center').style.color = '#fff';
                 document.getElementById('text_progressPC_end').style.color = '#fff';
             }
+
+            // ตรวจสอบหาหน่วยที่เหมาะสม
+            let units = ['k', 'M', 'B', 'T'];
+            let unitIndex = Math.floor(Math.log10(value) / 3);
+            let unitName = units[unitIndex - 1];
+
+            // แปลงค่าเล็กที่สุดของหน่วยเป็นล้าน (M) และแสดงในรูปแบบที่ต้องการ
+            let formattedValue = (value / Math.pow(1000, unitIndex)).toFixed(1) + ' ' + unitName;
+
+            // console.log(formattedValue); // 0.8 M
+
+            document.querySelector('#text_progressPC_center').innerHTML = formattedValue ;
+
             // if (percentage >= 100) {
             //     progressBarM3.innerHTML = '100%';
             // } else {
@@ -675,7 +688,7 @@ function percentageActiveAgent(value) {
         let progressBar = document.getElementById('progressBarAA');
             progressBar.style.width = percentage + '%';
 
-            console.log(percentage)
+            // console.log(percentage)
             if (percentage >= 0 && percentage <= 50) {
                 document.getElementById('text_progressAA_first').style.color = '#fff';
                 document.getElementById('text_progressAA_center').style.color = '#646D73';
@@ -689,6 +702,8 @@ function percentageActiveAgent(value) {
                 document.getElementById('text_progressAA_center').style.color = '#fff';
                 document.getElementById('text_progressAA_end').style.color = '#fff';
             }
+
+            document.querySelector('#text_progressAA_center').innerHTML = value.toLocaleString();
             // if (percentage >= 100) {
             //     progressBar.innerHTML = '100%';
             // } else {

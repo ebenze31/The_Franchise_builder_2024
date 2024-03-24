@@ -142,13 +142,15 @@ height: 87px;
         width: 45% !important;
     }
 
+   
     .btn-sort-data{
-        /* padding: 6px 20px ; */
-        width: 100px;
+        padding: 10px 0px ;
+        width: 140px;
         background-color: rgb(0, 155, 176 , .61);
         border: 1px solid #00E0FF;
         color: #fff;
         font-weight: bold;
+        font-size: 18px;
     }
 
     .btn-sort-data:hover{
@@ -165,9 +167,12 @@ height: 87px;
     }
 
     .btn-sort-data.not-open{
-        color: #707070;
-        border: 1px solid #707070;
-        background-color: #707070;
+        color: #365F91;
+        width: 110px;
+
+        border: 1px solid #365F91;
+        background-color: #091636;
+        font-size: 14px;
         font-weight: bold;
     }.item-team{
         padding: 5px 5px 0 5px;
@@ -262,11 +267,17 @@ height: 87px;
                 <img src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 16px;height:16px;">
             </div>
         </div>
-        <div class="w-100 d-flex justify-content-end px-2" style="margin-bottom:-21px;position: relative;z-index: 99999999;">
-            <span style="color: #646D73;" id="text_progress_25">        
+        <div class="w-100 d-flex justify-content-between px-2" style="margin-bottom:-21px;position: relative;z-index: 99999999;">
+            <span style="color: #646D73;" id="text_progressPC_first">                
+                0
+            </span>
+            <span style="color: #646D73;margin-left:18px;" id="text_progressPC_center">
+                
+            </span>
+            <span style="color: #646D73;" id="text_progressPC_end">        
                 17m
             </span>
-        </div>  
+        </div> 
         <div style="border-radius: 50px;position: relative;">
             <div class="progress" style="background-color: #0A102E; border: #03ABCE solid 1px;">
                 <div  class="progress-bar" role="progressbar" id="progressBarM3" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #03ABCE;border-radius: 50px;"></div>
@@ -288,8 +299,14 @@ height: 87px;
                 <img src="{{ url('/img/icon/trophy-gold.png') }}" style="width: 16px;height:16px;">
             </div>
         </div>
-        <div class="w-100 d-flex justify-content-end px-2" style="margin-bottom:-21px;position: relative;z-index: 99999999;">
-            <span style="color: #646D73;" id="text_progress_25">        
+        <div class="w-100 d-flex justify-content-between px-2" style="margin-bottom:-21px;position: relative;z-index: 99999999;">
+            <span style="color: #646D73;" id="text_progressAA_first">                
+                0
+            </span>
+            <span style="color: #646D73;margin-left:7px;" id="text_progressAA_center">
+                
+            </span>
+            <span style="color: #646D73;" id="text_progressAA_end">        
                 25
             </span>
         </div>  
@@ -457,6 +474,38 @@ height: 87px;
 
         let progressBarM3 = document.getElementById('progressBarM3');
             progressBarM3.style.width = percentage + '%';
+
+            if (percentage >= 0 && percentage <= 50) {
+                document.getElementById('text_progressPC_first').style.color = '#fff';
+                document.getElementById('text_progressPC_center').style.color = '#646D73';
+                document.getElementById('text_progressPC_end').style.color = '#646D73';
+            } else if (percentage > 50 && percentage <= 99) {
+                document.getElementById('text_progressPC_first').style.color = '#fff';
+                document.getElementById('text_progressPC_center').style.color = '#fff';
+                document.getElementById('text_progressPC_end').style.color = '#646D73';
+            } else {
+                document.getElementById('text_progressPC_first').style.color = '#fff';
+                document.getElementById('text_progressPC_center').style.color = '#fff';
+                document.getElementById('text_progressPC_end').style.color = '#fff';
+            }
+
+            // ตรวจสอบหาหน่วยที่เหมาะสม
+            let units = ['k', 'M', 'B', 'T'];
+            let unitIndex = Math.floor(Math.log10(value) / 3);
+            let unitName = units[unitIndex - 1];
+
+            // แปลงค่าเล็กที่สุดของหน่วยเป็นล้าน (M) และแสดงในรูปแบบที่ต้องการ
+            let formattedValue = (value / Math.pow(1000, unitIndex)).toFixed(1) + ' ' + unitName;
+
+            // console.log(formattedValue); // 0.8 M
+
+            document.querySelector('#text_progressPC_center').innerHTML = formattedValue ;
+
+            // if (percentage >= 100) {
+            //     progressBarM3.innerHTML = '100%';
+            // } else {
+            //     progressBarM3.innerHTML = parseInt(percentage) + '%';
+            // }
         // return percentage;
     } else {
         // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
@@ -473,6 +522,29 @@ function percentageActiveAgent(value) {
 
         let progressBar = document.getElementById('progressBarAA');
             progressBar.style.width = percentage + '%';
+
+            // console.log(percentage)
+            if (percentage >= 0 && percentage <= 50) {
+                document.getElementById('text_progressAA_first').style.color = '#fff';
+                document.getElementById('text_progressAA_center').style.color = '#646D73';
+                document.getElementById('text_progressAA_end').style.color = '#646D73';
+            } else if (percentage > 50 && percentage <= 99) {
+                document.getElementById('text_progressAA_first').style.color = '#fff';
+                document.getElementById('text_progressAA_center').style.color = '#fff';
+                document.getElementById('text_progressAA_end').style.color = '#646D73';
+            } else {
+                document.getElementById('text_progressAA_first').style.color = '#fff';
+                document.getElementById('text_progressAA_center').style.color = '#fff';
+                document.getElementById('text_progressAA_end').style.color = '#fff';
+            }
+
+            document.querySelector('#text_progressAA_center').innerHTML = value.toLocaleString();
+            // if (percentage >= 100) {
+            //     progressBar.innerHTML = '100%';
+            // } else {
+            //     progressBar.innerHTML = parseInt(percentage) + '%';
+            // }
+
         // return percentage;
     } else {
         // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
