@@ -142,13 +142,15 @@ height: 87px;
         width: 45% !important;
     }
 
+   
     .btn-sort-data{
-        /* padding: 6px 20px ; */
-        width: 100px;
+        padding: 10px 0px ;
+        width: 140px;
         background-color: rgb(0, 155, 176 , .61);
         border: 1px solid #00E0FF;
         color: #fff;
         font-weight: bold;
+        font-size: 18px;
     }
 
     .btn-sort-data:hover{
@@ -165,9 +167,12 @@ height: 87px;
     }
 
     .btn-sort-data.not-open{
-        color: #707070;
-        border: 1px solid #707070;
-        background-color: #707070;
+        color: #365F91;
+        width: 110px;
+
+        border: 1px solid #365F91;
+        background-color: #091636;
+        font-size: 14px;
         font-weight: bold;
     }.item-team{
         padding: 5px 5px 0 5px;
@@ -622,6 +627,12 @@ height: 87px;
 
         let progressBarM3 = document.getElementById('progressBarM3');
             progressBarM3.style.width = percentage + '%';
+
+            if (percentage >= 100) {
+                progressBarM3.innerHTML = '100%';
+            } else {
+                progressBarM3.innerHTML = parseInt(percentage) + '%';
+            }
         // return percentage;
     } else {
         // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
@@ -638,6 +649,13 @@ function percentageActiveAgent(value) {
 
         let progressBar = document.getElementById('progressBarAA');
             progressBar.style.width = percentage + '%';
+
+            if (percentage >= 100) {
+                progressBar.innerHTML = '100%';
+            } else {
+                progressBar.innerHTML = parseInt(percentage) + '%';
+            }
+
         // return percentage;
     } else {
         // ถ้าค่าไม่ได้อยู่ในช่วงที่กำหนดให้
