@@ -210,7 +210,10 @@ height: 87px;
 /*        background: #0A102E;*/
     }.progress-bar{
         transition: all .5s ease-in-out;
-    } .team_color_0{
+        border-radius: 50px;
+        -webkit-border-radius: 50px; 
+        -moz-border-radius: 50px;
+    }  .team_color_0{
         border: 2px solid #FF0000 !important;
         border-radius: 50px;
         background-color: #FF0000;
@@ -267,6 +270,12 @@ height: 87px;
                 </div> -->
             </div>
         </div>
+        <div class="text-end" style="position: absolute;top: 10px; right: 15px;color: #FFF;font-size: 9px;font-style: normal;font-weight: 500;line-height: normal;">
+            <p style="font-size: 14px;color:#FCBF29;">Achiever</p>
+            <p style="font-size: 14px;color:#FCBF29;">
+                <span id="sum_achiever_team">00</span>/<span>10</span>
+            </p>
+        </div>
         <span style="position: absolute;bottom: 5px; right: 15px;color: #FFF;font-size: 9px;font-style: normal;font-weight: 500;line-height: normal;">
             Data As of  : <span id="date_as_of"></span>
         </span>
@@ -275,7 +284,7 @@ height: 87px;
 
 <input type="text" name="input_sum_PC" class="form-control d-none" id="input_sum_PC" oninput="percentagePcMission3(this.value)" placeholder="กรอกเลขสิ">
 <div class="d-flex" >
-    <div class="p-3" style="width: calc(100%);">
+    <div class="p-3 pb-1" style="width: calc(100%);">
         <div class="w-100 d-flex justify-content-between px-2 mb-2">
             <div>                
                 <img src="{{ url('/img/icon/trophy-sliver.png') }}" style="width: 16px;height:16px;">
@@ -292,28 +301,26 @@ height: 87px;
                 0
             </span>
             <span style="color: #646D73;margin-left:18px;" id="text_progressPC_center">
-                8.5m
+                0.85m
             </span>
             <span style="color: #646D73;" id="text_progressPC_end">        
-                17m
+                1.7m
             </span>
         </div> 
         <div style="border-radius: 50px;position: relative;">
             <div class="progress mb-3" style="background-color: #0A102E; border: #03ABCE solid 1px;">
                 <div  class="progress-bar" role="progressbar" id="progressBarM3" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #03ABCE;"></div>
-                <div class="text-white" id="rocket_progressBar" style="transition: all .5s ease-in-out;position: relative;z-index: 999999999999999;margin-top: -1px;margin-left: -36px;">
-                    <!-- <p id="textprogressBar">15</p> -->
+                <!-- <div class="text-white" id="rocket_progressBar" style="transition: all .5s ease-in-out;position: relative;z-index: 999999999999999;margin-top: -1px;margin-left: -36px;">
                     <span class="img-rocket_PC"></span>
                     <img src="{{ url('/img/icon/rocket-1.png') }}"  style="height:23px;position: relative;right: 0%;">
-                    <!-- <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;color: #03ABCE;">0</span> -->
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 </div>
 <input type="text" name="input_sum_Active_Agent" class="form-control d-none" id="input_sum_Active_Agent" oninput="percentageActiveAgent(this.value)" placeholder="กรอกเลขสิ">
 <div class="d-flex" >
-    <div class="p-3" style="width: calc(100%);">
+    <div class="p-3 pt-0" style="width: calc(100%);">
         <div class="w-100 d-flex justify-content-between px-2 mb-2">
             <div>                
                 <img src="{{ url('/img/icon/trophy-sliver.png') }}" style="width: 16px;height:16px;">
@@ -330,21 +337,19 @@ height: 87px;
                 0
             </span>
             <span style="color: #646D73;margin-left:7px;" id="text_progressAA_center">
-                13
+                20
             </span>
             <span style="color: #646D73;" id="text_progressAA_end">        
-                25
+                40
             </span>
         </div>  
         <div style="border-radius: 50px;position: relative;">
             <div class="progress mb-3" style="background-color: #0A102E; border: #FCBF29 solid 1px;">
             <div  class="progress-bar" role="progressbar" id="progressBarAA" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 21px;background-color: #FCBF29;"></div>
-                <div class="text-white" id="rocket_progressBar" style="transition: all .5s ease-in-out;position: relative;z-index: 999999999999999;margin-top: -1px;margin-left: -36px;">
-                    <!-- <p id="textprogressBar">15</p> -->
+                <!-- <div class="text-white" id="rocket_progressBar" style="transition: all .5s ease-in-out;position: relative;z-index: 999999999999999;margin-top: -1px;margin-left: -36px;">
                     <span class="img-rocket_AA"></span>
                     <img src="{{ url('/img/icon/rocket-2.png') }}"  style="height:23px;position: relative;right: 0%;">
-                    <!-- <span id="textprogressBar" style="position: absolute;  top: 57%;  left: 65%;  transform: translate(-50%, -50%);font-size: 8px;color: #FFD233;">0</span> -->
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -658,29 +663,32 @@ height: 87px;
     // ตรวจสอบว่าค่าที่รับเข้ามาอยู่ในช่วง 1-30 หรือไม่
     if (value >= 0) {
         // คำนวณเป็นเปอร์เซ็นต์
-        let percentage = (value / 17000000) * 100;
+        let percentage = (value / 1700000) * 100;
 
-        console.log(percentage);
+        // console.log(percentage);
 
-        if(percentage < 12 && percentage != 0){
-            percentage = 12;
-        }
+        // if(percentage < 12 && percentage != 0){
+        //     percentage = 12;
+        // }
 
         let progressBarM3 = document.getElementById('progressBarM3');
             progressBarM3.style.width = percentage + '%';
 
-            if (percentage >= 0 && percentage <= 50) {
-                document.getElementById('text_progressPC_first').style.color = '#fff';
+            if (percentage >= 0 && percentage < 54) {
+                // console.log('1');
+                document.getElementById('text_progressPC_first').style.color = '#07285A';
                 document.getElementById('text_progressPC_center').style.color = '#646D73';
                 document.getElementById('text_progressPC_end').style.color = '#646D73';
-            } else if (percentage > 50 && percentage <= 99) {
-                document.getElementById('text_progressPC_first').style.color = '#fff';
-                document.getElementById('text_progressPC_center').style.color = '#fff';
+            } else if (percentage >= 54 && percentage <= 99) {
+                // console.log('2');
+                document.getElementById('text_progressPC_first').style.color = '#07285A';
+                document.getElementById('text_progressPC_center').style.color = '#07285A';
                 document.getElementById('text_progressPC_end').style.color = '#646D73';
             } else {
-                document.getElementById('text_progressPC_first').style.color = '#fff';
-                document.getElementById('text_progressPC_center').style.color = '#fff';
-                document.getElementById('text_progressPC_end').style.color = '#fff';
+                // console.log('3');
+                document.getElementById('text_progressPC_first').style.color = '#07285A';
+                document.getElementById('text_progressPC_center').style.color = '#07285A';
+                document.getElementById('text_progressPC_end').style.color = '#07285A';
             }
 
             // ตรวจสอบหาหน่วยที่เหมาะสม
@@ -710,28 +718,28 @@ function percentageActiveAgent(value) {
     // ตรวจสอบว่าค่าที่รับเข้ามาอยู่ในช่วง 1-30 หรือไม่
     if (value >= 0) {
         // คำนวณเป็นเปอร์เซ็นต์
-        let percentage = (value / 25) * 100;
+        let percentage = (value / 40) * 100;
 
         console.log(percentage);
-        if(percentage < 12 && percentage != 0){
-            percentage = 12;
-        }
+        // if(percentage < 12 && percentage != 0){
+        //     percentage = 12;
+        // }
         let progressBar = document.getElementById('progressBarAA');
             progressBar.style.width = percentage + '%';
 
             // console.log(percentage)
-            if (percentage >= 0 && percentage <= 50) {
-                document.getElementById('text_progressAA_first').style.color = '#fff';
+            if (percentage >= 0 && percentage < 52) {
+                document.getElementById('text_progressAA_first').style.color = '#07285A';
                 document.getElementById('text_progressAA_center').style.color = '#646D73';
                 document.getElementById('text_progressAA_end').style.color = '#646D73';
-            } else if (percentage > 50 && percentage <= 99) {
-                document.getElementById('text_progressAA_first').style.color = '#fff';
+            } else if (percentage >= 52 && percentage <= 99) {
+                document.getElementById('text_progressAA_first').style.color = '#07285A';
                 document.getElementById('text_progressAA_center').style.color = '#091636';
                 document.getElementById('text_progressAA_end').style.color = '#646D73';
             } else {
-                document.getElementById('text_progressAA_first').style.color = '#fff';
+                document.getElementById('text_progressAA_first').style.color = '#07285A';
                 document.getElementById('text_progressAA_center').style.color = '#091636';
-                document.getElementById('text_progressAA_end').style.color = '#fff';
+                document.getElementById('text_progressAA_end').style.color = '#07285A';
             }
 
             // document.querySelector('#text_progressAA_center').innerHTML = value.toLocaleString();
