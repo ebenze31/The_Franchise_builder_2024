@@ -254,7 +254,7 @@ height: 87px;
             </p> -->
             <div>
                 
-                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission 3 PC : <span id="sum_PCM3_team">0</span> PC <span id="trophy_for_17m_pc" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span></p>
+                <p style="color: #FCBF29;font-size: 12px;font-style: normal;font-weight: 700;line-height: 1;">Mission 3 PC : <span id="sum_PCM3_team">0</span> PC <span id="trophy_for_1_7m_pc" class="d-none"><img src="{{ url('/img/icon/trophy-gold.png') }}" style="margin-top: 2px;width: 16px;height:16px;position: relative!important;left: 5px !important;"></span></p>
                 <span id="span_sum_score_team" style="margin-left:110px;color: #FCBF29;font-size: 12px;font-style: normal;line-height: 1;font-weight: 700;">Active agent : <span id="sum_AAM3_team">0</span> AA</span> 
                
             </div>
@@ -409,6 +409,7 @@ height: 87px;
 
                 let sum_PCM3_team = 0 ;
                 let sum_AAM3_team = 0 ;
+                let sum_achiever_team = 0 ;
 
                 if(result){
 
@@ -459,16 +460,18 @@ height: 87px;
                         sum_AAM3_team = parseInt(sum_AAM3_team) + parseInt(result['data'][i].active_mission3);
 
                         if (sum_PCM3_team >= 1700000) {
-                            document.querySelector('#trophy_for_17m_pc').classList.remove('d-none');
+                            document.querySelector('#trophy_for_1_7m_pc').classList.remove('d-none');
                         } else {
-                            document.querySelector('#trophy_for_17m_pc').classList.add('d-none');
+                            document.querySelector('#trophy_for_1_7m_pc').classList.add('d-none');
                         }
 
                         let img_star = ``;
-                        if(result['data'][i].active_mission3 >= 2){
+                        if(result['data'][i].active_mission3 >= 4){
                             img_star = `
                                 <img src="{{ url('/img/icon/star.png') }}" style="width: 13px;height:13px;" class="img-member">
                             `;
+
+                            sum_achiever_team = sum_achiever_team + 1 ;
                         }
 
                         let html = `
@@ -525,6 +528,11 @@ height: 87px;
                     document.querySelector('#date_as_of').innerHTML = formattedDate ;
                     document.querySelector('#sum_PCM3_team').innerHTML = sum_PCM3_team ;
                     document.querySelector('#sum_AAM3_team').innerHTML = sum_AAM3_team ;
+
+                    if(sum_achiever_team < 10){
+                        sum_achiever_team = "0"+sum_achiever_team ;
+                    }
+                    document.querySelector('#sum_achiever_team').innerHTML = sum_achiever_team ;
 
                 }
 
@@ -584,18 +592,6 @@ height: 87px;
                                         <img src="{{ url('/img/group_profile_m3/success/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_2 img_team">
                                         <!-- shield -->
                                         <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
-
-                                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
-                                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
-                                                <div class=" team_color_2"  role="progressbar" style="width: 100%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
-                                                    <span id="">`+active_mission3+`</span>/25
-                                                </div>
-                                                
-                                            </div>
-                                            <!-- trophy -->
-                                            <img src="{{ url('/img/icon/trophy.png') }}" style="width: 16px; position: absolute;top: -1px;right: 3px;">
-                                        </div>
                                     </div>
                                 `+tag_a_2+`
                                 </div>
@@ -611,15 +607,6 @@ height: 87px;
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
                                         <img src="{{ url('/img/group_profile_m3/warning/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_1 img_team">
                                         <!-- <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -12px;"> -->
-
-                                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
-                                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
-                                                <div class=" team_color_1"  role="progressbar" style="width: `+percentage+`%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
-                                                    <span id="">`+active_mission3+`</span>/25
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 `+tag_a_2+`
                                 </div>
@@ -634,14 +621,6 @@ height: 87px;
                                 `+tag_a_1+`
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
                                         <img src="{{ url('/img/group_profile_m3/danger/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_0 img_team">
-                                        <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
-                                            <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
-                                                <div class=" team_color_0" role="progressbar" style="width: `+percentage+`%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                                <div style="position: absolute;  top: 55%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;color: #07203F;font-weight: bolder;">
-                                                    <span id="">`+active_mission3+`</span>/25
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 `+tag_a_2+`
                                 </div>
@@ -720,7 +699,7 @@ function percentageActiveAgent(value) {
         // คำนวณเป็นเปอร์เซ็นต์
         let percentage = (value / 40) * 100;
 
-        console.log(percentage);
+        // console.log(percentage);
         // if(percentage < 12 && percentage != 0){
         //     percentage = 12;
         // }
