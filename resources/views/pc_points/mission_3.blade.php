@@ -591,7 +591,7 @@ height: 87px;
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
                                         <img src="{{ url('/img/group_profile_m3/success/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_2 img_team">
                                         <!-- shield -->
-                                        <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
+                                        <img src="{{ url('/img/icon/shield_pc.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
                                     </div>
                                 `+tag_a_2+`
                                 </div>
@@ -606,7 +606,6 @@ height: 87px;
                                 `+tag_a_1+`
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
                                         <img src="{{ url('/img/group_profile_m3/warning/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_1 img_team">
-                                        <!-- <img src="{{ url('/img/icon/shield.png') }}" style="width: 35px; position: absolute;top: -3px;right: -12px;"> -->
                                     </div>
                                 `+tag_a_2+`
                                 </div>
