@@ -570,9 +570,9 @@ height: 87px;
                         let active_mission3 = result_data_arr[week]['active_mission3'] ;
                         let csta_mission3 = result_data_arr[week]['csta_mission3'] ;
 
-                        console.log("Team " + text_id_group);
-                        console.log(mission3);
-                        console.log("-------");
+                        // console.log("Team " + text_id_group);
+                        // console.log(mission3);
+                        // console.log("-------");
 
                         let html_all_team_m3 ;
                         let percentage ;
