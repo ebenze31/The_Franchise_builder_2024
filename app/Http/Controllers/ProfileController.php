@@ -546,7 +546,8 @@ class ProfileController extends Controller
 
         $data['data'] = DB::table('groups')
             ->where('m3_rank_of_week' , '!=' , null)
-            ->orderByRaw('CAST(m3_rank_of_week AS SIGNED) ASC, id ASC')
+            // ->orderByRaw('CAST(m3_rank_of_week AS SIGNED) ASC, id ASC')
+            ->orderByRaw('id ASC')
             ->get();
 
         $data['week'] = $week;
