@@ -570,6 +570,10 @@ height: 87px;
                         let active_mission3 = result_data_arr[week]['active_mission3'] ;
                         let csta_mission3 = result_data_arr[week]['csta_mission3'] ;
 
+                        console.log("Team " + text_id_group);
+                        console.log(mission3);
+                        console.log("-------");
+
                         let html_all_team_m3 ;
                         let percentage ;
 
@@ -579,6 +583,13 @@ height: 87px;
                         if ("{{ Auth::user()->role }}" !== "Player") {
                             tag_a_1 = `<a href="{{ url('/view_team_mission3') }}/`+result['data'][i].id+`" onclick="return create_logs('Mission3 team_`+result['data'][i].id+`');">`;
                             tag_a_2 = `</a>`;
+                        }
+
+                        let html_shield_pc = `` ;
+                        if(mission3 >= 1700000){
+                            html_shield_pc = `
+                                <img src="{{ url('/img/icon/shield_pc.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
+                            `;
                         }
 
                         if(csta_mission3 == "G"){
@@ -591,7 +602,7 @@ height: 87px;
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
                                         <img src="{{ url('/img/group_profile_m3/success/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_2 img_team">
                                         <!-- shield -->
-                                        <img src="{{ url('/img/icon/shield_pc.png') }}" style="width: 35px; position: absolute;top: -3px;right: -11px;">
+                                        `+html_shield_pc+`
                                     </div>
                                 `+tag_a_2+`
                                 </div>
@@ -606,6 +617,8 @@ height: 87px;
                                 `+tag_a_1+`
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
                                         <img src="{{ url('/img/group_profile_m3/warning/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_1 img_team">
+                                        <!-- shield -->
+                                        `+html_shield_pc+`
                                     </div>
                                 `+tag_a_2+`
                                 </div>
@@ -620,6 +633,8 @@ height: 87px;
                                 `+tag_a_1+`
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
                                         <img src="{{ url('/img/group_profile_m3/danger/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_0 img_team">
+                                        <!-- shield -->
+                                        `+html_shield_pc+`
                                     </div>
                                 `+tag_a_2+`
                                 </div>
