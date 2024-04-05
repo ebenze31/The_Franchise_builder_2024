@@ -228,7 +228,8 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
 <div class="w-100 d-flex justify-content-center mt-4 my-3">
     <div class="btn-group" role="group" aria-label="Basic example" style="scale: .8;">
         <a type="button" href="{{ url('/mission_2') }}" class="btn btn-sort-data active" onclick="return create_logs('031_Mission2 (toggle)');">Mission 2</a>
-        <a type="button" href="{{ url('/mission_3') }}" class="btn btn-sort-data "  onclick="return create_logs('032_Mission3 (toggle)');">Mission 3</a>
+        <!-- <a type="button" href="{{ url('/mission_3') }}" class="btn btn-sort-data "  onclick="return create_logs('032_Mission3 (toggle)');">Mission 3</a> -->
+        <a type="button" class="btn btn-sort-data not-open" style="width: 140px;font-size: 17px;" >coming soon</a>
     </div>
 </div>
 
