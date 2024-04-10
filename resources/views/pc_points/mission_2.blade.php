@@ -588,7 +588,7 @@ background: linear-gradient(100deg, rgba(27,92,217,1) 0%, rgba(0,255,255,1) 100%
                                 <div id="" class="member-item div_Team mt-0">
                                 `+tag_a_1+`
                                     <div class="item-team" style="width: 100%;height: auto;position: relative;">
-                                        <img src="{{ url('/img/group_profile/danger/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_0 img_team">
+                                        <img src="{{ url('/img/group_profile/danger2/id (`+text_id_group+`).png') }}" style="width: 100%;" class="team_color_0 img_team">
                                         <div class="px-1" style="position: absolute;position: absolute;top: 95%;left: 50%;transform: translate(-50%, -50%);color: #fff;z-index: 999;width: 93%;">
                                             <div class="progress mb-3" style="height:14px;position: relative;background-color: #8E8E8E;">
                                                 <div class=" team_color_0" role="progressbar" style="width: `+percentage+`%;border:none!important;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
