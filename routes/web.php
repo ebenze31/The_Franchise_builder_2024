@@ -74,7 +74,8 @@ Route::middleware(['auth',])->group(function () {
     });
 
     Route::get('/mission_3', function () {
-        return view('pc_points/mission_3');
+        // return view('pc_points/mission_3');
+        return redirect('mission_2');
     });
 
     Route::get('/grand_mission_my_team/{group_id}', 'GroupsController@grand_mission_my_team');
