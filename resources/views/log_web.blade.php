@@ -60,6 +60,7 @@
 		</tr>
 	</tfoot>
 </table>
+<span id="span_loading" class="text-success">กำลังโหลดข้อมูล..</span>
 </div>
 
 <!-- partial -->
@@ -163,6 +164,8 @@
                 }
 
                 table.rows.add(data).draw(false);
+
+                document.querySelector('#span_loading').classList.add('d-none');
             });
     }
 </script>
