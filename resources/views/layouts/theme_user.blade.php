@@ -689,14 +689,16 @@
                                     }
 
                             });
+
+                            setTimeout(() => {
+                                create_carousel();
+                            }, 800);
                         }
                     }, 400);
 
 
                     if("{{ Auth::user()->role }}" != "Player_OUT"){
-                        setTimeout(() => {
-                            create_carousel();
-                        }, 800);
+                        
 
                         setTimeout(() => {
                             document.querySelector('#btn_modal_alert_news').click();
@@ -719,6 +721,9 @@
   }
 
   function create_carousel(){
+
+        // Destroy existing carousel instance if exists
+        $('.carousel_alert_news').trigger('destroy.owl.carousel');
 
         const owl = $('.carousel_alert_news')
         owl.owlCarousel({
